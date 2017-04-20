@@ -1,0 +1,43 @@
+//
+//  PrefixHeader.pch
+//  AgentSDKDemo
+//
+//  Created by afanda on 4/13/17.
+//  Copyright © 2017 环信. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "LocalDefine.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define hScreenHeight [[UIScreen mainScreen] bounds].size.height
+#define hScreenWidth  [[UIScreen mainScreen] bounds].size.width
+#define fKeyWindow [UIApplication sharedApplication].keyWindow
+#define BUTTON_TITLE_COLOR RGBACOLOR(0x4c, 0x4c, 0x4c, 1)
+#define kTableViewBgColor RGBACOLOR(255, 255, 255, 1)
+#define kNavBarBgColor RGBACOLOR(51, 51, 51, 1)
+
+
+#define WEAK_SELF typeof(self) __weak weakSelf = self;
+
+#define kBaseURL @"https://kefu.easemob.com"
+#import "HDManager.h"
+#import "IQKeyboardManager.h"
+#import <AgentSDK/AgentSDK.h>
+#import "SRRefreshView.h"
+#import "MWPhotoBrowser.h"
+#import "UIButton+WebCache.h"
+#import "UIImageView+WebCache.h"
+#import "UIViewController+HUD.h"
+#import "UIView+RNAdditions.h"
+#import "NSString+Escape.h"
+#import "NSObject+HDAdd.h"
+#import "EMCDDeviceManager.h"
+
+
+#endif /* PrefixHeader_pch */
