@@ -31,17 +31,13 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState;
 
 /*
- *  当前账号需要重新登录
+ *  当前账号被迫下线,需要重新登录
  */
-
 - (void)userAccountNeedRelogin;
 
 
 #pragma mark - 调度
-/*
- *  调度
- */
-- (void)newSchedule;
+
 
 /*
  *  会话被管理员转接
@@ -58,41 +54,41 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
 - (void)conversationClosedByAdminWithServiceSessionId:(NSString *)serviceSessionId;
 
 /*
- * 会话自动关闭
+ * 会话自动关闭 
+ * @param  serviceSessionId 关闭的会话ID
  */
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId;
 
 /*
- * 会话列表变更
- * 最后一条消息变化、
- * 有新回话 （sessionId == nil）
+ * 会话最后一条消息变化
+ * @param  sessionId 变化的sessionId
  */
-- (void)conversationListChanged:(NSString *)serviceSessionId;
-
-
+- (void)conversationLastMessageChanged:(MessageModel *)message;
 /*
- * 待接入列表变化
+ * 新会话
+ * @param  sessionId 新会话sessionId
  */
+- (void)newConversationWithSessionId:(NSString *)sessionId;
 
-- (void)waitListChange;
-
-/*
- * 客服列表发生变化
- */
-- (void)agentUsersListChange;
-
-/*
- * 通知中心有有变化
- */
-- (void)notificationChange;
 
 /*
  * 客服身份发生变化
  */
 - (void)roleChange:(RolesChangeType)type;
 
-#pragma mark - 待接入变化
-- (void)conversationWaitListChanged;
+/*
+ * 待接入列表变化
+ */
+- (void)waitListChange;
+/*
+ * 客服列表发生变化
+ */
+- (void)agentUsersListChange;
+/*
+ * 通知中心有有变化
+ */
+- (void)notificationChange;
+
 
 @end
 

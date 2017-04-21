@@ -25,6 +25,7 @@
 
 #define WEAK_SELF typeof(self) __weak weakSelf = self;
 
+#import "EmotionEscape.h"
 #define kBaseURL @"https://kefu.easemob.com"
 #import "HDManager.h"
 #import "IQKeyboardManager.h"

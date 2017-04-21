@@ -89,7 +89,8 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 - (void)setModel:(MessageModel *)model
 {
     [super setModel:model];
-    NSString *text = model.body.content ?  model.body.content : @"";
+    NSString *bodyContent =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:model.body.content];
+    NSString *text = bodyContent ? bodyContent : @"";
     _urlMatches = [_detector matchesInString:text options:0 range:NSMakeRange(0, text.length)];
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:text textFont:self.textLabel.font]];
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];

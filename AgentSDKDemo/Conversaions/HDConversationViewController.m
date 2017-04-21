@@ -129,8 +129,7 @@
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 return cell;
        }
-        
-        cell.textLabel.text = @"";
+
         ConversationModel *model = [self.dataSource objectAtIndex:indexPath.row];
         if ([model isKindOfClass:[ConversationModel class]]) {
             [cell setModel:model];
@@ -171,26 +170,33 @@
 }
 
 #pragma mark - HDClientDelegate
-//
-- (void)conversationListChanged:(NSString *)serviceSessionId {
-    NSLog(@"最后一条消息变化");
+- (void)newConversationWithSessionId:(NSString *)sessionId {
     [self loadData];
+}
+
+- (void)conversationLastMessageChanged:(MessageModel *)message {
+    ConversationModel *model = [self.dataSourceDic objectForKey:message.sessionServiceId];
+    if (model) {
+        model.lastMessage = message;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.dataSource removeObject:model];
+            [self.dataSource insertObject:model atIndex:0];
+            [self.tableView reloadData];
+        });
+    }
 }
 
 
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
-    NSLog(@"会话自动关闭关闭");
     [self loadData];
 }
 
 - (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
-    NSLog(@"会话被管理员转接");
     [self loadData];
 }
 
 
 - (void)userAccountNeedRelogin {
-    NSLog(@"用户需要重新登录");
     [[HDManager shareInstance] showLoginViewController];
 }
 
@@ -200,7 +206,7 @@
 
 //客服身份变化
 - (void)roleChange:(RolesChangeType)type {
-    
+     [[HDManager shareInstance] showLoginViewController];
 }
 
 

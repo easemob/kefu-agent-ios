@@ -57,16 +57,6 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             {
                 [_activtiy stopAnimating];
                 [_retryButton setHidden:YES];
-                /*
-                if (self.messageModel.message.isReadAcked)
-                {
-                    _activityView.hidden = NO;
-                    _hasRead.hidden = NO;
-                }
-                else
-                {
-                    [_activityView setHidden:YES];
-                }*/
                 _activityView.hidden = NO;
             }
                 break;
@@ -150,7 +140,6 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         _retryButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _retryButton.frame = CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE);
         [_retryButton addTarget:self action:@selector(retryButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-//        [_retryButton setImage:[UIImage imageNamed:@"messageSendFail.png"] forState:UIControlStateNormal];
         [_retryButton setBackgroundImage:[UIImage imageNamed:@"tips_false_message"] forState:UIControlStateNormal];
         //[_retryButton setBackgroundColor:[UIColor redColor]];
         [_activityView addSubview:_retryButton];

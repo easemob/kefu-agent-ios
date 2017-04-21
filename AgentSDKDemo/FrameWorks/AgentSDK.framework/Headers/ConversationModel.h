@@ -31,7 +31,6 @@ typedef enum {
 @property (strong, nonatomic) UserModel *chatter;
 @property (strong, nonatomic) VisitorUserModel *vistor;
 @property (strong, nonatomic) MessageModel *lastMessage;
-@property (nonatomic, copy) NSString *searchWord; //搜索字段
 @property (nonatomic) NSTimeInterval createDateTime;
 @property (nonatomic) conversationModelType type;
 @property (nonatomic, copy) NSString *originType;

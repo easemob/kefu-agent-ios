@@ -57,6 +57,9 @@ typedef enum {
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
+//图片
+@property(nonatomic,copy) NSString *remoteUrl;
+
 @property (copy, nonatomic) NSString *addr;
 @property (nonatomic) double lat;
 @property (nonatomic) double lng;

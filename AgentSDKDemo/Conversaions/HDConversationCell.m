@@ -94,7 +94,7 @@
     }
     _timeLabel.text =timeDes;
     NSString *content = model.lastMessage.body.content?model.lastMessage.body.content:@"";
-    NSMutableAttributedString * attributedString ;
+    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:content textFont:_contentLabel.font]];
     _contentLabel.attributedText = attributedString;
     if ([attributedString.string isEqual:@"[表情]"] && ![model.lastMessage.body.content isEqualToString:@"[表情]"]) {
         _contentLabel.text = model.lastMessage.body.content;

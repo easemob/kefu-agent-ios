@@ -33,10 +33,12 @@
 		D33F46D21E9F7FDE00FE6DCE /* HDSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33F46D01E9F7FDE00FE6DCE /* HDSettingViewController.xib */; };
 		D33F46D91E9F801E00FE6DCE /* HDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46D81E9F801E00FE6DCE /* HDLoginViewController.m */; };
 		D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */; };
+		D34240501EA9F6BD00BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D342404E1EA9F6A400BE9599 /* AgentSDK.framework */; };
+		D34240551EAA24E700BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; };
+		D34240561EAA24EA00BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; };
+		D34240571EAA24EA00BE9599 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D360327C1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */; };
 		D39BD8211EA8D13A008F428C /* HDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D39BD8201EA8D13A008F428C /* HDManager.m */; };
-		D39BD8281EA8EAF6008F428C /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39BD8261EA8EAF0008F428C /* AgentSDK.framework */; };
-		D39BD8291EA8EAF6008F428C /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D39BD8261EA8EAF0008F428C /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3A95D121EA0B82000ADD394 /* MediaFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D111EA0B82000ADD394 /* MediaFileModel.m */; };
 		D3A95D171EA0B8FA00ADD394 /* UIAlertView+AlertBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D161EA0B8FA00ADD394 /* UIAlertView+AlertBlock.m */; };
 		D3A95D1A1EA0BA7D00ADD394 /* DXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D191EA0BA7D00ADD394 /* DXBaseViewController.m */; };
@@ -178,21 +180,6 @@
 		D3FDC7861EA0A5C600C25BB0 /* VoiceSearchFeedback019@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6351EA0A5C500C25BB0 /* VoiceSearchFeedback019@2x.png */; };
 		D3FDC7871EA0A5C600C25BB0 /* VoiceSearchFeedback020.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6361EA0A5C500C25BB0 /* VoiceSearchFeedback020.png */; };
 		D3FDC7881EA0A5C600C25BB0 /* VoiceSearchFeedback020@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6371EA0A5C500C25BB0 /* VoiceSearchFeedback020@2x.png */; };
-		D3FDC7891EA0A5C600C25BB0 /* android_welcome_logo_320x400.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6391EA0A5C500C25BB0 /* android_welcome_logo_320x400.png */; };
-		D3FDC78A1EA0A5C600C25BB0 /* android开机图配置颜色.rtf in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC63A1EA0A5C500C25BB0 /* android开机图配置颜色.rtf */; };
-		D3FDC78C1EA0A5C600C25BB0 /* splash_screen_iphone4.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC63C1EA0A5C500C25BB0 /* splash_screen_iphone4.png */; };
-		D3FDC78D1EA0A5C600C25BB0 /* splash_screen_iphone5.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC63D1EA0A5C500C25BB0 /* splash_screen_iphone5.png */; };
-		D3FDC78E1EA0A5C600C25BB0 /* splash_screen_iphone6.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC63E1EA0A5C500C25BB0 /* splash_screen_iphone6.png */; };
-		D3FDC78F1EA0A5C600C25BB0 /* splash_screen_iphone6p.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC63F1EA0A5C500C25BB0 /* splash_screen_iphone6p.png */; };
-		D3FDC7901EA0A5C600C25BB0 /* 桌面icon_android_32.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6401EA0A5C500C25BB0 /* 桌面icon_android_32.png */; };
-		D3FDC7911EA0A5C600C25BB0 /* 桌面icon_android_36.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6411EA0A5C500C25BB0 /* 桌面icon_android_36.png */; };
-		D3FDC7921EA0A5C600C25BB0 /* 桌面icon_android_48.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6421EA0A5C500C25BB0 /* 桌面icon_android_48.png */; };
-		D3FDC7931EA0A5C600C25BB0 /* 桌面icon_android_72.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6431EA0A5C500C25BB0 /* 桌面icon_android_72.png */; };
-		D3FDC7941EA0A5C600C25BB0 /* 桌面icon_android_96.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6441EA0A5C500C25BB0 /* 桌面icon_android_96.png */; };
-		D3FDC7951EA0A5C600C25BB0 /* 桌面icon_ios_120.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6451EA0A5C500C25BB0 /* 桌面icon_ios_120.png */; };
-		D3FDC7961EA0A5C600C25BB0 /* 桌面icon_ios_144.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6461EA0A5C500C25BB0 /* 桌面icon_ios_144.png */; };
-		D3FDC7971EA0A5C600C25BB0 /* 桌面icon_ios_57.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6471EA0A5C500C25BB0 /* 桌面icon_ios_57.png */; };
-		D3FDC7981EA0A5C600C25BB0 /* 网页icon.ico in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6481EA0A5C500C25BB0 /* 网页icon.ico */; };
 		D3FDC7991EA0A5C600C25BB0 /* demo.css in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC64A1EA0A5C500C25BB0 /* demo.css */; };
 		D3FDC79A1EA0A5C600C25BB0 /* demo.html in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC64B1EA0A5C500C25BB0 /* demo.html */; };
 		D3FDC79B1EA0A5C600C25BB0 /* iconfont.css in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC64C1EA0A5C500C25BB0 /* iconfont.css */; };
@@ -517,7 +504,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3BFB1911EA4A4F50002FCD0 /* HyphenateLite.framework in Embed Frameworks */,
-				D39BD8291EA8EAF6008F428C /* AgentSDK.framework in Embed Frameworks */,
+				D34240571EAA24EA00BE9599 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -577,13 +564,14 @@
 		D33F46D81E9F801E00FE6DCE /* HDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDLoginViewController.m; sourceTree = "<group>"; };
 		D33F46E21E9F9C3E00FE6DCE /* HDBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDBaseNavigationController.h; path = Main/HDBaseNavigationController.h; sourceTree = "<group>"; };
 		D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDBaseNavigationController.m; path = Main/HDBaseNavigationController.m; sourceTree = "<group>"; };
+		D342404E1EA9F6A400BE9599 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgentSDK.framework; path = "/Users/FXN/环信移动客服/AgentSDKDemo/AgentSDKDemo/FrameWorks/AgentSDK.framework"; sourceTree = "<absolute>"; };
+		D34240541EAA24E700BE9599 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D35C8C681EA4EEF3009A9968 /* LocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDefine.h; sourceTree = "<group>"; };
 		D360327A1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HDAppDelegate.h"; sourceTree = "<group>"; };
 		D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HDAppDelegate.m"; sourceTree = "<group>"; };
 		D381EFCD1EA4B64F0092BD3C /* AgentSDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemo.entitlements; sourceTree = "<group>"; };
 		D39BD81F1EA8D13A008F428C /* HDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDManager.h; sourceTree = "<group>"; };
 		D39BD8201EA8D13A008F428C /* HDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDManager.m; sourceTree = "<group>"; };
-		D39BD8261EA8EAF0008F428C /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D3A95D101EA0B82000ADD394 /* MediaFileModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFileModel.h; sourceTree = "<group>"; };
 		D3A95D111EA0B82000ADD394 /* MediaFileModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFileModel.m; sourceTree = "<group>"; };
 		D3A95D151EA0B8FA00ADD394 /* UIAlertView+AlertBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertView+AlertBlock.h"; sourceTree = "<group>"; };
@@ -842,21 +830,6 @@
 		D3FDC6351EA0A5C500C25BB0 /* VoiceSearchFeedback019@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VoiceSearchFeedback019@2x.png"; sourceTree = "<group>"; };
 		D3FDC6361EA0A5C500C25BB0 /* VoiceSearchFeedback020.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VoiceSearchFeedback020.png; sourceTree = "<group>"; };
 		D3FDC6371EA0A5C500C25BB0 /* VoiceSearchFeedback020@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "VoiceSearchFeedback020@2x.png"; sourceTree = "<group>"; };
-		D3FDC6391EA0A5C500C25BB0 /* android_welcome_logo_320x400.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = android_welcome_logo_320x400.png; sourceTree = "<group>"; };
-		D3FDC63A1EA0A5C500C25BB0 /* android开机图配置颜色.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "android开机图配置颜色.rtf"; sourceTree = "<group>"; };
-		D3FDC63C1EA0A5C500C25BB0 /* splash_screen_iphone4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen_iphone4.png; sourceTree = "<group>"; };
-		D3FDC63D1EA0A5C500C25BB0 /* splash_screen_iphone5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen_iphone5.png; sourceTree = "<group>"; };
-		D3FDC63E1EA0A5C500C25BB0 /* splash_screen_iphone6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen_iphone6.png; sourceTree = "<group>"; };
-		D3FDC63F1EA0A5C500C25BB0 /* splash_screen_iphone6p.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_screen_iphone6p.png; sourceTree = "<group>"; };
-		D3FDC6401EA0A5C500C25BB0 /* 桌面icon_android_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_android_32.png"; sourceTree = "<group>"; };
-		D3FDC6411EA0A5C500C25BB0 /* 桌面icon_android_36.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_android_36.png"; sourceTree = "<group>"; };
-		D3FDC6421EA0A5C500C25BB0 /* 桌面icon_android_48.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_android_48.png"; sourceTree = "<group>"; };
-		D3FDC6431EA0A5C500C25BB0 /* 桌面icon_android_72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_android_72.png"; sourceTree = "<group>"; };
-		D3FDC6441EA0A5C500C25BB0 /* 桌面icon_android_96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_android_96.png"; sourceTree = "<group>"; };
-		D3FDC6451EA0A5C500C25BB0 /* 桌面icon_ios_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_ios_120.png"; sourceTree = "<group>"; };
-		D3FDC6461EA0A5C500C25BB0 /* 桌面icon_ios_144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_ios_144.png"; sourceTree = "<group>"; };
-		D3FDC6471EA0A5C500C25BB0 /* 桌面icon_ios_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "桌面icon_ios_57.png"; sourceTree = "<group>"; };
-		D3FDC6481EA0A5C500C25BB0 /* 网页icon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; path = "网页icon.ico"; sourceTree = "<group>"; };
 		D3FDC64A1EA0A5C500C25BB0 /* demo.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = demo.css; sourceTree = "<group>"; };
 		D3FDC64B1EA0A5C500C25BB0 /* demo.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = demo.html; sourceTree = "<group>"; };
 		D3FDC64C1EA0A5C500C25BB0 /* iconfont.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = iconfont.css; sourceTree = "<group>"; };
@@ -1213,6 +1186,8 @@
 				D3D082001EA4B349003FF1C3 /* Foundation.framework in Frameworks */,
 				D3A95D491EA0CF4300ADD394 /* ImageIO.framework in Frameworks */,
 				D3A95D471EA0CF3B00ADD394 /* MobileCoreServices.framework in Frameworks */,
+				D34240551EAA24E700BE9599 /* AgentSDK.framework in Frameworks */,
+				D34240501EA9F6BD00BE9599 /* AgentSDK.framework in Frameworks */,
 				D3A95D431EA0CF2F00ADD394 /* AudioToolbox.framework in Frameworks */,
 				D3A95D411EA0CF2800ADD394 /* CoreMedia.framework in Frameworks */,
 				D3BFB1901EA4A4F50002FCD0 /* HyphenateLite.framework in Frameworks */,
@@ -1220,9 +1195,9 @@
 				D3A95D3D1EA0CF0C00ADD394 /* libz.tbd in Frameworks */,
 				D3A95D3B1EA0CED500ADD394 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D3A95D4F1EA0ED5B00ADD394 /* libsqlite3.tbd in Frameworks */,
-				D39BD8281EA8EAF6008F428C /* AgentSDK.framework in Frameworks */,
 				D3A95E831EA0F47100ADD394 /* libopencore-amrwb.a in Frameworks */,
 				D3A95E821EA0F47100ADD394 /* libopencore-amrnb.a in Frameworks */,
+				D34240561EAA24EA00BE9599 /* AgentSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,7 +1339,7 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
-				D39BD8261EA8EAF0008F428C /* AgentSDK.framework */,
+				D34240541EAA24E700BE9599 /* AgentSDK.framework */,
 				D31021211EA6418A00654A52 /* SDWebImage */,
 				D3BFB18A1EA4A3EF0002FCD0 /* HyphenateLite.framework */,
 				D3A95D6B1EA0F47100ADD394 /* DeviceUtil */,
@@ -1863,7 +1838,6 @@
 			isa = PBXGroup;
 			children = (
 				D3FDC6071EA0A5C500C25BB0 /* audio */,
-				D3FDC6381EA0A5C500C25BB0 /* chuchujie */,
 				D3FDC6491EA0A5C500C25BB0 /* iconfont */,
 				D3FDC6511EA0A5C500C25BB0 /* Images */,
 				D3FDC6C71EA0A5C600C25BB0 /* UI2.0_images@2x */,
@@ -1925,28 +1899,6 @@
 				D3FDC6371EA0A5C500C25BB0 /* VoiceSearchFeedback020@2x.png */,
 			);
 			path = audio;
-			sourceTree = "<group>";
-		};
-		D3FDC6381EA0A5C500C25BB0 /* chuchujie */ = {
-			isa = PBXGroup;
-			children = (
-				D3FDC6391EA0A5C500C25BB0 /* android_welcome_logo_320x400.png */,
-				D3FDC63A1EA0A5C500C25BB0 /* android开机图配置颜色.rtf */,
-				D3FDC63C1EA0A5C500C25BB0 /* splash_screen_iphone4.png */,
-				D3FDC63D1EA0A5C500C25BB0 /* splash_screen_iphone5.png */,
-				D3FDC63E1EA0A5C500C25BB0 /* splash_screen_iphone6.png */,
-				D3FDC63F1EA0A5C500C25BB0 /* splash_screen_iphone6p.png */,
-				D3FDC6401EA0A5C500C25BB0 /* 桌面icon_android_32.png */,
-				D3FDC6411EA0A5C500C25BB0 /* 桌面icon_android_36.png */,
-				D3FDC6421EA0A5C500C25BB0 /* 桌面icon_android_48.png */,
-				D3FDC6431EA0A5C500C25BB0 /* 桌面icon_android_72.png */,
-				D3FDC6441EA0A5C500C25BB0 /* 桌面icon_android_96.png */,
-				D3FDC6451EA0A5C500C25BB0 /* 桌面icon_ios_120.png */,
-				D3FDC6461EA0A5C500C25BB0 /* 桌面icon_ios_144.png */,
-				D3FDC6471EA0A5C500C25BB0 /* 桌面icon_ios_57.png */,
-				D3FDC6481EA0A5C500C25BB0 /* 网页icon.ico */,
-			);
-			path = chuchujie;
 			sourceTree = "<group>";
 		};
 		D3FDC6491EA0A5C500C25BB0 /* iconfont */ = {
@@ -2605,7 +2557,6 @@
 				D3FDC8331EA0A5C600C25BB0 /* list_status_radio_droplist_4@2x.png in Resources */,
 				D3FDC8151EA0A5C600C25BB0 /* channel_call_icon@2x.png in Resources */,
 				D3FDC7841EA0A5C600C25BB0 /* VoiceSearchFeedback018@2x.png in Resources */,
-				D3FDC78F1EA0A5C600C25BB0 /* splash_screen_iphone6p.png in Resources */,
 				D3FDC8271EA0A5C600C25BB0 /* info_expand_icon_pull@2x.png in Resources */,
 				D3FDC8561EA0A5C600C25BB0 /* agents_icon_shai_Text2@3x.png in Resources */,
 				D3FDC7BA1EA0A5C600C25BB0 /* icon_over_select@2x.png in Resources */,
@@ -2646,7 +2597,6 @@
 				D3FDC7DA1EA0A5C600C25BB0 /* ee_20.png in Resources */,
 				D3FDC7D51EA0A5C600C25BB0 /* ee_16.png in Resources */,
 				D3A95E7B1EA0F47100ADD394 /* TTOpenInAppActivity8.png in Resources */,
-				D3FDC78E1EA0A5C600C25BB0 /* splash_screen_iphone6.png in Resources */,
 				D3FDC80D1EA0A5C600C25BB0 /* tip_red_white@2x.png in Resources */,
 				D3FDC8541EA0A5C600C25BB0 /* visitor_icon_imagebroken_big@2x.png in Resources */,
 				D3FDC7DB1EA0A5C600C25BB0 /* ee_21.png in Resources */,
@@ -2656,14 +2606,11 @@
 				D3FDC75F1EA0A5C600C25BB0 /* chatFire_audioPlaying3.png in Resources */,
 				D3FDC7C91EA0A5C600C25BB0 /* search_bg_select@2x.png in Resources */,
 				D3FDC7851EA0A5C600C25BB0 /* VoiceSearchFeedback019.png in Resources */,
-				D3FDC7961EA0A5C600C25BB0 /* 桌面icon_ios_144.png in Resources */,
 				D3FDC8641EA0A5C600C25BB0 /* expand_icon_sessiontag@3x.png in Resources */,
 				D3FDC8941EA0A5C600C25BB0 /* tabbar_icon_ongoing@3x.png in Resources */,
 				D3FDC8851EA0A5C600C25BB0 /* main_tab_icon_ongoing@3x.png in Resources */,
 				D3FDC7D31EA0A5C600C25BB0 /* ee_14.png in Resources */,
 				D3FDC7681EA0A5C600C25BB0 /* VoiceSearchFeedback004@2x.png in Resources */,
-				D3FDC7971EA0A5C600C25BB0 /* 桌面icon_ios_57.png in Resources */,
-				D3FDC78D1EA0A5C600C25BB0 /* splash_screen_iphone5.png in Resources */,
 				D3FDC7B71EA0A5C600C25BB0 /* icon_history@2x.png in Resources */,
 				D3FDC9531EA0A7CD00C25BB0 /* chat_sender_bg@2x.png in Resources */,
 				D3FDC7A91EA0A5C600C25BB0 /* default_customer_avatar@2x.png in Resources */,
@@ -2680,7 +2627,6 @@
 				D3FDC87C1EA0A5C600C25BB0 /* list_status_radio_droplist_big_1@3x.png in Resources */,
 				D3A95E781EA0F47100ADD394 /* TTOpenInAppActivity.png in Resources */,
 				D3FDC8821EA0A5C600C25BB0 /* main_tab_icon_friend_1@3x.png in Resources */,
-				D3FDC7921EA0A5C600C25BB0 /* 桌面icon_android_48.png in Resources */,
 				D3FDC83E1EA0A5C600C25BB0 /* main_tab_icon_ongoing_1@2x.png in Resources */,
 				D3FDC8021EA0A5C600C25BB0 /* icon_input_hide@2x.png in Resources */,
 				D3FDC7691EA0A5C600C25BB0 /* VoiceSearchFeedback005.png in Resources */,
@@ -2698,7 +2644,6 @@
 				D3FDC8571EA0A5C600C25BB0 /* bar_icon_search_Text3@3x.png in Resources */,
 				D3FDC8291EA0A5C600C25BB0 /* input_bar_1_icon_expand@2x.png in Resources */,
 				D3FDC83D1EA0A5C600C25BB0 /* main_tab_icon_ongoing@2x.png in Resources */,
-				D3FDC7981EA0A5C600C25BB0 /* 网页icon.ico in Resources */,
 				D3FDC82D1EA0A5C600C25BB0 /* input_tab_icon_file2@2x.png in Resources */,
 				D3FDC8241EA0A5C600C25BB0 /* historyCopy_icon_morehistory@2x.png in Resources */,
 				D3FDC7E71EA0A5C600C25BB0 /* ee_32.png in Resources */,
@@ -2728,7 +2673,6 @@
 				D3FDC7D71EA0A5C600C25BB0 /* ee_18.png in Resources */,
 				D3FDC8721EA0A5C600C25BB0 /* input_bar_1_icon_face@3x.png in Resources */,
 				D3FDC89B1EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy_3@3x.png in Resources */,
-				D3FDC7911EA0A5C600C25BB0 /* 桌面icon_android_36.png in Resources */,
 				D3FDC76D1EA0A5C600C25BB0 /* VoiceSearchFeedback007.png in Resources */,
 				D3FDC80B1EA0A5C600C25BB0 /* switch_on@2x.png in Resources */,
 				D3FDC82B1EA0A5C600C25BB0 /* input_bar_1_icon_keyboard@2x.png in Resources */,
@@ -2796,7 +2740,6 @@
 				D3FDC7C21EA0A5C600C25BB0 /* select_bg@2x.png in Resources */,
 				D3FDC8311EA0A5C600C25BB0 /* list_status_radio_droplist_2@2x.png in Resources */,
 				D3FDC8211EA0A5C600C25BB0 /* gallary_icon_camera_big@2x.png in Resources */,
-				D3FDC7941EA0A5C600C25BB0 /* 桌面icon_android_96.png in Resources */,
 				D3FDC9411EA0A7CD00C25BB0 /* chat_location_preview.png in Resources */,
 				D3FDC8901EA0A5C600C25BB0 /* tabbar_icon_crm@3x.png in Resources */,
 				D3FDC8631EA0A5C600C25BB0 /* expand_icon_sessionend@3x.png in Resources */,
@@ -2860,7 +2803,6 @@
 				D3FDC8051EA0A5C600C25BB0 /* icon_mono_on@2x.png in Resources */,
 				D3FDC7821EA0A5C600C25BB0 /* VoiceSearchFeedback017@2x.png in Resources */,
 				D3FDC8911EA0A5C600C25BB0 /* tabbar_icon_crmhighlight@3x.png in Resources */,
-				D3FDC7931EA0A5C600C25BB0 /* 桌面icon_android_72.png in Resources */,
 				D3FDC79F1EA0A5C600C25BB0 /* iconfont.woff in Resources */,
 				D33F46751E9F71A000FE6DCE /* Assets.xcassets in Resources */,
 				D3FDC7AB1EA0A5C600C25BB0 /* ic_add_menu@2x.png in Resources */,
@@ -2873,7 +2815,6 @@
 				D3FDC8881EA0A5C600C25BB0 /* main_tab_icon_update_2@3x.png in Resources */,
 				D3A95E731EA0F47100ADD394 /* sr_refresh@2X.png in Resources */,
 				D3FDC7FC1EA0A5C600C25BB0 /* dt5-1.png in Resources */,
-				D3FDC7891EA0A5C600C25BB0 /* android_welcome_logo_320x400.png in Resources */,
 				D3FDC7AD1EA0A5C600C25BB0 /* icon_audio_blue_2@2x.png in Resources */,
 				D3FDC84A1EA0A5C600C25BB0 /* tabbar_icon_notice@2x.png in Resources */,
 				D3FDC7F61EA0A5C600C25BB0 /* 5-1.png in Resources */,
@@ -2885,7 +2826,6 @@
 				D3FDC8861EA0A5C600C25BB0 /* main_tab_icon_ongoing_1@3x.png in Resources */,
 				D3FDC7761EA0A5C600C25BB0 /* VoiceSearchFeedback011@2x.png in Resources */,
 				D3FDC8361EA0A5C600C25BB0 /* list_status_radio_droplist_big_3@2x.png in Resources */,
-				D3FDC78A1EA0A5C600C25BB0 /* android开机图配置颜色.rtf in Resources */,
 				D3FDC7C71EA0A5C600C25BB0 /* icon_contact@2x.png in Resources */,
 				D3FDC7591EA0A5C600C25BB0 /* chatFire_audioPlaying0.png in Resources */,
 				D3FDC7EF1EA0A5C600C25BB0 /* ee_8.png in Resources */,
@@ -2902,7 +2842,6 @@
 				D3FDC7AE1EA0A5C600C25BB0 /* icon_audio_blue_3@2x.png in Resources */,
 				D3FDC9491EA0A7CD00C25BB0 /* chat_quickadd@2x.png in Resources */,
 				D3FDC8981EA0A5C600C25BB0 /* tips_false_message@3x.png in Resources */,
-				D3FDC78C1EA0A5C600C25BB0 /* splash_screen_iphone4.png in Resources */,
 				D3FDC7BE1EA0A5C600C25BB0 /* pop_blue@2x.png in Resources */,
 				D3FDC77B1EA0A5C600C25BB0 /* VoiceSearchFeedback014.png in Resources */,
 				D3FDC8251EA0A5C600C25BB0 /* image_file2_icon_files@2x.png in Resources */,
@@ -2919,9 +2858,7 @@
 				D3FDC77F1EA0A5C600C25BB0 /* VoiceSearchFeedback016.png in Resources */,
 				D3FDC7771EA0A5C600C25BB0 /* VoiceSearchFeedback012.png in Resources */,
 				D3FDC7BC1EA0A5C600C25BB0 /* icon_push@2x.png in Resources */,
-				D3FDC7951EA0A5C600C25BB0 /* 桌面icon_ios_120.png in Resources */,
 				D3FDC8261EA0A5C600C25BB0 /* image_linked_icon_linked@2x.png in Resources */,
-				D3FDC7901EA0A5C600C25BB0 /* 桌面icon_android_32.png in Resources */,
 				D3FDC86F1EA0A5C600C25BB0 /* info_expand_icon_pull@3x.png in Resources */,
 				D3FDC8621EA0A5C600C25BB0 /* expand_arror_sesstion_tag_display_2@3x.png in Resources */,
 				D3FDC7B01EA0A5C600C25BB0 /* icon_audio_white_2@2x.png in Resources */,
