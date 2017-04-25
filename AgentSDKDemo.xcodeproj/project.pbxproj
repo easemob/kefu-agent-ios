@@ -33,7 +33,6 @@
 		D33F46D21E9F7FDE00FE6DCE /* HDSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33F46D01E9F7FDE00FE6DCE /* HDSettingViewController.xib */; };
 		D33F46D91E9F801E00FE6DCE /* HDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46D81E9F801E00FE6DCE /* HDLoginViewController.m */; };
 		D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */; };
-		D34240501EA9F6BD00BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D342404E1EA9F6A400BE9599 /* AgentSDK.framework */; };
 		D34240551EAA24E700BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; };
 		D34240561EAA24EA00BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; };
 		D34240571EAA24EA00BE9599 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -564,7 +563,6 @@
 		D33F46D81E9F801E00FE6DCE /* HDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDLoginViewController.m; sourceTree = "<group>"; };
 		D33F46E21E9F9C3E00FE6DCE /* HDBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDBaseNavigationController.h; path = Main/HDBaseNavigationController.h; sourceTree = "<group>"; };
 		D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDBaseNavigationController.m; path = Main/HDBaseNavigationController.m; sourceTree = "<group>"; };
-		D342404E1EA9F6A400BE9599 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AgentSDK.framework; path = "/Users/FXN/环信移动客服/AgentSDKDemo/AgentSDKDemo/FrameWorks/AgentSDK.framework"; sourceTree = "<absolute>"; };
 		D34240541EAA24E700BE9599 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D35C8C681EA4EEF3009A9968 /* LocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDefine.h; sourceTree = "<group>"; };
 		D360327A1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HDAppDelegate.h"; sourceTree = "<group>"; };
@@ -1187,7 +1185,6 @@
 				D3A95D491EA0CF4300ADD394 /* ImageIO.framework in Frameworks */,
 				D3A95D471EA0CF3B00ADD394 /* MobileCoreServices.framework in Frameworks */,
 				D34240551EAA24E700BE9599 /* AgentSDK.framework in Frameworks */,
-				D34240501EA9F6BD00BE9599 /* AgentSDK.framework in Frameworks */,
 				D3A95D431EA0CF2F00ADD394 /* AudioToolbox.framework in Frameworks */,
 				D3A95D411EA0CF2800ADD394 /* CoreMedia.framework in Frameworks */,
 				D3BFB1901EA4A4F50002FCD0 /* HyphenateLite.framework in Frameworks */,

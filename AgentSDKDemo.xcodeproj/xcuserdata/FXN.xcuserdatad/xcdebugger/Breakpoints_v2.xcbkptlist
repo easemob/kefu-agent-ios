@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "836"
             endingLineNumber = "836"
-            landmarkName = "-addMessage:"
+            landmarkName = "-loadMessage"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -250,11 +250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDConversation.m"
-            timestampString = "514350358.087418"
+            timestampString = "514795993.944653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "-loadHistoryCompletion:"
             landmarkType = "7">
          </BreakpointContent>
