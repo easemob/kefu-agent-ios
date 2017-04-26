@@ -75,7 +75,8 @@ typedef enum {
  * 构造消息 
  * @param serviceSessionId 
  * @param userId 
- * @param body
+ * @param body 消息体
+ * @param ext 消息附带的拓展,可定制
  */
 - (instancetype)initWithServiceSessionId:(NSString *)serviceSessionId userId:(NSString *)userId messageBody:(MessageBodyModel *)body ext:(NSDictionary *)ext;
 

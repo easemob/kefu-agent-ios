@@ -781,10 +781,21 @@
     return ret;
 }
 
+
+- (NSDictionary *)messageExt {
+    NSDictionary *ext = @{
+                          @"price":@"rmb:888",
+                          @"imgUrl":@"http://www.easemob.com/test.jpg",
+                          @"title":@"标题",
+                          @"detail":@"商品描述"
+                          };
+    return ext;
+}
+
 - (void)sendTextMessage:(NSString *)text
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithText:text];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
+    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:[self messageExt]];
     
     [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -798,7 +809,7 @@
 -(void)sendAudioMessage:(NSString *)recordPath aDuration:(NSInteger )duration
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithAudioLocalPath:recordPath];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
+    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:[self messageExt]];
     [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -810,7 +821,7 @@
 - (void)sendImageMessage:(UIImage*)orgImage
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithUIImage:orgImage];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
+    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:[self messageExt]];
     [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
         [self addMessage:message];
     }];
