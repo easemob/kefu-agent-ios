@@ -627,10 +627,46 @@
     
 }
 
-
 - (void)backAction
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+- (UIView*)moreView
+{
+    if (_moreView == nil) {
+        _moreView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
+        _moreView.userInteractionEnabled = YES;
+        _moreView.backgroundColor = RGBACOLOR(0, 0, 0, 0.14902);
+        _moreView.hidden = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreAction)];
+        [_moreView addGestureRecognizer:tap];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - 160, 0, 150, 40 )];
+        
+        contentView.backgroundColor = [UIColor whiteColor];
+        contentView.userInteractionEnabled = YES;
+        contentView.layer.cornerRadius = 2.f;
+        [_moreView addSubview:contentView];
+        
+        UIButton *conversationTagBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        conversationTagBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
+        [conversationTagBtn setTitle:@"会话标签" forState:UIControlStateNormal];
+        conversationTagBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+        [conversationTagBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
+        [conversationTagBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+        [conversationTagBtn setImage:[UIImage imageNamed:@"expand_icon_sessiontag"] forState:UIControlStateNormal];
+        [conversationTagBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+        [conversationTagBtn addTarget:self action:@selector(conclusionClickAction) forControlEvents:UIControlEventTouchUpInside];
+        [contentView addSubview:conversationTagBtn];
+
+    }
+    return _moreView;
+}
+
+
+- (void)conclusionClickAction {
+    
 }
 
 - (void)moreAction

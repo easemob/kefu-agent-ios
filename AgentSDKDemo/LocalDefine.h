@@ -12,4 +12,7 @@
 #define DEFAULT_CONVERSATION_CELLHEIGHT 60
 
 
+#define KScreenWidth [UIApplication sharedApplication].keyWindow.size.width
+#define KScreenHeight [UIApplication sharedApplication].keyWindow.size.height
+
 #endif /* LocalDefine_h */
