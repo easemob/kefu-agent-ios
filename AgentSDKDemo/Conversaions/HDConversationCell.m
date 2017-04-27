@@ -84,7 +84,6 @@
 
 - (void)setModel:(ConversationModel *)model {
     NSInteger count = model.unreadCount;
-    
     [_headerImageView sd_setImageWithURL:[NSURL URLWithString:model.vistor.avatar] placeholderImage:[UIImage imageNamed:@"default_customer_avatar"]];
     
     _titleLabel.text = model.chatter?model.chatter.nicename:model.vistor.nicename;

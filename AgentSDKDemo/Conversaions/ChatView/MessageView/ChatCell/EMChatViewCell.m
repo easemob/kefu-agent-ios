@@ -167,6 +167,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     switch (messageModel.type) {
         case kefuMessageBodyType_Text:
         {
+            NSDictionary *ext = messageModel.body.msgExt;
+            NSString *type = [ext objectForKey:@"type"];
+            if ([type isEqualToString:@"planMessage"]) {
+                return [[HDPlaneBubbleView alloc] init];
+            }
             return [[EMChatTextBubbleView alloc] init];
         }
             break;
@@ -215,6 +220,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     switch (messageModel.type) {
         case kefuMessageBodyType_Text:
         {
+            NSDictionary *ext = messageModel.body.msgExt;
+            NSString *type = [ext objectForKey:@"type"];
+            if ([type isEqualToString:@"planMessage"]) {
+                return [HDPlaneBubbleView heightForBubbleWithObject:messageModel];
+            }
             return [EMChatTextBubbleView heightForBubbleWithObject:messageModel];
         }
             break;

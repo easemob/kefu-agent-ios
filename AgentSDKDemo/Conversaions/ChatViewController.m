@@ -496,13 +496,6 @@
 
 
 
-- (void)moreViewCustomAction:(DXChatBarMoreView *)moreView
-{
-//    EMUIWebViewController *webView = [[EMUIWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"http:%@",[DXCSManager shareManager].loginUser.customUrl]];
-//    webView.delegate = self;
-//    [self.navigationController pushViewController:webView animated:YES];
-    [self keyBoardHidden:nil];
-}
 
 #pragma mark - EMUIWebViewControllerDelegate
 
@@ -785,9 +778,10 @@
 - (NSDictionary *)messageExt {
     NSDictionary *ext = @{
                           @"price":@"rmb:888",
-                          @"imgUrl":@"http://www.easemob.com/test.jpg",
-                          @"title":@"标题",
-                          @"detail":@"商品描述"
+                          @"imgUrl":@"https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/e998ef4e7cbcfdb345716c5562a29956_121_121.png",
+                          @"title":@"标题标题标题",
+                          @"detail":@"商品描述领军即时通讯云,首创全媒体智能云客服,多家亿级用户首选,13万家APP用户选择即时通讯云,5万家企业用户选择移动客服",
+                          @"type":@"planMessage"
                           };
     return ext;
 }
@@ -795,7 +789,7 @@
 - (void)sendTextMessage:(NSString *)text
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithText:text];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:[self messageExt]];
+    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
     
     [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -806,10 +800,20 @@
 }
 
 
+//发送计划书
+- (void)moreViewCustomAction:(DXChatBarMoreView *)moreView
+{
+    //发送计划书的时候记得加上ext，发送的文字仅用来更新会话列表
+    self.lastMsgExt = [self messageExt];
+    [self sendTextMessage:@"[计划书]"];
+    [self keyBoardHidden:nil];
+}
+
+
 -(void)sendAudioMessage:(NSString *)recordPath aDuration:(NSInteger )duration
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithAudioLocalPath:recordPath];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:[self messageExt]];
+    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
     [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -821,7 +825,7 @@
 - (void)sendImageMessage:(UIImage*)orgImage
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithUIImage:orgImage];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:[self messageExt]];
+    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
     [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
         [self addMessage:message];
     }];

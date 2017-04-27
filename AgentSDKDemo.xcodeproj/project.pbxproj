@@ -24,6 +24,7 @@
 		D31021511EA6418A00654A52 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D31021401EA6418A00654A52 /* UIImageView+WebCache.m */; };
 		D31021521EA6418A00654A52 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D31021421EA6418A00654A52 /* UIView+WebCacheOperation.m */; };
 		D324D0AE1EA46ED30009FE68 /* HDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324D0AD1EA46ED30009FE68 /* HDBaseViewController.m */; };
+		D32C5AFF1EB1A13E00755A62 /* HDPlaneBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5AFE1EB1A13E00755A62 /* HDPlaneBubbleView.m */; };
 		D33F466A1E9F71A000FE6DCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46691E9F71A000FE6DCE /* main.m */; };
 		D33F46751E9F71A000FE6DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33F46741E9F71A000FE6DCE /* Assets.xcassets */; };
 		D33F46781E9F71A000FE6DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33F46761E9F71A000FE6DCE /* LaunchScreen.storyboard */; };
@@ -546,6 +547,8 @@
 		D31021421EA6418A00654A52 /* UIView+WebCacheOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+WebCacheOperation.m"; sourceTree = "<group>"; };
 		D324D0AC1EA46ED30009FE68 /* HDBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDBaseViewController.h; sourceTree = "<group>"; };
 		D324D0AD1EA46ED30009FE68 /* HDBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDBaseViewController.m; sourceTree = "<group>"; };
+		D32C5AFD1EB1A13E00755A62 /* HDPlaneBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDPlaneBubbleView.h; sourceTree = "<group>"; };
+		D32C5AFE1EB1A13E00755A62 /* HDPlaneBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDPlaneBubbleView.m; sourceTree = "<group>"; };
 		D33F46651E9F71A000FE6DCE /* AgentSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgentSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33F46691E9F71A000FE6DCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D33F46741E9F71A000FE6DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -2444,6 +2447,8 @@
 				D3FDC9081EA0A7CD00C25BB0 /* EMChatLocationBubbleView.m */,
 				D3FDC9091EA0A7CD00C25BB0 /* EMChatTextBubbleView.h */,
 				D3FDC90A1EA0A7CD00C25BB0 /* EMChatTextBubbleView.m */,
+				D32C5AFD1EB1A13E00755A62 /* HDPlaneBubbleView.h */,
+				D32C5AFE1EB1A13E00755A62 /* HDPlaneBubbleView.m */,
 			);
 			path = ChatCellBubble;
 			sourceTree = "<group>";
@@ -2947,6 +2952,7 @@
 				D3A95E361EA0F47100ADD394 /* EMCDDeviceManagerBase.m in Sources */,
 				D3FDC8A01EA0A70100C25BB0 /* ChatViewController.m in Sources */,
 				D310214C1EA6418A00654A52 /* UIButton+WebCache.m in Sources */,
+				D32C5AFF1EB1A13E00755A62 /* HDPlaneBubbleView.m in Sources */,
 				D3A95E321EA0F47100ADD394 /* EMCDDeviceManager+Media.m in Sources */,
 				D3A95E391EA0F47100ADD394 /* EmotionEscape.m in Sources */,
 				D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */,
@@ -3144,7 +3150,7 @@
 					"\"$(SRCROOT)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb\"",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kefu.AgentSDKDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = come.kefu.agentSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -3176,7 +3182,7 @@
 					"\"$(SRCROOT)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb\"",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.kefu.AgentSDKDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = come.kefu.agentSDK;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

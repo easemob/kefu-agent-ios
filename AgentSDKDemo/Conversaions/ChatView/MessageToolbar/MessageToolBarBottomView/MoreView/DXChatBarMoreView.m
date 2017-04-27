@@ -109,7 +109,7 @@
             [_customButton setImage:[UIImage imageNamed:@"btn_icon_iframe"] forState:UIControlStateNormal];
             [_customButton setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
             [_customButton addTarget:self action:@selector(customeAction) forControlEvents:UIControlEventTouchUpInside];
-            [_customButton setTitle:@"自定义消息" forState:UIControlStateNormal];
+            [_customButton setTitle:@"计划书" forState:UIControlStateNormal];
             [_customButton setTitleEdgeInsets:CHAT_BUTTON_TITLE_EDGEINSETS];
             [_customButton setTitleColor:CHAT_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
             [_customButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];

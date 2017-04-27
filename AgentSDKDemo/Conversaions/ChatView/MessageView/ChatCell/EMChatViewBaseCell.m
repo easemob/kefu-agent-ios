@@ -123,6 +123,9 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
         case kefuMessageBodyType_Text:
         {
             identifier = [identifier stringByAppendingString:@"Text"];
+            if ([[model.body.msgExt objectForKey:@"type"] isEqualToString:@"planMessage"]) {
+                identifier = [identifier stringByAppendingString:@"planMessage"];
+            }
         }
             break;
         case kefuMessageBodyType_Image:
