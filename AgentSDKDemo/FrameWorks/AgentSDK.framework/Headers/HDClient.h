@@ -88,8 +88,6 @@ typedef void(^RequestBlock)(id responseObject, HDError *error);
 - (void)application:(id)application didReceiveRemoteNotification:(NSDictionary *)userInfo;
 
 
-
-
 /*
  *  登录客服
  *  @param username        

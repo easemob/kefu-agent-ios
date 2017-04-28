@@ -71,9 +71,9 @@
     [super setModel:model];
     
     NSDictionary *ext = model.body.msgExt;
-    NSString *title = [ext objectForKey:@"title"];
-    NSString *detail = [ext objectForKey:@"detail"];
-    NSString *imageUrl = [ext objectForKey:@"imgUrl"];
+    NSString *title = [ext objectForKey:@"planTitle"];
+    NSString *detail = [ext objectForKey:@"planDesc"];
+    NSString *imageUrl = [ext objectForKey:@"planPicUrl"];
     if (ext && imageUrl) {
         [self.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big"]];
     } else {
@@ -94,7 +94,7 @@
     NSDictionary *ext = object.body.msgExt;
     if (object.body.msgExt) {
         retSize.height = 115;
-        NSString *detail = [ext objectForKey:@"detail"];
+        NSString *detail = [ext objectForKey:@"planDesc"];
         if (ext && detail) {
             rect = [detail boundingRectWithSize:CGSizeMake(kDetailWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:kDetailFontSize]} context:nil];
         }
@@ -110,7 +110,7 @@
 - (CGFloat)heightForDetail:(MessageModel *)model {
     CGRect rect;
     if (model.body.msgExt) {
-        NSString *detail = [model.body.msgExt objectForKey:@"detail"];
+        NSString *detail = [model.body.msgExt objectForKey:@"planDesc"];
         if (model.body.msgExt && detail) {
             rect = [detail boundingRectWithSize:CGSizeMake(kDetailWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName :[UIFont systemFontOfSize:kDetailFontSize]} context:nil];
         }

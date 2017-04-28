@@ -25,6 +25,14 @@
 		D31021521EA6418A00654A52 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D31021421EA6418A00654A52 /* UIView+WebCacheOperation.m */; };
 		D324D0AE1EA46ED30009FE68 /* HDBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D324D0AD1EA46ED30009FE68 /* HDBaseViewController.m */; };
 		D32C5AFF1EB1A13E00755A62 /* HDPlaneBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5AFE1EB1A13E00755A62 /* HDPlaneBubbleView.m */; };
+		D32C5B061EB203FC00755A62 /* AddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B051EB203FC00755A62 /* AddTagViewController.m */; };
+		D32C5B091EB205F200755A62 /* SelectTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B081EB205F200755A62 /* SelectTagViewController.m */; };
+		D32C5B0C1EB2069400755A62 /* EMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B0B1EB2069400755A62 /* EMSearchDisplayController.m */; };
+		D32C5B101EB206D600755A62 /* RealtimeSearchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B0F1EB206D600755A62 /* RealtimeSearchUtil.m */; };
+		D32C5B131EB206E900755A62 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B121EB206E900755A62 /* ChineseToPinyin.m */; };
+		D32C5B161EB2070900755A62 /* CommentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B151EB2070900755A62 /* CommentEditViewController.m */; };
+		D32C5B191EB2082000755A62 /* DXTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B181EB2082000755A62 /* DXTableViewController.m */; };
+		D32C5B1C1EB20AEF00755A62 /* EMChatHeaderTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B1B1EB20AEF00755A62 /* EMChatHeaderTagView.m */; };
 		D33F466A1E9F71A000FE6DCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46691E9F71A000FE6DCE /* main.m */; };
 		D33F46751E9F71A000FE6DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33F46741E9F71A000FE6DCE /* Assets.xcassets */; };
 		D33F46781E9F71A000FE6DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33F46761E9F71A000FE6DCE /* LaunchScreen.storyboard */; };
@@ -34,9 +42,9 @@
 		D33F46D21E9F7FDE00FE6DCE /* HDSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D33F46D01E9F7FDE00FE6DCE /* HDSettingViewController.xib */; };
 		D33F46D91E9F801E00FE6DCE /* HDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46D81E9F801E00FE6DCE /* HDLoginViewController.m */; };
 		D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */; };
-		D34240551EAA24E700BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; };
-		D34240561EAA24EA00BE9599 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; };
-		D34240571EAA24EA00BE9599 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D34240541EAA24E700BE9599 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D35EAEDD1EB2F01D009DFEDB /* EMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D35EAEDC1EB2F01D009DFEDB /* EMTagView.m */; };
+		D35EAEF41EB327FA009DFEDB /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */; };
+		D35EAEF51EB327FA009DFEDB /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D360327C1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */; };
 		D39BD8211EA8D13A008F428C /* HDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D39BD8201EA8D13A008F428C /* HDManager.m */; };
 		D3A95D121EA0B82000ADD394 /* MediaFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D111EA0B82000ADD394 /* MediaFileModel.m */; };
@@ -504,7 +512,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3BFB1911EA4A4F50002FCD0 /* HyphenateLite.framework in Embed Frameworks */,
-				D34240571EAA24EA00BE9599 /* AgentSDK.framework in Embed Frameworks */,
+				D35EAEF51EB327FA009DFEDB /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,6 +557,22 @@
 		D324D0AD1EA46ED30009FE68 /* HDBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDBaseViewController.m; sourceTree = "<group>"; };
 		D32C5AFD1EB1A13E00755A62 /* HDPlaneBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDPlaneBubbleView.h; sourceTree = "<group>"; };
 		D32C5AFE1EB1A13E00755A62 /* HDPlaneBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDPlaneBubbleView.m; sourceTree = "<group>"; };
+		D32C5B041EB203FC00755A62 /* AddTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTagViewController.h; sourceTree = "<group>"; };
+		D32C5B051EB203FC00755A62 /* AddTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTagViewController.m; sourceTree = "<group>"; };
+		D32C5B071EB205F200755A62 /* SelectTagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectTagViewController.h; sourceTree = "<group>"; };
+		D32C5B081EB205F200755A62 /* SelectTagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectTagViewController.m; sourceTree = "<group>"; };
+		D32C5B0A1EB2069400755A62 /* EMSearchDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSearchDisplayController.h; sourceTree = "<group>"; };
+		D32C5B0B1EB2069400755A62 /* EMSearchDisplayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSearchDisplayController.m; sourceTree = "<group>"; };
+		D32C5B0E1EB206D600755A62 /* RealtimeSearchUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeSearchUtil.h; sourceTree = "<group>"; };
+		D32C5B0F1EB206D600755A62 /* RealtimeSearchUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeSearchUtil.m; sourceTree = "<group>"; };
+		D32C5B111EB206E900755A62 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
+		D32C5B121EB206E900755A62 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
+		D32C5B141EB2070900755A62 /* CommentEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentEditViewController.h; sourceTree = "<group>"; };
+		D32C5B151EB2070900755A62 /* CommentEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentEditViewController.m; sourceTree = "<group>"; };
+		D32C5B171EB2082000755A62 /* DXTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXTableViewController.h; sourceTree = "<group>"; };
+		D32C5B181EB2082000755A62 /* DXTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXTableViewController.m; sourceTree = "<group>"; };
+		D32C5B1A1EB20AEF00755A62 /* EMChatHeaderTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatHeaderTagView.h; sourceTree = "<group>"; };
+		D32C5B1B1EB20AEF00755A62 /* EMChatHeaderTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatHeaderTagView.m; sourceTree = "<group>"; };
 		D33F46651E9F71A000FE6DCE /* AgentSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgentSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33F46691E9F71A000FE6DCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D33F46741E9F71A000FE6DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -566,8 +590,10 @@
 		D33F46D81E9F801E00FE6DCE /* HDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDLoginViewController.m; sourceTree = "<group>"; };
 		D33F46E21E9F9C3E00FE6DCE /* HDBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDBaseNavigationController.h; path = Main/HDBaseNavigationController.h; sourceTree = "<group>"; };
 		D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDBaseNavigationController.m; path = Main/HDBaseNavigationController.m; sourceTree = "<group>"; };
-		D34240541EAA24E700BE9599 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D35C8C681EA4EEF3009A9968 /* LocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDefine.h; sourceTree = "<group>"; };
+		D35EAEDB1EB2F01D009DFEDB /* EMTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMTagView.h; sourceTree = "<group>"; };
+		D35EAEDC1EB2F01D009DFEDB /* EMTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTagView.m; sourceTree = "<group>"; };
+		D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D360327A1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HDAppDelegate.h"; sourceTree = "<group>"; };
 		D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HDAppDelegate.m"; sourceTree = "<group>"; };
 		D381EFCD1EA4B64F0092BD3C /* AgentSDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemo.entitlements; sourceTree = "<group>"; };
@@ -1187,7 +1213,7 @@
 				D3D082001EA4B349003FF1C3 /* Foundation.framework in Frameworks */,
 				D3A95D491EA0CF4300ADD394 /* ImageIO.framework in Frameworks */,
 				D3A95D471EA0CF3B00ADD394 /* MobileCoreServices.framework in Frameworks */,
-				D34240551EAA24E700BE9599 /* AgentSDK.framework in Frameworks */,
+				D35EAEF41EB327FA009DFEDB /* AgentSDK.framework in Frameworks */,
 				D3A95D431EA0CF2F00ADD394 /* AudioToolbox.framework in Frameworks */,
 				D3A95D411EA0CF2800ADD394 /* CoreMedia.framework in Frameworks */,
 				D3BFB1901EA4A4F50002FCD0 /* HyphenateLite.framework in Frameworks */,
@@ -1197,7 +1223,6 @@
 				D3A95D4F1EA0ED5B00ADD394 /* libsqlite3.tbd in Frameworks */,
 				D3A95E831EA0F47100ADD394 /* libopencore-amrwb.a in Frameworks */,
 				D3A95E821EA0F47100ADD394 /* libopencore-amrnb.a in Frameworks */,
-				D34240561EAA24EA00BE9599 /* AgentSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,6 +1267,19 @@
 				D31021421EA6418A00654A52 /* UIView+WebCacheOperation.m */,
 			);
 			path = SDWebImage;
+			sourceTree = "<group>";
+		};
+		D32C5B0D1EB206B900755A62 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				D32C5B111EB206E900755A62 /* ChineseToPinyin.h */,
+				D32C5B121EB206E900755A62 /* ChineseToPinyin.m */,
+				D32C5B0E1EB206D600755A62 /* RealtimeSearchUtil.h */,
+				D32C5B0F1EB206D600755A62 /* RealtimeSearchUtil.m */,
+				D32C5B0A1EB2069400755A62 /* EMSearchDisplayController.h */,
+				D32C5B0B1EB2069400755A62 /* EMSearchDisplayController.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		D33F465C1E9F71A000FE6DCE = {
@@ -1339,7 +1377,7 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
-				D34240541EAA24E700BE9599 /* AgentSDK.framework */,
+				D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */,
 				D31021211EA6418A00654A52 /* SDWebImage */,
 				D3BFB18A1EA4A3EF0002FCD0 /* HyphenateLite.framework */,
 				D3A95D6B1EA0F47100ADD394 /* DeviceUtil */,
@@ -1672,6 +1710,15 @@
 		D3FDC42F1EA06CDC00C25BB0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D32C5B0D1EB206B900755A62 /* Search */,
+				D32C5B071EB205F200755A62 /* SelectTagViewController.h */,
+				D32C5B081EB205F200755A62 /* SelectTagViewController.m */,
+				D32C5B171EB2082000755A62 /* DXTableViewController.h */,
+				D32C5B181EB2082000755A62 /* DXTableViewController.m */,
+				D32C5B141EB2070900755A62 /* CommentEditViewController.h */,
+				D32C5B151EB2070900755A62 /* CommentEditViewController.m */,
+				D32C5B041EB203FC00755A62 /* AddTagViewController.h */,
+				D32C5B051EB203FC00755A62 /* AddTagViewController.m */,
 				D3A95D181EA0BA7D00ADD394 /* DXBaseViewController.h */,
 				D3A95D191EA0BA7D00ADD394 /* DXBaseViewController.m */,
 				D3FDC45E1EA0803500C25BB0 /* HDConversationViewController.h */,
@@ -1694,6 +1741,10 @@
 		D3FDC4311EA06CEF00C25BB0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D35EAEDB1EB2F01D009DFEDB /* EMTagView.h */,
+				D35EAEDC1EB2F01D009DFEDB /* EMTagView.m */,
+				D32C5B1A1EB20AEF00755A62 /* EMChatHeaderTagView.h */,
+				D32C5B1B1EB20AEF00755A62 /* EMChatHeaderTagView.m */,
 				D3FDC8A11EA0A7CD00C25BB0 /* ChatView */,
 				D3FDC4491EA07BEE00C25BB0 /* HDConversationCell.h */,
 				D3FDC44A1EA07BEE00C25BB0 /* HDConversationCell.m */,
@@ -2899,6 +2950,7 @@
 				D3A95E311EA0F47100ADD394 /* EMAudioRecorderUtil.m in Sources */,
 				D3A95E4C1EA0F47100ADD394 /* MWGridCell.m in Sources */,
 				D3A95E3B1EA0F47100ADD394 /* IQUIScrollView+Additions.m in Sources */,
+				D32C5B161EB2070900755A62 /* CommentEditViewController.m in Sources */,
 				D3A95E531EA0F47100ADD394 /* DACircularProgressView.m in Sources */,
 				D33F46C81E9F7F3200FE6DCE /* AppDelegate.m in Sources */,
 				D3FDC97B1EA0A94D00C25BB0 /* UIView+RNAdditions.m in Sources */,
@@ -2907,6 +2959,7 @@
 				D3FDC96D1EA0A7CD00C25BB0 /* KFDatePicker.m in Sources */,
 				D3A95E651EA0F47100ADD394 /* PSTCollectionView.m in Sources */,
 				D3A95E6C1EA0F47100ADD394 /* PSTCollectionViewUpdateItem.m in Sources */,
+				D32C5B191EB2082000755A62 /* DXTableViewController.m in Sources */,
 				D3A95E661EA0F47100ADD394 /* PSTCollectionViewCell.m in Sources */,
 				D3A95E3A1EA0F47100ADD394 /* IQNSArray+Sort.m in Sources */,
 				D3A95E491EA0F47100ADD394 /* MBProgressHUD+Add.m in Sources */,
@@ -2915,6 +2968,7 @@
 				D3A95D121EA0B82000ADD394 /* MediaFileModel.m in Sources */,
 				D3A95E401EA0F47100ADD394 /* IQKeyboardManager.m in Sources */,
 				D3FDC95F1EA0A7CD00C25BB0 /* EMChatLocationBubbleView.m in Sources */,
+				D35EAEDD1EB2F01D009DFEDB /* EMTagView.m in Sources */,
 				D3FDC9541EA0A7CD00C25BB0 /* LocationViewController.m in Sources */,
 				D3A95E411EA0F47100ADD394 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				D3FDC9631EA0A7CD00C25BB0 /* EMChatViewBaseCell.m in Sources */,
@@ -2942,6 +2996,7 @@
 				D310214B1EA6418A00654A52 /* SDWebImagePrefetcher.m in Sources */,
 				D39BD8211EA8D13A008F428C /* HDManager.m in Sources */,
 				D3A95E421EA0F47100ADD394 /* IQTextView.m in Sources */,
+				D32C5B091EB205F200755A62 /* SelectTagViewController.m in Sources */,
 				D3FDC9621EA0A7CD00C25BB0 /* EMChatTimeCell.m in Sources */,
 				D31021491EA6418A00654A52 /* SDWebImageDownloaderOperation.m in Sources */,
 				D3FDC9591EA0A7CD00C25BB0 /* DXRecordView.m in Sources */,
@@ -2950,6 +3005,7 @@
 				D3FDC96E1EA0A7CD00C25BB0 /* WebViewController.m in Sources */,
 				D3FDC9291EA0A7CD00C25BB0 /* CustomerChatViewController.m in Sources */,
 				D3A95E361EA0F47100ADD394 /* EMCDDeviceManagerBase.m in Sources */,
+				D32C5B0C1EB2069400755A62 /* EMSearchDisplayController.m in Sources */,
 				D3FDC8A01EA0A70100C25BB0 /* ChatViewController.m in Sources */,
 				D310214C1EA6418A00654A52 /* UIButton+WebCache.m in Sources */,
 				D32C5AFF1EB1A13E00755A62 /* HDPlaneBubbleView.m in Sources */,
@@ -2957,8 +3013,10 @@
 				D3A95E391EA0F47100ADD394 /* EmotionEscape.m in Sources */,
 				D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */,
 				D3A95E461EA0F47100ADD394 /* IQToolbar.m in Sources */,
+				D32C5B1C1EB20AEF00755A62 /* EMChatHeaderTagView.m in Sources */,
 				D3A95E341EA0F47100ADD394 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */,
+				D32C5B131EB206E900755A62 /* ChineseToPinyin.m in Sources */,
 				D3A95E331EA0F47100ADD394 /* EMCDDeviceManager+Microphone.m in Sources */,
 				D33F46D11E9F7FDE00FE6DCE /* HDSettingViewController.m in Sources */,
 				D33F46C51E9F7F1000FE6DCE /* MainViewController.m in Sources */,
@@ -2967,11 +3025,13 @@
 				D3A95E6A1EA0F47100ADD394 /* PSTCollectionViewItemKey.m in Sources */,
 				D3A95E741EA0F47100ADD394 /* SRRefreshView.m in Sources */,
 				D310214F1EA6418A00654A52 /* UIImage+WebP.m in Sources */,
+				D32C5B101EB206D600755A62 /* RealtimeSearchUtil.m in Sources */,
 				D3A95E471EA0F47100ADD394 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				D3FDC95D1EA0A7CD00C25BB0 /* EMChatImageBubbleView.m in Sources */,
 				D3A95D1D1EA0BD1400ADD394 /* UIViewController+HUD.m in Sources */,
 				D3A95E4F1EA0F47100ADD394 /* MWPhotoBrowser.m in Sources */,
 				D3FDC4601EA0803500C25BB0 /* HDConversationViewController.m in Sources */,
+				D32C5B061EB203FC00755A62 /* AddTagViewController.m in Sources */,
 				D31021431EA6418A00654A52 /* MKAnnotationView+WebCache.m in Sources */,
 				D3A95E771EA0F47100ADD394 /* TTOpenInAppActivity.m in Sources */,
 				D3FDC9581EA0A7CD00C25BB0 /* DXChatBarMoreView.m in Sources */,

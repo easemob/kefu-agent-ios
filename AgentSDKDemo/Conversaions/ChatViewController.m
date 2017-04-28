@@ -26,6 +26,9 @@
 #import "EMFileViewController.h"
 #import "DXRecordView.h"
 
+#import "AddTagViewController.h"
+
+
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -666,7 +669,11 @@
 
 
 - (void)conclusionClickAction {
-    
+    self.moreView.hidden = YES;
+    AddTagViewController *addTag = [[AddTagViewController alloc] init];
+    addTag.serviceSessionId = _conversationModel.serciceSessionId;
+    [self.navigationController pushViewController:addTag animated:YES];
+    [self keyBoardHidden:nil];
 }
 
 - (void)moreAction
@@ -810,6 +817,15 @@
     return ret;
 }
 
+- (NSDictionary *)msgExt {
+    NSDictionary *planDict = @{@"messageType": @"plan",
+                               @"planId": @"11111",
+                               @"planTitle": @"plan标题",
+                               @"planDesc": @"plan描述",
+                               @"planUrl": @"https://www.baidu.com",
+                               @"planPicUrl": @"https://ss0.bdstatic.com/-0U0bnSm1A5BphGlnYG/tam-ogel/e998ef4e7cbcfdb345716c5562a29956_121_121.png"};
+    return planDict;
+}
 
 - (NSDictionary *)messageExt {
     NSDictionary *ext = @{
@@ -840,7 +856,7 @@
 - (void)moreViewCustomAction:(DXChatBarMoreView *)moreView
 {
     //发送计划书的时候记得加上ext，发送的文字仅用来更新会话列表
-    self.lastMsgExt = [self messageExt];
+    self.lastMsgExt = [self msgExt];
     [self sendTextMessage:@"[计划书]"];
     [self keyBoardHidden:nil];
 }

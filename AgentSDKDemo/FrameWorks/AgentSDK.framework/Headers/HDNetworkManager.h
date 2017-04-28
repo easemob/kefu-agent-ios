@@ -75,6 +75,26 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
 - (void)asyncSendMessageWithMessageModel:(MessageModel *)messageModel
                               completion:(void(^)(MessageModel *message,HDError *error))completion;
 
+#pragma mark - 标签
+
+//获取标签树数据
+- (void)asyncGetTreeCompletion:(void(^)(id responseObject,HDError *error))completion;
+
+//获取会话标签
+- (void)asyncGetSessionSummaryResultsWithSessionId:(NSString *)sessionId
+                                        completion:(void(^)(id responseObject,HDError *error))completion;
+
+//获取会话标签备注
+- (void)asyncGetSessionCommentWithSessionId:(NSString *)sessionId
+                                 completion:(void(^)(id responseObject ,HDError *error))completion;
+//修改会话标签备注
+- (void)asyncSaveSessionCommentWithSessionId:(NSString *)sessionId
+                                  parameters:(NSDictionary *)parameters
+                                  completion:(void(^)(id responseObject,HDError *error))completion;
+//保存标签
+- (void)asyncSaveSessionSummaryResultsWithSessionId:(NSString *)sessionId
+                                         parameters:(NSDictionary *)parameters
+                                         completion:(void(^)(id responseObject,HDError *error))completion;
 
 #pragma mark - POST
 

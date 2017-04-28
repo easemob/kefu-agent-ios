@@ -30,6 +30,7 @@
 #import "HDManager.h"
 #import "IQKeyboardManager.h"
 #import <AgentSDK/AgentSDK.h>
+#import <AgentSDK/NSDictionary+SafeValue.h>
 #import "SRRefreshView.h"
 #import "MWPhotoBrowser.h"
 #import "UIButton+WebCache.h"
