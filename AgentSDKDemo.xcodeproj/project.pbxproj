@@ -33,6 +33,8 @@
 		D32C5B161EB2070900755A62 /* CommentEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B151EB2070900755A62 /* CommentEditViewController.m */; };
 		D32C5B191EB2082000755A62 /* DXTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B181EB2082000755A62 /* DXTableViewController.m */; };
 		D32C5B1C1EB20AEF00755A62 /* EMChatHeaderTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D32C5B1B1EB20AEF00755A62 /* EMChatHeaderTagView.m */; };
+		D32EA1D91EBB011B00DFB87A /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D32EA1D71EBB011400DFB87A /* AgentSDK.framework */; };
+		D32EA1DA1EBB011B00DFB87A /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D32EA1D71EBB011400DFB87A /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D33F466A1E9F71A000FE6DCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46691E9F71A000FE6DCE /* main.m */; };
 		D33F46751E9F71A000FE6DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33F46741E9F71A000FE6DCE /* Assets.xcassets */; };
 		D33F46781E9F71A000FE6DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33F46761E9F71A000FE6DCE /* LaunchScreen.storyboard */; };
@@ -43,8 +45,6 @@
 		D33F46D91E9F801E00FE6DCE /* HDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46D81E9F801E00FE6DCE /* HDLoginViewController.m */; };
 		D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */; };
 		D35EAEDD1EB2F01D009DFEDB /* EMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D35EAEDC1EB2F01D009DFEDB /* EMTagView.m */; };
-		D35EAEF41EB327FA009DFEDB /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */; };
-		D35EAEF51EB327FA009DFEDB /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D360327C1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */; };
 		D39BD8211EA8D13A008F428C /* HDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D39BD8201EA8D13A008F428C /* HDManager.m */; };
 		D3A95D121EA0B82000ADD394 /* MediaFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D111EA0B82000ADD394 /* MediaFileModel.m */; };
@@ -512,7 +512,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3BFB1911EA4A4F50002FCD0 /* HyphenateLite.framework in Embed Frameworks */,
-				D35EAEF51EB327FA009DFEDB /* AgentSDK.framework in Embed Frameworks */,
+				D32EA1DA1EBB011B00DFB87A /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +573,7 @@
 		D32C5B181EB2082000755A62 /* DXTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXTableViewController.m; sourceTree = "<group>"; };
 		D32C5B1A1EB20AEF00755A62 /* EMChatHeaderTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChatHeaderTagView.h; sourceTree = "<group>"; };
 		D32C5B1B1EB20AEF00755A62 /* EMChatHeaderTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChatHeaderTagView.m; sourceTree = "<group>"; };
+		D32EA1D71EBB011400DFB87A /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D33F46651E9F71A000FE6DCE /* AgentSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgentSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33F46691E9F71A000FE6DCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D33F46741E9F71A000FE6DCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -593,7 +594,6 @@
 		D35C8C681EA4EEF3009A9968 /* LocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDefine.h; sourceTree = "<group>"; };
 		D35EAEDB1EB2F01D009DFEDB /* EMTagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMTagView.h; sourceTree = "<group>"; };
 		D35EAEDC1EB2F01D009DFEDB /* EMTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTagView.m; sourceTree = "<group>"; };
-		D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D360327A1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HDAppDelegate.h"; sourceTree = "<group>"; };
 		D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HDAppDelegate.m"; sourceTree = "<group>"; };
 		D381EFCD1EA4B64F0092BD3C /* AgentSDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemo.entitlements; sourceTree = "<group>"; };
@@ -1213,7 +1213,6 @@
 				D3D082001EA4B349003FF1C3 /* Foundation.framework in Frameworks */,
 				D3A95D491EA0CF4300ADD394 /* ImageIO.framework in Frameworks */,
 				D3A95D471EA0CF3B00ADD394 /* MobileCoreServices.framework in Frameworks */,
-				D35EAEF41EB327FA009DFEDB /* AgentSDK.framework in Frameworks */,
 				D3A95D431EA0CF2F00ADD394 /* AudioToolbox.framework in Frameworks */,
 				D3A95D411EA0CF2800ADD394 /* CoreMedia.framework in Frameworks */,
 				D3BFB1901EA4A4F50002FCD0 /* HyphenateLite.framework in Frameworks */,
@@ -1221,6 +1220,7 @@
 				D3A95D3D1EA0CF0C00ADD394 /* libz.tbd in Frameworks */,
 				D3A95D3B1EA0CED500ADD394 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D3A95D4F1EA0ED5B00ADD394 /* libsqlite3.tbd in Frameworks */,
+				D32EA1D91EBB011B00DFB87A /* AgentSDK.framework in Frameworks */,
 				D3A95E831EA0F47100ADD394 /* libopencore-amrwb.a in Frameworks */,
 				D3A95E821EA0F47100ADD394 /* libopencore-amrnb.a in Frameworks */,
 			);
@@ -1377,7 +1377,7 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
-				D35EAEF21EB327DC009DFEDB /* AgentSDK.framework */,
+				D32EA1D71EBB011400DFB87A /* AgentSDK.framework */,
 				D31021211EA6418A00654A52 /* SDWebImage */,
 				D3BFB18A1EA4A3EF0002FCD0 /* HyphenateLite.framework */,
 				D3A95D6B1EA0F47100ADD394 /* DeviceUtil */,

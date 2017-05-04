@@ -23,6 +23,7 @@
 -(instancetype)initWithSessionId:(NSString *)sessionId
                      chatGroupId:(NSInteger)chatGroupId;
 
+
 /*
  * 加载消息
  */
@@ -33,5 +34,11 @@
  */
 
 - (void)loadHistoryCompletion:(void(^)(NSArray <MessageModel *> *messages,HDError *error))completion;
+
+/*
+ * 结束会话
+ */
+- (void)endConversationWithVisitorId:(NSString *)visitorId sessionId:(NSString *)sessionId parameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
+
 
 @end

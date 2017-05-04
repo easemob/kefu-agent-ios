@@ -191,13 +191,21 @@
         if (!error) {
             [weakSelf hideHud];
             [weakSelf showHint:@"保存成功"];
-            if (weakSelf.saveAndEnd && [HDNetworkManager shareInstance].currentUser.isStopSessionNeedSummary && [_selectArray count]>0) {
-                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(saveAndEndChat)]) {
-                    [weakSelf.delegate saveAndEndChat];
+            if (weakSelf.saveAndEnd) { //结束会话时候
+                if ([_selectArray count]>0) {
+                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(saveAndEndChat)]) {
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                        [weakSelf.delegate saveAndEndChat];
+                    }
+                } else {
+                    [weakSelf showHint:@"请选择标签"];
                 }
             } else {
-                //[weakSelf.navigationController popViewControllerAnimated:YES];
+                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(reloadTags)]) {
+                    [weakSelf.delegate reloadTags];
+                }
             }
+            
         } else {
             [weakSelf hideHud];
             [weakSelf showHint:@"保存失败"];

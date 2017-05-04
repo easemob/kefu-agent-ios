@@ -14,8 +14,14 @@ typedef enum{
     ChatViewTypeCallBackChat
 }ChatViewType;
 
+
+@protocol ChatViewControllerDelegate <NSObject>
+- (void)refreshConversationList;
+@end
+
 @interface ChatViewController : UIViewController
 
+@property(nonatomic,assign) id<ChatViewControllerDelegate> delegate;
 @property (strong, nonatomic) ConversationModel* conversationModel;
 @property (copy, nonatomic) NSString *notifyNumber;
 

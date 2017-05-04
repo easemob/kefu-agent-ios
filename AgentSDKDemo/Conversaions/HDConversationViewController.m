@@ -11,7 +11,7 @@
 #import "ChatViewController.h"
 #define perpageSize 10
 
-@interface HDConversationViewController ()<SRRefreshDelegate,UIScrollViewDelegate,HDClientDelegate>
+@interface HDConversationViewController ()<SRRefreshDelegate,UIScrollViewDelegate,HDClientDelegate,ChatViewControllerDelegate>
 
 @property(nonatomic,assign) BOOL hasMore; //是否还有更多会话
 @property (strong, nonatomic) SRRefreshView *slimeView;
@@ -71,8 +71,6 @@
                     }
                     break;
                 }
-                    
-                    
                 default:
                     break;
             }
@@ -81,6 +79,10 @@
             [weakSelf.tableView reloadData];
         }
     }];
+}
+#pragma mark chatviewControllerDelegate
+- (void)refreshConversationList {
+    [self loadData];
 }
 
 #pragma mark - getter
@@ -163,6 +165,7 @@
     }
     if (_type == HDConversationAccessed) {
         ChatViewController *chatVC = [[ChatViewController alloc] init];
+        chatVC.delegate = self;
         chatVC.hidesBottomBarWhenPushed = YES;
         chatVC.conversationModel = [self.dataSource objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:chatVC animated:YES];

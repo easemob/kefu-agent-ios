@@ -13,6 +13,8 @@
 
 - (void)saveAndEndChat;
 
+- (void)reloadTags;
+
 @end
 
 @interface AddTagViewController : DXBaseViewController

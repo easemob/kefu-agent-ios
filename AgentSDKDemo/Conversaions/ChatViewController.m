@@ -43,7 +43,7 @@
 
 @end
 
-@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,UIActionSheetDelegate,HDChatManagerDelegate,HDClientDelegate>
+@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,UIActionSheetDelegate,HDChatManagerDelegate,HDClientDelegate,UIAlertViewDelegate,AddTagViewDelegate>
 {
     dispatch_queue_t _messageQueue;
     NSMutableArray *_messages;
@@ -56,6 +56,8 @@
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
     NSIndexPath *_longPressIndexPath;
+    
+    BOOL _hasTags;
 }
 
 @property(nonatomic,strong) HDConversation *conversation;
@@ -158,6 +160,8 @@
     [self.tableView addGestureRecognizer:tap];
     
     [self loadMessage];
+    
+    [self loadTags];
 }
 
 #pragma mark - HDClientDelegate
@@ -645,7 +649,7 @@
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreAction)];
         [_moreView addGestureRecognizer:tap];
-        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - 160, 0, 150, 40 )];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - 160, 0, 150, 80 )];
         
         contentView.backgroundColor = [UIColor whiteColor];
         contentView.userInteractionEnabled = YES;
@@ -663,15 +667,94 @@
         [conversationTagBtn addTarget:self action:@selector(conclusionClickAction) forControlEvents:UIControlEventTouchUpInside];
         [contentView addSubview:conversationTagBtn];
 
+        UIView *line1 = [[UIView alloc] init];
+        line1.frame = CGRectMake(0, CGRectGetMaxY(conversationTagBtn.frame) - 0.5, contentView.width, 1);
+        line1.backgroundColor = [UIColor lightGrayColor];
+        [contentView addSubview:line1];
+        
+        UIButton *endBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        endBtn.frame = CGRectMake(0, CGRectGetMaxY(conversationTagBtn.frame), CGRectGetWidth(contentView.frame), 40);
+        [endBtn setTitle:@"结束会话" forState:UIControlStateNormal];
+        endBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+        [endBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
+        [endBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+        [endBtn setImage:[UIImage imageNamed:@"expand_icon_sessionend"] forState:UIControlStateNormal];
+        [endBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+        [endBtn addTarget:self action:@selector(endChatAction) forControlEvents:UIControlEventTouchUpInside];
+        [contentView addSubview:endBtn];
     }
     return _moreView;
 }
 
+- (void)loadTags {
+    [[HDNetworkManager shareInstance] asyncGetSessionSummaryResultsWithSessionId:_conversationModel.serciceSessionId completion:^(id responseObject, HDError *error) {
+        if (!error) {
+            NSArray *json = responseObject;
+            if (json.count>0) {
+                _hasTags = YES;
+            } else {
+                _hasTags = NO;
+            }
+        }
+    }];
+}
+
+- (void)saveAndEndChat {
+    [self endConversation];
+}
+
+- (void)reloadTags {
+    [self loadTags];
+}
+
+
+//结束会话
+- (void)endChatAction {
+    self.moreView.hidden = YES;
+    UserModel *usr = [HDNetworkManager shareInstance].currentUser;
+    if (usr.isStopSessionNeedSummary && !_hasTags) { //结束会话的时候需要添加tag,并且改会话之前没有tag
+        //会话标签
+        AddTagViewController *addTag = [[AddTagViewController alloc] init];
+        addTag.saveAndEnd = YES;
+        addTag.serviceSessionId = _conversationModel.serciceSessionId;
+        addTag.delegate = self;
+        [self.navigationController pushViewController:addTag animated:YES];
+        [self keyBoardHidden:nil];
+        
+    } else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"确认关闭该回话?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认", nil];
+        [alert show];
+    }
+    
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView cancelButtonIndex] != buttonIndex) { //确认关闭
+        [self endConversation];
+    }
+}
+
+- (void)endConversation {
+    [_conversation endConversationWithVisitorId:_conversationModel.chatter.userId sessionId:nil parameters:nil completion:^(id responseObject, HDError *error) {
+        if (!error) {
+            [self showHint:@"成功关闭"];
+            [self.navigationController popViewControllerAnimated:YES];
+            if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
+                [_delegate refreshConversationList];
+            }
+        } else {
+            [self showHint:@"关闭失败"];
+        }
+    }];
+}
 
 - (void)conclusionClickAction {
     self.moreView.hidden = YES;
     AddTagViewController *addTag = [[AddTagViewController alloc] init];
     addTag.serviceSessionId = _conversationModel.serciceSessionId;
+    addTag.saveAndEnd = NO;
+    addTag.delegate = self;
     [self.navigationController pushViewController:addTag animated:YES];
     [self keyBoardHidden:nil];
 }
