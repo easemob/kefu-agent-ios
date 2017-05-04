@@ -121,10 +121,6 @@
     }
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear: animated];
-}
-
 - (void)startNoti {
     [[HDClient shareClient].chatManager removeDelegate:self];
      [[HDClient shareClient].chatManager addDelegate:self];
@@ -150,7 +146,7 @@
         [self.view addSubview:self.folderButton];
     }
     _conversation = [[HDConversation alloc] initWithSessionId:_conversationModel.serciceSessionId chatGroupId:_conversationModel.chatGroupId];
-    
+    [self markAsRead];
     //将self注册为chatToolBar的moreView的代理
     if ([self.chatToolBar.moreView isKindOfClass:[DXChatBarMoreView class]]) {
         [(DXChatBarMoreView *)self.chatToolBar.moreView setDelegate:self];
@@ -163,6 +159,15 @@
     
     [self loadTags];
 }
+
+- (void)markAsRead {
+    [_conversation markMessagesAsReadWithVisitorId:_conversationModel.chatter.userId parameters:nil completion:^(id responseObject, HDError *error) {
+        if (error == nil) {
+            NSLog(@"标记已读成功");
+        }
+    }];
+}
+
 
 #pragma mark - HDClientDelegate
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
@@ -179,14 +184,13 @@
     }
 }
 
-
-
 #pragma mark - HDChatManagerDelegate
 - (void)messagesDidReceive:(NSArray *)aMessages {
     for (MessageModel *msg in aMessages) {
         if (![_conversationModel.serciceSessionId isEqualToString:msg.sessionServiceId]) {
             return;
         }
+        [self markAsRead];
         [self addMessage:msg];
     }
 }
@@ -637,6 +641,9 @@
 - (void)backAction
 {
     [self.navigationController popToRootViewControllerAnimated:YES];
+    if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
+        [_delegate refreshConversationList];
+    }
 }
 
 - (UIView*)moreView
@@ -736,7 +743,7 @@
 }
 
 - (void)endConversation {
-    [_conversation endConversationWithVisitorId:_conversationModel.chatter.userId sessionId:nil parameters:nil completion:^(id responseObject, HDError *error) {
+    [_conversation endConversationWithVisitorId:_conversationModel.chatter.userId parameters:nil completion:^(id responseObject, HDError *error) {
         if (!error) {
             [self showHint:@"成功关闭"];
             [self.navigationController popViewControllerAnimated:YES];
@@ -1061,10 +1068,13 @@
     return NO;
 }
 
-
-- (void)dealloc {
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [[HDClient shareClient] removeDelegate:self];
     [[HDClient shareClient].chatManager removeDelegate:self];
+}
+
+- (void)dealloc {
     NSLog(@"%s dealloc",__func__);
 }
 

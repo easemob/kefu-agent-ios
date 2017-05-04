@@ -181,6 +181,7 @@
     ConversationModel *model = [self.dataSourceDic objectForKey:message.sessionServiceId];
     if (model) {
         model.lastMessage = message;
+        model.unreadCount += 1;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.dataSource removeObject:model];
             [self.dataSource insertObject:model atIndex:0];

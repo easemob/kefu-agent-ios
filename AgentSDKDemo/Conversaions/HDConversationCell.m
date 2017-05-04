@@ -7,6 +7,7 @@
 //
 
 #import "HDConversationCell.h"
+#import "DXTipView.h"
 #import <AgentSDK/NSDate+Formatter.h>
 #define kHeadImageViewLeft 11.f
 #define kHeadImageViewTop 10.f
@@ -18,6 +19,8 @@
     UIView *_lineView;
 }
 @property (nonatomic, strong) UIImageView *channelImageView;
+
+@property (strong, nonatomic) DXTipView *tipView;
 @end
 
 @implementation HDConversationCell
@@ -68,6 +71,10 @@
     _contentLabel.font = [UIFont systemFontOfSize:12.0];
     [self.contentView addSubview:_contentLabel];
     
+    _tipView = [[DXTipView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) - 15, 5, 30, 20)];
+    _tipView.tipNumber = nil;
+    [self.contentView addSubview:_tipView];
+    [self.contentView bringSubviewToFront:_tipView];
     
     _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.frame.size.height-1, CGRectGetWidth(self.frame), 1)];
     _lineView.backgroundColor = RGBACOLOR(0xe5, 0xe5, 0xe5, 1);
@@ -84,6 +91,21 @@
 
 - (void)setModel:(ConversationModel *)model {
     NSInteger count = model.unreadCount;
+    
+    if (count == 0) {
+        _tipView.tipNumber = nil;
+    }
+    else{
+        NSString *string = @"";
+        if (count > 99) {
+            string = [NSString stringWithFormat:@"%i+", 99];
+        }
+        else{
+            string = [NSString stringWithFormat:@"%ld", (long)count];
+        }
+        _tipView.tipNumber = string;
+    }
+    
     [_headerImageView sd_setImageWithURL:[NSURL URLWithString:model.vistor.avatar] placeholderImage:[UIImage imageNamed:@"default_customer_avatar"]];
     
     _titleLabel.text = model.chatter?model.chatter.nicename:model.vistor.nicename;

@@ -38,7 +38,12 @@
 /*
  * 结束会话
  */
-- (void)endConversationWithVisitorId:(NSString *)visitorId sessionId:(NSString *)sessionId parameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
+- (void)endConversationWithVisitorId:(NSString *)visitorId parameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
 
+/*
+ * 标记已读
+ * parameters  预留参数
+ */
+- (void)markMessagesAsReadWithVisitorId:(NSString *)visitorId parameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
 
 @end
