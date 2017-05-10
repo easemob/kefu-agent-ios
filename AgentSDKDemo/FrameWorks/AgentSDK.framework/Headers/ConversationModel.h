@@ -34,6 +34,7 @@ typedef enum {
 @property (nonatomic) NSTimeInterval createDateTime;
 @property (nonatomic) conversationModelType type;
 @property (nonatomic, copy) NSString *originType;
+@property(nonatomic,copy) NSString *techChannelName;
 @property (nonatomic, copy) NSString *createDatetime;
 @property (nonatomic, assign) NSInteger chatGroupId;
 @property(nonatomic,copy) NSString *startDateTime;
