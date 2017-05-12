@@ -201,6 +201,7 @@
 
 
 - (void)userAccountNeedRelogin {
+     [[HDClient shareClient] removeDelegate:self];
     [[HDManager shareInstance] showLoginViewController];
 }
 
@@ -248,6 +249,10 @@
     [_slimeView endRefresh];
 }
 
+
+- (void)dealloc {
+    NSLog(@"-%s dealloc",__func__);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
