@@ -42,7 +42,7 @@
 
 /*
  * 标记已读
- * parameters  预留参数
+ * parameters  预留参数传nil
  */
 - (void)markMessagesAsReadWithVisitorId:(NSString *)visitorId parameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
 

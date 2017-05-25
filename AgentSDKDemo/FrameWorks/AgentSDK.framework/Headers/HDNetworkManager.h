@@ -96,11 +96,20 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
                                          parameters:(NSDictionary *)parameters
                                          completion:(void(^)(id responseObject,HDError *error))completion;
 
-#pragma mark - POST
+#pragma mark - POST、GET、PUT
 
 - (NSURLSessionDataTask *)asyncSendPOST:(NSString*)path
                          withParameters:(NSDictionary *)otherParameters
                              completion:(RequestBlock)completion;
+
+
+- (void)asyncSendGet:(NSString*)path
+      withParameters:(NSDictionary *)otherParameters
+          completion:(void (^)(id responseObject, HDError *error))completion;
+
+- (void)asyncSendPUT:(NSString*)path
+      withParameters:(NSDictionary *)otherParameters
+          completion:(void (^)(id responseObject, HDError *error))completion;
 
 
 

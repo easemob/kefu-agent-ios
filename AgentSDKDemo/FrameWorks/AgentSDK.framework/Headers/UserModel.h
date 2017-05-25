@@ -52,7 +52,7 @@
 @interface UserModel : NSObject<NSCoding>
 
 @property (copy, nonatomic) NSString *userId;
-@property(nonatomic,copy) NSString *projectID; //留言id
+@property(nonatomic,copy) NSString *projectID; //project id
 @property (copy, nonatomic) NSString *tenantId; //租户ID
 @property (copy, nonatomic) NSString *username;
 @property (copy, nonatomic) NSString *token;

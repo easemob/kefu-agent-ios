@@ -21,8 +21,15 @@
     self.title = @"设置";
 }
 - (IBAction)logoutClicked:(id)sender {
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [appDelegate showLoginViewController];
+    [self showHint:@"退出登录"];
+    [[HDNetworkManager shareInstance]asyncLogoutCompletion:^(HDError *error) {
+        [self hideHud];
+        if (error == nil) {
+            [[HDManager shareInstance] showLoginViewController];
+        } else {
+            [self showHintNotHide:@"退出出错"];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

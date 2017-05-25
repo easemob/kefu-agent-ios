@@ -51,6 +51,7 @@
     _usernameField = [[UITextField alloc] initWithFrame:CGRectMake(kLoginMargin, kLoginMargin, CGRectGetWidth(_actionView.frame) - kLoginMargin * 2, kLoginTextViewHeight)];
     _usernameField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"账号" attributes:@{NSForegroundColorAttributeName:RGBACOLOR(0x99, 0x99, 0x99, 1)}];
     _usernameField.font = [UIFont systemFontOfSize:16.0];
+    _usernameField.text = [StandardUserDefaults valueForKey:DefaultUsername];
     _usernameField.clipsToBounds = YES;
     _usernameField.backgroundColor = [UIColor whiteColor];
     _usernameField.textAlignment = NSTextAlignmentLeft;
@@ -139,6 +140,8 @@
 
 - (void)loginButtonAction:(id)sender
 {
+    
+    [StandardUserDefaults setValue:_usernameField.text forKey:DefaultUsername];
     [_usernameField resignFirstResponder];
     [_passwordField resignFirstResponder];
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;

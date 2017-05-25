@@ -11,6 +11,7 @@
 #import "HDChatManager.h"
 #import "HDOptions.h"
 #import "HDClientDelegate.h"
+#import "HDPushOptions.h"
 
 /*
  * 请求返回BLOCK
@@ -35,10 +36,22 @@ typedef void(^RequestBlock)(id responseObject, HDError *error);
  */
 @property (nonatomic, strong, readonly) NSString *version;
 
+
+/*!
+ *  \~chinese
+ *  推送设置
+ *
+ *  \~english
+ *  Apple Push Notification Service setting
+ */
+@property (nonatomic, strong, readonly) HDPushOptions *hPushOptions;
+
 /*
  *  聊天模块
  */
 @property (nonatomic, strong, readonly) HDChatManager *chatManager;
+
+//@property (nonatomic, strong, readonly)
 
 /*
  * deviceToken
@@ -106,5 +119,49 @@ typedef void(^RequestBlock)(id responseObject, HDError *error);
  */
 - (void)logoutCompletion:(void(^)(HDError *))completion;
 
+//APNs
+/*!
+ *  \~chinese
+ *  绑定device token
+ *
+ *  同步方法，会阻塞当前线程
+ *
+ *  @param aDeviceToken  要绑定的token
+ *
+ *  @result 错误信息
+ */
+- (HDError *)bindDeviceToken:(NSData *)aDeviceToken;
+
+/*!
+ *  \~chinese
+ *  从服务器获取推送属性
+ *
+ *  同步方法，会阻塞当前线程
+ *
+ *  @param pError  错误信息
+ *
+ *  @result 推送属性
+ */
+- (HDPushOptions *)getPushOptionsFromServerWithError:(HDError **)pError;
+
+/*!
+ *  \~chinese
+ *  设置推送消息显示的昵称
+ *
+ *  同步方法，会阻塞当前线程
+ *
+ *  @param aNickname  要设置的昵称
+ *
+ *  @result 错误信息
+ */
+- (HDError *)setApnsNickname:(NSString *)aNickname;
+
+/*!
+ *  \~chinese
+ *  更新推送设置到服务器
+ *
+ *  同步方法，会阻塞当前线程
+ */
+- (HDError *)updatePushOptionsToServer:(HDPushOptions *)hPushOptions;
 
 @end

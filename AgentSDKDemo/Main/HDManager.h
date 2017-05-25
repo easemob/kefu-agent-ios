@@ -6,6 +6,8 @@
 //  Copyright © 2017 环信. All rights reserved.
 //
 
+//管理整个项目
+
 #import <Foundation/Foundation.h>
 
 @interface HDManager : NSObject
