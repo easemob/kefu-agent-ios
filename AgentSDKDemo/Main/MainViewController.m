@@ -24,7 +24,10 @@
 }
 
 - (void)initControllers {
-    NSArray* controllers = @[[[HDConversationViewController alloc] init],[[HDSettingViewController alloc]init]];
+    HDConversationViewController *homeVC  = [[HDConversationViewController alloc] init];
+    HDManager *manager = [HDManager shareInstance];
+    manager.homeVC = homeVC;
+    NSArray* controllers = @[homeVC,[[HDSettingViewController alloc]init]];
     NSMutableArray* navControllers = [[NSMutableArray alloc] init];
     NSArray* titles = @[@"会话",@"设置"];
     for (int i=0;i<controllers.count;i++) {
@@ -43,9 +46,15 @@
     }
 }
 
+
+
+
 - (void)dealloc {
     NSLog(@"%s dealloc",__func__);
 }
+
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

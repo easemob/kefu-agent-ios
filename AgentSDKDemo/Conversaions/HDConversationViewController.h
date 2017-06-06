@@ -10,4 +10,6 @@
 
 @interface HDConversationViewController : DXBaseViewController
 
+- (void)didReceiveLocalNotification:(UILocalNotification *)notification;
+
 @end

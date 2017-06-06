@@ -8,6 +8,8 @@
 
 #import "AppDelegate+HDAppDelegate.h"
 #import "ConvertToCommonEmoticonsHelper.h"
+#import "MainViewController.h"
+#import "MBProgressHUD.h"
 
 @implementation AppDelegate (HDAppDelegate)
 
@@ -24,7 +26,7 @@
     if (appkey != nil && appkey.length > 0 ) {
         HDOptions *option = [[HDOptions alloc] init];
         option.apnsCertName = apnsCertName;
-//        option.enableConsoleLog = YES;
+        option.enableConsoleLog = YES;
         [[HDClient shareClient] initializeSDKWithOptions:option];
     }
     
@@ -36,8 +38,10 @@
 
 
 - (void)startAutoLogin {
+    NSLog(@"登录中 ...");
     [[HDNetworkManager shareInstance] autoLoginCompletion:^(HDError *error) {
         if (error == nil) {
+            NSLog(@"自动登录成功");
             [self showMainViewController];
         }
     }];
@@ -68,7 +72,6 @@
 - (void)registerRemoteNotification{
     UIApplication *application = [UIApplication sharedApplication];
     application.applicationIconBadgeNumber = 0;
-    
     //注册APNs推送
     [application registerForRemoteNotifications];
     UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound |   UIUserNotificationTypeAlert;
@@ -76,6 +79,16 @@
     [application registerUserNotificationSettings:settings];
 }
 
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    HDManager *manager = [HDManager shareInstance];
+    if (manager.homeVC) {
+        [manager.homeVC didReceiveLocalNotification:notification];
+    }
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+}
 
 
 

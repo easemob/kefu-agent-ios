@@ -39,6 +39,7 @@
 - (void)initDelegate {
     [[HDClient shareClient] removeDelegate:self];
     [[HDClient shareClient] addDelegate:self delegateQueue:nil];
+    [[HDManager shareInstance] registerLocalNoti];
 }
 
 - (void)loadData {
@@ -253,6 +254,20 @@
 - (void)dealloc {
     NSLog(@"-%s dealloc",__func__);
 }
+
+
+- (void)didReceiveLocalNotification:(UILocalNotification *)notification {
+    if (![HDNetworkManager shareInstance].isAutoLogin) {
+        return;
+    }
+    NSDictionary *userInfo = notification.userInfo;
+    if ([userInfo valueForKey:@"newMessageConversationId"]) {
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self.tabBarController setSelectedIndex:0];
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -123,7 +123,9 @@
 
 - (void)startNoti {
     [[HDClient shareClient].chatManager removeDelegate:self];
+     NSLog(@"chatManager12:%@",[HDClient shareClient].chatManager);
      [[HDClient shareClient].chatManager addDelegate:self];
+    
     [[HDClient shareClient] removeDelegate:self];
     [[HDClient shareClient] addDelegate:self delegateQueue:nil];
 }

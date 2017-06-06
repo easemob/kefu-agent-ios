@@ -144,7 +144,6 @@
     [StandardUserDefaults setValue:_usernameField.text forKey:DefaultUsername];
     [_usernameField resignFirstResponder];
     [_passwordField resignFirstResponder];
-    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
 
     WEAK_SELF
     [self showHintNotHide:@"正在登录..."];
@@ -154,8 +153,8 @@
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:error.errorDescription delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
             [alertView show];
         } else {
-            NSLog(@"登录成功1");
-            [appDelegate showMainViewController];
+            HDManager *manager  = [HDManager shareInstance];
+            [manager showMainViewController];
         }
     }];
 }
