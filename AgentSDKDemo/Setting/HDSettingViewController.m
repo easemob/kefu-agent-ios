@@ -22,7 +22,7 @@
 }
 - (IBAction)logoutClicked:(id)sender {
     [self showHint:@"退出登录"];
-    [[HDNetworkManager shareInstance]asyncLogoutCompletion:^(HDError *error) {
+    [[HDClient sharedClient] logoutCompletion:^(HDError *error) {
         [self hideHud];
         if (error == nil) {
             [[HDManager shareInstance] showLoginViewController];

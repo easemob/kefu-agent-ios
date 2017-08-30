@@ -48,4 +48,8 @@ typedef enum{
     HDErrorCallRemoteOffline,                /*! \~chinese 对方不在线 \~english Callee is offline */
     HDErrorCallConnectFailed,                /*! \~chinese 实时通话建立连接失败 \~english Establish connection failure */
     
+    HDErrorDataException = 900 ,            //数据异常
+    HDErrorIMLoginFailed,                   //IM 登录失败
+    HDErrorGetIMUserFailed,                 //获取IM user 失败
+    
 }HDErrorCode;

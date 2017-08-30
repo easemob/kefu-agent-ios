@@ -71,6 +71,8 @@
 @property (copy, nonatomic) NSString *customUrl;
 @property (copy, nonatomic) NSString *status;
 
+@property(nonatomic,copy,readonly) NSString *userType;
+
 @property (assign, nonatomic) BOOL allowAgentChangeMaxSessions;
 @property (assign, nonatomic) BOOL isStopSessionNeedSummary;
 

@@ -9,102 +9,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514265299.367119"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
-            landmarkName = "-asyncSendMessageWithMessageModel:completion:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HDNetworkManager asyncSendMessageWithServiceSessionId:userId:parameters:completion:]"
-                  moduleName = "AgentSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-                  timestampString = "514179455.468734"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "499"
-                  endingLineNumber = "499"
-                  offsetFromSymbolStart = "147">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__86-[HDNetworkManager asyncSendMessageWithServiceSessionId:userId:parameters:completion:]_block_invoke"
-                  moduleName = "AgentSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-                  timestampString = "514179455.470637"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "500"
-                  endingLineNumber = "500"
-                  offsetFromSymbolStart = "13">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514265299.367119"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "489"
-            endingLineNumber = "489"
-            landmarkName = "-asyncSendMessageWithMessageModel:completion:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[HDNetworkManager asyncSendMessageWithMessageModel:completion:]"
-                  moduleName = "AgentSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-                  timestampString = "514179497.141667"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "490"
-                  endingLineNumber = "490"
-                  offsetFromSymbolStart = "51">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__64-[HDNetworkManager asyncSendMessageWithMessageModel:completion:]_block_invoke"
-                  moduleName = "AgentSDK"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-                  timestampString = "514179497.143613"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "491"
-                  endingLineNumber = "491"
-                  offsetFromSymbolStart = "28">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "AgentSDKDemo/Login/HDLoginViewController.m"
             timestampString = "518344360.827078"
             startingColumnNumber = "9223372036854775807"
@@ -113,118 +17,38 @@
             endingLineNumber = "150"
             landmarkName = "-loginButtonAction:"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514264803.358138"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "-asyncLoginWithUsername:password:hidingLogin:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514264911.912896"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-asyncLoginWithUsername:password:hidingLogin:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514264942.641556"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "-_imLogin"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514265299.367119"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "445"
-            endingLineNumber = "445"
-            landmarkName = "-isAutoLogin"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514265299.367119"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
-            landmarkName = "-isAutoLogin"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514267831.032047"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "500"
-            endingLineNumber = "500"
-            landmarkName = "-asyncSendMessageWithMessageModel:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/HDConversation.m"
-            timestampString = "514268038.237596"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "-loadMessageWithSessionServiceId:chatGroupId:"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HDLoginViewController loginButtonAction:]"
+                  moduleName = "AgentSDKDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Login/HDLoginViewController.m"
+                  timestampString = "519189370.832568"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "150"
+                  endingLineNumber = "150"
+                  offsetFromSymbolStart = "294">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__43-[HDLoginViewController loginButtonAction:]_block_invoke"
+                  moduleName = "AgentSDKDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Login/HDLoginViewController.m"
+                  timestampString = "519189370.835876"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "78">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -249,28 +73,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AgentSDKDemo/Main/AppDelegate.m"
-            timestampString = "518410040.362971"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "522074914.909942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "711"
-            endingLineNumber = "711"
+            startingLineNumber = "758"
+            endingLineNumber = "758"
             landmarkName = "-asyncSendMessageWithMessageModel:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -278,31 +86,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514370581.674526"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "423"
-            endingLineNumber = "423"
-            landmarkName = "-updateLoginInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "520932159.911767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
             landmarkName = "-asyncFetchMeWithCompletion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "522074914.909942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "594"
-            endingLineNumber = "594"
+            startingLineNumber = "641"
+            endingLineNumber = "641"
             landmarkName = "-asyncSendPOST:withParameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDClient.m"
-            timestampString = "518346227.005183"
+            timestampString = "521354340.626657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-conversationTransfered:"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDClient.m"
-            timestampString = "518346227.005183"
+            timestampString = "521354340.626657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "-conversationClosedByAdmin:"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDClient.m"
-            timestampString = "518346227.005183"
+            timestampString = "521354340.626657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "-conversationClosedAuto:"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,11 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDClient.m"
-            timestampString = "518346227.005183"
+            timestampString = "521354340.626657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "-kefuRoleChange:"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDClient.m"
-            timestampString = "518346227.005183"
+            timestampString = "521354340.626657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "-lastMessageChange:"
             landmarkType = "7">
             <Locations>
@@ -438,31 +230,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../AgentSDK/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "514452180.521061"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "516"
-            endingLineNumber = "516"
-            landmarkName = "-asyncSendMessageWithMessageModel:completion:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "522074914.909942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "628"
-            endingLineNumber = "628"
+            startingLineNumber = "675"
+            endingLineNumber = "675"
             landmarkName = "-asyncSendMessageWithMessageModel:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,12 +266,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "522074914.909942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "601"
-            endingLineNumber = "601"
-            landmarkName = "-asyncSendPOST:withParameters:completion:"
+            startingLineNumber = "648"
+            endingLineNumber = "648"
+            landmarkName = "-asyncSendMessageWithMessageModel:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -532,12 +308,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "522074914.909942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "571"
-            endingLineNumber = "571"
-            landmarkName = "-saveUser"
+            startingLineNumber = "618"
+            endingLineNumber = "618"
+            landmarkName = "-saveImUser"
             landmarkType = "7">
             <Locations>
                <Location
@@ -580,12 +356,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "522074914.909942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "582"
-            endingLineNumber = "582"
-            landmarkName = "-saveImUser"
+            startingLineNumber = "629"
+            endingLineNumber = "629"
+            landmarkName = "-asyncSendPOST:withParameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -676,11 +452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "518410997.991949"
+            timestampString = "520932159.911767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "251"
-            endingLineNumber = "251"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "-asyncFetchConversationsWithType:page:limit:otherParameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -692,12 +468,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgentSDKDemo/Conversaions/HDConversationViewController.m"
-            timestampString = "518346333.53397"
+            timestampString = "519132606.467133"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
-            landmarkName = "-userAccountNeedRelogin"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
+            landmarkName = "-connectionStateDidChange:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -724,11 +500,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDClient.m"
-            timestampString = "518346227.005183"
+            timestampString = "521354340.626657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "259"
+            endingLineNumber = "259"
             landmarkName = "-needRelogin"
             landmarkType = "7">
          </BreakpointContent>
@@ -756,11 +532,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDClient.m"
-            timestampString = "517389556.541306"
+            timestampString = "521354340.626657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "-removeDelegate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -900,7 +676,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../kefu-app-ios/AgentSDK/HDChatManager.m"
-            timestampString = "518353249.079371"
+            timestampString = "522074914.909942"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "221"
@@ -944,16 +720,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+            timestampString = "520932159.911767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
+            landmarkName = "-_easemobLoginCompletion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+            timestampString = "520932159.911767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "387"
+            endingLineNumber = "387"
+            landmarkName = "-_imLoginCompletion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+            timestampString = "520932159.911767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "421"
+            endingLineNumber = "421"
+            landmarkName = "-_imLoginCompletion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AgentSDKDemo/Main/AppDelegate.m"
-            timestampString = "518410040.362971"
+            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+            timestampString = "520932159.911767"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "-asyncSendGet:withParameters:completion:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[HDNetworkManager asyncSendGet:withParameters:completion:]"
+                  moduleName = "AgentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+                  timestampString = "520930554.924834"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "326"
+                  endingLineNumber = "326"
+                  offsetFromSymbolStart = "366">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__59-[HDNetworkManager asyncSendGet:withParameters:completion:]_block_invoke"
+                  moduleName = "AgentSDK"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+                  timestampString = "520930554.92748"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "326"
+                  endingLineNumber = "326"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+            timestampString = "520932159.911767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "-asyncSendGet:withParameters:completion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+            timestampString = "520932159.911767"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-asyncLoginWithUsername:password:hidingLogin:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

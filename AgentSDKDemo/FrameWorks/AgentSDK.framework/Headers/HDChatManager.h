@@ -9,8 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "HDChatManagerDelegate.h"
 #import "HDConversation.h"
+#import "HDHistoryRequestBody.h"
 
+/**
+ 会话模块
+ */
 @interface HDChatManager : NSObject
+
+#pragma mark - 普通会话
+
 /**
  *  正在会话的conversationId，只读
  */
@@ -47,58 +54,9 @@
  */
 - (void)removeDelegate:(id<HDChatManagerDelegate>)aDelegate;
 
-#pragma mark - HDConversation
-
-/*
- *  从数据库中获取所有的会话，执行后会更新内存中的会话列表
- *
- *  同步方法，会阻塞当前线程
- *
- *  @result 会话列表<HDConversation>
- */
-- (NSArray *)loadAllConversations;
-
-/*
- *  获取一个会话
- *
- *  @param aConversationId  会话ID
- *
- *  @result 会话对象
- */
-- (HDConversation *)getConversation:(NSString *)aConversationId;
-/*
- *  删除会话
- *
- *  @param aConversationId  会话ID
- *  @param aDeleteMessage   是否删除会话中的消息
- *
- *  @result 是否成功
- */
-- (BOOL)deleteConversation:(NSString *)aConversationId
-            deleteMessages:(BOOL)aDeleteMessage;
 
 #pragma mark - HDMessage
 
-/* 发送消息
- *
- */
-- (void)sendMessageWithMessageModel:(MessageModel *)messageModel
-                         completion:(void(^)(id responseObject,HDError *))completion;
-
-/*
- * 获取历史消息
- *
- */
-
-
-/*
- *  获取消息附件路径, 存在这个路径的文件，删除会话时会被删除
- *
- *  @param aConversationId  会话ID
- *
- *  @result 附件路径
- */
-- (NSString *)getMessageAttachmentPath:(NSString *)aConversationId;
 
 /*!
  *  发送消息
@@ -115,11 +73,121 @@
  *  重发送消息
  *
  *
- *  @param aMessage            消息
+ *  @param aMessage 消息
  */
 - (void)resendMessage:(MessageModel *)aMessage
              progress:(void (^)(int progress))aProgressCompletion
            completion:(void (^)(MessageModel *message,
                                 HDError *error))aCompletion;
 
+#pragma mark - conversation
+
+
+/**
+ 获取已接入会话的列表
+
+ @param page 页码
+ @param limit 每页的数据
+ @param completion 完成回调
+ */
+- (void)asyncLoadConversationsWithPage:(NSInteger)page
+                                 limit:(NSInteger)limit
+                            completion:(void(^)(NSArray *conversations,HDError *error))completion;
+
+#pragma mark - 同事会话
+
+/**
+ 同事列表
+
+ @param completion 完成回调
+ */
+- (void)asyncGetAllCustomersCompletion:(void(^)(id responseObject,HDError *error))completion;
+
+/**
+ 客服发消息
+ 
+ @param remoteUserId 对方userId
+ @param parameters 参数
+ @param completion 完成回调
+ */
+- (void)asyncSendMessageToAgentUserWithRemoteAgentUserId:(NSString *)remoteUserId parameters:(NSDictionary *)parameters completion:(void (^)(id responseObject, HDError *error))completion;
+
+
+/**
+ 获取客服未读消息
+
+ @param remoteUserId 客服userId
+ @param parameters 参数
+ @param completion 完成回调
+ */
+- (void)asyncGetAgentUnreadMessagesWithRemoteAgentUserId:(NSString *)remoteUserId parameters:(NSDictionary *)parameters completion:(void (^)(id responseObject, HDError *error))completion;
+
+/**
+ 查询聊天记录【包括已读、未读】
+
+ @param userId 自己的userId
+ @param remoteUserId 对方的userId
+ @param parameters参数
+ @param completion 返回聊天记录
+ */
+- (void)aysncGetRemoteAgentUserMessagesWithAgentUserId:(NSString *)userId
+                                     remoteAgentUserId:(NSString *)remoteUserId
+                                            parameters:(NSDictionary *)parameters
+                                            completion:(void(^)(id responseObject,HDError *error))completion;
+
+
+
+/**
+ 标记消息为已读
+
+ @param userId 对方userId
+ @param parameters 参数
+ @param completion 完成回调
+ */
+- (void)asyncFetchMarkReadTagWithRemoteAgentUserId:(NSString*)userId
+                                        parameters:(NSDictionary *)parameters
+                                        completion:(void (^)(id responseObject, HDError *error))completion;
+
+#pragma mark  历史会话
+
+- (void)asyncFetchHistoryConversationWithHistoryRequestBody:(HDHistoryRequestBody *)body
+                                                       page:(NSInteger)page limit:(NSInteger)limit
+                                                 completion:(void (^)(id responseObject, HDError *error))completion;
+
+
+#pragma mark - 标签
+
+//获取会话标签树
+- (void)asyncGetTreeCompletion:(void(^)(id responseObject,HDError *error))completion;
+
+//获取会话标签
+- (void)asyncGetSessionSummaryResultsWithSessionId:(NSString *)sessionId
+                                        completion:(void(^)(id responseObject,HDError *error))completion;
+
+//获取会话标签备注
+- (void)asyncGetSessionCommentWithSessionId:(NSString *)sessionId
+                                 completion:(void(^)(id responseObject ,HDError *error))completion;
+//修改会话标签备注
+- (void)asyncSaveSessionCommentWithSessionId:(NSString *)sessionId
+                                  parameters:(NSDictionary *)parameters
+                                  completion:(void(^)(id responseObject,HDError *error))completion;
+//保存标签
+- (void)asyncSaveSessionSummaryResultsWithSessionId:(NSString *)sessionId
+                                         parameters:(NSDictionary *)parameters
+                                         completion:(void(^)(id responseObject,HDError *error))completion;
+
+
+
+
+
 @end
+
+
+
+
+
+
+
+
+
+

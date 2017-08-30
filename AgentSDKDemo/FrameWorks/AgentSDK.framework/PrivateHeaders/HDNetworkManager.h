@@ -8,27 +8,24 @@
 
 #import <Foundation/Foundation.h>
 #import "UserModel.h"
-
-typedef NS_ENUM(NSUInteger, HDConversationType) {
-    HDConversationAccessed,     //已经接入
-    HDConversationWaitQueues,     //待接入
-    HDConversationHistory,      //历史会话
-    HDConversationChatHistory   //历史消息
-};
+#import "UserWaitModel.h"
+#import "HDClient.h"
 
 @interface HDNetworkManager : NSObject
 
-@property(nonatomic,copy,readonly) NSString *loginUsername; //登录客服用户名
-@property(nonatomic,copy,readonly) NSString *loginPassword; //登录客服密码
+//@property(nonatomic,copy,readonly) NSString *loginUsername; //登录客服用户名
+//@property(nonatomic,copy,readonly) NSString *loginPassword; //登录客服密码
 @property(nonatomic,copy,readonly) NSString *appkey;
-@property(nonatomic,copy,readonly) NSString *deviceToken;
+//@property(nonatomic,copy,readonly) NSString *deviceToken;
 
-@property (strong, nonatomic, readonly) NSMutableDictionary *ossConfig;
 
 @property(nonatomic,strong,readonly) UserModel   *currentUser;
 @property(nonatomic,strong,readonly) IMUserModel *imUser;
 
-+ (instancetype)shareInstance;
++ (instancetype)sharedInstance;
+
+#pragma mark - 登录退出
+
 /*
  * 登录
  * param    username 客服账号
@@ -50,23 +47,31 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
  */
 - (void)autoLoginCompletion:(void(^)(HDError *error))completion;
 
+
+#pragma mark - 其他
+
 /*
  * 获取最大接待数
  */
-- (void)asyncGetMaxServiceSessionCountCompletion:(RequestBlock)completion;
+- (void)asyncGetMaxServiceSessionCountCompletion:(void(^)(id responseObject, HDError *error))completion;
+
+
+#pragma mark - 会话
+
+#pragma mark 普通会话
 
 /*
- * 获取已经接入的会话列表
+ * 获取会话列表
  * param conversationType 会话类别
  * param page 页码
- * param limit 每页数据的条数
- * param otherParameters 其他参数【预留,填写nil】
+ * param otherParameters 
  */
 - (void)asyncFetchConversationsWithType:(HDConversationType)type
                                    page:(NSInteger)page
                                   limit:(NSInteger)limit
                         otherParameters:(NSDictionary *)otherParameters
                              completion:(void(^)(NSArray *conversations,HDError *error))completion;
+
 
 /*
  * 发送消息给会话【包括文字、图片、语音等消息】
@@ -75,7 +80,23 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
 - (void)asyncSendMessageWithMessageModel:(MessageModel *)messageModel
                               completion:(void(^)(MessageModel *message,HDError *error))completion;
 
-#pragma mark - 标签
+#pragma mark 同事会话
+//获取同事列表
+- (void)asyncFetchAllCustomersWithCompletion:(void (^)(id responseObject, HDError *error))completion;
+
+//获取客服的未读消息
+- (void)asyncGetAgentUnreadMessagesWithRemoteAgentUserId:(NSString *)remoteUserId parameters:(NSDictionary *)parameters completion:(void (^)(id responseObject, HDError *error))completion;
+//同事会话
+- (void)aysncGetRemoteAgentUserMessagesWithAgentUserId:(NSString *)userId
+                                     remoteAgentUserId:(NSString *)remoteUserId
+                                            parameters:(NSDictionary *)parameters
+                                            completion:(void(^)(id responseObject,HDError *error))completion;
+
+//标记会话为已读
+- (void)asyncFetchMarkReadTagWithRemoteAgentUserId:(NSString*)userId
+                                                          parameters:(NSDictionary *)parameters
+                                                          completion:(void (^)(id responseObject, HDError *error))completion;
+#pragma mark  标签
 
 //获取标签树数据
 - (void)asyncGetTreeCompletion:(void(^)(id responseObject,HDError *error))completion;
@@ -96,11 +117,29 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
                                          parameters:(NSDictionary *)parameters
                                          completion:(void(^)(id responseObject,HDError *error))completion;
 
+#pragma mark - 待接入
+//接入会话
+- (void)asyncFetchUserWaitQueuesWithUserId:(NSString*)userId
+                                                  completion:(void (^)(id responseObject, HDError *error))completion;
+//筛选会话
+- (void)asyncScreenWaitQueuesWithParameters:(NSDictionary *)parameters
+                                 completion:(void(^)(id responseObjcet ,HDError *errror))completion;
+
+
+#pragma mark - 通知
+
+#pragma mark - 留言
+
+#pragma mark - 历史会话
+
+#pragma mark - 设置
+
+
 #pragma mark - POST、GET、PUT
 
 - (NSURLSessionDataTask *)asyncSendPOST:(NSString*)path
                          withParameters:(NSDictionary *)otherParameters
-                             completion:(RequestBlock)completion;
+                             completion:(void(^)(id responseObject, HDError *error))completion;
 
 
 - (void)asyncSendGet:(NSString*)path

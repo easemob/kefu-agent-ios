@@ -165,7 +165,7 @@
     self.navigationItem.leftBarButtonItem = self.backItem;
     
     UIButton *dropDownButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, 40)];
-    if (self.saveAndEnd && [HDNetworkManager shareInstance].currentUser.isStopSessionNeedSummary) {
+    if (self.saveAndEnd && [HDClient sharedClient].currentAgentUser.isStopSessionNeedSummary) {
         dropDownButton.width = 80;
         [dropDownButton setTitle:@"保存结束" forState:UIControlStateNormal];
     } else {
@@ -187,7 +187,7 @@
     [self showHintNotHide:@"保存中..."];
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_selectArray,@"array", nil];
     WEAK_SELF
-    [[HDNetworkManager shareInstance] asyncSaveSessionSummaryResultsWithSessionId:_serviceSessionId parameters:parameters completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncSaveSessionSummaryResultsWithSessionId:_serviceSessionId parameters:parameters completion:^(id responseObject, HDError *error) {
         if (!error) {
             [weakSelf hideHud];
             [weakSelf showHint:@"保存成功"];
@@ -214,7 +214,7 @@
     
     if ([weakSelf.commentDic objectForKey:@"comment"]) {
         
-        [[HDNetworkManager shareInstance] asyncSaveSessionCommentWithSessionId:_serviceSessionId parameters:_commentDic completion:^(id responseObject, HDError *error) {
+        [[HDClient sharedClient].chatManager asyncSaveSessionCommentWithSessionId:_serviceSessionId parameters:_commentDic completion:^(id responseObject, HDError *error) {
             if (error) {
                 [weakSelf showHint:@"标签备注保存失败"];
             }
@@ -273,7 +273,7 @@
 - (void)_loadData
 {
     WEAK_SELF
-    [[HDNetworkManager shareInstance] asyncGetSessionSummaryResultsWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncGetSessionSummaryResultsWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
         if (!error) {
             NSArray *json = responseObject;
             NSMutableArray *array = [weakSelf.dataSource objectAtIndex:0];
@@ -293,7 +293,7 @@
 - (void)_loadComment
 {
     WEAK_SELF
-    [[HDNetworkManager shareInstance] asyncGetSessionCommentWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncGetSessionCommentWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
         if (!error) {
             NSDictionary *json = responseObject;
             if (json != nil) {
@@ -328,7 +328,7 @@
     [self showHintNotHide:@"加载中..."];
     WEAK_SELF
     
-    [[HDNetworkManager shareInstance] asyncGetTreeCompletion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncGetTreeCompletion:^(id responseObject, HDError *error) {
         if (!error) {
             NSArray *json = responseObject;
             NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];
@@ -358,7 +358,7 @@
 
 - (void)_analyzeTree:(NSArray*)array
 {
-    if (array == [NSNull null] || array == nil || [array count] == 0){
+    if ([array isKindOfClass:[NSNull class]] || array == nil || [array count] == 0){
         return;
     }
     for (NSDictionary *dic in array) {

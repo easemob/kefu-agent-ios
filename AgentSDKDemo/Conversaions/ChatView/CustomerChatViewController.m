@@ -810,7 +810,7 @@
             if (![[fromUser valueForKey:@"userId"] isEqualToString:_userModel.userId]) {
                 return;
             }
-            if ([[fromUser valueForKey:@"userId"] isEqualToString:[HDNetworkManager shareInstance].currentUser.userId]) {
+            if ([[fromUser valueForKey:@"userId"] isEqualToString:[HDClient sharedClient].currentAgentUser.userId]) {
                 message.isSender = YES;
             } else {
                 message.isSender = NO;

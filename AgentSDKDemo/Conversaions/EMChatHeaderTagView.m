@@ -150,7 +150,7 @@
         [self setupView];
     } else {
         WEAK_SELF
-        [[HDNetworkManager shareInstance] asyncGetSessionSummaryResultsWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
+        [[HDClient sharedClient].chatManager asyncGetSessionSummaryResultsWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
             if (!error) {
                 NSArray *json = responseObject;
                 weakSelf.dataSource = [NSMutableArray array];
@@ -205,7 +205,7 @@
 - (void)_loadComment
 {
     WEAK_SELF
-    [[HDNetworkManager shareInstance] asyncGetSessionCommentWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncGetSessionCommentWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
         if (!error) {
             NSDictionary *json = responseObject;
             if (json != nil) {

@@ -45,7 +45,7 @@ typedef enum {
 @property (strong, nonatomic) MessageExtModel *ext;
 
 @property (nonatomic) NSInteger tenantId;
-@property (copy, nonatomic) NSString *sessionServiceId;
+@property (copy, nonatomic) NSString *sessionId;
 @property (nonatomic) NSInteger sessionServiceSeqId;
 @property (strong, nonatomic) MessageUserModel *fromUser;
 @property (strong, nonatomic) MessageUserModel *toUser;
@@ -71,13 +71,14 @@ typedef enum {
 @property (nonatomic) BOOL isPlayed;
 
 
+
 /*
  * 构造消息 
  * @param serviceSessionId 
  * @param userId 
  * @param body
  */
-- (instancetype)initWithServiceSessionId:(NSString *)serviceSessionId userId:(NSString *)userId messageBody:(MessageBodyModel *)body ext:(NSDictionary *)ext;
+- (instancetype)initWithSessionId:(NSString *)sessionId userId:(NSString *)userId messageBody:(MessageBodyModel *)body ext:(NSDictionary *)ext;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

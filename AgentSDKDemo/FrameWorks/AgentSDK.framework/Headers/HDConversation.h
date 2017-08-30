@@ -10,7 +10,6 @@
 
 @interface HDConversation : NSObject
 
-//会话Id
 @property(nonatomic,strong,readonly) NSString *sessionId;
 
 @property(nonatomic,assign,readonly) NSInteger chatGroupId;
@@ -19,9 +18,15 @@
 
 @property(nonatomic,assign,readonly) NSInteger messageCount;
 
+@property(nonatomic,copy) NSString *searchWord;
 
--(instancetype)initWithSessionId:(NSString *)sessionId
-                     chatGroupId:(NSInteger)chatGroupId;
+@property(nonatomic,copy) NSDictionary *lastExtWeichat;
+
+/**
+ 同一个访客和不同的客服沟通之后，是同一个chatGroupId
+ 而与每一个客服聊天都会分别有一个sessionId
+ */
+-(instancetype)initWithSessionId:(NSString *)sessionId chatGroupId:(NSInteger)chatGroupId;
 
 
 /*
@@ -32,7 +37,6 @@
 /*
  * 加载会话历史消息
  */
-
 - (void)loadHistoryCompletion:(void(^)(NSArray <MessageModel *> *messages,HDError *error))completion;
 
 /*

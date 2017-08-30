@@ -122,12 +122,12 @@
 }
 
 - (void)startNoti {
-    [[HDClient shareClient].chatManager removeDelegate:self];
-     NSLog(@"chatManager12:%@",[HDClient shareClient].chatManager);
-     [[HDClient shareClient].chatManager addDelegate:self];
+    [[HDClient sharedClient].chatManager removeDelegate:self];
+     NSLog(@"chatManager12:%@",[HDClient sharedClient].chatManager);
+     [[HDClient sharedClient].chatManager addDelegate:self];
     
-    [[HDClient shareClient] removeDelegate:self];
-    [[HDClient shareClient] addDelegate:self delegateQueue:nil];
+    [[HDClient sharedClient] removeDelegate:self];
+    [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
 }
 
 - (void)viewDidLoad {
@@ -147,7 +147,7 @@
         [self.view addSubview:self.moreView];
         [self.view addSubview:self.folderButton];
     }
-    _conversation = [[HDConversation alloc] initWithSessionId:_conversationModel.serciceSessionId chatGroupId:_conversationModel.chatGroupId];
+    _conversation = [[HDConversation alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
     [self markAsRead];
     //将self注册为chatToolBar的moreView的代理
     if ([self.chatToolBar.moreView isKindOfClass:[DXChatBarMoreView class]]) {
@@ -173,14 +173,14 @@
 
 #pragma mark - HDClientDelegate
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
-    if ([_conversationModel.serciceSessionId isEqualToString:serviceSessionId]) {
+    if ([_conversationModel.sessionId isEqualToString:serviceSessionId]) {
         [self showHint:@"会话自动关闭"];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)conversationClosedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
-    if ([_conversationModel.serciceSessionId isEqualToString:serviceSessionId]) {
+    if ([_conversationModel.sessionId isEqualToString:serviceSessionId]) {
         [self showHint:@"会话被管理员关闭"];
         [self.navigationController popViewControllerAnimated:YES];
     }
@@ -189,7 +189,7 @@
 #pragma mark - HDChatManagerDelegate
 - (void)messagesDidReceive:(NSArray *)aMessages {
     for (MessageModel *msg in aMessages) {
-        if (![_conversationModel.serciceSessionId isEqualToString:msg.sessionServiceId]) {
+        if (![_conversationModel.sessionId isEqualToString:msg.sessionId]) {
             return;
         }
         [self markAsRead];
@@ -206,7 +206,7 @@
     NSDictionary *dic = noti.object;
     if (dic) {
         if ([dic objectForKey:@"serviceSessionId"]) {
-            if ([[dic objectForKey:@"serviceSessionId"] isEqualToString:self.conversationModel.serciceSessionId]) {
+            if ([[dic objectForKey:@"serviceSessionId"] isEqualToString:self.conversationModel.sessionId]) {
                 [self backAction];
             }
         }
@@ -696,7 +696,7 @@
 }
 
 - (void)loadTags {
-    [[HDNetworkManager shareInstance] asyncGetSessionSummaryResultsWithSessionId:_conversationModel.serciceSessionId completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncGetSessionSummaryResultsWithSessionId:_conversationModel.sessionId completion:^(id responseObject, HDError *error) {
         if (!error) {
             NSArray *json = responseObject;
             if (json.count>0) {
@@ -720,12 +720,12 @@
 //结束会话
 - (void)endChatAction {
     self.moreView.hidden = YES;
-    UserModel *usr = [HDNetworkManager shareInstance].currentUser;
-    if (usr.isStopSessionNeedSummary && !_hasTags) { //结束会话的时候需要添加tag,并且改会话之前没有tag
+    UserModel *usr = [HDClient sharedClient].currentAgentUser;
+    if (usr.isStopSessionNeedSummary && !_hasTags) { //结束会话的时候需要添加tag,并且该会话之前没有tag
         //会话标签
         AddTagViewController *addTag = [[AddTagViewController alloc] init];
         addTag.saveAndEnd = YES;
-        addTag.serviceSessionId = _conversationModel.serciceSessionId;
+        addTag.serviceSessionId = _conversationModel.sessionId;
         addTag.delegate = self;
         [self.navigationController pushViewController:addTag animated:YES];
         [self keyBoardHidden:nil];
@@ -761,7 +761,7 @@
 - (void)conclusionClickAction {
     self.moreView.hidden = YES;
     AddTagViewController *addTag = [[AddTagViewController alloc] init];
-    addTag.serviceSessionId = _conversationModel.serciceSessionId;
+    addTag.serviceSessionId = _conversationModel.sessionId;
     addTag.saveAndEnd = NO;
     addTag.delegate = self;
     [self.navigationController pushViewController:addTag animated:YES];
@@ -933,14 +933,14 @@
 - (void)sendTextMessage:(NSString *)text
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithText:text];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
-    
-    [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
+    MessageModel *msg = [[MessageModel alloc] initWithSessionId:_conversationModel.sessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
+    [[HDClient sharedClient].chatManager sendMessage:msg progress:nil completion:^(MessageModel *aMessage, HDError *aError) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-        [self addMessage:message];
+        [self addMessage:aMessage];
     }];
+    
 }
 
 
@@ -957,23 +957,23 @@
 -(void)sendAudioMessage:(NSString *)recordPath aDuration:(NSInteger )duration
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithAudioLocalPath:recordPath];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
-    [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
+    MessageModel *msg = [[MessageModel alloc] initWithSessionId:_conversationModel.sessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
+    [[HDClient sharedClient].chatManager sendMessage:msg progress:nil completion:^(MessageModel *aMessage, HDError *aError) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
         });
-        [self addMessage:message];
+        [self addMessage:aMessage];
     }];
 }
 
 - (void)sendImageMessage:(UIImage*)orgImage
 {
     MessageBodyModel *body = [[MessageBodyModel alloc] initWithUIImage:orgImage];
-    MessageModel *msg = [[MessageModel alloc] initWithServiceSessionId:_conversationModel.serciceSessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
-    [[HDNetworkManager shareInstance] asyncSendMessageWithMessageModel:msg completion:^(MessageModel *message, HDError *error) {
-        [self addMessage:message];
+    MessageModel *msg = [[MessageModel alloc] initWithSessionId:_conversationModel.sessionId userId:_conversationModel.chatter.userId messageBody:body ext:self.lastMsgExt];
+    [[HDClient sharedClient].chatManager sendMessage:msg progress:nil completion:^(MessageModel *aMessage, HDError *aError) {
+         [self addMessage:aMessage];
     }];
-
+    
 }
 
 - (void)loadHistory
@@ -990,7 +990,6 @@
 
 - (void)loadMessage
 {
-    
     [_conversation loadMessageCompletion:^(NSArray<MessageModel *> *messages, HDError *error) {
         for (MessageModel *msg in messages) {
             [self addMessage:msg];
@@ -1072,8 +1071,8 @@
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [[HDClient shareClient] removeDelegate:self];
-    [[HDClient shareClient].chatManager removeDelegate:self];
+    [[HDClient sharedClient] removeDelegate:self];
+    [[HDClient sharedClient].chatManager removeDelegate:self];
 }
 
 - (void)dealloc {

@@ -232,7 +232,7 @@
             if (json) {
                 _treeArray = [json copy];
             } else {
-                [[HDNetworkManager shareInstance] asyncGetTreeCompletion:^(id responseObject, HDError *error) {
+                [[HDClient sharedClient].chatManager asyncGetTreeCompletion:^(id responseObject, HDError *error) {
                     if (!error) {
                         NSArray *json = responseObject;
                         NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];

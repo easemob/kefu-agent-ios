@@ -27,7 +27,7 @@ typedef enum {
 
 @property (nonatomic, copy) NSString *conversationId;
 @property (nonatomic) NSInteger unreadCount;
-@property (nonatomic, copy) NSString *serciceSessionId;
+@property (nonatomic, copy) NSString *sessionId;
 @property (strong, nonatomic) UserModel *chatter;
 @property (strong, nonatomic) VisitorUserModel *vistor;
 @property (strong, nonatomic) MessageModel *lastMessage;
@@ -39,6 +39,7 @@ typedef enum {
 @property (nonatomic, assign) NSInteger chatGroupId;
 @property(nonatomic,copy) NSString *startDateTime;
 @property (strong, nonatomic) NSDate *createDate;
+@property(nonatomic,copy) NSString *searchWord;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

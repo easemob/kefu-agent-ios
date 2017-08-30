@@ -16,7 +16,7 @@
 - (void)hdapplication:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self registerRemoteNotification];
     
-    NSString *appkey = [[HDNetworkManager shareInstance] appkey];
+    NSString *appkey = [[HDNetworkManager sharedInstance] appkey];
     NSString *apnsCertName = @"";
 #if DEBUG
     apnsCertName = @"push-cert-ios-dev";
@@ -27,7 +27,7 @@
         HDOptions *option = [[HDOptions alloc] init];
         option.apnsCertName = apnsCertName;
         option.enableConsoleLog = YES;
-        [[HDClient shareClient] initializeSDKWithOptions:option];
+        [[HDClient sharedClient] initializeSDKWithOptions:option];
     }
     
     [self startAutoLogin];
@@ -39,7 +39,7 @@
 
 - (void)startAutoLogin {
     NSLog(@"登录中 ...");
-    [[HDNetworkManager shareInstance] autoLoginCompletion:^(HDError *error) {
+    [[HDNetworkManager sharedInstance] autoLoginCompletion:^(HDError *error) {
         if (error == nil) {
             NSLog(@"自动登录成功");
             [self showMainViewController];
@@ -50,7 +50,7 @@
 
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    HDError *error = [[HDClient shareClient] bindDeviceToken:deviceToken];
+    HDError *error = [[HDClient sharedClient] bindDeviceToken:deviceToken];
     if (error) {
         NSLog(@"error :%@",error.errorDescription);
     } else {
@@ -70,6 +70,7 @@
 
 // 注册推送
 - (void)registerRemoteNotification{
+#if !TARGET_IPHONE_SIMULATOR
     UIApplication *application = [UIApplication sharedApplication];
     application.applicationIconBadgeNumber = 0;
     //注册APNs推送
@@ -77,6 +78,7 @@
     UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound |   UIUserNotificationTypeAlert;
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
     [application registerUserNotificationSettings:settings];
+#endif
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
@@ -84,7 +86,6 @@
     if (manager.homeVC) {
         [manager.homeVC didReceiveLocalNotification:notification];
     }
-    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

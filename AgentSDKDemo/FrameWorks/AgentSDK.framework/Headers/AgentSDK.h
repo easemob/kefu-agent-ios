@@ -18,6 +18,7 @@ FOUNDATION_EXPORT const unsigned char AgentSDKVersionString[];
 
 #import <AgentSDK/ConversationModel.h>
 #import <AgentSDK/MessageModel.h>
+#import <AgentSDK/UserWaitModel.h>
 #import <AgentSDK/MessageBodyModel.h>
 #import <AgentSDK/HDError.h>
 #import <AgentSDK/HDErrorCode.h>
@@ -25,4 +26,3 @@ FOUNDATION_EXPORT const unsigned char AgentSDKVersionString[];
 #import <AgentSDK/HDChatManager.h>
 #import <AgentSDK/HDClientDelegate.h>
 #import <AgentSDK/HDChatManagerDelegate.h>
-#import <AgentSDK/HDNetworkManager.h>

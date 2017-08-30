@@ -5,6 +5,13 @@
 //  Created by afanda on 4/6/17.
 //  Copyright © 2017 环信. All rights reserved.
 //
+//  SDK 入口，初始化、模块管理
+
+typedef NS_ENUM(NSUInteger, HDConversationType) {
+    HDConversationAccessed = 1,     //已经接入
+    HDConversationWaitQueues,   //待接入
+    HDConversationHistory,      //历史会话
+};
 
 #import <Foundation/Foundation.h>
 #import "HDError.h"
@@ -12,34 +19,61 @@
 #import "HDOptions.h"
 #import "HDClientDelegate.h"
 #import "HDPushOptions.h"
-
-/*
- * 请求返回BLOCK
- * param respponseObject 返回的数据
- * param error 请求失败,返回错误
- */
-typedef void(^RequestBlock)(id responseObject, HDError *error);
+#import "HDUserManager.h"
 
 /*!
  * SDK Client
  */
 @interface HDClient : NSObject
 
-/*!
- *  \~chinese
- *  当前登录账号
+/**
+ 当前登录IM账号
  */
-@property (nonatomic, strong, readonly) NSString *currentUsername;
+@property (nonatomic, strong, readonly) NSString *currentIMUsername;
+
+/**
+ 当前登录的客服账号
+ */
+@property (nonatomic, strong, readonly) NSString *currentAgentUsername;
+
+/**
+ 当前登录客服
+ */
+@property(nonatomic,strong,readonly) UserModel *currentAgentUser;
+
+
+/**
+ 当前登录IM
+ */
+@property(nonatomic,strong) IMUserModel *currentIMUser;
 
 /*
- *  SDK版本号
+ *  IM SDK版本号
  */
-@property (nonatomic, strong, readonly) NSString *version;
+@property (nonatomic, strong, readonly) NSString *imSDKVersion;
+
+
+/**
+ AgentSDK 版本号
+ */
+@property(nonatomic,strong) NSString *AgentSDKVersion;
+
+
+/**
+ 是否已登录(且本地有用户信息)
+ */
+@property(nonatomic,assign) BOOL isLoggedInBefore;
+
+
+/**
+ 是否连接上聊天服务器
+ */
+@property(nonatomic,assign) BOOL isConnected;
 
 
 /*!
  *  \~chinese
- *  推送设置
+ *  推送模块
  *
  *  \~english
  *  Apple Push Notification Service setting
@@ -47,21 +81,23 @@ typedef void(^RequestBlock)(id responseObject, HDError *error);
 @property (nonatomic, strong, readonly) HDPushOptions *hPushOptions;
 
 /*
- *  聊天模块
+ *  会话模块
  */
 @property (nonatomic, strong, readonly) HDChatManager *chatManager;
 
-//@property (nonatomic, strong, readonly)
 
 /*
  * deviceToken
  */
-@property(nonatomic,assign) NSData *deviceToken;
+@property(nonatomic,assign,readonly) NSData *deviceToken;
+
+
+#pragma mark - initialize
 
 /*
  *  获取SDK实例
  */
-+ (instancetype)shareClient;
++ (instancetype)sharedClient;
 
 /*!
  *  初始化sdk
@@ -101,6 +137,8 @@ typedef void(^RequestBlock)(id responseObject, HDError *error);
 - (void)application:(id)application didReceiveRemoteNotification:(NSDictionary *)userInfo;
 
 
+#pragma mark - Login
+
 /*
  *  登录客服
  *  @param username        
@@ -111,15 +149,15 @@ typedef void(^RequestBlock)(id responseObject, HDError *error);
 - (void)asyncLoginWithUsername:(NSString *)username
                       password:(NSString *)password
                    hidingLogin:(BOOL)isHidingLogin
-                    completion:(RequestBlock)completion;
-
+                    completion:(void(^)(id responseObject, HDError *error))completion;
 /*
  *  退出登录
- *
+ *  退出的同时绑定的deviceToken
  */
-- (void)logoutCompletion:(void(^)(HDError *))completion;
+- (void)logoutCompletion:(void(^)(HDError * error))completion;
 
-//APNs
+#pragma mark - APNS
+
 /*!
  *  \~chinese
  *  绑定device token

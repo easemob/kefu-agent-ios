@@ -103,7 +103,7 @@
         _transferButton.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_transferButton];*/
         
-        if ([[HDNetworkManager shareInstance].currentUser.customUrl length] > 0) {
+        if ([[HDClient sharedClient].currentAgentUser.customUrl length] > 0) {
             _customButton =[UIButton buttonWithType:UIButtonTypeCustom];
             [_customButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
             [_customButton setImage:[UIImage imageNamed:@"btn_icon_iframe"] forState:UIControlStateNormal];

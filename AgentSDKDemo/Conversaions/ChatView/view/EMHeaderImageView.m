@@ -29,8 +29,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [[HDNetworkManager shareInstance].currentUser addObserver:self forKeyPath:USER_STATE options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-        [[HDNetworkManager shareInstance].currentUser addObserver:self forKeyPath:USER_AVATAR options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+        [[HDClient sharedClient].currentAgentUser addObserver:self forKeyPath:USER_STATE options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+        [[HDClient sharedClient].currentAgentUser addObserver:self forKeyPath:USER_AVATAR options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
         [self addSubview:self.headerImageView];
         [self addSubview:self.statusImageView];
     }
@@ -44,7 +44,7 @@
         _headerImageView.layer.masksToBounds = YES;
         _headerImageView.layer.cornerRadius = CGRectGetWidth(_headerImageView.frame)/2;
         _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[[HDNetworkManager shareInstance].currentUser.avatar encodeToPercentEscapeString]]] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
+        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[[HDClient sharedClient].currentAgentUser.avatar encodeToPercentEscapeString]]] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
     }
     return _headerImageView;
 }
@@ -55,13 +55,13 @@
         _statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) - self.width/5, CGRectGetMaxY(_headerImageView.frame) - self.width/5, self.width/4, self.height/4)];
         _statusImageView.clipsToBounds = YES;
         _statusImageView.layer.cornerRadius = _statusImageView.width/2;
-        if ([[HDNetworkManager shareInstance].currentUser.onLineState isEqualToString:USER_STATE_OFFLINE]) {
+        if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_OFFLINE]) {
             _statusImageView.backgroundColor = RGBACOLOR(238, 190, 77, 1);
-        } else if ([[HDNetworkManager shareInstance].currentUser.onLineState isEqualToString:USER_STATE_BUSY]){
+        } else if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_BUSY]){
             _statusImageView.backgroundColor = RGBACOLOR(255, 48, 0, 1);
-        } else if ([[HDNetworkManager shareInstance].currentUser.onLineState isEqualToString:USER_STATE_LEAVE]){
+        } else if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_LEAVE]){
             _statusImageView.backgroundColor = RGBACOLOR(27, 168, 237, 1);
-        } else if ([[HDNetworkManager shareInstance].currentUser.onLineState isEqualToString:USER_STATE_ONLINE]){
+        } else if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_ONLINE]){
             _statusImageView.backgroundColor = RGBACOLOR(90, 232, 37, 1);
         }
     }
@@ -89,8 +89,8 @@
 
 - (void)dealloc
 {
-    [[HDNetworkManager shareInstance].currentUser removeObserver:self forKeyPath:USER_STATE];
-    [[HDNetworkManager shareInstance].currentUser removeObserver:self forKeyPath:USER_AVATAR];
+    [[HDClient sharedClient].currentAgentUser removeObserver:self forKeyPath:USER_STATE];
+    [[HDClient sharedClient].currentAgentUser removeObserver:self forKeyPath:USER_AVATAR];
 }
 
 @end

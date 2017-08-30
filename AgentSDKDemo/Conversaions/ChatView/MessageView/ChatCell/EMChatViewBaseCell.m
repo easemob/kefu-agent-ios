@@ -81,7 +81,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     if (!messageModel.isSender) {
         self.headImageView.image = [UIImage imageNamed:@"default_agent_avatar"];
     } else {
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[[HDNetworkManager shareInstance].currentUser.avatar encodeToPercentEscapeString]]] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[[HDClient sharedClient].currentAgentUser.avatar encodeToPercentEscapeString]]] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
     }
 //
 }

@@ -19,7 +19,7 @@
 
 #define NOTIFICATION_ADD_COMMENT @"addComment"
 #define NOTIFICATION_ADD_SUMMARY_RESULTS @"addSummaryResult"
-#define USERDEFAULTS_DEVICE_TREE [NSString stringWithFormat:@"%@tagTree",[HDNetworkManager shareInstance].loginUsername]
+#define USERDEFAULTS_DEVICE_TREE [NSString stringWithFormat:@"%@tagTree",[HDClient sharedClient].currentAgentUser.username]
 #define DefaultUsername @"kefuDefaultUsername"
 
 #define StandardUserDefaults  [NSUserDefaults standardUserDefaults]

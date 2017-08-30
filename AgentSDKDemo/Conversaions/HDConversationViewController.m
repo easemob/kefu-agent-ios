@@ -37,8 +37,8 @@
 }
 
 - (void)initDelegate {
-    [[HDClient shareClient] removeDelegate:self];
-    [[HDClient shareClient] addDelegate:self delegateQueue:nil];
+    [[HDClient sharedClient] removeDelegate:self];
+    [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
     [[HDManager shareInstance] registerLocalNoti];
 }
 
@@ -56,7 +56,8 @@
     _page = 1;
     [self showHintNotHide:@"加载数据中..."];
     WEAK_SELF
-    [[HDNetworkManager shareInstance] asyncFetchConversationsWithType:_type page:1 limit:perpageSize otherParameters:nil completion:^(NSArray *conversations, HDError *error) {
+    
+    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:1 limit:perpageSize completion:^(NSArray *conversations, HDError *error) {
         [weakSelf hideHud];
         @synchronized (self) {
             _isRefreshing = NO;
@@ -67,8 +68,8 @@
                 case HDConversationAccessed: {
                     for (ConversationModel *model in conversations) {
                         [weakSelf.dataSource insertObject:model atIndex:0];
-                        [_dataSourceDic setObject:model forKey:model.serciceSessionId];
-                        model.lastMessage.sessionServiceId = model.serciceSessionId;
+                        [_dataSourceDic setObject:model forKey:model.sessionId];
+                        model.lastMessage.sessionId = model.sessionId;
                     }
                     break;
                 }
@@ -179,7 +180,7 @@
 }
 
 - (void)conversationLastMessageChanged:(MessageModel *)message {
-    ConversationModel *model = [self.dataSourceDic objectForKey:message.sessionServiceId];
+    ConversationModel *model = [self.dataSourceDic objectForKey:message.sessionId];
     if (model) {
         model.lastMessage = message;
         model.unreadCount += 1;
@@ -202,7 +203,7 @@
 
 
 - (void)userAccountNeedRelogin {
-     [[HDClient shareClient] removeDelegate:self];
+     [[HDClient sharedClient] removeDelegate:self];
     [[HDManager shareInstance] showLoginViewController];
 }
 
@@ -257,7 +258,7 @@
 
 
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification {
-    if (![HDNetworkManager shareInstance].isAutoLogin) {
+    if (![HDClient sharedClient].isLoggedInBefore) {
         return;
     }
     NSDictionary *userInfo = notification.userInfo;

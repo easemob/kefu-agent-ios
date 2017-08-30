@@ -48,13 +48,13 @@ static HDManager *_manager = nil;
 #pragma mark - 本地通知
 
 - (void)registerLocalNoti {
-    if ([HDClient shareClient].chatManager == nil) {
+    if ([HDClient sharedClient].chatManager == nil) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,(int64_t)(0.8*NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self registerLocalNoti];
         });
     } else {
-        [[HDClient shareClient].chatManager removeDelegate:self];
-        [[HDClient shareClient].chatManager addDelegate:self ];
+        [[HDClient sharedClient].chatManager removeDelegate:self];
+        [[HDClient sharedClient].chatManager addDelegate:self ];
     }
 }
 
