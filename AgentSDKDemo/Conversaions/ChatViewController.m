@@ -123,7 +123,6 @@
 
 - (void)startNoti {
     [[HDClient sharedClient].chatManager removeDelegate:self];
-     NSLog(@"chatManager12:%@",[HDClient sharedClient].chatManager);
      [[HDClient sharedClient].chatManager addDelegate:self];
     
     [[HDClient sharedClient] removeDelegate:self];
@@ -147,6 +146,7 @@
         [self.view addSubview:self.moreView];
         [self.view addSubview:self.folderButton];
     }
+    
     _conversation = [[HDConversation alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
     [self markAsRead];
     //将self注册为chatToolBar的moreView的代理
@@ -158,6 +158,7 @@
     [self.tableView addGestureRecognizer:tap];
     
     [self loadMessage];
+    
     
     [self loadTags];
 }
@@ -996,7 +997,6 @@
         }
     }];
 }
-
 
 - (void)notifyNumberChange:(NSNotification*)notification
 {

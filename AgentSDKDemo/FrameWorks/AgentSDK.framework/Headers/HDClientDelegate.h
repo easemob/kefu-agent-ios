@@ -85,7 +85,7 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
  */
 - (void)agentUsersListChange;
 /*
- * 通知中心有有变化
+ * 通知中心有变化
  */
 - (void)notificationChange;
 

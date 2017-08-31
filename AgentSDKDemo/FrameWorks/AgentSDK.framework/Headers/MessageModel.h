@@ -71,7 +71,6 @@ typedef enum {
 @property (nonatomic) BOOL isPlayed;
 
 
-
 /*
  * 构造消息 
  * @param serviceSessionId 

@@ -9,7 +9,7 @@
 #import "HDConversationViewController.h"
 #import "HDConversationCell.h"
 #import "ChatViewController.h"
-#define perpageSize 10
+#define perpageSize 1000
 
 @interface HDConversationViewController ()<SRRefreshDelegate,UIScrollViewDelegate,HDClientDelegate,ChatViewControllerDelegate>
 

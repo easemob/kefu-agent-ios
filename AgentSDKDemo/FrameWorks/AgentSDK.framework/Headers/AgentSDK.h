@@ -26,3 +26,4 @@ FOUNDATION_EXPORT const unsigned char AgentSDKVersionString[];
 #import <AgentSDK/HDChatManager.h>
 #import <AgentSDK/HDClientDelegate.h>
 #import <AgentSDK/HDChatManagerDelegate.h>
+#import <AgentSDK/NSDictionary+SafeValue.h>

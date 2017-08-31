@@ -14,7 +14,7 @@
 /*
  *  收到新消息
  *
- *  @param aMessages  消息列表<HMessage>
+ *  @param aMessages  消息列表<MessageModel>
  */
 - (void)messagesDidReceive:(NSArray <MessageModel *> *)aMessages;
 

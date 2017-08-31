@@ -147,7 +147,7 @@
 
     WEAK_SELF
     [self showHintNotHide:@"正在登录..."];
-    [[HDNetworkManager sharedInstance] asyncLoginWithUsername:_usernameField.text password:_passwordField.text hidingLogin:_hiddenButton.selected completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient] asyncLoginWithUsername:_usernameField.text password:_passwordField.text hidingLogin:_hiddenButton.selected completion:^(id responseObject, HDError *error) {
         [weakSelf hideHud];
         if (error) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:error.errorDescription delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

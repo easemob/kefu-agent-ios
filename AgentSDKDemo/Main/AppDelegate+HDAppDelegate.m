@@ -15,20 +15,17 @@
 
 - (void)hdapplication:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self registerRemoteNotification];
-    
-    NSString *appkey = [[HDNetworkManager sharedInstance] appkey];
     NSString *apnsCertName = @"";
 #if DEBUG
     apnsCertName = @"push-cert-ios-dev";
 #else
     apnsCertName = @"push-cert-ios-20160229";
 #endif
-    if (appkey != nil && appkey.length > 0 ) {
-        HDOptions *option = [[HDOptions alloc] init];
-        option.apnsCertName = apnsCertName;
-        option.enableConsoleLog = YES;
-        [[HDClient sharedClient] initializeSDKWithOptions:option];
-    }
+    
+    HDOptions *option = [[HDOptions alloc] init];
+    option.apnsCertName = apnsCertName;
+    option.enableConsoleLog = YES;
+    [[HDClient sharedClient] initializeSDKWithOptions:option];
     
     [self startAutoLogin];
     
@@ -39,12 +36,9 @@
 
 - (void)startAutoLogin {
     NSLog(@"登录中 ...");
-    [[HDNetworkManager sharedInstance] autoLoginCompletion:^(HDError *error) {
-        if (error == nil) {
-            NSLog(@"自动登录成功");
-            [self showMainViewController];
-        }
-    }];
+    if ([HDClient sharedClient].isLoggedInBefore) {
+        [self showMainViewController];
+    }
 }
 
 

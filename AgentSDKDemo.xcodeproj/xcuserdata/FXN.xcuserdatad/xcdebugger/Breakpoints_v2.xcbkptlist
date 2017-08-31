@@ -111,7 +111,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "641"
             endingLineNumber = "641"
-            landmarkName = "-asyncSendPOST:withParameters:completion:"
+            landmarkName = "-openDB"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -127,7 +127,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "163"
             endingLineNumber = "163"
-            landmarkName = "-conversationTransfered:"
+            landmarkName = "-applicationDidEnterBackground:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -143,7 +143,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
             endingLineNumber = "174"
-            landmarkName = "-conversationClosedByAdmin:"
+            landmarkName = "-asyncLoginWithUsername:password:hidingLogin:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -159,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "185"
             endingLineNumber = "185"
-            landmarkName = "-conversationClosedAuto:"
+            landmarkName = "-asyncLoginWithUsername:password:hidingLogin:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -175,7 +175,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "214"
             endingLineNumber = "214"
-            landmarkName = "-kefuRoleChange:"
+            landmarkName = "-logoutCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -191,7 +191,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
             endingLineNumber = "146"
-            landmarkName = "-lastMessageChange:"
+            landmarkName = "-addDelegate:delegateQueue:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -271,7 +271,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "648"
             endingLineNumber = "648"
-            landmarkName = "-asyncSendMessageWithMessageModel:completion:"
+            landmarkName = "-saveUser"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -313,7 +313,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "618"
             endingLineNumber = "618"
-            landmarkName = "-saveImUser"
+            landmarkName = "-updateLoginInfo:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -361,7 +361,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "629"
             endingLineNumber = "629"
-            landmarkName = "-asyncSendPOST:withParameters:completion:"
+            landmarkName = "-isAutoLogin"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -489,7 +489,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
             endingLineNumber = "176"
-            landmarkName = "-handleHDMessageWithDetail:"
+            landmarkName = "-handleHDMessage:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -505,7 +505,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "259"
             endingLineNumber = "259"
-            landmarkName = "-needRelogin"
+            landmarkName = "-conversationClosedByAdmin:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -521,7 +521,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "147"
             endingLineNumber = "147"
-            landmarkName = "-handleHDMessage:"
+            landmarkName = "-cmdMessagesDidReceive:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -537,7 +537,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
             endingLineNumber = "86"
-            landmarkName = "-removeDelegate:"
+            landmarkName = "-isLoggedInBefore"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -553,7 +553,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "30"
             endingLineNumber = "30"
-            landmarkName = "+shareClient"
+            landmarkName = "+sharedClient"
             landmarkType = "7">
             <Locations>
                <Location
@@ -587,22 +587,6 @@
                   offsetFromSymbolStart = "36">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../kefu-app-ios/AgentSDK/HDChatManager.m"
-            timestampString = "518347450.248065"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "-addDelegate:delegateQueue:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -665,7 +649,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "244"
             endingLineNumber = "244"
-            landmarkName = "-handleNewHDMessagesWithBodyDict:"
+            landmarkName = "-handleHDMessageWithDetail:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -681,7 +665,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "221"
             endingLineNumber = "221"
-            landmarkName = "-handleNewHDMessagesWithBodyDict:"
+            landmarkName = "-handleHDMessageWithDetail:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -713,23 +697,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
             endingLineNumber = "103"
-            landmarkName = "-messagesDidReceive:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "520932159.911767"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "442"
-            endingLineNumber = "442"
-            landmarkName = "-_easemobLoginCompletion:"
+            landmarkName = "-asyncGetAllCustomersCompletion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -745,7 +713,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "387"
             endingLineNumber = "387"
-            landmarkName = "-_imLoginCompletion:"
+            landmarkName = "-asyncFetchMarkReadTagWithRemoteAgentUserId:parameters:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -761,7 +729,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "421"
             endingLineNumber = "421"
-            landmarkName = "-_imLoginCompletion:"
+            landmarkName = "-asyncFetchUserWaitQueuesWithUserId:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -777,7 +745,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "337"
             endingLineNumber = "337"
-            landmarkName = "-asyncSendGet:withParameters:completion:"
+            landmarkName = "-asyncFetchAllCustomersWithCompletion:"
             landmarkType = "7">
             <Locations>
                <Location
@@ -825,7 +793,33 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "348"
             endingLineNumber = "348"
-            landmarkName = "-asyncSendGet:withParameters:completion:"
+            landmarkName = "-asyncFetchAllCustomersWithCompletion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+            timestampString = "525768496.203235"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "-asyncLoginWithUsername:password:hidingLogin:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -835,13 +829,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-            timestampString = "520932159.911767"
+            filePath = "../kefu-app-ios/AgentSDK/HDChatManager.m"
+            timestampString = "525843262.73955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "-asyncLoginWithUsername:password:hidingLogin:completion:"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "-addDelegate:delegateQueue:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../kefu-app-ios/AgentSDK/HDChatManager.m"
+            timestampString = "525843369.758707"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "-addDelegate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

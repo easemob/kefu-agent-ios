@@ -50,6 +50,13 @@
 		D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */; };
 		D35EAEDD1EB2F01D009DFEDB /* EMTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D35EAEDC1EB2F01D009DFEDB /* EMTagView.m */; };
 		D360327C1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */; };
+		D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6091F569CF100E3AB74 /* Security.framework */; };
+		D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
+		D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */; };
+		D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3A1EA0CED500ADD394 /* libstdc++.6.0.9.tbd */; };
+		D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3C1EA0CF0C00ADD394 /* libz.tbd */; };
+		D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D4E1EA0ED5B00ADD394 /* libsqlite3.tbd */; };
+		D378E6121F569D8900E3AB74 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6111F569D8800E3AB74 /* SystemConfiguration.framework */; };
 		D39BD8211EA8D13A008F428C /* HDManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D39BD8201EA8D13A008F428C /* HDManager.m */; };
 		D3A95D121EA0B82000ADD394 /* MediaFileModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D111EA0B82000ADD394 /* MediaFileModel.m */; };
 		D3A95D171EA0B8FA00ADD394 /* UIAlertView+AlertBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D161EA0B8FA00ADD394 /* UIAlertView+AlertBlock.m */; };
@@ -587,6 +594,10 @@
 		D35EAEDC1EB2F01D009DFEDB /* EMTagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTagView.m; sourceTree = "<group>"; };
 		D360327A1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+HDAppDelegate.h"; sourceTree = "<group>"; };
 		D360327B1EA7041100DCBDB9 /* AppDelegate+HDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+HDAppDelegate.m"; sourceTree = "<group>"; };
+		D378E6071F56999700E3AB74 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		D378E6091F569CF100E3AB74 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D378E60B1F569CFE00E3AB74 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		D378E6111F569D8800E3AB74 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D381EFCD1EA4B64F0092BD3C /* AgentSDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemo.entitlements; sourceTree = "<group>"; };
 		D39BD81F1EA8D13A008F428C /* HDManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDManager.h; sourceTree = "<group>"; };
 		D39BD8201EA8D13A008F428C /* HDManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDManager.m; sourceTree = "<group>"; };
@@ -1199,6 +1210,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D378E6121F569D8900E3AB74 /* SystemConfiguration.framework in Frameworks */,
+				D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */,
+				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
+				D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */,
+				D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */,
+				D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */,
+				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
 				D33215981F554B4D0048F147 /* HyphenateLite.framework in Frameworks */,
@@ -1781,6 +1799,10 @@
 		D3FDC5121EA08C0900C25BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D378E6111F569D8800E3AB74 /* SystemConfiguration.framework */,
+				D378E60B1F569CFE00E3AB74 /* libiconv.tbd */,
+				D378E6091F569CF100E3AB74 /* Security.framework */,
+				D378E6071F56999700E3AB74 /* libc++abi.tbd */,
 				D3D081FF1EA4B349003FF1C3 /* Foundation.framework */,
 				D3A95D4E1EA0ED5B00ADD394 /* libsqlite3.tbd */,
 				D3A95D481EA0CF4300ADD394 /* ImageIO.framework */,
@@ -3172,7 +3194,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks",
 					"$(inherited)",
@@ -3192,7 +3214,8 @@
 					"\"$(SRCROOT)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb\"",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LIBTOOLFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
@@ -3206,7 +3229,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks",
 					"$(inherited)",
@@ -3226,7 +3249,8 @@
 					"\"$(SRCROOT)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb\"",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LIBTOOLFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALID_ARCHS = "arm64 armv7 armv7s";
