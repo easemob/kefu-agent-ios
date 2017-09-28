@@ -8,7 +8,7 @@
 
 #import "EMChatImageTextBubbleView.h"
 
-#import "UIImageView+WebCache.h"
+#import "UIImageView+EMWebCache.h"
 
 #define kLabelHeight 16.f
 #define kLabelFont 16.f
@@ -57,7 +57,7 @@ NSString *const kRouterEventImageTextBubbleTapEventName = @"kRouterEventImageTex
         _nameLabel.textAlignment = NSTextAlignmentLeft;
         _nameLabel.font = [UIFont systemFontOfSize:12.f];
         _nameLabel.numberOfLines = 2;
-//        _nameLabel.textColor = kTextColor;
+//        _nameLabel.backgroundColor = [UIColor redColor];
         [self addSubview:_nameLabel];
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.hidden = YES;
@@ -73,7 +73,6 @@ NSString *const kRouterEventImageTextBubbleTapEventName = @"kRouterEventImageTex
         _orderTitleLabel.textAlignment = NSTextAlignmentLeft;
         _orderTitleLabel.font = [UIFont systemFontOfSize:kLabelFont];
         [self addSubview:_orderTitleLabel];
-
     }
     return self;
 }
@@ -132,14 +131,7 @@ NSString *const kRouterEventImageTextBubbleTapEventName = @"kRouterEventImageTex
             _orderTitleLabel.frame = CGRectMake(BUBBLE_RIGHT_LEFT_CAP_WIDTH + kViewSpace * 2, CGRectGetMaxY(self.titleLabel.frame) + kViewSpace, CGRectGetWidth(frame), kLabelHeight);
             self.imageView.top = CGRectGetMaxY(_orderTitleLabel.frame) + 5;
         }
-        
-        NSDictionary *attributes = @{NSFontAttributeName :[UIFont systemFontOfSize:kLabelFont]};
-        CGRect rect = [self.model.ext.msgtype.desc boundingRectWithSize:CGSizeMake(kNameLabelWidth, MAXFLOAT)
-                                                                options:NSStringDrawingUsesLineFragmentOrigin
-                                                             attributes:attributes
-                                                                context:nil];
-        CGFloat height = CGRectGetHeight(rect);
-        self.nameLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame) + kViewSpace * 2, CGRectGetMinY(_imageView.frame), kNameLabelWidth, height);
+        self.nameLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame) + kViewSpace * 2, CGRectGetMinY(_imageView.frame)+5, kNameLabelWidth, 40);
         self.priceLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame) + kViewSpace * 2, CGRectGetMaxY(_imageView.frame) - 18, kNameLabelWidth, 20);
     } else {
         [self.imageView setFrame:frame];
@@ -148,7 +140,7 @@ NSString *const kRouterEventImageTextBubbleTapEventName = @"kRouterEventImageTex
 
 #pragma mark - setter
 
-- (void)setModel:(MessageModel *)model
+- (void)setModel:(HDMessage *)model
 {
     [super setModel:model];
     
@@ -157,7 +149,7 @@ NSString *const kRouterEventImageTextBubbleTapEventName = @"kRouterEventImageTex
         image = _model.image;
         self.imageView.image = image;
         if (!image) {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.ext.msgtype.imgUrl]] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.ext.msgtype.imgUrl]] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken"] completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
                 if (image) {
                     
                 }
@@ -206,7 +198,7 @@ NSString *const kRouterEventImageTextBubbleTapEventName = @"kRouterEventImageTex
 }
 
 
-+(CGFloat)heightForBubbleWithObject:(MessageModel *)object
++(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
     CGSize retSize = CGSizeMake(MAX_WIDTH, MAX_WIDTH);;
     if (object.ext) {

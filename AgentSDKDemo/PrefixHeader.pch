@@ -9,7 +9,21 @@
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 
+#ifdef __OBJC__
+#import <AgentSDK/AgentSDK.h>
+#endif
+
 #import "LocalDefine.h"
+#import "SingletonDefine.h"
+
+#define hPageLimit 10
+#define hPageSize 10
+
+
+
+//noti
+#define NOTIFICATION_SET_MAX_SERVICECOUNT @"NOTIFICATION_SET_MAX_SERVICECOUNT"
+
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
@@ -26,19 +40,49 @@
 #define WEAK_SELF typeof(self) __weak weakSelf = self;
 
 #import "EmotionEscape.h"
-#define kBaseURL @"https://kefu.easemob.com"
-#import "HDManager.h"
+#import "KFManager.h"
 #import "IQKeyboardManager.h"
-#import <AgentSDK/AgentSDK.h>
 #import "SRRefreshView.h"
 #import "MWPhotoBrowser.h"
-#import "UIButton+WebCache.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+EMWebCache.h"
 #import "UIViewController+HUD.h"
 #import "UIView+RNAdditions.h"
 #import "NSString+Escape.h"
-#import "NSObject+HDAdd.h"
+#import "NSObject+KFAdd.h"
 #import "EMCDDeviceManager.h"
+#import "EMBaseViewController.h"
+
+
+#pragma mark 3
+#import "DDLog.h"
+#import "MBProgressHUD+Add.h"
+//#import "NSDictionary+SafeValue.h"
+#import "DXLoadingView.h"
+#import "DXMessageManager.h"
+#import "EMBaseViewController.h"
+#import "UIViewController+DismissKeyboard.h"
+//NEW
+#import "KFHttpManager.h"
+#import "KFFileCache.h"
+
+#import <HyphenateLite/HyphenateLite.h>
+#import "UIImageView+EMWebCache.h"
+#import "KFPromptView.h"
+#import "IQKeyboardManager.h"
+#import "KFBaseViewController.h"
+//#import "MJExtension.h"
+//#import "KFUtilsMacros.h"
+#import "EMCDDeviceManager.h"
+
+//Category
+#import "UIBarButtonItem+KFAdd.h"
+#import "UITextField+KFAdd.h"
+#import "UIButton+KFAdd.h"
+#import "NSObject+KFAdd.h"
+#import "UIImage+KFAdd.h"
+#import "MMDrawerController.h"
+#import "UIViewController+MMDrawerController.h"
+#import "UIImageView+EMWebCache.h"
 
 
 #endif /* PrefixHeader_pch */

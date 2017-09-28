@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WebViewController : UIViewController
+@interface WebViewController : EMBaseViewController
 
 - (instancetype)initWithUrl:(NSString*)url;
 

@@ -1,18 +1,23 @@
 //
 //  AppDelegate.h
-//  AgentSDKDemo
+//  EMCSApp
 //
-//  Created by afanda on 4/13/17.
-//  Copyright © 2017 环信. All rights reserved.
+//  Created by dhc on 15/4/9.
+//  Copyright (c) 2015年 easemob. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "MMDrawerController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, HDClientDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-- (void)showMainViewController;
+
+@property(nonatomic,strong) MMDrawerController *drawerController;
+
+
+- (void)showHomeViewController;
 
 - (void)showLoginViewController;
 

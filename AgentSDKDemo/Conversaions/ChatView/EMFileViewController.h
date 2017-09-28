@@ -8,9 +8,8 @@
 
 #import "DXBaseViewController.h"
 
-@class MessageModel;
 @interface EMFileViewController : DXBaseViewController
 
-@property (nonatomic, strong) MessageModel *model;
+@property (nonatomic, strong) HDMessage *model;
 
 @end

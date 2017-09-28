@@ -1,4 +1,4 @@
-/************************************************************
+ /************************************************************
   *  * EaseMob CONFIDENTIAL 
   * __________________ 
   * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved. 
@@ -10,7 +10,7 @@
   * from EaseMob Technologies.
   */
 
-#import "UIImageView+WebCache.h"
+#import "UIImageView+EMWebCache.h"
 #import "EMChatImageBubbleView.h"
 
 NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleTapEventName";
@@ -80,25 +80,41 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
 
 #pragma mark - setter
 
-- (void)setModel:(MessageModel *)model
+- (void)setModel:(HDMessage *)model
 {
     [super setModel:model];
     
-    UIImage *image = _model.isSender ? _model.image : _model.thumbnailImage;
-    if (!image) {
-        image = _model.image;
-        self.imageView.image = image;
-        if (!image) {
-            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,model.body.originalPath]] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                if (image) {
+    HDImageMessageBody *body = (HDImageMessageBody *)model.nBody;
+    
+    UIImage *image = nil;
+    NSData *imgData = body.imageData;
+    if (imgData != nil) {
+        image = [UIImage imageWithData:body.imageData];
+    }
+    if (image == nil) {
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:body.remotePath] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big"] completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
+            if (image) {
                 
-                }
-                
-            }];
-        }
+            }
+        }];
     } else {
         self.imageView.image = image;
     }
+    
+//    if (!image) {
+//        image = _model.image;
+//        self.imageView.image = image;
+//        if (!image) {
+//            [self.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseURL,model.body.originalPath]] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big"] completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL) {
+//                if (image) {
+//                
+//                }
+//                
+//            }];
+//        }
+//    } else {
+//        self.imageView.image = image;
+//    }
 }
 
 #pragma mark - public
@@ -110,7 +126,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
 }
 
 
-+(CGFloat)heightForBubbleWithObject:(MessageModel *)object
++(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
     CGSize retSize;
     if (object.ext) {

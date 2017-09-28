@@ -2,7 +2,7 @@
 //  KFDatePicker.h
 //  EMCSApp
 //
-//  Created by __阿彤木_ on 2/23/17.
+//  Created by afanda on 2/23/17.
 //  Copyright © 2017 easemob. All rights reserved.
 //
 
@@ -17,6 +17,10 @@
 
 @interface KFDatePicker : UIView
 
+@property(nonatomic,strong) NSDate *maxDate;
+@property(nonatomic,strong) NSDate *minDate;
 @property(nonatomic,assign) id<KFDatePickerDelegate> delegate;
+
+- (void)setDate:(NSDate *)date;
 
 @end

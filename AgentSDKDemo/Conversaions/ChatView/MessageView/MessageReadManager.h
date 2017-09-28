@@ -15,7 +15,7 @@
 #import "MWPhotoBrowser.h"
 
 typedef void (^FinishBlock)(BOOL success);
-typedef void (^PlayBlock)(BOOL playing, MessageModel *messageModel);
+typedef void (^PlayBlock)(BOOL playing, HDMessage *messageModel);
 
 @class EMChatFireBubbleView;
 @interface MessageReadManager : NSObject<MWPhotoBrowserDelegate>
@@ -23,7 +23,7 @@ typedef void (^PlayBlock)(BOOL playing, MessageModel *messageModel);
 @property (strong, nonatomic) MWPhotoBrowser *photoBrowser;
 @property (strong, nonatomic) FinishBlock finishBlock;
 
-@property (strong, nonatomic) MessageModel *audioMessageModel;
+@property (strong, nonatomic) HDMessage *audioMessageModel;
 
 + (id)defaultManager;
 
@@ -39,9 +39,9 @@ typedef void (^PlayBlock)(BOOL playing, MessageModel *messageModel);
  *  @return 若返回NO，则不需要调用播放方法
  *
  */
-- (BOOL)prepareMessageAudioModel:(MessageModel *)messageModel
-              updateViewCompletion:(void (^)(MessageModel *prevAudioModel, MessageModel *currentAudioModel))updateCompletion;
+- (BOOL)prepareMessageAudioModel:(HDMessage *)messageModel
+              updateViewCompletion:(void (^)(HDMessage *prevAudioModel, HDMessage *currentAudioModel))updateCompletion;
 
-- (MessageModel *)stopMessageAudioModel;
+- (HDMessage *)stopMessageAudioModel;
 
 @end

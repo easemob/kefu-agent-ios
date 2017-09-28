@@ -17,7 +17,7 @@
                  andAddress:(NSString *)address;
 @end
 
-@interface LocationViewController : UIViewController
+@interface LocationViewController : EMBaseViewController
 
 @property (nonatomic, assign) id<LocationViewDelegate> delegate;
 

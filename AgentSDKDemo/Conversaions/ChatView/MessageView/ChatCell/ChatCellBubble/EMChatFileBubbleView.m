@@ -38,7 +38,8 @@ NSString *const kRouterEventFileBubbleTapEventName = @"kRouterEventFileBubbleTap
         _sizeLabel.textAlignment = NSTextAlignmentLeft;
         _sizeLabel.font = [UIFont systemFontOfSize:kLabelFont];
         _sizeLabel.numberOfLines = 2;
-        _sizeLabel.text = @"0 kb";
+//        _sizeLabel.text = @"0 kb";
+        _sizeLabel.text = @"";
         [self addSubview:_sizeLabel];
         _imageView = [[UIImageView alloc] init];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
@@ -93,11 +94,17 @@ NSString *const kRouterEventFileBubbleTapEventName = @"kRouterEventFileBubbleTap
 
 #pragma mark - setter
 
-- (void)setModel:(MessageModel *)model
+- (void)setModel:(HDMessage *)model
 {
     [super setModel:model];
-    self.nameLabel.text = model.body.fileName;
-    self.sizeLabel.text = [NSString stringWithFormat:@"%@ kb",@((int)(model.body.length/1024))];
+    self.nameLabel.text = ((HDFileMessageBody *)model.nBody).displayName;
+    CGFloat fileSize = ((HDFileMessageBody *)model.nBody).fileLength/1024.0;
+    if (fileSize > 0){
+        self.sizeLabel.text = [NSString stringWithFormat:@"%.2f kb",fileSize];
+    }else{
+        self.sizeLabel.text = @"";
+    }
+    
 }
 
 #pragma mark - public
@@ -108,7 +115,7 @@ NSString *const kRouterEventFileBubbleTapEventName = @"kRouterEventFileBubbleTap
                      userInfo:@{KMESSAGEKEY:self.model}];
 }
 
-+(CGFloat)heightForBubbleWithObject:(MessageModel *)object
++(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
     return 4 * BUBBLE_VIEW_PADDING + 75.f;
 }

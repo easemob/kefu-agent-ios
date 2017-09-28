@@ -21,7 +21,7 @@
 
 - (instancetype)initWithDataSource:(NSArray *)dataSource
 {
-    self = [super initWithFrame:CGRectMake(0, 0, hScreenWidth, hScreenHeight)];
+    self = [super initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     if (self) {
         [self setDataSource:dataSource];
 
@@ -31,7 +31,7 @@
 
 - (instancetype)initWithDataSource:(NSArray *)dataSource topHeight:(CGFloat)height
 {
-    self = [super initWithFrame:CGRectMake(0, 0, hScreenWidth, hScreenHeight)];
+    self = [super initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
     if (self) {
         _topHeight = height;
         [self setDataSource:dataSource];
@@ -68,7 +68,7 @@
 
 - (void)setUpPickViewWithTag:(NSInteger)tag{
     if (_pickerView == nil) {
-        _pickerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, hScreenWidth, hScreenHeight)];
+        _pickerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
         _pickerView.backgroundColor = RGBACOLOR(0, 0, 0, 0.7);
         _pickerView.tag = tag;
         
@@ -79,13 +79,13 @@
         _pickView.tag = tag + 1;
         
         _pickView.top = CGRectGetMaxY(self.frame) - _pickView.height - 64 + _topHeight;
-        _pickView.width = hScreenWidth;
+        _pickView.width = KScreenWidth;
         [_pickerView addSubview:_pickView];
         
-        UIView *btnback = [[UIView alloc]initWithFrame:CGRectMake(0, _pickView.top - 48, hScreenWidth, 48)];
+        UIView *btnback = [[UIView alloc]initWithFrame:CGRectMake(0, _pickView.top - 48, KScreenWidth, 48)];
         btnback.backgroundColor = [UIColor whiteColor];
         [_pickerView addSubview:btnback];
-        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(btnback.frame) - 1, hScreenWidth, 1)];
+        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(btnback.frame) - 1, KScreenWidth, 1)];
         line.backgroundColor = [UIColor lightGrayColor];
         line.alpha = 0.3;
 //        [btnback addSubview:line];
@@ -93,7 +93,7 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancleSaveBtn:)];
         [_pickerView addGestureRecognizer:tap];
         
-        UIButton *save = [[UIButton alloc]initWithFrame:CGRectMake(hScreenWidth-80, 6.5, 70, 32)];
+        UIButton *save = [[UIButton alloc]initWithFrame:CGRectMake(KScreenWidth-80, 6.5, 70, 32)];
         [save setTitle:@"保存" forState:UIControlStateNormal];
         [save addTarget:self action:@selector(saveStatus:) forControlEvents:UIControlEventTouchUpInside];
         [save.titleLabel setFont:[UIFont boldSystemFontOfSize:15.f]];

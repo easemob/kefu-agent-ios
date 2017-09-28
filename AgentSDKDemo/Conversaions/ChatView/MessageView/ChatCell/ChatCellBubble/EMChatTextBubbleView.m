@@ -26,6 +26,9 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 @end
 
 @implementation EMChatTextBubbleView
+{
+    HDTextMessageBody *_body;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -67,7 +70,7 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 {
     CGSize textBlockMinSize = {TEXTLABEL_MAX_WIDTH, CGFLOAT_MAX};
     CGSize retSize;
-    NSString *text = self.model.body.content ? self.model.body.content:@"";
+    NSString *text = _body.text ? _body.text:@"";
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:text textFont:self.textLabel.font]];
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:[[self class] lineSpacing]];
@@ -86,11 +89,11 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 
 #pragma mark - setter
 
-- (void)setModel:(MessageModel *)model
+- (void)setModel:(HDMessage *)model
 {
     [super setModel:model];
-    NSString *bodyContent =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:model.body.content];
-    NSString *text = bodyContent ? bodyContent : @"";
+    _body = (HDTextMessageBody *)model.nBody;
+    NSString *text = _body.text ?  _body.text : @"";
     _urlMatches = [_detector matchesInString:text options:0 range:NSMakeRange(0, text.length)];
     NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:text textFont:self.textLabel.font]];
     NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
@@ -277,29 +280,21 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
     }
 }
 
-+(CGFloat)heightForBubbleWithObject:(MessageModel *)object
++(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
+    HDTextMessageBody *textBody = (HDTextMessageBody *)object.nBody;
     CGSize textBlockMinSize = {TEXTLABEL_MAX_WIDTH, CGFLOAT_MAX};
     CGSize size;
-    static float systemVersion;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        systemVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
-    });
-    if (systemVersion >= 7.0) {
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-        [paragraphStyle setLineSpacing:[[self class] lineSpacing]];//调整行间距
-        size = [object.body.content boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin
-                                         attributes:@{
-                                                      NSFontAttributeName:[[self class] textLabelFont],
-                                                      NSParagraphStyleAttributeName:paragraphStyle
-                                                      }
-                                            context:nil].size;
-    }else{
-        size = [object.body.content sizeWithFont:[self textLabelFont]
-                          constrainedToSize:textBlockMinSize
-                              lineBreakMode:[self textLabelLineBreakModel]];
-    }
+
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:[[self class] lineSpacing]];//调整行间距
+    size = [textBody.text boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:@{
+                                                  NSFontAttributeName:[[self class] textLabelFont],
+                                                  NSParagraphStyleAttributeName:paragraphStyle
+                                                  }
+                                        context:nil].size;
+    
     return 2 * BUBBLE_VIEW_PADDING + size.height;
 }
 

@@ -1,53 +1,46 @@
 //
 //  HDConversation.h
-//  AgentSDK
+//  EMCSApp
 //
-//  Created by afanda on 4/6/17.
-//  Copyright © 2017 环信. All rights reserved.
+//  Created by dhc on 15/4/10.
+//  Copyright (c) 2015年 easemob. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
+#import "UserModel.h"
+#import "HDMessage.h"
+
+#define CONVERSATION_ID @"chatGroupId"
+#define CONVERSATION_UNREAD @"unReadMessageCount"
+#define CONVERSATION_SERVICEID @"serviceSessionId"
+#define CONVERSATION_LASTMESSAGE @"lastChatMessage"
+#define CONVERSATION_CREATETIME @"createDateTime"
+
+typedef enum {
+    conversationModelUserType = 0,
+    conversationModelCustomerType,
+}conversationModelType;
+
+
 @interface HDConversation : NSObject
 
-@property(nonatomic,strong,readonly) NSString *sessionId;
-
-@property(nonatomic,assign,readonly) NSInteger chatGroupId;
- //会话最后一条消息
-@property(nonatomic,strong,readonly) MessageModel *latestMessage;
-
-@property(nonatomic,assign,readonly) NSInteger messageCount;
-
+@property (nonatomic, copy) NSString *conversationId;
+@property (nonatomic) NSInteger unreadCount;
+@property (nonatomic, copy) NSString *sessionId;
+@property (strong, nonatomic) UserModel *chatter;
+@property (strong, nonatomic) VisitorUserModel *vistor;
+@property (strong, nonatomic) HDMessage *lastMessage;
+@property (nonatomic) NSTimeInterval createDateTime;
+@property (nonatomic) conversationModelType type;
+@property (nonatomic, copy) NSString *originType;
+@property(nonatomic,copy) NSString *techChannelName;
+@property (nonatomic, copy) NSString *createDatetime;
+@property (nonatomic, assign) NSInteger chatGroupId;
+@property(nonatomic,copy) NSString *startDateTime;
+@property (strong, nonatomic) NSDate *createDate;
 @property(nonatomic,copy) NSString *searchWord;
 
-@property(nonatomic,copy) NSDictionary *lastExtWeichat;
-
-/**
- 同一个访客和不同的客服沟通之后，是同一个chatGroupId
- 而与每一个客服聊天都会分别有一个sessionId
- */
--(instancetype)initWithSessionId:(NSString *)sessionId chatGroupId:(NSInteger)chatGroupId;
-
-
-/*
- * 加载消息
- */
-- (void)loadMessageCompletion:(void(^)(NSArray <MessageModel *> *messages,HDError *error))completion;
-
-/*
- * 加载会话历史消息
- */
-- (void)loadHistoryCompletion:(void(^)(NSArray <MessageModel *> *messages,HDError *error))completion;
-
-/*
- * 结束会话
- */
-- (void)endConversationWithVisitorId:(NSString *)visitorId parameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
-
-/*
- * 标记已读
- * parameters  预留参数传nil
- */
-- (void)markMessagesAsReadWithVisitorId:(NSString *)visitorId parameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

@@ -35,21 +35,21 @@ extern NSString *const kRouterEventChatHeadImageTapEventName;
     EMChatBaseBubbleView *_bubbleView;
     
     CGFloat _nameLabelHeight;
-    MessageModel *_messageModel;
+    HDMessage *_messageModel;
 }
 
-@property (nonatomic, strong) MessageModel *messageModel;
+@property (nonatomic, strong) HDMessage *messageModel;
 
 @property (nonatomic, strong) UIImageView *headImageView;       //头像
 @property (nonatomic, strong) UILabel *nameLabel;               //姓名（暂时不支持显示）
 @property (nonatomic, strong) EMChatBaseBubbleView *bubbleView;   //内容区域
 
-- (id)initWithMessageModel:(MessageModel *)model reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithMessageModel:(HDMessage *)model reuseIdentifier:(NSString *)reuseIdentifier;
 
-- (void)setupSubviewsForMessageModel:(MessageModel *)model;
+- (void)setupSubviewsForMessageModel:(HDMessage *)model;
 
-+ (NSString *)cellIdentifierForMessageModel:(MessageModel *)model;
++ (NSString *)cellIdentifierForMessageModel:(HDMessage *)model;
 
-+ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withObject:(MessageModel *)model;
++ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withObject:(HDMessage *)model;
 
 @end

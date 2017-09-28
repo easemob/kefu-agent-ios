@@ -62,14 +62,16 @@
 // 录音按钮按下
 -(void)recordButtonTouchDown
 {
-    // 需要根据声音大小切换recordView动画
-    _textLabel.text = NSLocalizedString(@"message.toolBar.record.upCancel", @"Fingers up slide, cancel sending");
-    _textLabel.backgroundColor = [UIColor clearColor];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:0.05
-                                              target:self
-                                            selector:@selector(setVoiceImage)
-                                            userInfo:nil
-                                             repeats:YES];
+    if ([self isSupportRecord]) {
+        // 需要根据声音大小切换recordView动画
+        _textLabel.text = NSLocalizedString(@"message.toolBar.record.upCancel", @"Fingers up slide, cancel sending");
+        _textLabel.backgroundColor = [UIColor clearColor];
+        _timer = [NSTimer scheduledTimerWithTimeInterval:0.05
+                                                  target:self
+                                                selector:@selector(setVoiceImage)
+                                                userInfo:nil
+                                                 repeats:YES];
+    }
     
 }
 // 手指在录音按钮内部时离开

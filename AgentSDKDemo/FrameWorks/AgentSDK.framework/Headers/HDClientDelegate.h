@@ -63,7 +63,7 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
  * 会话最后一条消息变化
  * @param  sessionId 变化的sessionId
  */
-- (void)conversationLastMessageChanged:(MessageModel *)message;
+- (void)conversationLastMessageChanged:(HDMessage *)message;
 /*
  * 新会话
  * @param  sessionId 新会话sessionId
@@ -85,7 +85,7 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
  */
 - (void)agentUsersListChange;
 /*
- * 通知中心有变化
+ * 通知中心有有变化
  */
 - (void)notificationChange;
 

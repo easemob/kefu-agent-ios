@@ -8,12 +8,12 @@
 
 #import "EMHeaderImageView.h"
 
-#import "UIImageView+WebCache.h"
-
+#import "UIImageView+EMWebCache.h"
 @interface EMHeaderImageView ()
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIImageView *statusImageView;
+@property(nonatomic,strong) UserModel *user;
 
 @end
 
@@ -29,8 +29,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [[HDClient sharedClient].currentAgentUser addObserver:self forKeyPath:USER_STATE options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
-        [[HDClient sharedClient].currentAgentUser addObserver:self forKeyPath:USER_AVATAR options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avatarChanged) name:@"AvatarChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusChanged) name:@"StatusChanged" object:nil];
         [self addSubview:self.headerImageView];
         [self addSubview:self.statusImageView];
     }
@@ -44,7 +44,7 @@
         _headerImageView.layer.masksToBounds = YES;
         _headerImageView.layer.cornerRadius = CGRectGetWidth(_headerImageView.frame)/2;
         _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[[HDClient sharedClient].currentAgentUser.avatar encodeToPercentEscapeString]]] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
+        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[HDClient sharedClient].currentAgentUser.avatar] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
     }
     return _headerImageView;
 }
@@ -55,13 +55,14 @@
         _statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) - self.width/5, CGRectGetMaxY(_headerImageView.frame) - self.width/5, self.width/4, self.height/4)];
         _statusImageView.clipsToBounds = YES;
         _statusImageView.layer.cornerRadius = _statusImageView.width/2;
-        if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_OFFLINE]) {
+        UserModel *user = [self user];
+        if ([user.onLineState isEqualToString:USER_STATE_OFFLINE]) {
             _statusImageView.backgroundColor = RGBACOLOR(238, 190, 77, 1);
-        } else if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_BUSY]){
+        } else if ([user.onLineState isEqualToString:USER_STATE_BUSY]){
             _statusImageView.backgroundColor = RGBACOLOR(255, 48, 0, 1);
-        } else if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_LEAVE]){
+        } else if ([user.onLineState isEqualToString:USER_STATE_LEAVE]){
             _statusImageView.backgroundColor = RGBACOLOR(27, 168, 237, 1);
-        } else if ([[HDClient sharedClient].currentAgentUser.onLineState isEqualToString:USER_STATE_ONLINE]){
+        } else if ([user.onLineState isEqualToString:USER_STATE_ONLINE]){
             _statusImageView.backgroundColor = RGBACOLOR(90, 232, 37, 1);
         }
     }
@@ -69,28 +70,30 @@
 }
 #pragma mark - kvo
 
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-//    if([keyPath isEqualToString:USER_STATE]) {
-//        if ([[DXCSManager shareManager].loginUser.onLineState isEqualToString:USER_STATE_OFFLINE]) {
-//            _statusImageView.backgroundColor = RGBACOLOR(238, 190, 77, 1);
-//        } else if ([[DXCSManager shareManager].loginUser.onLineState isEqualToString:USER_STATE_BUSY]){
-//            _statusImageView.backgroundColor = RGBACOLOR(255, 48, 0, 1);
-//        } else if ([[DXCSManager shareManager].loginUser.onLineState isEqualToString:USER_STATE_LEAVE]){
-//            _statusImageView.backgroundColor = RGBACOLOR(27, 168, 237, 1);
-//        } else if ([[DXCSManager shareManager].loginUser.onLineState isEqualToString:USER_STATE_ONLINE]){
-//            _statusImageView.backgroundColor = RGBACOLOR(90, 232, 37, 1);
-//        }
-//
-//    } else if ([keyPath isEqualToString:USER_AVATAR]) {
-//        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[[DXCSManager shareManager].loginUser.avatar encodeToPercentEscapeString]]] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
-//    }
+- (void)avatarChanged {
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[HDClient sharedClient].currentAgentUser.avatar] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
 }
+
+- (void)statusChanged {
+    UserModel *user = [self user];
+    if ([user.onLineState isEqualToString:USER_STATE_OFFLINE]) {
+        _statusImageView.backgroundColor = RGBACOLOR(238, 190, 77, 1);
+    } else if ([user.onLineState isEqualToString:USER_STATE_BUSY]){
+        _statusImageView.backgroundColor = RGBACOLOR(255, 48, 0, 1);
+    } else if ([user.onLineState isEqualToString:USER_STATE_LEAVE]){
+        _statusImageView.backgroundColor = RGBACOLOR(27, 168, 237, 1);
+    } else if ([user.onLineState isEqualToString:USER_STATE_ONLINE]){
+        _statusImageView.backgroundColor = RGBACOLOR(90, 232, 37, 1);
+    }
+}
+
+- (UserModel *)user {
+    return [HDClient sharedClient].currentAgentUser;
+}
+
 
 - (void)dealloc
 {
-    [[HDClient sharedClient].currentAgentUser removeObserver:self forKeyPath:USER_STATE];
-    [[HDClient sharedClient].currentAgentUser removeObserver:self forKeyPath:USER_AVATAR];
 }
 
 @end

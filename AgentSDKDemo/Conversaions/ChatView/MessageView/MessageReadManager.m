@@ -11,12 +11,12 @@
   */
 
 #import "MessageReadManager.h"
-#import "UIImageView+WebCache.h"
+#import "UIImageView+EMWebCache.h"
 #import "EMCDDeviceManager.h"
 
 static MessageReadManager *detailInstance = nil;
 
-@interface MessageReadManager()
+@interface MessageReadManager()<UIActionSheetDelegate>
 
 @property (strong, nonatomic) UIWindow *keyWindow;
 
@@ -66,7 +66,7 @@ static MessageReadManager *detailInstance = nil;
 {
     if (_photoBrowser == nil) {
         _photoBrowser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-        _photoBrowser.displayActionButton = NO;
+        _photoBrowser.displayActionButton = YES;
         _photoBrowser.displayNavArrows = YES;
         _photoBrowser.displaySelectionButtons = NO;
         _photoBrowser.alwaysShowControls = NO;
@@ -74,6 +74,7 @@ static MessageReadManager *detailInstance = nil;
         _photoBrowser.zoomPhotosToFill = YES;
         _photoBrowser.enableGrid = NO;
         _photoBrowser.startOnGrid = NO;
+        _photoBrowser.delegate = self;
         [_photoBrowser setCurrentPhotoIndex:0];
     }
     
@@ -87,7 +88,7 @@ static MessageReadManager *detailInstance = nil;
         _photoNavigationController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     }
     
-    [self.photoBrowser reloadData];
+    [self.photoBrowser viewDidLoad];
     return _photoNavigationController;
 }
 
@@ -139,17 +140,53 @@ static MessageReadManager *detailInstance = nil;
     }
     
     UIViewController *rootController = [self.keyWindow rootViewController];
+//    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMenu)];
+//    [self.photoNavigationController.view addGestureRecognizer:longPress];
     [rootController presentViewController:self.photoNavigationController animated:YES completion:nil];
 }
 
-- (BOOL)prepareMessageAudioModel:(MessageModel *)messageModel
-                      updateViewCompletion:(void (^)(MessageModel *prevAudioModel, MessageModel *currentAudioModel))updateCompletion
+
+//- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
+//    
+//}
+
+- (void)showMenu {
+    UIActionSheet *act = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"" destructiveButtonTitle:nil otherButtonTitles:@"保存到相册", nil];
+    
+    [act showInView:self.keyWindow];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 0) {
+        NSLog(@"保存");
+        UIImage *img = [self.photos firstObject];
+//        if (![img isKindOfClass:[UIImage class]]) {
+//            img = self.photoBrowser
+//        }
+        UIImageWriteToSavedPhotosAlbum(img, self, @selector(imageSavedToPhotosAlbum:didFinishSavingWithError:contextInfo:), nil);
+    }
+}
+
+- (void)imageSavedToPhotosAlbum:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    NSString *message = @"error";
+    if (!error) {
+        [MBProgressHUD showSuccess:@"保存成功" toView:self.keyWindow];
+    }else
+    {
+        message = [error description];
+        [MBProgressHUD showError:message toView:self.keyWindow];
+    }
+}
+
+- (BOOL)prepareMessageAudioModel:(HDMessage *)messageModel
+                      updateViewCompletion:(void (^)(HDMessage *prevAudioModel, HDMessage *currentAudioModel))updateCompletion
 {
     BOOL isPrepare = NO;
-    if(messageModel.type == kefuMessageBodyType_Voice)
+    if(messageModel.type == HDMessageBodyTypeVoice)
     {
-        MessageModel *prevAudioModel = self.audioMessageModel;
-        MessageModel *currentAudioModel = messageModel;
+        HDMessage *prevAudioModel = self.audioMessageModel;
+        HDMessage *currentAudioModel = messageModel;
         self.audioMessageModel = messageModel;
         
         BOOL isPlaying = messageModel.isPlaying;
@@ -190,10 +227,10 @@ static MessageReadManager *detailInstance = nil;
     return isPrepare;
 }
 
-- (MessageModel *)stopMessageAudioModel
+- (HDMessage *)stopMessageAudioModel
 {
-    MessageModel *model = nil;
-    if (self.audioMessageModel.type == kefuMessageBodyType_Voice) {
+    HDMessage *model = nil;
+    if (self.audioMessageModel.type == HDMessageBodyTypeVoice) {
         if (self.audioMessageModel.isPlaying) {
             model = self.audioMessageModel;
         }

@@ -22,7 +22,7 @@
 
 
 - (instancetype)initWithniceName:(NSString *)nickName tagImage:(UIImage *)tagImage {
-    self = [super initWithFrame:CGRectMake(0, 0, hScreenWidth, kClientInforHeaderViewHeight)];
+    self = [super initWithFrame:CGRectMake(0, 0, KScreenWidth, kClientInforHeaderViewHeight)];
     if (self) {
         self.backgroundColor = kNavBarBgColor;
         [self addSubview:self.headerImageView];
@@ -46,7 +46,7 @@
 - (UIImageView*)headerImageView
 {
     if (_headerImageView == nil) {
-        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((hScreenWidth-48)/2, 0, 48, 48)];
+        _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake((KScreenWidth-48)/2, 0, 48, 48)];
         _headerImageView.userInteractionEnabled = YES;
         _headerImageView.layer.masksToBounds = YES;
         _headerImageView.layer.cornerRadius = CGRectGetWidth(_headerImageView.frame)/2;
@@ -60,7 +60,7 @@
 - (UILabel*)nicknameLabel
 {
     if (_nicknameLabel == nil) {
-        _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake((hScreenWidth-200)/2, CGRectGetMaxY(_headerImageView.frame), 200, 40.f)];
+        _nicknameLabel = [[UILabel alloc] initWithFrame:CGRectMake((KScreenWidth-200)/2, CGRectGetMaxY(_headerImageView.frame), 200, 40.f)];
         _nicknameLabel.font = [UIFont boldSystemFontOfSize:18];
         _nicknameLabel.textColor = [UIColor whiteColor];
         _nicknameLabel.textAlignment = NSTextAlignmentCenter;
@@ -73,13 +73,17 @@
     self.nicknameLabel.text = nickName;
     CGSize textBlockMinSize = {CGFLOAT_MAX, self.nicknameLabel.height};
     CGSize retSize;
-    retSize = [nickName boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin
+    if (kSystemVersion >= 7.0) {
+        retSize = [nickName boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin
                                             attributes:@{
                                                          NSFontAttributeName:[UIFont systemFontOfSize:20],
                                                          }
                                                context:nil].size;
+    }else{
+        retSize = [nickName sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:textBlockMinSize lineBreakMode:NSLineBreakByCharWrapping];
+    }
     self.nicknameLabel.width = retSize.width;
-    self.nicknameLabel.left = (hScreenWidth - retSize.width)/2;
+    self.nicknameLabel.left = (KScreenWidth - retSize.width)/2;
     self.originTypeImage.image = tagImage;
     self.originTypeImage.left = CGRectGetMaxX(self.nicknameLabel.frame) + 5.f;
 }

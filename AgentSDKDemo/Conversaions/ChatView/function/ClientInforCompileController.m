@@ -61,7 +61,7 @@
 - (UITextField*)editTextField
 {
     if (_editTextField == nil) {
-        _editTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 15, hScreenWidth, 50.)];
+        _editTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 15, KScreenWidth, 50.)];
         _editTextField.returnKeyType = UIReturnKeyDone;
         if (self.isNumberPad) {
             _editTextField.keyboardType = UIKeyboardTypePhonePad;
@@ -75,10 +75,10 @@
         }
         _editTextField.clearButtonMode = YES;
         
-        UIView *upline = [[UIView alloc] initWithFrame:CGRectMake(0, 0, hScreenWidth, 0.5)];
+        UIView *upline = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 0.5)];
         upline.backgroundColor = [UIColor lightGrayColor];
         [_editTextField addSubview:upline];
-        UIView *downline = [[UIView alloc] initWithFrame:CGRectMake(0, _editTextField.height - 0.5, hScreenWidth, 0.5)];
+        UIView *downline = [[UIView alloc] initWithFrame:CGRectMake(0, _editTextField.height - 0.5, KScreenWidth, 0.5)];
         downline.backgroundColor = [UIColor lightGrayColor];
         [_editTextField addSubview:downline];
         

@@ -18,7 +18,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
 
 @implementation EMChatViewCell
 
-- (id)initWithMessageModel:(MessageModel *)model reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithMessageModel:(HDMessage *)model reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithMessageModel:model reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -45,7 +45,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         // 菊花状态 （因不确定菊花具体位置，要在子类中实现位置的修改）
         _hasRead.hidden = YES;
         switch (self.messageModel.status) {
-            case kefuMessageDeliveryState_Delivering:
+            case HDMessageDeliveryState_Delivering:
             {
                 [_activityView setHidden:NO];
                 [_retryButton setHidden:YES];
@@ -53,15 +53,28 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
                 [_activtiy startAnimating];
             }
                 break;
-            case kefuMessageDeliveryState_Delivered:
+            case HDMessageDeliveryState_Delivered:
             {
                 [_activtiy stopAnimating];
                 [_retryButton setHidden:YES];
+                /*
+                if (self.messageModel.message.isReadAcked)
+                {
+                    _activityView.hidden = NO;
+                    _hasRead.hidden = NO;
+                }
+                else
+                {
+                    [_activityView setHidden:YES];
+                }*/
                 _activityView.hidden = NO;
             }
                 break;
-            case kefuMessageDeliveryState_Pending:
-            case kefuMessageDeliveryState_Failure:
+            case HDMessageDeliveryState_Pending:
+            {
+                break;
+            }
+            case HDMessageDeliveryState_Failure:
             {
                 [_activityView setHidden:NO];
                 [_activtiy stopAnimating];
@@ -95,7 +108,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     }
 }
 
-- (void)setMessageModel:(MessageModel *)model
+- (void)setMessageModel:(HDMessage *)model
 {
     [super setMessageModel:model];
     
@@ -126,7 +139,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
 
 #pragma mark - private
 
-- (void)setupSubviewsForMessageModel:(MessageModel *)messageModel
+- (void)setupSubviewsForMessageModel:(HDMessage *)messageModel
 {
     [super setupSubviewsForMessageModel:messageModel];
     
@@ -140,6 +153,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         _retryButton = [UIButton buttonWithType:UIButtonTypeSystem];
         _retryButton.frame = CGRectMake(0, 0, SEND_STATUS_SIZE, SEND_STATUS_SIZE);
         [_retryButton addTarget:self action:@selector(retryButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+//        [_retryButton setImage:[UIImage imageNamed:@"messageSendFail.png"] forState:UIControlStateNormal];
         [_retryButton setBackgroundImage:[UIImage imageNamed:@"tips_false_message"] forState:UIControlStateNormal];
         //[_retryButton setBackgroundColor:[UIColor redColor]];
         [_activityView addSubview:_retryButton];
@@ -162,41 +176,36 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     [self.contentView addSubview:_bubbleView];
 }
 
-- (EMChatBaseBubbleView *)bubbleViewForMessageModel:(MessageModel *)messageModel
+- (EMChatBaseBubbleView *)bubbleViewForMessageModel:(HDMessage *)messageModel
 {
     switch (messageModel.type) {
-        case kefuMessageBodyType_Text:
+        case HDMessageBodyTypeText:
         {
-            NSDictionary *ext = messageModel.body.msgExt;
-            NSString *type = [ext objectForKey:@"messageType"];
-            if ([type isEqualToString:@"plan"]) {
-                return [[HDPlaneBubbleView alloc] init];
-            }
             return [[EMChatTextBubbleView alloc] init];
         }
             break;
-        case kefuMessageBodyType_Image:
+        case HDMessageBodyTypeImage:
         {
             return [[EMChatImageBubbleView alloc] init];
         }
             break;
-        case kefuMessageBodyType_Location:
+        case HDMessageBodyTypeLocation:
         {
             return [[EMChatLocationBubbleView alloc] init];
         }
             break;
-        case kefuMessageBodyType_ImageText:
+        case HDMessageBodyTypeImageText:
         {
             return [[EMChatImageTextBubbleView alloc] init];
         }
             break;
-        case kefuMessageBodyType_Voice:
+        case HDMessageBodyTypeVoice:
         {
             EMChatAudioBubbleView *audio =  [[EMChatAudioBubbleView alloc] init];
             return audio;
         }
             break;
-        case kefuMessageBodyType_File:
+        case HDMessageBodyTypeFile:
         {
             return [[EMChatFileBubbleView alloc] init];
         }
@@ -215,40 +224,35 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     return nil;
 }
 
-+ (CGFloat)bubbleViewHeightForMessageModel:(MessageModel *)messageModel
++ (CGFloat)bubbleViewHeightForMessageModel:(HDMessage *)messageModel
 {
     switch (messageModel.type) {
-        case kefuMessageBodyType_Text:
+        case HDMessageBodyTypeText:
         {
-            NSDictionary *ext = messageModel.body.msgExt;
-            NSString *type = [ext objectForKey:@"messageType"];
-            if ([type isEqualToString:@"plan"]) {
-                return [HDPlaneBubbleView heightForBubbleWithObject:messageModel];
-            }
             return [EMChatTextBubbleView heightForBubbleWithObject:messageModel];
         }
             break;
-        case kefuMessageBodyType_Image:
+        case HDMessageBodyTypeImage:
         {
             return [EMChatImageBubbleView heightForBubbleWithObject:messageModel];
         }
             break;
-        case kefuMessageBodyType_Location:
+        case HDMessageBodyTypeLocation:
         {
             return [EMChatLocationBubbleView heightForBubbleWithObject:messageModel];
         }
             break;
-        case kefuMessageBodyType_ImageText:
+        case HDMessageBodyTypeImageText:
         {
             return [EMChatImageTextBubbleView heightForBubbleWithObject:messageModel];
         }
             break;
-        case kefuMessageBodyType_Voice:
+        case HDMessageBodyTypeVoice:
         {
             return [EMChatAudioBubbleView heightForBubbleWithObject:messageModel];
         }
             break;
-        case kefuMessageBodyType_File:
+        case HDMessageBodyTypeFile:
         {
             return [EMChatFileBubbleView heightForBubbleWithObject:messageModel];
         }
@@ -273,7 +277,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
 
 #pragma mark - public
 
-+ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withObject:(MessageModel *)model
++ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withObject:(HDMessage *)model
 {
     NSInteger bubbleHeight = [self bubbleViewHeightForMessageModel:model];
     NSInteger headHeight = HEAD_PADDING * 2 + HEAD_SIZE;

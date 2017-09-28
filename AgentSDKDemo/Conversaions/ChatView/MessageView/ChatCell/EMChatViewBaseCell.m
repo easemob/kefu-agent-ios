@@ -11,8 +11,7 @@
   */
 
 #import "EMChatViewBaseCell.h"
-//#import <AgentSDK/HDNetworkManager.h>
-
+#import "UIImageView+EMWebCache.h"
 
 NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadImageTapEventName";
 
@@ -22,7 +21,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 
 @implementation EMChatViewBaseCell
 
-- (id)initWithMessageModel:(MessageModel *)model reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithMessageModel:(HDMessage *)model reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
@@ -72,7 +71,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 
 #pragma mark - setter
 
-- (void)setMessageModel:(MessageModel *)messageModel
+- (void)setMessageModel:(HDMessage *)messageModel
 {
     _messageModel = messageModel;
     
@@ -81,7 +80,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     if (!messageModel.isSender) {
         self.headImageView.image = [UIImage imageNamed:@"default_agent_avatar"];
     } else {
-        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http:%@",[[HDClient sharedClient].currentAgentUser.avatar encodeToPercentEscapeString]]] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
+        [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[HDClient sharedClient].currentAgentUser.avatar] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
     }
 //
 }
@@ -100,7 +99,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 
 #pragma mark - public
 
-- (void)setupSubviewsForMessageModel:(MessageModel *)model
+- (void)setupSubviewsForMessageModel:(HDMessage *)model
 {
     if (model.isSender) {
         self.headImageView.frame = CGRectMake(self.bounds.size.width - HEAD_SIZE - HEAD_PADDING, CELLPADDING, HEAD_SIZE, HEAD_SIZE);
@@ -110,7 +109,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     }
 }
 
-+ (NSString *)cellIdentifierForMessageModel:(MessageModel *)model
++ (NSString *)cellIdentifierForMessageModel:(HDMessage *)model
 {
     NSString *identifier = @"MessageCell";
     if (model.isSender) {
@@ -120,30 +119,27 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
         identifier = [identifier stringByAppendingString:@"Receiver"];
     }
     switch (model.type) {
-        case kefuMessageBodyType_Text:
+        case HDMessageBodyTypeText:
         {
             identifier = [identifier stringByAppendingString:@"Text"];
-            if ([[model.body.msgExt objectForKey:@"messageType"] isEqualToString:@"plan"]) {
-                identifier = [identifier stringByAppendingString:@"plan"];
-            }
         }
             break;
-        case kefuMessageBodyType_Image:
+        case HDMessageBodyTypeImage:
         {
             identifier = [identifier stringByAppendingString:@"Image"];
         }
             break;
-        case kefuMessageBodyType_Voice:
+        case HDMessageBodyTypeVoice:
         {
             identifier = [identifier stringByAppendingString:@"Audio"];
         }
             break;
-        case kefuMessageBodyType_Location:
+        case HDMessageBodyTypeLocation:
         {
             identifier = [identifier stringByAppendingString:@"Location"];
         }
             break;
-        case kefuMessageBodyType_ImageText:
+        case HDMessageBodyTypeImageText:
         {
             identifier = [identifier stringByAppendingString:@"imageText"];
         }
@@ -156,7 +152,7 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     return identifier;
 }
 
-+ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withObject:(MessageModel *)model
++ (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withObject:(HDMessage *)model
 {
     return HEAD_SIZE + CELLPADDING;
 }

@@ -9,13 +9,17 @@
 
 typedef NS_ENUM(NSUInteger, HDConversationType) {
     HDConversationAccessed = 1,     //已经接入
-    HDConversationWaitQueues,   //待接入
-    HDConversationHistory,      //历史会话
+    HDConversationWaitQueues,       //待接入
+    HDConversationHistory,          //历史会话
 };
 
 #import <Foundation/Foundation.h>
 #import "HDError.h"
 #import "HDChatManager.h"
+#import "HDWaitManager.h"
+#import "HDNotiManager.h"
+#import "HDLeaveMsgManager.h"
+#import "HDSetManager.h"
 #import "HDOptions.h"
 #import "HDClientDelegate.h"
 #import "HDPushOptions.h"
@@ -81,10 +85,28 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
 @property (nonatomic, strong, readonly) HDPushOptions *hPushOptions;
 
 /*
- *  会话模块
+ 会话模块
  */
 @property (nonatomic, strong, readonly) HDChatManager *chatManager;
 
+/**
+ 待接入
+ */
+@property(nonatomic,strong,readonly) HDWaitManager *waitManager;
+
+/**
+ 通知中心
+ */
+@property(nonatomic,strong,readonly) HDNotiManager *notiManager;
+
+
+/**
+ 留言管理
+ */
+@property(nonatomic,strong) HDLeaveMsgManager *leaveMsgManager;
+
+
+@property(nonatomic,strong) HDSetManager *setManager;
 
 /*
  * deviceToken
@@ -201,5 +223,51 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
  *  同步方法，会阻塞当前线程
  */
 - (HDError *)updatePushOptionsToServer:(HDPushOptions *)hPushOptions;
+
+#pragma mark - 注册
+
+/**
+ 获取图片验证码
+ 
+ @param completion 完成回调
+ */
+- (void)getVerificationImageCompletion:(void(^)(id responseObject,HDError *error))completion;
+
+
+
+/**
+ 获取邮箱验证码
+
+ @param completion 完成回调
+ */
+- (void)sendVerificationEmailParameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
+
+
+/**
+ 验证注册信息[尚未短信验证]
+
+ @param paramenters 参数
+ @param completion 完成回调
+ */
+- (void)verifyRegisterInfoWithParameters:(NSDictionary *)paramenters completion:(void(^)(id responseObject ,HDError *error))completion;
+
+
+/**
+ 注册用户[已经短信验证]
+
+ @param parameters 参数
+ @param completion 完成回调
+ */
+- (void)registerUserWithParameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
+
+
+/**
+ 重置密码
+
+ @param parameters 参数
+ @param completion 完成回调
+ */
+- (void)resetPasswordWithparameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
+
 
 @end

@@ -69,7 +69,7 @@ NSString *const kRouterEventLocationBubbleTapEventName = @"kRouterEventLocationB
 
 #pragma mark - setter
 
-- (void)setModel:(MessageModel *)model
+- (void)setModel:(HDMessage *)model
 {
     [super setModel:model];
     
@@ -84,7 +84,7 @@ NSString *const kRouterEventLocationBubbleTapEventName = @"kRouterEventLocationB
     [self routerEventWithName:kRouterEventLocationBubbleTapEventName userInfo:@{KMESSAGEKEY:self.model}];
 }
 
-+(CGFloat)heightForBubbleWithObject:(MessageModel *)object
++(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
     return 2 * BUBBLE_VIEW_PADDING + LOCATION_IMAGEVIEW_SIZE;
 }

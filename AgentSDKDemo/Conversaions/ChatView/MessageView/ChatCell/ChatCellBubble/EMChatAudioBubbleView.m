@@ -96,12 +96,13 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
 
 #pragma mark - setter
 
-- (void)setModel:(MessageModel *)model
+- (void)setModel:(HDMessage *)model
 {
     [super setModel:model];
+    HDVoiceMessageBody *body = (HDVoiceMessageBody *)model.nBody;
     
-    if (self.model.time) {
-        _timeLabel.text = [NSString stringWithFormat:@"%d'",(int)self.model.time];
+    if (body) {
+        _timeLabel.text = [NSString stringWithFormat:@"%d'",body.duration];
     }
     
     if (self.model.isSender) {
@@ -136,7 +137,7 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
 }
 
 
-+(CGFloat)heightForBubbleWithObject:(MessageModel *)object
++(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
     return 2 * BUBBLE_VIEW_PADDING + ANIMATION_IMAGEVIEW_SIZE;
 }

@@ -9,16 +9,14 @@
 #import "EMFileViewController.h"
 
 #import "TTOpenInAppActivity.h"
-
 #import "ChatViewController.h"
 
-@interface EMFileViewController ()<UIDocumentInteractionControllerDelegate>
+@interface EMFileViewController ()
 
 @property (nonatomic, strong) UIBarButtonItem *openFileItem;
 @property (nonatomic, strong) UIButton *downloadButton;
 @property (nonatomic, strong) UIImageView *fileImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
-@property(nonatomic,strong) UIDocumentInteractionController *documentInteractionController;
 @end
 
 @implementation EMFileViewController
@@ -45,7 +43,7 @@
 {
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
-        _nameLabel.frame = CGRectMake((hScreenWidth - 200.f)/2, CGRectGetMaxY(self.fileImageView.frame) + 10.f, 200.f, 20.f);
+        _nameLabel.frame = CGRectMake((KScreenWidth - 200.f)/2, CGRectGetMaxY(self.fileImageView.frame) + 10.f, 200.f, 20.f);
         _nameLabel.textColor = RGBACOLOR(26, 26, 26, 1);
         _nameLabel.font = [UIFont systemFontOfSize:17];
         _nameLabel.text = _model.body.fileName;
@@ -57,7 +55,7 @@
 {
     if (_fileImageView == nil) {
         _fileImageView = [[UIImageView alloc] init];
-        _fileImageView.frame = CGRectMake((hScreenWidth - 120)/2, 100.f, 120.f, 120.f);
+        _fileImageView.frame = CGRectMake((KScreenWidth - 120)/2, 100.f, 120.f, 120.f);
         _fileImageView.image = [UIImage imageNamed:@"image_file2_icon_files"];
         _fileImageView.contentMode = UIViewContentModeScaleAspectFill;
         _fileImageView.layer.masksToBounds = YES;
@@ -69,7 +67,7 @@
 {
     if (_downloadButton == nil) {
         _downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _downloadButton.frame = CGRectMake(0, CGRectGetMaxY(self.nameLabel.frame) + 10.f, hScreenWidth, 20.f);
+        _downloadButton.frame = CGRectMake(0, CGRectGetMaxY(self.nameLabel.frame) + 10.f, KScreenWidth, 20.f);
         [_downloadButton setTitle:@"下载" forState:UIControlStateNormal];
         [_downloadButton.titleLabel setFont:[UIFont systemFontOfSize:17.f]];
         [_downloadButton setTitleColor:RGBACOLOR(25, 163, 255, 1) forState:UIControlStateNormal];
@@ -96,77 +94,52 @@
 {
     [self downloadMessageAttachments:_model];
 }
-- (UIDocumentInteractionController *)documentInteractionController {
-    if (!_documentInteractionController) {
-        _documentInteractionController = [[UIDocumentInteractionController alloc]init];
-        _documentInteractionController.delegate = self;
-    }
-    return _documentInteractionController;
-}
 
 - (void)openFileAction
 {
-    if (_model.localPath.length == 0) {
+    HDFileMessageBody *body = (HDFileMessageBody *)_model.nBody;
+    NSString *filePath = [[KFFileCache sharedInstance] fileFullPathWithUrlStr:body.remotePath];
+    if (![[KFFileCache sharedInstance] isExistFile:filePath]) {
         [self showHint:@"正在下载文件,请稍后点击"];
         [self downloadMessageAttachments:_model];
         return;
     }
     
-    NSURL *URL = [NSURL fileURLWithPath:_model.localPath];
-    self.documentInteractionController.URL = URL;
-    self.documentInteractionController.name = _model.body.fileName;
-    if (![self.documentInteractionController presentPreviewAnimated:YES]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"系统不支持预览此类文件" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil];
-        [alert show];
-    }
+    NSURL *URL = [NSURL fileURLWithPath:filePath];
     
-//    TTOpenInAppActivity *openInAppActivity = [[TTOpenInAppActivity alloc] initWithView:self.view andRect:self.tableView.frame];
-//    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[openInAppActivity]];
-//    
-//    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-//        // Store reference to superview (UIActionSheet) to allow dismissal
-//        openInAppActivity.superViewController = activityViewController;
-//        // Show UIActivityViewController
-//        [self presentViewController:activityViewController animated:YES completion:NULL];
-//    } else {
-//        // Create pop up
-//        UIPopoverController *activityPopoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-//        // Store reference to superview (UIPopoverController) to allow dismissal
-//        openInAppActivity.superViewController = activityPopoverController;
-//        // Show UIActivityViewController in popup
-//        [activityPopoverController presentPopoverFromRect:self.tableView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-//    }
+    TTOpenInAppActivity *openInAppActivity = [[TTOpenInAppActivity alloc] initWithView:self.view andRect:self.tableView.frame];
+    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[openInAppActivity]];
+    
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
+        // Store reference to superview (UIActionSheet) to allow dismissal
+        openInAppActivity.superViewController = activityViewController;
+        // Show UIActivityViewController
+        [self presentViewController:activityViewController animated:YES completion:NULL];
+    } else {
+        // Create pop up
+        UIPopoverController *activityPopoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
+        // Store reference to superview (UIPopoverController) to allow dismissal
+        openInAppActivity.superViewController = activityPopoverController;
+        // Show UIActivityViewController in popup
+        [activityPopoverController presentPopoverFromRect:self.tableView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
 
 }
 
-- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
-    return self;
-}
 
-- (void)downloadMessageAttachments:(MessageModel *)model
+- (void)downloadMessageAttachments:(HDMessage *)model
 {
-    if (model.type == kefuMessageBodyType_File) {
-        if (model.body) {
-            
-            if ([ChatViewController isExistFile:model]) {
-                return;
-            }
+    if (model.type == HDMessageBodyTypeFile) {
+        HDFileMessageBody *body = (HDFileMessageBody *)model.nBody;
+        if (body) {
             [self showHintNotHide:@"正在下载文件"];
             WEAK_SELF
-//            [[DXCSManager shareManager] asyncFetchDownLoadWithFilePath:model.body.originalPath Completion:^(id responseObject, DXError *error) {
-//                [weakSelf hideHud];
-//                if (!error) {
-//                    NSString *libDir = NSHomeDirectory();
-//                    libDir = [libDir stringByAppendingPathComponent:@"Library"];
-//                    NSString *dbDirectoryPath = [libDir stringByAppendingPathComponent:@"kefuAppFile"];
-//                    NSData *data = [NSData dataWithContentsOfURL:responseObject];
-//                    NSString *path = [NSString stringWithFormat:@"%@/%@",dbDirectoryPath,model.body.fileName];
-//                    [data writeToFile:path atomically:YES];
-//                    
-//                    model.localPath = path;
-//                    weakSelf.downloadButton.hidden = YES;
-//                }
-//            }];
+            [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSError *error) {
+                [weakSelf hideHud];
+                if (!error) {
+                    weakSelf.downloadButton.hidden = YES;
+                }
+            }];
         }
     }
 }

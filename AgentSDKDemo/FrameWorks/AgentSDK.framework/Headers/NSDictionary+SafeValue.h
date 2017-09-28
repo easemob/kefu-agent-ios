@@ -14,4 +14,5 @@
 
 - (NSInteger)safeIntegerValueForKey:(NSString *)key;
 
+
 @end

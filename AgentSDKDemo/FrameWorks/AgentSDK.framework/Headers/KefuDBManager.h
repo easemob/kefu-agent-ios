@@ -8,20 +8,46 @@
 
 #import <Foundation/Foundation.h>
 
-#define MESSAGE_TABLE @"CREATE TABLE IF NOT EXISTS `messagetable` (`body` varchar,`chatGroupId` integer,`chatGroupSeqId` integer,`contentType` varchar,`createDateTime` double,`ext` varchar,`fromUser` varchar,`messageType` varchar,`msgId` varchar PRIMARY KEY,`sessionServiceId` varchar,`sessionServiceSeqId` integer,`tenantId` integer,`timestamp` integer,`toUser` varchar,`status` integer)"
+#define MESSAGE_TABLE @"CREATE TABLE IF NOT EXISTS messagetable \
+        (\
+            msgId  TEXT NOT NULL PRIMARY KEY, \
+            sessionServiceId   TEXT,\
+            chatGroupId     INTEGER,   \
+            tenantId    TEXT,\
+            messageType     TEXT, \
+            fromUser    TEXT,\
+            fromusertype    TEXT,   \
+            toUser      TEXT,\
+            contenttype     INTEGER,  \
+            body        TEXT,\
+            ext             TEXT,  \
+            chatGroupSeqId  INTEGER,\
+            sessionServiceSeqId    INTEGER,  \
+            createDateTime  INTEGER,\
+            timestamp       INTEGER,   \
+            status      INTEGER\
+        )"
 
-#define CONVERSATION_TABLE @"CREATE TABLE IF NOT EXISTS `conversationtable` (`chatGroupId` integer,`createDateTime` double,`serviceSessionId` varchat NOT NULL PRIMARY KEY,`unReadMessageCount` integer,`user` varchar,`type` integer)"
+#define CONVERSATION_TABLE @"CREATE TABLE IF NOT EXISTS conversationtable \
+        (\
+            sessionServiceId TEXT NOT NULL PRIMARY KEY,\
+            userId      TEXT,   unReadMessageCount TEXT,\
+            nicename    TEXT,   chatGroupId TEXT, \
+            uer         TEXT,   createDateTime  TEXT,\
+            lastmsgbody TEXT\
+        )"
 
 #define KEFUTABLE_MESSAGE @"messagetable"
 #define KEFUTABLE_MESSAGE_BODY @"body"
 #define KEFUTABLE_MESSAGE_CHATGROUPID @"chatGroupId"
 #define KEFUTABLE_MESSAGE_CHATGROUPSEQID @"chatGroupSeqId"
-#define KEFUTABLE_MESSAGE_CONTENTTYPE @"contentType"
+#define KEFUTABLE_MESSAGE_CONTENTTYPE @"contenttype"
 #define KEFUTABLE_MESSAGE_CREATEDATETIME @"createDateTime"
 #define KEFUTABLE_MESSAGE_EXT @"ext"
 #define KEFUTABLE_MESSAGE_FROMUSER @"fromUser"
 #define KEFUTABLE_MESSAGE_MESSAGETYPE @"messageType"
 #define KEFUTABLE_MESSAGE_ID @"msgId"
+#define KEFUTABLE_MESSAGE_MSGID @"msgId"
 #define KEFUTABLE_MESSAGE_SESSIONSERVICEID @"sessionServiceId"
 #define KEFUTABLE_MESSAGE_SESSIONSERVICESEQID @"sessionServiceSeqId"
 #define KEFUTABLE_MESSAGE_TENATID @"tenantId"
@@ -38,8 +64,8 @@
 #define KEFUTABLE_CONVERSATION_TYPE @"type"
 
 
-@class MessageModel;
-@class ConversationModel;
+@class HDMessage;
+@class HDConversation;
 @interface KefuDBManager : NSObject
 
 + (instancetype)shareManager;
@@ -50,27 +76,27 @@
 
 #pragma mark - message DBfunction
 //增删改查
-- (MessageModel*)getMsgByMsgId:(NSString*)msgId;
+- (HDMessage *)getMsgByMsgId:(NSString*)msgId;
 
-- (BOOL)replaceMessage:(MessageModel *)message;
+- (BOOL)replaceMessage:(HDMessage *)message;
 
-- (BOOL)insertMessage:(MessageModel *)message;
+- (BOOL)insertMessage:(HDMessage *)message;
 
 - (BOOL)insertMessages:(NSArray *)messages;
 
-- (NSArray *)fetchMessagesForSessionServiceId:(NSString *)sessionServiceId withPageNum:(int)page;
+//- (NSArray *)fetcMessageModelsForSessionServiceId:(NSString *)sessionServiceId withPageNum:(int)page;
 
-- (MessageModel *)fetchLastMessagesForSessionServiceId:(NSString *)sessionServiceId;
+- (HDMessage *)fetchLastMessagesForSessionServiceId:(NSString *)sessionServiceId;
 
 - (int)fetchCountForSessionServiceId:(NSString *)sessionServiceId;
 
-- (BOOL)updateMesage:(MessageModel*)message withMessageId:(NSString*)msgId;
+- (BOOL)updateMesage:(HDMessage *)message witMessageModelId:(NSString*)msgId;
 
 - (BOOL)deleteMessagesById:(NSString *)sessionServiceId;
 
 #pragma mark - conversation DBfunction
 //增删查
-- (BOOL)insertConversationModel:(ConversationModel *)model;
+- (BOOL)insertConversationModel:(HDConversation *)model;
 
 - (BOOL)insertConversationModels:(NSArray *)models;
 
@@ -79,5 +105,11 @@
 - (BOOL)deleteConversation:(HDConversationType)type;
 
 - (BOOL)deleteConversationBySessionId:(NSString*)serciceSessionId;
+
+//new
+- (NSArray *)getMessagesForChatGroup:(NSInteger )chatGrpupId page:(int)page;
+
+
+
 
 @end

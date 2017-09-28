@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MessageModel.h"
+#import "HDMessage.h"
 #import "HDError.h"
 
 @protocol HDChatManagerDelegate <NSObject>
@@ -16,7 +16,7 @@
  *
  *  @param aMessages  消息列表<MessageModel>
  */
-- (void)messagesDidReceive:(NSArray <MessageModel *> *)aMessages;
+- (void)messagesDidReceive:(NSArray <HDMessage *> *)aMessages;
 
 /*
  *  消息状态发生变化
@@ -24,7 +24,7 @@
  *  @param aMessage  状态发生变化的消息
  *  @param aError    出错信息
  */
-- (void)messageStatusDidChange:(MessageModel *)aMessage
+- (void)messageStatusDidChange:(HDMessage *)aMessage
                          error:(HDError *)aError;
 
 /*
@@ -33,6 +33,6 @@
  *  @param aMessage  附件状态发生变化的消息
  *  @param aError    错误信息
  */
-- (void)messageAttachmentStatusDidChange:(MessageModel *)aMessage
+- (void)messageAttachmentStatusDidChange:(HDMessage *)aMessage
                                    error:(HDError *)aError;
 @end
