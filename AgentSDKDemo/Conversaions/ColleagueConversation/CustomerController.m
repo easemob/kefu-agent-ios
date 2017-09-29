@@ -32,9 +32,6 @@
 
 @implementation CustomerController
 
-@synthesize searchBar = _searchBar;
-
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];

@@ -613,47 +613,48 @@ static NSInteger currentTotalBadgeValue;
     return userInfo;
 }
 
-- (void)didReceiveLocalNotification:(UILocalNotification *)notification
-{
-    if (![HDClient sharedClient].isLoggedInBefore) {
-        return;
-    }
-    NSDictionary *userInfo = notification.userInfo;
-    if (userInfo) {
-        //新回话就到会话界面
-        NSDictionary *body = [userInfo valueForKey:@"body"];
-        if ([body.allKeys containsObject:@"newSession"]) {
-            if( [[body valueForKey:@"newSession"] boolValue] ) { //是新回话
-                [self.navigationController popToRootViewControllerAnimated:NO];
-                [self setSelectedViewController:_conversationsController];
-                [self tabBar:self.tabBar didSelectItem:_conversationsController.tabBarItem];
-                return;
-            }
-        }
-        NSString *type = [userInfo objectForKey:MESSAGE_TYPE];
-        if ([type isEqualToString:MESSAGE_TYPE_NEWCHARMESSAGE]) {
-            [self.navigationController popToRootViewControllerAnimated:NO];
-            [self setSelectedViewController:_conversationsController];
-            [self tabBar:self.tabBar didSelectItem:_conversationsController.tabBarItem];
-            if (_isEnterChat) {
-                if ([userInfo objectForKey:@"body"]) {
-                    HDConversation *model = [[HDConversation alloc] initWithDictionary:[userInfo objectForKey:@"body"]];
-                    ChatViewController *chatView = [[ChatViewController alloc] init];
-                    chatView.conversationModel = model;
-                    model.chatter = model.vistor;
-                    [[DXMessageManager shareManager] setCurSessionId:model.sessionId];
-//                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONVERSATION_REFRESH object:nil];
-                    [self.navigationController pushViewController:chatView animated:NO];
-                }
-            }
-            _serviceSessionId = nil;
-            _isEnterChat = YES;
-        } else if ([type isEqualToString:MESSAGE_TYPE_ACTIVITY_CREATE]) {
-            [self setSelectedViewController:_notifyController];
-            [self tabBar:self.tabBar didSelectItem:_notifyController.tabBarItem];
-        }
-    }
-}
+
+//- (void)didReceiveLocalNotification:(UILocalNotification *)notification
+//{
+//    if (![HDClient sharedClient].isLoggedInBefore) {
+//        return;
+//    }
+//    NSDictionary *userInfo = notification.userInfo;
+//    if (userInfo) {
+//        //新回话就到会话界面
+//        NSDictionary *body = [userInfo valueForKey:@"body"];
+//        if ([body.allKeys containsObject:@"newSession"]) {
+//            if( [[body valueForKey:@"newSession"] boolValue] ) { //是新回话
+//                [self.navigationController popToRootViewControllerAnimated:NO];
+//                [self setSelectedViewController:_conversationsController];
+//                [self tabBar:self.tabBar didSelectItem:_conversationsController.tabBarItem];
+//                return;
+//            }
+//        }
+//        NSString *type = [userInfo objectForKey:MESSAGE_TYPE];
+//        if ([type isEqualToString:MESSAGE_TYPE_NEWCHARMESSAGE]) {
+//            [self.navigationController popToRootViewControllerAnimated:NO];
+//            [self setSelectedViewController:_conversationsController];
+//            [self tabBar:self.tabBar didSelectItem:_conversationsController.tabBarItem];
+//            if (_isEnterChat) {
+//                if ([userInfo objectForKey:@"body"]) {
+//                    HDConversation *model = [[HDConversation alloc] initWithDictionary:[userInfo objectForKey:@"body"]];
+//                    ChatViewController *chatView = [[ChatViewController alloc] init];
+//                    chatView.conversationModel = model;
+//                    model.chatter = model.vistor;
+//                    [[DXMessageManager shareManager] setCurSessionId:model.sessionId];
+////                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONVERSATION_REFRESH object:nil];
+//                    [self.navigationController pushViewController:chatView animated:NO];
+//                }
+//            }
+//            _serviceSessionId = nil;
+//            _isEnterChat = YES;
+//        } else if ([type isEqualToString:MESSAGE_TYPE_ACTIVITY_CREATE]) {
+//            [self setSelectedViewController:_notifyController];
+//            [self tabBar:self.tabBar didSelectItem:_notifyController.tabBarItem];
+//        }
+//    }
+//}
 
 - (void)dealloc {
 

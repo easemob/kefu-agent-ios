@@ -88,7 +88,7 @@ static KFManager *_manager = nil;
                 [self playSoundAndVibration];
                 break;
             case UIApplicationStateBackground:
-                self showNotificationWithMessage:@"有一条新消息" message:message];
+                [self showNotificationWithMessage:@"有一条新消息" message:message];
                 break;
             default:
                 break;

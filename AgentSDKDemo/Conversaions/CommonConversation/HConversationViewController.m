@@ -45,11 +45,6 @@
 
 @implementation HConversationViewController
 
-@synthesize searchBar = _searchBar;
-@synthesize searchController = _searchController;
-
-@synthesize showSearchBar = _showSearchBar;
-
 - (instancetype)initWithStyle:(UITableViewStyle)style
                          type:(HDConversationType)type
 {
@@ -61,7 +56,6 @@
         _dataSourceDic = [NSMutableDictionary new];
         hasMore = NO;
         if (_type == HDConversationAccessed) {
-//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conversationRefreshAutoEnd:) name:NOTIFICATION_CONVERSATION_REFRESH_AUTOEND object:nil];
             [self initDelegate];
         }
         _conversationQueue = dispatch_queue_create("com.easemob.kefu.conversation", DISPATCH_QUEUE_SERIAL);
@@ -113,8 +107,7 @@
 }
 
 - (void)agentUsersListChange {
-    //////////
-//    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_AGENTLISTCHANGE object:nil];
+    
 }
 
 - (void)waitListChange {
