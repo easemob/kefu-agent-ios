@@ -1,6 +1,0 @@
-framework module AgentSDK {
-  umbrella header "AgentSDK.h"
-
-  export *
-  module * { export * }
-}
