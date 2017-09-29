@@ -1,0 +1,51 @@
+//
+//  LocalDefine.h
+//  AgentSDKDemo
+//
+//  Created by afanda on 4/17/17.
+//  Copyright © 2017 环信. All rights reserved.
+//
+
+#ifndef LocalDefine_h
+#define LocalDefine_h
+#define DEFAULT_CELLHEIGHT 44
+#define DEFAULT_CELLHEADERHEIGHT 20
+#define DEFAULT_CHAT_CELLHEIGHT 60
+#define DEFAULT_CONVERSATION_CELLHEIGHT 60
+#define kTableViewHeaderAndFooterColor RGBACOLOR(242, 242, 242, 1)
+
+#define KScreenWidth [UIApplication sharedApplication].keyWindow.size.width
+#define KScreenHeight [UIApplication sharedApplication].keyWindow.size.height
+#define kHomeViewLeft 70
+
+#define NOTIFICATION_ADD_COMMENT @"addComment"
+#define NOTIFICATION_ADD_SUMMARY_RESULTS @"addSummaryResult"
+#define USERDEFAULTS_DEVICE_TREE [NSString stringWithFormat:@"%@tagTree",[HDClient sharedClient].currentAgentUser.username]
+#define DefaultUsername @"kefuDefaultUsername"
+
+#define StandardUserDefaults  [NSUserDefaults standardUserDefaults]
+
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define WEAK_SELF typeof(self) __weak weakSelf = self;
+#define kStrongSelf __strong __typeof(self) strongSelf = self;
+
+#define isIPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define isIPhone4 ([[UIScreen mainScreen] bounds].size.height == 480 )
+
+#define BUTTON_TITLE_COLOR RGBACOLOR(0x4c, 0x4c, 0x4c, 1)
+
+//系统版本号
+#define kSystemVersion [[UIDevice currentDevice].systemVersion floatValue]
+
+//APPKEY
+#define UMENG_APPKEY @"55ff6d1fe0f55adff00004bc"
+
+#define USERDEFAULTS_QUICK_REPLY [NSString stringWithFormat:@"%@quickReply",[HDClient sharedClient].currentAgentUsername]
+#pragma mark -  login
+#define USERDEFAULTS_LOGINUSERNAME @"usernaem"
+#define USERDEFAULTS_LOGINPASSWORD @"password"
+
+
+
+#endif /* LocalDefine_h */
