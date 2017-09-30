@@ -249,7 +249,7 @@
                         _waitUnreadcount--;
                         [weakSelf setUnreadCount:_waitUnreadcount];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [[KFManager shareInstance].wait loadData];
+                            [[KFManager sharedInstance].wait loadData];
                         });
                     } else {
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"接入会话失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -398,7 +398,7 @@
                         _waitUnreadcount--;
                         [weakSelf setUnreadCount:_waitUnreadcount];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [[KFManager shareInstance].wait loadData];
+                            [[KFManager sharedInstance].wait loadData];
                         });
                     } else {
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"接入会话失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

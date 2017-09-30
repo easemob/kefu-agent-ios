@@ -32,7 +32,6 @@
 #import "EMFileViewController.h"
 #import "EMPromptBoxView.h"
 #import "DXRecordView.h"
-#import "HConversationManager.h"
 
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
@@ -180,7 +179,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [HConversationManager sharedInstance].curChatViewConvtroller = self;
+    [KFManager sharedInstance].curChatViewConvtroller = self;
     [self startNoti];
     // Do any additional setup after loading the view.
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7) {
@@ -238,7 +237,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyNumberChange:) name:NOTIFICATION_NOTIFY_NUMBER_CHANGE object:nil];
 //    [fNotificationCenter addObserver:self selector:@selector(autoPop:) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
     [self loadTags];
-    [[HConversationManager sharedInstance] setNavItemBadgeValueWithAllConversations:_allConversations];
+    [[KFManager sharedInstance] setNavItemBadgeValueWithAllConversations:_allConversations];
     [self tableViewScrollToBottom];
 }
 
@@ -877,7 +876,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     HDMessage *model = [userInfo objectForKey:KMESSAGEKEY];
     if ([eventName isEqualToString:kRouterEventTextURLTapEventName]) {
         NSString *_dataString=[NSString stringWithUTF8String:[[userInfo objectForKey:@"url"] UTF8String]];
-        _dataString = [_dataString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
         WebViewController *webview = [[WebViewController alloc] initWithUrl:_dataString];
         [self.navigationController pushViewController:webview animated:YES];
     } else if ([eventName isEqualToString:kRouterEventImageBubbleTapEventName]){
@@ -1032,11 +1030,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)backAction
 {
-    [[KFManager shareInstance].conversation refreshData];
+    [[KFManager sharedInstance].conversation refreshData];
     
     _conversationModel.unreadCount = 0;
-    [[HConversationManager sharedInstance] setTabbarBadgeValueWithAllConversations:_allConversations];
-    [HConversationManager sharedInstance].curChatViewConvtroller = nil;
+    [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:_allConversations];
+    [KFManager sharedInstance].curChatViewConvtroller = nil;
     if (chatType == ChatViewTypeChat) {
         if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
             [_delegate refreshConversationList];
@@ -1231,8 +1229,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeChat];
             history.chatter = history.vistor;
             chatView.conversationModel = history;
-            [[HConversationManager sharedInstance] setCurChatViewConvtroller:chatView];
-            [[KFManager shareInstance].conversation refreshData];
+            [[KFManager sharedInstance] setCurChatViewConvtroller:chatView];
+            [[KFManager sharedInstance].conversation refreshData];
             [weakSelf.navigationController pushViewController:chatView animated:YES];
         } else {
             if (error.code == 400) {

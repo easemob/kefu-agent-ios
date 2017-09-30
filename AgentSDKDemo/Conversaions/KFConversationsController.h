@@ -9,7 +9,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ConversationsController : UIViewController
+@interface KFConversationsController : UIViewController
 
 @property (strong, nonatomic) UIView *titleView;
 

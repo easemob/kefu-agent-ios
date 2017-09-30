@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "KFBaseNavigationController.h"
 #import "AppDelegate+EaseMob.h"
-#import "KFTabBarController.h"
 #import "HomeViewController.h"
 #import "LoginViewController.h"
 #import "DXMessageManager.h"
@@ -66,8 +65,6 @@
     [[EmotionEscape sharedInstance] setEaseEmotionEscapePattern:@"\\[[^\\[\\]]{1,3}\\]"];
     [[EmotionEscape sharedInstance] setEaseEmotionEscapeDictionary:[ConvertToCommonEmoticonsHelper emotionsDictionary]];
     
-    [[HDClient sharedClient] addDelegate:[KFManager shareInstance] delegateQueue:nil];
-    
     return YES;
 }
 
@@ -89,7 +86,7 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     if(application.applicationState == UIApplicationStateActive){
         if ([UIApplication sharedApplication].applicationIconBadgeNumber > 0) {
-            [[KFManager shareInstance].conversation refreshData];
+            [[KFManager sharedInstance].conversation refreshData];
         }
     }
 }

@@ -87,8 +87,7 @@
 		D33CE6CD1F7CA98D00236720 /* CustomerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE6751F7CA98D00236720 /* CustomerViewController.m */; };
 		D33CE6CE1F7CA98D00236720 /* ChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE6781F7CA98D00236720 /* ChatViewController.m */; };
 		D33CE6CF1F7CA98D00236720 /* HConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE67A1F7CA98D00236720 /* HConversationViewController.m */; };
-		D33CE6D01F7CA98D00236720 /* ConversationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE67C1F7CA98D00236720 /* ConversationsController.m */; };
-		D33CE6D11F7CA98D00236720 /* HConversationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE67E1F7CA98D00236720 /* HConversationManager.m */; };
+		D33CE6D01F7CA98D00236720 /* KFConversationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE67C1F7CA98D00236720 /* KFConversationsController.m */; };
 		D33CE6D21F7CA98D00236720 /* HSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE6801F7CA98D00236720 /* HSearchResultsViewController.m */; };
 		D33CE6D31F7CA98D00236720 /* DXDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE6831F7CA98D00236720 /* DXDatePickerView.m */; };
 		D33CE6D41F7CA98D00236720 /* DXTimeFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE6851F7CA98D00236720 /* DXTimeFilterView.m */; };
@@ -109,7 +108,6 @@
 		D33CE7381F7CAD2C00236720 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE71F1F7CAD2C00236720 /* HomeViewController.m */; };
 		D33CE7391F7CAD2C00236720 /* KFBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7211F7CAD2C00236720 /* KFBaseNavigationController.m */; };
 		D33CE73A1F7CAD2C00236720 /* KFLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7231F7CAD2C00236720 /* KFLeftViewController.m */; };
-		D33CE73B1F7CAD2C00236720 /* KFTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7251F7CAD2C00236720 /* KFTabBarController.m */; };
 		D33CE73E1F7CAD2C00236720 /* DXUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE72D1F7CAD2C00236720 /* DXUpdateView.m */; };
 		D33CE73F1F7CAD2C00236720 /* LeftMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE72F1F7CAD2C00236720 /* LeftMenuHeaderView.m */; };
 		D33CE7661F7CAEB800236720 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7471F7CAEB800236720 /* ChineseToPinyin.m */; };
@@ -229,6 +227,7 @@
 		D33F46751E9F71A000FE6DCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D33F46741E9F71A000FE6DCE /* Assets.xcassets */; };
 		D33F46781E9F71A000FE6DCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D33F46761E9F71A000FE6DCE /* LaunchScreen.storyboard */; };
 		D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */; };
+		D34DAC871F7F49D100EEB0CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D34DAC861F7F49D100EEB0CB /* Images.xcassets */; };
 		D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6091F569CF100E3AB74 /* Security.framework */; };
 		D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
 		D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */; };
@@ -307,7 +306,6 @@
 		D3FDC6001EA0A5BE00C25BB0 /* icon1_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5F91EA0A5BE00C25BB0 /* icon1_selected@3x.png */; };
 		D3FDC6011EA0A5BE00C25BB0 /* icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5FA1EA0A5BE00C25BB0 /* icon2@2x.png */; };
 		D3FDC6021EA0A5BE00C25BB0 /* icon2_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5FB1EA0A5BE00C25BB0 /* icon2_selected@2x.png */; };
-		D3FDC6041EA0A5BE00C25BB0 /* icon_mono_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5FD1EA0A5BE00C25BB0 /* icon_mono_off@2x.png */; };
 		D3FDC6051EA0A5BE00C25BB0 /* icon_mono_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5FE1EA0A5BE00C25BB0 /* icon_mono_on@2x.png */; };
 		D3FDC7591EA0A5C600C25BB0 /* chatFire_audioPlaying0.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6081EA0A5C500C25BB0 /* chatFire_audioPlaying0.png */; };
 		D3FDC75A1EA0A5C600C25BB0 /* chatFire_audioPlaying0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6091EA0A5C500C25BB0 /* chatFire_audioPlaying0@2x.png */; };
@@ -748,10 +746,8 @@
 		D33CE6781F7CA98D00236720 /* ChatViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatViewController.m; sourceTree = "<group>"; };
 		D33CE6791F7CA98D00236720 /* HConversationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HConversationViewController.h; sourceTree = "<group>"; };
 		D33CE67A1F7CA98D00236720 /* HConversationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HConversationViewController.m; sourceTree = "<group>"; };
-		D33CE67B1F7CA98D00236720 /* ConversationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConversationsController.h; sourceTree = "<group>"; };
-		D33CE67C1F7CA98D00236720 /* ConversationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConversationsController.m; sourceTree = "<group>"; };
-		D33CE67D1F7CA98D00236720 /* HConversationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HConversationManager.h; sourceTree = "<group>"; };
-		D33CE67E1F7CA98D00236720 /* HConversationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HConversationManager.m; sourceTree = "<group>"; };
+		D33CE67B1F7CA98D00236720 /* KFConversationsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFConversationsController.h; sourceTree = "<group>"; };
+		D33CE67C1F7CA98D00236720 /* KFConversationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFConversationsController.m; sourceTree = "<group>"; };
 		D33CE67F1F7CA98D00236720 /* HSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HSearchResultsViewController.h; sourceTree = "<group>"; };
 		D33CE6801F7CA98D00236720 /* HSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HSearchResultsViewController.m; sourceTree = "<group>"; };
 		D33CE6821F7CA98D00236720 /* DXDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXDatePickerView.h; sourceTree = "<group>"; };
@@ -793,8 +789,6 @@
 		D33CE7211F7CAD2C00236720 /* KFBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFBaseNavigationController.m; sourceTree = "<group>"; };
 		D33CE7221F7CAD2C00236720 /* KFLeftViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFLeftViewController.h; sourceTree = "<group>"; };
 		D33CE7231F7CAD2C00236720 /* KFLeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeftViewController.m; sourceTree = "<group>"; };
-		D33CE7241F7CAD2C00236720 /* KFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFTabBarController.h; sourceTree = "<group>"; };
-		D33CE7251F7CAD2C00236720 /* KFTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFTabBarController.m; sourceTree = "<group>"; };
 		D33CE72C1F7CAD2C00236720 /* DXUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXUpdateView.h; sourceTree = "<group>"; };
 		D33CE72D1F7CAD2C00236720 /* DXUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXUpdateView.m; sourceTree = "<group>"; };
 		D33CE72E1F7CAD2C00236720 /* LeftMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuHeaderView.h; sourceTree = "<group>"; };
@@ -1036,6 +1030,7 @@
 		D33F46B71E9F75E900FE6DCE /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		D33F46E21E9F9C3E00FE6DCE /* HDBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HDBaseNavigationController.h; path = Main/HDBaseNavigationController.h; sourceTree = "<group>"; };
 		D33F46E31E9F9C3E00FE6DCE /* HDBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HDBaseNavigationController.m; path = Main/HDBaseNavigationController.m; sourceTree = "<group>"; };
+		D34DAC861F7F49D100EEB0CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D35C8C681EA4EEF3009A9968 /* LocalDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalDefine.h; sourceTree = "<group>"; };
 		D378E6071F56999700E3AB74 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		D378E6091F569CF100E3AB74 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -1197,7 +1192,6 @@
 		D3FDC5F91EA0A5BE00C25BB0 /* icon1_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon1_selected@3x.png"; sourceTree = "<group>"; };
 		D3FDC5FA1EA0A5BE00C25BB0 /* icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon2@2x.png"; sourceTree = "<group>"; };
 		D3FDC5FB1EA0A5BE00C25BB0 /* icon2_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon2_selected@2x.png"; sourceTree = "<group>"; };
-		D3FDC5FD1EA0A5BE00C25BB0 /* icon_mono_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mono_off@2x.png"; sourceTree = "<group>"; };
 		D3FDC5FE1EA0A5BE00C25BB0 /* icon_mono_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_mono_on@2x.png"; sourceTree = "<group>"; };
 		D3FDC6081EA0A5C500C25BB0 /* chatFire_audioPlaying0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatFire_audioPlaying0.png; sourceTree = "<group>"; };
 		D3FDC6091EA0A5C500C25BB0 /* chatFire_audioPlaying0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chatFire_audioPlaying0@2x.png"; sourceTree = "<group>"; };
@@ -1887,8 +1881,6 @@
 				D33CE7211F7CAD2C00236720 /* KFBaseNavigationController.m */,
 				D33CE7221F7CAD2C00236720 /* KFLeftViewController.h */,
 				D33CE7231F7CAD2C00236720 /* KFLeftViewController.m */,
-				D33CE7241F7CAD2C00236720 /* KFTabBarController.h */,
-				D33CE7251F7CAD2C00236720 /* KFTabBarController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -2355,6 +2347,7 @@
 				D33F46741E9F71A000FE6DCE /* Assets.xcassets */,
 				D33F46761E9F71A000FE6DCE /* LaunchScreen.storyboard */,
 				D33F46791E9F71A000FE6DCE /* Info.plist */,
+				D34DAC861F7F49D100EEB0CB /* Images.xcassets */,
 				D33F46681E9F71A000FE6DCE /* Supporting Files */,
 			);
 			path = AgentSDKDemo;
@@ -2400,10 +2393,8 @@
 				D33CE5EC1F7CA98D00236720 /* ChatView */,
 				D33CE66F1F7CA98D00236720 /* ColleagueConversation */,
 				D33CE6761F7CA98D00236720 /* CommonConversation */,
-				D33CE67B1F7CA98D00236720 /* ConversationsController.h */,
-				D33CE67C1F7CA98D00236720 /* ConversationsController.m */,
-				D33CE67D1F7CA98D00236720 /* HConversationManager.h */,
-				D33CE67E1F7CA98D00236720 /* HConversationManager.m */,
+				D33CE67B1F7CA98D00236720 /* KFConversationsController.h */,
+				D33CE67C1F7CA98D00236720 /* KFConversationsController.m */,
 				D33CE67F1F7CA98D00236720 /* HSearchResultsViewController.h */,
 				D33CE6801F7CA98D00236720 /* HSearchResultsViewController.m */,
 				D33CE6811F7CA98D00236720 /* Others */,
@@ -2425,6 +2416,7 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				D33CE5DC1F7C969B00236720 /* AgentSDK.framework */,
 				D33CE8AC1F7CD84A00236720 /* WebViewJavascriptBridge */,
 				D33CE89F1F7CD3D400236720 /* SBTickerView */,
 				D33CE8621F7CD25800236720 /* PodFiles */,
@@ -2437,7 +2429,6 @@
 				D33CE7A31F7CB01000236720 /* AFNetworking */,
 				D33CE6FD1F7CACAC00236720 /* MMDrawerController */,
 				D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */,
-				D33CE5DC1F7C969B00236720 /* AgentSDK.framework */,
 				D3A95D6B1EA0F47100ADD394 /* DeviceUtil */,
 				D3A95D801EA0F47100ADD394 /* Emoji */,
 				D3A95D871EA0F47100ADD394 /* IQKeyboardManager */,
@@ -2820,7 +2811,6 @@
 				D3FDC5F91EA0A5BE00C25BB0 /* icon1_selected@3x.png */,
 				D3FDC5FA1EA0A5BE00C25BB0 /* icon2@2x.png */,
 				D3FDC5FB1EA0A5BE00C25BB0 /* icon2_selected@2x.png */,
-				D3FDC5FD1EA0A5BE00C25BB0 /* icon_mono_off@2x.png */,
 				D3FDC5FE1EA0A5BE00C25BB0 /* icon_mono_on@2x.png */,
 			);
 			path = ResourceBase;
@@ -3485,6 +3475,7 @@
 				D3FDC83B1EA0A5C600C25BB0 /* main_tab_icon_histroy@2x.png in Resources */,
 				D3FDC8471EA0A5C600C25BB0 /* Stage_home_status_offline@2x.png in Resources */,
 				D3FDC75D1EA0A5C600C25BB0 /* chatFire_audioPlaying2.png in Resources */,
+				D34DAC871F7F49D100EEB0CB /* Images.xcassets in Resources */,
 				D3FDC7DE1EA0A5C600C25BB0 /* ee_24.png in Resources */,
 				D3FDC8771EA0A5C600C25BB0 /* list_icon_file_image@3x.png in Resources */,
 				D33CE69C1F7CA98D00236720 /* chat_location_detail_disclosureHL@2x.png in Resources */,
@@ -3518,7 +3509,6 @@
 				D3FDC7B51EA0A5C600C25BB0 /* icon_department_select@2x.png in Resources */,
 				D33CE69B1F7CA98D00236720 /* chat_location_detail_disclosureHL.png in Resources */,
 				D3FDC84C1EA0A5C600C25BB0 /* tabbar_icon_ongoing@2x.png in Resources */,
-				D3FDC6041EA0A5BE00C25BB0 /* icon_mono_off@2x.png in Resources */,
 				D3FDC8671EA0A5C600C25BB0 /* file_btn_icon_file@3x.png in Resources */,
 				D3FDC7A11EA0A5C600C25BB0 /* button_blue2_select@2x.png in Resources */,
 				D3FDC88E1EA0A5C600C25BB0 /* shai_setting_icon_open@3x.png in Resources */,
@@ -3737,7 +3727,6 @@
 				D33CE7351F7CAD2C00236720 /* EMHistoryTimeView.m in Sources */,
 				D33CE7BF1F7CB01000236720 /* AFURLSessionManager.m in Sources */,
 				D3A95E4D1EA0F47100ADD394 /* MWGridViewController.m in Sources */,
-				D33CE73B1F7CAD2C00236720 /* KFTabBarController.m in Sources */,
 				D3A95E3E1EA0F47100ADD394 /* IQUIViewController+Additions.m in Sources */,
 				D33CE85F1F7CD0F800236720 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				D3A95E3D1EA0F47100ADD394 /* IQUIView+Hierarchy.m in Sources */,
@@ -3790,9 +3779,8 @@
 				D33CE6CA1F7CA98D00236720 /* WebViewController.m in Sources */,
 				D3A95E331EA0F47100ADD394 /* EMCDDeviceManager+Microphone.m in Sources */,
 				D33CE73A1F7CAD2C00236720 /* KFLeftViewController.m in Sources */,
-				D33CE6D01F7CA98D00236720 /* ConversationsController.m in Sources */,
+				D33CE6D01F7CA98D00236720 /* KFConversationsController.m in Sources */,
 				D33CE7301F7CAD2C00236720 /* EMEditViewController.m in Sources */,
-				D33CE6D11F7CA98D00236720 /* HConversationManager.m in Sources */,
 				D33CE7DA1F7CB42E00236720 /* EMBaseViewController.m in Sources */,
 				D33CE6B01F7CA98D00236720 /* LocationViewController.m in Sources */,
 				D33CE7EB1F7CB48400236720 /* QuickReplyModel.m in Sources */,
@@ -3998,6 +3986,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-6";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
@@ -4035,6 +4024,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-6";
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;

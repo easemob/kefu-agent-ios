@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "KFBaseNavigationController.h"
-#import "ConversationsController.h"
+#import "KFConversationsController.h"
 #import "HistoryConversationsController.h"
 #import "CustomerController.h"
 #import "NotifyViewController.h"
@@ -52,7 +52,7 @@ static NSString *kGroupName = @"GroupName";
     NSString *_serviceSessionId;
 }
 
-@property (strong, nonatomic) ConversationsController *conversationsController;
+@property (strong, nonatomic) KFConversationsController *conversationsController;
 @property (strong, nonatomic) CustomerViewController *customerController;
 @property (strong, nonatomic) NotifyViewController *notifyController;
 @property (strong, nonatomic) WaitQueueViewController *waitqueueController;
@@ -151,24 +151,24 @@ static NSInteger currentTotalBadgeValue;
 
 - (void)_setupChildrenVC {
     
-    _conversationsController = [[ConversationsController alloc] init];
-    [KFManager shareInstance].conversation = _conversationsController;
+    _conversationsController = [[KFConversationsController alloc] init];
+    [KFManager sharedInstance].conversation = _conversationsController;
     [self setupChildVc:_conversationsController title:@"会话" image:@"tabbar_icon_ongoing" selectedImage:@"tabbar_icon_ongoinghighlight" index:0];
     
     _waitqueueController = [[WaitQueueViewController alloc] init];
-    [KFManager shareInstance].wait = _waitqueueController;
+    [KFManager sharedInstance].wait = _waitqueueController;
     _waitqueueController.showSearchBar = YES;
     _waitqueueController.isFetchedData = YES;
     [self setupChildVc:_waitqueueController title:@"待接入" image:@"tabbar_icon_visitor_Text6" selectedImage:@"tabbar_icon_visitorhighlight_Text6" index:1];
     [_waitqueueController viewDidLoad];
     
     _notifyController = [[NotifyViewController alloc] init];
-    [KFManager shareInstance].noti = _notifyController;
+    [KFManager sharedInstance].noti = _notifyController;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
     [_notifyController viewDidLoad];
     
     _leaveMsgController = [[LeaveMsgViewController alloc] init];
-    [KFManager shareInstance].leaveMsg = _leaveMsgController;
+    [KFManager sharedInstance].leaveMsg = _leaveMsgController;
     [self setupChildVc:_leaveMsgController title:@"留言" image:@"tabbar_icon_crm" selectedImage:@"tabbar_icon_crmhighlight" index:3];
     [_leaveMsgController viewDidLoad];
     
@@ -352,7 +352,7 @@ static NSInteger currentTotalBadgeValue;
 
 -(void) setConversationUnRead:(BOOL) aFlag
 {
-    ConversationsController *conversation = (ConversationsController*)[self.viewControllers objectAtIndex:0];
+    KFConversationsController *conversation = (KFConversationsController*)[self.viewControllers objectAtIndex:0];
     if (aFlag) {
         [conversation.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoinghighlight"] rightImage:[self convertViewToImage:_tipView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoing"] rightImage:[self convertViewToImage:_tipView]]];
     }else {

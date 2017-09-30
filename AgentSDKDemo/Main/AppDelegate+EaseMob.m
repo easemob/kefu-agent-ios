@@ -163,7 +163,7 @@
 
 - (void)userAccountDidLoginFromOtherDevice {
     [MBProgressHUD show:@"其他设备登录" view:self.window];
-    [[KFManager shareInstance] showMainViewController];
+    [[KFManager sharedInstance] showMainViewController];
 }
 
 

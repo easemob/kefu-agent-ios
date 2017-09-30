@@ -19,4 +19,7 @@
 
 @property (nonatomic, weak) id<ConversationTableControllerDelegate> conDelegate;
 
+- (void)loadData;
+
+
 @end

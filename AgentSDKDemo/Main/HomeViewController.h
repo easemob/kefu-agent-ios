@@ -12,7 +12,6 @@
 
 +(id) HomeViewController;
 
-
 @property(nonatomic,strong) UIViewController *currentAdminVC;
 
 +(void) HomeViewControllerDestory;

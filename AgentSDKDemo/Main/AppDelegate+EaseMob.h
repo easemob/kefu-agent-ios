@@ -12,6 +12,5 @@
 
 - (void)easemobApplication:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions;
 
-- (void)setAppKey;
 
 @end

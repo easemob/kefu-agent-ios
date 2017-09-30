@@ -292,8 +292,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [[HDClient sharedClient] asyncLoginWithUsername:_usernameField.text password:_passwordField.text hidingLogin:_hiddenButton.selected completion:^(id responseObject, HDError *error) {
         [weakSelf hideHud];
         if (error == nil) {
-            AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-            [appDelegate showHomeViewController];
+            [[KFManager sharedInstance] showMainViewController];
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setValue:_usernameField.text forKey:USERDEFAULTS_LOGINUSERNAME];
             [userDefaults synchronize];

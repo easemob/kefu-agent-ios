@@ -375,7 +375,7 @@
                     chatView.conversationModel = model;
                     model.chatter = model.vistor;
                     [[DXMessageManager shareManager] setCurSessionId:model.sessionId];
-                    [[KFManager shareInstance].wait loadData];
+                    [[KFManager sharedInstance].wait loadData];
                     [weakSelf.navigationController pushViewController:chatView animated:YES];
                 } else {
                     if (error.code == 400) {

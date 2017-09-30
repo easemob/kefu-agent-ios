@@ -40,4 +40,10 @@
 
 - (void)searhResignAndSearchDisplayNoActive;
 
+- (void)connectionStateDidChange:(HDConnectionState)aConnectionState;
+
+- (void)conversationLastMessageChanged:(HDMessage *)message;
+
+- (void)newConversationWithSessionId:(NSString *)sessionId;
+
 @end

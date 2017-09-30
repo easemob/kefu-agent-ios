@@ -400,7 +400,7 @@
 
 - (void)backAction
 {
-    [[KFManager shareInstance].conversation refreshData];
+    [[KFManager sharedInstance].conversation refreshData];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

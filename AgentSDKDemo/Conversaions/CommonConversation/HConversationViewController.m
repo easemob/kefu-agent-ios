@@ -17,8 +17,7 @@
 #import "SRRefreshView.h"
 #import "UIAlertView+AlertBlock.h"
 #import "AppDelegate.h"
-#import "HConversationManager.h"
-@interface HConversationViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate,EMChatManagerDelegate,ChatViewControllerDelegate,HDClientDelegate>
+@interface HConversationViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate,EMChatManagerDelegate,ChatViewControllerDelegate>
 {
     BOOL _isRefresh;
     int _unreadcount;
@@ -55,9 +54,6 @@
         _showSearchBar = NO;
         _dataSourceDic = [NSMutableDictionary new];
         hasMore = NO;
-        if (_type == HDConversationAccessed) {
-            [self initDelegate];
-        }
         _conversationQueue = dispatch_queue_create("com.easemob.kefu.conversation", DISPATCH_QUEUE_SERIAL);
         _queueTag = &_queueTag;
         dispatch_queue_set_specific(_conversationQueue, _queueTag, _queueTag, NULL);
@@ -66,10 +62,6 @@
     return self;
 }
 
-- (void)initDelegate {
-    [[HDClient sharedClient] removeDelegate:self];
-    [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -96,7 +88,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - HDClientDelegate
+
 
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
     [self isConnect:aConnectionState == HDConnectionConnected];
@@ -104,14 +96,6 @@
 
 - (void)newConversationWithSessionId:(NSString *)sessionId {
     [self loadData];
-}
-
-- (void)agentUsersListChange {
-    
-}
-
-- (void)waitListChange {
-    
 }
 
 - (void)conversationLastMessageChanged:(HDMessage *)message {
@@ -129,7 +113,7 @@
                 _unreadcount += model.unreadCount;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                HConversationManager *cm = [HConversationManager sharedInstance];
+                KFManager *cm = [KFManager sharedInstance];
                 [cm setTabbarBadgeValueWithAllConversations:self.dataSource];
                 [cm setNavItemBadgeValueWithAllConversations:self.dataSource];
                 [self.tableView reloadData];
@@ -148,24 +132,6 @@
 
 - (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
     [self loadData];
-}
-
-- (void)userAccountNeedRelogin {
-    [[HDClient sharedClient] removeDelegate:self];
-    [self showLoginViewController];
-}
-
-- (void)roleChange:(RolesChangeType)type {
-    [self showLoginViewController];
-}
-
-- (void)notificationChange {
-    
-}
-
-- (void)showLoginViewController {
-    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate showLoginViewController];
 }
 
 #pragma mark - getter
@@ -377,7 +343,6 @@
         if (_searchBar.isFirstResponder) {
             [_searchBar resignFirstResponder];
         }
-       
         if ([self.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
             ChatViewController *chatVC = [[ChatViewController alloc] init];
             chatVC.delegate = self;
@@ -390,7 +355,7 @@
                 chatVC.allConversations = self.dataSource;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.conDelegate ConversationPushIntoChat:chatVC];
-                    [[HConversationManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
+                    [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
                     [self.tableView reloadData];
                 });
             });
@@ -437,7 +402,7 @@
                     break;
             }
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[HConversationManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
+                [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
                 [weakSelf.tableView reloadData];
             });
         } else {

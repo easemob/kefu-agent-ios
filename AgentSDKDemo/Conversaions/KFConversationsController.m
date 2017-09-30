@@ -6,8 +6,7 @@
 //  Copyright (c) 2015年 easemob. All rights reserved.
 //
 
-#import "ConversationsController.h"
-#import "HConversationManager.h"
+#import "KFConversationsController.h"
 #import "HConversationViewController.h"
 #import "WaitQueueViewController.h"
 #import "CustomerViewController.h"
@@ -20,7 +19,7 @@
 
 #import "UIImageView+EMWebCache.h"
 
-@interface ConversationsController ()<ConversationTableControllerDelegate,UIScrollViewDelegate>
+@interface KFConversationsController ()<ConversationTableControllerDelegate,UIScrollViewDelegate,HDClientDelegate>
 {
     UIButton *_conversationButton;
     UIButton *_waitButton;
@@ -41,16 +40,14 @@
 
 @end
 
-@implementation ConversationsController
-
-@synthesize titleView = _titleView;
+@implementation KFConversationsController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    [self initNoti];
     [self setNav];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMaxServiceNumber) name:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
     [self setupView];
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
@@ -59,6 +56,13 @@
 - (void)setNav {
     self.navigationItem.titleView = self.titleView;
     self.navigationItem.rightBarButtonItem = self.rightItem;
+    
+}
+- (void)initNoti {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMaxServiceNumber) name:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
+    
+    [[HDClient sharedClient] removeDelegate:self];
+    [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -66,6 +70,49 @@
     [super viewDidAppear:animated];
     [_conversationController clearSeesion];
 }
+
+
+#pragma mark - HDClientDelegate
+
+//会话被管理员关闭
+- (void)conversationClosedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
+    if ([serviceSessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
+        [[KFManager sharedInstance].curChatViewConvtroller.navigationController popViewControllerAnimated:YES];
+    }
+    [_conversationController loadData];
+}
+
+//会话被管理员转接
+- (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
+    if ([serviceSessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
+        [[KFManager sharedInstance].curChatViewConvtroller.navigationController popViewControllerAnimated:YES];
+    }
+    [_conversationController loadData];
+}
+
+//连接状态改变
+- (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
+    [_conversationController connectionStateDidChange:aConnectionState];
+}
+
+//新会话
+- (void)newConversationWithSessionId:(NSString *)sessionId {
+    [_conversationController newConversationWithSessionId:sessionId];
+}
+
+//最后一条消息改变
+- (void)conversationLastMessageChanged:(HDMessage *)message {
+    [_conversationController conversationLastMessageChanged:message];
+    if (message.chatType == HDChatTypeCustomer) {
+        [_customerViewController loadData];
+    }
+}
+
+- (void)agentUsersListChange {
+    [_customerViewController loadData];
+}
+
+
 
 - (void)dealloc
 {
@@ -299,7 +346,7 @@
 #pragma mark - notifaction
 - (void)updateMaxServiceNumber
 {
-    _currentlabel.text = [NSString stringWithFormat:@"(%@/%@)",@([HConversationManager sharedInstance].curConversationNum),@((int)[HDClient sharedClient].currentAgentUser.maxServiceSessionCount)];
+    _currentlabel.text = [NSString stringWithFormat:@"(%@/%@)",@([KFManager sharedInstance].curConversationNum),@((int)[HDClient sharedClient].currentAgentUser.maxServiceSessionCount)];
 }
 
 @end
