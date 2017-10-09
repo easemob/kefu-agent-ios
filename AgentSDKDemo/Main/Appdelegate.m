@@ -11,7 +11,6 @@
 #import "AppDelegate+EaseMob.h"
 #import "HomeViewController.h"
 #import "LoginViewController.h"
-#import "DXMessageManager.h"
 #import "DDTTYLogger.h"
 #import "DDFileLogger.h"
 #import "DDASLLogger.h"

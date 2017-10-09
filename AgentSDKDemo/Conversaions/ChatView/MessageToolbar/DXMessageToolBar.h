@@ -86,7 +86,7 @@
  *
  *  @return DXMessageToolBar
  */
-- (instancetype)initWithFrame:(CGRect)frame type:(ChatMoreType)type;
+- (instancetype)initWithFrame:(CGRect)frame type:(KFChatMoreType)type;
 
 /**
  *  默认高度

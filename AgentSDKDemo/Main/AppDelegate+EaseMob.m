@@ -36,6 +36,7 @@
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     
+    
     [self registerRemoteNotification];
     
     [self registerEaseMobNotification];

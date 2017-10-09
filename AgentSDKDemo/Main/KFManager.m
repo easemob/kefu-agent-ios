@@ -29,13 +29,14 @@ singleton_implementation(KFManager)
 }
 
 - (void)showMainViewController {
-    [[HDClient sharedClient].chatManager addDelegate:self];
+    [self removeDelegates];
+    [self addDelegates];
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showHomeViewController];
 }
 
 - (void)showLoginViewController {
-    [[HDClient sharedClient] removeDelegate:self];
+    [self removeDelegates];
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showLoginViewController];
      [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -208,6 +209,16 @@ singleton_implementation(KFManager)
     return [NSString stringWithFormat:@"%ld",(long)unreadCount];
 }
 
+
+- (void)addDelegates {
+    [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
+    [[HDClient sharedClient].chatManager addDelegate:self];
+}
+
+- (void)removeDelegates {
+    [[HDClient sharedClient] removeDelegate:self];
+    [[HDClient sharedClient].chatManager removeDelegate:self];
+}
 
 
 

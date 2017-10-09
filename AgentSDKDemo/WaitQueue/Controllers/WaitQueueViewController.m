@@ -185,6 +185,7 @@
 {
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
     _searchBar.delegate = self;
+    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     _searchBar.placeholder = @"搜索用户昵称";
     _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
     _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);

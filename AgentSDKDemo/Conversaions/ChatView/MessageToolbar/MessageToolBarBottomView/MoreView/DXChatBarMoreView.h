@@ -13,10 +13,10 @@
 #import <UIKit/UIKit.h>
 
 typedef enum{
-    ChatMoreTypeChat,
-    ChatMoreTypeClientChat,
-    ChatMoreTypeGroupChat,
-}ChatMoreType;
+    KFChatMoreTypeChat, //单聊
+    KFChatMoreTypeCustomerChat, //客服聊天
+    KFChatMoreTypeGroupChat,
+}KFChatMoreType;
 
 @protocol DXChatBarMoreViewDelegate;
 @interface DXChatBarMoreView : UIView
@@ -32,9 +32,9 @@ typedef enum{
 @property (nonatomic, strong) UIButton *videoButton;
 @property (nonatomic, strong) UIButton *audioCallButton;
 
-- (instancetype)initWithFrame:(CGRect)frame typw:(ChatMoreType)type;
+- (instancetype)initWithFrame:(CGRect)frame typw:(KFChatMoreType)type;
 
-- (void)setupSubviewsForType:(ChatMoreType)type;
+- (void)setupSubviewsForType:(KFChatMoreType)type;
 
 @end
 

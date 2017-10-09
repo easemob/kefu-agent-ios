@@ -15,6 +15,7 @@
 
 #import "LocalDefine.h"
 #import "SingletonDefine.h"
+#import "UtilsMacros.h"
 
 #define hPageLimit 10
 #define hPageSize 10
@@ -58,7 +59,6 @@
 #import "MBProgressHUD+Add.h"
 //#import "NSDictionary+SafeValue.h"
 #import "DXLoadingView.h"
-#import "DXMessageManager.h"
 #import "EMBaseViewController.h"
 #import "UIViewController+DismissKeyboard.h"
 //NEW

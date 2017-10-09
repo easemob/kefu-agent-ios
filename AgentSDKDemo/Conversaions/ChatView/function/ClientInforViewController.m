@@ -231,7 +231,7 @@
             ChatViewController *chatView = [[ChatViewController alloc] init];
             chatView.conversationModel = model;
             model.chatter = model.vistor;
-            [[DXMessageManager shareManager] setCurSessionId:model.sessionId];
+            [[KFManager sharedInstance] setCurrentSessionId:model.sessionId];
             [weakSelf.navigationController pushViewController:chatView animated:YES];
         } else {
             [weakSelf showHint:@"创建失败"];

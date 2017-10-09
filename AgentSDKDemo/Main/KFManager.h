@@ -48,7 +48,6 @@ singleton_interface(KFManager);
 
 //@property(nonatomic,strong) HDConversationViewController *homeVC;
 
-//+ (instancetype)shareInstance;
 
 - (void)showMainViewController;
 

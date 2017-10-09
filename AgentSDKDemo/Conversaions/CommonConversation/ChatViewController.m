@@ -10,7 +10,6 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 #import "DXMessageToolBar.h"
-#import "DXMessageManager.h"
 #import "QuickReplyViewController.h"
 #import "ClientInforViewController.h"
 #import "EMChatViewCell.h"
@@ -554,7 +553,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (DXMessageToolBar *)chatToolBar
 {
     if (_chatToolBar == nil) {
-        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight])];
+        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight]) type:KFChatMoreTypeChat];
         _chatToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
         _chatToolBar.delegate = self;
     }
