@@ -41,6 +41,7 @@
 #define WEAK_SELF typeof(self) __weak weakSelf = self;
 
 #import "EmotionEscape.h"
+#import "Helper.h"
 #import "KFManager.h"
 #import "IQKeyboardManager.h"
 #import "SRRefreshView.h"

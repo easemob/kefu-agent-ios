@@ -573,7 +573,7 @@
             _page++;
             _totalCount = totalNum;
             for (HDHistoryConversation *model in conversations) {
-                model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.chatter.nicename];
+                model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.vistor.nicename];
                 [weakSelf.dataSource addObject:model];
             }
             weakSelf.headerView.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@((int)[weakSelf.dataSource count]),@(_totalCount)];

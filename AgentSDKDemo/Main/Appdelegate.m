@@ -97,7 +97,7 @@
 - (void)startLogin
 {
     if ([HDClient sharedClient].isLoggedInBefore) {
-        [self showHomeViewController];
+        [[KFManager sharedInstance] showMainViewController];
     } else {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSString *username = [userDefaults objectForKey:USERDEFAULTS_LOGINUSERNAME];
@@ -105,8 +105,7 @@
         if (username.length>0 && password.length > 0) {
             [[HDClient sharedClient] asyncLoginWithUsername:username password:password hidingLogin:NO completion:^(id responseObject, HDError *error) {
                 if (error == nil) {
-                    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                    [appDelegate showHomeViewController];
+                    [[KFManager sharedInstance] showMainViewController];
                     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                     [userDefaults setValue:username forKey:USERDEFAULTS_LOGINUSERNAME];
                     [userDefaults synchronize];
@@ -115,19 +114,14 @@
                 }
             }];
         } else {
-            LoginViewController *loginController = [[LoginViewController alloc] init];
-            self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:loginController];
-            [HomeViewController HomeViewControllerDestory];
-            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+            [self showLoginViewController];
         }
-        
-        
     }
 }
 
 - (void)showLoginViewController {
     LoginViewController *loginController = [[LoginViewController alloc] init];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    self.window.rootViewController = [[KFBaseNavigationController alloc] initWithRootViewController:loginController];
     [HomeViewController HomeViewControllerDestory];
     //进入登陆页面,角标清空
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

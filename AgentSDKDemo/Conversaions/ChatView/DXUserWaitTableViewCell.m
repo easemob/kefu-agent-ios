@@ -87,7 +87,7 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     _timeLabel.text = [[formatter dateFromString:model.createDateTime] formattedDateDescription];
-    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:model.lastMessage.body.content];
+    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model]];
 }
 
 @end

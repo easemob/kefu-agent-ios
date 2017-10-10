@@ -76,15 +76,25 @@
 
 //会话被管理员关闭
 - (void)conversationClosedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
-    if ([serviceSessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
-        [[KFManager sharedInstance].curChatViewConvtroller.navigationController popViewControllerAnimated:YES];
-    }
-    [_conversationController loadData];
+    [self reloadDataWithSessionId:serviceSessionId];
+}
+
+- (void)transferScheduleAccept:(NSString *)serviceSessionId {
+    NSLog(@"会话转接被确认");
+    [self reloadDataWithSessionId:serviceSessionId];
+}
+
+- (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
+    [self reloadDataWithSessionId:serviceSessionId];
 }
 
 //会话被管理员转接
 - (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
-    if ([serviceSessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
+    [self reloadDataWithSessionId:serviceSessionId];
+}
+
+- (void)reloadDataWithSessionId:(NSString *)sessionId {
+    if ([sessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
         [[KFManager sharedInstance].curChatViewConvtroller.navigationController popViewControllerAnimated:YES];
     }
     [_conversationController loadData];
@@ -93,11 +103,6 @@
 //连接状态改变
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
     [_conversationController connectionStateDidChange:aConnectionState];
-}
-
-//新会话
-- (void)newConversationWithSessionId:(NSString *)sessionId {
-    [_conversationController newConversationWithSessionId:sessionId];
 }
 
 //最后一条消息改变

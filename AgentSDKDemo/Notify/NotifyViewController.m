@@ -394,10 +394,11 @@
         return;
     }
     WEAK_SELF
+    _isRefresh = YES;
     [self showHintNotHide:@"加载中..."];
     [[HDClient sharedClient].notiManager asyncGetNoticeWithPageIndex:_page pageSize:kNotifyPageSize status:_currentStatus type:notiType prameters:nil completion:^(NSArray<HDNotifyModel *> *notices, HDError *error) {
+        [MBProgressHUD  hideAllHUDsForView:weakSelf.view animated:YES];
         weakSelf.isRefresh = NO;
-        [weakSelf hideHud];
         if (nil == error) {
             if (_page == 1) {
                 [self.dataSource removeAllObjects];

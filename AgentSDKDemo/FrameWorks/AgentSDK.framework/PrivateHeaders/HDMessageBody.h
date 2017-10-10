@@ -72,44 +72,44 @@
 
 @end
 
-@interface MessageUserModel : NSObject
-
-@property (copy, nonatomic) NSString* nicename;
-@property (nonatomic) NSInteger tenantId;
-@property (copy, nonatomic) NSString *userId;
-@property (copy, nonatomic) NSString *userType;
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-
-- (NSDictionary*)messageUserModelDicDesc;
-
-@end
-
-@interface MessageExtMsgtypeModel : NSObject
-
-@property (copy, nonatomic) NSString *desc;
-@property (copy, nonatomic) NSString *imgUrl;
-@property (copy, nonatomic) NSString *itemUrl;
-@property (copy, nonatomic) NSString *price;
-@property (copy, nonatomic) NSString *title;
-@property (copy, nonatomic) NSString *orderTitle;
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-
-- (NSDictionary*)selfDicDesc;
-
-@end
-
-@interface MessageExtModel : NSObject
-
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *price;
-
-@property (copy, nonatomic) NSString *imageName;
-@property (strong, nonatomic) MessageExtMsgtypeModel *msgtype;
-@property (copy, nonatomic) NSString *type;
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary*)selfDicDesc;
-@end
+//@interface MessageUserModel : NSObject
+//
+//@property (copy, nonatomic) NSString* nicename;
+//@property (nonatomic) NSInteger tenantId;
+//@property (copy, nonatomic) NSString *userId;
+//@property (copy, nonatomic) NSString *userType;
+//
+//- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+//
+//- (NSDictionary*)messageUserModelDicDesc;
+//
+//@end
+//
+//@interface MessageExtMsgtypeModel : NSObject
+//
+//@property (copy, nonatomic) NSString *desc;
+//@property (copy, nonatomic) NSString *imgUrl;
+//@property (copy, nonatomic) NSString *itemUrl;
+//@property (copy, nonatomic) NSString *price;
+//@property (copy, nonatomic) NSString *title;
+//@property (copy, nonatomic) NSString *orderTitle;
+//
+//- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+//
+//- (NSDictionary*)selfDicDesc;
+//
+//@end
+//
+//@interface MessageExtModel : NSObject
+//
+//@property (copy, nonatomic) NSString *name;
+//@property (copy, nonatomic) NSString *price;
+//
+//@property (copy, nonatomic) NSString *imageName;
+//@property (strong, nonatomic) MessageExtMsgtypeModel *msgtype;
+//@property (copy, nonatomic) NSString *type;
+//
+//- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+//- (NSDictionary*)selfDicDesc;
+//@end
 

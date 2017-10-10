@@ -12,8 +12,6 @@
 		D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95E2E1EA0F47100ADD394 /* libopencore-amrwb.a */; };
 		D33CE5E01F7C96BB00236720 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */; };
 		D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D33CE5E21F7C96BB00236720 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DC1F7C969B00236720 /* AgentSDK.framework */; };
-		D33CE5E31F7C96BB00236720 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DC1F7C969B00236720 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D33CE6861F7CA98D00236720 /* EMFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5EE1F7CA98D00236720 /* EMFileViewController.m */; };
 		D33CE6871F7CA98D00236720 /* EMSetMaxServiceNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5F01F7CA98D00236720 /* EMSetMaxServiceNumberController.m */; };
 		D33CE6881F7CA98D00236720 /* AddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5F31F7CA98D00236720 /* AddTagViewController.m */; };
@@ -302,6 +300,9 @@
 		D3A95E7F1EA0F47100ADD394 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E221EA0F47100ADD394 /* amrFileCodec.mm */; };
 		D3A95E801EA0F47100ADD394 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E241EA0F47100ADD394 /* wav.mm */; };
 		D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E261EA0F47100ADD394 /* EMVoiceConverter.mm */; };
+		D3BAEDF61F8CD8DF003A30A8 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BAEDF51F8CD8DF003A30A8 /* AgentSDK.framework */; };
+		D3BAEDF71F8CD8E2003A30A8 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3BAEDF51F8CD8DF003A30A8 /* AgentSDK.framework */; };
+		D3BAEDF81F8CD8E2003A30A8 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3BAEDF51F8CD8DF003A30A8 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3FDC5FF1EA0A5BE00C25BB0 /* icon1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5F81EA0A5BE00C25BB0 /* icon1@3x.png */; };
 		D3FDC6001EA0A5BE00C25BB0 /* icon1_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5F91EA0A5BE00C25BB0 /* icon1_selected@3x.png */; };
 		D3FDC6011EA0A5BE00C25BB0 /* icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5FA1EA0A5BE00C25BB0 /* icon2@2x.png */; };
@@ -613,7 +614,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
-				D33CE5E31F7C96BB00236720 /* AgentSDK.framework in Embed Frameworks */,
+				D3BAEDF81F8CD8E2003A30A8 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,7 +624,6 @@
 /* Begin PBXFileReference section */
 		D324D0AC1EA46ED30009FE68 /* HDBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDBaseViewController.h; sourceTree = "<group>"; };
 		D324D0AD1EA46ED30009FE68 /* HDBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDBaseViewController.m; sourceTree = "<group>"; };
-		D33CE5DC1F7C969B00236720 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
 		D33CE5ED1F7CA98D00236720 /* EMFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMFileViewController.h; sourceTree = "<group>"; };
 		D33CE5EE1F7CA98D00236720 /* EMFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMFileViewController.m; sourceTree = "<group>"; };
@@ -1187,6 +1187,7 @@
 		D3A95E2C1EA0F47100ADD394 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		D3A95E2D1EA0F47100ADD394 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		D3A95E2E1EA0F47100ADD394 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		D3BAEDF51F8CD8DF003A30A8 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D3C4E6F21F8B7AD5008089E2 /* UtilsMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
 		D3D081FF1EA4B349003FF1C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3FDC5F81EA0A5BE00C25BB0 /* icon1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon1@3x.png"; sourceTree = "<group>"; };
@@ -1503,7 +1504,6 @@
 				D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */,
 				D33CE81D1F7CB53C00236720 /* libMobClickLibrary.a in Frameworks */,
 				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
-				D33CE5E21F7C96BB00236720 /* AgentSDK.framework in Frameworks */,
 				D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */,
 				D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D33CE8261F7CB6FF00236720 /* PgyUpdate.framework in Frameworks */,
@@ -1512,6 +1512,8 @@
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
+				D3BAEDF61F8CD8DF003A30A8 /* AgentSDK.framework in Frameworks */,
+				D3BAEDF71F8CD8E2003A30A8 /* AgentSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2418,7 +2420,7 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
-				D33CE5DC1F7C969B00236720 /* AgentSDK.framework */,
+				D3BAEDF51F8CD8DF003A30A8 /* AgentSDK.framework */,
 				D33CE8AC1F7CD84A00236720 /* WebViewJavascriptBridge */,
 				D33CE89F1F7CD3D400236720 /* SBTickerView */,
 				D33CE8621F7CD25800236720 /* PodFiles */,

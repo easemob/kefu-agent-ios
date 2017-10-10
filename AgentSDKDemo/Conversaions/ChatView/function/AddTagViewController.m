@@ -207,9 +207,7 @@
                     [weakSelf showHint:@"请选择标签"];
                 }
             } else {
-                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(saveAndEndChat)]) {
-                    [weakSelf.delegate saveAndEndChat];
-                }
+                [self.navigationController popViewControllerAnimated:YES];
             }
             
         } else {

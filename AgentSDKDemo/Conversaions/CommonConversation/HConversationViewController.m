@@ -94,15 +94,13 @@
     [self isConnect:aConnectionState == HDConnectionConnected];
 }
 
-- (void)newConversationWithSessionId:(NSString *)sessionId {
-    [self loadData];
-}
 
 - (void)conversationLastMessageChanged:(HDMessage *)message {
     dispatch_async(_conversationQueue, ^{
         HDConversation *model = [self.dataSourceDic objectForKey:message.sessionId];
         if (model) {
             model.lastMessage = message;
+            model.searchWord = model.chatter.nicename;
             if (!message.isSender) {
                  model.unreadCount += 1;
             }
@@ -120,18 +118,6 @@
             });
         }
     });
-}
-
-- (void)conversationClosedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
-    [self loadData];
-}
-
-- (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
-    [self loadData];
-}
-
-- (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
-    [self loadData];
 }
 
 #pragma mark - getter
@@ -393,6 +379,7 @@
                 case HDConversationAccessed: {
                     _unreadcount = 0;
                     for (HDConversation *model in conversations) {
+                        model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.chatter.nicename];
                         [weakSelf.dataSource insertObject:model atIndex:0];
                         [_dataSourceDic setObject:model forKey:model.sessionId];
                         model.lastMessage.sessionId = model.sessionId;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "HDMessageBody.h"
+//#import "HDMessageBody.h"
 #import "HDBaseMessageBody.h"
 #import "HDChatUser.h"
 
@@ -98,7 +98,7 @@ typedef NS_ENUM(NSUInteger, HDChatType) {
 
 
 
-@property (strong, nonatomic) HDMessageBody *body;
+//@property (strong, nonatomic) HDMessageBody *body;
 @property (strong, nonatomic) MessageExtModel *ext;
 
 @property (nonatomic) NSString *tenantId;
@@ -127,13 +127,13 @@ typedef NS_ENUM(NSUInteger, HDChatType) {
 @property (nonatomic) BOOL isPlaying;
 @property (nonatomic) BOOL isPlayed;
 
-/*
- * 构造消息 
- * @param serviceSessionId 
- * @param userId 
- * @param body
- */
-- (instancetype)initWithSessionId:(NSString *)sessionId userId:(NSString *)userId messageBody:(HDMessageBody *)body ext:(NSDictionary *)ext;
+///*
+// * 构造消息 
+// * @param serviceSessionId 
+// * @param userId 
+// * @param body
+// */
+//- (instancetype)initWithSessionId:(NSString *)sessionId userId:(NSString *)userId messageBody:(HDBaseMessageBody *)body ext:(NSDictionary *)ext;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

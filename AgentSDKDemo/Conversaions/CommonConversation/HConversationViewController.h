@@ -44,6 +44,5 @@
 
 - (void)conversationLastMessageChanged:(HDMessage *)message;
 
-- (void)newConversationWithSessionId:(NSString *)sessionId;
 
 @end

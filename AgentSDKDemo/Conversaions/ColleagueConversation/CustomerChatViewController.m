@@ -561,8 +561,11 @@
         [self hideHud];
         if (!error) {
             for (HDMessage *message in messages) {
-                if (message.body) {
-                    message.body.content = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:message.body.content];
+                if (message.nBody) {
+                    if (message.type == HDMessageBodyTypeText) {
+                        ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                    }
+                   
                 }
                 if (![weakSelf.msgDic objectForKey:message.messageId]) {
                     [weakSelf.msgDic setObject:@"" forKey:message.messageId];
@@ -635,8 +638,11 @@
         if (error == nil) {
             [weakSelf hideHud];
             for (HDMessage *message in messages) {
-                if (message.body) {
-                    message.body.content = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:message.body.content];
+                if (message.nBody) {
+                    if (message.type == HDMessageBodyTypeText) {
+                        ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                    }
+                    
                 }
                 if (![weakSelf.msgDic objectForKey:message.messageId]) {
                     [weakSelf.msgDic setObject:@"" forKey:message.messageId];

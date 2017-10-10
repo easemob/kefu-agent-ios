@@ -39,7 +39,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     if (self.model.ext) {
         retSize = CGSizeMake(0, 0);
     } else {
-        retSize = CGSizeMake(self.model.body.width, self.model.body.height);
+        retSize = CGSizeMake(0, 0);
     }
     if (retSize.width == 0 || retSize.height == 0) {
         retSize.width = MAX_SIZE;
@@ -132,7 +132,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     if (object.ext) {
         retSize = CGSizeMake(0, 0);
     } else {
-        retSize = CGSizeMake(object.body.width, object.body.height);
+        retSize = CGSizeMake(0, 0);
     }
     if (retSize.width == 0 || retSize.height == 0) {
         retSize.width = MAX_SIZE;

@@ -123,7 +123,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     self = [super init];
     if (self) {
         chatType = type;
-        _page = 1;
+        _page = 0;
     }
     return self;
 }
@@ -165,9 +165,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)startNoti {
     [[HDClient sharedClient].chatManager removeDelegate:self];
-    if ([HDClient sharedClient].chatManager==nil) {
-        NSLog(@"error : [HDClient sharedClient].chatManager == nil");
-    }
     [[HDClient sharedClient].chatManager addDelegate:self];
     
     [[HDClient sharedClient] removeDelegate:self];
@@ -179,6 +176,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     [KFManager sharedInstance].curChatViewConvtroller = self;
+    [KFManager sharedInstance].currentSessionId = self.conversationModel.sessionId;
     [self startNoti];
     // Do any additional setup after loading the view.
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7) {
@@ -231,10 +229,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //    [self setupForDismissKeyboard];
     
     [self loadMessage];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conversationRefreshAutoEnd:) name:NOTIFICATION_CONVERSATION_REFRESH_AUTOEND object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyNumberChange:) name:NOTIFICATION_NOTIFY_NUMBER_CHANGE object:nil];
-//    [fNotificationCenter addObserver:self selector:@selector(autoPop:) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
+
     [self loadTags];
     [[KFManager sharedInstance] setNavItemBadgeValueWithAllConversations:_allConversations];
     [self tableViewScrollToBottom];
@@ -245,16 +240,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [super viewDidDisappear:animated];
 }
 
-- (void)autoPop:(NSNotification *)noti {
-    NSDictionary *dic = noti.object;
-    if (dic) {
-        if ([dic objectForKey:@"serviceSessionId"]) {
-            if ([[dic objectForKey:@"serviceSessionId"] isEqualToString:self.conversationModel.sessionId]) {
-                [self backAction];
-            }
-        }
-    }
-}
 
 - (void)setupBarButtonItem
 {
@@ -521,7 +506,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [_tagBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_tagBtn addTarget:self action:@selector(tagAction:) forControlEvents:UIControlEventTouchUpInside];
         [_tagBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 10, 0)];
-        [_tagBtn setTitleText:_conversationModel.chatter.nicename];
+        NSString *title = @"";
+        if (chatType == ChatViewTypeCallBackChat) {
+            title = _conversationModel.vistor.nicename;
+        } else {
+            title = _conversationModel.chatter.nicename;
+        }
+        [_tagBtn setTitleText:title];
         [_tagBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.f]];
         [_tagBtn layoutIfNeeded];
         
@@ -842,8 +833,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     HDMessage *message = [ChatSendHelper sendTextMessageWithString:@"自定义消息" toUser:_conversationModel.chatter.userId sessionId:_conversationModel.sessionId ext:nil];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:self.lastMsgExt];
-    [parameters setObject:data forKey:MESSAGEBODY_MSGTYPE];
-    message.body.msgExt = parameters;
+    [parameters setObject:data forKey:@"msgtype"];
+    message.nBody.msgExt = parameters;
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
         [self updateMessageWithMessage:aMessage];
@@ -977,7 +968,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 // 位置的bubble被点击
 - (void)chatLocationCellBubblePressed:(HDMessage *)model
 {
-    LocationViewController *locationController = [[LocationViewController alloc] initWithLocation:CLLocationCoordinate2DMake(model.body.lat, model.body.lng)];
+    HDLocationMessageBody *body = (HDLocationMessageBody *)model.nBody;
+    LocationViewController *locationController = [[LocationViewController alloc] initWithLocation:CLLocationCoordinate2DMake(body.latitude, body.longitude)];
     [self.navigationController pushViewController:locationController animated:YES];
 }
 
@@ -1034,6 +1026,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     _conversationModel.unreadCount = 0;
     [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:_allConversations];
     [KFManager sharedInstance].curChatViewConvtroller = nil;
+    [KFManager sharedInstance].currentSessionId = @"";
     if (chatType == ChatViewTypeChat) {
         if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
             [_delegate refreshConversationList];
@@ -1229,6 +1222,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             history.chatter = history.vistor;
             chatView.conversationModel = history;
             [[KFManager sharedInstance] setCurChatViewConvtroller:chatView];
+            [[KFManager sharedInstance] setCurrentSessionId:history.sessionId];
             [[KFManager sharedInstance].conversation refreshData];
             [weakSelf.navigationController pushViewController:chatView animated:YES];
         } else {
@@ -1306,6 +1300,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
 {
     [self loadHistory];
+    
     [_slimeView endRefresh];
 }
 
@@ -1341,10 +1336,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     __weak ChatViewController *weakSelf = self;
     dispatch_async(_messageQueue, ^{
-        NSArray *messages = [weakSelf formatMessage:message];
+        [weakSelf formatMessage:message];
         dispatch_async(dispatch_get_main_queue(), ^{
             [_messages addObject:message];
-            [weakSelf.dataSource addObjectsFromArray:messages];
+            [weakSelf.dataSource addObject:message];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         });
@@ -1473,13 +1468,41 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)loadHistory
 {
     [self showHintNotHide:@"加载历史会话"];
-    [_conversation loadHistoryCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
-        [self hideHud];
-        [self addMessagesToTop:messages];
-        for (HDMessage *msg in messages) {
-            [self downloadVoice:msg];
-        }
-    }];
+    if (chatType == ChatViewTypeChat) {
+        [_conversation loadHistoryCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
+            [self hideHud];
+            [self addMessagesToTop:messages];
+            for (HDMessage *msg in messages) {
+                [self downloadVoice:msg];
+            }
+        }];
+    }
+    
+    if (chatType == ChatViewTypeCallBackChat) {
+        WEAK_SELF
+        [[HDClient sharedClient].chatManager asyncFetchHistoryMessagesWithSessionServicesId:_conversationModel.sessionId page:_page completion:^(id responseObject, HDError *error) {
+            [self hideHud];
+            if (error == nil) {
+                _page ++ ;
+                for (HDMessage *message in responseObject) {
+                    if (message.nBody) {
+                        if (message.type == HDMessageBodyTypeText) {
+                            ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                        }
+                        
+                    }
+                    if (![_msgDic objectForKey:message.messageId]) {
+                        [_msgDic setObject:@"" forKey:message.messageId];
+                        //                    [weakSelf downloadMessageAttachments:message];
+                        [weakSelf addMessagesToTop:@[message]];
+                        [self downloadVoice:message];
+                    }
+                }
+            }
+            
+        }];
+    }
+    
 }
 
 - (void)loadMessage{
@@ -1498,22 +1521,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             
         }];
     } else {
-        _page = 0;
-        WEAK_SELF
-        [[HDClient sharedClient].chatManager asyncFetchHistoryMessagesWithSessionServicesId:_conversationModel.sessionId page:_page completion:^(id responseObject, HDError *error) {
-            for (HDMessage *message in responseObject) {
-                if (message.body) {
-                    message.body.content = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:message.body.content];
-                }
-                if (![_msgDic objectForKey:message.messageId]) {
-                    [_msgDic setObject:@"" forKey:message.messageId];
-//                    [weakSelf downloadMessageAttachments:message];
-                    [weakSelf addMessage:message];
-                    [self downloadVoice:message];
-                }
-            }
-        }];
-
+        [self loadHistory];
     }
 }
 
@@ -1538,8 +1546,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         model.localPath = path;
         return YES;
     }
-    
-    path = [NSString stringWithFormat:@"%@/%@",dbDirectoryPath,model.body.fileName];
+    HDFileMessageBody *file = (HDFileMessageBody *)model.nBody;
+    path = [NSString stringWithFormat:@"%@/%@",dbDirectoryPath,file.displayName];
     if ([fm fileExistsAtPath:path]) {
         model.localPath = path;
         return YES;
@@ -1602,7 +1610,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     if (_longPressIndexPath.row > 0) {
         HDMessage *model = [self.dataSource objectAtIndex:_longPressIndexPath.row];
-        pasteboard.string = model.body.content;
+        NSString *content = @"";
+        if (model.type == HDMessageBodyTypeText) {
+            content = ((HDTextMessageBody *)model.nBody).text;
+        }
+        pasteboard.string = content;
     }
     _longPressIndexPath = nil;
 }
@@ -1615,6 +1627,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }];
 }
 
+- (void)dealloc {
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -59,6 +59,12 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
  */
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId;
 
+
+/**
+ 会话被确认转接【需要管理员开启“转接会话需要对方确认”】
+ */
+- (void)transferScheduleAccept:(NSString *)serviceSessionId;
+
 /*
  * 会话最后一条消息变化
  * @param  sessionId 变化的sessionId
