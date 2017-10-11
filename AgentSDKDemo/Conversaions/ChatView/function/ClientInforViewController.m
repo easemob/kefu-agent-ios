@@ -316,11 +316,12 @@
 
 //new
 - (void)loadVisitorInfoList {
-    [self showHintNotHide:@"获取访客信息详情..."];
+    [self showHintNotHide:@""];
     WEAK_SELF
     
     [[HDClient sharedClient].notiManager asyncFetchVisitorItemsWithVisitorId:_userId completion:^(HDVisitorInfo *visitorInfo, HDError *error) {
         if (error == nil) {
+            [self.dataArr removeAllObjects];
              self.customerId = visitorInfo.customerId;
             for (HDVisitorInfoItem *item in visitorInfo.items) {
                 if (item.columnEnable && item.visible) { //启用
@@ -367,10 +368,10 @@
         }
         [param setValue:item.values forKey:item.columnName];
     }
-    [[HDClient sharedClient].notiManager updateVisitorItemWithCustomerId:self.customerId visitorId:_userId parameters:param completion:^(HDVisitorInfo *visitorInfo, HDError *error) {
+    [[HDClient sharedClient].notiManager updateVisitorItemWithCustomerId:self.customerId visitorId:_userId parameters:param completion:^(id responseObject, HDError *error) {
         if (error == nil) { //成功
+            [self loadVisitorInfoList];
             [self showHint:@"修改成功"];
-            [self.tableView reloadData];
         } else { //失败
             [self showHint:@"修改失败"];
         }

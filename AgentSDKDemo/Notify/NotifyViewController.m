@@ -396,11 +396,11 @@
     WEAK_SELF
     _isRefresh = YES;
     [self showHintNotHide:@"加载中..."];
-    [[HDClient sharedClient].notiManager asyncGetNoticeWithPageIndex:_page pageSize:kNotifyPageSize status:_currentStatus type:notiType prameters:nil completion:^(NSArray<HDNotifyModel *> *notices, HDError *error) {
+    [[HDClient sharedClient].notiManager asyncGetNoticeWithPageIndex:page pageSize:kNotifyPageSize status:_currentStatus type:notiType prameters:nil completion:^(NSArray<HDNotifyModel *> *notices, HDError *error) {
         [MBProgressHUD  hideAllHUDsForView:weakSelf.view animated:YES];
         weakSelf.isRefresh = NO;
         if (nil == error) {
-            if (_page == 1) {
+            if (page == 1) {
                 [self.dataSource removeAllObjects];
             }
             if (_currentStatus == HDNoticeStatusUnread) {
@@ -505,6 +505,7 @@
             [weakSelf setHeaderNumWithtotle:[HDClient sharedClient].notiManager.unreadCount];
             [weakSelf.tableView reloadData];
             [weakSelf resetBadge];
+            _page = 0;
             [weakSelf showHint:@"标记成功"];
         } else {
             [weakSelf showHint:@"标记失败"];

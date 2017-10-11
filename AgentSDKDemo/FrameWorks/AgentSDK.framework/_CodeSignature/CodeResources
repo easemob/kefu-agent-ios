@@ -4,13 +4,9 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>.DS_Store</key>
-		<data>
-		j6KjqyBkx1+UDoVKMzOhF/8Tx+s=
-		</data>
 		<key>Headers/AgentSDK.h</key>
 		<data>
-		c3CybLUXEkPe+U3g4tGz+/BC3Yo=
+		N6+HxPRkx9E2PgzDhIe4uMDma64=
 		</data>
 		<key>Headers/HDBaseMessageBody.h</key>
 		<data>
@@ -72,13 +68,17 @@
 		<data>
 		SNFBuLpneIPnfNC+3Z/2qES13xI=
 		</data>
+		<key>Headers/HDLocationMessageBody.h</key>
+		<data>
+		LxVA4HFM0Ne9WU8UwPt0ZHSN/98=
+		</data>
 		<key>Headers/HDMediaFile.h</key>
 		<data>
 		PTrQa+FveZkkbYGXHbYiNn++se0=
 		</data>
 		<key>Headers/HDMessage.h</key>
 		<data>
-		55qsUp0FfB7g4EH95zZs7X72Ygk=
+		J1PWyxUhsG44mEfIXls7a0Capo0=
 		</data>
 		<key>Headers/HDNotiManager.h</key>
 		<data>
@@ -110,7 +110,7 @@
 		</data>
 		<key>Headers/HDUserTag.h</key>
 		<data>
-		oyk0r2T/rInvYDEboZCbMa+sxQI=
+		H9wqI2hzDFgeGqlzjGRY0c97evM=
 		</data>
 		<key>Headers/HDVisitorInfo.h</key>
 		<data>
@@ -146,15 +146,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		BwROToQBqJ2yb54U2TcFKX4d4lU=
+		oU1WZgpvU0H/0OqzTUk/nCFRfs8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		lf7xMkYilgRNXNzug185LVTwCdY=
-		</data>
-		<key>PrivateHeaders/HDMessageBody.h</key>
-		<data>
-		I4Jhl80IE+iw/WqSB6oUdcir+Bs=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -163,11 +159,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			c3CybLUXEkPe+U3g4tGz+/BC3Yo=
+			N6+HxPRkx9E2PgzDhIe4uMDma64=
 			</data>
 			<key>hash2</key>
 			<data>
-			LjEaUt+EPTNZEMMqefyfoDRIgzydpz0CoUWq2OAaPTk=
+			rWcVMK+txD1fxZsuedEKv893ZiYMEBkrYlwemViFRCU=
 			</data>
 		</dict>
 		<key>Headers/HDBaseMessageBody.h</key>
@@ -335,6 +331,17 @@
 			kpXmKW1LHmlqFdvrOQkvB8f3ZYqQsfqhW2NM518Bqc4=
 			</data>
 		</dict>
+		<key>Headers/HDLocationMessageBody.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LxVA4HFM0Ne9WU8UwPt0ZHSN/98=
+			</data>
+			<key>hash2</key>
+			<data>
+			mjwpdFNEgzPJboF1T4yK+d9bACTCn45iFCx8BjrJTRI=
+			</data>
+		</dict>
 		<key>Headers/HDMediaFile.h</key>
 		<dict>
 			<key>hash</key>
@@ -350,11 +357,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			55qsUp0FfB7g4EH95zZs7X72Ygk=
+			J1PWyxUhsG44mEfIXls7a0Capo0=
 			</data>
 			<key>hash2</key>
 			<data>
-			i9/TwQKHhyx+p381KkEou1/PgNJqsh3eEekT9aLJdKg=
+			9jFiyleyET4PwXDkPCLLCQZZjpgl0wp3a22aK7iCp7c=
 			</data>
 		</dict>
 		<key>Headers/HDNotiManager.h</key>
@@ -438,11 +445,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oyk0r2T/rInvYDEboZCbMa+sxQI=
+			H9wqI2hzDFgeGqlzjGRY0c97evM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Q3UMgxVLUUQpXlrjjSqPp1BIRRzL4ZgXdX8Xm02Lyjo=
+			nEGjXTW5p/xNtvByIjuMltvBmlgCUTMEZMuOUe92GHI=
 			</data>
 		</dict>
 		<key>Headers/HDVisitorInfo.h</key>
@@ -542,17 +549,6 @@
 			<key>hash2</key>
 			<data>
 			5UIBZNMSS0ukf24ITvP582pV9KAEqwynllck0v4zTgg=
-			</data>
-		</dict>
-		<key>PrivateHeaders/HDMessageBody.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			I4Jhl80IE+iw/WqSB6oUdcir+Bs=
-			</data>
-			<key>hash2</key>
-			<data>
-			fSRwrE+U5jNCCKKawlDB1R0K0x2hgxGaI+fEUnON9HU=
 			</data>
 		</dict>
 	</dict>

@@ -88,6 +88,7 @@
                 _nickName.textColor = [UIColor lightGrayColor];
                 _nickName.text = model.columnDescribe;
             } else {
+                _nickName.textColor = [UIColor blackColor];
                 if (model.columnType == HDColumnTypeMultiText) {
                     CGFloat height = 30;
                     NSDictionary *att = @{ NSFontAttributeName: [UIFont systemFontOfSize:17.0]};

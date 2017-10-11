@@ -314,6 +314,10 @@ static NSInteger currentTotalBadgeValue;
     return imagez;
 }
 
+- (void)didReceiveLocalNotification:(UILocalNotification *)notification {
+    
+}
+
 - (void)historyBackAction
 {
 

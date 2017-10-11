@@ -277,7 +277,7 @@
             [weakSelf hideHud];
             if (!error) {
                 [weakSelf showHint:@"会话已转接"];
-                [[KFManager sharedInstance].wait loadData];
+                [[KFManager sharedInstance].conversation refreshData];
                 if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(popToRoot)]) {
                     [weakSelf.delegate popToRoot];
                 }

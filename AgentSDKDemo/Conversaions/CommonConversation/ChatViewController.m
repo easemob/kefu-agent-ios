@@ -272,7 +272,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _promptBoxView = [[EMPromptBoxView alloc] init];
         _promptBoxView.frame = CGRectMake(50, CGRectGetMaxY(self.tableView.frame) - 100, KScreenWidth - 100, 100);
         _promptBoxView.backgroundColor = [UIColor clearColor];
-        _promptBoxView.backgroundColor = [UIColor redColor];
+//        _promptBoxView.backgroundColor = [UIColor redColor];
         _promptBoxView.delegate = self;
     }
     return _promptBoxView;
@@ -752,7 +752,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             if (![self isSupportRecord]) {
                 [weakSelf showHudInView:self.view hint:@"未授权"];
             } else {
-                [weakSelf showHudInView:self.view hint:NSLocalizedString(@"media.timeShort", @"The recording time is too short")];
+                [weakSelf showHudInView:self.view hint:@"时间过短"];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf hideHud];
