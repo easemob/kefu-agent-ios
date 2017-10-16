@@ -131,6 +131,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self.headview refreshHeaderView];
 }
 
@@ -142,6 +143,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [super viewWillDisappear: animated];
     [[HDClient sharedClient] removeDelegate:self];
     [[HDClient sharedClient].chatManager removeDelegate:self];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     //clear本地的wav文件
     [self clearTempWav];
 }
