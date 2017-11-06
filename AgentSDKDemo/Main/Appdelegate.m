@@ -9,10 +9,8 @@
 #import "AppDelegate.h"
 #import "KFBaseNavigationController.h"
 #import "AppDelegate+EaseMob.h"
-#import "KFTabBarController.h"
 #import "HomeViewController.h"
 #import "LoginViewController.h"
-#import "DXMessageManager.h"
 #import "DDTTYLogger.h"
 #import "DDFileLogger.h"
 #import "DDASLLogger.h"
@@ -28,7 +26,7 @@
 //================appstore end=================
 //#import <wax/wax.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <UIAlertViewDelegate>
 
 @end
 @implementation AppDelegate
@@ -66,8 +64,6 @@
     [[EmotionEscape sharedInstance] setEaseEmotionEscapePattern:@"\\[[^\\[\\]]{1,3}\\]"];
     [[EmotionEscape sharedInstance] setEaseEmotionEscapeDictionary:[ConvertToCommonEmoticonsHelper emotionsDictionary]];
     
-    [[HDClient sharedClient] addDelegate:[KFManager shareInstance] delegateQueue:nil];
-    
     return YES;
 }
 
@@ -89,7 +85,7 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     if(application.applicationState == UIApplicationStateActive){
         if ([UIApplication sharedApplication].applicationIconBadgeNumber > 0) {
-            [[KFManager shareInstance].conversation refreshData];
+            [[KFManager sharedInstance].conversation refreshData];
         }
     }
 }
@@ -101,7 +97,7 @@
 - (void)startLogin
 {
     if ([HDClient sharedClient].isLoggedInBefore) {
-        [self showHomeViewController];
+        [[KFManager sharedInstance] showMainViewController];
     } else {
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         NSString *username = [userDefaults objectForKey:USERDEFAULTS_LOGINUSERNAME];
@@ -109,8 +105,7 @@
         if (username.length>0 && password.length > 0) {
             [[HDClient sharedClient] asyncLoginWithUsername:username password:password hidingLogin:NO completion:^(id responseObject, HDError *error) {
                 if (error == nil) {
-                    AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-                    [appDelegate showHomeViewController];
+                    [[KFManager sharedInstance] showMainViewController];
                     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                     [userDefaults setValue:username forKey:USERDEFAULTS_LOGINUSERNAME];
                     [userDefaults synchronize];
@@ -119,19 +114,14 @@
                 }
             }];
         } else {
-            LoginViewController *loginController = [[LoginViewController alloc] init];
-            self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:loginController];
-            [HomeViewController HomeViewControllerDestory];
-            [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+            [self showLoginViewController];
         }
-        
-        
     }
 }
 
 - (void)showLoginViewController {
     LoginViewController *loginController = [[LoginViewController alloc] init];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:loginController];
+    self.window.rootViewController = [[KFBaseNavigationController alloc] initWithRootViewController:loginController];
     [HomeViewController HomeViewControllerDestory];
     //进入登陆页面,角标清空
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
@@ -201,6 +191,13 @@
         }
     }
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == kShowLoginViewControllerTag) {
+        [[KFManager sharedInstance] showLoginViewController];
+    }
+}
+
 //================appstore end=================
 
 - (void)clearCache

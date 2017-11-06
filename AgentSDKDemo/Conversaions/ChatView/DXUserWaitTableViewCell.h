@@ -10,7 +10,7 @@
 
 @interface DXUserWaitTableViewCell : UITableViewCell
 {
-    UserModel *_model;
+//    UserModel *_model;
 }
 
 @property (strong, nonatomic) UIImageView *headerImageView;

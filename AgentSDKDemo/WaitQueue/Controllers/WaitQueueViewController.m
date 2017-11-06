@@ -185,6 +185,7 @@
 {
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
     _searchBar.delegate = self;
+    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     _searchBar.placeholder = @"搜索用户昵称";
     _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
     _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
@@ -249,7 +250,7 @@
                         _waitUnreadcount--;
                         [weakSelf setUnreadCount:_waitUnreadcount];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [[KFManager shareInstance].wait loadData];
+                            [[KFManager sharedInstance].wait loadData];
                         });
                     } else {
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"接入会话失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
@@ -398,7 +399,7 @@
                         _waitUnreadcount--;
                         [weakSelf setUnreadCount:_waitUnreadcount];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [[KFManager shareInstance].wait loadData];
+                            [[KFManager sharedInstance].wait loadData];
                         });
                     } else {
                         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"接入会话失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];

@@ -81,13 +81,13 @@
 
 - (void)setModel:(HDWaitUser *)model
 {
-    _model = model;
+//    _model = model;
     _headerImageView.image = [UIImage imageNamed:@"default_customer_avatar"];
     _titleLabel.text = model.userName;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     _timeLabel.text = [[formatter dateFromString:model.createDateTime] formattedDateDescription];
-    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:model.lastMessage.body.content];
+    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model.lastMessage]];
 }
 
 @end

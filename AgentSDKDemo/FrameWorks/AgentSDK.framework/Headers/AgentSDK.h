@@ -19,7 +19,6 @@ FOUNDATION_EXPORT const unsigned char AgentSDKVersionString[];
 #import <AgentSDK/HDConversation.h>
 #import <AgentSDK/HDMessage.h>
 #import <AgentSDK/HDWaitUser.h>
-#import <AgentSDK/HDMessageBody.h>
 #import <AgentSDK/HDError.h>
 #import <AgentSDK/HDErrorCode.h>
 #import <AgentSDK/HDClient.h>
@@ -36,3 +35,4 @@ FOUNDATION_EXPORT const unsigned char AgentSDKVersionString[];
 #import <AgentSDK/HDImageMessageBody.h>
 #import <AgentSDK/HDVoiceMessageBody.h>
 #import <AgentSDK/HDFileMessageBody.h>
+#import <AgentSDK/HDLocationMessageBody.h>

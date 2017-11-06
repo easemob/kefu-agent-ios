@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  AgentSDKDemo
+
+  Created by afanda on 10/11/17.
+  Copyright © 2017 环信. All rights reserved.
+*/
+//apns
+"apns.failToRegisterApns" = "Fail to register apns";
+
+//common
+"open" = "Open";
+"ok" = "OK";
+"send" = "发送";
+"searchResults" = "results";
+
+//message
+"message.startRecordFail" = "stard fail";
+
+//leaveMsg
+"leaveMessage.leavemsg.attachmentname" = "name";

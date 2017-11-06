@@ -97,7 +97,6 @@ singleton_implementation(KFFileCache)
     return data;
 }
 
-
 //private
 - (void)createBaseDir {
     NSString *homeDir = NSHomeDirectory();

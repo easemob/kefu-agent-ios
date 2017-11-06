@@ -23,7 +23,7 @@
 
 @implementation DXChatBarMoreView
 
-- (instancetype)initWithFrame:(CGRect)frame typw:(ChatMoreType)type
+- (instancetype)initWithFrame:(CGRect)frame typw:(KFChatMoreType)type
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -38,7 +38,7 @@
     return self;
 }
 
-- (void)setupSubviewsForType:(ChatMoreType)type
+- (void)setupSubviewsForType:(KFChatMoreType)type
 {
     self.backgroundColor = [UIColor clearColor];
     CGFloat insets = (self.frame.size.width - 4 * CHAT_BUTTON_SIZE) / 5;
@@ -72,7 +72,7 @@
 //    [self addSubview:_photoButton];
     
     CGRect frame = self.frame;
-    if (type == ChatMoreTypeChat) {
+    if (type == KFChatMoreTypeChat) {
         frame.size.height = 108;
         _quickReplyButton =[UIButton buttonWithType:UIButtonTypeCustom];
         [_quickReplyButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
@@ -119,10 +119,10 @@
         }
         //CGRectMake(insets, 20 + CHAT_BUTTON_HEIGHT, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)
     }
-    else if (type == ChatMoreTypeGroupChat)
+    else if (type == KFChatMoreTypeGroupChat)
     {
         frame.size.height = 80;
-    } else if (type == ChatMoreTypeClientChat) {
+    } else if (type == KFChatMoreTypeCustomerChat) {
         frame.size.height = 108;
     }
     self.frame = frame;

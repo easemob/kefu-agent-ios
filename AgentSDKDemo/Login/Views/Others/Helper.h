@@ -16,6 +16,10 @@
 //手机号码验证
 + (BOOL) isMobile:(NSString *)mobile;
 
+
+
++ (NSString *)getMessageContent:(HDMessage *)message;
+
 @end
 
 

@@ -161,7 +161,7 @@
 
 
 - (NSString *)title1 {
-    if([self.seeReadButton.currentTitle isEqualToString:@"查看已读"]||_seeReadButton == nil) {
+    if(_seeReadButton == nil || !self.seeReadButton.selected) {
         return @"未读通知";
     } else {
         return @"已读通知";
@@ -180,6 +180,7 @@
         _seeReadButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _seeReadButton.frame = CGRectMake(0, 10,100, 44);
         [_seeReadButton setTitle:@"查看已读" forState:UIControlStateNormal];
+        [_seeReadButton setTitle:@"查看未读" forState:UIControlStateSelected];
         [_seeReadButton setTitleColor:RGBACOLOR(40, 162, 239, 1) forState:UIControlStateNormal];
         [_seeReadButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [_seeReadButton addTarget:self action:@selector(seeReadButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -190,17 +191,17 @@
 
 - (void)seeReadButtonClicked:(UIButton *)btn { //rightItem
     HomeViewController *homeVC = [HomeViewController HomeViewController];
-    if ([btn.currentTitle isEqualToString:@"查看已读"]) {
-        [btn setTitle:@"查看未读" forState:UIControlStateNormal];
+    if (!btn.selected) {
         homeVC.title = @"已读通知";
         _unreadDataSource = [NSMutableArray arrayWithArray:self.dataSource];
         _unreadTotleCount = self.totalCount;
         [self readAction];
     } else {
-        [btn setTitle:@"查看已读" forState:UIControlStateNormal];
         homeVC.title = @"未读通知";
         [self unReadAction];
     }
+    
+    btn.selected = !btn.selected;
 }
 
 - (UIButton *)markButton {
@@ -394,12 +395,13 @@
         return;
     }
     WEAK_SELF
+    _isRefresh = YES;
     [self showHintNotHide:@"加载中..."];
-    [[HDClient sharedClient].notiManager asyncGetNoticeWithPageIndex:_page pageSize:kNotifyPageSize status:_currentStatus type:notiType prameters:nil completion:^(NSArray<HDNotifyModel *> *notices, HDError *error) {
+    [[HDClient sharedClient].notiManager asyncGetNoticeWithPageIndex:page pageSize:kNotifyPageSize status:_currentStatus type:notiType prameters:nil completion:^(NSArray<HDNotifyModel *> *notices, HDError *error) {
+        [MBProgressHUD  hideAllHUDsForView:weakSelf.view animated:YES];
         weakSelf.isRefresh = NO;
-        [weakSelf hideHud];
         if (nil == error) {
-            if (_page == 1) {
+            if (page == 1) {
                 [self.dataSource removeAllObjects];
             }
             if (_currentStatus == HDNoticeStatusUnread) {
@@ -504,6 +506,7 @@
             [weakSelf setHeaderNumWithtotle:[HDClient sharedClient].notiManager.unreadCount];
             [weakSelf.tableView reloadData];
             [weakSelf resetBadge];
+            _page = 0;
             [weakSelf showHint:@"标记成功"];
         } else {
             [weakSelf showHint:@"标记失败"];

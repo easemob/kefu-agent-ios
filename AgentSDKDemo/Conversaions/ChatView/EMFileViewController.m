@@ -46,7 +46,7 @@
         _nameLabel.frame = CGRectMake((KScreenWidth - 200.f)/2, CGRectGetMaxY(self.fileImageView.frame) + 10.f, 200.f, 20.f);
         _nameLabel.textColor = RGBACOLOR(26, 26, 26, 1);
         _nameLabel.font = [UIFont systemFontOfSize:17];
-        _nameLabel.text = _model.body.fileName;
+        _nameLabel.text = ((HDFileMessageBody *)_model.nBody).displayName;
     }
     return _nameLabel;
 }

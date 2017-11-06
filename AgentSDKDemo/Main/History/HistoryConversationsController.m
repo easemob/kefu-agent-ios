@@ -218,6 +218,7 @@
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
+    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     _searchBar.backgroundImage = [self.view imageWithColor:RGBACOLOR(0xef, 0xef, 0xf4, 1) size:_searchBar.frame.size];
     _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
     _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
@@ -374,15 +375,11 @@
                     ChatViewController *chatView = [[ChatViewController alloc] init];
                     chatView.conversationModel = model;
                     model.chatter = model.vistor;
-                    [[DXMessageManager shareManager] setCurSessionId:model.sessionId];
-                    [[KFManager shareInstance].wait loadData];
+                    [[KFManager sharedInstance] setCurrentSessionId:model.sessionId];
+                    [[KFManager sharedInstance].wait loadData];
                     [weakSelf.navigationController pushViewController:chatView animated:YES];
                 } else {
-                    if (error.code == 400) {
-                        [weakSelf showHint:@"回呼失败,用户正在会话"];
-                    } else {
-                        [weakSelf showHint:@"回呼失败"];
-                    }
+                     [weakSelf showHint:error.errorDescription];
                 }
             }];
         }
@@ -572,7 +569,7 @@
             _page++;
             _totalCount = totalNum;
             for (HDHistoryConversation *model in conversations) {
-                model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.chatter.nicename];
+                model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.vistor.nicename];
                 [weakSelf.dataSource addObject:model];
             }
             weakSelf.headerView.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@((int)[weakSelf.dataSource count]),@(_totalCount)];

@@ -26,4 +26,6 @@
 
 - (void)searhResignAndSearchDisplayNoActive;
 
+- (void)loadData;
+
 @end

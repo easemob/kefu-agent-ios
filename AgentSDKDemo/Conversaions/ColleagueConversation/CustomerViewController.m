@@ -62,6 +62,9 @@
     [self.conDelegate ConversationPushIntoChat:viewController];
 }
 
+- (void)loadData {
+    [_customerController loadData];
+}
 #pragma mark - kvo
 
 /*

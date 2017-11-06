@@ -98,8 +98,7 @@
         _unreadLabel.tipNumber = string;
         _unreadLabel.hidden = NO;
     }
-    
-    self.headerImageView.image = [UIImage imageNamed:@"default_agent_avatar"];
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:model.chatter.avatar] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
     self.titleLabel.text = model.chatter.nicename;
     if ([model.chatter.onLineState isEqualToString:USER_STATE_ONLINE]) {
         _stateView.image = [UIImage imageNamed:@"state_green"];
@@ -108,10 +107,13 @@
         _stateView.image = [UIImage imageNamed:@"state_red"];
         _contentLabel.text = @"忙碌";
     } else if ([model.chatter.onLineState isEqualToString:USER_STATE_LEAVE]) {
-        _stateView.image = [UIImage imageNamed:@"state_yellow"];
+        _stateView.image = [UIImage imageNamed:@"state_blue"];
         _contentLabel.text = @"离开";
-    } else {
+    } else if([model.chatter.onLineState isEqualToString:USER_STATE_OFFLINE]) {
         _stateView.image = [UIImage imageNamed:@"state_gray"];
+        _contentLabel.text = @"离线";
+    } else {
+        _stateView.image = [UIImage imageNamed:@"state_yellow"];
         _contentLabel.text = @"隐身";
     }
 }

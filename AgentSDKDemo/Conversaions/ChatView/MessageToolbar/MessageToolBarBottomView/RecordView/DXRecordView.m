@@ -48,7 +48,7 @@
         
         _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.backgroundColor = [UIColor clearColor];
-        _textLabel.text = NSLocalizedString(@"message.toolBar.record.upCancel", @"Fingers up slide, cancel sending");
+        _textLabel.text = @"手指上滑,取消发送";
         [self addSubview:_textLabel];
         _textLabel.font = [UIFont systemFontOfSize:13];
         _textLabel.textColor = [UIColor whiteColor];
@@ -64,7 +64,7 @@
 {
     if ([self isSupportRecord]) {
         // 需要根据声音大小切换recordView动画
-        _textLabel.text = NSLocalizedString(@"message.toolBar.record.upCancel", @"Fingers up slide, cancel sending");
+        _textLabel.text = @"手指上滑,取消发送";
         _textLabel.backgroundColor = [UIColor clearColor];
         _timer = [NSTimer scheduledTimerWithTimeInterval:0.05
                                                   target:self
@@ -87,14 +87,14 @@
 // 手指移动到录音按钮内部
 -(void)recordButtonDragInside
 {
-    _textLabel.text = NSLocalizedString(@"message.toolBar.record.upCancel", @"Fingers up slide, cancel sending");
+    _textLabel.text = @"手指上滑,取消发送";;
     _textLabel.backgroundColor = [UIColor clearColor];
 }
 
 // 手指移动到录音按钮外部
 -(void)recordButtonDragOutside
 {
-    _textLabel.text = NSLocalizedString(@"message.toolBar.record.loosenCancel", @"loosen the fingers, to cancel sending");
+    _textLabel.text = @"松开手指，取消录音";
     _textLabel.backgroundColor = [UIColor redColor];
 }
 

@@ -1,0 +1,10 @@
+/* 
+  infoPlist.strings
+  AgentSDKDemo
+
+  Created by afanda on 10/11/17.
+  Copyright © 2017 环信. All rights reserved.
+*/
+
+CFBundleDisplayName = "环信客服";
+

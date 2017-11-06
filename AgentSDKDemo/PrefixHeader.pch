@@ -15,6 +15,8 @@
 
 #import "LocalDefine.h"
 #import "SingletonDefine.h"
+#import "UtilsMacros.h"
+#import "AAGlobalMacro.h"
 
 #define hPageLimit 10
 #define hPageSize 10
@@ -40,6 +42,7 @@
 #define WEAK_SELF typeof(self) __weak weakSelf = self;
 
 #import "EmotionEscape.h"
+#import "Helper.h"
 #import "KFManager.h"
 #import "IQKeyboardManager.h"
 #import "SRRefreshView.h"
@@ -58,7 +61,6 @@
 #import "MBProgressHUD+Add.h"
 //#import "NSDictionary+SafeValue.h"
 #import "DXLoadingView.h"
-#import "DXMessageManager.h"
 #import "EMBaseViewController.h"
 #import "UIViewController+DismissKeyboard.h"
 //NEW

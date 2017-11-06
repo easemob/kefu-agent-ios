@@ -19,7 +19,7 @@
 @interface DXMessageToolBar()<UITextViewDelegate, DXFaceDelegate>
 {
     CGFloat _previousTextViewContentHeight;//上一次inputTextView的contentSize.height
-    ChatMoreType chatType;
+    KFChatMoreType _chatType;
 }
 
 @property (nonatomic) CGFloat version;
@@ -49,7 +49,7 @@
 
 @implementation DXMessageToolBar
 
-- (instancetype)initWithFrame:(CGRect)frame type:(ChatMoreType)type
+- (instancetype)initWithFrame:(CGRect)frame type:(KFChatMoreType)type
 {
     if (frame.size.height < (kVerticalPadding * 2 + kInputTextViewMinHeight)) {
         frame.size.height = kVerticalPadding * 2 + kInputTextViewMinHeight;
@@ -58,7 +58,7 @@
     if (self) {
         // Initialization code
         [self setupConfigure];
-        chatType = type;
+        _chatType = type;
     }
     return self;
 }
@@ -409,7 +409,7 @@
     
     
     if (!self.moreView) {
-        self.moreView = [[DXChatBarMoreView alloc] initWithFrame:CGRectMake(0, (kVerticalPadding * 2 + kInputTextViewMinHeight), self.frame.size.width, kBottomViewHeight) typw:chatType];
+        self.moreView = [[DXChatBarMoreView alloc] initWithFrame:CGRectMake(0, (kVerticalPadding * 2 + kInputTextViewMinHeight), self.frame.size.width, kBottomViewHeight) typw:_chatType];
         self.moreView.backgroundColor = [UIColor clearColor];
         self.moreView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     }
@@ -551,9 +551,12 @@
 - (void)buttonAction:(id)sender
 {
     UIButton *button = (UIButton *)sender;
-    button.selected = !button.selected;
     NSInteger tag = button.tag;
-    
+    if (_chatType == KFChatMoreTypeCustomerChat && tag == 0) {
+        kAlert(@"暂不支持发送语音");
+        return;
+    }
+    button.selected = !button.selected;
     switch (tag) {
         case 0://切换状态
         {

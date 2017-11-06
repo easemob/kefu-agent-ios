@@ -8,7 +8,7 @@
 
 #import "HomeViewController.h"
 #import "KFBaseNavigationController.h"
-#import "ConversationsController.h"
+#import "KFConversationsController.h"
 #import "HistoryConversationsController.h"
 #import "CustomerController.h"
 #import "NotifyViewController.h"
@@ -17,7 +17,9 @@
 #import "WaitQueueViewController.h"
 #import "ChatViewController.h"
 #import "KFLeftViewController.h"
+#import "AdminHomeViewController.h"
 #import "AdminInforViewController.h"
+#import "ReminderView.h"
 //================appstore start=================
 #import "UMCheckUpdate.h"
 #import <PgyUpdate/PgyUpdateManager.h>
@@ -52,7 +54,7 @@ static NSString *kGroupName = @"GroupName";
     NSString *_serviceSessionId;
 }
 
-@property (strong, nonatomic) ConversationsController *conversationsController;
+@property (strong, nonatomic) KFConversationsController *conversationsController;
 @property (strong, nonatomic) CustomerViewController *customerController;
 @property (strong, nonatomic) NotifyViewController *notifyController;
 @property (strong, nonatomic) WaitQueueViewController *waitqueueController;
@@ -63,6 +65,7 @@ static NSString *kGroupName = @"GroupName";
 @property (strong, nonatomic) AdminInforViewController *adminController;
 
 //管理员
+@property (strong, nonatomic) AdminHomeViewController *adminTypeHomeController;
 @property (strong, nonatomic) DXTipView *tipView;
 @property (strong, nonatomic) DXTipView *tipCustomerView;
 @property (strong, nonatomic) DXTipView *tipNotifyView;
@@ -138,6 +141,17 @@ static NSInteger currentTotalBadgeValue;
     // Do any additional setup after loading the view, typically from a nib.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[HDClient sharedClient] getExpiredInformationCompletion:^(id responseObject, HDError *error) {
+            if (error==nil && responseObject != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    ReminderView *remindView = [[ReminderView alloc] initWithDictionary:responseObject];
+                    [[UIApplication sharedApplication].keyWindow addSubview:remindView];
+                });
+            }
+            
+        }];
+    });
     [self _setupChildrenVC];
 //    [self _setupSubviews];
     
@@ -151,24 +165,24 @@ static NSInteger currentTotalBadgeValue;
 
 - (void)_setupChildrenVC {
     
-    _conversationsController = [[ConversationsController alloc] init];
-    [KFManager shareInstance].conversation = _conversationsController;
+    _conversationsController = [[KFConversationsController alloc] init];
+    [KFManager sharedInstance].conversation = _conversationsController;
     [self setupChildVc:_conversationsController title:@"会话" image:@"tabbar_icon_ongoing" selectedImage:@"tabbar_icon_ongoinghighlight" index:0];
     
     _waitqueueController = [[WaitQueueViewController alloc] init];
-    [KFManager shareInstance].wait = _waitqueueController;
+    [KFManager sharedInstance].wait = _waitqueueController;
     _waitqueueController.showSearchBar = YES;
     _waitqueueController.isFetchedData = YES;
     [self setupChildVc:_waitqueueController title:@"待接入" image:@"tabbar_icon_visitor_Text6" selectedImage:@"tabbar_icon_visitorhighlight_Text6" index:1];
     [_waitqueueController viewDidLoad];
     
     _notifyController = [[NotifyViewController alloc] init];
-    [KFManager shareInstance].noti = _notifyController;
+    [KFManager sharedInstance].noti = _notifyController;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
     [_notifyController viewDidLoad];
     
     _leaveMsgController = [[LeaveMsgViewController alloc] init];
-    [KFManager shareInstance].leaveMsg = _leaveMsgController;
+    [KFManager sharedInstance].leaveMsg = _leaveMsgController;
     [self setupChildVc:_leaveMsgController title:@"留言" image:@"tabbar_icon_crm" selectedImage:@"tabbar_icon_crmhighlight" index:3];
     [_leaveMsgController viewDidLoad];
     
@@ -314,6 +328,10 @@ static NSInteger currentTotalBadgeValue;
     return imagez;
 }
 
+- (void)didReceiveLocalNotification:(UILocalNotification *)notification {
+    
+}
+
 - (void)historyBackAction
 {
 
@@ -352,7 +370,7 @@ static NSInteger currentTotalBadgeValue;
 
 -(void) setConversationUnRead:(BOOL) aFlag
 {
-    ConversationsController *conversation = (ConversationsController*)[self.viewControllers objectAtIndex:0];
+    KFConversationsController *conversation = (KFConversationsController*)[self.viewControllers objectAtIndex:0];
     if (aFlag) {
         [conversation.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoinghighlight"] rightImage:[self convertViewToImage:_tipView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoing"] rightImage:[self convertViewToImage:_tipView]]];
     }else {
@@ -489,18 +507,18 @@ static NSInteger currentTotalBadgeValue;
 
 - (void)adminMenuClickWithIndex:(NSInteger)index
 {
-//    self.adminTypeHomeController = nil;
-//    self.adminTypeHomeController = [[AdminHomeViewController alloc] init];
-//    NSArray *views = [self.navigationController viewControllers];
-//    BOOL needPush = YES;
-//    for (UIViewController *view in views) {
-//        if ([view isKindOfClass:[AdminHomeViewController class]]) {
-//            needPush = NO;
-//        }
-//    }
-//    if (needPush) {
-//        [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
-//    }
+    self.adminTypeHomeController = nil;
+    self.adminTypeHomeController = [[AdminHomeViewController alloc] init];
+    NSArray *views = [self.navigationController viewControllers];
+    BOOL needPush = YES;
+    for (UIViewController *view in views) {
+        if ([view isKindOfClass:[AdminHomeViewController class]]) {
+            needPush = NO;
+        }
+    }
+    if (needPush) {
+        [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
+    }
 }
 
 - (void)onlineStatusClick:(UIView*)view;

@@ -37,7 +37,7 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = kTableViewBgColor;
     [self.view addSubview:self.resultsTableView];
-    self.view.backgroundColor = [UIColor redColor];
+//    self.view.backgroundColor = [UIColor redColor];
 }
 
 

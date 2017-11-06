@@ -424,8 +424,7 @@
     [[HDClient sharedClient] logoutCompletion:^(HDError *error) {
         [weakSelf hideHud];
         if (error == nil) {
-            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            [appDelegate showLoginViewController];
+            [[KFManager sharedInstance] showLoginViewController];
         } else {
             [self showHint:@"退出出错"];
         }

@@ -34,4 +34,42 @@
     return [phoneTest evaluateWithObject:mobile];
 }
 
+
+
+
++ (NSString *)getMessageContent:(HDMessage *)message {
+    NSString *content = @"";
+    switch (message.type) {
+        case HDMessageBodyTypeText: {
+            HDTextMessageBody *body = (HDTextMessageBody *)message.nBody;
+            content = body.text;
+            break;
+        }
+        case HDMessageBodyTypeImage: {
+            content = @"[图片]";
+            break;
+        }
+        case HDMessageBodyTypeVoice:{
+            content = @"[语音]";
+            break;
+        }
+        case HDMessageBodyTypeFile:{
+            content = @"[文件]";
+            break;
+        }
+        case HDMessageBodyTypeImageText:{
+            content = @"[轨迹消息]";
+            break;
+        }
+        case HDMessageBodyTypeLocation: {
+            content = @"[位置消息]";
+            break;
+        }
+        default:
+            content = @"[其他消息]";
+            break;
+    }
+    return content;
+}
+
 @end

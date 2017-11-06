@@ -59,8 +59,8 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     //================appstore end=================
 #endif
     
-    self.view.backgroundColor = RGBACOLOR(26, 26, 26, 1);
-    _headerView = [[LeftMenuHeaderView alloc] init];
+    self.view.backgroundColor = RGBACOLOR(26, 26, 26, 1);;
+    _headerView = [[LeftMenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 70)];
      self.tableView.tableHeaderView = _headerView;
     _statusArray = @[@"空闲",@"忙碌",@"离开",@"隐身"];
     [_headerView.onlineButton addTarget:self action:@selector(onlineButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     if (user) {
         NSRange range = [user.roles rangeOfString:@"admin"];
         if (range.location != NSNotFound) {
-//            [self.tableView addSubview:self.switchButton];
+            [self.tableView addSubview:self.switchButton];
         }
     }
     [self.view addSubview:self.tableView];
@@ -96,7 +96,8 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+        CGRect frame = CGRectMake(0, 20, self.view.width, self.view.height-20);
+        _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor  = RGBACOLOR(26, 26, 26, 1);

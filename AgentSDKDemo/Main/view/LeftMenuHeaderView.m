@@ -21,9 +21,9 @@
 
 @implementation LeftMenuHeaderView
 
-- (id)init
+- (id)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:CGRectMake(0, 0, KScreenWidth, kLeftMenu_Height)];
+    self = [super initWithFrame:frame];
     if (self) {
         [self setupViews];
     }
@@ -33,7 +33,7 @@
 - (void)setupViews
 {
     UserModel *user = [HDClient sharedClient].currentAgentUser;
-    _headImageView = [[EMHeaderImageView alloc] initWithFrame:CGRectMake(10, 20, 50, 50)];
+    _headImageView = [[EMHeaderImageView alloc] initWithFrame:CGRectMake(10, 0, 50, 50)];
     [self addSubview:_headImageView];
     
     _nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame) + 10, 30, 120, 40)];

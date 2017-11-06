@@ -40,6 +40,8 @@ typedef enum {
 @property(nonatomic,copy) NSString *startDateTime;
 @property (strong, nonatomic) NSDate *createDate;
 @property(nonatomic,copy) NSString *searchWord;
+@property(nonatomic,copy) NSString *chatNicename;
+@property(nonatomic,copy) NSString *chatTruename;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

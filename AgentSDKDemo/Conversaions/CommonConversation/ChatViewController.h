@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EMBaseViewController.h"
 
 typedef enum{
     ChatViewTypeChat,

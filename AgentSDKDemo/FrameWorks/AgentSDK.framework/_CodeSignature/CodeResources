@@ -4,17 +4,13 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>.DS_Store</key>
-		<data>
-		3y++sUAKzaCQmjLBz2v0kvESHgc=
-		</data>
 		<key>Headers/AgentSDK.h</key>
 		<data>
-		n3wSMgj1nCha9SAmtXEPExkN/Dg=
+		N6+HxPRkx9E2PgzDhIe4uMDma64=
 		</data>
 		<key>Headers/HDBaseMessageBody.h</key>
 		<data>
-		dRlyeWZMx+LXRx5SBsmb7Ua/VEg=
+		dflK5MriauHG4CHqIcPE0sKtQXQ=
 		</data>
 		<key>Headers/HDChatManager.h</key>
 		<data>
@@ -30,11 +26,11 @@
 		</data>
 		<key>Headers/HDClient.h</key>
 		<data>
-		R11svuMU8oBZVnNcv601ZAnYp2Q=
+		6w+2cJk9zIaEWgHF1m/58LAoHMA=
 		</data>
 		<key>Headers/HDClientDelegate.h</key>
 		<data>
-		wpiug1g19TuwW/tRsvYkmTzYrj0=
+		Bsa0est1R4MXCUiQnNiL5CkTBoA=
 		</data>
 		<key>Headers/HDConversation.h</key>
 		<data>
@@ -72,17 +68,17 @@
 		<data>
 		SNFBuLpneIPnfNC+3Z/2qES13xI=
 		</data>
+		<key>Headers/HDLocationMessageBody.h</key>
+		<data>
+		LxVA4HFM0Ne9WU8UwPt0ZHSN/98=
+		</data>
 		<key>Headers/HDMediaFile.h</key>
 		<data>
 		PTrQa+FveZkkbYGXHbYiNn++se0=
 		</data>
 		<key>Headers/HDMessage.h</key>
 		<data>
-		c8zEC81+2bVmIcR73syvvQx6jHk=
-		</data>
-		<key>Headers/HDMessageBody.h</key>
-		<data>
-		qxdvk24th5hSSZevHccZokLQgGc=
+		J1PWyxUhsG44mEfIXls7a0Capo0=
 		</data>
 		<key>Headers/HDNotiManager.h</key>
 		<data>
@@ -114,7 +110,7 @@
 		</data>
 		<key>Headers/HDUserTag.h</key>
 		<data>
-		oyk0r2T/rInvYDEboZCbMa+sxQI=
+		H9wqI2hzDFgeGqlzjGRY0c97evM=
 		</data>
 		<key>Headers/HDVisitorInfo.h</key>
 		<data>
@@ -150,7 +146,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		BwROToQBqJ2yb54U2TcFKX4d4lU=
+		oU1WZgpvU0H/0OqzTUk/nCFRfs8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -163,22 +159,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			n3wSMgj1nCha9SAmtXEPExkN/Dg=
+			N6+HxPRkx9E2PgzDhIe4uMDma64=
 			</data>
 			<key>hash2</key>
 			<data>
-			wQJ0vLHKxLx4wNydpGc+QE9ksb5gZqBdgXQwBBktNRQ=
+			rWcVMK+txD1fxZsuedEKv893ZiYMEBkrYlwemViFRCU=
 			</data>
 		</dict>
 		<key>Headers/HDBaseMessageBody.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			dRlyeWZMx+LXRx5SBsmb7Ua/VEg=
+			dflK5MriauHG4CHqIcPE0sKtQXQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			iSS6pf+rxQxIJswCij43aOKNPUmYf8WV5WVRmqadb1k=
+			38DLm5x4GfQt3ffqYoOXdjG8VCpOqfGicxS4Cat0L+A=
 			</data>
 		</dict>
 		<key>Headers/HDChatManager.h</key>
@@ -218,22 +214,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			R11svuMU8oBZVnNcv601ZAnYp2Q=
+			6w+2cJk9zIaEWgHF1m/58LAoHMA=
 			</data>
 			<key>hash2</key>
 			<data>
-			EM8otRvBFVC9reKePNK9l1/WN0oT0treqViZ1ZtRu2c=
+			WNnH2D/MO1z2TK+QZlJ5Rsd/uUq+Le/1Ldp5ekpWD2A=
 			</data>
 		</dict>
 		<key>Headers/HDClientDelegate.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			wpiug1g19TuwW/tRsvYkmTzYrj0=
+			Bsa0est1R4MXCUiQnNiL5CkTBoA=
 			</data>
 			<key>hash2</key>
 			<data>
-			E0+PzPIglPYtgOjGgFUfyXtPvjmV/lG/+s8l7qPnNCY=
+			uAPurWY0mIKWLVGZLVcegfqarJhGzsZZ2OXoDC+/XiU=
 			</data>
 		</dict>
 		<key>Headers/HDConversation.h</key>
@@ -335,6 +331,17 @@
 			kpXmKW1LHmlqFdvrOQkvB8f3ZYqQsfqhW2NM518Bqc4=
 			</data>
 		</dict>
+		<key>Headers/HDLocationMessageBody.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			LxVA4HFM0Ne9WU8UwPt0ZHSN/98=
+			</data>
+			<key>hash2</key>
+			<data>
+			mjwpdFNEgzPJboF1T4yK+d9bACTCn45iFCx8BjrJTRI=
+			</data>
+		</dict>
 		<key>Headers/HDMediaFile.h</key>
 		<dict>
 			<key>hash</key>
@@ -350,22 +357,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			c8zEC81+2bVmIcR73syvvQx6jHk=
+			J1PWyxUhsG44mEfIXls7a0Capo0=
 			</data>
 			<key>hash2</key>
 			<data>
-			W4QHJzL3WMaWoUqPnuLN5L67BdHG3nMN3VBdMt0HzGc=
-			</data>
-		</dict>
-		<key>Headers/HDMessageBody.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			qxdvk24th5hSSZevHccZokLQgGc=
-			</data>
-			<key>hash2</key>
-			<data>
-			uf1UOMKvYik3YPeBcAxHSdhPGrN+Iv6mXpguHK5MZxA=
+			9jFiyleyET4PwXDkPCLLCQZZjpgl0wp3a22aK7iCp7c=
 			</data>
 		</dict>
 		<key>Headers/HDNotiManager.h</key>
@@ -449,11 +445,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			oyk0r2T/rInvYDEboZCbMa+sxQI=
+			H9wqI2hzDFgeGqlzjGRY0c97evM=
 			</data>
 			<key>hash2</key>
 			<data>
-			Q3UMgxVLUUQpXlrjjSqPp1BIRRzL4ZgXdX8Xm02Lyjo=
+			nEGjXTW5p/xNtvByIjuMltvBmlgCUTMEZMuOUe92GHI=
 			</data>
 		</dict>
 		<key>Headers/HDVisitorInfo.h</key>

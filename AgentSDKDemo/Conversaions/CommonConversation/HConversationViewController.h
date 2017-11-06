@@ -40,4 +40,9 @@
 
 - (void)searhResignAndSearchDisplayNoActive;
 
+- (void)connectionStateDidChange:(HDConnectionState)aConnectionState;
+
+- (void)conversationLastMessageChanged:(HDMessage *)message;
+
+
 @end

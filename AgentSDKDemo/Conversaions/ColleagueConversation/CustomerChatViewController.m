@@ -11,7 +11,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-#import "DXMessageManager.h"
 #import "DXMessageToolBar.h"
 #import "DXTagView.h"
 #import "QuickReplyViewController.h"
@@ -155,7 +154,7 @@
 - (DXMessageToolBar *)chatToolBar
 {
     if (_chatToolBar == nil) {
-        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight]) type:ChatMoreTypeClientChat];
+        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight]) type:KFChatMoreTypeCustomerChat];
         _chatToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
         _chatToolBar.delegate = self;
     }
@@ -327,8 +326,15 @@
         [self chatResendButtonPressed:messageModel];
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
         [self chatFileCellBubblePressed:model];
+    } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
+        [self chatFormCcellBubblePressed:model];
     }
 }
+
+- (void)chatFormCcellBubblePressed:(HDMessage *)model {
+    
+}
+
 
 - (void)chatFileCellBubblePressed:(HDMessage *)model
 {
@@ -400,7 +406,7 @@
 
 - (void)backAction
 {
-    [[KFManager shareInstance].conversation refreshData];
+    [[KFManager sharedInstance].conversation refreshData];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -562,8 +568,11 @@
         [self hideHud];
         if (!error) {
             for (HDMessage *message in messages) {
-                if (message.body) {
-                    message.body.content = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:message.body.content];
+                if (message.nBody) {
+                    if (message.type == HDMessageBodyTypeText) {
+                        ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                    }
+                   
                 }
                 if (![weakSelf.msgDic objectForKey:message.messageId]) {
                     [weakSelf.msgDic setObject:@"" forKey:message.messageId];
@@ -636,8 +645,11 @@
         if (error == nil) {
             [weakSelf hideHud];
             for (HDMessage *message in messages) {
-                if (message.body) {
-                    message.body.content = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:message.body.content];
+                if (message.nBody) {
+                    if (message.type == HDMessageBodyTypeText) {
+                        ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                    }
+                    
                 }
                 if (![weakSelf.msgDic objectForKey:message.messageId]) {
                     [weakSelf.msgDic setObject:@"" forKey:message.messageId];

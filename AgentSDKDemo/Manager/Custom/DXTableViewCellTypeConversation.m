@@ -121,28 +121,13 @@
             _contentLabel.attributedText = attributedString;
             break;
         }
-        case HDMessageBodyTypeImage: {
-            content = @"[图片]";
-            break;
-        }
-        case HDMessageBodyTypeVoice:{
-            content = @"[语音]";
-            break;
-        }
-        case HDMessageBodyTypeFile:{
-            content = @"[文件]";
-            break;
-        }
-        case HDMessageBodyTypeImageText:{
-            content = @"[轨迹消息]";
-            break;
-        }
+        
         default:
             content = @"[其他消息]";
             break;
     }
     if (model.lastMessage.type!=HDMessageBodyTypeText) {
-        _contentLabel.text = content;
+        _contentLabel.text = [Helper getMessageContent:model.lastMessage];
     }
     
     if ([model.originType isEqualToString:@"app"]) {
@@ -163,7 +148,7 @@
     _headerImageView.image = model.isSender?[UIImage imageNamed:@"default_agent_avatar"]:[UIImage imageNamed:@"default_customer_avatar"];
     _titleLabel.text = model.from;
     _timeLabel.text = model.timeDes;
-    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:model.body.content];
+    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model]];
 
 }
 
@@ -176,7 +161,7 @@
         startTime = [model.startDateTime substringToIndex:11];
     }
     _timeLabel.text = startTime;
-    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:model.lastMessage.body.content];
+    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model.lastMessage]];
     if ([model.originType isEqualToString:@"app"]) {
         _channelImageView.image = [UIImage imageNamed:@"channel_APP_icon"];
     } else if ([model.originType isEqualToString:@"webim"]) {

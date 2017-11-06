@@ -36,6 +36,7 @@
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     
+    
     [self registerRemoteNotification];
     
     [self registerEaseMobNotification];
@@ -163,7 +164,7 @@
 
 - (void)userAccountDidLoginFromOtherDevice {
     [MBProgressHUD show:@"其他设备登录" view:self.window];
-    [[KFManager shareInstance] showMainViewController];
+    [[KFManager sharedInstance] showMainViewController];
 }
 
 
@@ -184,6 +185,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

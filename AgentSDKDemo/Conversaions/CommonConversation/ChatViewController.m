@@ -10,7 +10,6 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AVFoundation/AVFoundation.h>
 #import "DXMessageToolBar.h"
-#import "DXMessageManager.h"
 #import "QuickReplyViewController.h"
 #import "ClientInforViewController.h"
 #import "EMChatViewCell.h"
@@ -32,7 +31,6 @@
 #import "EMFileViewController.h"
 #import "EMPromptBoxView.h"
 #import "DXRecordView.h"
-#import "HConversationManager.h"
 
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
@@ -104,6 +102,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 @property(nonatomic,strong) DXRecordView *recordView;
 
+@property(nonatomic,strong) UIButton *satisfactionBtn;
+
 @end
 
 @implementation ChatViewController
@@ -125,7 +125,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     self = [super init];
     if (self) {
         chatType = type;
-        _page = 1;
+        _page = 0;
     }
     return self;
 }
@@ -133,6 +133,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self.headview refreshHeaderView];
 }
 
@@ -144,6 +145,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [super viewWillDisappear: animated];
     [[HDClient sharedClient] removeDelegate:self];
     [[HDClient sharedClient].chatManager removeDelegate:self];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     //clear本地的wav文件
     [self clearTempWav];
 }
@@ -167,9 +169,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)startNoti {
     [[HDClient sharedClient].chatManager removeDelegate:self];
-    if ([HDClient sharedClient].chatManager==nil) {
-        NSLog(@"error : [HDClient sharedClient].chatManager == nil");
-    }
     [[HDClient sharedClient].chatManager addDelegate:self];
     
     [[HDClient sharedClient] removeDelegate:self];
@@ -180,7 +179,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [HConversationManager sharedInstance].curChatViewConvtroller = self;
+    [KFManager sharedInstance].curChatViewConvtroller = self;
+    [KFManager sharedInstance].currentSessionId = self.conversationModel.sessionId;
     [self startNoti];
     // Do any additional setup after loading the view.
     if ([UIDevice currentDevice].systemVersion.floatValue >= 7) {
@@ -194,6 +194,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
+    
+    _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
+    [self markAsRead];
     if (chatType == ChatViewTypeChat) {
         UIView *titleView = [[UIView alloc] init];
         titleView.frame = self.tagBtn.frame;
@@ -201,6 +204,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.navigationItem setTitleView:titleView];
         [self.view addSubview:self.chatToolBar];
         [self.view addSubview:self.moreView];
+        [_conversation satisfactionStatusWithSessionId:_conversationModel.sessionId completion:^(BOOL send, HDError *error) {
+            _satisfactionBtn.selected = send;
+        }];
         [self.view addSubview:self.headview];
         [self.view addSubview:self.folderButton];
         [self.view addSubview:self.promptBoxView];
@@ -221,8 +227,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.view addSubview:self.folderButton];
         [self.view addSubview:self.moreView];
     }
-    _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
-    [self markAsRead];
+    
     //将self注册为chatToolBar的moreView的代理
     if ([self.chatToolBar.moreView isKindOfClass:[DXChatBarMoreView class]]) {
         [(DXChatBarMoreView *)self.chatToolBar.moreView setDelegate:self];
@@ -233,12 +238,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //    [self setupForDismissKeyboard];
     
     [self loadMessage];
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(conversationRefreshAutoEnd:) name:NOTIFICATION_CONVERSATION_REFRESH_AUTOEND object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notifyNumberChange:) name:NOTIFICATION_NOTIFY_NUMBER_CHANGE object:nil];
-//    [fNotificationCenter addObserver:self selector:@selector(autoPop:) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
+
     [self loadTags];
-    [[HConversationManager sharedInstance] setNavItemBadgeValueWithAllConversations:_allConversations];
+    [[KFManager sharedInstance] setNavItemBadgeValueWithAllConversations:_allConversations];
     [self tableViewScrollToBottom];
 }
 
@@ -247,16 +249,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [super viewDidDisappear:animated];
 }
 
-- (void)autoPop:(NSNotification *)noti {
-    NSDictionary *dic = noti.object;
-    if (dic) {
-        if ([dic objectForKey:@"serviceSessionId"]) {
-            if ([[dic objectForKey:@"serviceSessionId"] isEqualToString:self.conversationModel.sessionId]) {
-                [self backAction];
-            }
-        }
-    }
-}
 
 - (void)setupBarButtonItem
 {
@@ -289,7 +281,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _promptBoxView = [[EMPromptBoxView alloc] init];
         _promptBoxView.frame = CGRectMake(50, CGRectGetMaxY(self.tableView.frame) - 100, KScreenWidth - 100, 100);
         _promptBoxView.backgroundColor = [UIColor clearColor];
-        _promptBoxView.backgroundColor = [UIColor redColor];
+//        _promptBoxView.backgroundColor = [UIColor redColor];
         _promptBoxView.delegate = self;
     }
     return _promptBoxView;
@@ -456,9 +448,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [satisfactionBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
             [satisfactionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
             [satisfactionBtn setImage:[UIImage imageNamed:@"expand_icon_vote"] forState:UIControlStateNormal];
+            [satisfactionBtn setImage:[UIImage imageNamed:@"expand_icon_vote_over"] forState:UIControlStateSelected];
             [satisfactionBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
             [satisfactionBtn addTarget:self action:@selector(satisfactionyAction) forControlEvents:UIControlEventTouchUpInside];
             [contentView addSubview:satisfactionBtn];
+            _satisfactionBtn = satisfactionBtn;
             
             UIView *line2 = [[UIView alloc] init];
             line2.frame = CGRectMake(0, CGRectGetMaxY(satisfactionBtn.frame) - 0.5, contentView.width, 1);
@@ -523,7 +517,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [_tagBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_tagBtn addTarget:self action:@selector(tagAction:) forControlEvents:UIControlEventTouchUpInside];
         [_tagBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 10, 0)];
-        [_tagBtn setTitleText:_conversationModel.chatter.nicename];
+        NSString *title = @"";
+        if (chatType == ChatViewTypeCallBackChat) {
+            title = _conversationModel.vistor.nicename;
+        } else {
+            title = _conversationModel.chatter.nicename;
+        }
+        [_tagBtn setTitleText:title];
         [_tagBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.f]];
         [_tagBtn layoutIfNeeded];
         
@@ -555,7 +555,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (DXMessageToolBar *)chatToolBar
 {
     if (_chatToolBar == nil) {
-        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight])];
+        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight]) type:KFChatMoreTypeChat];
         _chatToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
         _chatToolBar.delegate = self;
     }
@@ -763,7 +763,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             if (![self isSupportRecord]) {
                 [weakSelf showHudInView:self.view hint:@"未授权"];
             } else {
-                [weakSelf showHudInView:self.view hint:NSLocalizedString(@"media.timeShort", @"The recording time is too short")];
+                [weakSelf showHudInView:self.view hint:@"时间过短"];
             }
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [weakSelf hideHud];
@@ -844,8 +844,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     HDMessage *message = [ChatSendHelper sendTextMessageWithString:@"自定义消息" toUser:_conversationModel.chatter.userId sessionId:_conversationModel.sessionId ext:nil];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:self.lastMsgExt];
-    [parameters setObject:data forKey:MESSAGEBODY_MSGTYPE];
-    message.body.msgExt = parameters;
+    [parameters setObject:data forKey:@"msgtype"];
+    message.nBody.msgExt = parameters;
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
         [self updateMessageWithMessage:aMessage];
@@ -877,7 +877,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     HDMessage *model = [userInfo objectForKey:KMESSAGEKEY];
     if ([eventName isEqualToString:kRouterEventTextURLTapEventName]) {
         NSString *_dataString=[NSString stringWithUTF8String:[[userInfo objectForKey:@"url"] UTF8String]];
-        _dataString = [_dataString stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
         WebViewController *webview = [[WebViewController alloc] initWithUrl:_dataString];
         [self.navigationController pushViewController:webview animated:YES];
     } else if ([eventName isEqualToString:kRouterEventImageBubbleTapEventName]){
@@ -903,7 +902,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self chatAudioCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
         [self chatFileCellBubblePressed:model];
+    } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
+        [self chatFormCcellBubblePressed:model];
     }
+}
+
+- (void)chatFormCcellBubblePressed:(HDMessage *)model {
+    
 }
 
 - (void)chatFileCellBubblePressed:(HDMessage *)model
@@ -980,7 +985,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 // 位置的bubble被点击
 - (void)chatLocationCellBubblePressed:(HDMessage *)model
 {
-    LocationViewController *locationController = [[LocationViewController alloc] initWithLocation:CLLocationCoordinate2DMake(model.body.lat, model.body.lng)];
+    HDLocationMessageBody *body = (HDLocationMessageBody *)model.nBody;
+    LocationViewController *locationController = [[LocationViewController alloc] initWithLocation:CLLocationCoordinate2DMake(body.latitude, body.longitude)];
     [self.navigationController pushViewController:locationController animated:YES];
 }
 
@@ -1032,11 +1038,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)backAction
 {
-    [[KFManager shareInstance].conversation refreshData];
+    [[KFManager sharedInstance].conversation refreshData];
     
     _conversationModel.unreadCount = 0;
-    [[HConversationManager sharedInstance] setTabbarBadgeValueWithAllConversations:_allConversations];
-    [HConversationManager sharedInstance].curChatViewConvtroller = nil;
+    [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:_allConversations];
+    [KFManager sharedInstance].curChatViewConvtroller = nil;
+    [KFManager sharedInstance].currentSessionId = @"";
     if (chatType == ChatViewTypeChat) {
         if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
             [_delegate refreshConversationList];
@@ -1196,9 +1203,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [self hideHud];
             if (error == nil) {
                 [weakSelf showHint:@"已发送"];
-//                DDLogInfo(@"send chat satisfaction --- %@ userId --- %@",[HDClient sharedClient].currentAgentUser,_conversationModel.chatter.userId);
+                _satisfactionBtn.selected = YES;
             } else {
-                
                 [weakSelf showHint:@"发送失败"];
 //                DDLogError(@"send chat satisfaction --- %@ userId --- %@ error:%@",[HDClient sharedClient].currentAgentUser.nicename,_conversationModel.chatter.userId,error.description);
             }
@@ -1231,15 +1237,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeChat];
             history.chatter = history.vistor;
             chatView.conversationModel = history;
-            [[HConversationManager sharedInstance] setCurChatViewConvtroller:chatView];
-            [[KFManager shareInstance].conversation refreshData];
+            [[KFManager sharedInstance] setCurChatViewConvtroller:chatView];
+            [[KFManager sharedInstance] setCurrentSessionId:history.sessionId];
+            [[KFManager sharedInstance].conversation refreshData];
             [weakSelf.navigationController pushViewController:chatView animated:YES];
         } else {
-            if (error.code == 400) {
-                [weakSelf showHint:@"回呼失败,用户正在会话"];
-            } else {
-                [weakSelf showHint:@"回呼失败"];
-            }
+                [weakSelf showHint:error.errorDescription];
         }
     }];
 }
@@ -1309,6 +1312,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
 {
     [self loadHistory];
+    
     [_slimeView endRefresh];
 }
 
@@ -1344,10 +1348,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     __weak ChatViewController *weakSelf = self;
     dispatch_async(_messageQueue, ^{
-        NSArray *messages = [weakSelf formatMessage:message];
+        [weakSelf formatMessage:message];
         dispatch_async(dispatch_get_main_queue(), ^{
             [_messages addObject:message];
-            [weakSelf.dataSource addObjectsFromArray:messages];
+            [weakSelf.dataSource addObject:message];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         });
@@ -1476,13 +1480,41 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)loadHistory
 {
     [self showHintNotHide:@"加载历史会话"];
-    [_conversation loadHistoryCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
-        [self hideHud];
-        [self addMessagesToTop:messages];
-        for (HDMessage *msg in messages) {
-            [self downloadVoice:msg];
-        }
-    }];
+    if (chatType == ChatViewTypeChat) {
+        [_conversation loadHistoryCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
+            [self hideHud];
+            [self addMessagesToTop:messages];
+            for (HDMessage *msg in messages) {
+                [self downloadVoice:msg];
+            }
+        }];
+    }
+    
+    if (chatType == ChatViewTypeCallBackChat) {
+        WEAK_SELF
+        [[HDClient sharedClient].chatManager asyncFetchHistoryMessagesWithSessionServicesId:_conversationModel.sessionId page:_page completion:^(id responseObject, HDError *error) {
+            [self hideHud];
+            if (error == nil) {
+                _page ++ ;
+                for (HDMessage *message in responseObject) {
+                    if (message.nBody) {
+                        if (message.type == HDMessageBodyTypeText) {
+                            ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                        }
+                        
+                    }
+                    if (![_msgDic objectForKey:message.messageId]) {
+                        [_msgDic setObject:@"" forKey:message.messageId];
+                        //                    [weakSelf downloadMessageAttachments:message];
+                        [weakSelf addMessagesToTop:@[message]];
+                        [self downloadVoice:message];
+                    }
+                }
+            }
+            
+        }];
+    }
+    
 }
 
 - (void)loadMessage{
@@ -1501,22 +1533,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             
         }];
     } else {
-        _page = 0;
-        WEAK_SELF
-        [[HDClient sharedClient].chatManager asyncFetchHistoryMessagesWithSessionServicesId:_conversationModel.sessionId page:_page completion:^(id responseObject, HDError *error) {
-            for (HDMessage *message in responseObject) {
-                if (message.body) {
-                    message.body.content = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:message.body.content];
-                }
-                if (![_msgDic objectForKey:message.messageId]) {
-                    [_msgDic setObject:@"" forKey:message.messageId];
-//                    [weakSelf downloadMessageAttachments:message];
-                    [weakSelf addMessage:message];
-                    [self downloadVoice:message];
-                }
-            }
-        }];
-
+        [self loadHistory];
     }
 }
 
@@ -1541,8 +1558,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         model.localPath = path;
         return YES;
     }
-    
-    path = [NSString stringWithFormat:@"%@/%@",dbDirectoryPath,model.body.fileName];
+    HDFileMessageBody *file = (HDFileMessageBody *)model.nBody;
+    path = [NSString stringWithFormat:@"%@/%@",dbDirectoryPath,file.displayName];
     if ([fm fileExistsAtPath:path]) {
         model.localPath = path;
         return YES;
@@ -1605,7 +1622,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     if (_longPressIndexPath.row > 0) {
         HDMessage *model = [self.dataSource objectAtIndex:_longPressIndexPath.row];
-        pasteboard.string = model.body.content;
+        NSString *content = @"";
+        if (model.type == HDMessageBodyTypeText) {
+            content = ((HDTextMessageBody *)model.nBody).text;
+        }
+        pasteboard.string = content;
     }
     _longPressIndexPath = nil;
 }
@@ -1618,6 +1639,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }];
 }
 
+- (void)dealloc {
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

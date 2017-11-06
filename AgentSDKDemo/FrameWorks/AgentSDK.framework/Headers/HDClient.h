@@ -87,17 +87,17 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
 /*
  会话模块
  */
-@property (nonatomic, strong, readonly) HDChatManager *chatManager;
+@property (nonatomic, strong ) HDChatManager *chatManager;
 
 /**
  待接入
  */
-@property(nonatomic,strong,readonly) HDWaitManager *waitManager;
+@property(nonatomic,strong ) HDWaitManager *waitManager;
 
 /**
  通知中心
  */
-@property(nonatomic,strong,readonly) HDNotiManager *notiManager;
+@property(nonatomic,strong) HDNotiManager *notiManager;
 
 
 /**
@@ -269,5 +269,12 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
  */
 - (void)resetPasswordWithparameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
 
+
+/**
+ 获取过期信息
+ 
+ @param completion 完成回调
+ */
+- (void)getExpiredInformationCompletion:(void(^)(id responseObject,HDError *error))completion;
 
 @end
