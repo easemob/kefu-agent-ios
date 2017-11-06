@@ -270,4 +270,11 @@ typedef NS_ENUM(NSUInteger, HDConversationType) {
 - (void)resetPasswordWithparameters:(NSDictionary *)parameters completion:(void(^)(id responseObject,HDError *error))completion;
 
 
+/**
+ 获取过期信息
+ 
+ @param completion 完成回调
+ */
+- (void)getExpiredInformationCompletion:(void(^)(id responseObject,HDError *error))completion;
+
 @end

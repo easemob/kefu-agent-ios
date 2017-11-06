@@ -9,6 +9,9 @@
 #import "KFHttpManager.h"
 #import "KFFileCache.h"
 
+#define kBaseURL @"https://kefu.easemob.com"
+//#define kBaseURL @"https://sandbox.kefu.easemob.com"
+
 @implementation KFHttpManager
 
 singleton_implementation(KFHttpManager);
@@ -16,9 +19,13 @@ singleton_implementation(KFHttpManager);
 - (instancetype)init {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _instance = [super init];
+        _instance = [super initWithBaseURL:[NSURL URLWithString:kBaseURL]];
         _instance.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
+        _instance.requestSerializer = [AFJSONRequestSerializer serializer];
+        _instance.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
         _instance.requestSerializer.timeoutInterval = 30.f;
+        _instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/javascript", @"application/json", @"text/json", @"text/html", @"text/plain", @"charset=utf-8", nil];
         _instance.operationQueue.maxConcurrentOperationCount = 5;
     });
     return _instance;
@@ -60,5 +67,77 @@ singleton_implementation(KFHttpManager);
     [task resume];
     return task;
 }
+
+- (void)asyncGetCountWithPath:(NSString *)path parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    [dic setObject:@((long)([[NSDate date] timeIntervalSince1970]*1000)) forKey:@"_"];
+    [self GET:path parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (completion) {
+            id result = nil;
+            result = [[NSString alloc] initWithData:responseObject  encoding:NSUTF8StringEncoding];
+            completion(result, nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self requestFailed:task error:error completion:completion];
+    }];
+}
+
+- (void)asyncGetSessionTrendWithPath:(NSString *)path parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    [self asyncGetTrendDataWithUrl:path parameters:parameters completion:completion];
+}
+
+- (void)asyncGetMessageTrendWithPath:(NSString *)path parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+     [self asyncGetTrendDataWithUrl:path parameters:parameters completion:completion];
+}
+
+- (void)aysncGetNewSessionTodayWithPath:(NSString *)path completion:(void (^)(id, NSError *))completion {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:@((long)([[NSDate date] timeIntervalSince1970]*1000)) forKey:@"_"];
+    [self GET:path parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (completion) {
+            id result = nil;
+            if ([responseObject isKindOfClass:[NSData class]]) {
+                result = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+            } else {
+                result = responseObject;
+            }
+            completion(result, nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self requestFailed:task error:error completion:completion];
+    }];
+}
+
+- (void)asyncGetTrendDataWithUrl:(NSString *)url  parameters:(NSDictionary *)parameters completion:(void (^)(id, NSError *))completion {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:parameters];
+    [dic setValue:[HDClient sharedClient].currentAgentUser.tenantId forKey:@"tenantId"];
+    NSString *path = [NSString stringWithFormat:url,[HDClient sharedClient].currentAgentUser.tenantId];
+    [dic setObject:@((long)([[NSDate date] timeIntervalSince1970]*1000)) forKey:@"_"];
+    [self  GET:path parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (completion) {
+            id result = nil;
+            if ([responseObject isKindOfClass:[NSData class]]) {
+                result = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+            } else {
+                result = responseObject;
+            }
+            completion(result, nil);
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self requestFailed:task error:error completion:completion];
+    }];
+}
+
+- (void)requestFailed:(NSURLSessionDataTask *)task error:(NSError *)error completion:(void(^)(id  ,NSError *))completion {
+    NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse*)task.response;
+    NSInteger statusCode = [urlResponse statusCode];
+    if (statusCode == 401) {
+        [[KFManager sharedInstance] userAccountNeedRelogin:HDAutoLogoutReasonDefaule];
+    }
+    if (completion) {
+        completion(nil, error);
+    }
+}
+
 
 @end

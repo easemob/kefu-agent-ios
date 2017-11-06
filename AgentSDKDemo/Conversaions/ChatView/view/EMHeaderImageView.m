@@ -56,14 +56,14 @@
         _statusImageView.clipsToBounds = YES;
         _statusImageView.layer.cornerRadius = _statusImageView.width/2;
         UserModel *user = [self user];
-        if ([user.onLineState isEqualToString:USER_STATE_OFFLINE]) {
-            _statusImageView.backgroundColor = RGBACOLOR(238, 190, 77, 1);
+        if ([user.onLineState isEqualToString:USER_STATE_HIDDEN]) {
+            _statusImageView.image = [UIImage imageNamed:@"state_yellow"];
         } else if ([user.onLineState isEqualToString:USER_STATE_BUSY]){
-            _statusImageView.backgroundColor = RGBACOLOR(255, 48, 0, 1);
+            _statusImageView.image = [UIImage imageNamed:@"state_red"];
         } else if ([user.onLineState isEqualToString:USER_STATE_LEAVE]){
-            _statusImageView.backgroundColor = RGBACOLOR(27, 168, 237, 1);
+            _statusImageView.image = [UIImage imageNamed:@"state_blue"];
         } else if ([user.onLineState isEqualToString:USER_STATE_ONLINE]){
-            _statusImageView.backgroundColor = RGBACOLOR(90, 232, 37, 1);
+            _statusImageView.image = [UIImage imageNamed:@"state_green"];
         }
     }
     return _statusImageView;
@@ -76,14 +76,14 @@
 
 - (void)statusChanged {
     UserModel *user = [self user];
-    if ([user.onLineState isEqualToString:USER_STATE_OFFLINE]) {
-        _statusImageView.backgroundColor = RGBACOLOR(238, 190, 77, 1);
+    if ([user.onLineState isEqualToString:USER_STATE_HIDDEN]) {
+        _statusImageView.image = [UIImage imageNamed:@"state_yellow"];
     } else if ([user.onLineState isEqualToString:USER_STATE_BUSY]){
-        _statusImageView.backgroundColor = RGBACOLOR(255, 48, 0, 1);
+        _statusImageView.image = [UIImage imageNamed:@"state_red"];
     } else if ([user.onLineState isEqualToString:USER_STATE_LEAVE]){
-        _statusImageView.backgroundColor = RGBACOLOR(27, 168, 237, 1);
+        _statusImageView.image = [UIImage imageNamed:@"state_blue"];
     } else if ([user.onLineState isEqualToString:USER_STATE_ONLINE]){
-        _statusImageView.backgroundColor = RGBACOLOR(90, 232, 37, 1);
+        _statusImageView.image = [UIImage imageNamed:@"state_green"];
     }
 }
 

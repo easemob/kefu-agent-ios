@@ -102,6 +102,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 @property(nonatomic,strong) DXRecordView *recordView;
 
+@property(nonatomic,strong) UIButton *satisfactionBtn;
+
 @end
 
 @implementation ChatViewController
@@ -192,6 +194,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
+    
+    _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
+    [self markAsRead];
     if (chatType == ChatViewTypeChat) {
         UIView *titleView = [[UIView alloc] init];
         titleView.frame = self.tagBtn.frame;
@@ -199,6 +204,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.navigationItem setTitleView:titleView];
         [self.view addSubview:self.chatToolBar];
         [self.view addSubview:self.moreView];
+        [_conversation satisfactionStatusWithSessionId:_conversationModel.sessionId completion:^(BOOL send, HDError *error) {
+            _satisfactionBtn.selected = send;
+        }];
         [self.view addSubview:self.headview];
         [self.view addSubview:self.folderButton];
         [self.view addSubview:self.promptBoxView];
@@ -219,8 +227,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.view addSubview:self.folderButton];
         [self.view addSubview:self.moreView];
     }
-    _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
-    [self markAsRead];
+    
     //将self注册为chatToolBar的moreView的代理
     if ([self.chatToolBar.moreView isKindOfClass:[DXChatBarMoreView class]]) {
         [(DXChatBarMoreView *)self.chatToolBar.moreView setDelegate:self];
@@ -441,9 +448,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [satisfactionBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
             [satisfactionBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
             [satisfactionBtn setImage:[UIImage imageNamed:@"expand_icon_vote"] forState:UIControlStateNormal];
+            [satisfactionBtn setImage:[UIImage imageNamed:@"expand_icon_vote_over"] forState:UIControlStateSelected];
             [satisfactionBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
             [satisfactionBtn addTarget:self action:@selector(satisfactionyAction) forControlEvents:UIControlEventTouchUpInside];
             [contentView addSubview:satisfactionBtn];
+            _satisfactionBtn = satisfactionBtn;
             
             UIView *line2 = [[UIView alloc] init];
             line2.frame = CGRectMake(0, CGRectGetMaxY(satisfactionBtn.frame) - 0.5, contentView.width, 1);
@@ -893,7 +902,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self chatAudioCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
         [self chatFileCellBubblePressed:model];
+    } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
+        [self chatFormCcellBubblePressed:model];
     }
+}
+
+- (void)chatFormCcellBubblePressed:(HDMessage *)model {
+    
 }
 
 - (void)chatFileCellBubblePressed:(HDMessage *)model
@@ -1188,9 +1203,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [self hideHud];
             if (error == nil) {
                 [weakSelf showHint:@"已发送"];
-//                DDLogInfo(@"send chat satisfaction --- %@ userId --- %@",[HDClient sharedClient].currentAgentUser,_conversationModel.chatter.userId);
+                _satisfactionBtn.selected = YES;
             } else {
-                
                 [weakSelf showHint:@"发送失败"];
 //                DDLogError(@"send chat satisfaction --- %@ userId --- %@ error:%@",[HDClient sharedClient].currentAgentUser.nicename,_conversationModel.chatter.userId,error.description);
             }
@@ -1228,11 +1242,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [[KFManager sharedInstance].conversation refreshData];
             [weakSelf.navigationController pushViewController:chatView animated:YES];
         } else {
-            if (error.code == 400) {
-                [weakSelf showHint:@"回呼失败,用户正在会话"];
-            } else {
-                [weakSelf showHint:@"回呼失败"];
-            }
+                [weakSelf showHint:error.errorDescription];
         }
     }];
 }

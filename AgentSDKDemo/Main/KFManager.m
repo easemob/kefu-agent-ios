@@ -7,10 +7,9 @@
 //
 
 #import "KFManager.h"
-#import "AppDelegate.h"
 #import "HomeViewController.h"
 
-@interface KFManager () <HDChatManagerDelegate>
+@interface KFManager () <HDChatManagerDelegate,UIAlertViewDelegate>
 
 @end
 
@@ -26,6 +25,10 @@ singleton_implementation(KFManager)
     }
     
     return self;
+}
+
+- (AppDelegate *)appDelegate {
+    return (AppDelegate *)[UIApplication sharedApplication].delegate;
 }
 
 - (void)showMainViewController {
@@ -126,17 +129,52 @@ singleton_implementation(KFManager)
 }
 #pragma mark - 其他
 - (void)roleChange:(RolesChangeType)type {
-    NSLog(@"身份改变");
-    [self showMainViewController];
+    AppDelegate *app = self.appDelegate;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"您的权限发生了变更，请重新登陆后查看" delegate:app cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    alert.tag = kShowLoginViewControllerTag;
+    [alert show];
 }
 //连接状态改变
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
     NSLog(@"连接状态改变");
 }
 //客服需要重新登录
-- (void)userAccountNeedRelogin {
-    [self showLoginViewController];
+- (void)userAccountNeedRelogin:(HDAutoLogoutReason)reason {
+    NSString *tip;
+    switch (reason) {
+        case HDAutoLogoutReasonDefaule: {
+            tip = @"当前账号登录信息异常";
+            break;
+        }
+            
+        case HDUserAccountDidRemoveFromServer: {
+            tip = @"当前账号被管理员强制下线";
+            break;
+        }
+            
+        case HDUserAccountDidLoginFromOtherDevice: {
+            tip = @"当前账号从其他平台登录";
+            break;
+        }
+        case HDAutoLogoutReasonAgentDelete: {
+            tip = @"当前账号被管理员删除";
+            break;
+        }
+        default:
+            tip = @"登录信息过期";
+            break;
+    }
+    AppDelegate * appDelegate = [KFManager sharedInstance].appDelegate;
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:tip delegate:appDelegate cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    alert.tag = kShowLoginViewControllerTag;
+    [alert show];
+    
 }
+
+- (void)allowAgentChangeMaxSessions:(BOOL)allow  {
+    [_conversation showSetMaxSession:allow];
+}
+
 
 - (void)showNotificationWithMessage:(NSString *)content message:(HDMessage *)message;
 {

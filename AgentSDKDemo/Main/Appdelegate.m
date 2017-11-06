@@ -26,7 +26,7 @@
 //================appstore end=================
 //#import <wax/wax.h>
 
-@interface AppDelegate ()
+@interface AppDelegate () <UIAlertViewDelegate>
 
 @end
 @implementation AppDelegate
@@ -191,6 +191,13 @@
         }
     }
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (alertView.tag == kShowLoginViewControllerTag) {
+        [[KFManager sharedInstance] showLoginViewController];
+    }
+}
+
 //================appstore end=================
 
 - (void)clearCache

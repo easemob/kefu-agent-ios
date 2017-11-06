@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, HDAutoLogoutReason) {
+    HDAutoLogoutReasonDefaule = 322 , //401
+    HDAutoLogoutReasonAgentDelete , //被删除
+    HDUserAccountDidLoginFromOtherDevice, //其他平台登录
+    HDUserAccountDidRemoveFromServer, //服务器强制下线
+};
+
 typedef NS_ENUM(NSUInteger, RolesChangeType) {
     RoleChangeTypeFromCommonToAdmin=21, //从普通客服转为管理员
     RoleChangeTypeFromAdminToCommon,    //从管理员转为普通客服
@@ -30,10 +37,20 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
  */
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState;
 
-/*
- *  当前账号被迫下线,需要重新登录
+/**
+ 管理员是否允许客服自定义最大接待人数
+ 
+ @param allow YES NO 分别表示允许、不允许
  */
-- (void)userAccountNeedRelogin;
+- (void)allowAgentChangeMaxSessions:(BOOL)allow;
+
+
+/**
+ 当前账号被迫下线
+ 
+ @param reason 下线原因
+ */
+- (void)userAccountNeedRelogin:(HDAutoLogoutReason)reason;
 
 
 #pragma mark - 调度

@@ -80,7 +80,7 @@ typedef NS_ENUM(NSUInteger, RegisterResult) {
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == RegisterResultSuccess) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [[KFManager sharedInstance] showLoginViewController];
     } else {
         
     }

@@ -19,4 +19,6 @@
 
 - (void)refreshData;
 
+- (void)showSetMaxSession:(BOOL)show;
+
 @end

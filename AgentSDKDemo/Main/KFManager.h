@@ -8,6 +8,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "AppDelegate.h"
 #import "KFConversationsController.h"
 #import "WaitQueueViewController.h"
 #import "NotifyViewController.h"
@@ -21,6 +22,8 @@ singleton_interface(KFManager);
 @property(nonatomic,strong) NSString *currentSessionId;
 
 @property (strong, nonatomic) NSDate *lastPlaySoundDate;
+
+@property(nonatomic,assign) AppDelegate *appDelegate;
 
 /**
  当前聊天控制器,进入会话的时候传入
@@ -55,5 +58,7 @@ singleton_interface(KFManager);
 
 //本地推送使用
 - (void)registerLocalNoti;
+
+
 
 @end

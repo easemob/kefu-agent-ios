@@ -161,7 +161,7 @@
 
 
 - (NSString *)title1 {
-    if([self.seeReadButton.currentTitle isEqualToString:@"查看已读"]||_seeReadButton == nil) {
+    if(_seeReadButton == nil || !self.seeReadButton.selected) {
         return @"未读通知";
     } else {
         return @"已读通知";
@@ -180,6 +180,7 @@
         _seeReadButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _seeReadButton.frame = CGRectMake(0, 10,100, 44);
         [_seeReadButton setTitle:@"查看已读" forState:UIControlStateNormal];
+        [_seeReadButton setTitle:@"查看未读" forState:UIControlStateSelected];
         [_seeReadButton setTitleColor:RGBACOLOR(40, 162, 239, 1) forState:UIControlStateNormal];
         [_seeReadButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
         [_seeReadButton addTarget:self action:@selector(seeReadButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
@@ -190,17 +191,17 @@
 
 - (void)seeReadButtonClicked:(UIButton *)btn { //rightItem
     HomeViewController *homeVC = [HomeViewController HomeViewController];
-    if ([btn.currentTitle isEqualToString:@"查看已读"]) {
-        [btn setTitle:@"查看未读" forState:UIControlStateNormal];
+    if (!btn.selected) {
         homeVC.title = @"已读通知";
         _unreadDataSource = [NSMutableArray arrayWithArray:self.dataSource];
         _unreadTotleCount = self.totalCount;
         [self readAction];
     } else {
-        [btn setTitle:@"查看已读" forState:UIControlStateNormal];
         homeVC.title = @"未读通知";
         [self unReadAction];
     }
+    
+    btn.selected = !btn.selected;
 }
 
 - (UIButton *)markButton {

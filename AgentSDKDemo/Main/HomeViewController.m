@@ -17,7 +17,9 @@
 #import "WaitQueueViewController.h"
 #import "ChatViewController.h"
 #import "KFLeftViewController.h"
+#import "AdminHomeViewController.h"
 #import "AdminInforViewController.h"
+#import "ReminderView.h"
 //================appstore start=================
 #import "UMCheckUpdate.h"
 #import <PgyUpdate/PgyUpdateManager.h>
@@ -63,6 +65,7 @@ static NSString *kGroupName = @"GroupName";
 @property (strong, nonatomic) AdminInforViewController *adminController;
 
 //管理员
+@property (strong, nonatomic) AdminHomeViewController *adminTypeHomeController;
 @property (strong, nonatomic) DXTipView *tipView;
 @property (strong, nonatomic) DXTipView *tipCustomerView;
 @property (strong, nonatomic) DXTipView *tipNotifyView;
@@ -138,6 +141,17 @@ static NSInteger currentTotalBadgeValue;
     // Do any additional setup after loading the view, typically from a nib.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor whiteColor];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [[HDClient sharedClient] getExpiredInformationCompletion:^(id responseObject, HDError *error) {
+            if (error==nil && responseObject != nil) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    ReminderView *remindView = [[ReminderView alloc] initWithDictionary:responseObject];
+                    [[UIApplication sharedApplication].keyWindow addSubview:remindView];
+                });
+            }
+            
+        }];
+    });
     [self _setupChildrenVC];
 //    [self _setupSubviews];
     
@@ -493,18 +507,18 @@ static NSInteger currentTotalBadgeValue;
 
 - (void)adminMenuClickWithIndex:(NSInteger)index
 {
-//    self.adminTypeHomeController = nil;
-//    self.adminTypeHomeController = [[AdminHomeViewController alloc] init];
-//    NSArray *views = [self.navigationController viewControllers];
-//    BOOL needPush = YES;
-//    for (UIViewController *view in views) {
-//        if ([view isKindOfClass:[AdminHomeViewController class]]) {
-//            needPush = NO;
-//        }
-//    }
-//    if (needPush) {
-//        [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
-//    }
+    self.adminTypeHomeController = nil;
+    self.adminTypeHomeController = [[AdminHomeViewController alloc] init];
+    NSArray *views = [self.navigationController viewControllers];
+    BOOL needPush = YES;
+    for (UIViewController *view in views) {
+        if ([view isKindOfClass:[AdminHomeViewController class]]) {
+            needPush = NO;
+        }
+    }
+    if (needPush) {
+        [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
+    }
 }
 
 - (void)onlineStatusClick:(UIView*)view;

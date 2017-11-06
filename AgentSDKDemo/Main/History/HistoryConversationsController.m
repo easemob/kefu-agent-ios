@@ -379,11 +379,7 @@
                     [[KFManager sharedInstance].wait loadData];
                     [weakSelf.navigationController pushViewController:chatView animated:YES];
                 } else {
-                    if (error.code == 400) {
-                        [weakSelf showHint:@"回呼失败,用户正在会话"];
-                    } else {
-                        [weakSelf showHint:@"回呼失败"];
-                    }
+                     [weakSelf showHint:error.errorDescription];
                 }
             }];
         }

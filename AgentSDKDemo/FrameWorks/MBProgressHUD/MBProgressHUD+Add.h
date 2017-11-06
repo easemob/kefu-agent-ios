@@ -15,4 +15,5 @@
 + (MBProgressHUD *)showMessag:(NSString *)message toView:(UIView *)view;
 
 + (void)show:(NSString *)text view:(UIView *)view;
+
 @end

@@ -326,8 +326,15 @@
         [self chatResendButtonPressed:messageModel];
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
         [self chatFileCellBubblePressed:model];
+    } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
+        [self chatFormCcellBubblePressed:model];
     }
 }
+
+- (void)chatFormCcellBubblePressed:(HDMessage *)model {
+    
+}
+
 
 - (void)chatFileCellBubblePressed:(HDMessage *)model
 {

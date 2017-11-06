@@ -56,6 +56,7 @@
 - (void)setNav {
     self.navigationItem.titleView = self.titleView;
     self.navigationItem.rightBarButtonItem = self.rightItem;
+    [self showSetMaxSession:[HDClient sharedClient].currentAgentUser.allowAgentChangeMaxSessions];
     
 }
 - (void)initNoti {
@@ -118,7 +119,6 @@
 }
 
 
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -170,7 +170,6 @@
         _maxServiceNumButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 44)];
         [_maxServiceNumButton addTarget:self action:@selector(maxServiceNumButtonAvtion:) forControlEvents:UIControlEventTouchUpInside];
         [_maxServiceNumButton setImage:[UIImage imageNamed:@"visitor_icon_setting_Text2"] forState:UIControlStateNormal];
-        [_maxServiceNumButton setImage:[UIImage imageNamed:@"visitor_icon_setting_Text2"] forState:UIControlStateSelected];
     }
     return _maxServiceNumButton;
 }
@@ -270,6 +269,7 @@
             [view addSubview:self.maxServiceNumButton];
             _rightItem = [[UIBarButtonItem alloc] initWithCustomView:view];
         }
+        
     }
     return _rightItem;
 }
@@ -347,6 +347,15 @@
         _waitButton.selected = YES;
     }
 }
+
+
+- (void)showSetMaxSession:(BOOL)show {
+    if (![[HDClient sharedClient].currentAgentUser.roles containsString:@"admin"]) {
+        _currentlabel.hidden = !show;
+        _maxServiceNumButton.hidden = !show;
+    }
+}
+
 
 #pragma mark - notifaction
 - (void)updateMaxServiceNumber
