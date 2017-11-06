@@ -1,5 +1,6 @@
 *.class
-
+AgentSDKDemo.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad/
+AgentSDKDemo.xcodeproj/xcuserdata/*.xcuserdatad/
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
