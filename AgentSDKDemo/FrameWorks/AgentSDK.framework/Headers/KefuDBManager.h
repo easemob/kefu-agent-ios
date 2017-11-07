@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define currentDBVersion 2
+
 #define MESSAGE_TABLE @"CREATE TABLE IF NOT EXISTS messagetable \
         (\
             msgId  TEXT NOT NULL PRIMARY KEY, \

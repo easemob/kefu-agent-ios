@@ -143,7 +143,6 @@ singleton_implementation(KFManager)
     NSString *tip;
     switch (reason) {
         case HDAutoLogoutReasonDefaule: {
-            tip = @"当前账号登录信息异常";
             break;
         }
             
@@ -164,11 +163,14 @@ singleton_implementation(KFManager)
             tip = @"登录信息过期";
             break;
     }
-    AppDelegate * appDelegate = [KFManager sharedInstance].appDelegate;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:tip delegate:appDelegate cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    alert.tag = kShowLoginViewControllerTag;
-    [alert show];
-    
+    if (reason != HDAutoLogoutReasonDefaule) {
+        AppDelegate * appDelegate = [KFManager sharedInstance].appDelegate;
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:tip delegate:appDelegate cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        alert.tag = kShowLoginViewControllerTag;
+        [alert show];
+    } else {
+        [[KFManager sharedInstance] showLoginViewController];
+    }
 }
 
 - (void)allowAgentChangeMaxSessions:(BOOL)allow  {

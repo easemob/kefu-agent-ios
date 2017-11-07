@@ -31,6 +31,7 @@
 #import "EMFileViewController.h"
 #import "EMPromptBoxView.h"
 #import "DXRecordView.h"
+#import "HDWebViewController.h"
 
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
@@ -204,7 +205,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.navigationItem setTitleView:titleView];
         [self.view addSubview:self.chatToolBar];
         [self.view addSubview:self.moreView];
-        [_conversation satisfactionStatusWithSessionId:_conversationModel.sessionId completion:^(BOOL send, HDError *error) {
+        [_conversation satisfactionStatusCompletion:^(BOOL send, HDError *error) {
             _satisfactionBtn.selected = send;
         }];
         [self.view addSubview:self.headview];
@@ -903,12 +904,16 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
         [self chatFileCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
-        [self chatFormCcellBubblePressed:model];
+        HDFormItem *item = [userInfo objectForKey:KMESSAGEKEY];
+        [self chatFormCcellBubblePressed:item];
     }
 }
 
-- (void)chatFormCcellBubblePressed:(HDMessage *)model {
-    
+- (void)chatFormCcellBubblePressed:(HDFormItem *)form {
+    HDWebViwController *web = [[HDWebViwController alloc] init];
+    web.url = form.url;
+    [self.navigationController pushViewController:web animated:YES];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 - (void)chatFileCellBubblePressed:(HDMessage *)model
@@ -1100,7 +1105,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     //邀请评价
     self.moreView.hidden = YES;
-    [_conversation satisfactionStatusWithSessionId:self.conversationModel.sessionId completion:^(BOOL send, HDError *error) {
+    [_conversation satisfactionStatusCompletion:^(BOOL send, HDError *error) {
         if (error == nil) {
             if (send == YES) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"已经发送过满意度" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -1157,7 +1162,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 #pragma mark 加载会话标签
 - (void)loadTags {
-    [_conversation asyncGetSessionSummaryResultsWithSessionId:_conversationModel.sessionId completion:^(id responseObject, HDError *error) {
+    [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
         if (!error) {
             NSArray *json = responseObject;
             if (json.count>0) {
@@ -1190,7 +1195,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         if ([self.headview.dataSource count] > 0) {
             [self endConversation];
         } else {
-            [_conversation asyncSaveSessionSummaryResultsWithSessionId:_conversationModel.sessionId parameters:parameters completion:^(id responseObject, HDError *error) {
+            [_conversation asyncSaveSessionSummaryResultsParameters:parameters completion:^(id responseObject, HDError *error) {
                 if (!error) {
                     [self endConversation];
                 }
@@ -1199,7 +1204,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     } else if ([alertView cancelButtonIndex] != buttonIndex && alertView.tag == 1001){
         [self showHintNotHide:@"发送中..."];
         WEAK_SELF
-        [_conversation sendSatisfactionEvaluationWithSessionId:self.conversationModel.sessionId completion:^(BOOL send, HDError *error) {
+        [_conversation sendSatisfactionEvaluationCompletion:^(BOOL send, HDError *error) {
             [self hideHud];
             if (error == nil) {
                 [weakSelf showHint:@"已发送"];

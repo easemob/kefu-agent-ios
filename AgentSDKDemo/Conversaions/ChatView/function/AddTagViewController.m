@@ -193,7 +193,7 @@
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_selectArray,@"array", nil];
     WEAK_SELF
     
-    [_conversation asyncSaveSessionSummaryResultsWithSessionId:_sessionId parameters:parameters completion:^(id responseObject, HDError *error) {
+    [_conversation asyncSaveSessionSummaryResultsParameters:parameters completion:^(id responseObject, HDError *error) {
         if (!error) {
             [weakSelf hideHud];
             [weakSelf showHint:@"保存成功"];
@@ -217,7 +217,7 @@
     }];
     
     if ([weakSelf.commentDic objectForKey:@"comment"]) {
-        [_conversation asyncSaveSessionCommentWithSessionId:_sessionId parameters:_commentDic completion:^(id responseObject, HDError *error) {
+        [_conversation asyncSaveSessionCommentParameters:_commentDic completion:^(id responseObject, HDError *error) {
             if (error) {
                 [weakSelf showHint:@"标签备注保存失败!"];
             }
@@ -277,7 +277,7 @@
 {
     
     WEAK_SELF
-    [_conversation asyncGetSessionSummaryResultsWithSessionId:_sessionId completion:^(id responseObject, HDError *error) {
+    [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
         if (error == nil) {
             NSArray *arr = responseObject;
             NSMutableArray *mArr = [weakSelf.dataSource objectAtIndex:0];

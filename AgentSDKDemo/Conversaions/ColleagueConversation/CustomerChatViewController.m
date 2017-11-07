@@ -7,10 +7,9 @@
 //
 
 #import "CustomerChatViewController.h"
-
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-
+#import "HDWebViewController.h"
 #import "DXMessageToolBar.h"
 #import "DXTagView.h"
 #import "QuickReplyViewController.h"
@@ -327,12 +326,16 @@
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
         [self chatFileCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
-        [self chatFormCcellBubblePressed:model];
+        HDFormItem *item = [userInfo objectForKey:KMESSAGEKEY];
+        [self chatFormCcellBubblePressed:item];
     }
 }
 
-- (void)chatFormCcellBubblePressed:(HDMessage *)model {
-    
+- (void)chatFormCcellBubblePressed:(HDFormItem *)form {
+    HDWebViwController *web = [[HDWebViwController alloc] init];
+    web.url = form.url;
+    [self.navigationController pushViewController:web animated:YES];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:nil action:nil];
 }
 
 

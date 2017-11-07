@@ -289,10 +289,12 @@
 		D37EF4F01FA727F9002B8B8D /* Shape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D37EF4EF1FA7263E002B8B8D /* Shape@2x.png */; };
 		D39895D01F8E2B3E005EC133 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D39895D21F8E2B3E005EC133 /* InfoPlist.strings */; };
 		D39895D61F8E2C7E005EC133 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D39895D81F8E2C7E005EC133 /* Localizable.strings */; };
-		D39895E71F8E47A8005EC133 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39895E61F8E47A5005EC133 /* AgentSDK.framework */; };
-		D39895E81F8E47A9005EC133 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D39895E61F8E47A5005EC133 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D39BD8211EA8D13A008F428C /* KFManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D39BD8201EA8D13A008F428C /* KFManager.m */; };
 		D3A6BB691FB058BF00066410 /* HDChatFormBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A6BB681FB058BF00066410 /* HDChatFormBubbleView.m */; };
+		D3A6BB6B1FB0916200066410 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6BB6A1FB0914D00066410 /* AgentSDK.framework */; };
+		D3A6BB6C1FB0916200066410 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3A6BB6A1FB0914D00066410 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D3A6BB6D1FB159DE00066410 /* chat_item_form@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3A6BB661FB0585100066410 /* chat_item_form@2x.png */; };
+		D3A6BB701FB1617400066410 /* HDWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A6BB6E1FB1617400066410 /* HDWebViewController.m */; };
 		D3A95E301EA0F47100ADD394 /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D721EA0F47100ADD394 /* EMAudioPlayerUtil.m */; };
 		D3A95E311EA0F47100ADD394 /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D741EA0F47100ADD394 /* EMAudioRecorderUtil.m */; };
 		D3A95E321EA0F47100ADD394 /* EMCDDeviceManager+Media.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95D761EA0F47100ADD394 /* EMCDDeviceManager+Media.m */; };
@@ -667,7 +669,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
-				D39895E81F8E47A9005EC133 /* AgentSDK.framework in Embed Frameworks */,
+				D3A6BB6C1FB0916200066410 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1187,12 +1189,14 @@
 		D39895D31F8E2B42005EC133 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D39895D71F8E2C7E005EC133 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		D39895D91F8E2C80005EC133 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		D39895E61F8E47A5005EC133 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		D39BD81F1EA8D13A008F428C /* KFManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFManager.h; sourceTree = "<group>"; };
 		D39BD8201EA8D13A008F428C /* KFManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFManager.m; sourceTree = "<group>"; };
 		D3A6BB661FB0585100066410 /* chat_item_form@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "chat_item_form@2x.png"; sourceTree = "<group>"; };
 		D3A6BB671FB058BF00066410 /* HDChatFormBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDChatFormBubbleView.h; sourceTree = "<group>"; };
 		D3A6BB681FB058BF00066410 /* HDChatFormBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDChatFormBubbleView.m; sourceTree = "<group>"; };
+		D3A6BB6A1FB0914D00066410 /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
+		D3A6BB6E1FB1617400066410 /* HDWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDWebViewController.m; sourceTree = "<group>"; };
+		D3A6BB6F1FB1617400066410 /* HDWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDWebViewController.h; sourceTree = "<group>"; };
 		D3A95D3A1EA0CED500ADD394 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
 		D3A95D3C1EA0CF0C00ADD394 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -1663,7 +1667,7 @@
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
-				D39895E71F8E47A8005EC133 /* AgentSDK.framework in Frameworks */,
+				D3A6BB6B1FB0916200066410 /* AgentSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1944,6 +1948,8 @@
 		D33CE6761F7CA98D00236720 /* CommonConversation */ = {
 			isa = PBXGroup;
 			children = (
+				D3A6BB6F1FB1617400066410 /* HDWebViewController.h */,
+				D3A6BB6E1FB1617400066410 /* HDWebViewController.m */,
 				D33CE6771F7CA98D00236720 /* ChatViewController.h */,
 				D33CE6781F7CA98D00236720 /* ChatViewController.m */,
 				D33CE6791F7CA98D00236720 /* HConversationViewController.h */,
@@ -2045,7 +2051,6 @@
 		D33CE7411F7CAD9C00236720 /* WaitQueue */ = {
 			isa = PBXGroup;
 			children = (
-				D33CE8791F7CD2C000236720 /* Views */,
 				D33CE8751F7CD2B800236720 /* Controllers */,
 			);
 			path = WaitQueue;
@@ -2379,13 +2384,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		D33CE8791F7CD2C000236720 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		D33CE87D1F7CD34000236720 /* LeaveMsg */ = {
 			isa = PBXGroup;
 			children = (
@@ -2696,8 +2694,8 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				D3A6BB6A1FB0914D00066410 /* AgentSDK.framework */,
 				D34DFA4C1FA820660018116D /* AAChartKit */,
-				D39895E61F8E47A5005EC133 /* AgentSDK.framework */,
 				D33CE8AC1F7CD84A00236720 /* WebViewJavascriptBridge */,
 				D33CE89F1F7CD3D400236720 /* SBTickerView */,
 				D33CE8621F7CD25800236720 /* PodFiles */,
@@ -3731,6 +3729,7 @@
 				D3FDC8931EA0A5C600C25BB0 /* tabbar_icon_noticehighlight@3x.png in Resources */,
 				D3FDC8191EA0A5C600C25BB0 /* expand_arror_sesstion_tag_display@2x.png in Resources */,
 				D3FDC7741EA0A5C600C25BB0 /* VoiceSearchFeedback010@2x.png in Resources */,
+				D3A6BB6D1FB159DE00066410 /* chat_item_form@2x.png in Resources */,
 				D33CE6A91F7CA98D00236720 /* imageDownloadFail@2x.png in Resources */,
 				D3FDC7811EA0A5C600C25BB0 /* VoiceSearchFeedback017.png in Resources */,
 				D3FDC86E1EA0A5C600C25BB0 /* image_linked_icon_linked@3x.png in Resources */,
@@ -4110,6 +4109,7 @@
 				D33CE6FB1F7CAC7D00236720 /* Appdelegate.m in Sources */,
 				D33CE8981F7CD34000236720 /* LeaveMsgDetailModel.m in Sources */,
 				D33CE6941F7CA98D00236720 /* EMClientInfoTagView.m in Sources */,
+				D3A6BB701FB1617400066410 /* HDWebViewController.m in Sources */,
 				D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */,
 				D3A95E461EA0F47100ADD394 /* IQToolbar.m in Sources */,
 				D33CE7DC1F7CB42E00236720 /* DXLoadingView.m in Sources */,

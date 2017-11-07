@@ -13,7 +13,7 @@
 @property(nonatomic,strong,readonly) NSString *sessionId;
 
 @property(nonatomic,assign,readonly) NSInteger chatGroupId;
- //会话最后一条消息
+//会话最后一条消息
 @property(nonatomic,strong,readonly) HDMessage *latestMessage;
 
 @property(nonatomic,assign,readonly) NSInteger messageCount;
@@ -45,7 +45,7 @@
 
 /**
  会话转接客服
-
+ 
  @param remoteUserId 对方userId
  @param completion 完成回调
  */
@@ -60,7 +60,7 @@
 
 /**
  转接技能组
-
+ 
  @param queueId queueId
  @param completion 完成回调
  */
@@ -71,28 +71,25 @@
 - (void)asyncGetTreeCompletion:(void(^)(id responseObject,HDError *error))completion;
 
 //获取会话标签
-- (void)asyncGetSessionSummaryResultsWithSessionId:(NSString *)sessionId
-                                        completion:(void(^)(id responseObject,HDError *error))completion;
+- (void)asyncGetSessionSummaryResultsCompletion:(void(^)(id responseObject,HDError *error))completion;
 
 //获取会话标签备注
 - (void)asyncGetSessionCommentCompletion:(void(^)(id responseObject ,HDError *error))completion;
 //修改会话标签备注
-- (void)asyncSaveSessionCommentWithSessionId:(NSString *)sessionId
-                                  parameters:(NSDictionary *)parameters
-                                  completion:(void(^)(id responseObject,HDError *error))completion;
+- (void)asyncSaveSessionCommentParameters:(NSDictionary *)parameters
+                               completion:(void(^)(id responseObject,HDError *error))completion;
 //保存标签
-- (void)asyncSaveSessionSummaryResultsWithSessionId:(NSString *)sessionId
-                                         parameters:(NSDictionary *)parameters
-                                         completion:(void(^)(id responseObject,HDError *error))completion;
+- (void)asyncSaveSessionSummaryResultsParameters:(NSDictionary *)parameters
+                                      completion:(void(^)(id responseObject,HDError *error))completion;
 
 /**
  满意度评价状态
  
  @param completion YES 已经发送过；NO 尚未发送
  */
-- (void)satisfactionStatusWithSessionId:(NSString *)sessionId completion:(void(^)(BOOL send,HDError *error))completion;
+- (void)satisfactionStatusCompletion:(void(^)(BOOL send,HDError *error))completion;
 
-- (void)sendSatisfactionEvaluationWithSessionId:(NSString *)sessionId completion:(void(^)(BOOL send,HDError *error))completion;
+- (void)sendSatisfactionEvaluationCompletion:(void(^)(BOOL send,HDError *error))completion;
 
 /*
  * 结束会话
@@ -109,3 +106,4 @@
 - (void)sendMessage:(HDMessage *)aMessage progress:(void (^)(int))aProgressBlock completion:(void (^)(HDMessage *, HDError *))aCompletionBlock;
 
 @end
+

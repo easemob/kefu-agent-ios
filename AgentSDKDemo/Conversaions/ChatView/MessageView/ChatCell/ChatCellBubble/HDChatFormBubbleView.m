@@ -9,8 +9,30 @@
 #import "HDChatFormBubbleView.h"
 
 #define kLabelFont 16.f
-
 #define MAX_WIDTH 240
+
+@implementation HDFormItem
+
+- (instancetype)initWithDictionary:(NSDictionary *)dic {
+    self = [super init];
+    if (self) {
+        if (dic == nil || [dic isKindOfClass:[NSNull class]]) {
+            return self;
+        }
+        NSDictionary *msgtype = [dic objectForKey:@"msgtype"];
+        if (msgtype) {
+            NSDictionary *html = [msgtype objectForKey:@"html"];
+            if (html) {
+                _topic = [html objectForKey:@"topic"];
+                _desc = [html objectForKey:@"desc"];
+                _url = [html objectForKey:@"url"];
+            }
+        }
+    }
+    return self;
+}
+
+@end
 
 NSString *const kRouterEventFormBubbleTapEventName = @"kRouterEventFormBubbleTapEventName";
 
@@ -40,11 +62,10 @@ NSString *const kRouterEventFormBubbleTapEventName = @"kRouterEventFormBubbleTap
         _titleLabel.numberOfLines = 2;
         [self addSubview:_titleLabel];
         _desLabel = [[UILabel alloc] init];
-        _desLabel.textColor = RGBACOLOR(0x1a, 0x1a, 0x1a, 1);
+        _desLabel.textColor = [UIColor lightTextColor];
         _desLabel.textAlignment = NSTextAlignmentLeft;
-        _desLabel.font = [UIFont systemFontOfSize:kLabelFont];
+        _desLabel.font = [UIFont systemFontOfSize:12.f];
         _desLabel.numberOfLines = 2;
-        _desLabel.text = @"";
         [self addSubview:_desLabel];
         
     }
@@ -54,20 +75,8 @@ NSString *const kRouterEventFormBubbleTapEventName = @"kRouterEventFormBubbleTap
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
-    CGRect frame = self.bounds;
-    frame.size.width -= BUBBLE_ARROW_WIDTH;
-    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
-    if (self.model.isSender) {
-        frame.origin.x = BUBBLE_VIEW_PADDING;
-    }else{
-        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
-    }
-    frame.origin.y = BUBBLE_VIEW_PADDING;
-    _imageView.frame = CGRectMake(frame.size.width - frame.size.height + 5, 5,self.height - 10.f, self.height - 10.f);
-    frame.size.height = 30;
-    frame.size.width -=self.height;
-    self.titleLabel.frame = frame;
+    _imageView.frame = CGRectMake(0, 0,self.height , self.height );
+    self.titleLabel.frame = CGRectMake(CGRectGetMaxX(_imageView.frame)+BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING, self.width-self.height-2*BUBBLE_VIEW_PADDING, 20);
     self.desLabel.frame = CGRectMake(CGRectGetMinX(self.titleLabel.frame), CGRectGetMaxY(self.titleLabel.frame), CGRectGetWidth(self.titleLabel.frame), 30);
     
 }
@@ -81,14 +90,19 @@ NSString *const kRouterEventFormBubbleTapEventName = @"kRouterEventFormBubbleTap
 
 - (void)setModel:(HDMessage *)model {
     [super setModel:model];
-    self.titleLabel.text = @"1234567";
-    self.desLabel.text = @"jdjdadfdasfda";
+    HDFormItem *item = [[HDFormItem alloc] initWithDictionary:model.nBody.msgExt];
+    _item = item;
+    if (item == nil) {
+        return;
+    }
+    self.titleLabel.text = item.topic;
+    self.desLabel.text = item.desc;
 }
 
 -(void)bubbleViewPressed:(id)sender
 {
     [self routerEventWithName:kRouterEventFormBubbleTapEventName
-                     userInfo:@{KMESSAGEKEY:self.model}];
+                     userInfo:@{KMESSAGEKEY:_item}];
 }
 
 +(CGFloat)heightForBubbleWithObject:(HDMessage *)object

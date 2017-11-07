@@ -32,7 +32,7 @@
 #endif
     HDOptions *options = [[HDOptions alloc] init];
     options.apnsCertName = apnsCertName;
-    options.enableConsoleLog = NO;
+    options.enableConsoleLog = YES;
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     

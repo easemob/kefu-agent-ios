@@ -41,6 +41,12 @@
     NSString *content = @"";
     switch (message.type) {
         case HDMessageBodyTypeText: {
+            HDExtMsgType type = HDExtMsgTypeGeneral;
+            type = [HDUtils getMessageExtType:message];
+            if (type == HDExtMsgTypeForm) {
+                content = @"[表单]";
+                break;
+            }
             HDTextMessageBody *body = (HDTextMessageBody *)message.nBody;
             content = body.text;
             break;

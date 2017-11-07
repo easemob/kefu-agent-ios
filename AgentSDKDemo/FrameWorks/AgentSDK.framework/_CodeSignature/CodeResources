@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/AgentSDK.h</key>
 		<data>
-		N6+HxPRkx9E2PgzDhIe4uMDma64=
+		1IFMCb4fDiaKQVOcH636pblaEqo=
 		</data>
 		<key>Headers/HDBaseMessageBody.h</key>
 		<data>
@@ -26,15 +26,15 @@
 		</data>
 		<key>Headers/HDClient.h</key>
 		<data>
-		6w+2cJk9zIaEWgHF1m/58LAoHMA=
+		KwK4cFKZDg95aHImQDCk2Ak9w3c=
 		</data>
 		<key>Headers/HDClientDelegate.h</key>
 		<data>
-		Bsa0est1R4MXCUiQnNiL5CkTBoA=
+		hok85gFwnsLqClhF7TPChG2c9c4=
 		</data>
 		<key>Headers/HDConversation.h</key>
 		<data>
-		jsFXdiyOydkV9ahUbgWUuFgnrtE=
+		sTFrBl7up7eu/rEvOd5rNxBhOEE=
 		</data>
 		<key>Headers/HDConversationManager.h</key>
 		<data>
@@ -112,6 +112,10 @@
 		<data>
 		H9wqI2hzDFgeGqlzjGRY0c97evM=
 		</data>
+		<key>Headers/HDUtils.h</key>
+		<data>
+		MNwk1ottdVYEhAnZN9SJ++iffoE=
+		</data>
 		<key>Headers/HDVisitorInfo.h</key>
 		<data>
 		V2ORqaUVtHgoesYN8UNYWW8PlyM=
@@ -130,7 +134,7 @@
 		</data>
 		<key>Headers/KefuDBManager.h</key>
 		<data>
-		iuAqyw6Jxh4Ra5tE5aNeUXJLoyw=
+		9i2QYVtGWgwQxcJLTLqE35C2HtE=
 		</data>
 		<key>Headers/NSDate+Formatter.h</key>
 		<data>
@@ -159,11 +163,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			N6+HxPRkx9E2PgzDhIe4uMDma64=
+			1IFMCb4fDiaKQVOcH636pblaEqo=
 			</data>
 			<key>hash2</key>
 			<data>
-			rWcVMK+txD1fxZsuedEKv893ZiYMEBkrYlwemViFRCU=
+			3/rz9a+MdWi+lhV+e8bS181qP37s5XGkB7LBk/DTPdk=
 			</data>
 		</dict>
 		<key>Headers/HDBaseMessageBody.h</key>
@@ -214,33 +218,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			6w+2cJk9zIaEWgHF1m/58LAoHMA=
+			KwK4cFKZDg95aHImQDCk2Ak9w3c=
 			</data>
 			<key>hash2</key>
 			<data>
-			WNnH2D/MO1z2TK+QZlJ5Rsd/uUq+Le/1Ldp5ekpWD2A=
+			t4qoRFKv7i6XZe9ez8caV+ipJAlaw/PuHHXHHUQ2LZU=
 			</data>
 		</dict>
 		<key>Headers/HDClientDelegate.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			Bsa0est1R4MXCUiQnNiL5CkTBoA=
+			hok85gFwnsLqClhF7TPChG2c9c4=
 			</data>
 			<key>hash2</key>
 			<data>
-			uAPurWY0mIKWLVGZLVcegfqarJhGzsZZ2OXoDC+/XiU=
+			dBDZv63QWORwUxlcypa0Ql2oayQTSEOMm74F2w5Y2qk=
 			</data>
 		</dict>
 		<key>Headers/HDConversation.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			jsFXdiyOydkV9ahUbgWUuFgnrtE=
+			sTFrBl7up7eu/rEvOd5rNxBhOEE=
 			</data>
 			<key>hash2</key>
 			<data>
-			wlj2cUKeV8yu1hc8MYLooAcTzYDGHYQSkZBMEbmzDxY=
+			j/Hof6oj5tl5+LiAp8swMemxmDBY2cCTViwFze66pYU=
 			</data>
 		</dict>
 		<key>Headers/HDConversationManager.h</key>
@@ -452,6 +456,17 @@
 			nEGjXTW5p/xNtvByIjuMltvBmlgCUTMEZMuOUe92GHI=
 			</data>
 		</dict>
+		<key>Headers/HDUtils.h</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			MNwk1ottdVYEhAnZN9SJ++iffoE=
+			</data>
+			<key>hash2</key>
+			<data>
+			0nRLM3tOW4MoQr/jDO6G26v8+rGULhtWV96AIACnHv4=
+			</data>
+		</dict>
 		<key>Headers/HDVisitorInfo.h</key>
 		<dict>
 			<key>hash</key>
@@ -500,11 +515,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iuAqyw6Jxh4Ra5tE5aNeUXJLoyw=
+			9i2QYVtGWgwQxcJLTLqE35C2HtE=
 			</data>
 			<key>hash2</key>
 			<data>
-			bKMp8u0p6bjY98t8uPzBIOmxcup3RewV3Pi1FNjy7Rw=
+			c7hO2H2VPxtBgwHRaBKEpTPDYnkRSbpAfbLQpPfemLY=
 			</data>
 		</dict>
 		<key>Headers/NSDate+Formatter.h</key>

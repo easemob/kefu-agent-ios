@@ -181,6 +181,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     switch (messageModel.type) {
         case HDMessageBodyTypeText:
         {
+            HDExtMsgType type = HDExtMsgTypeGeneral;
+            type = [HDUtils getMessageExtType:messageModel];
+            if (type == HDExtMsgTypeForm) {
+                return [[HDChatFormBubbleView alloc] init];
+            }
             return [[EMChatTextBubbleView alloc] init];
         }
             break;
@@ -229,6 +234,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     switch (messageModel.type) {
         case HDMessageBodyTypeText:
         {
+            HDExtMsgType type = HDExtMsgTypeGeneral;
+            type = [HDUtils getMessageExtType:messageModel];
+            if (type == HDExtMsgTypeForm) {
+                return [HDChatFormBubbleView heightForBubbleWithObject:messageModel];
+            }
             return [EMChatTextBubbleView heightForBubbleWithObject:messageModel];
         }
             break;

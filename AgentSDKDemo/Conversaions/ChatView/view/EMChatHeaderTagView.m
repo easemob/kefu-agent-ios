@@ -144,7 +144,7 @@
         [self setupView];
     } else {
         WEAK_SELF
-        [_conversation asyncGetSessionSummaryResultsWithSessionId:_serviceSessionId completion:^(id responseObject, HDError *error) {
+        [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
             if (!error) {
                 NSArray *json = responseObject;
                 weakSelf.dataSource = [NSMutableArray array];
