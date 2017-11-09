@@ -13,7 +13,7 @@
 @property(nonatomic,strong,readonly) NSString *sessionId;
 
 @property(nonatomic,assign,readonly) NSInteger chatGroupId;
-//会话最后一条消息
+ //会话最后一条消息
 @property(nonatomic,strong,readonly) HDMessage *latestMessage;
 
 @property(nonatomic,assign,readonly) NSInteger messageCount;
@@ -45,7 +45,7 @@
 
 /**
  会话转接客服
- 
+
  @param remoteUserId 对方userId
  @param completion 完成回调
  */
@@ -60,7 +60,7 @@
 
 /**
  转接技能组
- 
+
  @param queueId queueId
  @param completion 完成回调
  */
@@ -77,10 +77,10 @@
 - (void)asyncGetSessionCommentCompletion:(void(^)(id responseObject ,HDError *error))completion;
 //修改会话标签备注
 - (void)asyncSaveSessionCommentParameters:(NSDictionary *)parameters
-                               completion:(void(^)(id responseObject,HDError *error))completion;
+                                  completion:(void(^)(id responseObject,HDError *error))completion;
 //保存标签
 - (void)asyncSaveSessionSummaryResultsParameters:(NSDictionary *)parameters
-                                      completion:(void(^)(id responseObject,HDError *error))completion;
+                                         completion:(void(^)(id responseObject,HDError *error))completion;
 
 /**
  满意度评价状态
@@ -106,4 +106,3 @@
 - (void)sendMessage:(HDMessage *)aMessage progress:(void (^)(int))aProgressBlock completion:(void (^)(HDMessage *, HDError *))aCompletionBlock;
 
 @end
-
