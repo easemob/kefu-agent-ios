@@ -11,6 +11,7 @@
  */
 
 #import "EmotionEscape.h"
+#import "ConvertToCommonEmoticonsHelper.h"
 
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define kEmotionTopMargin -3.0f
@@ -143,6 +144,34 @@ static EmotionEscape *_sharedInstance = nil;
     return [emojiKeyValue objectForKey:aKey];
     //    NSLog(@"write data is :%@",writeData);
 }
+- (NSRegularExpression *)regexEmoticon {
+    static NSRegularExpression *regex;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        regex = [NSRegularExpression regularExpressionWithPattern:_urlPattern options:kNilOptions error:NULL];
+    });
+    return regex;
+}
+
+- (void)yyEmotionStringFromString:(NSMutableAttributedString *)attString fontSize:(CGFloat)fontSize {
+     NSMutableAttributedString *text = attString;
+    NSArray<NSTextCheckingResult *> *emoticonResults = [[self regexEmoticon] matchesInString:text.string options:kNilOptions range:text.yy_rangeOfAll];
+    NSUInteger emoClipLength = 0;
+    for (NSTextCheckingResult *emo in emoticonResults) {
+        if (emo.range.location == NSNotFound && emo.range.length <= 1) continue;
+        NSRange range = emo.range;
+        range.location -= emoClipLength;
+        if ([text yy_attribute:YYTextHighlightAttributeName atIndex:range.location]) continue;
+        if ([text yy_attribute:YYTextAttachmentAttributeName atIndex:range.location]) continue;
+        NSString *emoString = [text.string substringWithRange:range];
+        NSString *imageName = [[self emotionDictionary] objectForKey:emoString];
+        UIImage *image = [UIImage imageNamed:imageName];
+        if (!image) continue;
+        NSAttributedString *emoText = [NSAttributedString yy_attachmentStringWithEmojiImage:image fontSize:fontSize];
+        [text replaceCharactersInRange:range withAttributedString:emoText];
+        emoClipLength += range.length - 1;
+    }
+}
 
 - (NSString*) getEmojiImageNameByKey:(NSString*) aKey
 {
@@ -157,6 +186,10 @@ static EmotionEscape *_sharedInstance = nil;
 - (void) setEaseEmotionEscapeDictionary:(NSDictionary*)dict
 {
     _dict = dict;
+}
+
+- (NSDictionary *)emotionDictionary {
+    return [ConvertToCommonEmoticonsHelper emotionsDictionary];
 }
 
 @end

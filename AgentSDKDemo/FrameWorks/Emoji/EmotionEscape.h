@@ -31,6 +31,11 @@
 
 - (void) setEaseEmotionEscapeDictionary:(NSDictionary*)dict;
 
+- (NSDictionary *)emotionDictionary;
+
+
+- (void)yyEmotionStringFromString:(NSMutableAttributedString *)attString fontSize:(CGFloat)fontSize;
+
 @end
 
 @interface EMTextAttachment : NSTextAttachment

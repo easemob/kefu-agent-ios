@@ -14,6 +14,9 @@
 #import "EMChatTextBubbleView.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "EmotionEscape.h"
+#import "NSString+Escape.h"
+
+#define kHref @"href"
 
 NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventName";
 
@@ -28,22 +31,21 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 @implementation EMChatTextBubbleView
 {
     HDTextMessageBody *_body;
+    HDMessage *_model;
 }
 
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
-        _textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+        _textLabel = [[YYLabel alloc] initWithFrame:CGRectZero];
         _textLabel.numberOfLines = 0;
+        _textLabel.textAlignment = NSTextAlignmentCenter;
         _textLabel.lineBreakMode = NSLineBreakByCharWrapping;
         _textLabel.font = [UIFont systemFontOfSize:LABEL_FONT_SIZE];
         _textLabel.textColor = RGBACOLOR(0x09, 0x09, 0x09, 1);
         _textLabel.backgroundColor = [UIColor clearColor];
-        _textLabel.userInteractionEnabled = NO;
         _textLabel.multipleTouchEnabled = NO;
         [self addSubview:_textLabel];
-        
-        _detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
     }
     
     return self;
@@ -52,7 +54,6 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    
     CGRect frame = self.bounds;
     frame.size.width -= BUBBLE_ARROW_WIDTH;
     frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
@@ -61,30 +62,13 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
     }else{
         frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
     }
-    
     frame.origin.y = BUBBLE_VIEW_PADDING;
     [self.textLabel setFrame:frame];
 }
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    CGSize textBlockMinSize = {TEXTLABEL_MAX_WIDTH, CGFLOAT_MAX};
-    CGSize retSize;
-    NSString *text = _body.text ? _body.text:@"";
-    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:text textFont:self.textLabel.font]];
-    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:[[self class] lineSpacing]];
-    [attributedString addAttribute:NSParagraphStyleAttributeName
-                             value:paragraphStyle
-                             range:NSMakeRange(0, [attributedString length])];
-    retSize = [attributedString boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin context:nil].size;
-    
-    CGFloat height = 40;
-    if (2*BUBBLE_VIEW_PADDING + retSize.height > height) {
-        height = 2*BUBBLE_VIEW_PADDING + retSize.height;
-    }
-    
-    return CGSizeMake(retSize.width + BUBBLE_VIEW_PADDING*2 + BUBBLE_VIEW_PADDING, height);
+    return CGSizeMake(_model.textSize.width + BUBBLE_VIEW_PADDING*2 + BUBBLE_ARROW_WIDTH, _model.textSize.height+2*BUBBLE_VIEW_PADDING);
 }
 
 #pragma mark - setter
@@ -92,210 +76,112 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 - (void)setModel:(HDMessage *)model
 {
     [super setModel:model];
+    _model = model;
     _body = (HDTextMessageBody *)model.nBody;
-    NSString *text = _body.text ?  _body.text : @"";
-    _urlMatches = [_detector matchesInString:text options:0 range:NSMakeRange(0, text.length)];
-    NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:text textFont:self.textLabel.font]];
-    NSMutableParagraphStyle * paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:[[self class] lineSpacing]];
-    [attributedString addAttribute:NSParagraphStyleAttributeName
-                             value:paragraphStyle
-                             range:NSMakeRange(0, [attributedString length])];
-    
+    NSAttributedString *attributedString = model.att;
     [_textLabel setAttributedText:attributedString];
-    if (model.isSender) {
-        [_textLabel setTextColor:[UIColor whiteColor]];
-    } else {
-        [_textLabel setTextColor:[UIColor blackColor]];
-    }
-    [self highlightLinksWithIndex:NSNotFound];
+    __weak __typeof(self) weakSelf = self;
+    _textLabel.tag = 1990;
+    _textLabel.highlightTapAction = ^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+        YYLabel *label = (YYLabel *)containerView;
+        [weakSelf yyLabelLinkDidClicked:label range:range];
+    };
 }
 
-- (BOOL)isIndex:(CFIndex)index inRange:(NSRange)range
-{
-    return index > range.location && index < range.location+range.length;
+
+
+- (void)yyLabelLinkDidClicked:(YYLabel *)yyLabel range:(NSRange)range {
+    NSAttributedString *text = yyLabel.textLayout.text;
+    YYTextHighlight *highlight = [text attribute:YYTextHighlightAttributeName atIndex:range.location longestEffectiveRange:nil inRange:range];
+    NSDictionary *userInfo = highlight.userInfo;
+    NSURL *url = [userInfo objectForKey:@"url"];
+    [self routerEventWithName:kRouterEventTextURLTapEventName userInfo:@{KMESSAGEKEY:self.model, @"url":[url absoluteString]}];
 }
 
-- (void)highlightLinksWithIndex:(CFIndex)index {
-    
-    NSMutableAttributedString* attributedString = [_textLabel.attributedText mutableCopy];
-    
-    for (NSTextCheckingResult *match in _urlMatches) {
-        
-        if ([match resultType] == NSTextCheckingTypeLink) {
-            
-            NSRange matchRange = [match range];
-            
-            if ([self isIndex:index inRange:matchRange]) {
-                [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor grayColor] range:matchRange];
-            }
-            else {
-                [attributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:matchRange];
-            }
-            
-            [attributedString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:matchRange];
-        }
-    }
-    
-    _textLabel.attributedText = attributedString;
-}
-
-- (CFIndex)characterIndexAtPoint:(CGPoint)point
-{
-    NSMutableAttributedString* optimizedAttributedText = [self.textLabel.attributedText mutableCopy];
-    
-    // use label's font and lineBreakMode properties in case the attributedText does not contain such attributes
-    [self.textLabel.attributedText enumerateAttributesInRange:NSMakeRange(0, [self.textLabel.attributedText length]) options:0 usingBlock:^(NSDictionary *attrs, NSRange range, BOOL *stop) {
-        
-        if (!attrs[(NSString*)kCTFontAttributeName])
-        {
-            [optimizedAttributedText addAttribute:(NSString*)kCTFontAttributeName value:self.textLabel.font range:NSMakeRange(0, [self.textLabel.attributedText length])];
-        }
-        
-        if (!attrs[(NSString*)kCTParagraphStyleAttributeName])
-        {
-            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-            [paragraphStyle setLineBreakMode:self.textLabel.lineBreakMode];
-            
-            [optimizedAttributedText addAttribute:(NSString*)kCTParagraphStyleAttributeName value:paragraphStyle range:range];
-        }
-    }];
-    
-    // modify kCTLineBreakByTruncatingTail lineBreakMode to kCTLineBreakByWordWrapping
-    [optimizedAttributedText enumerateAttribute:(NSString*)kCTParagraphStyleAttributeName inRange:NSMakeRange(0, [optimizedAttributedText length]) options:0 usingBlock:^(id value, NSRange range, BOOL *stop)
-     {
-         NSMutableParagraphStyle* paragraphStyle = [value mutableCopy];
-         
-         if ([paragraphStyle lineBreakMode] == NSLineBreakByTruncatingTail) {
-             [paragraphStyle setLineBreakMode:NSLineBreakByWordWrapping];
-         }
-         
-         [optimizedAttributedText removeAttribute:(NSString*)kCTParagraphStyleAttributeName range:range];
-         [optimizedAttributedText addAttribute:(NSString*)kCTParagraphStyleAttributeName value:paragraphStyle range:range];
-     }];
-    
-    if (!CGRectContainsPoint(self.bounds, point)) {
-        return NSNotFound;
-    }
-    
-    CGRect textRect = self.textLabel.frame;
-    
-    if (!CGRectContainsPoint(textRect, point)) {
-        return NSNotFound;
-    }
-    
-    // Offset tap coordinates by textRect origin to make them relative to the origin of frame
-    point = CGPointMake(point.x - textRect.origin.x, point.y - textRect.origin.y);
-    // Convert tap coordinates (start at top left) to CT coordinates (start at bottom left)
-    point = CGPointMake(point.x, textRect.size.height - point.y);
-    
-    CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((__bridge CFAttributedStringRef)optimizedAttributedText);
-    
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddRect(path, NULL, textRect);
-    
-    CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, [self.textLabel.attributedText length]), path, NULL);
-    
-    if (frame == NULL) {
-        CFRelease(path);
-        return NSNotFound;
-    }
-    
-    CFArrayRef lines = CTFrameGetLines(frame);
-    
-    NSInteger numberOfLines = self.textLabel.numberOfLines > 0 ? MIN(self.textLabel.numberOfLines, CFArrayGetCount(lines)) : CFArrayGetCount(lines);
-    
-    //NSLog(@"num lines: %d", numberOfLines);
-    
-    if (numberOfLines == 0) {
-        CFRelease(frame);
-        CFRelease(path);
-        return NSNotFound;
-    }
-    
-    NSUInteger idx = NSNotFound;
-    
-    CGPoint lineOrigins[numberOfLines];
-    CTFrameGetLineOrigins(frame, CFRangeMake(0, numberOfLines), lineOrigins);
-    
-    for (CFIndex lineIndex = 0; lineIndex < numberOfLines; lineIndex++) {
-        
-        CGPoint lineOrigin = lineOrigins[lineIndex];
-        CTLineRef line = CFArrayGetValueAtIndex(lines, lineIndex);
-        
-        // Get bounding information of line
-        CGFloat ascent, descent, leading, width;
-        width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
-        CGFloat yMin = floor(lineOrigin.y - descent);
-        CGFloat yMax = ceil(lineOrigin.y + ascent);
-        
-        // Check if we've already passed the line
-        if (point.y > yMax) {
-            break;
-        }
-        
-        // Check if the point is within this line vertically
-        if (point.y >= yMin) {
-            
-            // Check if the point is within this line horizontally
-            if (point.x >= lineOrigin.x && point.x <= lineOrigin.x + width) {
-                
-                // Convert CT coordinates to line-relative coordinates
-                CGPoint relativePoint = CGPointMake(point.x - lineOrigin.x, point.y - lineOrigin.y);
-                idx = CTLineGetStringIndexForPosition(line, relativePoint);
-                
-                break;
-            }
-        }
-    }
-    
-    CFRelease(frame);
-    CFRelease(path);
-    
-    return idx;
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return NO;
 }
 
 #pragma mark - public
 
--(void)bubbleViewPressed:(id)sender
-{
-    UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
-    CGPoint point = [tap locationInView:_textLabel];
-    CFIndex charIndex = [self characterIndexAtPoint:point];
-    
-    [self highlightLinksWithIndex:NSNotFound];
-    
-    for (NSTextCheckingResult *match in _urlMatches) {
-        
-        if ([match resultType] == NSTextCheckingTypeLink) {
-            
-            NSRange matchRange = [match range];
-            
-            if ([self isIndex:charIndex inRange:matchRange]) {
-                
-                [self routerEventWithName:kRouterEventTextURLTapEventName userInfo:@{KMESSAGEKEY:self.model, @"url":[match.URL absoluteString]}];
-                break;
++ (NSAttributedString *)getAttributedString:(HDMessage *)message {
+    NSMutableAttributedString *attributedString = nil;
+    NSString *text = ((HDTextMessageBody *)message.nBody).text;
+    if ([text containsString:kHref]) { //包含特殊链接
+        text = [NSString htmlToString:text];
+        attributedString = [[NSMutableAttributedString alloc] initWithData:[text dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        if (message.isSender) {
+            [attributedString yy_setColor:[UIColor whiteColor] range:NSMakeRange(0, attributedString.length)];
+        } else {
+            [attributedString yy_setColor:[UIColor blackColor] range:NSMakeRange(0, attributedString.length)];
+        }
+        [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:0 usingBlock:^(NSDictionary<NSAttributedStringKey,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+            if ([attrs objectForKey:@"NSLink"]) {
+                YYTextHighlight *highlight = [YYTextHighlight new];
+                YYTextBorder *highlightBorder = [YYTextBorder new];
+                highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
+                highlightBorder.cornerRadius = 2;
+                highlightBorder.fillColor = [UIColor lightGrayColor];
+                [highlight setBackgroundBorder:highlightBorder];
+                [highlight setUserInfo:@{@"url":[attrs objectForKey:@"NSLink"]}];
+                [attributedString yy_setTextHighlight:highlight range:range];
+                [attributedString yy_setColor:[UIColor blueColor] range:range];
+                YYTextDecoration *under = [YYTextDecoration new];
+                under.color = [UIColor redColor];
+                [attributedString yy_setTextUnderline:under range:range];
             }
+        }];
+    } else {
+        attributedString = [[NSMutableAttributedString alloc] initWithString:text];
+        if (message.isSender) {
+            [attributedString yy_setColor:[UIColor whiteColor] range:NSMakeRange(0, attributedString.length)];
+        } else {
+            [attributedString yy_setColor:[UIColor blackColor] range:NSMakeRange(0, attributedString.length)];
         }
     }
+    NSDataDetector * detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+    NSArray *matches = [detector matchesInString:attributedString.string
+                                         options:0
+                                           range:NSMakeRange(0, [attributedString.string length])];
+    for (NSTextCheckingResult *match in matches) {
+        if ([match resultType] == NSTextCheckingTypeLink) {
+            NSRange range = [match range];
+            YYTextHighlight *highlight = [YYTextHighlight new];
+            YYTextBorder *highlightBorder = [YYTextBorder new];
+            highlightBorder.insets = UIEdgeInsetsMake(-2, 0, -2, 0);
+            highlightBorder.cornerRadius = 3;
+            highlightBorder.fillColor = [UIColor lightGrayColor];
+            [highlight setBackgroundBorder:highlightBorder];
+            [highlight setUserInfo:@{@"url":[match URL]}];
+            [attributedString yy_setTextHighlight:highlight range:range];
+            [attributedString yy_setColor:[UIColor blueColor] range:range];
+            YYTextDecoration *under = [YYTextDecoration new];
+            under.color = [UIColor blueColor];
+            [attributedString yy_setTextUnderline:under range:range];
+        }
+    }
+    
+    [[EmotionEscape sharedInstance] yyEmotionStringFromString:attributedString fontSize:LABEL_FONT_SIZE];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:[[self class] lineSpacing]];//调整行间距
+    [attributedString addAttribute:NSFontAttributeName value:[EMChatTextBubbleView textLabelFont] range:NSMakeRange(0, attributedString.length)];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
+    
+    return attributedString;
 }
 
 +(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
-    HDTextMessageBody *textBody = (HDTextMessageBody *)object.nBody;
-    CGSize textBlockMinSize = {TEXTLABEL_MAX_WIDTH, CGFLOAT_MAX};
-    CGSize size;
+    return 2 * BUBBLE_VIEW_PADDING + object.textSize.height;
+}
 
++ (CGSize)textSize:(HDMessage *)message { //只有文字消息
+    CGSize textBlockMinSize = {TEXTLABEL_MAX_WIDTH, CGFLOAT_MAX};
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:[[self class] lineSpacing]];//调整行间距
-    size = [textBody.text boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin
-                                     attributes:@{
-                                                  NSFontAttributeName:[[self class] textLabelFont],
-                                                  NSParagraphStyleAttributeName:paragraphStyle
-                                                  }
-                                        context:nil].size;
-    
-    return 2 * BUBBLE_VIEW_PADDING + size.height;
+    NSAttributedString *att = message.att;
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:textBlockMinSize text:att];
+    return layout.textBoundingSize;
 }
 
 +(UIFont *)textLabelFont

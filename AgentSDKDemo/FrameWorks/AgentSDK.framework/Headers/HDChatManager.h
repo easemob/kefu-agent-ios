@@ -96,6 +96,17 @@
                                  limit:(NSInteger)limit
                             completion:(void(^)(NSArray *conversations,HDError *error))completion;
 
+
+/**
+ 回应预调度
+
+ @param sessionId sessionId
+ 
+ @param accept yes:接受 no:拒绝
+ */
+- (void)answerScheduleWithSessionId:(NSString *)sessionId accept:(BOOL)accept
+                         completion:(void(^)(id responseObject,HDError *error))completion;
+
 #pragma mark - 同事会话
 
 /**

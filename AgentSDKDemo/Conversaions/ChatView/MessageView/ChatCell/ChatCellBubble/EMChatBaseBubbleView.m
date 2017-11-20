@@ -31,6 +31,7 @@ NSString *const kRouterEventChatCellBubbleTapEventName = @"kRouterEventChatCellB
         [self addSubview:_backImageView];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bubbleViewPressed:)];
+        tap.delegate = self;
         [self addGestureRecognizer:tap];
         self.backgroundColor = [UIColor clearColor];
     }

@@ -224,7 +224,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
             } else {
                 [_headerView.onlineButton setTitle:value forState:UIControlStateNormal];
                 [hud setMode:MBProgressHUDModeCustomView];
-                [weakHud setLabelText:[NSString stringWithFormat:@"切换到%@状态时，系统将不再为您分配新会话，进行中会话可以继续。",value]];
+                [weakHud setLabelText:@"系统将不再为您分配新会话"];
                 [weakHud hide:YES afterDelay:3.0];
             }
         } else {

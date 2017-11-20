@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef NS_ENUM(NSUInteger, HDSatisfationStatus) {
+    HDSatisfationStatusNone=0, //尚未发送
+    HDSatisfationStatusInvited, //已经发送,用户尚未评价
+    HDSatisfationStatusOver, //用户已经评价
+};
+
 @interface HDConversationManager : NSObject
 
 @property(nonatomic,strong,readonly) NSString *sessionId;
@@ -85,9 +92,9 @@
 /**
  满意度评价状态
  
- @param completion YES 已经发送过；NO 尚未发送
+ @param completion status , error
  */
-- (void)satisfactionStatusCompletion:(void(^)(BOOL send,HDError *error))completion;
+- (void)satisfactionStatusCompletion:(void(^)(HDSatisfationStatus status,HDError *error))completion;
 
 - (void)sendSatisfactionEvaluationCompletion:(void(^)(BOOL send,HDError *error))completion;
 

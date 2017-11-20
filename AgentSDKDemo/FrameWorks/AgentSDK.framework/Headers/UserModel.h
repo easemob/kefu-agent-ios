@@ -28,8 +28,8 @@
 #define USER_STATE_ONLINE @"Online"
 #define USER_STATE_BUSY @"Busy"
 #define USER_STATE_LEAVE @"Leave"
-#define USER_STATE_OFFLINE @"Offline"
 #define USER_STATE_HIDDEN @"Hidden"
+#define USER_STATE_OFFLINE @"Offline"
 
 #define USER_STATUS_ENABLE @"Enable"
 #define USER_STATUS_DISABLE @"Disable"
@@ -76,6 +76,7 @@
 
 @property (assign, nonatomic) BOOL allowAgentChangeMaxSessions;
 @property (assign, nonatomic) BOOL isStopSessionNeedSummary;
+@property (assign, nonatomic) BOOL serviceSessionTransferPreScheduleEnable; //转接会话是否需要对方确认
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

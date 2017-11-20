@@ -311,7 +311,7 @@
 {
     HDMessage *model = [userInfo objectForKey:KMESSAGEKEY];
     if ([eventName isEqualToString:kRouterEventTextURLTapEventName]) {
-        //        [self chatTextCellUrlPressed:[userInfo objectForKey:@"url"]];
+//        [self chatTextCellUrlPressed:[userInfo objectForKey:@"url"]];
     } else if ([eventName isEqualToString:kRouterEventImageBubbleTapEventName]){
         [self chatImageCellBubblePressed:model];
     } else if ([eventName isEqualToString:kResendButtonTapEventName]){
@@ -387,6 +387,7 @@
 //        __weak HDMessage *weakMessage = message;
         if (message.nBody) {
             ((HDTextMessageBody *)model.nBody).text = [ConvertToCommonEmoticonsHelper convertToCommonEmoticons:((HDTextMessageBody *)model.nBody).text];
+            [self prehandle:message];
         }
         
         
@@ -464,6 +465,7 @@
 
 -(void)addMessage:(HDMessage *)message
 {
+    [self prehandle:message];
     [_messages addObject:message];
     __weak CustomerChatViewController *weakSelf = self;
     dispatch_async(_messageQueue, ^{
@@ -475,6 +477,14 @@
             [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         });
     });
+}
+
+- (void)prehandle:(HDMessage *)message {
+    if (message.type == HDMessageBodyTypeText) {
+        message.att = [EMChatTextBubbleView getAttributedString:message];
+        CGSize size = [EMChatTextBubbleView textSize:message];
+        message.textSize = size;
+    }
 }
 
 -(void)addMessageToTop:(HDMessage *)message
@@ -574,6 +584,7 @@
                 if (message.nBody) {
                     if (message.type == HDMessageBodyTypeText) {
                         ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                        [self prehandle:message];
                     }
                    
                 }
@@ -651,6 +662,7 @@
                 if (message.nBody) {
                     if (message.type == HDMessageBodyTypeText) {
                         ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
+                        [self prehandle:message];
                     }
                     
                 }
@@ -716,6 +728,8 @@
         }
     }
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

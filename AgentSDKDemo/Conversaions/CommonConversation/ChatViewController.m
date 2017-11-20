@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     HChatMenuTypeEndSession
 };
 
-@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,QuickReplyViewControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,EMUIWebViewControllerDelegate,HDChatManagerDelegate,HDClientDelegate,UIActionSheetDelegate,AddTagViewDelegate,EMPromptBoxViewDelegate,TransferViewControllerDelegate>
+@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,QuickReplyViewControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,EMUIWebViewControllerDelegate,HDChatManagerDelegate,HDClientDelegate,UIActionSheetDelegate,AddTagViewDelegate,EMPromptBoxViewDelegate,TransferViewControllerDelegate,UIGestureRecognizerDelegate>
 {
     dispatch_queue_t _messageQueue;
     NSMutableArray *_messages;
@@ -176,8 +176,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [KFManager sharedInstance].curChatViewConvtroller = self;
@@ -205,8 +203,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.navigationItem setTitleView:titleView];
         [self.view addSubview:self.chatToolBar];
         [self.view addSubview:self.moreView];
-        [_conversation satisfactionStatusCompletion:^(BOOL send, HDError *error) {
-            _satisfactionBtn.selected = send;
+        [_conversation satisfactionStatusCompletion:^(HDSatisfationStatus status, HDError *error) {
+            _satisfactionBtn.selected = (status != HDSatisfationStatusNone);
         }];
         [self.view addSubview:self.headview];
         [self.view addSubview:self.folderButton];
@@ -235,6 +233,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardHidden:)];
+    tap.delegate = self;
     [self.tableView addGestureRecognizer:tap];
 //    [self setupForDismissKeyboard];
     
@@ -329,7 +328,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         NSMutableAttributedString *string = [[NSMutableAttributedString alloc] init];
         [string appendAttributedString:attachString];
         NSString *techChannelStr = [NSString stringWithFormat:@"会话来自:%@",self.conversationModel.techChannelName];
-        [string appendAttributedString:[[NSAttributedString alloc] initWithString:techChannelStr]];
+        if (self.conversationModel.techChannelName) {
+            [string appendAttributedString:[[NSAttributedString alloc] initWithString:techChannelStr]];
+        }
+        
         _originTypeLable = [[UILabel alloc] initWithFrame:CGRectMake(0, self.tagBtn.height - 17.5, self.tagBtn.width, 15)];
         _originTypeLable.textAlignment = NSTextAlignmentCenter;
         _originTypeLable.textColor = [UIColor whiteColor];
@@ -544,12 +546,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _tableView.backgroundColor = RGBACOLOR(235, 235, 235, 1);
         _tableView.tableFooterView = [[UIView alloc] init];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
+        _tableView.estimatedRowHeight = 0;
         UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPress:)];
         lpgr.minimumPressDuration = .5;
         [_tableView addGestureRecognizer:lpgr];
     }
-    
     return _tableView;
 }
 
@@ -871,15 +872,23 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self.chatToolBar endEditing:YES];
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    if (touch.view.tag == 1990) {
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - UIResponder actions
 
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
     HDMessage *model = [userInfo objectForKey:KMESSAGEKEY];
     if ([eventName isEqualToString:kRouterEventTextURLTapEventName]) {
-        NSString *_dataString=[NSString stringWithUTF8String:[[userInfo objectForKey:@"url"] UTF8String]];
-        WebViewController *webview = [[WebViewController alloc] initWithUrl:_dataString];
-        [self.navigationController pushViewController:webview animated:YES];
+        NSString *url=[NSString stringWithUTF8String:[[userInfo objectForKey:@"url"] UTF8String]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
+//        WebViewController *webview = [[WebViewController alloc] initWithUrl:_dataString];
+//        [self.navigationController pushViewController:webview animated:YES];
     } else if ([eventName isEqualToString:kRouterEventImageBubbleTapEventName]){
         [self chatImageCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventChatHeadImageTapEventName]){
@@ -1105,21 +1114,26 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     //邀请评价
     self.moreView.hidden = YES;
-    [_conversation satisfactionStatusCompletion:^(BOOL send, HDError *error) {
+    [_conversation satisfactionStatusCompletion:^(HDSatisfationStatus status, HDError *error) {
         if (error == nil) {
-            if (send == YES) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"已经发送过满意度" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-                [alert show];
-                return;
-            } else {
+            if (status == HDSatisfationStatusNone) {
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"确定发送满意度邀请吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"发送", nil];
                 alert.tag = 1001;
                 [alert show];
                 return;
             }
+            if (status == HDSatisfationStatusOver) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您已发送,不能重复发送" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                return;
+            }
+            if (status == HDSatisfationStatusInvited) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"已经发送过满意度" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                return;
+            }
         }
     }];
-    
     [self keyBoardHidden:nil];
 }
 
@@ -1351,14 +1365,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 -(void)addMessage:(HDMessage *)message
 {
+    [self prehandle:message];
     __weak ChatViewController *weakSelf = self;
     dispatch_async(_messageQueue, ^{
         [weakSelf formatMessage:message];
         dispatch_async(dispatch_get_main_queue(), ^{
             [_messages addObject:message];
             [weakSelf.dataSource addObject:message];
-            [weakSelf.tableView reloadData];
-            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+            NSIndexPath *ip = [NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0];
+            [weakSelf.tableView beginUpdates];
+            [weakSelf.tableView insertRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationNone];
+            [weakSelf.tableView endUpdates];
+            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         });
     });
 }
@@ -1467,6 +1485,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                 }
                 if (index != NSNotFound)
                 {
+                    [self prehandle:aMessage];
                     [self.dataSource replaceObjectAtIndex:index withObject:aMessage];
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self.tableView beginUpdates];
@@ -1488,10 +1507,15 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     if (chatType == ChatViewTypeChat) {
         [_conversation loadHistoryCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
             [self hideHud];
-            [self addMessagesToTop:messages];
             for (HDMessage *msg in messages) {
-                [self downloadVoice:msg];
+                [self prehandle:msg];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [self downloadVoice:msg];
+                });
+                
             }
+            [self addMessagesToTop:messages];
+            
         }];
     }
     
@@ -1502,6 +1526,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             if (error == nil) {
                 _page ++ ;
                 for (HDMessage *message in responseObject) {
+                    [self prehandle:message];
                     if (message.nBody) {
                         if (message.type == HDMessageBodyTypeText) {
                             ((HDTextMessageBody *)message.nBody).text =  [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:((HDTextMessageBody *)message.nBody).text];
@@ -1529,6 +1554,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [self hideHud];
             if (error == nil) {
                 for (HDMessage *msg in messages) {
+                    //计算text高度
                     [self addMessage:msg];
                     [self downloadVoice:msg];
                 }
@@ -1539,6 +1565,14 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         }];
     } else {
         [self loadHistory];
+    }
+}
+
+- (void)prehandle:(HDMessage *)message {
+    if (message.type == HDMessageBodyTypeText) {
+        message.att = [EMChatTextBubbleView getAttributedString:message];
+        CGSize size = [EMChatTextBubbleView textSize:message];
+        message.textSize = size;
     }
 }
 

@@ -179,7 +179,7 @@ static NSInteger currentTotalBadgeValue;
     _notifyController = [[NotifyViewController alloc] init];
     [KFManager sharedInstance].noti = _notifyController;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
-    [_notifyController viewDidLoad];
+//    [_notifyController viewDidLoad];
     
     _leaveMsgController = [[LeaveMsgViewController alloc] init];
     [KFManager sharedInstance].leaveMsg = _leaveMsgController;

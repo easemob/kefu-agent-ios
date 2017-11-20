@@ -79,9 +79,24 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
 
 
 /**
+ 有新会话，请求接收
+
+ @param parameters sessionId,用于接受调度
+ */
+- (void)transferScheduleRequest:(NSString *)sessionId;
+
+/**
  会话被确认转接【需要管理员开启“转接会话需要对方确认”】
  */
-- (void)transferScheduleAccept:(NSString *)serviceSessionId;
+- (void)transferScheduleAccept:(NSString *)sessionId;
+
+
+/**
+ 会话被拒绝转接
+
+ @param sessionId sessionId
+ */
+- (void)transferScheduleRefuse:(NSString *)sessionId;
 
 /*
  * 会话最后一条消息变化

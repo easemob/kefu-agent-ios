@@ -19,4 +19,6 @@
 
 - (NSString *)encodeToPercentEscapeString;
 
++ (NSString *)htmlToString:(NSString *)html;
+
 @end

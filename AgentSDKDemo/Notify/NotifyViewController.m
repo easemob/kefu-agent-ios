@@ -86,6 +86,7 @@
 @property(nonatomic,assign) NSInteger unreadTotleCount;
 @end
 
+
 @implementation NotifyViewController
 {
     NSMutableArray *_menus;
@@ -97,16 +98,24 @@
     [super viewDidAppear:animated];
 }
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"通知";
-    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self loadData];
+}
+
+- (void)loadData {
     [self.tableView addSubview:self.slimeView];
-    
     [self.view addSubview:self.tabMenuView];
-    self.tableView.tableHeaderView = self.headerView;
+//    self.tableView.tableHeaderView = self.headerView;
     self.tableView.top = self.tabMenuView.height;
     self.tableView.height -= self.tabMenuView.height;
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -293,6 +302,20 @@
     return 1;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return self.headerView;
+    }
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (section == 0) {
+        return self.headerView.height;
+    }
+    return 0;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         HDNotifyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HDNotifyCell"];
@@ -419,7 +442,9 @@
                 [weakSelf resetBadge];
             }
             [self setHeaderNumWithtotle:_totalCount];
-            [weakSelf.tableView reloadData];
+            [UIView performWithoutAnimation:^{
+                [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+            }];
         }
         
     }];
@@ -517,6 +542,7 @@
 #pragma makr - private
 
 - (void)tabMenuSelected:(HDNoticeType)type {
+//    [self.tableView setContentOffset:CGPointMake(0, 0) animated:NO];
     _currentTabMenu = type;
     _page = 1;
     [self loadDataWithPage:_page type:type];

@@ -458,7 +458,7 @@ static void PSTCollectionViewCommonSetup(PSTCollectionView *_self) {
                 @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"Class not registered for identifier %@", identifier] userInfo:nil];
             }
             if (attributes) {
-                cell = [[cellClass alloc] initWithFrame:attributes.frame];
+                cell = [[cellClass alloc] initWithFrame:attributes.pframe];
             }else {
                 cell = [cellClass new];
             }
@@ -500,7 +500,7 @@ static void PSTCollectionViewCommonSetup(PSTCollectionView *_self) {
             if (self.collectionViewLayout) {
                 PSTCollectionViewLayoutAttributes *attributes = [self.collectionViewLayout layoutAttributesForSupplementaryViewOfKind:elementKind atIndexPath:indexPath];
                 if (attributes) {
-                    view = [[viewClass alloc] initWithFrame:attributes.frame];
+                    view = [[viewClass alloc] initWithFrame:attributes.pframe];
                 }
             }else {
                 view = [viewClass new];
@@ -544,7 +544,7 @@ static void PSTCollectionViewCommonSetup(PSTCollectionView *_self) {
                 @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"Class not registered for identifier %@", elementKind] userInfo:nil];
             }
             if (attributes) {
-                view = [[viewClass alloc] initWithFrame:attributes.frame];
+                view = [[viewClass alloc] initWithFrame:attributes.pframe];
             }else {
                 view = [viewClass new];
             }
@@ -566,7 +566,7 @@ static void PSTCollectionViewCommonSetup(PSTCollectionView *_self) {
 
 - (NSArray *)visibleCells {
     return [[_allVisibleViewsDict allValues] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        return [evaluatedObject isKindOfClass:PSTCollectionViewCell.class] && CGRectIntersectsRect(self.bounds, [evaluatedObject frame]);
+        return [evaluatedObject isKindOfClass:PSTCollectionViewCell.class] && CGRectIntersectsRect(self.bounds, [evaluatedObject pframe]);
     }]];
 }
 
@@ -680,7 +680,7 @@ static void PSTCollectionViewCommonSetup(PSTCollectionView *_self) {
 
     PSTCollectionViewLayoutAttributes *layoutAttributes = [self.collectionViewLayout layoutAttributesForItemAtIndexPath:indexPath];
     if (layoutAttributes) {
-        CGRect targetRect = [self makeRect:layoutAttributes.frame toScrollPosition:scrollPosition];
+        CGRect targetRect = [self makeRect:layoutAttributes.pframe toScrollPosition:scrollPosition];
         [self scrollRectToVisible:targetRect animated:animated];
     }
 }
@@ -1123,7 +1123,7 @@ static void PSTCollectionViewCommonSetup(PSTCollectionView *_self) {
             PSTCollectionViewLayoutAttributes *layoutAttributes = [layout layoutAttributesForItemAtIndexPath:centerItemIndexPath];
             if (layoutAttributes) {
                 PSTCollectionViewScrollPosition scrollPosition = PSTCollectionViewScrollPositionCenteredVertically|PSTCollectionViewScrollPositionCenteredHorizontally;
-                CGRect targetRect = [self makeRect:layoutAttributes.frame toScrollPosition:scrollPosition];
+                CGRect targetRect = [self makeRect:layoutAttributes.pframe toScrollPosition:scrollPosition];
                 targetOffset = CGPointMake(fmax(0.f, targetRect.origin.x), fmax(0.f, targetRect.origin.y));
             }
         }
@@ -1673,8 +1673,8 @@ static void PSTCollectionViewCommonSetup(PSTCollectionView *_self) {
             PSTCollectionViewLayoutAttributes *startAttrs = [_layout initialLayoutAttributesForAppearingItemAtIndexPath:indexPath];
             PSTCollectionViewLayoutAttributes *finalAttrs = [_layout layoutAttributesForItemAtIndexPath:indexPath];
 
-            CGRect startRect = startAttrs.frame;
-            CGRect finalRect = finalAttrs.frame;
+            CGRect startRect = startAttrs.pframe;
+            CGRect finalRect = finalAttrs.pframe;
 
             if (CGRectIntersectsRect(self.visibleBoundRects, startRect) || CGRectIntersectsRect(self.visibleBoundRects, finalRect)) {
 
