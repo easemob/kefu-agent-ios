@@ -44,7 +44,7 @@ singleton_interface(KFManager);
 @property(nonatomic,strong)KFConversationsController *conversation;
 //待接入
 @property(nonatomic,strong) WaitQueueViewController *wait;
-//通知中
+//通知
 @property(nonatomic,strong) NotifyViewController *noti;
 //留言
 @property(nonatomic,strong) LeaveMsgViewController *leaveMsg;

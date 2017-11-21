@@ -18,6 +18,7 @@
 #import "KFLeftViewController.h"
 #import "UMCheckUpdate.h"
 #import "MobClick.h"
+#import "UIAlertView+KFAdd.h"
 #import "EmotionEscape.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
@@ -191,14 +192,25 @@
         }
     }
 }
+//================appstore end=================
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == kShowLoginViewControllerTag) {
         [[KFManager sharedInstance] showLoginViewController];
+    } else if (alertView.tag == kTransferScheduleRequestTag) {
+        BOOL accept = YES;
+        if (buttonIndex == 0) { //拒绝
+            accept = NO;
+        }
+        [[HDClient sharedClient].chatManager answerScheduleWithSessionId:alertView.sessionId accept:accept completion:^(id responseObject, HDError *error) {
+            if (error == nil) {
+                NSLog(@"操作成功");
+            }
+        }];
     }
 }
 
-//================appstore end=================
+
 
 - (void)clearCache
 {

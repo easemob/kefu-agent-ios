@@ -15,5 +15,6 @@
 #define kWindow [UIApplication sharedApplication].keyWindow
 
 #define kShowLoginViewControllerTag 1293
+#define kTransferScheduleRequestTag 2934
 
 #endif /* UtilsMacros_h */

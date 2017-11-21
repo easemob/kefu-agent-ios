@@ -76,6 +76,7 @@
 
 @property (assign, nonatomic) BOOL allowAgentChangeMaxSessions;
 @property (assign, nonatomic) BOOL isStopSessionNeedSummary;
+@property (assign, nonatomic) BOOL serviceSessionTransferPreScheduleEnable; //转接会话是否需要对方确认
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

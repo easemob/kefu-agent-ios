@@ -122,6 +122,11 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
         case HDMessageBodyTypeText:
         {
             identifier = [identifier stringByAppendingString:@"Text"];
+            HDExtMsgType type = HDExtMsgTypeGeneral;
+            type = [HDUtils getMessageExtType:model];
+            if (type == HDExtMsgTypeForm) {
+                identifier = [identifier stringByAppendingString:@"form"];
+            }
         }
             break;
         case HDMessageBodyTypeImage:
@@ -144,7 +149,11 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
             identifier = [identifier stringByAppendingString:@"imageText"];
         }
             break;
-            
+            case HDMessageBodyTypeFile:
+        {
+             identifier = [identifier stringByAppendingString:@"file"];
+        }
+            break;
         default:
             break;
     }

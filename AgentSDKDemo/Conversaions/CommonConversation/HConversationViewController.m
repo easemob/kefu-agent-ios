@@ -319,7 +319,6 @@
     }
 }
 
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -343,7 +342,6 @@
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.conDelegate ConversationPushIntoChat:chatVC];
                     [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
-                    [self.tableView reloadData];
                 });
             });
         }

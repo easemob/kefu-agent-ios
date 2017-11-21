@@ -70,6 +70,9 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 - (void)loadAssignees {
     [[HDClient sharedClient].leaveMsgManager asyncGetAssigneesCompletion:^(NSArray<HDAssignee *> *assignees, HDError *error) {
+        if (error == nil) {
+            [_assginees removeAllObjects];
+        }
         [_assginees addObjectsFromArray:assignees];
     }];
 }
@@ -94,8 +97,10 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)loadLeaveMessageAllComments
 {
     [self loadAssignees];
-    
     [[HDClient sharedClient].leaveMsgManager asyncGetLeaveMsgCommentWithLeaveMsgId:_model.ID completion:^(NSArray<HDLeaveMessage *> *comments, HDError *error) {
+        if (error == nil) {
+            [_dataSource removeAllObjects];
+        }
         [_dataSource addObjectsFromArray:comments];
         [self.tableView reloadData];
     }];

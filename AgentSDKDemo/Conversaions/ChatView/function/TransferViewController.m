@@ -316,10 +316,13 @@
             [weakSelf hideHud];
             if (!error) {
                 [weakSelf showHint:@"会话已转接"];
-                if (self.delegate && [self.delegate respondsToSelector:@selector(conversationHasTransfered)]) {
-                    [self.delegate conversationHasTransfered];
+                if ([HDClient sharedClient].currentAgentUser.serviceSessionTransferPreScheduleEnable) {
+                    [self showHint:@"已转接,等待对方接受"];
+                } else {
+                    if (self.delegate && [self.delegate respondsToSelector:@selector(conversationHasTransfered)]) {
+                        [self.delegate conversationHasTransfered];
+                    }
                 }
-                
                 [weakSelf.navigationController popToRootViewControllerAnimated:YES];
             } else {
                 [weakSelf showHint:@"转接失败"];

@@ -95,11 +95,13 @@ typedef NS_ENUM(NSUInteger, HDChatType) {
  */
 @property (nonatomic) NSTimeInterval timestamp;
 
+//文字高度
+@property (nonatomic,assign) CGSize textSize;
 
 
 @property (strong, nonatomic) MessageExtModel *ext;
 
-@property (nonatomic) NSString *tenantId;
+@property (nonatomic,copy) NSString *tenantId;
 @property (copy, nonatomic) NSString *sessionId;
 @property (nonatomic) NSInteger sessionServiceSeqId;
 @property (strong, nonatomic) HDChatUser *fromUser;

@@ -96,7 +96,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%@: %p frame:%@ indexPath:%@ elementKind:%@>", NSStringFromClass(self.class), self, NSStringFromCGRect(self.frame), self.indexPath, self.elementKind];
+    return [NSString stringWithFormat:@"<%@: %p frame:%@ indexPath:%@ elementKind:%@>", NSStringFromClass(self.class), self, NSStringFromCGRect(self.pframe), self.indexPath, self.elementKind];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -127,18 +127,18 @@
 
 - (void)setSize:(CGSize)size {
     _size = size;
-    _frame = (CGRect){_frame.origin, _size};
+    _pframe = (CGRect){_pframe.origin, _size};
 }
 
 - (void)setCenter:(CGPoint)center {
     _center = center;
-    _frame = (CGRect){{_center.x - _frame.size.width / 2, _center.y - _frame.size.height / 2}, _frame.size};
+    _pframe = (CGRect){{_center.x - _pframe.size.width / 2, _center.y - _pframe.size.height / 2}, _pframe.size};
 }
 
 - (void)setFrame:(CGRect)frame {
-    _frame = frame;
-    _size = _frame.size;
-    _center = (CGPoint){CGRectGetMidX(_frame), CGRectGetMidY(_frame)};
+    _pframe = frame;
+    _size = _pframe.size;
+    _center = (CGPoint){CGRectGetMidX(_pframe), CGRectGetMidY(_pframe)};
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -149,7 +149,7 @@
     layoutAttributes.indexPath = self.indexPath;
     layoutAttributes.elementKind = self.elementKind;
     layoutAttributes.elementCategory = self.elementCategory;
-    layoutAttributes.frame = self.frame;
+    layoutAttributes.frame = self.pframe;
     layoutAttributes.center = self.center;
     layoutAttributes.size = self.size;
     layoutAttributes.transform3D = self.transform3D;

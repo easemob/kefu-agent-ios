@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, PSTCollectionViewItemType) {
 
 @interface PSTCollectionViewLayoutAttributes : NSObject <NSCopying>
 
-@property (nonatomic) CGRect frame;
+@property (nonatomic) CGRect pframe;
 @property (nonatomic) CGPoint center;
 @property (nonatomic) CGSize size;
 @property (nonatomic) CATransform3D transform3D;

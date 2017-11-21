@@ -38,6 +38,8 @@
 #define kTableViewBgColor RGBACOLOR(255, 255, 255, 1)
 #define kNavBarBgColor RGBACOLOR(51, 51, 51, 1)
 
+#define kstart   NSDate *startTime = [NSDate date];
+#define kend   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow]);
 
 #define WEAK_SELF typeof(self) __weak weakSelf = self;
 
@@ -55,11 +57,12 @@
 #import "EMCDDeviceManager.h"
 #import "EMBaseViewController.h"
 
-
 #pragma mark 3
 #import "DDLog.h"
+#import "YYText.h"
 #import "MBProgressHUD+Add.h"
 //#import "NSDictionary+SafeValue.h"
+#import "HDMessage+agent.h"
 #import "DXLoadingView.h"
 #import "EMBaseViewController.h"
 #import "UIViewController+DismissKeyboard.h"

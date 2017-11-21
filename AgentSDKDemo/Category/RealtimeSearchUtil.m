@@ -116,6 +116,9 @@ static RealtimeSearchUtil *defaultUtil = nil;
                     [results addObject:object];
                 } else {
                     tmpString = [[ChineseToPinyin pinyinFromChineseString:tmpString] lowercaseString];
+                    if (tmpString == nil) {
+                        continue;
+                    }
                     if([tmpString rangeOfString:subStr].location != NSNotFound)
                     {
                         [results addObject:object];

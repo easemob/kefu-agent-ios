@@ -31,7 +31,7 @@ extern NSString *const kRouterEventChatCellBubbleTapEventName;
 
 #define KMESSAGEKEY @"message"
 
-@interface EMChatBaseBubbleView : UIView
+@interface EMChatBaseBubbleView : UIView< UIGestureRecognizerDelegate>
 {
     THProgressView *_progressView;
     HDMessage *_model;

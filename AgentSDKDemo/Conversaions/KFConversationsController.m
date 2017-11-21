@@ -16,7 +16,7 @@
 #import "ChatViewController.h"
 #import "EMHeaderImageView.h"
 #import "UINavigationItem+Margin.h"
-
+#import "UIAlertView+KFAdd.h"
 #import "UIImageView+EMWebCache.h"
 
 @interface KFConversationsController ()<ConversationTableControllerDelegate,UIScrollViewDelegate,HDClientDelegate>
@@ -80,9 +80,22 @@
     [self reloadDataWithSessionId:serviceSessionId];
 }
 
-- (void)transferScheduleAccept:(NSString *)serviceSessionId {
+- (void)transferScheduleAccept:(NSString *)sessionId {
     NSLog(@"会话转接被确认");
-    [self reloadDataWithSessionId:serviceSessionId];
+    [self showHint:@"会话已转接"];
+    [self reloadDataWithSessionId:sessionId];
+}
+
+- (void)transferScheduleRefuse:(NSString *)sessionId {
+    [self showHint:@"对方已拒绝转接"];
+}
+
+
+- (void)transferScheduleRequest:(NSString *)sessionId {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"新会话" message:@"收到一个转接会话,是否接受?" delegate:[KFManager sharedInstance].appDelegate cancelButtonTitle:@"拒绝" otherButtonTitles:@"接受", nil];
+    alert.sessionId = sessionId;
+    alert.tag = kTransferScheduleRequestTag;
+    [alert show];
 }
 
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {

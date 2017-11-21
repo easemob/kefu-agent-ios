@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef NS_ENUM(NSUInteger, HDSatisfationStatus) {
+    HDSatisfationStatusNone=0, //尚未发送
+    HDSatisfationStatusInvited, //已经发送,用户尚未评价
+    HDSatisfationStatusOver, //用户已经评价
+};
+
 @interface HDConversationManager : NSObject
 
 @property(nonatomic,strong,readonly) NSString *sessionId;
@@ -71,28 +78,25 @@
 - (void)asyncGetTreeCompletion:(void(^)(id responseObject,HDError *error))completion;
 
 //获取会话标签
-- (void)asyncGetSessionSummaryResultsWithSessionId:(NSString *)sessionId
-                                        completion:(void(^)(id responseObject,HDError *error))completion;
+- (void)asyncGetSessionSummaryResultsCompletion:(void(^)(id responseObject,HDError *error))completion;
 
 //获取会话标签备注
 - (void)asyncGetSessionCommentCompletion:(void(^)(id responseObject ,HDError *error))completion;
 //修改会话标签备注
-- (void)asyncSaveSessionCommentWithSessionId:(NSString *)sessionId
-                                  parameters:(NSDictionary *)parameters
+- (void)asyncSaveSessionCommentParameters:(NSDictionary *)parameters
                                   completion:(void(^)(id responseObject,HDError *error))completion;
 //保存标签
-- (void)asyncSaveSessionSummaryResultsWithSessionId:(NSString *)sessionId
-                                         parameters:(NSDictionary *)parameters
+- (void)asyncSaveSessionSummaryResultsParameters:(NSDictionary *)parameters
                                          completion:(void(^)(id responseObject,HDError *error))completion;
 
 /**
  满意度评价状态
  
- @param completion YES 已经发送过；NO 尚未发送
+ @param completion status , error
  */
-- (void)satisfactionStatusWithSessionId:(NSString *)sessionId completion:(void(^)(BOOL send,HDError *error))completion;
+- (void)satisfactionStatusCompletion:(void(^)(HDSatisfationStatus status,HDError *error))completion;
 
-- (void)sendSatisfactionEvaluationWithSessionId:(NSString *)sessionId completion:(void(^)(BOOL send,HDError *error))completion;
+- (void)sendSatisfactionEvaluationCompletion:(void(^)(BOOL send,HDError *error))completion;
 
 /*
  * 结束会话
