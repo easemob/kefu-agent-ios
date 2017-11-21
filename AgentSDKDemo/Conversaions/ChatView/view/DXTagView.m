@@ -63,7 +63,7 @@
         left += tagView.width;
         [_contentView addSubview:tagView];
     }
-    
+
     _contentView.contentSize = CGSizeMake(self.frame.size.width, marginY);
 }
 

@@ -125,7 +125,7 @@ singleton_implementation(KFManager)
 //通知中心改变
 - (void)notificationChange {
     NSLog(@"通知中心改变");
-    [_noti loadDataWithPage:1 type:HDNoticeTypeAll];
+    [_noti loadDataWithPage:1 type:_noti.currentTabMenu];
 }
 #pragma mark - 其他
 - (void)roleChange:(RolesChangeType)type {
@@ -134,10 +134,7 @@ singleton_implementation(KFManager)
     alert.tag = kShowLoginViewControllerTag;
     [alert show];
 }
-//连接状态改变
-- (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
-    NSLog(@"连接状态改变");
-}
+
 //客服需要重新登录
 - (void)userAccountNeedRelogin:(HDAutoLogoutReason)reason {
     NSString *tip;

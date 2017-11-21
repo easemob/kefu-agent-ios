@@ -253,7 +253,7 @@
 - (void)loadReply
 {
     WEAK_SELF
-    [self showHintNotHide:@"加载快捷回复123..."];
+    [self showHintNotHide:@"加载快捷回复..."];
     [[HDClient sharedClient].chatManager getQuickReplyCompletion:^(id responseObject, HDError *error) {
         [weakSelf hideHud];
         if (error == nil) {

@@ -354,6 +354,7 @@
         [MBProgressHUD show:@"管理员不允许设置最大接入数" view:nil];
         return;
     }
+    
     NSString *value = [NSString stringWithFormat:@"%d",_leftCount * 100 + _middleCount * 10 + _rightCount];
     if (_user.maxServiceSessionCount != [value integerValue]) {
         [self showHintNotHide:@"修改用户最大接入数..."];

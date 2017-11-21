@@ -59,27 +59,38 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
 
 /*
  *  会话被管理员转接
- *  @param  serviceSessionId 被转接的会话ID
+ *  @param  sessionId 被转接的会话ID
  */
 
-- (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId;
+- (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)sessionId;
 
 /*
  * 会话被管理员关闭
- * @param  serviceSessionId 被关闭的会话ID
+ * @param  sessionId 被关闭的会话ID
  */
 
-- (void)conversationClosedByAdminWithServiceSessionId:(NSString *)serviceSessionId;
+- (void)conversationClosedByAdminWithServiceSessionId:(NSString *)sessionId;
 
 /*
  * 会话自动关闭 
- * @param  serviceSessionId 关闭的会话ID
+ * @param  sessionId 关闭的会话ID
  */
-- (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId;
+- (void)conversationAutoClosedWithServiceSessionId:(NSString *)sessionId;
+
+/*
+ * 会话最后一条消息变化
+ * @param  sessionId 变化的sessionId
+ */
+- (void)conversationLastMessageChanged:(HDMessage *)message;
+/*
+ * 新会话
+ * @param  sessionId 新会话sessionId
+ */
+- (void)newConversationWithSessionId:(NSString *)sessionId;
 
 
 /**
- 有新会话，请求接收
+ 有新转接会话请求接收
 
  @param parameters sessionId,用于接受调度
  */
@@ -97,18 +108,6 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
  @param sessionId sessionId
  */
 - (void)transferScheduleRefuse:(NSString *)sessionId;
-
-/*
- * 会话最后一条消息变化
- * @param  sessionId 变化的sessionId
- */
-- (void)conversationLastMessageChanged:(HDMessage *)message;
-/*
- * 新会话
- * @param  sessionId 新会话sessionId
- */
-- (void)newConversationWithSessionId:(NSString *)sessionId;
-
 
 /*
  * 客服身份发生变化
