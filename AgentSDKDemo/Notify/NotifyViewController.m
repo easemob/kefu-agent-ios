@@ -90,7 +90,6 @@
 @implementation NotifyViewController
 {
     NSMutableArray *_menus;
-    HDNoticeType _currentTabMenu;
     HDNoticeStatus _currentStatus;
 }
 
@@ -101,7 +100,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        
+        [self loadData];
     }
     return self;
 }
@@ -109,6 +108,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.height -= 44;
     [self loadData];
 }
 
@@ -117,7 +117,6 @@
     [self.view addSubview:self.tabMenuView];
 //    self.tableView.tableHeaderView = self.headerView;
     self.tableView.top = self.tabMenuView.height;
-    self.tableView.height -= self.tabMenuView.height;
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = kTableViewBgColor;
     
@@ -441,10 +440,11 @@
             if (_currentStatus == HDNoticeStatusUnread) {
                 [weakSelf resetBadge];
             }
-            [self setHeaderNumWithtotle:_totalCount];
+            
             [UIView performWithoutAnimation:^{
                 [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
             }];
+            [self setHeaderNumWithtotle:_totalCount];
         }
         
     }];

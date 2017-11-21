@@ -20,4 +20,9 @@
  */
 @property (nonatomic, copy) NSString *apnsCertName;
 
+/**
+ * 客服服务器地址
+ */
+@property (nonatomic, copy) NSString *kefuRestAddress;
+
 @end

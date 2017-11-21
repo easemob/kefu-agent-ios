@@ -30,6 +30,7 @@
     #endif
     
 #endif
+    NSLog(@"apnsCertName:%@",apnsCertName);
     HDOptions *options = [[HDOptions alloc] init];
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;

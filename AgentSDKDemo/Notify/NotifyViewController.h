@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIBarButtonItem *markReadItem;
 @property (strong, nonatomic) UIBarButtonItem *headerViewItem;
 @property(nonatomic,strong) UIBarButtonItem *readButtonItem;
+@property(nonatomic,assign)HDNoticeType currentTabMenu;
 
 - (void)loadDataWithPage:(NSInteger)page type:(HDNoticeType)notiType;
 
