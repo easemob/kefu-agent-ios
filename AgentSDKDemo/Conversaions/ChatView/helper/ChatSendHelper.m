@@ -92,7 +92,9 @@
 + (HDMessage *)textMessageFormatWithText:(NSString *)text to:(NSString *)toUser sessionId:(NSString *)sessionId {
     NSString *willSendText = [ConvertToCommonEmoticonsHelper convertToCommonEmoticons:text];
     HDTextMessageBody *bdy = [[HDTextMessageBody alloc] initWithText:willSendText];
+//    bdy.msgExt = @{@"key":@"value1"};
     HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:bdy];
+//    NSLog(@"body.msgExt:%@",bdy.msgExt);
     return message;
 }
 

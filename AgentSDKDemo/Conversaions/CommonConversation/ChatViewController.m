@@ -1679,7 +1679,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 - (void)dealloc {
-    
+    NSLog(@"___dealloc___%s",__func__);
 }
 
 - (void)didReceiveMemoryWarning {

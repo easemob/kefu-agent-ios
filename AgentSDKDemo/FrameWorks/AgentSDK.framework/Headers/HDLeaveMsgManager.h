@@ -94,7 +94,7 @@
 /**
  取消分配留言给user
 
- @param user 当前分配人
+ @param user 当前分配人id
  @param leaveMsgId ID
  @param completion 完成回调
  */
@@ -110,6 +110,12 @@
 
 #pragma mark - 上传
 
+/**
+ 上传附件
+ 
+ @param imageData 图片数据
+ @param completion 完成回调(附件实例)
+ */
 - (void)asyncUploadImageWithFile:(NSData*)imageData
                            completion:(void (^)(HDAttachment *attachment, HDError *error))completion;
 

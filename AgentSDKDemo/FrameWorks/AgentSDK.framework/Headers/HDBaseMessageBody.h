@@ -32,7 +32,7 @@ typedef enum {
 @property (nonatomic, readonly) HDMessageBodyType type;
 
 
-- (NSDictionary *)selfDicDesc;
+- (NSMutableDictionary *)selfDicDesc;
 
 
 @end

@@ -123,7 +123,7 @@
  @param parameters 参数
  @param completion 完成回调
  */
-- (void)asyncSendMessageToAgentUserWithRemoteAgentUserId:(NSString *)remoteUserId parameters:(NSDictionary *)parameters completion:(void (^)(id responseObject, HDError *error))completion;
+- (void)asyncSendMessageToAgentUserWithRemoteAgentUserId:(NSString *)remoteUserId parameters:(NSDictionary *)parameters completion:(void (^)(id responseObject, HDError *error))completion __deprecated_msg("Use -customerSendMessage:completion:");
 
 
 
@@ -214,6 +214,15 @@
 
 #pragma mark  历史会话
 
+
+/**
+ 获取历史会话
+
+ @param page 页码
+ @param limit 每页的数量
+ @param parameters 参数
+ @param completion 完成回调
+ */
 - (void)asyncFetchHistoryConversationWithPage:(NSInteger)page
                                         limit:(NSInteger)limit
                                    parameters:(NSDictionary *)parameters
@@ -230,12 +239,24 @@
 
 
 
-//获取某个会话的历史聊天记录
+
+/**
+ 获取历史会话的历史消息
+
+ @param sessionServicesId 会话id
+ @param page 页码
+ @param completion 完成回调
+ */
 - (void)asyncFetchHistoryMessagesWithSessionServicesId:(NSString*)sessionServicesId
                                                   page:(int)page
                                             completion:(void (^)(id responseObject, HDError *error))completion;
 
 
+/**
+ 获取关联列表
+
+ @param completion 完成
+ */
 - (void)getChannelsCompletion:(void(^)(id responseObject,HDError *error))completion;
 
 

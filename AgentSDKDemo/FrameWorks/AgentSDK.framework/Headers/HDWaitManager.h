@@ -42,6 +42,6 @@
 
 //筛选会话
 - (void)asyncScreenWaitQueuesWithParameters:(NSDictionary *)parameters
-                                 completion:(void(^)(NSArray <HDWaitUser *> *users ,HDError *errror))completion;
+                                 completion:(void(^)(NSArray <HDWaitUser *> *users ,HDError *error))completion;
 
 @end
