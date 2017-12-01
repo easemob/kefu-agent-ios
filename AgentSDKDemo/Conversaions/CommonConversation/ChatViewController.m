@@ -1123,12 +1123,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                 return;
             }
             if (status == HDSatisfationStatusOver) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您已发送,不能重复发送" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"会话已评价" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
                 [alert show];
                 return;
             }
             if (status == HDSatisfationStatusInvited) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"已经发送过满意度" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"您已发送,不能重复发送" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
                 [alert show];
                 return;
             }
@@ -1221,7 +1221,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [_conversation sendSatisfactionEvaluationCompletion:^(BOOL send, HDError *error) {
             [self hideHud];
             if (error == nil) {
-                [weakSelf showHint:@"已发送"];
+                [weakSelf showHint:@"发送成功"];
                 _satisfactionBtn.selected = YES;
             } else {
                 [weakSelf showHint:@"发送失败"];
@@ -1383,6 +1383,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 -(void)addMessagesToTop:(NSArray *)msgs
 {
+    if (msgs.count == 0) {
+        return;
+    }
     __weak ChatViewController *weakSelf = self;
     dispatch_async(_messageQueue, ^{
         NSArray *messages = msgs;

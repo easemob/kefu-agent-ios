@@ -22,9 +22,11 @@
 #import "EmotionEscape.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
+
 //================appstore start=================
 #import <PgyUpdate/PgyUpdateManager.h>
 //================appstore end=================
+
 //#import <wax/wax.h>
 
 @interface AppDelegate () <UIAlertViewDelegate>
@@ -143,12 +145,11 @@
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.window.rootViewController = self.drawerController;
-    
     //================appstore start=================
 #if !APPSTORE
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
-        });
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
+    });
 #endif
     //================appstore end=================
 }
@@ -185,6 +186,7 @@
     fileLogger.logFileManager.maximumNumberOfLogFiles = 14;
     [DDLog addLogger:fileLogger];
 }
+
 //================appstore start=================
 - (void)updateVersion:(id)dic
 {

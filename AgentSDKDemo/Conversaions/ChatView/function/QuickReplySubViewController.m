@@ -80,7 +80,7 @@
 {
      _delButton.hidden = NO;
     if (model.parentId == 0) {
-        self.textLabel.text = @"添加子分类";
+        self.textLabel.text = @"添加常用语";
         [_delButton setImage:[UIImage imageNamed:@"phrase_new_Ellipse"] forState:UIControlStateNormal];
     } else {
         self.textLabel.text = @"添加常用语";
@@ -116,7 +116,7 @@
 {
     [super viewDidLoad];
     
-    self.title = @"常用语sub";
+    self.title = @"常用语";
     self.tableView.tableFooterView = [[UIView alloc] init];
     _edit = NO;
     [self.tableView reloadData];
@@ -143,7 +143,7 @@
     if (_addButton == nil) {
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_addButton setImage:[UIImage imageNamed:@"ic_add_menu"] forState:UIControlStateNormal];
-        [_addButton addTarget:self action:@selector(addQuickReplyAction) forControlEvents:UIControlEventTouchUpInside];
+        [_addButton addTarget:self action:@selector(addAction) forControlEvents:UIControlEventTouchUpInside];
         [_addButton setBackgroundColor:kNavBarBgColor];
         _addButton.frame = CGRectMake(KScreenWidth - 60, KScreenHeight - 120, 50, 50);
         _addButton.layer.cornerRadius = _addButton.width/2;
@@ -309,14 +309,14 @@
 
     if (_edit) {
         if (indexPath.section == 1) {
-            [self addAction];
+            [self addQuickReplyAction];
             return;
         }
         QuickReplyAddViewController *addView = [[QuickReplyAddViewController alloc] init];
         addView.delegate = self;
         QuickReplyMessageModel *qrMsgModel = [self.dataArray objectAtIndex:indexPath.row];
         addView.qrMsgModel = qrMsgModel;
-        addView.parentId = addView.qrMsgModel.Id;
+        addView.parentId = _quickReplyModel.Id;
         addView.title = @"编辑快捷回复";
         [self.navigationController pushViewController:addView animated:YES];
     } else {
@@ -353,7 +353,7 @@
 {
     NSIndexPath *cellIndexPath = [self.tableView indexPathForCell:cell];
     if (cellIndexPath.section == 1) {
-        [self addAction];
+        [self addQuickReplyAction];
         return;
     }
     QuickReplyMessageModel *qrMsgModel = [self.dataArray objectAtIndex:cellIndexPath.row];

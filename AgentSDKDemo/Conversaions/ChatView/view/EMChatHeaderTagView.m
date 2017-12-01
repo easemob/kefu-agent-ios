@@ -219,7 +219,7 @@
 
 - (void)_analyzeTree:(NSArray*)array
 {
-    if ([array isKindOfClass:[NSArray class]]|| array == nil || [array count] == 0){
+    if (![array isKindOfClass:[NSArray class]]|| array == nil || [array count] == 0){
         return;
     }
     for (NSDictionary *dic in array) {

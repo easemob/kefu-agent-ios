@@ -71,7 +71,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)loadAssignees {
     [[HDClient sharedClient].leaveMsgManager asyncGetAssigneesCompletion:^(NSArray<HDAssignee *> *assignees, HDError *error) {
         if (error == nil) {
-            [_assginees removeAllObjects];
+            [_assginees removeObjectsInRange:NSMakeRange(1, _assginees.count-1)];
         }
         [_assginees addObjectsFromArray:assignees];
     }];

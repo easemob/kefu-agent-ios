@@ -268,7 +268,6 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 #if APPSTORE
         _menuData = @[@"主页",@"历史",@"设置"];
 #else
-        
         //================appstore start=================
 #if IS_KEFU_HUASHENG
         _menuData = @[@"主页",@"历史",@"设置"];

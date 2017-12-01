@@ -24,7 +24,6 @@
 #import "UMCheckUpdate.h"
 #import <PgyUpdate/PgyUpdateManager.h>
 //================appstore end=================
-
 #import "DXTipView.h"
 #import "DXUpdateView.h"
 
@@ -542,6 +541,7 @@ static NSInteger currentTotalBadgeValue;
 
 #pragma mark - private
 
+
 //================appstore start=================
 - (void)updateVersion:(id)dic
 {
@@ -560,6 +560,7 @@ static NSInteger currentTotalBadgeValue;
     }
 }
 //================appstore end=================
+
 
 -(void)registerNotifications
 {
