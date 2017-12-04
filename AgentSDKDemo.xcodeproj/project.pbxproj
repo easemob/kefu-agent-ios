@@ -2123,7 +2123,6 @@
 		D3C4E6F21F8B7AD5008089E2 /* UtilsMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
 		D3D081FF1EA4B349003FF1C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3E9CF321FBED182005E3677 /* AgentSDKDemoAppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgentSDKDemoAppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D3E9CF331FBED182005E3677 /* AgentSDKDemo copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "AgentSDKDemo copy-Info.plist"; path = "/Users/FXN/环信移动客服/AgentSDKDemo/AgentSDKDemo copy-Info.plist"; sourceTree = "<absolute>"; };
 		D3FDC5F81EA0A5BE00C25BB0 /* icon1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon1@3x.png"; sourceTree = "<group>"; };
 		D3FDC5F91EA0A5BE00C25BB0 /* icon1_selected@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon1_selected@3x.png"; sourceTree = "<group>"; };
 		D3FDC5FA1EA0A5BE00C25BB0 /* icon2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon2@2x.png"; sourceTree = "<group>"; };
@@ -3361,7 +3360,6 @@
 				D33F46671E9F71A000FE6DCE /* AgentSDKDemo */,
 				D33F46661E9F71A000FE6DCE /* Products */,
 				D3FDC5121EA08C0900C25BB0 /* Frameworks */,
-				D3E9CF331FBED182005E3677 /* AgentSDKDemo copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -6069,7 +6067,7 @@
 					"APPSTORE=1",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "AgentSDKDemo copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AgentSDKDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -6110,7 +6108,7 @@
 				GCC_PREFIX_HEADER = AgentSDKDemo/PrefixHeader.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = "APPSTORE=1";
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "AgentSDKDemo copy-Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/AgentSDKDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (

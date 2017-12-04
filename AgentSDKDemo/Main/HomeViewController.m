@@ -20,12 +20,12 @@
 #import "AdminHomeViewController.h"
 #import "AdminInforViewController.h"
 #import "ReminderView.h"
+#import "DXTipView.h"
+#import "DXUpdateView.h"
 //================appstore start=================
 #import "UMCheckUpdate.h"
 #import <PgyUpdate/PgyUpdateManager.h>
 //================appstore end=================
-#import "DXTipView.h"
-#import "DXUpdateView.h"
 
 @implementation UIImage (tabBarImage)
 
@@ -540,7 +540,6 @@ static NSInteger currentTotalBadgeValue;
 }
 
 #pragma mark - private
-
 
 //================appstore start=================
 - (void)updateVersion:(id)dic
