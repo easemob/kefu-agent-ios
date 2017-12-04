@@ -22,6 +22,7 @@ typedef enum{
     EMErrorInvalidUsername,                  /*! \~chinese 用户名无效 \~english Username is invalid */
     EMErrorInvalidPassword,                  /*! \~chinese 密码无效 \~english Password is invalid */
     EMErrorInvalidURL,                       /*! \~chinese URL无效 \~english URL is invalid */
+    EMErrorInvalidToken,                     /*! \~chinese Token无效 \~english Token is invalid */
     
     EMErrorUserAlreadyLogin = 200,           /*! \~chinese 用户已登录 \~english User already logged in */
     EMErrorUserNotLogin,                     /*! \~chinese 用户未登录 \~english User not logged in */

@@ -60,7 +60,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 #endif
     
     self.view.backgroundColor = RGBACOLOR(26, 26, 26, 1);;
-    _headerView = [[LeftMenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 70)];
+    _headerView = [[LeftMenuHeaderView alloc] initWithFrame:CGRectMake(0, 40, self.view.width, 70)];
      self.tableView.tableHeaderView = _headerView;
     _statusArray = @[@"空闲",@"忙碌",@"离开",@"隐身"];
     [_headerView.onlineButton addTarget:self action:@selector(onlineButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 {
     if (_switchButton == nil) {
         _switchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _switchButton.frame = CGRectMake(20, KScreenHeight - 60, 160, 40);
+        _switchButton.frame = CGRectMake(20, KScreenHeight-60-iPhoneXBottomHeight, 160, 40);
         [_switchButton setImage:[UIImage imageNamed:@"Shape"] forState:UIControlStateNormal];
         _switchButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 120);
         [_switchButton setTitle:@"管理员模式" forState:UIControlStateNormal];
@@ -261,7 +261,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     self.switchButton.selected = !self.switchButton.selected;
     _adminModel = !_adminModel;
     if (_adminModel) { //管理员模式
-        _menuData = @[@"主页"/*,@"当前会话",@"历史会话",@"统计查询"*/];
+        _menuData = @[@"主页",@"现场监控"/*,@"历史会话",@"统计查询"*/];
         [self.leftDelegate adminMenuClickWithIndex:AgentMenuTagHome];
     } else {
         [self.leftDelegate menuClickWithIndex:AgentMenuTagHome];

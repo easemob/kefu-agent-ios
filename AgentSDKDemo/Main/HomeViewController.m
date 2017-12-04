@@ -126,7 +126,7 @@ static NSInteger currentTotalBadgeValue;
     
     const char *className = NSStringFromClass([superView class]).UTF8String;
     const char *frame = NSStringFromCGRect(superView.frame).UTF8String;
-    printf("%s:%s\n", className, frame);
+    printf("print,%s:%s\n", className, frame);
     
     ++level;
     for(UIView *view in superView.subviews){

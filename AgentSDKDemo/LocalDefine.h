@@ -17,6 +17,8 @@
 #define KScreenWidth [UIApplication sharedApplication].keyWindow.size.width
 #define KScreenHeight [UIApplication sharedApplication].keyWindow.size.height
 #define kHomeViewLeft 70
+#define isIPHONEX ([UIScreen mainScreen].bounds.size.height==812 ? 1:0)
+#define iPhoneXBottomHeight  ([UIScreen mainScreen].bounds.size.height==812?34:0)
 
 #define NOTIFICATION_ADD_COMMENT @"addComment"
 #define NOTIFICATION_ADD_SUMMARY_RESULTS @"addSummaryResult"

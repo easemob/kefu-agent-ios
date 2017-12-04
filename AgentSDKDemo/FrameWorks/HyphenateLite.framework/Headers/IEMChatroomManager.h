@@ -124,12 +124,12 @@
  *
  *  同步方法，会阻塞当前线程
  *
- *  @param aSubject        名称
- *  @param aDescription    描述
- *  @param aInvitees       成员（不包括创建者自己）
- *  @param aMessage        邀请消息
- *  @param aSetting        群组属性
- *  @param pError          出错信息
+ *  @param aSubject             名称
+ *  @param aDescription         描述
+ *  @param aInvitees            成员（不包括创建者自己）
+ *  @param aMessage             邀请消息
+ *  @param aMaxMembersCount     群组最大成员数
+ *  @param pError               出错信息
  *
  *  @return    创建的聊天室
  *
@@ -138,12 +138,12 @@
  *
  *  Synchronization method will block the current thread
  *
- *  @param aSubject        Subject
- *  @param aDescription    Description
- *  @param aInvitees       Members, without creater
- *  @param aMessage        Invitation message
- *  @param aSetting        Setting
- *  @param pError          Error
+ *  @param aSubject             Subject
+ *  @param aDescription         Description
+ *  @param aInvitees            Members, without creater
+ *  @param aMessage             Invitation message
+ *  @param aMaxMembersCount     Max members count
+ *  @param pError               Error
  *
  *  @return    Created chatroom
  */
@@ -158,23 +158,23 @@
  *  \~chinese
  *  创建群组
  *
- *  @param aSubject         群组名称
- *  @param aDescription     群组描述
- *  @param aInvitees        群组成员（不包括创建者自己）
- *  @param aMessage         邀请消息
- *  @param aSetting         群组属性
- *  @param aCompletionBlock 完成的回调
+ *  @param aSubject                 群组名称
+ *  @param aDescription             群组描述
+ *  @param aInvitees                群组成员（不包括创建者自己）
+ *  @param aMessage                 邀请消息
+ *  @param aMaxMembersCount         群组最大成员数
+ *  @param aCompletionBlock         完成的回调
  *
  *
  *  \~english
  *  Create a group
  *
- *  @param aSubject         Group subject
- *  @param aDescription     Group description
- *  @param aInvitees        Group members, without creater
- *  @param aMessage         Invitation message
- *  @param aSetting         Group options
- *  @param aCompletionBlock The callback block of completion
+ *  @param aSubject                 Group subject
+ *  @param aDescription             Group description
+ *  @param aInvitees                Group members, without creater
+ *  @param aMessage                 Invitation message
+ *  @param aMaxMembersCount         Max members count
+ *  @param aCompletionBlock         The callback block of completion
  *
  */
 - (void)createChatroomWithSubject:(NSString *)aSubject

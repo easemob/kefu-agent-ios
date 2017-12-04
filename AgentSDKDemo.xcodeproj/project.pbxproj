@@ -280,8 +280,6 @@
 		D34DFAB81FA855AB0018116D /* update@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D34DFAB71FA855A70018116D /* update@3x.png */; };
 		D34DFABA1FA856310018116D /* shai@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D34DFAB91FA8562E0018116D /* shai@2x.png */; };
 		D34DFABE1FA858900018116D /* shai@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D34DFABC1FA8566E0018116D /* shai@3x.png */; };
-		D350FD0E1FBD7742004A94D8 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D350FD0C1FBD773A004A94D8 /* AgentSDK.framework */; };
-		D350FD0F1FBD7742004A94D8 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D350FD0C1FBD773A004A94D8 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D350FD121FBD8238004A94D8 /* UIAlertView+KFAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = D350FD111FBD8238004A94D8 /* UIAlertView+KFAdd.m */; };
 		D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6091F569CF100E3AB74 /* Security.framework */; };
 		D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
@@ -388,6 +386,8 @@
 		D3A95E801EA0F47100ADD394 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E241EA0F47100ADD394 /* wav.mm */; };
 		D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E261EA0F47100ADD394 /* EMVoiceConverter.mm */; };
 		D3B0E9B41FA9E53400014E74 /* ReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B0E9B31FA9E53400014E74 /* ReminderView.m */; };
+		D3C691FD1FD4FA2C00C22CB2 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D350FD0C1FBD773A004A94D8 /* AgentSDK.framework */; };
+		D3C691FE1FD4FA2C00C22CB2 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D350FD0C1FBD773A004A94D8 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3E9CC861FBED182005E3677 /* YYTextContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33E84CB1FB4812400BD622D /* YYTextContainerView.m */; };
 		D3E9CC871FBED182005E3677 /* YYTextDebugOption.m in Sources */ = {isa = PBXBuildFile; fileRef = D33E84CD1FB4812400BD622D /* YYTextDebugOption.m */; };
 		D3E9CC881FBED182005E3677 /* YYTextEffectWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = D33E84CF1FB4812400BD622D /* YYTextEffectWindow.m */; };
@@ -1371,7 +1371,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
-				D350FD0F1FBD7742004A94D8 /* AgentSDK.framework in Embed Frameworks */,
+				D3C691FE1FD4FA2C00C22CB2 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2440,7 +2440,7 @@
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
-				D350FD0E1FBD7742004A94D8 /* AgentSDK.framework in Frameworks */,
+				D3C691FD1FD4FA2C00C22CB2 /* AgentSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

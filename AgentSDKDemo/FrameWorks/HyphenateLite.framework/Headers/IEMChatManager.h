@@ -114,14 +114,14 @@
  *  删除会话
  *
  *  @param aConversationId      会话ID
- *  @param isDeleteMessages     是否删除会话中的消息
+ *  @param aIsDeleteMessages    是否删除会话中的消息
  *  @param aCompletionBlock     完成的回调
  *
  *  \~english
  *  Delete a conversation
  *
  *  @param aConversationId      Conversation id
- *  @param isDeleteMessages     Whether delete messages
+ *  @param aIsDeleteMessages    Whether delete messages
  *  @param aCompletionBlock     The callback block of completion
  *
  */
@@ -190,13 +190,13 @@
  *  \~chinese
  *  导入一组消息到DB
  *
- *  @param aMessages  消息列表<EMMessage>
+ *  @param aMessages        消息列表<EMMessage>
  *  @param aCompletionBlock 完成的回调
  *
  *  \~english
  *  Import multiple messages
  *
- *  @param aMessages  Message list<EMMessage>
+ *  @param aMessages        Message list<EMMessage>
  *  @param aCompletionBlock The callback block of completion
  *
  */
@@ -207,13 +207,13 @@
  *  \~chinese
  *  更新消息到DB
  *
- *  @param aMessage  消息
+ *  @param aMessage         消息
  *  @param aCompletionBlock 完成的回调
  *
  *  \~english
  *  Update message
  *
- *  @param aMessage  Message
+ *  @param aMessage         Message
  *  @param aSuccessBlock    The callback block of completion
  *
  */
@@ -226,15 +226,15 @@
  *
  *  异步方法
  *
- *  @param aMessage  消息
- *  @param aCompletionBlock    完成的回调
+ *  @param aMessage             消息
+ *  @param aCompletionBlock     完成的回调
  *
  *  \~english
  *  Send read acknowledgement for message
  *
  *
- *  @param aMessage  Message instance
- *  @param aCompletionBlock    The callback block of completion
+ *  @param aMessage             Message instance
+ *  @param aCompletionBlock     The callback block of completion
  *
  */
 - (void)sendMessageReadAck:(EMMessage *)aMessage
@@ -246,7 +246,7 @@
  *
  *  @param aMessage         消息
  *  @param aProgressBlock   附件上传进度回调block
- *  @param aCompletion      发送完成回调block
+ *  @param aCompletionBlock 发送完成回调block
  *
  *  \~english
  *  Send a message
@@ -254,7 +254,7 @@
  *
  *  @param aMessage            Message instance
  *  @param aProgressBlock      The block of attachment upload progress
- *  @param aCompletion         The block of send complete
+ *  @param aCompletionBlock    The block of send complete
  */
 - (void)sendMessage:(EMMessage *)aMessage
            progress:(void (^)(int progress))aProgressBlock
@@ -266,14 +266,14 @@
  *
  *  @param aMessage         消息
  *  @param aProgressBlock   附件上传进度回调block
- *  @param aCompletion      发送完成回调block
+ *  @param aCompletionBlock 发送完成回调block
  *
  *  \~english
  *  Resend Message
  *
  *  @param aMessage         Message instance
  *  @param aProgressBlock   The callback block of attachment upload progress
- *  @param aCompletion      The callback block of send complete
+ *  @param aCompletionBlock The callback block of send complete
  */
 - (void)resendMessage:(EMMessage *)aMessage
                   progress:(void (^)(int progress))aProgressBlock
@@ -285,14 +285,14 @@
  *
  *  @param aMessage            消息
  *  @param aProgressBlock      附件下载进度回调block
- *  @param aCompletion         下载完成回调block
+ *  @param aCompletionBlock    下载完成回调block
  *
  *  \~english
  *  Download message thumbnail (thumbnail of image message or first frame of video image), SDK downloads thumbails automatically, no need to download thumbail manually unless automatic download failed.
  *
  *  @param aMessage            Message instance
  *  @param aProgressBlock      The callback block of attachment download progress
- *  @param aCompletion         The callback block of download complete
+ *  @param aCompletionBlock    The callback block of download complete
  */
 - (void)downloadMessageThumbnail:(EMMessage *)aMessage
                         progress:(void (^)(int progress))aProgressBlock
@@ -306,7 +306,7 @@
  *
  *  @param aMessage            消息
  *  @param aProgressBlock      附件下载进度回调block
- *  @param aCompletion         下载完成回调block
+ *  @param aCompletionBlock    下载完成回调block
  *
  *  \~english
  *  Download message attachment(voice, video, image or file), SDK downloads attachment automatically, no need to download attachment manually unless automatic download failed
@@ -314,7 +314,7 @@
  *
  *  @param aMessage            Message instance
  *  @param aProgressBlock      The callback block of attachment download progress
- *  @param aCompletion         The callback block of download complete
+ *  @param aCompletionBlock    The callback block of download complete
  */
 - (void)downloadMessageAttachment:(EMMessage *)aMessage
                          progress:(void (^)(int progress))aProgressBlock

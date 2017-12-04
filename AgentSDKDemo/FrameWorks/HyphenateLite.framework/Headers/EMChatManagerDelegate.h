@@ -28,6 +28,21 @@
 
 @optional
 
+#pragma mark - Conversation
+
+/*!
+ *  \~chinese
+ *  会话列表发生变化
+ *
+ *  @param aConversationList  会话列表<EMConversation>
+ *
+ *  \~english
+ *  Delegate method will be invoked when the conversation list has changed
+ *
+ *  @param aConversationList  Conversation list<EMConversation>
+ */
+- (void)conversationListDidUpdate:(NSArray *)aConversationList;
+
 #pragma mark - Message
 
 /*!

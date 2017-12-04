@@ -86,7 +86,7 @@
     NSURL *url = nil;
     url = [NSURL URLWithString:@"http://www.easemob.com/download/app/cs_mobile"];
     [[UIApplication sharedApplication]openURL:url];
-
+    //================appstore end=================
 }
 
 @end

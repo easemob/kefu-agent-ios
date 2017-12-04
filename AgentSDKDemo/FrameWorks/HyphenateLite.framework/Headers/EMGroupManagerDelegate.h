@@ -289,6 +289,38 @@ typedef enum{
                    newOwner:(NSString *)aNewOwner
                    oldOwner:(NSString *)aOldOwner;
 
+/*!
+ *  \~chinese
+ *  有用户加入群组
+ *
+ *  @param aGroup       加入的群组
+ *  @param aUsername    加入者
+ *
+ *  \~english
+ *  Delegate method will be invoked when a user joins a group.
+ *
+ *  @param aGroup       Joined group
+ *  @param aUsername    The user who joined group
+ */
+- (void)userDidJoinGroup:(EMGroup *)aGroup
+                    user:(NSString *)aUsername;
+
+/*!
+ *  \~chinese
+ *  有用户离开群组
+ *
+ *  @param aGroup       离开的群组
+ *  @param aUsername    离开者
+ *
+ *  \~english
+ *  Delegate method will be invoked when a user leaves a group.
+ *
+ *  @param aGroup       Left group
+ *  @param aUsername    The user who leaved group
+ */
+- (void)userDidLeaveGroup:(EMGroup *)aGroup
+                     user:(NSString *)aUsername;
+
 #pragma mark - Deprecated methods
 
 /*!

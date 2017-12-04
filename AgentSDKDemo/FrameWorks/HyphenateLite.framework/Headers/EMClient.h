@@ -237,7 +237,7 @@
 
 /*!
  *  \~chinese
- *  登录
+ *  密码登录
  *
  *  同步方法，会阻塞当前线程
  *
@@ -247,7 +247,7 @@
  *  @result 错误信息
  *
  *  \~english
- *  Login
+ *  Login with password
  *
  *  Synchronization method will block the current thread
  *
@@ -261,14 +261,14 @@
 
 /*!
  *  \~chinese
- *  登录
+ *  密码登录
  *
  *  @param aUsername        用户名
  *  @param aPassword        密码
  *  @param aCompletionBlock 完成的回调
  *
  *  \~english
- *  Login
+ *  Login with password
  *
  *  @param aUsername        Username
  *  @param aPassword        Password
@@ -277,6 +277,50 @@
  */
 - (void)loginWithUsername:(NSString *)aUsername
                  password:(NSString *)aPassword
+               completion:(void (^)(NSString *aUsername, EMError *aError))aCompletionBlock;
+
+/*!
+ *  \~chinese
+ *  token登录，不支持自动登录
+ *
+ *  同步方法，会阻塞当前线程
+ *
+ *  @param aUsername  用户名
+ *  @param aToken     Token
+ *
+ *  @result 错误信息
+ *
+ *  \~english
+ *  Login with token, does not support automatic login
+ *
+ *  Synchronization method will block the current thread
+ *
+ *  @param aUsername  Username
+ *  @param aToken     Token
+ *
+ *  @result Error
+ */
+- (EMError *)loginWithUsername:(NSString *)aUsername
+                         token:(NSString *)aToken;
+
+/*!
+ *  \~chinese
+ *  token登录，不支持自动登录
+ *
+ *  @param aUsername        用户名
+ *  @param aToken           Token
+ *  @param aCompletionBlock 完成的回调
+ *
+ *  \~english
+ *  Login with token, does not support automatic login
+ *
+ *  @param aUsername        Username
+ *  @param aToken           Token
+ *  @param aCompletionBlock The callback block of completion
+ *
+ */
+- (void)loginWithUsername:(NSString *)aUsername
+                    token:(NSString *)aToken
                completion:(void (^)(NSString *aUsername, EMError *aError))aCompletionBlock;
 
 #pragma mark - Logout

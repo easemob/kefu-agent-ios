@@ -62,7 +62,10 @@
     
     [MobClick startWithAppkey:UMENG_APPKEY];
     
-    
+    //================appstore start=================
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"cc12b8e5d86d7ccef4dd4b7b4313dcac"];
+    [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
+    //================appstore end=================
     [[EmotionEscape sharedInstance] setEaseEmotionEscapePattern:@"\\[[^\\[\\]]{1,3}\\]"];
     [[EmotionEscape sharedInstance] setEaseEmotionEscapeDictionary:[ConvertToCommonEmoticonsHelper emotionsDictionary]];
     
@@ -141,6 +144,13 @@
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.window.rootViewController = self.drawerController;
+    //================appstore start=================
+#if !APPSTORE
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
+    });
+#endif
+    //================appstore start=================
 }
 
 - (void)launch

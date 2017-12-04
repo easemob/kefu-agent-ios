@@ -310,9 +310,9 @@
  *  \~chinese
  *  删除好友
  *
- *  @param aUsername            要删除的好友
- *  @param aDeleteConversation  是否删除会话
- *  @param aCompletionBlock     完成的回调
+ *  @param aUsername                要删除的好友
+ *  @param aIsDeleteConversation    是否删除会话
+ *  @param aCompletionBlock         完成的回调
  *
  *  \~english
  *  Delete a contact
