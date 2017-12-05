@@ -700,7 +700,6 @@
 		D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
 		D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3C1EA0CF0C00ADD394 /* libz.tbd */; };
 		D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3A1EA0CED500ADD394 /* libstdc++.6.0.9.tbd */; };
-		D3E9CDBF1FBED182005E3677 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */; };
 		D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */; };
 		D3E9CDC11FBED182005E3677 /* libUMCheckUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8191F7CB53C00236720 /* libUMCheckUpdate.a */; };
 		D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6091F569CF100E3AB74 /* Security.framework */; };
@@ -2456,7 +2455,6 @@
 				D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */,
 				D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */,
 				D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */,
-				D3E9CDBF1FBED182005E3677 /* PgyUpdate.framework in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
 				D3E9CDC11FBED182005E3677 /* libUMCheckUpdate.a in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,

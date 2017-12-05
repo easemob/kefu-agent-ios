@@ -22,10 +22,6 @@
 #import "ReminderView.h"
 #import "DXTipView.h"
 #import "DXUpdateView.h"
-//================appstore start=================
-#import "UMCheckUpdate.h"
-#import <PgyUpdate/PgyUpdateManager.h>
-//================appstore end=================
 
 @implementation UIImage (tabBarImage)
 
@@ -482,9 +478,6 @@ static NSInteger currentTotalBadgeValue;
 #else 
     else if (index == 2)
     {
-        //================appstore start=================
-        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
-        //================appstore end=================
     }
     else if (index == 3)
     {
@@ -541,24 +534,6 @@ static NSInteger currentTotalBadgeValue;
 
 #pragma mark - private
 
-//================appstore start=================
-- (void)updateVersion:(id)dic
-{
-    if ([dic isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *updateInfo = (NSDictionary*)dic;
-        NSString *version = [updateInfo objectForKey:@"versionCode"];
-        NSString *appVersion = [[[NSBundle mainBundle]infoDictionary]valueForKey:@"CFBundleVersion"];
-        if ([version compare:appVersion options:NSNumericSearch] ==NSOrderedDescending) {
-            DXUpdateView *updateView = [[DXUpdateView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) updateInfo:dic];
-            [[UIApplication sharedApplication].keyWindow addSubview:updateView];
-        } else {
-            [MBProgressHUD show:@"已经是最新版本" view:[UIApplication sharedApplication].keyWindow];
-        }
-    } else {
-        [MBProgressHUD show:@"已经是最新版本" view:[UIApplication sharedApplication].keyWindow];
-    }
-}
-//================appstore end=================
 
 
 -(void)registerNotifications

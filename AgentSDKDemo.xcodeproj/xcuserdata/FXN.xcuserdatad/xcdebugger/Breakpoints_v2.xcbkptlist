@@ -865,30 +865,30 @@
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[HistoryConversationsController swipeableTableViewCell:didTriggerRightUtilityButtonWithIndex:]"
-                  moduleName = "AgentSDKDemo"
+                  moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Main/History/HistoryConversationsController.m"
-                  timestampString = "534055261.869439"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Main/History/HistoryConversationsController.m"
+                  timestampString = "534135197.017783"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "373"
                   endingLineNumber = "373"
-                  offsetFromSymbolStart = "322">
+                  offsetFromSymbolStart = "276">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__95-[HistoryConversationsController swipeableTableViewCell:didTriggerRightUtilityButtonWithIndex:]_block_invoke"
-                  moduleName = "AgentSDKDemo"
+                  moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Main/History/HistoryConversationsController.m"
-                  timestampString = "534055261.872405"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Main/History/HistoryConversationsController.m"
+                  timestampString = "534135197.019297"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "374"
                   endingLineNumber = "374"
-                  offsetFromSymbolStart = "78">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1284,7 +1284,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgentSDKDemo/Main/AppDelegate+EaseMob.m"
-            timestampString = "533737294.307844"
+            timestampString = "534135196.606364"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
@@ -1345,30 +1345,30 @@
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[KFPhoneVerifyViewController confirmCode]"
-                  moduleName = "AgentSDKDemo"
+                  moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
-                  timestampString = "534055261.895669"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
+                  timestampString = "534135197.031653"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
                   endingLineNumber = "59"
-                  offsetFromSymbolStart = "271">
+                  offsetFromSymbolStart = "288">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__42-[KFPhoneVerifyViewController confirmCode]_block_invoke"
-                  moduleName = "AgentSDKDemo"
+                  moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
-                  timestampString = "534055261.898804"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
+                  timestampString = "534135197.033175"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "60"
                   endingLineNumber = "60"
-                  offsetFromSymbolStart = "78">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1476,12 +1476,12 @@
                   moduleName = "AgentSDK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-                  timestampString = "534055262.176448"
+                  timestampString = "534135197.758293"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "962"
                   endingLineNumber = "962"
-                  offsetFromSymbolStart = "1962">
+                  offsetFromSymbolStart = "1732">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1491,12 +1491,12 @@
                   moduleName = "AgentSDK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
-                  timestampString = "534055262.178784"
+                  timestampString = "534135197.760467"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "962"
                   endingLineNumber = "962"
-                  offsetFromSymbolStart = "16">
+                  offsetFromSymbolStart = "24">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1553,30 +1553,30 @@
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "-[QuickReplyAddViewController saveAction]"
-                  moduleName = "AgentSDKDemo"
+                  moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
-                  timestampString = "534055261.917463"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
+                  timestampString = "534135197.041391"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "112"
                   endingLineNumber = "112"
-                  offsetFromSymbolStart = "649">
+                  offsetFromSymbolStart = "612">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "__41-[QuickReplyAddViewController saveAction]_block_invoke"
-                  moduleName = "AgentSDKDemo"
+                  moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
-                  timestampString = "534055261.920288"
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
+                  timestampString = "534135197.042917"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "113"
                   endingLineNumber = "113"
-                  offsetFromSymbolStart = "78">
+                  offsetFromSymbolStart = "80">
                </Location>
             </Locations>
          </BreakpointContent>
