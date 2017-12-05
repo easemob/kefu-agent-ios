@@ -56,8 +56,8 @@
     [self clearCache];
     
     [MobClick startWithAppkey:UMENG_APPKEY];
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"cc12b8e5d86d7ccef4dd4b7b4313dcac"];
-    [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
+//    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"cc12b8e5d86d7ccef4dd4b7b4313dcac"];
+//    [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
     
     [[EmotionEscape sharedInstance] setEaseEmotionEscapePattern:@"\\[[^\\[\\]]{1,3}\\]"];
     [[EmotionEscape sharedInstance] setEaseEmotionEscapeDictionary:[ConvertToCommonEmoticonsHelper emotionsDictionary]];
@@ -138,9 +138,9 @@
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.window.rootViewController = self.drawerController;
 #if !APPSTORE
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
+//        });
 #endif
 }
 

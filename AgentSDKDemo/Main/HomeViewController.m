@@ -479,6 +479,18 @@ static NSInteger currentTotalBadgeValue;
 #else 
     else if (index == 2)
     {
+        self.adminController = nil;
+        self.adminController = [[AdminInforViewController alloc] init];
+        NSArray *views = [self.navigationController viewControllers];
+        BOOL needPush = YES;
+        for (UIViewController *view in views) {
+            if ([view isKindOfClass:[AdminInforViewController class]]) {
+                needPush = NO;
+            }
+        }
+        if (needPush) {
+            [self.navigationController pushViewController:self.adminController animated:NO];
+        }
     }
     else if (index == 3)
     {

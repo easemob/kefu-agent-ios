@@ -47,10 +47,8 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 }
 - (void)setup {
     _adminModel = NO;
-#if APPSTORE
+
     _menuData = @[@"主页",@"历史"/*,@"访客中心",@"文件",@"检查更新"*/,@"设置"];
-#else
-#endif
     
     self.view.backgroundColor = RGBACOLOR(26, 26, 26, 1);;
     _headerView = [[LeftMenuHeaderView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 70)];
@@ -165,15 +163,15 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-#if !APPSTORE
-    if (!_adminModel) { //点击"更新",只有更新动作
-        if (indexPath.row == AgentMenuTagUpdate) {
-            [self.leftDelegate menuClickWithIndex:indexPath.row];
-            return;
-        }
-    }
-#else
-#endif
+//#if !APPSTORE
+//    if (!_adminModel) { //点击"更新",只有更新动作
+//        if (indexPath.row == AgentMenuTagUpdate) {
+//            [self.leftDelegate menuClickWithIndex:indexPath.row];
+//            return;
+//        }
+//    }
+//#else
+//#endif
     __block BOOL isAdmin = _adminModel;
     WEAK_SELF
     HomeViewController *homeController = [HomeViewController HomeViewController];
@@ -258,11 +256,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
         [self.leftDelegate adminMenuClickWithIndex:AgentMenuTagHome];
     } else {
         [self.leftDelegate menuClickWithIndex:AgentMenuTagHome];
-#if APPSTORE
         _menuData = @[@"主页",@"历史",@"设置"];
-#else
-        
-#endif
         
     }
     [self reloadData];
