@@ -22,9 +22,6 @@
 #import "EmotionEscape.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
-//================appstore start=================
-#import <PgyUpdate/PgyUpdateManager.h>
-//================appstore end=================
 //#import <wax/wax.h>
 
 @interface AppDelegate () <UIAlertViewDelegate>
@@ -179,20 +176,6 @@
     fileLogger.logFileManager.maximumNumberOfLogFiles = 14;
     [DDLog addLogger:fileLogger];
 }
-//================appstore start=================
-- (void)updateVersion:(id)dic
-{
-    if ([dic isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *updateInfo = (NSDictionary*)dic;
-        NSString *version = [updateInfo objectForKey:@"versionCode"];
-        NSString *appVersion = [[[NSBundle mainBundle]infoDictionary]valueForKey:@"CFBundleVersion"];
-        if ([version compare:appVersion options:NSNumericSearch] ==NSOrderedDescending) {
-            DXUpdateView *updateView = [[DXUpdateView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) updateInfo:dic];
-            [self.window.rootViewController.view addSubview:updateView];
-        }
-    }
-}
-//================appstore end=================
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == kShowLoginViewControllerTag) {

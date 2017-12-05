@@ -77,14 +77,14 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"登录";
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"注册" titleColor:[UIColor whiteColor] selectedTitleColor:[UIColor lightGrayColor] target:self action:@selector(registerUser)];
-    
+//    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"注册" titleColor:[UIColor whiteColor] selectedTitleColor:[UIColor lightGrayColor] target:self action:@selector(registerUser)];
+//
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];//RGBACOLOR(28, 36, 46, 1);
     
     _logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame) - kLogoImageWidth)/2, 75, kLogoImageWidth, kLogoImageWidth)];
     _logoImageView.backgroundColor = [UIColor clearColor];
-    _logoImageView.image = [UIImage imageNamed:@"icon_180"];
+    _logoImageView.image = [UIImage imageNamed:@"icon_180_huixiaoyun"];
     _logoImageView.layer.masksToBounds = YES;
     _logoImageView.layer.cornerRadius = kLogoImageWidth/2;
     [self.view addSubview:_logoImageView];
