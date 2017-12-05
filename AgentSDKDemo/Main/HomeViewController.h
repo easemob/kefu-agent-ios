@@ -38,5 +38,7 @@
 
 - (void)setTotalBadgeValue;
 
+- (void)showLeftView;
+
 @end
 

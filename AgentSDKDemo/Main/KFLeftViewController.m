@@ -50,6 +50,13 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 #if APPSTORE
     _menuData = @[@"主页",@"历史"/*,@"访客中心",@"文件",@"检查更新"*/,@"设置"];
 #else
+    //================appstore start=================
+#if IS_KEFU_HUASHENG
+    _menuData = @[@"主页",@"历史",@"设置"];
+#else
+    _menuData = @[@"主页",@"历史"/*,@"访客中心",@"文件"*/,@"检查更新",@"设置"];
+#endif
+    //================appstore end=================
 #endif
     
     self.view.backgroundColor = RGBACOLOR(26, 26, 26, 1);;
@@ -89,7 +96,8 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (UITableView *)tableView {
     if (!_tableView) {
-        CGRect frame = CGRectMake(0, 20, self.view.width, self.view.height-20);
+        CGFloat statusBarHeight = isIPHONEX ? 44: 20;
+        CGRect frame = CGRectMake(0, statusBarHeight, self.view.width, self.view.height-20);
         _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -161,6 +169,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 {
     return 0;
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -261,6 +270,13 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 #if APPSTORE
         _menuData = @[@"主页",@"历史",@"设置"];
 #else
+        //================appstore start=================
+#if IS_KEFU_HUASHENG
+        _menuData = @[@"主页",@"历史",@"设置"];
+#else
+        _menuData = @[@"主页",@"历史"/*,@"访客中心",@"文件"*/,@"检查更新",@"设置"];
+#endif
+        //================appstore end=================
 #endif
         
     }

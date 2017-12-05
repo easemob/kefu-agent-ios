@@ -385,6 +385,8 @@
 		D3A95E7F1EA0F47100ADD394 /* amrFileCodec.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E221EA0F47100ADD394 /* amrFileCodec.mm */; };
 		D3A95E801EA0F47100ADD394 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E241EA0F47100ADD394 /* wav.mm */; };
 		D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E261EA0F47100ADD394 /* EMVoiceConverter.mm */; };
+		D3ADC6F61FD522FD00ADE88E /* HDMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ADC6F51FD522FD00ADE88E /* HDMonitorViewController.m */; };
+		D3ADC6F71FD522FD00ADE88E /* HDMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3ADC6F51FD522FD00ADE88E /* HDMonitorViewController.m */; };
 		D3B0E9B41FA9E53400014E74 /* ReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B0E9B31FA9E53400014E74 /* ReminderView.m */; };
 		D3C691FD1FD4FA2C00C22CB2 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D350FD0C1FBD773A004A94D8 /* AgentSDK.framework */; };
 		D3C691FE1FD4FA2C00C22CB2 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D350FD0C1FBD773A004A94D8 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -2117,6 +2119,8 @@
 		D3A95E2C1EA0F47100ADD394 /* dec_if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dec_if.h; sourceTree = "<group>"; };
 		D3A95E2D1EA0F47100ADD394 /* if_rom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_rom.h; sourceTree = "<group>"; };
 		D3A95E2E1EA0F47100ADD394 /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libopencore-amrwb.a"; sourceTree = "<group>"; };
+		D3ADC6F41FD522FD00ADE88E /* HDMonitorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDMonitorViewController.h; sourceTree = "<group>"; };
+		D3ADC6F51FD522FD00ADE88E /* HDMonitorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDMonitorViewController.m; sourceTree = "<group>"; };
 		D3B0E9B21FA9E53400014E74 /* ReminderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReminderView.h; sourceTree = "<group>"; };
 		D3B0E9B31FA9E53400014E74 /* ReminderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReminderView.m; sourceTree = "<group>"; };
 		D3C4E6F21F8B7AD5008089E2 /* UtilsMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilsMacros.h; sourceTree = "<group>"; };
@@ -3573,6 +3577,7 @@
 				D37EF5461FA72C5F002B8B8D /* KFScreenViewController.m */,
 				D37EF5471FA72C5F002B8B8D /* KFTrendDataModel.h */,
 				D37EF5481FA72C5F002B8B8D /* KFTrendDataModel.m */,
+				D3ADC6F91FD5623700ADE88E /* Monitor */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -3920,6 +3925,15 @@
 				D3A95E2E1EA0F47100ADD394 /* libopencore-amrwb.a */,
 			);
 			path = "opencore-amrwb";
+			sourceTree = "<group>";
+		};
+		D3ADC6F91FD5623700ADE88E /* Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				D3ADC6F41FD522FD00ADE88E /* HDMonitorViewController.h */,
+				D3ADC6F51FD522FD00ADE88E /* HDMonitorViewController.m */,
+			);
+			path = Monitor;
 			sourceTree = "<group>";
 		};
 		D3FDC4581EA07D7500C25BB0 /* Base */ = {
@@ -5442,6 +5456,7 @@
 				D3A95E741EA0F47100ADD394 /* SRRefreshView.m in Sources */,
 				D33CE6931F7CA98D00236720 /* CompileTableViewCell.m in Sources */,
 				D33CE89C1F7CD34000236720 /* LeaveMsgAttatchmentView.m in Sources */,
+				D3ADC6F61FD522FD00ADE88E /* HDMonitorViewController.m in Sources */,
 				D33CE6C11F7CA98D00236720 /* MessageReadManager.m in Sources */,
 				D33CE68F1F7CA98D00236720 /* QuickReplyViewController.m in Sources */,
 				D33CE8591F7CD0F800236720 /* MKAnnotationView+EMWebCache.m in Sources */,
@@ -5753,6 +5768,7 @@
 				D3E9CD671FBED182005E3677 /* SRRefreshView.m in Sources */,
 				D3E9CD681FBED182005E3677 /* CompileTableViewCell.m in Sources */,
 				D3E9CD691FBED182005E3677 /* LeaveMsgAttatchmentView.m in Sources */,
+				D3ADC6F71FD522FD00ADE88E /* HDMonitorViewController.m in Sources */,
 				D3E9CD6A1FBED182005E3677 /* MessageReadManager.m in Sources */,
 				D3E9CD6B1FBED182005E3677 /* QuickReplyViewController.m in Sources */,
 				D3E9CD6C1FBED182005E3677 /* MKAnnotationView+EMWebCache.m in Sources */,

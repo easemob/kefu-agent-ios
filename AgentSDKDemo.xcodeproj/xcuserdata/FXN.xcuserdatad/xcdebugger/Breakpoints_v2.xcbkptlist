@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgentSDKDemo/Conversaions/ChatView/MessageView/ChatCell/EMChatViewBaseCell.m"
-            timestampString = "534054691.471105"
+            timestampString = "534067542.487013"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
@@ -867,8 +867,13 @@
                   symbolName = "-[HistoryConversationsController swipeableTableViewCell:didTriggerRightUtilityButtonWithIndex:]"
                   moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
+<<<<<<< Updated upstream
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Main/History/HistoryConversationsController.m"
                   timestampString = "534135197.017783"
+=======
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Main/History/HistoryConversationsController.m"
+                  timestampString = "534071570.540155"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "373"
@@ -882,8 +887,13 @@
                   symbolName = "__95-[HistoryConversationsController swipeableTableViewCell:didTriggerRightUtilityButtonWithIndex:]_block_invoke"
                   moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
+<<<<<<< Updated upstream
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Main/History/HistoryConversationsController.m"
                   timestampString = "534135197.019297"
+=======
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Main/History/HistoryConversationsController.m"
+                  timestampString = "534071570.555359"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "374"
@@ -1044,7 +1054,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgentSDKDemo/Conversaions/CommonConversation/ChatViewController.m"
-            timestampString = "533737294.307051"
+            timestampString = "534069018.260141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "917"
@@ -1284,7 +1294,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgentSDKDemo/Main/AppDelegate+EaseMob.m"
+<<<<<<< Updated upstream
             timestampString = "534135196.606364"
+=======
+            timestampString = "534071093.369516"
+>>>>>>> Stashed changes
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "174"
@@ -1347,8 +1361,13 @@
                   symbolName = "-[KFPhoneVerifyViewController confirmCode]"
                   moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
+<<<<<<< Updated upstream
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
                   timestampString = "534135197.031653"
+=======
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
+                  timestampString = "534071570.602789"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "59"
@@ -1362,8 +1381,13 @@
                   symbolName = "__42-[KFPhoneVerifyViewController confirmCode]_block_invoke"
                   moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
+<<<<<<< Updated upstream
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
                   timestampString = "534135197.033175"
+=======
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Login/Controllers/KFPhoneVerifyViewController.m"
+                  timestampString = "534071570.60662"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "60"
@@ -1476,7 +1500,11 @@
                   moduleName = "AgentSDK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+<<<<<<< Updated upstream
                   timestampString = "534135197.758293"
+=======
+                  timestampString = "534071571.255773"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "962"
@@ -1491,7 +1519,11 @@
                   moduleName = "AgentSDK"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-app-ios/AgentSDK/Network/HDNetworkManager.m"
+<<<<<<< Updated upstream
                   timestampString = "534135197.760467"
+=======
+                  timestampString = "534071571.258633"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "962"
@@ -1555,8 +1587,13 @@
                   symbolName = "-[QuickReplyAddViewController saveAction]"
                   moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
+<<<<<<< Updated upstream
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
                   timestampString = "534135197.041391"
+=======
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
+                  timestampString = "534071570.624936"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "112"
@@ -1570,8 +1607,13 @@
                   symbolName = "__41-[QuickReplyAddViewController saveAction]_block_invoke"
                   moduleName = "AgentSDKDemoAppStore"
                   usesParentBreakpointCondition = "Yes"
+<<<<<<< Updated upstream
                   urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/kefu-agent-ios/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
                   timestampString = "534135197.042917"
+=======
+                  urlString = "file:///Users/FXN/%E7%8E%AF%E4%BF%A1%E7%A7%BB%E5%8A%A8%E5%AE%A2%E6%9C%8D/AgentSDKDemo/AgentSDKDemo/Conversaions/ChatView/function/QuickReplyAddViewController.m"
+                  timestampString = "534071570.627946"
+>>>>>>> Stashed changes
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "113"
@@ -1668,76 +1710,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AgentSDKDemo/Conversaions/ChatView/view/EMChatHeaderTagView.m"
-            timestampString = "533737294.309259"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-setupView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AgentSDKDemo/Conversaions/ChatView/view/EMChatHeaderTagView.m"
             timestampString = "533737294.309761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "165"
             endingLineNumber = "165"
             landmarkName = "-setTagDatasource:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AgentSDKDemo/Conversaions/ChatView/view/EMChatHeaderTagView.m"
-            timestampString = "533737294.310002"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
-            landmarkName = "-refreshHeaderView"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AgentSDKDemo/Conversaions/ChatView/view/EMChatHeaderTagView.m"
-            timestampString = "533737294.310214"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "-loadData"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AgentSDKDemo/Conversaions/ChatView/MessageView/ChatCell/EMChatViewBaseCell.m"
-            timestampString = "534054691.47493"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "-layoutSubviews"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

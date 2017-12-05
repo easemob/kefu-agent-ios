@@ -22,6 +22,11 @@
 #import "ReminderView.h"
 #import "DXTipView.h"
 #import "DXUpdateView.h"
+#import "HDMonitorViewController.h"
+//================appstore start=================
+#import "UMCheckUpdate.h"
+#import <PgyUpdate/PgyUpdateManager.h>
+//================appstore end=================
 
 @implementation UIImage (tabBarImage)
 
@@ -478,6 +483,9 @@ static NSInteger currentTotalBadgeValue;
 #else 
     else if (index == 2)
     {
+        //================appstore start=================
+        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
+        //================appstore end=================
     }
     else if (index == 3)
     {
@@ -497,19 +505,25 @@ static NSInteger currentTotalBadgeValue;
 #endif
 }
 
+
 - (void)adminMenuClickWithIndex:(NSInteger)index
 {
-    self.adminTypeHomeController = nil;
-    self.adminTypeHomeController = [[AdminHomeViewController alloc] init];
-    NSArray *views = [self.navigationController viewControllers];
-    BOOL needPush = YES;
-    for (UIViewController *view in views) {
-        if ([view isKindOfClass:[AdminHomeViewController class]]) {
-            needPush = NO;
+    if (index == 0) { //主页
+        self.adminTypeHomeController = nil;
+        self.adminTypeHomeController = [[AdminHomeViewController alloc] init];
+        NSArray *views = [self.navigationController viewControllers];
+        BOOL needPush = YES;
+        for (UIViewController *view in views) {
+            if ([view isKindOfClass:[AdminHomeViewController class]]) {
+                needPush = NO;
+            }
         }
-    }
-    if (needPush) {
-        [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
+        if (needPush) {
+            [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
+        }
+    } else if (index ==1) { //现场监控
+        HDMonitorViewController *monitorVC = [[HDMonitorViewController alloc] init];
+        [self.navigationController pushViewController:monitorVC animated:YES];
     }
 }
 
@@ -534,7 +548,24 @@ static NSInteger currentTotalBadgeValue;
 
 #pragma mark - private
 
-
+//================appstore start=================
+- (void)updateVersion:(id)dic
+{
+    if ([dic isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *updateInfo = (NSDictionary*)dic;
+        NSString *version = [updateInfo objectForKey:@"versionCode"];
+        NSString *appVersion = [[[NSBundle mainBundle]infoDictionary]valueForKey:@"CFBundleVersion"];
+        if ([version compare:appVersion options:NSNumericSearch] ==NSOrderedDescending) {
+            DXUpdateView *updateView = [[DXUpdateView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) updateInfo:dic];
+            [[UIApplication sharedApplication].keyWindow addSubview:updateView];
+        } else {
+            [MBProgressHUD show:@"已经是最新版本" view:[UIApplication sharedApplication].keyWindow];
+        }
+    } else {
+        [MBProgressHUD show:@"已经是最新版本" view:[UIApplication sharedApplication].keyWindow];
+    }
+}
+//================appstore end=================
 
 -(void)registerNotifications
 {

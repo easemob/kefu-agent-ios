@@ -22,7 +22,9 @@
 #import "EmotionEscape.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
-
+//================appstore start=================
+#import <PgyUpdate/PgyUpdateManager.h>
+//================appstore end=================
 
 //#import <wax/wax.h>
 
@@ -58,6 +60,11 @@
     [self clearCache];
     
     [MobClick startWithAppkey:UMENG_APPKEY];
+    
+    //================appstore start=================
+    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"cc12b8e5d86d7ccef4dd4b7b4313dcac"];
+    [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
+    //================appstore end=================
     
     [[EmotionEscape sharedInstance] setEaseEmotionEscapePattern:@"\\[[^\\[\\]]{1,3}\\]"];
     [[EmotionEscape sharedInstance] setEaseEmotionEscapeDictionary:[ConvertToCommonEmoticonsHelper emotionsDictionary]];
@@ -137,6 +144,14 @@
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.window.rootViewController = self.drawerController;
+    //================appstore start=================
+#if !APPSTORE
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
+    });
+#endif
+    //================appstore end=================
+
 }
 
 - (void)launch
@@ -172,7 +187,20 @@
     [DDLog addLogger:fileLogger];
 }
 
-
+//================appstore start=================
+- (void)updateVersion:(id)dic
+{
+    if ([dic isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *updateInfo = (NSDictionary*)dic;
+        NSString *version = [updateInfo objectForKey:@"versionCode"];
+        NSString *appVersion = [[[NSBundle mainBundle]infoDictionary]valueForKey:@"CFBundleVersion"];
+        if ([version compare:appVersion options:NSNumericSearch] ==NSOrderedDescending) {
+            DXUpdateView *updateView = [[DXUpdateView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) updateInfo:dic];
+            [self.window.rootViewController.view addSubview:updateView];
+        }
+    }
+}
+//================appstore end=================
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (alertView.tag == kShowLoginViewControllerTag) {
