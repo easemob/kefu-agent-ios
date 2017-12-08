@@ -128,6 +128,61 @@ singleton_implementation(KFHttpManager);
     }];
 }
 
+- (void)asyncGetAgentQueuesWithPath:(NSString *)path completion:(void (^)(id, NSError *))completion {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:0];
+    [dic setObject:@((long)([[NSDate date] timeIntervalSince1970]*1000)) forKey:@"_"];
+    [self GET:path parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (completion) {
+            [self requestSuccess:responseObject completion:completion];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self requestFailed:task error:error completion:completion];
+    }];
+}
+
+
+- (void)asyncGetMonitorDetailWithPath:(NSString *)path completion:(void (^)(id, NSError *))completion {
+    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:0];
+    [dic setObject:@((long)([[NSDate date] timeIntervalSince1970]*1000)) forKey:@"_"];
+    [self GET:path parameters:dic success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (completion) {
+            [self requestSuccess:responseObject completion:completion];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self requestFailed:task error:error completion:completion];
+    }];
+}
+
+- (void)asyncGetWarningsWithPath:(NSString *)path pageIndex:(NSInteger)pageIndex pageSize:(NSInteger)pageSize completion:(void (^)(id, NSError *))completion {
+    NSDictionary *par = @{
+                          @"page":@(pageIndex),
+                          @"size":@(pageSize)
+                          };
+    [self GET:path parameters:par success:^(NSURLSessionDataTask *task, id responseObject) {
+        if (completion) {
+            [self requestSuccess:responseObject completion:completion];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self requestFailed:task error:error completion:completion];
+    }];
+}
+
+- (void)requestSuccess:(id)responseObject completion:(void(^)(id  ,NSError *))completion {
+    id result = nil;
+    if ([responseObject isKindOfClass:[NSData class]]) {
+        result = [NSJSONSerialization JSONObjectWithData:responseObject options:kNilOptions error:nil];
+    }
+    if ([result isKindOfClass:[NSDictionary class]]) {
+        if ([[result objectForKey:@"status"] isEqualToString:@"OK"]) {
+            completion([result objectForKey:@"entities"],nil);
+        } else {
+            NSString *er = [result objectForKey:@"errorDescription"];
+            NSError *error = [NSError errorWithDomain:er code:200 userInfo:nil];
+            completion(nil,error);
+        }
+    }
+}
+
 - (void)requestFailed:(NSURLSessionDataTask *)task error:(NSError *)error completion:(void(^)(id  ,NSError *))completion {
     NSHTTPURLResponse *urlResponse = (NSHTTPURLResponse*)task.response;
     NSInteger statusCode = [urlResponse statusCode];
@@ -138,6 +193,5 @@ singleton_implementation(KFHttpManager);
         completion(nil, error);
     }
 }
-
 
 @end

@@ -50,6 +50,14 @@
 #define IMUSER_USERID @"userId"
 #define IMUSER_LOGINLOCATION @"loginLocation"
 
+typedef NS_ENUM(NSUInteger, HDAgentLoginStatus) {
+    HDAgentLoginStatusOnline=0, //空闲
+    HDAgentLoginStatusBusy , //忙碌
+    HDAgentLoginStatusLeave, //离开
+    HDAgentLoginStatusHidden, //隐身
+    HDAgentLoginStatusOffline //离线
+};
+
 @interface UserModel : NSObject<NSCoding>
 
 @property (copy, nonatomic) NSString *userId;
@@ -71,6 +79,7 @@
 @property (copy, nonatomic) NSString *greetingContent;
 @property (copy, nonatomic) NSString *customUrl;
 @property (copy, nonatomic) NSString *status;
+@property(nonatomic,assign) HDAgentLoginStatus agentStatus;
 
 @property(nonatomic,copy,readonly) NSString *userType;
 

@@ -263,7 +263,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     self.switchButton.selected = !self.switchButton.selected;
     _adminModel = !_adminModel;
     if (_adminModel) { //管理员模式
-        _menuData = @[@"主页",@"现场监控"/*,@"历史会话",@"统计查询"*/];
+        _menuData = @[@"主页",@"现场监控",@"告警记录"/*,@"统计查询"*/];
         [self.leftDelegate adminMenuClickWithIndex:AgentMenuTagHome];
     } else {
         [self.leftDelegate menuClickWithIndex:AgentMenuTagHome];

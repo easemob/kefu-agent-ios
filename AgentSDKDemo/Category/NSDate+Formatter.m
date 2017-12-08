@@ -71,4 +71,10 @@
     }
 }
 
+- (NSString *)dateDescription {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+    return [dateFormatter stringFromDate:self];
+}
+
 @end

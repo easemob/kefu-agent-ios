@@ -16,4 +16,7 @@
 /*精确到分钟的日期描述*/
 - (NSString *)minuteDescription;
 
+//2017-12-08 12:58:04
+- (NSString *)dateDescription;
+
 @end

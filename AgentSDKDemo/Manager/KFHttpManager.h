@@ -33,8 +33,19 @@ singleton_interface(KFHttpManager)
 //今日客服新进会话数
 - (void)aysncGetNewSessionTodayWithPath:(NSString *)path completion:(void (^)(id responseObject, NSError *error))completion;
 
-
 - (void)asyncGetTrendDataWithUrl:(NSString *)url  parameters:(NSDictionary *)parameters completion:(void (^)(id responseObject,NSError *error))completion;
 
+#pragma mark 现场管理
+- (void)asyncGetAgentQueuesWithPath:(NSString *)path
+                         completion:(void(^)(id responseObject,NSError *error))completion;
+//管理详情
+- (void)asyncGetMonitorDetailWithPath:(NSString *)path
+                           completion:(void(^)(id responseObject,NSError *error))completion;
+
+//告警信息
+- (void)asyncGetWarningsWithPath:(NSString *)path
+                       pageIndex:(NSInteger)pageIndex
+                        pageSize:(NSInteger)pageSize
+                      completion:(void(^)(id responseObject,NSError *error))completion;
 
 @end

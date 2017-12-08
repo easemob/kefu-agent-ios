@@ -234,21 +234,14 @@
             }
             for (HDConversation *customer in customers) {
                 customer.searchWord = [ChineseToPinyin pinyinFromChineseString:customer.chatter.nicename];
-                //onLineState = Online;
-                //onLineState = Hidden;
                 _customerUnreadcount += customer.unreadCount;
                 if ([customer.chatter.status isEqualToString:USER_STATUS_DISABLE]) {
                     continue;
                 }
-                
-                if ([customer.chatter.onLineState isEqualToString:USER_STATE_ONLINE]) {
-                    [weakSelf.dataSource insertObject:customer atIndex:0];
-                } else {
-                    [weakSelf.dataSource addObject:customer];
-                }
+                [weakSelf.dataSource addObject:customer];
                 [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.userId];
             }
-            
+            self.dataSource = [self sortWithArray:self.dataSource];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
             });
@@ -259,6 +252,12 @@
             });
         }
     }];
+}
+
+- (NSMutableArray *)sortWithArray:(NSMutableArray *)array {
+    return [array sortedArrayUsingComparator:^NSComparisonResult(HDConversation *obj1, HDConversation *obj2) {
+        return obj1.chatter.agentStatus > obj2.chatter.agentStatus;
+    }].mutableCopy;
 }
 
 #pragma mark - UISearchBarDelegate

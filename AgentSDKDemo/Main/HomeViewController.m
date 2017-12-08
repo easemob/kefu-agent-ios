@@ -22,7 +22,8 @@
 #import "ReminderView.h"
 #import "DXTipView.h"
 #import "DXUpdateView.h"
-#import "HDMonitorViewController.h"
+#import "HDMonitorManagerViewController.h"
+#import "KFWarningViewController.h"
 //================appstore start=================
 #import "UMCheckUpdate.h"
 #import <PgyUpdate/PgyUpdateManager.h>
@@ -522,8 +523,11 @@ static NSInteger currentTotalBadgeValue;
             [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
         }
     } else if (index ==1) { //现场监控
-        HDMonitorViewController *monitorVC = [[HDMonitorViewController alloc] init];
+        HDMonitorManagerViewController *monitorVC = [[HDMonitorManagerViewController alloc] init];
         [self.navigationController pushViewController:monitorVC animated:YES];
+    } else if (index == 2) {
+        KFWarningViewController *warningVC = [KFWarningViewController new];
+        [self.navigationController pushViewController:warningVC animated:YES];
     }
 }
 
