@@ -178,14 +178,7 @@
 
 - (EMHeaderImageView*)headerImageView
 {
-    if (_headerImageView == nil) {
-        _headerImageView = [[EMHeaderImageView alloc] init];
-        _headerImageView.top = 0;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backAction)];
-        [_headerImageView addGestureRecognizer:tap];
-        _headerImageView.userInteractionEnabled = YES;
-    }
-    return _headerImageView;
+    return [KFManager sharedInstance].headImageView;
 }
 
 - (UIBarButtonItem*)optionItem

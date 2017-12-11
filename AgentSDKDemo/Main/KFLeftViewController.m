@@ -26,6 +26,8 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 @property (nonatomic, strong) DXTipView *unreadConversationLabel;
 @property (nonatomic, strong) EMPickerView *pickerView;
 @property (nonatomic, strong) UIButton *switchButton;
+@property(nonatomic,strong) UIImageView *monitorView;
+@property(nonatomic,strong) UIImageView *monitorView1;
 @property(nonatomic,strong) UITableView *tableView;
 @end
 
@@ -42,6 +44,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [kNotiCenter addObserver:self selector:@selector(setMonitTip:) name:KFMonitorNoti object:nil];
     // Do any additional setup after loading the view.
     [self setup];
 }
@@ -75,10 +78,45 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
         NSRange range = [user.roles rangeOfString:@"admin"];
         if (range.location != NSNotFound) {
             [self.tableView addSubview:self.switchButton];
+            [self.tableView addSubview:self.monitorView];
+            self.monitorView.hidden = ![KFManager sharedInstance].needShowMonitorTip;
         }
     }
     [self.view addSubview:self.tableView];
 }
+
+- (void)setMonitTip:(NSNotification *)noti {
+    BOOL hidden = [noti.object boolValue];
+   
+    self.monitorView.hidden = hidden;
+    self.monitorView1.hidden = hidden;
+    if (_switchButton.selected) {
+        self.monitorView.hidden = YES;
+    }
+    [self reloadData];
+}
+
+//最下
+- (UIImageView *)monitorView {
+    if (_monitorView == nil) {
+        _monitorView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 15, 15)];
+        _monitorView.image = [UIImage imageNamed:@"MonitorAlarm"];
+        _monitorView.center = CGPointMake(self.tableView.width-100, _switchButton.centerY);
+        _monitorView.hidden = YES;
+    }
+    return _monitorView;
+}
+
+//cell 上
+- (UIImageView *)monitorView1 {
+    if (_monitorView1 == nil) {
+        _monitorView1 = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 15, 15)];
+        _monitorView1.image = [UIImage imageNamed:@"MonitorAlarm"];
+        _monitorView1.hidden = YES;
+    }
+    return _monitorView1;
+}
+
 
 - (UIButton*)switchButton
 {
@@ -131,8 +169,8 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     cell.textLabel.font = [UIFont systemFontOfSize:17.f];
     cell.accessoryType = UITableViewCellAccessoryNone;
     cell.backgroundColor = RGBACOLOR(26, 26, 26, 1);
-    if (indexPath.row == 0) {
-        if (!_adminModel) { //不是管理员
+    if (!_adminModel) {//客服模式
+        if (indexPath.row == 0) {
             _unreadConversationLabel.top = (cell.height - _unreadConversationLabel.height)/2;
             _unreadConversationLabel.left = self.view.width - _unreadConversationLabel.width - 10;
             [cell addSubview:_unreadConversationLabel];
@@ -141,20 +179,28 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
             } else {
                 _unreadConversationLabel.hidden = NO;
             }
-        } else {
-            _unreadConversationLabel.hidden = YES;
+             cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_ongoing_1"];
+        } else if (indexPath.row == 1) {
+            cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_histroy"];
+        } else if (indexPath.row == 2) {
+            cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_update_1"];
+            self.monitorView1.hidden = YES;
+        } else if (indexPath.row == 3) {
+            cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_friend"];
+        }
+    } else { //管理员模式
+        if (indexPath.row == 0) {
+             _unreadConversationLabel.hidden = YES;
+             cell.imageView.image = [UIImage imageNamed:@"icon_manager_home"];
+        } else if (indexPath.row == 1) {
+            cell.imageView.image = [UIImage imageNamed:@"icon_manager_realtime"];
+        } else if (indexPath.row == 2) {
+            cell.imageView.image = [UIImage imageNamed:@"alarmsRecord"];
+            self.monitorView1.center = CGPointMake(cell.width-100, cell.contentView.centerY);
+            [cell.contentView addSubview:self.monitorView1];
+            self.monitorView1.hidden = ![KFManager sharedInstance].needShowMonitorTip;
         }
     }
-    if (indexPath.row == 0 ) {
-        cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_ongoing_1"];
-    } else if (indexPath.row == 1) {
-        cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_histroy"];
-    } else if (indexPath.row == 2) {
-        cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_update_1"];
-    } else if (indexPath.row == 3) {
-        cell.imageView.image = [UIImage imageNamed:@"main_tab_icon_friend"];
-    }
-    
     return cell;
 }
 
@@ -260,7 +306,13 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (void)switchAdminView
 {
+    if (!self.switchButton.selected) {
+        _monitorView.hidden = YES;
+    } else {
+        _monitorView.hidden = ![KFManager sharedInstance].needShowMonitorTip;
+    }
     self.switchButton.selected = !self.switchButton.selected;
+    
     _adminModel = !_adminModel;
     if (_adminModel) { //管理员模式
         _menuData = @[@"主页",@"现场监控",@"告警记录"/*,@"统计查询"*/];

@@ -21,6 +21,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [KFManager sharedInstance].curViewController = self;
+    [KFManager sharedInstance].needShowMonitorTip = NO;
+    [kNotiCenter postNotificationName:KFMonitorNoti object:@(YES)];
     self.title = @"告警记录";
     [self loadData];
 }
@@ -39,6 +42,7 @@
         }
     }];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -65,6 +69,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100;
 }
+
+- (void)backAction {
+    [super backAction];
+     [KFManager sharedInstance].curViewController = nil;
+}
+
 /*
 #pragma mark - Navigation
 

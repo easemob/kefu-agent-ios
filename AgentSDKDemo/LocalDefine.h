@@ -14,6 +14,7 @@
 #define DEFAULT_CONVERSATION_CELLHEIGHT 60
 #define kTableViewHeaderAndFooterColor RGBACOLOR(242, 242, 242, 1)
 
+#define kNotiCenter [NSNotificationCenter defaultCenter]
 #define KScreenWidth [UIApplication sharedApplication].keyWindow.size.width
 #define KScreenHeight [UIApplication sharedApplication].keyWindow.size.height
 #define kHomeViewLeft 70

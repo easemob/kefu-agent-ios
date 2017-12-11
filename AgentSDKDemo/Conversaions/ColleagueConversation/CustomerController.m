@@ -235,13 +235,9 @@
             for (HDConversation *customer in customers) {
                 customer.searchWord = [ChineseToPinyin pinyinFromChineseString:customer.chatter.nicename];
                 _customerUnreadcount += customer.unreadCount;
-                if ([customer.chatter.status isEqualToString:USER_STATUS_DISABLE]) {
-                    continue;
-                }
-                [weakSelf.dataSource addObject:customer];
                 [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.userId];
             }
-            self.dataSource = [self sortWithArray:self.dataSource];
+            self.dataSource = customers.mutableCopy;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
             });

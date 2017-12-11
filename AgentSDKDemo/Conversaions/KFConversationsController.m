@@ -209,13 +209,7 @@
 
 - (EMHeaderImageView*)headImageView
 {
-    if (_headImageView == nil) {
-        _headImageView = [[EMHeaderImageView alloc] init];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headImageItemAction:)];
-        [_headImageView addGestureRecognizer:tap];
-        _headImageView.userInteractionEnabled = YES;
-    }
-    return _headImageView;
+    return [KFManager sharedInstance].headImageView;
 }
 
 - (UIView *)titleView

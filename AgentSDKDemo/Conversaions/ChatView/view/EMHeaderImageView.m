@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIImageView *statusImageView;
+@property(nonatomic,strong) UIImageView *monitorView;
 @property(nonatomic,strong) UserModel *user;
 
 @end
@@ -29,13 +30,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [kNotiCenter addObserver:self selector:@selector(setMonitorTip:) name:KFMonitorNoti object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avatarChanged) name:@"AvatarChanged" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusChanged) name:@"StatusChanged" object:nil];
         [self addSubview:self.headerImageView];
         [self addSubview:self.statusImageView];
+        [self addSubview:self.monitorView];
+        self.monitorView.hidden = ![KFManager sharedInstance].needShowMonitorTip;
     }
     return self;
 }
+
 
 - (UIImageView*)headerImageView
 {
@@ -48,6 +53,21 @@
     }
     return _headerImageView;
 }
+
+- (void)setMonitorTip:(NSNotification *)noti {
+    BOOL hidden = [noti.object boolValue];
+    self.monitorView.hidden = hidden;
+}
+
+- (UIImageView *)monitorView {
+    if (_monitorView == nil) {
+        _monitorView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) - self.width/5, 0, self.width/4, self.height/4)];
+        _monitorView.image = [UIImage imageNamed:@"MonitorAlarm"];
+        _monitorView.hidden = YES;
+    }
+    return _monitorView;
+}
+
 
 - (UIImageView*)statusImageView
 {

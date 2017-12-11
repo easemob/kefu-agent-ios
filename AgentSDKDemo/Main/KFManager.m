@@ -8,6 +8,7 @@
 
 #import "KFManager.h"
 #import "HomeViewController.h"
+#import "KFWarningViewController.h"
 
 @interface KFManager () <HDChatManagerDelegate,UIAlertViewDelegate>
 
@@ -45,6 +46,27 @@ singleton_implementation(KFManager)
      [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
+- (BOOL)needShowMonitorTip {
+    NSString *agentUsername = [HDClient sharedClient].currentAgentUsername;
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSDictionary *dic = [ud dictionaryForKey:@"monitor"];
+    if (dic) {
+        if ([dic objectForKey:agentUsername]) {
+            return [[dic objectForKey:agentUsername] boolValue];
+        }
+    }
+    return NO;
+}
+
+- (void)setNeedShowMonitorTip:(BOOL)needShowMonitorTip {
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *mdic = [ud dictionaryForKey:@"monitor"].mutableCopy;
+    if (mdic == nil) {
+        mdic = [NSMutableDictionary dictionaryWithCapacity:0];
+    }
+    [mdic setValue:@(needShowMonitorTip) forKey:[HDClient sharedClient].currentAgentUsername];
+    [ud setObject:mdic forKey:@"monitor"];
+}
 
 - (void)playSoundAndVibration{
     NSTimeInterval timeInterval = [[NSDate date]
@@ -234,6 +256,14 @@ singleton_implementation(KFManager)
     _curChatViewConvtroller.unreadBadgeValue = [self getBadgeValueWithUnreadCount:unreadCount];
 }
 
+- (void)receiveMonitorAlarm {
+    self.needShowMonitorTip = YES;
+    if (![[KFManager sharedInstance].curViewController isKindOfClass:[KFWarningViewController class]]) {
+         [kNotiCenter postNotificationName:KFMonitorNoti object:@(NO)];
+    }
+   
+}
+
 
 //private
 - (NSString *)getBadgeValueWithUnreadCount:(NSInteger)unreadCount {
@@ -245,6 +275,24 @@ singleton_implementation(KFManager)
     }
     return [NSString stringWithFormat:@"%ld",(long)unreadCount];
 }
+
+#pragma mark UI
+- (EMHeaderImageView*)headImageView
+{
+    if (_headImageView == nil) {
+        _headImageView = [[EMHeaderImageView alloc] init];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headImageItemAction:)];
+        [_headImageView addGestureRecognizer:tap];
+        _headImageView.userInteractionEnabled = YES;
+    }
+    return _headImageView;
+}
+
+- (void)headImageItemAction:(id)sender
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showLeftView" object:nil];
+}
+
 
 
 - (void)addDelegates {

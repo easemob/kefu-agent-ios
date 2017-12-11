@@ -24,4 +24,6 @@
 
 - (NSArray *)sortArray:(NSArray *)array isSort:(BOOL)isSort;
 
+- (void)backAction;
+
 @end

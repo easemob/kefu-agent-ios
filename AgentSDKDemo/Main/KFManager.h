@@ -14,6 +14,7 @@
 #import "NotifyViewController.h"
 #import "LeaveMsgViewController.h"
 #import "ChatViewController.h"
+#import "EMHeaderImageView.h"
 
 @interface KFManager : NSObject <HDClientDelegate>
 singleton_interface(KFManager);
@@ -29,6 +30,16 @@ singleton_interface(KFManager);
  当前聊天控制器,进入会话的时候传入
  */
 @property(nonatomic,strong) ChatViewController *curChatViewConvtroller;
+
+
+/**
+ 当前控制器
+ */
+@property(nonatomic,strong) UIViewController *curViewController;
+
+@property(nonatomic,assign) BOOL needShowMonitorTip;
+
+@property(nonatomic,strong) EMHeaderImageView *headImageView;
 
 /**
  当前会话数

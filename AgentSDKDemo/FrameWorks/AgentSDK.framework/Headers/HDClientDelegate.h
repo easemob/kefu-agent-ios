@@ -128,6 +128,12 @@ typedef NS_ENUM(NSUInteger, HDConnectionState) {
 - (void)notificationChange;
 
 
+/**
+ 收到监控告警
+ */
+- (void)receiveMonitorAlarm;
+
+
 @end
 
 
