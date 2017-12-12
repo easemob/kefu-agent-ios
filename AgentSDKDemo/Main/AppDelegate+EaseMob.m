@@ -34,6 +34,7 @@
     HDOptions *options = [[HDOptions alloc] init];
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;
+    options.showVisitorInputState = YES;
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     

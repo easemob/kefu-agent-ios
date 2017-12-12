@@ -329,6 +329,8 @@
 		D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D4E1EA0ED5B00ADD394 /* libsqlite3.tbd */; };
 		D378E6121F569D8900E3AB74 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6111F569D8800E3AB74 /* SystemConfiguration.framework */; };
 		D37EF4F01FA727F9002B8B8D /* Shape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D37EF4EF1FA7263E002B8B8D /* Shape@2x.png */; };
+		D396E6811FDFEC7F009C0CF7 /* KFPredictView.m in Sources */ = {isa = PBXBuildFile; fileRef = D396E6801FDFEC7F009C0CF7 /* KFPredictView.m */; };
+		D396E6821FDFEC7F009C0CF7 /* KFPredictView.m in Sources */ = {isa = PBXBuildFile; fileRef = D396E6801FDFEC7F009C0CF7 /* KFPredictView.m */; };
 		D39838CF1FDA3CE500D5F853 /* KFWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39838CE1FDA3CE500D5F853 /* KFWarningViewController.m */; };
 		D39838D01FDA3CE500D5F853 /* KFWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D39838CE1FDA3CE500D5F853 /* KFWarningViewController.m */; };
 		D39838D71FDA3D2000D5F853 /* KFWarningModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D39838D61FDA3D2000D5F853 /* KFWarningModel.m */; };
@@ -2057,6 +2059,8 @@
 		D37EF5471FA72C5F002B8B8D /* KFTrendDataModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFTrendDataModel.h; sourceTree = "<group>"; };
 		D37EF5481FA72C5F002B8B8D /* KFTrendDataModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFTrendDataModel.m; sourceTree = "<group>"; };
 		D381EFCD1EA4B64F0092BD3C /* AgentSDKDemo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemo.entitlements; sourceTree = "<group>"; };
+		D396E67F1FDFEC7F009C0CF7 /* KFPredictView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFPredictView.h; sourceTree = "<group>"; };
+		D396E6801FDFEC7F009C0CF7 /* KFPredictView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFPredictView.m; sourceTree = "<group>"; };
 		D39838CD1FDA3CE500D5F853 /* KFWarningViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWarningViewController.h; sourceTree = "<group>"; };
 		D39838CE1FDA3CE500D5F853 /* KFWarningViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWarningViewController.m; sourceTree = "<group>"; };
 		D39838D11FDA3D0700D5F853 /* KFWarningCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWarningCell.h; sourceTree = "<group>"; };
@@ -2681,6 +2685,8 @@
 		D33CE5EC1F7CA98D00236720 /* ChatView */ = {
 			isa = PBXGroup;
 			children = (
+				D396E67F1FDFEC7F009C0CF7 /* KFPredictView.h */,
+				D396E6801FDFEC7F009C0CF7 /* KFPredictView.m */,
 				D33CE8BC1F7CDC1B00236720 /* DXUserWaitTableViewCell.h */,
 				D33CE8BD1F7CDC1B00236720 /* DXUserWaitTableViewCell.m */,
 				D33CE5ED1F7CA98D00236720 /* EMFileViewController.h */,
@@ -5781,6 +5787,7 @@
 				D33CE85C1F7CD0F800236720 /* UIImage+EMGIF.m in Sources */,
 				D33CE8AB1F7CD3D400236720 /* UIView+SBExtras.m in Sources */,
 				D3A6BB691FB058BF00066410 /* HDChatFormBubbleView.m in Sources */,
+				D396E6811FDFEC7F009C0CF7 /* KFPredictView.m in Sources */,
 				D3DFB3841FD8EA2400A9358A /* KFDetailModel.m in Sources */,
 				D3A95E6E1EA0F47100ADD394 /* PSTGridLayoutItem.m in Sources */,
 				D33CE8781F7CD2B800236720 /* WaitQueueViewController.m in Sources */,
@@ -6109,6 +6116,7 @@
 				D3E9CD8F1FBED182005E3677 /* UIImage+EMGIF.m in Sources */,
 				D3E9CD901FBED182005E3677 /* UIView+SBExtras.m in Sources */,
 				D3E9CD911FBED182005E3677 /* HDChatFormBubbleView.m in Sources */,
+				D396E6821FDFEC7F009C0CF7 /* KFPredictView.m in Sources */,
 				D3DFB3851FD8EA2400A9358A /* KFDetailModel.m in Sources */,
 				D3E9CD921FBED182005E3677 /* PSTGridLayoutItem.m in Sources */,
 				D3E9CD931FBED182005E3677 /* WaitQueueViewController.m in Sources */,

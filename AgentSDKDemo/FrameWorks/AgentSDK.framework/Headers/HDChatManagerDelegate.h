@@ -35,4 +35,13 @@
  */
 - (void)messageAttachmentStatusDidChange:(HDMessage *)aMessage
                                    error:(HDError *)aError;
+
+
+/**
+ visitor input state change
+
+ @param content text
+ */
+- (void)visitorInputStateChange:(NSString *)content;
+
 @end

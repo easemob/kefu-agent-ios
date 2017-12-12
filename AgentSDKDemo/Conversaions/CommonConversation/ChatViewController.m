@@ -101,6 +101,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 @property (strong, nonatomic) EMPromptBoxView *promptBoxView;
 
+@property(nonatomic,strong) EMPromptBoxView *visitorContentView;
+
 @property(nonatomic,strong) DXRecordView *recordView;
 
 @property(nonatomic,strong) UIButton *satisfactionBtn;
@@ -213,14 +215,14 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         if (_conversationModel.vistor && _conversationModel.vistor.nicename.length > 0) {
             self.title = _conversationModel.vistor.nicename;
         }
-        _tableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight);
+        _tableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight-iPhoneXBottomHeight);
     } else if (chatType == ChatViewTypeCallBackChat) {
         UIView *titleView = [[UIView alloc] init];
         titleView.frame = self.tagBtn.frame;
         [titleView addSubview:self.tagBtn];
         [self.navigationItem setTitleView:titleView];
 
-        _tableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 48);
+        _tableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 48 - iPhoneXBottomHeight);
         [self.view addSubview:self.callBackBtn];
         [self.view addSubview:self.headview];
         [self.view addSubview:self.folderButton];
@@ -279,7 +281,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     if (_promptBoxView == nil) {
         _promptBoxView = [[EMPromptBoxView alloc] init];
-        _promptBoxView.frame = CGRectMake(50, CGRectGetMaxY(self.tableView.frame) - 100, KScreenWidth - 100, 100);
+        _promptBoxView.frame = CGRectMake(50, CGRectGetMaxY(self.tableView.frame) - 100 - iPhoneXBottomHeight, KScreenWidth - 100, 100);
         _promptBoxView.backgroundColor = [UIColor clearColor];
 //        _promptBoxView.backgroundColor = [UIColor redColor];
         _promptBoxView.delegate = self;
@@ -385,7 +387,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     if (_callBackBtn == nil) {
         _callBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _callBackBtn.frame = CGRectMake(0, KScreenHeight - 48 - 64, KScreenWidth, 48);
+        _callBackBtn.frame = CGRectMake(0, KScreenHeight - 48 - 64 - iPhoneXBottomHeight, KScreenWidth, 48);
         [_callBackBtn setBackgroundColor:RGBACOLOR(27, 168, 237, 1)];
         [_callBackBtn setTitle:@"回呼" forState:UIControlStateNormal];
         [_callBackBtn addTarget:self action:@selector(callBackAction) forControlEvents:UIControlEventTouchUpInside];
@@ -539,7 +541,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (UITableView *)tableView
 {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.chatToolBar.frame.size.height) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.chatToolBar.frame.size.height - iPhoneXBottomHeight) style:UITableViewStylePlain];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -557,7 +559,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (DXMessageToolBar *)chatToolBar
 {
     if (_chatToolBar == nil) {
-        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight], self.view.frame.size.width, [DXMessageToolBar defaultHeight]) type:KFChatMoreTypeChat];
+        _chatToolBar = [[DXMessageToolBar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - [DXMessageToolBar defaultHeight] - iPhoneXBottomHeight, self.view.frame.size.width, [DXMessageToolBar defaultHeight]) type:KFChatMoreTypeChat];
         _chatToolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
         _chatToolBar.delegate = self;
     }
@@ -677,8 +679,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)didChangeFrameToHeight:(CGFloat)toHeight
 {
     [UIView animateWithDuration:0.3 animations:^{
-        self.tableView.height = self.view.frame.size.height - toHeight;
-        self.promptBoxView.top = self.view.frame.size.height - toHeight - self.promptBoxView.height;
+        self.tableView.height = self.view.frame.size.height - toHeight - iPhoneXBottomHeight;
+        self.promptBoxView.top = self.view.frame.size.height - toHeight - self.promptBoxView.height - iPhoneXBottomHeight;
     }];
     [self scrollViewToBottom:NO];
 }
@@ -705,6 +707,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [_promptBoxView searchText:messageInputTextView.text];
     } else {
         [_promptBoxView searchText:nil];
+    }
+    if (messageInputTextView.text) {
+        [[HDClient sharedClient].chatManager postContent:messageInputTextView.text sessionId:self.conversationModel.sessionId completion:^(id responseObject, HDError *error) {
+            NSLog(@"postContent %@",responseObject);
+        }];
     }
 }
 
@@ -1245,6 +1252,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }];
 }
 
+- (void)visitorInputStateChange:(NSString *)content {
+    NSLog(@"visitorInputStateChange:::%@",content);
+    
+}
+
 
 - (void)callBackAction
 {
@@ -1682,6 +1694,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 - (void)dealloc {
+    [_conversation unbindSessionId];
     NSLog(@"___dealloc___%s",__func__);
 }
 
