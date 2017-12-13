@@ -260,6 +260,16 @@
 - (void)getChannelsCompletion:(void(^)(id responseObject,HDError *error))completion;
 
 
+/**
+ 上传坐席端内容到服务器
+
+ @param content 内容
+ @param sessionId
+ @param completion 
+ */
+- (void)postContent:(NSString *)content sessionId:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))completion;
+
+
 @end
 
 

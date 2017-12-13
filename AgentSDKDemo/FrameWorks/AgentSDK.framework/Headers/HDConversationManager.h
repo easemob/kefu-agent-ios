@@ -38,6 +38,12 @@ typedef NS_ENUM(NSUInteger, HDSatisfationStatus) {
 
 - (instancetype)initWithSessionId:(NSString *)sessionId;
 
+
+/**
+ 取消绑定sessionId
+ */
+- (void)unbindSessionId;
+
 /*
  * 加载消息
  */
