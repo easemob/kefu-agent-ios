@@ -9,17 +9,29 @@
 #import "KFHttpManager.h"
 #import "KFFileCache.h"
 
-#define kBaseURL @"https://kefu.easemob.com"
-//#define kBaseURL @"https://sandbox.kefu.easemob.com"
+
 
 @implementation KFHttpManager
 
 singleton_implementation(KFHttpManager);
 
+- (NSString *)kefuRestAddress{
+    HDClient *client = [HDClient sharedClient];
+    NSString *kefuRest = nil;
+    SEL selector = NSSelectorFromString(@"kefuRestAddress");
+    if ([client respondsToSelector:selector]) {
+        IMP imp = [client methodForSelector:selector];
+        NSString *(*func)(id, SEL) = (void *)imp;
+        kefuRest = func(client, selector);
+    }
+    return kefuRest;
+}
+
+    
 - (instancetype)init {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _instance = [super initWithBaseURL:[NSURL URLWithString:kBaseURL]];
+        _instance = [super initWithBaseURL:[NSURL URLWithString:[self kefuRestAddress]]];
         _instance.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _instance.requestSerializer = [AFJSONRequestSerializer serializer];
         _instance.responseSerializer = [AFHTTPResponseSerializer serializer];
