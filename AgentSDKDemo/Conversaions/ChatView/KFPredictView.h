@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#define preconentHeight 50
+
 @interface KFPredictView : UIView
+
+@property(nonatomic,assign) CGFloat fontSize;
+
+@property(nonatomic,copy) NSString *content;
 
 @end

@@ -32,6 +32,7 @@
 #import "EMPromptBoxView.h"
 #import "DXRecordView.h"
 #import "HDWebViewController.h"
+#import "KFPredictView.h"
 
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
@@ -101,7 +102,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 @property (strong, nonatomic) EMPromptBoxView *promptBoxView;
 
-@property(nonatomic,strong) EMPromptBoxView *visitorContentView;
+@property(nonatomic,strong) KFPredictView *visitorPredictView;
 
 @property(nonatomic,strong) DXRecordView *recordView;
 
@@ -204,6 +205,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [titleView addSubview:self.tagBtn];
         [self.navigationItem setTitleView:titleView];
         [self.view addSubview:self.chatToolBar];
+        [self.chatToolBar addSubview:self.visitorPredictView];
         [self.view addSubview:self.moreView];
         [_conversation satisfactionStatusCompletion:^(HDSatisfationStatus status, HDError *error) {
             _satisfactionBtn.selected = (status != HDSatisfationStatusNone);
@@ -211,6 +213,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.view addSubview:self.headview];
         [self.view addSubview:self.folderButton];
         [self.view addSubview:self.promptBoxView];
+        
     } else if (chatType == ChatViewTypeNoChat) {
         if (_conversationModel.vistor && _conversationModel.vistor.nicename.length > 0) {
             self.title = _conversationModel.vistor.nicename;
@@ -287,6 +290,14 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _promptBoxView.delegate = self;
     }
     return _promptBoxView;
+}
+
+- (KFPredictView *)visitorPredictView {
+    if (_visitorPredictView == nil) {
+        _visitorPredictView = [[KFPredictView alloc] initWithFrame:CGRectMake(0, -preconentHeight, self.view.width, preconentHeight)];
+        _visitorPredictView.hidden = YES;
+    }
+    return _visitorPredictView;
 }
 
 - (UIImageView*)originTypeImage
@@ -1253,8 +1264,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 - (void)visitorInputStateChange:(NSString *)content {
-    NSLog(@"visitorInputStateChange:::%@",content);
-    
+    if (content != nil) {
+        content = [@"[输入中...]  " stringByAppendingString:content];
+        self.visitorPredictView.hidden = NO;
+        self.visitorPredictView.content = content;
+    } else {
+        self.visitorPredictView.hidden = YES;
+    }
 }
 
 
