@@ -7,11 +7,20 @@
 //
 
 #import "AdminInforEditViewController.h"
+#import "UITextField+KFAdd.h"
 
 @interface AdminInforEditViewController () <UITextFieldDelegate>
 {
     int _type;
 }
+
+typedef NS_ENUM(NSUInteger, UITextFieldType) {
+    UITextFieldTypeNickname=0,
+    UITextFieldTypeName,
+    UITextFieldTypeNum,
+    UITextFieldTypePhone,
+    UITextFieldTypePassword = 5
+};
 
 @property (strong ,nonatomic) UITextField *editTextField;
 
@@ -39,7 +48,30 @@
     self.view.backgroundColor = kTableViewBgColor;
     
     [self.view addSubview:self.editTextField];
-    
+    switch (_type) {
+        case UITextFieldTypeNickname: {
+            _editTextField.maxCharacterlength = 22;
+             break;
+        }
+        case UITextFieldTypeName:{
+            _editTextField.maxCharacterlength = 24;
+            break;
+        }
+        case UITextFieldTypeNum:{
+            _editTextField.maxCharacterlength = 10;
+            break;
+        }
+        case UITextFieldTypePhone:{
+            _editTextField.maxCharacterlength = 18;
+            break;
+        }
+        case UITextFieldTypePassword: {
+            _editTextField.maxCharacterlength = 22;
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)setupBarButtonItem
@@ -103,6 +135,10 @@
             if (_editTextField.text.length > 22) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"客户名最大长度22位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alertView show];
+                return;
+            }
+            if ( _editTextField.text.length == 0) {
+                kAlert(@"昵称不能为空");
                 return;
             }
             [self.delegate saveParameter:_editTextField.text key:USER_NICENAME];
@@ -198,6 +234,7 @@
             break;
     }
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
