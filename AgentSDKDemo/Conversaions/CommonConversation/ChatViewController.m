@@ -1390,20 +1390,26 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
 }
 
-
 -(void)addMessage:(HDMessage *)message
 {
     [self prehandle:message];
     __weak ChatViewController *weakSelf = self;
     dispatch_async(_messageQueue, ^{
-        [weakSelf formatMessage:message];
+        NSArray *msgs = [weakSelf formatMessage:message];
         dispatch_async(dispatch_get_main_queue(), ^{
             [_messages addObject:message];
-            [weakSelf.dataSource addObject:message];
-            NSIndexPath *ip = [NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0];
+            [weakSelf.dataSource addObjectsFromArray:msgs];
+            NSMutableArray *paths = [NSMutableArray arrayWithCapacity:0];
+            NSInteger count = msgs.count;
+            for (int i=0; i<count; i++) {
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:weakSelf.dataSource.count-1-i inSection:0];
+                [paths addObject:ip];
+            }
+            [UIView setAnimationsEnabled:NO];
             [weakSelf.tableView beginUpdates];
-            [weakSelf.tableView insertRowsAtIndexPaths:@[ip] withRowAnimation:UITableViewRowAnimationNone];
+            [weakSelf.tableView insertRowsAtIndexPaths:paths.copy withRowAnimation:UITableViewRowAnimationNone];
             [weakSelf.tableView endUpdates];
+            [UIView setAnimationsEnabled:YES];
             [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
         });
     });

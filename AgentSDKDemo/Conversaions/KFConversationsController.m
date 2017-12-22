@@ -51,6 +51,10 @@
     [self setupView];
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
+    
+    if (![[HDClient sharedClient].currentAgentUser.roles containsString:@"admin"]) {
+        [KFManager sharedInstance].needShowMonitorTip = NO;
+    }
 }
 
 - (void)setNav {

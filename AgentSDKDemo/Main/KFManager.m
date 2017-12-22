@@ -78,6 +78,8 @@ singleton_implementation(KFManager)
     }
     //保存最后一次响铃时间
     self.lastPlaySoundDate = [NSDate date];
+    
+    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
 
     // 收到消息时，震动
     [[EMCDDeviceManager sharedInstance] playVibration];
