@@ -30,6 +30,7 @@
 
 - (void)loadData {
     _models = [NSMutableArray arrayWithCapacity:0];
+    [self.dataSource removeAllObjects];
     [self showHintNotHide:@""];
     [[KFHttpManager sharedInstance] asyncGetWarningsWithPath:kGetWarnings pageIndex:0 pageSize:100 completion:^(id responseObject, NSError *error) {
         [self hideHud];

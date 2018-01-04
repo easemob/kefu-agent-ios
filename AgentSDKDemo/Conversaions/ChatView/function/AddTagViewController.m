@@ -206,9 +206,10 @@
                 } else {
                     [weakSelf showHint:@"请选择标签"];
                 }
-            } else {
-                [self.navigationController popViewControllerAnimated:YES];
             }
+//            else {
+//                [self.navigationController popViewControllerAnimated:YES];
+//            }
             
         } else {
             [weakSelf hideHud];

@@ -51,6 +51,10 @@
     [self setupView];
     [self setAutomaticallyAdjustsScrollViewInsets:YES];
     [self setExtendedLayoutIncludesOpaqueBars:YES];
+    
+    if (![[HDClient sharedClient].currentAgentUser.roles containsString:@"admin"]) {
+        [KFManager sharedInstance].needShowMonitorTip = NO;
+    }
 }
 
 - (void)setNav {
@@ -194,7 +198,7 @@
         _currentlabel.textColor = [UIColor whiteColor];
         _currentlabel.font = [UIFont systemFontOfSize:15];
         _currentlabel.textAlignment = NSTextAlignmentRight;
-        _currentlabel.text = @"0/0";
+        _currentlabel.text = @"(0/0)";
     }
     return _currentlabel;
 }
@@ -356,9 +360,13 @@
 }
 
 
+
+#pragma mark - HDClientDelegate
+
+//管理员是否允许坐席修改最大接入数,【管理员不受此限制】
 - (void)showSetMaxSession:(BOOL)show {
     if (![[HDClient sharedClient].currentAgentUser.roles containsString:@"admin"]) {
-        _currentlabel.hidden = !show;
+//        _currentlabel.hidden = !show;
         _maxServiceNumButton.hidden = !show;
     }
 }

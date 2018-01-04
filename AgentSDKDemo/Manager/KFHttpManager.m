@@ -10,10 +10,10 @@
 #import "KFFileCache.h"
 
 
-
 @implementation KFHttpManager
 
 singleton_implementation(KFHttpManager);
+
 
 - (NSString *)kefuRestAddress{
     HDClient *client = [HDClient sharedClient];
@@ -35,7 +35,6 @@ singleton_implementation(KFHttpManager);
         _instance.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _instance.requestSerializer = [AFJSONRequestSerializer serializer];
         _instance.responseSerializer = [AFHTTPResponseSerializer serializer];
-        
         _instance.requestSerializer.timeoutInterval = 30.f;
         _instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/javascript", @"application/json", @"text/json", @"text/html", @"text/plain", @"charset=utf-8", nil];
         _instance.operationQueue.maxConcurrentOperationCount = 5;
