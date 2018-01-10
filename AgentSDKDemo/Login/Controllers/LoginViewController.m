@@ -135,6 +135,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [_inputHideButton addTarget:self action:@selector(inputHideAction:) forControlEvents:UIControlEventTouchUpInside];
     _inputHideButton.hidden = YES;
     [_actionView addSubview:_inputHideButton];
+    _actionView.backgroundColor = [UIColor redColor];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChanged:) name:UITextFieldTextDidChangeNotification object:_passwordField];
     
