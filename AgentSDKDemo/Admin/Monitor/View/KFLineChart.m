@@ -46,7 +46,11 @@
         totalNum += model.count;
     }
     for (KFLineChartModel *model in models) {
-        model.percentage = model.count/totalNum;
+        if (totalNum == 0) {
+            model.percentage = 0;
+        }else {
+            model.percentage = model.count/totalNum;
+        }
     }
     _models = models;
 }

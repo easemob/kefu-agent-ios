@@ -45,7 +45,7 @@
 //APPKEY
 #define UMENG_APPKEY @"55ff6d1fe0f55adff00004bc"
 
-#define USERDEFAULTS_QUICK_REPLY [NSString stringWithFormat:@"%@quickReply",[HDClient sharedClient].currentAgentUsername]
+#define USERDEFAULTS_QUICK_REPLY [NSString stringWithFormat:@"%@quickReply",[HDClient sharedClient].currentAgentUser.username]
 #pragma mark -  login
 #define USERDEFAULTS_LOGINUSERNAME @"usernaem"
 #define USERDEFAULTS_LOGINPASSWORD @"password"

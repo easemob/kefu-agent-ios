@@ -47,7 +47,7 @@ singleton_implementation(KFManager)
 }
 
 - (BOOL)needShowMonitorTip {
-    NSString *agentUsername = [HDClient sharedClient].currentAgentUsername;
+    NSString *agentUsername = [HDClient sharedClient].currentAgentUser.username;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     NSDictionary *dic = [ud dictionaryForKey:@"monitor"];
     if (dic) {
@@ -64,7 +64,7 @@ singleton_implementation(KFManager)
     if (mdic == nil) {
         mdic = [NSMutableDictionary dictionaryWithCapacity:0];
     }
-    [mdic setValue:@(needShowMonitorTip) forKey:[HDClient sharedClient].currentAgentUsername];
+    [mdic setValue:@(needShowMonitorTip) forKey:[HDClient sharedClient].currentAgentUser.username];
     [ud setObject:mdic forKey:@"monitor"];
 }
 
