@@ -28,18 +28,18 @@
 
 
 - (void)loadData {
-    self.dataSource = [NSMutableArray arrayWithCapacity:0];
     [self showHintNotHide:@""];
     [[KFHttpManager sharedInstance] asyncGetAgentQueuesWithPath:kGetAgentGroup completion:^(id responseObject, NSError *error) {
         [self hideHud];
+        self.dataSource = [NSMutableArray arrayWithCapacity:0];
         if (error == nil) {
             for (NSDictionary *dic in responseObject) {
                 HDGroupModel *group = [HDGroupModel yy_modelWithJSON:dic];
                 [self.dataSource addObject:group];
             }
             self.dataSource = [self sortArray:self.dataSource.copy isSort:NO].mutableCopy;
-            [self.tableView reloadData];
         }
+        [self.tableView reloadData];
     }];
 }
 
