@@ -160,15 +160,14 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leftMenuCell"];
-    // Configure the cell...
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"leftMenuCell"];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:17.f];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        cell.backgroundColor = RGBACOLOR(26, 26, 26, 1);
     }
     cell.textLabel.text = [_menuData objectAtIndex:indexPath.row];
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:17.f];
-    cell.accessoryType = UITableViewCellAccessoryNone;
-    cell.backgroundColor = RGBACOLOR(26, 26, 26, 1);
     if (!_adminModel) {//客服模式
         if (indexPath.row == 0) {
             _unreadConversationLabel.top = (cell.height - _unreadConversationLabel.height)/2;
@@ -193,7 +192,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
              _unreadConversationLabel.hidden = YES;
              cell.imageView.image = [UIImage imageNamed:@"icon_manager_home"];
         } else if (indexPath.row == 1) {
-            cell.imageView.image = [UIImage imageNamed:@"icon_manager_realtime"];
+            cell.imageView.image = [UIImage imageNamed:@"icon_manager_supervise"];
         } else if (indexPath.row == 2) {
             cell.imageView.image = [UIImage imageNamed:@"alarmsRecord"];
             self.monitorView1.center = CGPointMake(cell.width-100, cell.contentView.centerY);
@@ -315,7 +314,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     
     _adminModel = !_adminModel;
     if (_adminModel) { //管理员模式
-        _menuData = @[@"主页",@"现场监控",@"告警记录"/*,@"统计查询"*/];
+        _menuData = @[@"主页",@"现场管理",@"告警记录"/*,@"统计查询"*/];
         [self.leftDelegate adminMenuClickWithIndex:AgentMenuTagHome];
     } else {
         [self.leftDelegate menuClickWithIndex:AgentMenuTagHome];

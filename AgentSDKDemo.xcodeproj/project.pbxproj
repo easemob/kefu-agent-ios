@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		9079A9762005C49D00C58941 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; };
 		9079A9772005C49D00C58941 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90D3CBA0201AEC8B005FD40F /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; };
+		90D3CBA1201AEC8B005FD40F /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90D3CBA6201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
+		90D3CBA7201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
 		90FBBF5D2004995C00698A1E /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */; };
 		D3058CE71FD67BAE0091E048 /* HDMonitorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDMonitorCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDMonitorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDMonitorCell.m */; };
@@ -213,8 +217,6 @@
 		D33CE8141F7CB52500236720 /* DDDispatchQueueLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8071F7CB52500236720 /* DDDispatchQueueLogFormatter.m */; };
 		D33CE8151F7CB52500236720 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8091F7CB52500236720 /* DDMultiFormatter.m */; };
 		D33CE8161F7CB52500236720 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = D33CE80A1F7CB52500236720 /* README.txt */; };
-		D33CE81D1F7CB53C00236720 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8181F7CB53C00236720 /* libMobClickLibrary.a */; };
-		D33CE81E1F7CB53C00236720 /* libUMCheckUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8191F7CB53C00236720 /* libUMCheckUpdate.a */; };
 		D33CE8201F7CB55700236720 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE81F1F7CB55700236720 /* Bugly.framework */; };
 		D33CE8261F7CB6FF00236720 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */; };
 		D33CE82D1F7CD01100236720 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8291F7CD01100236720 /* CJSONDeserializer.m */; };
@@ -776,12 +778,10 @@
 		D3E9CDB81FBED182005E3677 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */; };
 		D3E9CDB91FBED182005E3677 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE81F1F7CB55700236720 /* Bugly.framework */; };
 		D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D4E1EA0ED5B00ADD394 /* libsqlite3.tbd */; };
-		D3E9CDBB1FBED182005E3677 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8181F7CB53C00236720 /* libMobClickLibrary.a */; };
 		D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
 		D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3C1EA0CF0C00ADD394 /* libz.tbd */; };
 		D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3A1EA0CED500ADD394 /* libstdc++.6.0.9.tbd */; };
 		D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */; };
-		D3E9CDC11FBED182005E3677 /* libUMCheckUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8191F7CB53C00236720 /* libUMCheckUpdate.a */; };
 		D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6091F569CF100E3AB74 /* Security.framework */; };
 		D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95E2E1EA0F47100ADD394 /* libopencore-amrwb.a */; };
 		D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95E2A1EA0F47100ADD394 /* libopencore-amrnb.a */; };
@@ -1459,6 +1459,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */,
+				90D3CBA1201AEC8B005FD40F /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1467,6 +1468,7 @@
 
 /* Begin PBXFileReference section */
 		9079A9752005C49D00C58941 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDMonitorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDMonitorCell.h; sourceTree = "<group>"; };
 		D3058CE61FD67BAE0091E048 /* HDMonitorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDMonitorCell.m; sourceTree = "<group>"; };
 		D3058CE91FD684F30091E048 /* HDTipLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDTipLabel.h; sourceTree = "<group>"; };
@@ -1791,11 +1793,6 @@
 		D33CE8081F7CB52500236720 /* DDMultiFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDMultiFormatter.h; sourceTree = "<group>"; };
 		D33CE8091F7CB52500236720 /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
 		D33CE80A1F7CB52500236720 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
-		D33CE8181F7CB53C00236720 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
-		D33CE8191F7CB53C00236720 /* libUMCheckUpdate.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libUMCheckUpdate.a; sourceTree = "<group>"; };
-		D33CE81A1F7CB53C00236720 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
-		D33CE81B1F7CB53C00236720 /* MobClickSocialAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClickSocialAnalytics.h; sourceTree = "<group>"; };
-		D33CE81C1F7CB53C00236720 /* UMCheckUpdate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMCheckUpdate.h; sourceTree = "<group>"; };
 		D33CE81F1F7CB55700236720 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
 		D33CE8281F7CD01100236720 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
@@ -2563,13 +2560,11 @@
 				D33CE5E01F7C96BB00236720 /* HyphenateLite.framework in Frameworks */,
 				D33CE8201F7CB55700236720 /* Bugly.framework in Frameworks */,
 				D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */,
-				D33CE81D1F7CB53C00236720 /* libMobClickLibrary.a in Frameworks */,
 				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
 				D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */,
 				D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D33CE8261F7CB6FF00236720 /* PgyUpdate.framework in Frameworks */,
 				D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */,
-				D33CE81E1F7CB53C00236720 /* libUMCheckUpdate.a in Frameworks */,
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
@@ -2585,16 +2580,15 @@
 				D3E9CDB81FBED182005E3677 /* HyphenateLite.framework in Frameworks */,
 				D3E9CDB91FBED182005E3677 /* Bugly.framework in Frameworks */,
 				D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */,
-				D3E9CDBB1FBED182005E3677 /* libMobClickLibrary.a in Frameworks */,
 				D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */,
 				D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */,
 				D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
 				90FBBF5D2004995C00698A1E /* PgyUpdate.framework in Frameworks */,
-				D3E9CDC11FBED182005E3677 /* libUMCheckUpdate.a in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
+				90D3CBA0201AEC8B005FD40F /* AgentSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3295,18 +3289,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D33CE8171F7CB53C00236720 /* Umeng */ = {
-			isa = PBXGroup;
-			children = (
-				D33CE8181F7CB53C00236720 /* libMobClickLibrary.a */,
-				D33CE8191F7CB53C00236720 /* libUMCheckUpdate.a */,
-				D33CE81A1F7CB53C00236720 /* MobClick.h */,
-				D33CE81B1F7CB53C00236720 /* MobClickSocialAnalytics.h */,
-				D33CE81C1F7CB53C00236720 /* UMCheckUpdate.h */,
-			);
-			path = Umeng;
-			sourceTree = "<group>";
-		};
 		D33CE8241F7CB6FF00236720 /* Pgy */ = {
 			isa = PBXGroup;
 			children = (
@@ -3805,7 +3787,6 @@
 				D33CE8271F7CD01100236720 /* TouchJSON */,
 				D33CE8241F7CB6FF00236720 /* Pgy */,
 				D33CE81F1F7CB55700236720 /* Bugly.framework */,
-				D33CE8171F7CB53C00236720 /* Umeng */,
 				D33CE7F11F7CB52500236720 /* CocoaLumberjack */,
 				D33CE7A31F7CB01000236720 /* AFNetworking */,
 				D33CE6FD1F7CACAC00236720 /* MMDrawerController */,
@@ -4471,6 +4452,7 @@
 			isa = PBXGroup;
 			children = (
 				D39839281FDE6BA000D5F853 /* icon_manager_realtime@2x.png */,
+				90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */,
 				D39839251FDE6B5400D5F853 /* alarmsRecord@2x.png */,
 				D3A6BB661FB0585100066410 /* chat_item_form@2x.png */,
 				D346A81A1FAC8A1100DD0281 /* expand_icon_vote_over@2x.png */,
@@ -5087,6 +5069,7 @@
 				D3FDC87B1EA0A5C600C25BB0 /* list_status_radio_droplist_4@3x.png in Resources */,
 				D3FDC85D1EA0A5C600C25BB0 /* channel_call_icon@3x.png in Resources */,
 				D3FDC7881EA0A5C600C25BB0 /* VoiceSearchFeedback020@2x.png in Resources */,
+				90D3CBA6201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */,
 				D3FDC77D1EA0A5C600C25BB0 /* VoiceSearchFeedback015.png in Resources */,
 				D3FDC8521EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy_2@2x.png in Resources */,
 				D3FDC75C1EA0A5C600C25BB0 /* chatFire_audioPlaying1@2x.png in Resources */,
@@ -5471,6 +5454,7 @@
 				D3E9CF1B1FBED182005E3677 /* list_status_radio_droplist_4@3x.png in Resources */,
 				D3E9CF1C1FBED182005E3677 /* channel_call_icon@3x.png in Resources */,
 				D3E9CF1D1FBED182005E3677 /* VoiceSearchFeedback020@2x.png in Resources */,
+				90D3CBA7201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */,
 				D3E9CF1E1FBED182005E3677 /* VoiceSearchFeedback015.png in Resources */,
 				D3E9CF1F1FBED182005E3677 /* tips_popup_right_EllipseCopy_2@2x.png in Resources */,
 				D3E9CF201FBED182005E3677 /* chatFire_audioPlaying1@2x.png in Resources */,

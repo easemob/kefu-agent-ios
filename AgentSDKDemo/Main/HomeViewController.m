@@ -25,7 +25,6 @@
 #import "HDMonitorManagerViewController.h"
 #import "KFWarningViewController.h"
 //================appstore start=================
-#import "UMCheckUpdate.h"
 #import <PgyUpdate/PgyUpdateManager.h>
 //================appstore end=================
 
@@ -522,7 +521,7 @@ static NSInteger currentTotalBadgeValue;
         if (needPush) {
             [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
         }
-    } else if (index ==1) { //现场监控
+    } else if (index == 1) { //现场管理
         HDMonitorManagerViewController *monitorVC = [[HDMonitorManagerViewController alloc] init];
         [self.navigationController pushViewController:monitorVC animated:YES];
     } else if (index == 2) {

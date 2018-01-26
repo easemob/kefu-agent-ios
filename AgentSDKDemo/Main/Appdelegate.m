@@ -16,8 +16,6 @@
 #import "DDASLLogger.h"
 #import "DXUpdateView.h"
 #import "KFLeftViewController.h"
-#import "UMCheckUpdate.h"
-#import "MobClick.h"
 #import "UIAlertView+KFAdd.h"
 #import "EmotionEscape.h"
 #import "ConvertToCommonEmoticonsHelper.h"
@@ -58,9 +56,7 @@
     [self launch];
     [self startLogin];
     [self clearCache];
-    
-    [MobClick startWithAppkey:UMENG_APPKEY];
-    
+
     //================appstore start=================
     [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"cc12b8e5d86d7ccef4dd4b7b4313dcac"];
     [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
