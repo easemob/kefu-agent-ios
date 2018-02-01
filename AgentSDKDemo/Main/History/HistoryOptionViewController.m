@@ -626,7 +626,7 @@
     }
 }
 
-- (NSString*)formatDate:(NSDate*)date
+- (NSString *)formatDate:(NSDate *)date
 {
     if (date) {
         NSDateFormatter *format =[[NSDateFormatter alloc] init];

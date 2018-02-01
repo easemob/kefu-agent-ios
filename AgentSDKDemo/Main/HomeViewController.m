@@ -12,7 +12,7 @@
 #import "HistoryConversationsController.h"
 #import "CustomerController.h"
 #import "NotifyViewController.h"
-#import "LeaveMsgViewController.h"
+
 #import "CustomerViewController.h"
 #import "WaitQueueViewController.h"
 #import "ChatViewController.h"
@@ -24,6 +24,10 @@
 #import "DXUpdateView.h"
 #import "HDMonitorManagerViewController.h"
 #import "KFWarningViewController.h"
+
+#import "LeaveMsgViewController.h"
+#import "KFLeaveMsgViewController.h"
+
 //================appstore start=================
 #import <PgyUpdate/PgyUpdateManager.h>
 //================appstore end=================
@@ -59,6 +63,9 @@ static NSString *kGroupName = @"GroupName";
 @property (strong, nonatomic) NotifyViewController *notifyController;
 @property (strong, nonatomic) WaitQueueViewController *waitqueueController;
 @property (strong, nonatomic) LeaveMsgViewController *leaveMsgController;
+
+@property (strong, nonatomic) KFLeaveMsgViewController *leaveMsgController1;
+
 //非管理员
 @property(nonatomic,strong) HomeViewController *homeViewController;
 @property (strong, nonatomic) HistoryConversationsController *historyController;
@@ -181,6 +188,10 @@ static NSInteger currentTotalBadgeValue;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
 //    [_notifyController viewDidLoad];
     
+    // du.
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KFLeaveMsg" bundle:nil];
+//    _leaveMsgController1 = [storyboard instantiateViewControllerWithIdentifier:[KFLeaveMsgViewController storyboardName]];
+    
     _leaveMsgController = [[LeaveMsgViewController alloc] init];
     [KFManager sharedInstance].leaveMsg = _leaveMsgController;
     [self setupChildVc:_leaveMsgController title:@"留言" image:@"tabbar_icon_crm" selectedImage:@"tabbar_icon_crmhighlight" index:3];
@@ -263,6 +274,7 @@ static NSInteger currentTotalBadgeValue;
     } else if (item.tag == 3){
         self.title = @"留言";
         self.navigationItem.titleView = nil;
+        // du.
         self.navigationItem.leftBarButtonItem = _leaveMsgController.headerViewItem;
         self.navigationItem.rightBarButtonItem = nil;
     }

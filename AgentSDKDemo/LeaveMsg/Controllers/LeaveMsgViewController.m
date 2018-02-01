@@ -45,6 +45,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"---- %p",self);
     [super viewDidLoad];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -238,6 +239,12 @@
 
     [self showHintNotHide:@"加载中..."];
     
+//    [[HDClient sharedClient].leaveMsgManager asyncFetchUntreatedLeaveMessagesCountWithCompletion:^(int count, HDError *error)
+//    {
+//
+//    }];
+//    
+//    return;
     [[HDClient sharedClient].leaveMsgManager asyncGetLeaveMessagesWithStatusId:nil pageIndex:_page pageSize:_pageSize parameters:nil completion:^(NSArray<HDLeaveMessage *> *leaveMessages, HDError *error) {
         [weakSelf hideHud];
         @synchronized (_refreshLock) {
@@ -279,7 +286,7 @@
         
     }];
 }
--(void) setMSGWithBadgeValue:(NSString*)badgeValue
+- (void)setMSGWithBadgeValue:(NSString*)badgeValue
 {
 //    currentBadgeValue = badgeValue;
     //设置提醒数
@@ -295,7 +302,7 @@
     }
 }
 
--(void) setLeaveMsgUnRead:(BOOL) aFlag
+- (void)setLeaveMsgUnRead:(BOOL) aFlag
 {
     LeaveMsgViewController *leaveMsgVC = (LeaveMsgViewController*)[self.tabBarController.childViewControllers objectAtIndex:3];
     if (aFlag) {

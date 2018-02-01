@@ -74,7 +74,7 @@
         if (model.columnType == HDColumnTypeDate) {
             _nickName.text = [self timeWithTimeIntervalString:[NSString stringWithFormat:@"%@",model.values[0]]];
         } else if (model.columnType == HDColumnTypeNumber) {
-             NSNumber *value = model.values[0];
+            NSNumber *value = model.values[0];
             if ([value integerValue] == 0) {
                 _nickName.textColor = [UIColor lightGrayColor];
                 _nickName.text = model.columnDescribe;
@@ -132,3 +132,4 @@
 }
 
 @end
+

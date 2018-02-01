@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 {
     NSMutableArray *_headViewDatasource;
     CGFloat         _headViewHeight;
+    NSMutableArray *_headInfoHeights;
     NSIndexPath    *_currentIndexPath;
     NSDictionary   *_temp;
     NSMutableArray <HDLeaveMessage *> *_dataSource;
@@ -71,7 +72,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)loadAssignees {
     [[HDClient sharedClient].leaveMsgManager asyncGetAssigneesCompletion:^(NSArray<HDAssignee *> *assignees, HDError *error) {
         if (error == nil) {
-            [_assginees removeObjectsInRange:NSMakeRange(1, _assginees.count-1)];
+            [_assginees removeObjectsInRange:NSMakeRange(1, _assginees.count - 1)];
         }
         [_assginees addObjectsFromArray:assignees];
     }];
@@ -88,7 +89,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     [self getState];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.inputView];
-    self.tableView.height = KScreenHeight-64-88;
+    self.tableView.height = KScreenHeight - 64 - 88;
     [self loadLeaveMessageAllComments];
 }
 
@@ -135,9 +136,17 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     if(phone) [_headViewDatasource addObject:phone];
     if(email) [_headViewDatasource addObject:email];
     if(company) [_headViewDatasource addObject:company];
-    height = _headViewDatasource.count*rowHeight;
-    height += [NSString heightOfString:subject font:15.0 width:KScreenWidth-20];
-    height += [NSString heightOfString:content font:15.0 width:KScreenWidth-20];
+    
+    for (NSString *str in _headViewDatasource) {
+        CGFloat strHeight = [NSString heightOfString:str font:15.0 width:KScreenWidth - 20] + 5;
+        
+        if (!_headInfoHeights) {
+            _headInfoHeights = [NSMutableArray array];
+        }
+        [_headInfoHeights addObject:[NSNumber numberWithFloat:strHeight]];
+        
+        height += strHeight;
+    }
     return height;
 }
 - (void)didChangeFrameToHeight:(CGFloat)toHeight
@@ -216,7 +225,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        KFLeaveMsgDetailHeadView *header = [[KFLeaveMsgDetailHeadView alloc] initWithModel:_model dataSource:_headViewDatasource height:_headViewHeight];
+        KFLeaveMsgDetailHeadView *header = [[KFLeaveMsgDetailHeadView alloc] initWithModel:_model dataSource:_headViewDatasource heights:_headInfoHeights];
         WEAK_SELF
         header.tapTableview = ^ {
             [weakSelf inputViewReset];
@@ -228,8 +237,8 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
-        if (_dataSource.count > 0 && indexPath.row >0) {
-            return [KFLeaveMsgCommentCell _heightForModel:_dataSource[indexPath.row-1]] + 30;
+        if (_dataSource.count > 0 && indexPath.row > 0) {
+            return [KFLeaveMsgCommentCell _heightForModel:_dataSource[indexPath.row - 1]] + 30;
         }
     }
     if (indexPath.section == 0) {
@@ -246,7 +255,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
             [tip setTitle:@"评论" forState:UIControlStateNormal];
             [tip setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             tip.userInteractionEnabled = YES;
-            tip.centerX = KScreenWidth/2;
+            tip.centerX = KScreenWidth / 2;
             [cell.contentView  addSubview:tip];
             return cell;
         } else {
@@ -314,7 +323,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 #pragma mark - picker
 
-- (EMPickerView*)statusView
+- (EMPickerView *)statusView
 {
     if (_statusView == nil) {
         _statusView = [[EMPickerView alloc] initWithDataSource:_stateNames topHeight:64];
@@ -324,7 +333,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     return _statusView;
 }
 
-- (EMPickerView*)taskView
+- (EMPickerView *)taskView
 {
     if (_taskView == nil) {
         _taskView = [[EMPickerView alloc] initWithDataSource:[self getNames] topHeight:64];

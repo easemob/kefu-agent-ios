@@ -23,6 +23,7 @@ CGFloat rowHeight;
     HDLeaveMessage *_model;
     NSInteger       _row;
     CGFloat         _height;
+    NSArray       *_modelHeights;
 }
 - (NSMutableArray *)dataSource {
     if (!_dataSource) {
@@ -43,6 +44,24 @@ CGFloat rowHeight;
     }
     return _tableView;
 }
+
+- (instancetype)initWithModel:(HDLeaveMessage *)model dataSource:(NSMutableArray *)dataSource heights:(NSArray *)heights{
+    
+    CGFloat height = 0;
+    for (NSNumber *heightObj in heights) {
+        height += [heightObj floatValue];
+    }
+    
+    if (self = [super initWithFrame:CGRectMake(0, 0, KScreenWidth, height)]) {
+        _model = model;
+        _height = height;
+        _modelHeights = heights;
+        self.dataSource = dataSource;
+        [self setup];
+    }
+    return self;
+}
+
 - (instancetype)initWithModel:(HDLeaveMessage *)model dataSource:(NSMutableArray *)dataSource height:(CGFloat)height{
     if (self = [super initWithFrame:CGRectMake(0, 0, KScreenWidth, height)]) {
         _model = model;
@@ -62,12 +81,22 @@ CGFloat rowHeight;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines = 0;
     cell.textLabel.text = _dataSource[indexPath.row];
     cell.textLabel.font = [UIFont systemFontOfSize:15.0];
     return cell;
 }
 - (void)setup {
     [self addSubview:self.tableView];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat height = 44;
+    if (_modelHeights[indexPath.row]) {
+        height = [_modelHeights[indexPath.row] floatValue];
+    }
+    return height;
 }
 
 /*

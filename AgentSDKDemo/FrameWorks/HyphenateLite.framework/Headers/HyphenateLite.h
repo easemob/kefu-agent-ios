@@ -18,3 +18,4 @@ FOUNDATION_EXPORT const unsigned char HyphenateLiteVersionString[];
 
 #import <HyphenateLite/EMClient.h>
 #import <HyphenateLite/EMClientDelegate.h>
+#import <HyphenateLite/EMMultiDevicesDelegate.h>

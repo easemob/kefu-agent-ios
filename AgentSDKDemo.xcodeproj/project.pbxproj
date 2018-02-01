@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90502AF9201F102C00EE1666 /* KFLeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */; };
+		90502AFB201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */; };
+		90502AFC201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */; };
+		90502AFD201F105600EE1666 /* KFLeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */; };
 		9079A9762005C49D00C58941 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; };
 		9079A9772005C49D00C58941 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90D3CBA0201AEC8B005FD40F /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; };
@@ -1467,6 +1471,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		90502AF7201F102C00EE1666 /* KFLeaveMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgViewController.h; sourceTree = "<group>"; };
+		90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgViewController.m; sourceTree = "<group>"; };
+		90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KFLeaveMsg.storyboard; sourceTree = "<group>"; };
 		9079A9752005C49D00C58941 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDMonitorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDMonitorCell.h; sourceTree = "<group>"; };
@@ -2595,6 +2602,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		90502AF6201F100600EE1666 /* KFLeaveMsgViewController */ = {
+			isa = PBXGroup;
+			children = (
+				90502AF7201F102C00EE1666 /* KFLeaveMsgViewController.h */,
+				90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */,
+				90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */,
+			);
+			path = KFLeaveMsgViewController;
+			sourceTree = "<group>";
+		};
 		D3058CE21FD675810091E048 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -3390,6 +3407,7 @@
 		D33CE87E1F7CD34000236720 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				90502AF6201F100600EE1666 /* KFLeaveMsgViewController */,
 				D33CE87F1F7CD34000236720 /* KFLeaveMsgDetailViewController.h */,
 				D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */,
 				D33CE8811F7CD34000236720 /* LeaveMsgViewController.h */,
@@ -4742,6 +4760,7 @@
 				D33CE6971F7CA98D00236720 /* chat_location_annotation_someone.png in Resources */,
 				D3FDC7A41EA0A5C600C25BB0 /* button_call_select@2x.png in Resources */,
 				D3FDC76B1EA0A5C600C25BB0 /* VoiceSearchFeedback006.png in Resources */,
+				90502AFB201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */,
 				D3FDC7781EA0A5C600C25BB0 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D3A95E7D1EA0F47100ADD394 /* TTOpenInAppActivity8@3x.png in Resources */,
 				D3FDC7EA1EA0A5C600C25BB0 /* ee_35.png in Resources */,
@@ -5127,6 +5146,7 @@
 				D3E9CDE51FBED182005E3677 /* chat_location_annotation_someone.png in Resources */,
 				D3E9CDE61FBED182005E3677 /* button_call_select@2x.png in Resources */,
 				D3E9CDE71FBED182005E3677 /* VoiceSearchFeedback006.png in Resources */,
+				90502AFC201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */,
 				D3E9CDE81FBED182005E3677 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D3E9CDE91FBED182005E3677 /* TTOpenInAppActivity8@3x.png in Resources */,
 				D3E9CDEA1FBED182005E3677 /* ee_35.png in Resources */,
@@ -5533,6 +5553,7 @@
 				D3DFB36C1FD7A45F00A9358A /* KFLineChart.m in Sources */,
 				D34DFAA91FA820D20018116D /* AASubtitle.m in Sources */,
 				D34DFAAA1FA820D20018116D /* AATitle.m in Sources */,
+				90502AF9201F102C00EE1666 /* KFLeaveMsgViewController.m in Sources */,
 				D34DFAAB1FA820D20018116D /* AATooltip.m in Sources */,
 				D34DFAAC1FA820D20018116D /* AAXAxis.m in Sources */,
 				D34DFAAD1FA820D20018116D /* AAYAxis.m in Sources */,
@@ -5862,6 +5883,7 @@
 				D3DFB36D1FD7A45F00A9358A /* KFLineChart.m in Sources */,
 				D3E9CCB71FBED182005E3677 /* AASubtitle.m in Sources */,
 				D3E9CCB81FBED182005E3677 /* AATitle.m in Sources */,
+				90502AFD201F105600EE1666 /* KFLeaveMsgViewController.m in Sources */,
 				D3E9CCB91FBED182005E3677 /* AATooltip.m in Sources */,
 				D3E9CCBA1FBED182005E3677 /* AAXAxis.m in Sources */,
 				D3E9CCBB1FBED182005E3677 /* AAYAxis.m in Sources */,

@@ -43,10 +43,10 @@
 //    options.enableDnsConfig = NO;
     
     
-//    options.kefuRestAddress = @"202.108.248.160";
-//    options.restServer = @"202.108.248.161";
-//    options.chatServer = @"202.108.248.161";
-//    options.chatPort = 6718;
+//    options.kefuRestAddress = @"https://visitor.sina.com.cn";
+//    options.restServer = @"a1.kfservice.sina.com.cn";
+//    options.chatServer = @"im1.kfservice.sina.com.cn";
+//    options.chatPort = 6717;
 //    options.enableDnsConfig = NO;
 
     [[HDClient sharedClient] initializeSDKWithOptions:options];
