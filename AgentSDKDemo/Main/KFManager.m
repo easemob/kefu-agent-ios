@@ -10,7 +10,7 @@
 #import "HomeViewController.h"
 #import "KFWarningViewController.h"
 
-@interface KFManager () <HDChatManagerDelegate,UIAlertViewDelegate>
+@interface KFManager () <HDChatManagerDelegate,UIAlertViewDelegate, HDClientDelegate>
 
 @end
 
@@ -109,6 +109,9 @@ singleton_implementation(KFManager)
 }
 
 #pragma mark - 会话
+- (void)transferScheduleRequest:(NSString *)sessionId {
+    [self playSoundAndVibration];
+}
 
 //会话被管理员转接
 - (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
@@ -130,6 +133,7 @@ singleton_implementation(KFManager)
 //有新会话
 - (void)newConversationWithSessionId:(NSString *)sessionId {
     NSLog(@"有新会话");
+    [self playSoundAndVibration];
     [_conversation refreshData];
 }
 //客服列表改变
