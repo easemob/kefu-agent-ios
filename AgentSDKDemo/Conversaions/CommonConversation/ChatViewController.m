@@ -240,13 +240,14 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardHidden:)];
     tap.delegate = self;
     [self.tableView addGestureRecognizer:tap];
-//    [self setupForDismissKeyboard];
-    
+
     [self loadMessage];
 
     [self loadTags];
     [[KFManager sharedInstance] setNavItemBadgeValueWithAllConversations:_allConversations];
     [self tableViewScrollToBottom];
+    
+    [self setupVoiceType];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -321,6 +322,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     return _originTypeImage;
 }
 
+- (void)setupVoiceType {
+    if ([self.conversationModel.originType isEqualToString:@"webim"]) {
+        [self.chatToolBar disableVoice];
+    }
+}
+
 - (UILabel*)originTypeLable
 {
     if (_originTypeLable == nil) {
@@ -349,17 +356,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _originTypeLable.textAlignment = NSTextAlignmentCenter;
         _originTypeLable.textColor = [UIColor whiteColor];
         _originTypeLable.attributedText = string;
-//        if ([self.conversationModel.originType isEqualToString:@"app"]) {
-//            _originTypeLable.text = @"APP";
-//        } else if ([self.conversationModel.originType isEqualToString:@"webim"]) {
-//            _originTypeLable.text = @"网页";
-//        } else if ([self.conversationModel.originType isEqualToString:@"weixin"]) {
-//            _originTypeLable.text = @"微信";
-//        } else if ([self.conversationModel.originType isEqualToString:@"weibo"]) {
-//            _originTypeLable.text = @"微博";
-//        } else {
-//            _originTypeLable.text = @"APP";
-//        }
         _originTypeLable.font = [UIFont systemFontOfSize:15.f];
     }
     return _originTypeLable;

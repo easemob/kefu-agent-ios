@@ -121,7 +121,7 @@ static NSInteger currentTotalBadgeValue;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [fNotificationCenter addObserver:self selector:@selector(setTotalBadgeValue) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
+    //    [fNotificationCenter addObserver:self selector:@selector(setTotalBadgeValue) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
     [self printViewHierarchy:self.tabBarController.view];
 }
 
@@ -160,7 +160,7 @@ static NSInteger currentTotalBadgeValue;
         }];
     });
     [self _setupChildrenVC];
-//    [self _setupSubviews];
+    //    [self _setupSubviews];
     
     [self registerNotifications];
 }
@@ -186,11 +186,11 @@ static NSInteger currentTotalBadgeValue;
     _notifyController = [[NotifyViewController alloc] init];
     [KFManager sharedInstance].noti = _notifyController;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
-//    [_notifyController viewDidLoad];
+    //    [_notifyController viewDidLoad];
     
     // du.
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KFLeaveMsg" bundle:nil];
-//    _leaveMsgController1 = [storyboard instantiateViewControllerWithIdentifier:[KFLeaveMsgViewController storyboardName]];
+    //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"KFLeaveMsg" bundle:nil];
+    //    _leaveMsgController1 = [storyboard instantiateViewControllerWithIdentifier:[KFLeaveMsgViewController storyboardName]];
     
     _leaveMsgController = [[LeaveMsgViewController alloc] init];
     [KFManager sharedInstance].leaveMsg = _leaveMsgController;
@@ -213,7 +213,7 @@ static NSInteger currentTotalBadgeValue;
     
     _tipNotifyView = [[DXTipView alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
     _tipNotifyView.tipNumber = nil;
-
+    
     _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLeftView)];
 }
 
@@ -346,12 +346,12 @@ static NSInteger currentTotalBadgeValue;
 
 - (void)historyBackAction
 {
-
+    
 }
 
 - (void)settingBackAction
 {
-   
+    
 }
 
 - (void)showLeftView
@@ -360,7 +360,7 @@ static NSInteger currentTotalBadgeValue;
     leftVC.leftDelegate =  self;
     [self setTotalBadgeValue];
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-
+    
 }
 
 -(void) setConversationWithBadgeValue:(NSString*)badgeValue
@@ -461,7 +461,7 @@ static NSInteger currentTotalBadgeValue;
         [self.historyController initData];
         [self.navigationController pushViewController:self.historyController animated:NO];
         NSArray *views = [self.navigationController viewControllers];
-         BOOL needPush = YES;
+        BOOL needPush = YES;
         for (UIViewController *view in views) {
             if ([view isKindOfClass:[HistoryConversationsController class]]) {
                 needPush = NO;
@@ -492,7 +492,7 @@ static NSInteger currentTotalBadgeValue;
         }
     }
     
-#else 
+#else
     else if (index == 2)
     {
         //================appstore start=================
@@ -553,11 +553,11 @@ static NSInteger currentTotalBadgeValue;
 - (void)didAutoReconnectFinishedWithError:(NSError *)error{
     
     if (error) {
-//        DDLogCInfo(@"didAutoReconnectFinished---%@",error.description);
+        //        DDLogCInfo(@"didAutoReconnectFinished---%@",error.description);
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"重连失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     } else {
-//        DDLogCInfo(@"didAutoReconnectFinished");
+        //        DDLogCInfo(@"didAutoReconnectFinished");
     }
 }
 
@@ -696,26 +696,8 @@ static NSInteger currentTotalBadgeValue;
 //}
 
 - (void)dealloc {
-
+    
     NSLog(@"dealloc __func__%s",__func__);
-}
-
-- (void)playSoundAndVibration{
-    NSTimeInterval timeInterval = [[NSDate date]
-                                   timeIntervalSinceDate:self.lastPlaySoundDate];
-    if (timeInterval < kDefaultPlaySoundInterval) {
-        //如果距离上次响铃和震动时间太短, 则跳过响铃
-        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
-        return;
-    }
-    
-    //保存最后一次响铃时间
-    self.lastPlaySoundDate = [NSDate date];
-    
-    // 收到消息时，播放音频
-//    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
-    // 收到消息时，震动
-//    [[EMCDDeviceManager sharedInstance] playVibration];
 }
 
 @end
