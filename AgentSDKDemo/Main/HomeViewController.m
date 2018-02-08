@@ -589,52 +589,6 @@ static NSInteger currentTotalBadgeValue;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"settingBackAction" object:nil];
 }
 
-
-- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary*)dic;
-{
-    //发送本地推送
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate date]; //触发通知的时间
-    notification.alertBody = message;
-    notification.alertAction = NSLocalizedString(@"open", @"Open");
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
-    if (timeInterval < kDefaultPlaySoundInterval) {
-        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
-    } else {
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        self.lastPlaySoundDate = [NSDate date];
-    }
-    
-    if (dic) {
-        @try {
-            NSMutableDictionary *userInfo = [self _getSafeDictionary:dic];
-            notification.userInfo = userInfo;
-        } @catch (NSException *exception) {
-            NSLog(@"exception : %@",exception);
-        } @finally {
-            
-        }
-    }
-    
-    if ([notification.userInfo objectForKey:@"body"]) {
-        HDConversation *model = [[HDConversation alloc] initWithDictionary:[notification.userInfo objectForKey:@"body"]];
-        if (_serviceSessionId.length > 0) {
-            if ([_serviceSessionId isEqualToString:model.sessionId]) {
-                _isEnterChat = YES;
-            } else {
-                _isEnterChat = NO;
-            }
-        } else {
-            _isEnterChat = YES;
-            _serviceSessionId = model.sessionId;
-        }
-    }
-    
-    //发送通知
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
-
 - (NSMutableDictionary*)_getSafeDictionary:(NSDictionary*)dic
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:dic];

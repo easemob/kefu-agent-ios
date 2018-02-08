@@ -110,7 +110,20 @@ singleton_implementation(KFManager)
 
 #pragma mark - 会话
 - (void)transferScheduleRequest:(NSString *)sessionId {
-    [self playSoundAndVibration];
+    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    switch (state) {
+        case UIApplicationStateActive:
+            [self playSoundAndVibration];
+            break;
+        case UIApplicationStateInactive:
+            [self playSoundAndVibration];
+            break;
+        case UIApplicationStateBackground:
+            [self showNotificationWithMessage:@"有一条新消息" message:nil];
+            break;
+        default:
+            break;
+    }
 }
 
 //会话被管理员转接
@@ -133,7 +146,7 @@ singleton_implementation(KFManager)
 //有新会话
 - (void)newConversationWithSessionId:(NSString *)sessionId {
     NSLog(@"有新会话");
-    [self playSoundAndVibration];
+    [self transferScheduleRequest:sessionId];
     [_conversation refreshData];
 }
 //客服列表改变
