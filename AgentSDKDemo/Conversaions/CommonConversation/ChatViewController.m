@@ -200,10 +200,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
     [self markAsRead];
     if (chatType == ChatViewTypeChat) {
-        UIView *titleView = [[UIView alloc] init];
-        titleView.frame = self.tagBtn.frame;
-        [titleView addSubview:self.tagBtn];
-        [self.navigationItem setTitleView:titleView];
+        [self.navigationItem setTitleView:self.tagBtn];
+        CGRect frame = self.tagBtn.frame;
         [self.view addSubview:self.chatToolBar];
         [self.chatToolBar addSubview:self.visitorPredictView];
         [self.view addSubview:self.moreView];
@@ -258,14 +256,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)setupBarButtonItem
 {
-    _backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 66, 36)];
+    _backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 36)];
     [_backButton setImage:[UIImage imageNamed:@"shai_icon_backCopy"] forState:UIControlStateNormal];
     [_backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
     [_backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -44, 0, 0)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backButton];
     
     if (chatType == ChatViewTypeChat) {
-        _backButton.width = 100.f;
         [_backButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -44, 0, 0)];
         [_backButton setTitle:[NSString stringWithFormat:@"(%@)",_notifyNumber==nil?@"0":_notifyNumber] forState:UIControlStateNormal];
     }
@@ -287,7 +284,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _promptBoxView = [[EMPromptBoxView alloc] init];
         _promptBoxView.frame = CGRectMake(50, CGRectGetMaxY(self.tableView.frame) - 100 - iPhoneXBottomHeight, KScreenWidth - 100, 100);
         _promptBoxView.backgroundColor = [UIColor clearColor];
-//        _promptBoxView.backgroundColor = [UIColor redColor];
         _promptBoxView.delegate = self;
     }
     return _promptBoxView;
@@ -538,6 +534,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [_tagBtn setTitleText:title];
         [_tagBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.f]];
         [_tagBtn layoutIfNeeded];
+//        [_tagBtn sizeToFit];
         
 //        [_tagBtn addSubview:self.originTypeImage];
         [_tagBtn addSubview:self.originTypeLable];

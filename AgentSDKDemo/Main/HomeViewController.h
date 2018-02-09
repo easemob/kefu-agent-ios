@@ -30,6 +30,8 @@
 
 - (void)setNotifyWithBadgeValue:(NSString*)badgeValue;
 
+- (void)setLeaveMessageWithBadgeValue:(NSString*)badgeValue;
+
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification;
 
 - (void)messagesDidReceive:(NSArray *)aMessages;

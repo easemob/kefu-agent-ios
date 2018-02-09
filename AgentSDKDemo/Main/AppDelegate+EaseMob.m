@@ -35,29 +35,10 @@
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
-    
-//    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
-//    options.restServer = @"a1.dongfeng-renault.com.cn";
-//    options.chatServer = @"im1.dongfeng-renault.com.cn";
-//    options.chatPort = 5222;
-//    options.enableDnsConfig = NO;
-    
-    
-//    options.kefuRestAddress = @"https://visitor.sina.com.cn";
-//    options.restServer = @"a1.kfservice.sina.com.cn";
-//    options.chatServer = @"im1.kfservice.sina.com.cn";
-//    options.chatPort = 6717;
-//    options.enableDnsConfig = NO;
-
     [[HDClient sharedClient] initializeSDKWithOptions:options];
-    
-    
     [self registerRemoteNotification];
-    
     [self registerEaseMobNotification];
-    
     [self setupNotifiers];
-    
     [[EMSDImageCache sharedImageCache] cleanDisk];
 }
 
@@ -185,7 +166,9 @@
 
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    [[HDClient sharedClient] bindDeviceToken:deviceToken];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       [[HDClient sharedClient] bindDeviceToken:deviceToken];
+    });
 }
 
 // 注册deviceToken失败，此处失败，与环信SDK无关，一般是您的环境配置或者证书配置有误

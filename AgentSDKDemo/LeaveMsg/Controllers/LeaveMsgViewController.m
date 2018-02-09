@@ -13,6 +13,7 @@
 #import "KFLeaveMsgDetailViewController.h"
 #import "KFLeaveMsgListCell.h"
 #import "DXTipView.h"
+#import "HomeViewController.h"
 
 @interface LeaveMsgViewController () <SRRefreshDelegate,EMChatManagerDelegate,KFLeaveMsgDetailViewControllerDelegate>
 {
@@ -58,6 +59,9 @@
     
     _pageSize = 20;
     [self getLeaveMessageList];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [self setUnreadCount:20];
+//    });
 }
 
 - (void)getLeaveMessageList {
@@ -238,13 +242,7 @@
     }
 
     [self showHintNotHide:@"加载中..."];
-    
-//    [[HDClient sharedClient].leaveMsgManager asyncFetchUntreatedLeaveMessagesCountWithCompletion:^(int count, HDError *error)
-//    {
-//
-//    }];
-//    
-//    return;
+
     [[HDClient sharedClient].leaveMsgManager asyncGetLeaveMessagesWithStatusId:nil pageIndex:_page pageSize:_pageSize parameters:nil completion:^(NSArray<HDLeaveMessage *> *leaveMessages, HDError *error) {
         [weakSelf hideHud];
         @synchronized (_refreshLock) {
@@ -354,6 +352,15 @@
         }
     }
     return userInfo;
+}
+
+- (void)setUnreadCount:(NSInteger)count
+{
+    if (count <= 0) {
+        [[HomeViewController HomeViewController] setLeaveMessageWithBadgeValue:nil];
+    } else {
+        [[HomeViewController HomeViewController] setLeaveMessageWithBadgeValue:[NSString stringWithFormat:@"%@",@(count)]];
+    }
 }
 
 @end
