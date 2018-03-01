@@ -237,7 +237,9 @@
                 _customerUnreadcount += customer.unreadCount;
                 [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.userId];
             }
+            [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_customerUnreadcount]}];
             self.dataSource = customers.mutableCopy;
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
             });

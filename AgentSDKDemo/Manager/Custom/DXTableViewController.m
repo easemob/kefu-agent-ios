@@ -91,6 +91,12 @@
 
 #pragma mark - action
 
+- (void)dxDelegateAction:(NSDictionary *)userInfo {
+    if (_dxDelegate && [_dxDelegate respondsToSelector:@selector(dxtableView:userInfo:)]) {
+        [_dxDelegate dxtableView:self userInfo:userInfo];
+    }
+}
+
 - (void)backAction
 {
     [self.navigationController popViewControllerAnimated:YES];

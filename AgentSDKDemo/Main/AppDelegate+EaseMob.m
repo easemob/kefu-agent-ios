@@ -35,6 +35,14 @@
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
+    
+    
+//    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
+//    options.restServer = @"a1.dongfeng-renault.com.cn";
+//    options.chatServer = @"im1.dongfeng-renault.com.cn";
+//    options.chatPort = 5222;
+//    options.enableDnsConfig = NO;
+    
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     [self registerRemoteNotification];
     [self registerEaseMobNotification];
@@ -97,6 +105,9 @@
 
 #pragma mark - notifiers
 - (void)appDidEnterBackgroundNotif:(NSNotification*)notif{
+    NSInteger unreadCount = [[HomeViewController HomeViewController] totleBadgeValue];
+    UIApplication *application = [UIApplication sharedApplication];
+    application.applicationIconBadgeNumber = unreadCount;
     [[HDClient sharedClient] applicationDidEnterBackground:notif.object];
 }
 
@@ -198,24 +209,9 @@
 - (void)registerRemoteNotification{
     UIApplication *application = [UIApplication sharedApplication];
     application.applicationIconBadgeNumber = 0;
-    
-    if([application respondsToSelector:@selector(registerUserNotificationSettings:)])
-    {
-        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
-        [application registerUserNotificationSettings:settings];
-    }
-    
-#if !TARGET_IPHONE_SIMULATOR
-    //iOS8 注册APNS
-    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
-        [application registerForRemoteNotifications];
-    }else{
-        UIUserNotificationType notificationTypes =UIUserNotificationTypeBadge | UIUserNotificationTypeSound |   UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
-        [application registerUserNotificationSettings:settings];
-    }
-#endif
+    UIUserNotificationType notificationTypes =UIUserNotificationTypeBadge | UIUserNotificationTypeSound |   UIUserNotificationTypeAlert;
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+    [application registerUserNotificationSettings:settings];
 }
 
 

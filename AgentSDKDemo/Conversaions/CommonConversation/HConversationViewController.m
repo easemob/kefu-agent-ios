@@ -17,7 +17,7 @@
 #import "SRRefreshView.h"
 #import "UIAlertView+AlertBlock.h"
 #import "AppDelegate.h"
-@interface HConversationViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate,ChatViewControllerDelegate>
+@interface HConversationViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate,ChatViewControllerDelegate, HDClientDelegate>
 {
     BOOL _isRefresh;
     int _unreadcount;
@@ -66,7 +66,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [HDClient.sharedClient addDelegate:self delegateQueue:nil];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
@@ -110,6 +110,8 @@
             for (HDConversation *model in self.dataSource) {
                 _unreadcount += model.unreadCount;
             }
+            
+            [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
             dispatch_async(dispatch_get_main_queue(), ^{
                 KFManager *cm = [KFManager sharedInstance];
                 [cm setTabbarBadgeValueWithAllConversations:self.dataSource];
@@ -382,19 +384,16 @@
                         [_dataSourceDic setObject:model forKey:model.sessionId];
                         model.lastMessage.sessionId = model.sessionId;
                     }
+                    [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
                     break;
                 }
                 default:
                     break;
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
-                [weakSelf.tableView reloadData];
-            });
+            [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
+            [weakSelf.tableView reloadData];
         } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
-            });
+            [weakSelf.tableView reloadData];
         }
     }];
 }

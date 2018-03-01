@@ -146,8 +146,8 @@ singleton_implementation(KFManager)
 //有新会话
 - (void)newConversationWithSessionId:(NSString *)sessionId {
     NSLog(@"有新会话");
-    [self transferScheduleRequest:sessionId];
     [_conversation refreshData];
+    [self transferScheduleRequest:sessionId];
 }
 //客服列表改变
 - (void)agentUsersListChange {
@@ -218,19 +218,23 @@ singleton_implementation(KFManager)
 
 - (void)showNotificationWithMessage:(NSString *)content message:(HDMessage *)message;
 {
+    
     NSInteger PreviousNum = [UIApplication sharedApplication].applicationIconBadgeNumber;
-    [UIApplication sharedApplication].applicationIconBadgeNumber = ++PreviousNum;
+//    [UIApplication sharedApplication].applicationIconBadgeNumber = ++PreviousNum;
+    
     //发送本地推送
     UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.applicationIconBadgeNumber = ++PreviousNum;
     notification.fireDate = [NSDate date]; //触发通知的时间
     notification.alertBody = content;
     notification.alertAction = NSLocalizedString(@"open", @"Open");
-    notification.timeZone = [NSTimeZone defaultTimeZone];
+//    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
     if (timeInterval < kDefaultPlaySoundInterval) {
         NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+        return;
     } else {
-        notification.soundName = UILocalNotificationDefaultSoundName;
         self.lastPlaySoundDate = [NSDate date];
     }
     
@@ -252,9 +256,9 @@ singleton_implementation(KFManager)
 }
 
 - (void)setTabbarBadgeValueWithAllConversations:(NSMutableArray *)allConversations {
-    NSInteger unreadCount=0;
+    NSInteger unreadCount = 0;
     for (HDConversation *model in allConversations) {
-        unreadCount+= model.unreadCount;
+        unreadCount += model.unreadCount;
     }
     _curConversationNum = allConversations.count;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
@@ -280,7 +284,6 @@ singleton_implementation(KFManager)
     if (![[KFManager sharedInstance].curViewController isKindOfClass:[KFWarningViewController class]]) {
          [kNotiCenter postNotificationName:KFMonitorNoti object:@(NO)];
     }
-   
 }
 
 

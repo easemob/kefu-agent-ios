@@ -192,7 +192,7 @@ static NSInteger currentTotalBadgeValue;
     
     self.view.backgroundColor = RGBACOLOR(25, 25, 25, 1);
     
-    self.viewControllers = @[_conversationsController, _waitqueueController, _notifyController, _leaveMsgController];
+    self.viewControllers = @[_conversationsController, _waitqueueController, _notifyController,_leaveMsgController];
     
     self.navigationItem.titleView = _conversationsController.titleView;
     self.navigationItem.leftBarButtonItem = _conversationsController.headerViewItem;
@@ -461,10 +461,12 @@ static NSInteger currentTotalBadgeValue;
 {
     //设置提醒数
     currentTotalBadgeValue = [currentBadgeValue integerValue] + [currentWaitBadgeValue integerValue] + [currentNotifyBadgeValue integerValue] + [currentLeaveMessageBadgeValue integerValue];
-    UIApplication *application = [UIApplication sharedApplication];
-    application.applicationIconBadgeNumber = currentTotalBadgeValue;
     KFLeftViewController *leftVC = (KFLeftViewController*)self.mm_drawerController.leftDrawerViewController;
     [leftVC refreshUnreadView:currentTotalBadgeValue];
+}
+
+- (NSInteger)totleBadgeValue {
+    return currentTotalBadgeValue;
 }
 
 
@@ -609,50 +611,50 @@ static NSInteger currentTotalBadgeValue;
 }
 
 
-- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary*)dic;
-{
-    //发送本地推送
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate date]; //触发通知的时间
-    notification.alertBody = message;
-    notification.alertAction = NSLocalizedString(@"open", @"Open");
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
-    if (timeInterval < kDefaultPlaySoundInterval) {
-        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
-    } else {
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        self.lastPlaySoundDate = [NSDate date];
-    }
-    
-    if (dic) {
-        @try {
-            NSMutableDictionary *userInfo = [self _getSafeDictionary:dic];
-            notification.userInfo = userInfo;
-        } @catch (NSException *exception) {
-            NSLog(@"exception : %@",exception);
-        } @finally {
-            
-        }
-    }
-    
-    if ([notification.userInfo objectForKey:@"body"]) {
-        HDConversation *model = [[HDConversation alloc] initWithDictionary:[notification.userInfo objectForKey:@"body"]];
-        if (_serviceSessionId.length > 0) {
-            if ([_serviceSessionId isEqualToString:model.sessionId]) {
-                _isEnterChat = YES;
-            } else {
-                _isEnterChat = NO;
-            }
-        } else {
-            _isEnterChat = YES;
-            _serviceSessionId = model.sessionId;
-        }
-    }
-    
-    //发送通知
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
+//- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary*)dic;
+//{
+//    //发送本地推送
+//    UILocalNotification *notification = [[UILocalNotification alloc] init];
+//    notification.fireDate = [NSDate date]; //触发通知的时间
+//    notification.alertBody = message;
+//    notification.alertAction = NSLocalizedString(@"open", @"Open");
+//    notification.timeZone = [NSTimeZone defaultTimeZone];
+//    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
+//    if (timeInterval < kDefaultPlaySoundInterval) {
+//        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+//    } else {
+//        notification.soundName = UILocalNotificationDefaultSoundName;
+//        self.lastPlaySoundDate = [NSDate date];
+//    }
+//    
+//    if (dic) {
+//        @try {
+//            NSMutableDictionary *userInfo = [self _getSafeDictionary:dic];
+//            notification.userInfo = userInfo;
+//        } @catch (NSException *exception) {
+//            NSLog(@"exception : %@",exception);
+//        } @finally {
+//            
+//        }
+//    }
+//    
+//    if ([notification.userInfo objectForKey:@"body"]) {
+//        HDConversation *model = [[HDConversation alloc] initWithDictionary:[notification.userInfo objectForKey:@"body"]];
+//        if (_serviceSessionId.length > 0) {
+//            if ([_serviceSessionId isEqualToString:model.sessionId]) {
+//                _isEnterChat = YES;
+//            } else {
+//                _isEnterChat = NO;
+//            }
+//        } else {
+//            _isEnterChat = YES;
+//            _serviceSessionId = model.sessionId;
+//        }
+//    }
+//    
+//    //发送通知
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//}
 
 - (NSMutableDictionary*)_getSafeDictionary:(NSDictionary*)dic
 {

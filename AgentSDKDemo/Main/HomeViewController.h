@@ -40,6 +40,8 @@
 
 - (void)setTotalBadgeValue;
 
+- (NSInteger)totleBadgeValue;
+
 - (void)showLeftView;
 
 @end

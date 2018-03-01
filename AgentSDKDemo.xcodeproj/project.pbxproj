@@ -13,6 +13,8 @@
 		90502AFD201F105600EE1666 /* KFLeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */; };
 		9079A9762005C49D00C58941 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; };
 		9079A9772005C49D00C58941 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90D04C752047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
+		90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
 		90D3CBA0201AEC8B005FD40F /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; };
 		90D3CBA1201AEC8B005FD40F /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90D3CBA6201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
@@ -1475,6 +1477,8 @@
 		90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgViewController.m; sourceTree = "<group>"; };
 		90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KFLeaveMsg.storyboard; sourceTree = "<group>"; };
 		9079A9752005C49D00C58941 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
+		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDMonitorCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDMonitorCell.h; sourceTree = "<group>"; };
 		D3058CE61FD67BAE0091E048 /* HDMonitorCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDMonitorCell.m; sourceTree = "<group>"; };
@@ -2970,6 +2974,8 @@
 				D33CE6781F7CA98D00236720 /* ChatViewController.m */,
 				D33CE6791F7CA98D00236720 /* HConversationViewController.h */,
 				D33CE67A1F7CA98D00236720 /* HConversationViewController.m */,
+				90D04C732047A17C005B45FC /* HDSelectButton.h */,
+				90D04C742047A17C005B45FC /* HDSelectButton.m */,
 			);
 			path = CommonConversation;
 			sourceTree = "<group>";
@@ -5591,6 +5597,7 @@
 				D33CE7BC1F7CB01000236720 /* AFURLConnectionOperation.m in Sources */,
 				D33CE68C1F7CA98D00236720 /* JNGroupViewController.m in Sources */,
 				D33CE7681F7CAEB800236720 /* NSDictionary+SafeValue.m in Sources */,
+				90D04C752047A17C005B45FC /* HDSelectButton.m in Sources */,
 				D34DF9D91FA818B70018116D /* AdminHomeViewController.m in Sources */,
 				D3B0E9B41FA9E53400014E74 /* ReminderView.m in Sources */,
 				D33CE6881F7CA98D00236720 /* AddTagViewController.m in Sources */,
@@ -5921,6 +5928,7 @@
 				D3E9CCD91FBED182005E3677 /* AFURLConnectionOperation.m in Sources */,
 				D3E9CCDA1FBED182005E3677 /* JNGroupViewController.m in Sources */,
 				D3E9CCDB1FBED182005E3677 /* NSDictionary+SafeValue.m in Sources */,
+				90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */,
 				D3E9CCDC1FBED182005E3677 /* AdminHomeViewController.m in Sources */,
 				D3E9CCDD1FBED182005E3677 /* ReminderView.m in Sources */,
 				D3E9CCDE1FBED182005E3677 /* AddTagViewController.m in Sources */,
