@@ -492,9 +492,7 @@
             [weakSelf.tableView reloadData];
         }
         else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
-            });
+            [weakSelf.tableView reloadData];
         }
     }];
     
