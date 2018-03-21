@@ -107,13 +107,13 @@
             [self.dataSource removeObject:model];
             [self.dataSource insertObject:model atIndex:0];
             _unreadcount = 0;
-            for (HDConversation *model in self.dataSource) {
-                _unreadcount += model.unreadCount;
+            for (HDConversation *cModel in self.dataSource) {
+                _unreadcount += cModel.unreadCount;
             }
             
             [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
             dispatch_async(dispatch_get_main_queue(), ^{
-                KFManager *cm = [KFManager sharedInstance];
+                KFManager *cm = [KFManager sharedInstance]; 
                 [cm setTabbarBadgeValueWithAllConversations:self.dataSource];
                 [cm setNavItemBadgeValueWithAllConversations:self.dataSource];
                 [self.tableView reloadData];

@@ -126,7 +126,6 @@
 
 //最后一条消息改变
 - (void)conversationLastMessageChanged:(HDMessage *)message {
-    [_conversationController conversationLastMessageChanged:message];
     if (message.chatType == HDChatTypeCustomer) {
         [_customerViewController loadData];
     }

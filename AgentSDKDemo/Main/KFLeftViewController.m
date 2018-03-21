@@ -30,11 +30,11 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 @interface KFLeftViewController () <UITableViewDelegate,UITableViewDataSource,EMPickerSaveDelegate>
 @property (nonatomic, strong) LeftMenuHeaderView *headerView;
-@property (nonatomic, strong) DXTipView *unreadConversationLabel;
 @property (nonatomic, strong) EMPickerView *pickerView;
-@property (nonatomic, strong) UIImageView *monitorView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) KFSwitchTypeButton *switchBtn;
+@property (nonatomic, strong) NSArray *adminDatasrouce;
+@property (nonatomic, strong) NSArray *nomalDatasource;
 @end
 
 @implementation KFLeftViewController
@@ -53,13 +53,12 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     [kNotiCenter addObserver:self selector:@selector(setMonitTip:) name:KFMonitorNoti object:nil];
     self.view.backgroundColor = RGBACOLOR(26, 26, 26, 1);
     
-    if ([self isAdminAccountLogin]) {
-        [self.view addSubview:self.switchBtn];
-        [self.tableView addSubview:self.monitorView];
-        self.monitorView.hidden = ![KFManager sharedInstance].needShowMonitorTip;
-    }
     [self setupHeadView];
+    [self.view addSubview:self.switchBtn];
     [self switchIsAdminType:NO];
+    if (![self isAdminAccountLogin]) {
+        [self.switchBtn setHidden:YES];
+    }
     [self.view addSubview:self.tableView];
 }
 
@@ -67,16 +66,9 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     _headerView = [[LeftMenuHeaderView alloc] initWithFrame:CGRectMake(0, 40, self.view.width, 70)];
     self.tableView.tableHeaderView = _headerView;
     _statusArray = @[@"空闲",@"忙碌",@"离开",@"隐身"];
-    [_headerView.onlineButton addTarget:self action:@selector(onlineButtonAction) forControlEvents:UIControlEventTouchUpInside];
-}
-
-
-- (BOOL)isAppStoreType {
-#if APPSTORE
-    return YES;
-#else
-    return NO;
-#endif
+    [_headerView.onlineButton addTarget:self
+                                 action:@selector(onlineButtonAction)
+                       forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)switchButtonAction:(UIButton *)btn {
@@ -87,22 +79,22 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 - (void)switchIsAdminType:(BOOL)isAdminType {
     [self.switchBtn setIsAdminType:isAdminType];
     [self.switchBtn showUnreadTip:[KFManager sharedInstance].needShowMonitorTip];
+    [self showTipImage:[KFManager sharedInstance].needShowMonitorTip];
     if (isAdminType) {
-        if ([self isAppStoreType]) {
-            _menuData = [self appStoreAdminItems];
-        }else {
-            _menuData = [self nomalAdminItems];
-        }
+        _menuData = self.adminDatasrouce;
         [self.leftDelegate adminMenuClickWithIndex:AgentMenuTagHome];
     }else {
-        if ([self isAppStoreType]) {
-            _menuData = [self appStoreAgentItems];
-        }else {
-            _menuData = [self nomalAgentItems];
-        }
+        _menuData = self.nomalDatasource;
         [self.leftDelegate menuClickWithIndex:AgentMenuTagHome];
     }
     
+    [self.tableView reloadData];
+}
+
+- (void)refreshUnreadView:(NSInteger)badgeNumber
+{
+    KFLeftViewItem *item = item = self.nomalDatasource[0];
+    [item setUnreadCount:(int)badgeNumber];
     [self.tableView reloadData];
 }
 
@@ -117,24 +109,14 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 }
 
 - (void)setMonitTip:(NSNotification *)noti {
-    BOOL hidden = [noti.object boolValue];
-   
-    self.monitorView.hidden = hidden;
-    if (self.switchBtn.isAdminType == hidden) {
-        self.monitorView.hidden = YES;
-    }
-    [self reloadData];
+    [self.switchBtn showUnreadTip:[KFManager sharedInstance].needShowMonitorTip];
+    [self showTipImage:![noti.object boolValue]];
 }
 
-//最下
-- (UIImageView *)monitorView {
-    if (_monitorView == nil) {
-        _monitorView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 15, 15)];
-        _monitorView.image = [UIImage imageNamed:@"MonitorAlarm"];
-        _monitorView.center = CGPointMake(self.tableView.width-100, _switchBtn.centerY);
-        _monitorView.hidden = YES;
-    }
-    return _monitorView;
+- (void)showTipImage:(BOOL)isShow {
+    KFLeftViewItem *item = self.adminDatasrouce[2];
+    [item setIsShowTipImage:isShow];
+    [self.tableView reloadData];
 }
 
 - (KFSwitchTypeButton *)switchBtn {
@@ -166,15 +148,26 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     return _tableView;
 }
 
+- (NSArray *)adminDatasrouce {
+    if (!_adminDatasrouce) {
+        _adminDatasrouce = [self isAppStoreType] ? [self appStoreAdminItems] : [self nomalAdminItems];
+    }
+    return _adminDatasrouce;
+}
+
+- (NSArray *)nomalDatasource {
+    if (!_nomalDatasource) {
+        _nomalDatasource = [self isAppStoreType] ? [self appStoreAgentItems] : [self nomalAgentItems];
+    }
+    return _nomalDatasource;
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     return [_menuData count];
 }
 
@@ -269,18 +262,9 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     }];
 }
 
-- (void)refreshUnreadView:(NSInteger)badgeNumber
-{
-    NSLog(@"----------------unread count changed--------------------");
-}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)reloadData {
-    [self.tableView reloadData];
 }
 
 
@@ -315,6 +299,16 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
              [KFLeftViewItem name:@"现场管理" image:[UIImage imageNamed:@"icon_manager_supervise"]],
              [KFLeftViewItem name:@"告警记录" image:[UIImage imageNamed:@"alarmsRecord"]]
              ];
+}
+
+
+
+- (BOOL)isAppStoreType {
+#if APPSTORE
+    return YES;
+#else
+    return NO;
+#endif
 }
 
 @end

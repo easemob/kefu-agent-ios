@@ -72,7 +72,7 @@
 }
 
 - (void)showUnreadTip:(BOOL)isShow {
-    if (isShow && _isAdminType) {
+    if (isShow && !_isAdminType) {
         [self.tipView setHidden:NO];
     }else {
         [self.tipView setHidden:YES];

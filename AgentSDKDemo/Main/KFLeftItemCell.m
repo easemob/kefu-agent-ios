@@ -10,7 +10,7 @@
 #import "UIView+RNAdditions.h"
 
 @interface KFLeftItemCell()
-@property (nonatomic, strong) UIImageView *tipImageView;
+@property (nonatomic, strong) UIView *tipImageView;
 @property (nonatomic, strong) UILabel *unreadLabel;
 @end
 
@@ -26,9 +26,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
     if (self.model.isShowTipImage) {
-        self.tipImageView.top = 17;
+        self.tipImageView.top = (self.height - self.tipImageView.height) / 2;
         self.tipImageView.right = self.frame.size.width - 100;
         [self.tipImageView setHidden:NO];
     }else {
@@ -41,12 +40,11 @@
             self.unreadLabel.font = [UIFont systemFontOfSize:11];
         }else {
             self.unreadLabel.text = [NSString stringWithFormat:@"%d",self.model.unreadCount];
-            self.unreadLabel.font = [UIFont systemFontOfSize:12];
+            self.unreadLabel.font = [UIFont systemFontOfSize:15];
         }
         
         [self.unreadLabel setHidden:NO];
-        [self.unreadLabel sizeToFit];
-        self.unreadLabel.top = 17;
+        self.unreadLabel.top = (self.height - self.unreadLabel.height) / 2;
         self.unreadLabel.right = self.frame.size.width - 100;
     }else {
         [self.unreadLabel setHidden:YES];
@@ -66,10 +64,12 @@
     return _unreadLabel;
 }
 
-- (UIImageView *)tipImageView {
+- (UIView *)tipImageView {
     if (!_tipImageView) {
-        _tipImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, 15, 15)];
-        _tipImageView.image = [UIImage imageNamed:@"MonitorAlarm"];
+        _tipImageView = [[UIView alloc] initWithFrame:CGRectMake(0,0, 15, 15)];
+        _tipImageView.backgroundColor = [UIColor redColor];
+        _tipImageView.layer.masksToBounds = YES;
+        _tipImageView.layer.cornerRadius = 7;
     }
     
     return _tipImageView;
@@ -80,6 +80,7 @@
 }
 
 - (void)setModel:(KFLeftViewItem *)model {
+    _model = model;
     self.textLabel.text = model.name;
     self.imageView.image = model.image;
 }
