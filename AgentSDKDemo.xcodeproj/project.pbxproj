@@ -11,6 +11,12 @@
 		90502AFB201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */; };
 		90502AFC201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */; };
 		90502AFD201F105600EE1666 /* KFLeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */; };
+		90615572206205C5006113FF /* KFLeftItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090E72060BB2D0062FED6 /* KFLeftItemCell.m */; };
+		90615573206205C7006113FF /* KFLeftViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090EA2060BB530062FED6 /* KFLeftViewItem.m */; };
+		9061557620620861006113FF /* KFSwitchTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9061557520620860006113FF /* KFSwitchTypeButton.m */; };
+		9061557720620EF9006113FF /* KFSwitchTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9061557520620860006113FF /* KFSwitchTypeButton.m */; };
+		907090E82060BB2D0062FED6 /* KFLeftItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090E72060BB2D0062FED6 /* KFLeftItemCell.m */; };
+		907090EB2060BB530062FED6 /* KFLeftViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090EA2060BB530062FED6 /* KFLeftViewItem.m */; };
 		9079A9762005C49D00C58941 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; };
 		9079A9772005C49D00C58941 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9079A9752005C49D00C58941 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90D04C752047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
@@ -1476,6 +1482,12 @@
 		90502AF7201F102C00EE1666 /* KFLeaveMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgViewController.h; sourceTree = "<group>"; };
 		90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgViewController.m; sourceTree = "<group>"; };
 		90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KFLeaveMsg.storyboard; sourceTree = "<group>"; };
+		9061557420620860006113FF /* KFSwitchTypeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSwitchTypeButton.h; sourceTree = "<group>"; };
+		9061557520620860006113FF /* KFSwitchTypeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSwitchTypeButton.m; sourceTree = "<group>"; };
+		907090E62060BB2D0062FED6 /* KFLeftItemCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFLeftItemCell.h; sourceTree = "<group>"; };
+		907090E72060BB2D0062FED6 /* KFLeftItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeftItemCell.m; sourceTree = "<group>"; };
+		907090E92060BB530062FED6 /* KFLeftViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFLeftViewItem.h; sourceTree = "<group>"; };
+		907090EA2060BB530062FED6 /* KFLeftViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeftViewItem.m; sourceTree = "<group>"; };
 		9079A9752005C49D00C58941 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
 		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
@@ -3066,6 +3078,12 @@
 				D33CE7211F7CAD2C00236720 /* KFBaseNavigationController.m */,
 				D33CE7221F7CAD2C00236720 /* KFLeftViewController.h */,
 				D33CE7231F7CAD2C00236720 /* KFLeftViewController.m */,
+				907090E62060BB2D0062FED6 /* KFLeftItemCell.h */,
+				907090E72060BB2D0062FED6 /* KFLeftItemCell.m */,
+				907090E92060BB530062FED6 /* KFLeftViewItem.h */,
+				907090EA2060BB530062FED6 /* KFLeftViewItem.m */,
+				9061557420620860006113FF /* KFSwitchTypeButton.h */,
+				9061557520620860006113FF /* KFSwitchTypeButton.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -5576,6 +5594,7 @@
 				D33CE6C01F7CA98D00236720 /* EMChatViewCell.m in Sources */,
 				D33CE6B91F7CA98D00236720 /* EMChatImageBubbleView.m in Sources */,
 				D33CE6C41F7CA98D00236720 /* EMChatHeaderTagView.m in Sources */,
+				907090E82060BB2D0062FED6 /* KFLeftItemCell.m in Sources */,
 				D33CE7BD1F7CB01000236720 /* AFURLRequestSerialization.m in Sources */,
 				D33CE7B91F7CB01000236720 /* AFHTTPSessionManager.m in Sources */,
 				D33CE7BE1F7CB01000236720 /* AFURLResponseSerialization.m in Sources */,
@@ -5621,6 +5640,7 @@
 				D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */,
 				D3DFB35C1FD78F6B00A9358A /* YYClassInfo.m in Sources */,
 				D33CE6BF1F7CA98D00236720 /* EMChatViewBaseCell.m in Sources */,
+				9061557620620861006113FF /* KFSwitchTypeButton.m in Sources */,
 				D33CE6B11F7CA98D00236720 /* DXMessageToolBar.m in Sources */,
 				D33CE79F1F7CAF6700236720 /* KFUserModel.m in Sources */,
 				D33CE76C1F7CAEB800236720 /* UIAlertView+AlertBlock.m in Sources */,
@@ -5800,6 +5820,7 @@
 				D33CE6B21F7CA98D00236720 /* DXFaceView.m in Sources */,
 				D3A95E441EA0F47100ADD394 /* IQPreviousNextView.m in Sources */,
 				D33CE7731F7CAEB800236720 /* UIView+RNAdditions.m in Sources */,
+				907090EB2060BB530062FED6 /* KFLeftViewItem.m in Sources */,
 				D3A95E761EA0F47100ADD394 /* THProgressView.m in Sources */,
 				D3A95E4A1EA0F47100ADD394 /* MBProgressHUD.m in Sources */,
 				D33CE6BB1F7CA98D00236720 /* EMChatLocationBubbleView.m in Sources */,
@@ -5907,6 +5928,7 @@
 				D3E9CCC61FBED182005E3677 /* EMChatViewCell.m in Sources */,
 				D3E9CCC71FBED182005E3677 /* EMChatImageBubbleView.m in Sources */,
 				D3E9CCC81FBED182005E3677 /* EMChatHeaderTagView.m in Sources */,
+				90615572206205C5006113FF /* KFLeftItemCell.m in Sources */,
 				D3E9CCC91FBED182005E3677 /* AFURLRequestSerialization.m in Sources */,
 				D3E9CCCA1FBED182005E3677 /* AFHTTPSessionManager.m in Sources */,
 				D3E9CCCB1FBED182005E3677 /* AFURLResponseSerialization.m in Sources */,
@@ -5952,6 +5974,7 @@
 				D3058CEC1FD684F30091E048 /* HDTipLabel.m in Sources */,
 				D3DFB35D1FD78F6B00A9358A /* YYClassInfo.m in Sources */,
 				D3E9CCF01FBED182005E3677 /* EMChatViewBaseCell.m in Sources */,
+				9061557720620EF9006113FF /* KFSwitchTypeButton.m in Sources */,
 				D3E9CCF11FBED182005E3677 /* DXMessageToolBar.m in Sources */,
 				D3E9CCF21FBED182005E3677 /* KFUserModel.m in Sources */,
 				D3E9CCF31FBED182005E3677 /* UIAlertView+AlertBlock.m in Sources */,
@@ -6131,6 +6154,7 @@
 				D3E9CD961FBED182005E3677 /* DXFaceView.m in Sources */,
 				D3E9CD971FBED182005E3677 /* IQPreviousNextView.m in Sources */,
 				D3E9CD981FBED182005E3677 /* UIView+RNAdditions.m in Sources */,
+				90615573206205C7006113FF /* KFLeftViewItem.m in Sources */,
 				D3E9CD991FBED182005E3677 /* THProgressView.m in Sources */,
 				D3E9CD9A1FBED182005E3677 /* MBProgressHUD.m in Sources */,
 				D3E9CD9B1FBED182005E3677 /* EMChatLocationBubbleView.m in Sources */,
