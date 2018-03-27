@@ -46,10 +46,10 @@ singleton_implementation(KFManager)
      [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
-- (BOOL)needShowMonitorTip {
+- (BOOL)needShowSuperviseTip {
     NSString *agentUsername = [HDClient sharedClient].currentAgentUser.username;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dic = [ud dictionaryForKey:@"monitor"];
+    NSDictionary *dic = [ud dictionaryForKey:@"Supervise"];
     if (dic) {
         if ([dic objectForKey:agentUsername]) {
             return [[dic objectForKey:agentUsername] boolValue];
@@ -58,14 +58,14 @@ singleton_implementation(KFManager)
     return NO;
 }
 
-- (void)setNeedShowMonitorTip:(BOOL)needShowMonitorTip {
+- (void)setNeedShowSuperviseTip:(BOOL)needShowSuperviseTip {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *mdic = [ud dictionaryForKey:@"monitor"].mutableCopy;
+    NSMutableDictionary *mdic = [ud dictionaryForKey:@"Supervise"].mutableCopy;
     if (mdic == nil) {
         mdic = [NSMutableDictionary dictionaryWithCapacity:0];
     }
-    [mdic setValue:@(needShowMonitorTip) forKey:[HDClient sharedClient].currentAgentUser.username];
-    [ud setObject:mdic forKey:@"monitor"];
+    [mdic setValue:@(needShowSuperviseTip) forKey:[HDClient sharedClient].currentAgentUser.username];
+    [ud setObject:mdic forKey:@"Supervise"];
 }
 
 - (void)playSoundAndVibration{
@@ -279,10 +279,10 @@ singleton_implementation(KFManager)
     _curChatViewConvtroller.unreadBadgeValue = [self getBadgeValueWithUnreadCount:unreadCount];
 }
 
-- (void)receiveMonitorAlarm {
-    self.needShowMonitorTip = YES;
+- (void)receiveSuperviseAlarm {
+    self.needShowSuperviseTip = YES;
     if (![[KFManager sharedInstance].curViewController isKindOfClass:[KFWarningViewController class]]) {
-         [kNotiCenter postNotificationName:KFMonitorNoti object:@(NO)];
+         [kNotiCenter postNotificationName:KFSuperviseNoti object:@(NO)];
     }
 }
 

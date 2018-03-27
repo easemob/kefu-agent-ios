@@ -37,7 +37,7 @@ singleton_interface(KFManager);
  */
 @property(nonatomic,strong) UIViewController *curViewController;
 
-@property(nonatomic,assign) BOOL needShowMonitorTip;
+@property(nonatomic,assign) BOOL needShowSuperviseTip;
 
 @property(nonatomic,strong) EMHeaderImageView *headImageView;
 

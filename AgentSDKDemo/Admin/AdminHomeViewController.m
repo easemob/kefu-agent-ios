@@ -97,6 +97,7 @@ typedef NS_ENUM(NSUInteger, CardType) {
 #import "KFTrendDataModel.h"
 #import "AAChartView.h"
 #import "SRRefreshView.h"
+
 @interface AdminHomeViewController () <KFScreenViewControllerDelegate,SRRefreshDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong) UIScrollView *backView;
 @property (strong, nonatomic) SRRefreshView *slimeView;
@@ -250,7 +251,7 @@ typedef NS_ENUM(NSUInteger, CardType) {
     ;
     chartModel.dataLabelEnabled = YES;
     [_chartNewSessionToday aa_drawChartWithChartModel:chartModel];//图表视图对象调用图表模型对象,绘制最终图形
-    [_chartNewSessionToday aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表
+//    [_chartNewSessionToday aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表
 }
 
 
@@ -297,11 +298,11 @@ typedef NS_ENUM(NSUInteger, CardType) {
     chartModel.dataLabelEnabled = YES;
     if (type == TrendDataTypeSession) {
         [_chartSession aa_drawChartWithChartModel:chartModel];//图表视图对象调用图表模型对象,绘制最终图形
-        [_chartSession aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表
+//        [_chartSession aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表
     }
     if (type == TrendDataTypeMessage) {
         [_chartMessage aa_drawChartWithChartModel:chartModel];//图表视图对象调用图表模型对象,绘制最终图形
-        [_chartMessage aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表
+//        [_chartMessage aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表
     }
    
 
@@ -550,7 +551,7 @@ typedef NS_ENUM(NSUInteger, CardType) {
 
 - (AAChartView *)chartViewWithFrame:(CGRect)frame {
     AAChartView *chartView = [[AAChartView alloc] initWithFrame:frame];
-    chartView.scrollView.scrollEnabled = NO;
+    [chartView setScrollEnabled:NO];
     self.view.backgroundColor = [UIColor whiteColor];
     return chartView;
 }

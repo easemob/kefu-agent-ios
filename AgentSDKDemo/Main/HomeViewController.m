@@ -22,8 +22,9 @@
 #import "ReminderView.h"
 #import "DXTipView.h"
 #import "DXUpdateView.h"
-#import "HDMonitorManagerViewController.h"
+#import "HDSuperviseManagerViewController.h"
 #import "KFWarningViewController.h"
+#import "KFMonitorViewController.h"
 //================appstore start=================
 #import <PgyUpdate/PgyUpdateManager.h>
 //================appstore end=================
@@ -552,13 +553,24 @@ static NSInteger currentTotalBadgeValue;
             }
         }
         if (needPush) {
+            // todo 可能需要全局持有，以保证切换时不会重新创建对象
+            [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
             [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
         }
-    } else if (index ==1) { //现场监控
-        HDMonitorManagerViewController *monitorVC = [[HDMonitorManagerViewController alloc] init];
-        [self.navigationController pushViewController:monitorVC animated:YES];
+    } else if (index == 1) { //现场管理
+        // todo 可能需要全局持有，以保证切换时不会重新创建对象
+        HDSuperviseManagerViewController *superviseVC = [[HDSuperviseManagerViewController alloc] init];
+        [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
+        [self.navigationController pushViewController:superviseVC animated:YES];
     } else if (index == 2) {
-        KFWarningViewController *warningVC = [KFWarningViewController new];
+        // todo 可能需要全局持有，以保证切换时不会重新创建对象
+        KFMonitorViewController *monitorVC = [[KFMonitorViewController alloc] init];
+        [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
+        [self.navigationController pushViewController:monitorVC animated:YES];
+    } else if (index == 3) {
+        // todo 可能需要全局持有，以保证切换时不会重新创建对象
+        KFWarningViewController *warningVC = [[KFWarningViewController alloc] init];
+        [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
         [self.navigationController pushViewController:warningVC animated:YES];
     }
 }

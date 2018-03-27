@@ -20,7 +20,7 @@
 
 @property(nonatomic,copy) NSString *warningId;
 
-@property(nonatomic,assign) NSInteger monitorLevel;
+@property(nonatomic,assign) NSInteger superviseLevel;
 
 @property(nonatomic,copy) NSString *ruleName;
 

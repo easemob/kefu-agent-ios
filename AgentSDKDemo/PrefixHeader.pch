@@ -26,7 +26,7 @@
 //noti
 #define NOTIFICATION_SET_MAX_SERVICECOUNT @"NOTIFICATION_SET_MAX_SERVICECOUNT"
 
-#define KFMonitorNoti @"KFMonitorNotiKFMonitorNoti"
+#define KFSuperviseNoti @"KFSuperviseNotification"
 
 
 // Include any system framework and library headers here that should be included in all compilation units.

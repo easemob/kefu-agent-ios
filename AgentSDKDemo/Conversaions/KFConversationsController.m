@@ -54,7 +54,7 @@
     [self setExtendedLayoutIncludesOpaqueBars:YES];
     
     if (![[HDClient sharedClient].currentAgentUser.roles containsString:@"admin"]) {
-        [KFManager sharedInstance].needShowMonitorTip = NO;
+        [KFManager sharedInstance].needShowSuperviseTip = NO;
     }
 }
 

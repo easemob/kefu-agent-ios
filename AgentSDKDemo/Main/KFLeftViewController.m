@@ -50,7 +50,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [kNotiCenter addObserver:self selector:@selector(setMonitTip:) name:KFMonitorNoti object:nil];
+    [kNotiCenter addObserver:self selector:@selector(setMonitTip:) name:KFSuperviseNoti object:nil];
     self.view.backgroundColor = RGBACOLOR(26, 26, 26, 1);
     
     [self setupHeadView];
@@ -71,6 +71,17 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
                        forControlEvents:UIControlEventTouchUpInside];
 }
 
+- (void)onlineButtonAction
+{
+    if (_pickerView == nil) {
+        _pickerView = [[EMPickerView alloc] initWithDataSource:_statusArray topHeight:64];
+        _pickerView.delegate = self;
+    }
+    if (self.leftDelegate && [self.leftDelegate respondsToSelector:@selector(onlineStatusClick:)]) {
+        [self.leftDelegate onlineStatusClick:_pickerView];
+    }
+}
+
 - (void)switchButtonAction:(UIButton *)btn {
     _adminModel = !_adminModel;
     [self switchIsAdminType:_adminModel];
@@ -78,8 +89,8 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (void)switchIsAdminType:(BOOL)isAdminType {
     [self.switchBtn setIsAdminType:isAdminType];
-    [self.switchBtn showUnreadTip:[KFManager sharedInstance].needShowMonitorTip];
-    [self showTipImage:[KFManager sharedInstance].needShowMonitorTip];
+    [self.switchBtn showUnreadTip:[KFManager sharedInstance].needShowSuperviseTip];
+    [self showTipImage:[KFManager sharedInstance].needShowSuperviseTip];
     if (isAdminType) {
         _menuData = self.adminDatasrouce;
         [self.leftDelegate adminMenuClickWithIndex:AgentMenuTagHome];
@@ -109,12 +120,12 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 }
 
 - (void)setMonitTip:(NSNotification *)noti {
-    [self.switchBtn showUnreadTip:[KFManager sharedInstance].needShowMonitorTip];
-    [self showTipImage:![noti.object boolValue]];
+    [self.switchBtn showUnreadTip:[KFManager sharedInstance].needShowSuperviseTip];
+    [self showTipImage:[KFManager sharedInstance].needShowSuperviseTip];
 }
 
 - (void)showTipImage:(BOOL)isShow {
-    KFLeftViewItem *item = self.adminDatasrouce[2];
+    KFLeftViewItem *item = self.adminDatasrouce[self.adminDatasrouce.count - 1];
     [item setIsShowTipImage:isShow];
     [self.tableView reloadData];
 }
@@ -207,7 +218,6 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
             return;
         }
     }
-#else
 #endif
     __block BOOL isAdmin = _adminModel;
     WEAK_SELF
@@ -223,18 +233,6 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
         }
     }
     [self.mm_drawerController setCenterViewController:navigationController withFullCloseAnimation:YES completion:nil];
-}
-
-#pragma mark-----pickerview
-- (void)onlineButtonAction
-{
-    if (_pickerView == nil) {
-        _pickerView = [[EMPickerView alloc] initWithDataSource:_statusArray topHeight:64];
-        _pickerView.delegate = self;
-    }
-    if (self.leftDelegate && [self.leftDelegate respondsToSelector:@selector(onlineStatusClick:)]) {
-        [self.leftDelegate onlineStatusClick:_pickerView];
-    }
 }
 
 #pragma mark - EMPickerSaveDelegate
@@ -280,6 +278,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     return @[
              [KFLeftViewItem name:@"主页" image:[UIImage imageNamed:@"icon_manager_home"]],
              [KFLeftViewItem name:@"现场管理" image:[UIImage imageNamed:@"icon_manager_supervise"]],
+             [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_supervise"]],
              [KFLeftViewItem name:@"告警记录" image:[UIImage imageNamed:@"alarmsRecord"]]
              ];
 }
@@ -297,6 +296,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     return @[
              [KFLeftViewItem name:@"主页" image:[UIImage imageNamed:@"icon_manager_home"]],
              [KFLeftViewItem name:@"现场管理" image:[UIImage imageNamed:@"icon_manager_supervise"]],
+             [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_supervise"]],
              [KFLeftViewItem name:@"告警记录" image:[UIImage imageNamed:@"alarmsRecord"]]
              ];
 }

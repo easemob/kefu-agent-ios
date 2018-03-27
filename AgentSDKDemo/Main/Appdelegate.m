@@ -51,7 +51,7 @@
 
     [[UITabBar appearance] setTintColor:RGBACOLOR(0x1b, 0xa8, 0xed, 1)];
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
-    
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self launch];
     [self startLogin];
