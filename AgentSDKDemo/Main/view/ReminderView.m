@@ -49,8 +49,8 @@
     NSString *str3 = @"0";
 //    if ([status isEqualToString:@"正常"]) {
     NSTimeInterval leftTime = [[dic valueForKey:@"agreementExpireTime"] floatValue]/1000 - [[NSDate date] timeIntervalSince1970];
-    NSInteger day = leftTime/60/60/24;
-    if (leftTime<0) {
+    NSInteger day = leftTime / 60 / 60 / 24;
+    if (leftTime < 0) {
         day = 0;
     }
     str3 = [NSString stringWithFormat:@"%ld",day];
@@ -67,12 +67,14 @@
     ok.frame = CGRectMake(tipView.width - 80, tipView.height - 50, 60, 40);
     [ok setTitle:@"确定" forState:UIControlStateNormal];
     [ok setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [ok addTarget:self action:@selector(reLogin) forControlEvents:UIControlEventTouchUpInside];
+    if (leftTime <= 0) { // 剩余时间小于0时才退出
+        [ok addTarget:self action:@selector(reLogin) forControlEvents:UIControlEventTouchUpInside];
+    }
     [tipView addSubview:ok];
-    
 }
 
 - (void)reLogin {
+    
     [[HDClient sharedClient] logoutCompletion:^(HDError *error) {
         [[KFManager sharedInstance] showLoginViewController];
     }];
