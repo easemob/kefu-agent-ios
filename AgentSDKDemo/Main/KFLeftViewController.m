@@ -278,7 +278,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     return @[
              [KFLeftViewItem name:@"主页" image:[UIImage imageNamed:@"icon_manager_home"]],
              [KFLeftViewItem name:@"现场管理" image:[UIImage imageNamed:@"icon_manager_supervise"]],
-             [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_supervise"]],
+             [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_realtime"]],
              [KFLeftViewItem name:@"告警记录" image:[UIImage imageNamed:@"alarmsRecord"]]
              ];
 }
@@ -296,7 +296,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     return @[
              [KFLeftViewItem name:@"主页" image:[UIImage imageNamed:@"icon_manager_home"]],
              [KFLeftViewItem name:@"现场管理" image:[UIImage imageNamed:@"icon_manager_supervise"]],
-             [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_supervise"]],
+             [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_realtime"]],
              [KFLeftViewItem name:@"告警记录" image:[UIImage imageNamed:@"alarmsRecord"]]
              ];
 }
