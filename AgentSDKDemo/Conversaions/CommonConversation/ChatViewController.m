@@ -201,10 +201,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self markAsRead];
     if (chatType == ChatViewTypeChat) {
         [self.navigationItem setTitleView:self.tagBtn];
-        CGRect frame = self.tagBtn.frame;
+//        CGRect frame = self.tagBtn.frame;
         [self.view addSubview:self.chatToolBar];
         [self.chatToolBar addSubview:self.visitorPredictView];
         [self.view addSubview:self.moreView];
+        // 获取满意度是否已经评价过
         [_conversation satisfactionStatusCompletion:^(HDSatisfationStatus status, HDError *error) {
             _satisfactionBtn.selected = (status != HDSatisfationStatusNone);
         }];
@@ -1580,18 +1581,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)loadMessage{
     if (chatType == ChatViewTypeChat) {
         [self showHintNotHide:@""];
+    
         [_conversation loadMessageCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
             [self hideHud];
             if (error == nil) {
                 for (HDMessage *msg in messages) {
                     //计算text高度
                     [self addMessage:msg];
-                    [self downloadVoice:msg];
+                    [self downloadVoice:msg]; // 这步是不是应该获取的时候，sdk自动做？
                 }
             } else {
                 [self showHint:error.errorDescription];
             }
-            
         }];
     } else {
         [self loadHistory];

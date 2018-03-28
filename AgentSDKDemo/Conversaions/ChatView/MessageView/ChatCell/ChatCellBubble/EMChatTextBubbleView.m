@@ -40,7 +40,8 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
         _textLabel = [[YYLabel alloc] initWithFrame:CGRectZero];
         _textLabel.numberOfLines = 0;
         _textLabel.textAlignment = NSTextAlignmentCenter;
-        _textLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        _textLabel.lineBreakMode = [[self class] textLabelLineBreakModel];
+        _textLabel.textVerticalAlignment = YYTextVerticalAlignmentTop;
         _textLabel.font = [UIFont systemFontOfSize:LABEL_FONT_SIZE];
         _textLabel.textColor = RGBACOLOR(0x09, 0x09, 0x09, 1);
         _textLabel.backgroundColor = [UIColor clearColor];
@@ -54,21 +55,32 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-    CGRect frame = self.bounds;
-    frame.size.width -= BUBBLE_ARROW_WIDTH;
-    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
-    if (self.model.isSender) {
-        frame.origin.x = BUBBLE_VIEW_PADDING;
-    }else{
-        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
-    }
+//    CGRect frame = self.bounds;
+//    frame.size.width -= BUBBLE_ARROW_WIDTH;
+//    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
+//    if (self.model.isSender) {
+//        frame.origin.x = BUBBLE_VIEW_PADDING;
+//    }else{
+//        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
+//    }
+//    frame.origin.y = BUBBLE_VIEW_PADDING;
+//    [self.textLabel setFrame:frame];
+    
+    CGRect frame = self.frame;
+        if (self.model.isSender) {
+            frame.origin.x = BUBBLE_VIEW_PADDING;
+        }else{
+            frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
+        }
     frame.origin.y = BUBBLE_VIEW_PADDING;
-    [self.textLabel setFrame:frame];
+    frame.size.width = self.model.textSize.width;
+    frame.size.height = self.model.textSize.height + 10;
+    self.textLabel.frame = frame;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    return CGSizeMake(_model.textSize.width + BUBBLE_VIEW_PADDING*2 + BUBBLE_ARROW_WIDTH, _model.textSize.height+2*BUBBLE_VIEW_PADDING);
+    return CGSizeMake(_model.textSize.width + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH, _model.textSize.height + 2 * BUBBLE_VIEW_PADDING);
 }
 
 #pragma mark - setter
@@ -164,24 +176,32 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
     [[EmotionEscape sharedInstance] yyEmotionStringFromString:attributedString fontSize:LABEL_FONT_SIZE];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:[[self class] lineSpacing]];//调整行间距
-    [attributedString addAttribute:NSFontAttributeName value:[EMChatTextBubbleView textLabelFont] range:NSMakeRange(0, attributedString.length)];
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributedString.length)];
+    [attributedString addAttribute:NSFontAttributeName
+                             value:[EMChatTextBubbleView textLabelFont]
+                             range:NSMakeRange(0, attributedString.length)];
+    
+    [attributedString addAttribute:NSParagraphStyleAttributeName
+                             value:paragraphStyle
+                             range:NSMakeRange(0, attributedString.length)];
     
     return attributedString;
 }
 
-+(CGFloat)heightForBubbleWithObject:(HDMessage *)object
++ (CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
     return 2 * BUBBLE_VIEW_PADDING + object.textSize.height;
 }
 
 + (CGSize)textSize:(HDMessage *)message { //只有文字消息
-    CGSize textBlockMinSize = {TEXTLABEL_MAX_WIDTH, CGFLOAT_MAX};
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
     [paragraphStyle setLineSpacing:[[self class] lineSpacing]];//调整行间距
     NSAttributedString *att = message.att;
-    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:textBlockMinSize text:att];
+    YYTextLayout *layout = [YYTextLayout layoutWithContainerSize:[[self class]textBlockMinSize ] text:att];
     return layout.textBoundingSize;
+}
+
++ (CGSize)textBlockMinSize {
+     return CGSizeMake(TEXTLABEL_MAX_WIDTH, CGFLOAT_MAX);
 }
 
 +(UIFont *)textLabelFont
