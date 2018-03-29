@@ -55,17 +55,6 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-//    CGRect frame = self.bounds;
-//    frame.size.width -= BUBBLE_ARROW_WIDTH;
-//    frame = CGRectInset(frame, BUBBLE_VIEW_PADDING, BUBBLE_VIEW_PADDING);
-//    if (self.model.isSender) {
-//        frame.origin.x = BUBBLE_VIEW_PADDING;
-//    }else{
-//        frame.origin.x = BUBBLE_VIEW_PADDING + BUBBLE_ARROW_WIDTH;
-//    }
-//    frame.origin.y = BUBBLE_VIEW_PADDING;
-//    [self.textLabel setFrame:frame];
-    
     CGRect frame = self.frame;
         if (self.model.isSender) {
             frame.origin.x = BUBBLE_VIEW_PADDING;

@@ -290,17 +290,19 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     WEAK_SELF
     [self showHintNotHide:@"正在登录..."];
     [[HDClient sharedClient] asyncLoginWithUsername:_usernameField.text password:_passwordField.text hidingLogin:_hiddenButton.selected completion:^(id responseObject, HDError *error) {
-        [weakSelf hideHud];
-        if (error == nil) {
-            [[KFManager sharedInstance] showMainViewController];
-            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-            [userDefaults setValue:_usernameField.text forKey:USERDEFAULTS_LOGINUSERNAME];
-            [userDefaults synchronize];
-        }
-        if (error) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:error.errorDescription delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-            [alertView show];
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf hideHud];
+            if (error == nil) {
+                [[KFManager sharedInstance] showMainViewController];
+                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                [userDefaults setValue:_usernameField.text forKey:USERDEFAULTS_LOGINUSERNAME];
+                [userDefaults synchronize];
+            }
+            if (error) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:error.errorDescription delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertView show];
+            }
+        });
     }];
 }
 
