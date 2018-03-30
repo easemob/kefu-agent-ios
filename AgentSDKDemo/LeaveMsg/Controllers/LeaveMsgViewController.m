@@ -46,7 +46,7 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"---- %p",self);
+//    NSLog(@"---- %p",self);
     [super viewDidLoad];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
