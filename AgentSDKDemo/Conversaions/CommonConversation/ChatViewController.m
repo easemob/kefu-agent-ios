@@ -200,8 +200,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
     [self markAsRead];
     if (chatType == ChatViewTypeChat) {
-        [self.navigationItem setTitleView:self.tagBtn];
-//        CGRect frame = self.tagBtn.frame;
+        [self.navigationItem setTitleView:[UIView new]];
+        [self.navigationItem.titleView addSubview:self.tagBtn];
+        self.tagBtn.center = self.navigationItem.titleView.center;
         [self.view addSubview:self.chatToolBar];
         [self.chatToolBar addSubview:self.visitorPredictView];
         [self.view addSubview:self.moreView];
@@ -260,11 +261,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     _backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 36)];
     [_backButton setImage:[UIImage imageNamed:@"shai_icon_backCopy"] forState:UIControlStateNormal];
     [_backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-    [_backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -44, 0, 0)];
+    [_backButton setImageEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_backButton];
     
     if (chatType == ChatViewTypeChat) {
-        [_backButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -44, 0, 0)];
+        [_backButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -30, 0, 0)];
         [_backButton setTitle:[NSString stringWithFormat:@"(%@)",_notifyNumber==nil?@"0":_notifyNumber] forState:UIControlStateNormal];
     }
     
@@ -521,7 +522,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     if (_tagBtn == nil) {
         self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName : [UIFont systemFontOfSize:19]};
         _tagBtn = [[UIButton alloc] init];
-        _tagBtn.frame = CGRectMake(0, 0, 200.0f, kNavBarHeight);
+        _tagBtn.frame = CGRectMake(0, 0, 180, kNavBarHeight);
         _tagBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_tagBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_tagBtn addTarget:self action:@selector(tagAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -533,11 +534,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             title = _conversationModel.chatter.nicename;
         }
         [_tagBtn setTitleText:title];
-        [_tagBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:18.f]];
-        [_tagBtn layoutIfNeeded];
-//        [_tagBtn sizeToFit];
-        
-//        [_tagBtn addSubview:self.originTypeImage];
+        [_tagBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
+
         [_tagBtn addSubview:self.originTypeLable];
     }
     return _tagBtn;
