@@ -138,6 +138,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    [self startNoti];
     [self.headview refreshHeaderView];
 }
 
@@ -145,10 +146,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     return _conversation.lastExtWeichat;
 }
 
+
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear: animated];
-    [[HDClient sharedClient] removeDelegate:self];
-    [[HDClient sharedClient].chatManager removeDelegate:self];
+//    [[HDClient sharedClient] removeDelegate:self];
+//    [[HDClient sharedClient].chatManager removeDelegate:self];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     //clear本地的wav文件
     [self clearTempWav];
@@ -1496,8 +1498,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             }];
         }
     }];
-    
-    
 }
 
 - (void)updateMessageWithMessage:(HDMessage *)aMessage {
@@ -1570,7 +1570,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                     }
                 }
             }
-            
         }];
     }
     

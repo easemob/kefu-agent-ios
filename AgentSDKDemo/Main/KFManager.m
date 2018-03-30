@@ -15,7 +15,7 @@
 @end
 
 
-static const CGFloat kDefaultPlaySoundInterval = 3.0;
+static const CGFloat kDefaultPlaySoundInterval = 1.0;
 @implementation KFManager
 singleton_implementation(KFManager)
 
@@ -218,24 +218,19 @@ singleton_implementation(KFManager)
 
 - (void)showNotificationWithMessage:(NSString *)content message:(HDMessage *)message;
 {
-    
     NSInteger PreviousNum = [UIApplication sharedApplication].applicationIconBadgeNumber;
-//    [UIApplication sharedApplication].applicationIconBadgeNumber = ++PreviousNum;
-    
     //发送本地推送
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     notification.applicationIconBadgeNumber = ++PreviousNum;
     notification.fireDate = [NSDate date]; //触发通知的时间
     notification.alertBody = content;
     notification.alertAction = NSLocalizedString(@"open", @"Open");
-//    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = UILocalNotificationDefaultSoundName;
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
     if (timeInterval < kDefaultPlaySoundInterval) {
-        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
-        return;
+        notification.soundName = @"";
     } else {
         self.lastPlaySoundDate = [NSDate date];
+        notification.soundName = UILocalNotificationDefaultSoundName;
     }
     
     if (message) {
