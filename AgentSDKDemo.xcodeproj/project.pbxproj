@@ -127,7 +127,8 @@
 		90D3CBA7201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
 		90E0EF4C206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
 		90E0EF4D206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
-		90FBBF5D2004995C00698A1E /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */; };
+		90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; };
+		90E15BFA20722288004702EF /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CEA1FD684F30091E048 /* HDTipLabel.m */; };
@@ -332,7 +333,6 @@
 		D33CE8151F7CB52500236720 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8091F7CB52500236720 /* DDMultiFormatter.m */; };
 		D33CE8161F7CB52500236720 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = D33CE80A1F7CB52500236720 /* README.txt */; };
 		D33CE8201F7CB55700236720 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE81F1F7CB55700236720 /* Bugly.framework */; };
-		D33CE8261F7CB6FF00236720 /* PgyUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */; };
 		D33CE82D1F7CD01100236720 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8291F7CD01100236720 /* CJSONDeserializer.m */; };
 		D33CE82E1F7CD01100236720 /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE82B1F7CD01100236720 /* CJSONSerializer.m */; };
 		D33CE8521F7CD0F800236720 /* EMSDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8321F7CD0F800236720 /* EMSDImageCache.m */; };
@@ -1501,6 +1501,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */,
+				90E15BFA20722288004702EF /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1942,7 +1943,6 @@
 		D33CE8091F7CB52500236720 /* DDMultiFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDMultiFormatter.m; sourceTree = "<group>"; };
 		D33CE80A1F7CB52500236720 /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		D33CE81F1F7CB55700236720 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
-		D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PgyUpdate.framework; sourceTree = "<group>"; };
 		D33CE8281F7CD01100236720 /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
 		D33CE8291F7CD01100236720 /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
 		D33CE82A1F7CD01100236720 /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
@@ -2645,7 +2645,6 @@
 				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
 				D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */,
 				D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */,
-				D33CE8261F7CB6FF00236720 /* PgyUpdate.framework in Frameworks */,
 				D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */,
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				90AA69CD2069FAF000E39745 /* AgentSDK.framework in Frameworks */,
@@ -2666,8 +2665,8 @@
 				D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */,
 				D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
-				90FBBF5D2004995C00698A1E /* PgyUpdate.framework in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
+				90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
 			);
@@ -3560,14 +3559,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		D33CE8241F7CB6FF00236720 /* Pgy */ = {
-			isa = PBXGroup;
-			children = (
-				D33CE8251F7CB6FF00236720 /* PgyUpdate.framework */,
-			);
-			path = Pgy;
-			sourceTree = "<group>";
-		};
 		D33CE8271F7CD01100236720 /* TouchJSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -3963,7 +3954,6 @@
 				D33CE8621F7CD25800236720 /* PodFiles */,
 				D33CE8301F7CD0F800236720 /* EMSDWebImage */,
 				D33CE8271F7CD01100236720 /* TouchJSON */,
-				D33CE8241F7CB6FF00236720 /* Pgy */,
 				D33CE81F1F7CB55700236720 /* Bugly.framework */,
 				D33CE7F11F7CB52500236720 /* CocoaLumberjack */,
 				D33CE7A31F7CB01000236720 /* AFNetworking */,

@@ -25,9 +25,6 @@
 #import "HDSuperviseManagerViewController.h"
 #import "KFWarningViewController.h"
 #import "KFMonitorViewController.h"
-//================appstore start=================
-#import <PgyUpdate/PgyUpdateManager.h>
-//================appstore end=================
 
 @implementation UIImage (tabBarImage)
 
@@ -517,9 +514,7 @@ static NSInteger currentTotalBadgeValue;
 #else
     else if (index == 2)
     {
-        //================appstore start=================
-        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
-        //================appstore end=================
+
     }
     else if (index == 3)
     {
