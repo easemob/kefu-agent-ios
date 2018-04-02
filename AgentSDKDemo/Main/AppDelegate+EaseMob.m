@@ -37,12 +37,10 @@
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
     
-    
 //    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
 //    options.restServer = @"a1.dongfeng-renault.com.cn";
 //    options.chatServer = @"im1.dongfeng-renault.com.cn";
 //    options.chatPort = 5222;
-//    options.enableDnsConfig = NO;
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     [self registerRemoteNotification];

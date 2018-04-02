@@ -34,6 +34,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avatarChanged) name:@"AvatarChanged" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusChanged) name:@"StatusChanged" object:nil];
         [self addSubview:self.headerImageView];
+        [self updateHeadImage];
         [self addSubview:self.statusImageView];
         [self addSubview:self.superviseView];
         self.superviseView.hidden = ![KFManager sharedInstance].needShowSuperviseTip;
@@ -41,15 +42,17 @@
     return self;
 }
 
+- (void)updateHeadImage {
+    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[HDClient sharedClient].currentAgentUser.avatar] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
+}
 
-- (UIImageView*)headerImageView
+- (UIImageView *)headerImageView
 {
     if (_headerImageView == nil) {
         _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height)];
         _headerImageView.layer.masksToBounds = YES;
         _headerImageView.layer.cornerRadius = CGRectGetWidth(_headerImageView.frame)/2;
         _headerImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[HDClient sharedClient].currentAgentUser.avatar] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
     }
     return _headerImageView;
 }

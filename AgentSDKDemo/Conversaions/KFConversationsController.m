@@ -214,7 +214,7 @@
     return _headerViewItem;
 }
 
-- (EMHeaderImageView*)headImageView
+- (EMHeaderImageView *)headImageView
 {
     return [KFManager sharedInstance].headImageView;
 }

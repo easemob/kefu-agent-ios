@@ -34,8 +34,8 @@
 {
     UserModel *user = [HDClient sharedClient].currentAgentUser;
     _headImageView = [[EMHeaderImageView alloc] initWithFrame:CGRectMake(10, 0, 50, 50)];
+    [_headImageView updateHeadImage];
     [self addSubview:_headImageView];
-    
     _nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame) + 10, 30, 120, 40)];
     _nickLabel.text = user.nicename;
     _nickLabel.textColor = [UIColor whiteColor];

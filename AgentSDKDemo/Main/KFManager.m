@@ -294,7 +294,7 @@ singleton_implementation(KFManager)
 }
 
 #pragma mark UI
-- (EMHeaderImageView*)headImageView
+- (EMHeaderImageView *)headImageView
 {
     if (_headImageView == nil) {
         _headImageView = [[EMHeaderImageView alloc] init];
@@ -302,6 +302,9 @@ singleton_implementation(KFManager)
         [_headImageView addGestureRecognizer:tap];
         _headImageView.userInteractionEnabled = YES;
     }
+    
+    [_headImageView updateHeadImage];
+    
     return _headImageView;
 }
 
