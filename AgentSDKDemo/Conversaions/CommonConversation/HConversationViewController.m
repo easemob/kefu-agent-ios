@@ -98,6 +98,9 @@
 - (void)conversationLastMessageChanged:(HDMessage *)message {
     dispatch_async(_conversationQueue, ^{
         HDConversation *model = [self.dataSourceDic objectForKey:message.sessionId];
+        if ([model.lastMessage.messageId isEqualToString:message.messageId]) {
+            return ;
+        }
         if (model) {
             model.lastMessage = message;
             model.searchWord = model.chatter.nicename;
