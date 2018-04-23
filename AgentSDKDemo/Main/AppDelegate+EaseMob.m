@@ -49,8 +49,6 @@
     [[EMSDImageCache sharedImageCache] cleanDisk];
 }
 
-
-
 // 监听系统生命周期回调，以便将需要的事件传给SDK
 - (void)setupNotifiers{
     [[NSNotificationCenter defaultCenter] addObserver:self
