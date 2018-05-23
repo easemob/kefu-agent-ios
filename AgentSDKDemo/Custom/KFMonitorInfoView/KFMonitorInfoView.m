@@ -19,8 +19,8 @@
 #define kSelectedColor [UIColor whiteColor]
 
 static NSString *const chartCellId = @"ChartCell";
-static NSString *const labelCellId = @"labelCell";
-static NSString *const instrumentCellId = @"instrumentCell";
+static NSString *const labelCellId = @"LabelCell";
+static NSString *const instrumentCellId = @"InstrumentCell";
 
 @interface KFMonitorInfoView () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, KFMonitorInfoLabelCellDelegate>
 {
