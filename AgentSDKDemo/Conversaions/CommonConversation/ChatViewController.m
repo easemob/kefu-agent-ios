@@ -1246,11 +1246,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)endConversation {
     [_conversation endConversationWithVisitorId:_conversationModel.chatter.userId parameters:nil completion:^(id responseObject, HDError *error) {
         if (!error) {
-            [self showHint:@"成功关闭"];
-            [self.navigationController popViewControllerAnimated:YES];
+            [self showHint:@"关闭成功"];
             if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
                 [_delegate refreshConversationList];
             }
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [self showHint:@"关闭失败"];
         }
@@ -1290,6 +1290,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 #pragma mark - EMCDDeviceManagerDelegate
 - (void)proximitySensorChanged:(BOOL)isCloseToUser{
+#if !TARGET_IPHONE_SIMULATOR
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     if (isCloseToUser)
     {
@@ -1301,6 +1302,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         }
     }
     [audioSession setActive:YES error:nil];
+#endif
 }
 
 #pragma mark - UIImagePickerControllerDelegate

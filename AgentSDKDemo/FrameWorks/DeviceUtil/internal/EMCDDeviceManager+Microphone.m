@@ -9,13 +9,16 @@
  * is strictly forbidden unless prior written permission is obtained
  * from EaseMob Technologies.
  */
-
+#import <AVFoundation/AVFoundation.h>
 #import "EMCDDeviceManager+Microphone.h"
 #import "EMAudioRecorderUtil.h"
 
 @implementation EMCDDeviceManager (Microphone)
 // 判断麦克风是否可用
 - (BOOL)emCheckMicrophoneAvailability{
+#if TARGET_IPHONE_SIMULATOR
+    return YES;
+#else
     __block BOOL ret = NO;
     AVAudioSession *session = [AVAudioSession sharedInstance];
     if ([session respondsToSelector:@selector(requestRecordPermission:)]) {
@@ -27,6 +30,7 @@
     }
     
     return ret;
+#endif
 }
 
 // 获取录制音频时的音量(0~1)
