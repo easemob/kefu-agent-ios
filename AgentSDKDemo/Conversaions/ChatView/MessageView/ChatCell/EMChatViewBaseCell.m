@@ -74,15 +74,12 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
 - (void)setMessageModel:(HDMessage *)messageModel
 {
     _messageModel = messageModel;
-    
-//    _nameLabel.hidden = !messageModel.isChatGroup;
     _nameLabel.hidden = NO;
     if (!messageModel.isSender) {
         self.headImageView.image = [UIImage imageNamed:@"default_agent_avatar"];
     } else {
         [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[HDClient sharedClient].currentAgentUser.avatar] placeholderImage:[UIImage imageNamed:@"default_agent_avatar"]];
     }
-//
 }
 
 #pragma mark - private

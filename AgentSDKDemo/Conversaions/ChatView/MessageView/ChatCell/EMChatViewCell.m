@@ -111,12 +111,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
 - (void)setMessageModel:(HDMessage *)model
 {
     [super setMessageModel:model];
-    
-//    if (model.isChatGroup) {
-//        _nameLabel.text = model.username;
-//        _nameLabel.hidden = model.isSender;
-//    }
-    
+
     _bubbleView.model = self.messageModel;
     [_bubbleView sizeToFit];
 }

@@ -16,10 +16,15 @@
 
 #define MAX_SIZE 120 //　图片最大显示大小
 
+@class BubbleArrowImageView;
 extern NSString *const kRouterEventImageBubbleTapEventName;
 
 @interface EMChatImageBubbleView : EMChatBaseBubbleView
+@property (nonatomic, strong) BubbleArrowImageView *imageView;
+@end
 
-@property (nonatomic, strong) UIImageView *imageView;
-
+@interface BubbleArrowImageView : UIView
+@property (nonatomic, strong) UIImage *image;
+@property (nonatomic, assign) BOOL isLeft;
+- (void)setImageWithURL:(NSURL *)aImageURL placeholderImage:(UIImage *)aPlaceholderImage;
 @end

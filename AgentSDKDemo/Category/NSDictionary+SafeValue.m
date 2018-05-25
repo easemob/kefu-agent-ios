@@ -39,8 +39,6 @@
 - (NSInteger)safeIntegerValueForKey:(NSString *)key
 {
     NSInteger safeInteger = 0;
-    NSArray *dic = @[].mutableCopy;
-    
     id value = [self objectForKey:key];
     
     do {
