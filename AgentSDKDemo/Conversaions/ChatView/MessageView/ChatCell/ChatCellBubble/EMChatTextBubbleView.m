@@ -15,6 +15,7 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "EmotionEscape.h"
 #import "NSString+Escape.h"
+#import "HDMessage+Category.h"
 
 #define kHref @"href"
 

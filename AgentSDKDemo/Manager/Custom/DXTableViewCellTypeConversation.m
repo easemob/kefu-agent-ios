@@ -11,12 +11,15 @@
 #import "NSDate+Formatter.h"
 #import "DXTipView.h"
 #import "EmotionEscape.h"
+#import "HDMessage+Category.h"
 
 #define kHeadImageViewLeft 11.f
 #define kHeadImageViewTop 10.f
 #define kHeadImageViewWidth 55.f
 
 #define kLabelTop 9.f
+
+#define kRecallMsg @"您撤回了一条消息"
 
 
 @interface DXTableViewCellTypeConversation (){
@@ -104,30 +107,29 @@
     }
     
     [_headerImageView sd_setImageWithURL:[NSURL URLWithString:model.vistor.avatar] placeholderImage:[UIImage imageNamed:@"default_customer_avatar"]];
-    
-//    _headerImageView.image = [UIImage imageNamed:@"default_customer_avatar"];
     _titleLabel.text = model.chatter?model.chatter.nicename:model.vistor.nicename;
     NSString *timeDes = model.lastMessage.timeDes;
     if (model.lastMessage.nBody == nil) {
         timeDes = [[NSDate dateWithTimeIntervalSince1970:model.createDateTime/1000] formattedDateDescription];
     }
     _timeLabel.text =timeDes;
-    NSString *content = @"";
-    switch (model.lastMessage.type) {
-        case HDMessageBodyTypeText: {
-            HDTextMessageBody *body = (HDTextMessageBody *)model.lastMessage.nBody;
-            content = body.text;
-            NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:content textFont:_contentLabel.font]];
-            _contentLabel.attributedText = attributedString;
-            break;
+    if ([model.lastMessage isRecall]) {
+        _contentLabel.text = kRecallMsg;
+    }else {
+        switch (model.lastMessage.type) {
+            case HDMessageBodyTypeText: {
+                HDTextMessageBody *body = (HDTextMessageBody *)model.lastMessage.nBody;
+                NSMutableAttributedString * attributedString = [[NSMutableAttributedString alloc] initWithAttributedString:[[EmotionEscape sharedInstance] attStringFromTextForChatting:body.text textFont:_contentLabel.font]];
+                _contentLabel.attributedText = attributedString;
+                break;
+            }
+            default:
+                break;
         }
         
-        default:
-            content = @"[其他消息]";
-            break;
-    }
-    if (model.lastMessage.type!=HDMessageBodyTypeText) {
-        _contentLabel.text = [Helper getMessageContent:model.lastMessage];
+        if (model.lastMessage.type!=HDMessageBodyTypeText) {
+            _contentLabel.text = [Helper getMessageContent:model.lastMessage];
+        }
     }
     
     if ([model.originType isEqualToString:@"app"]) {
@@ -148,7 +150,7 @@
     _headerImageView.image = model.isSender?[UIImage imageNamed:@"default_agent_avatar"]:[UIImage imageNamed:@"default_customer_avatar"];
     _titleLabel.text = model.from;
     _timeLabel.text = model.timeDes;
-    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model]];
+    _contentLabel.text = [model isRecall] ? kRecallMsg : [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model]];
 
 }
 
@@ -161,7 +163,7 @@
         startTime = [model.startDateTime substringToIndex:11];
     }
     _timeLabel.text = startTime;
-    _contentLabel.text = [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model.lastMessage]];
+    _contentLabel.text = [model.lastMessage isRecall] ? kRecallMsg : [ConvertToCommonEmoticonsHelper convertToSystemEmoticons:[Helper getMessageContent:model.lastMessage]];
     if ([model.originType isEqualToString:@"app"]) {
         _channelImageView.image = [UIImage imageNamed:@"channel_APP_icon"];
     } else if ([model.originType isEqualToString:@"webim"]) {

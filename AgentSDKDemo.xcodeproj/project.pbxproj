@@ -125,6 +125,8 @@
 		90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
 		90D3CBA6201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
 		90D3CBA7201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
+		90DC764C20BD344B00C86D92 /* HDMessage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC764B20BD344B00C86D92 /* HDMessage+Category.m */; };
+		90DC765220BD44AE00C86D92 /* KFChatViewRecallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */; };
 		90E0EF4C206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
 		90E0EF4D206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
 		90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; };
@@ -1617,6 +1619,10 @@
 		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
 		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
+		90DC764A20BD344B00C86D92 /* HDMessage+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDMessage+Category.h"; sourceTree = "<group>"; };
+		90DC764B20BD344B00C86D92 /* HDMessage+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HDMessage+Category.m"; sourceTree = "<group>"; };
+		90DC765020BD44AE00C86D92 /* KFChatViewRecallCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatViewRecallCell.h; sourceTree = "<group>"; };
+		90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatViewRecallCell.m; sourceTree = "<group>"; };
 		90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list_status_radio_droplist_3@3x.png"; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDSuperviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSuperviseCell.h; sourceTree = "<group>"; };
 		D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSuperviseCell.m; sourceTree = "<group>"; };
@@ -3143,6 +3149,8 @@
 				D33CE6571F7CA98D00236720 /* EMChatViewBaseCell.m */,
 				D33CE6581F7CA98D00236720 /* EMChatViewCell.h */,
 				D33CE6591F7CA98D00236720 /* EMChatViewCell.m */,
+				90DC765020BD44AE00C86D92 /* KFChatViewRecallCell.h */,
+				90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */,
 			);
 			path = ChatCell;
 			sourceTree = "<group>";
@@ -3364,6 +3372,8 @@
 				D350FD111FBD8238004A94D8 /* UIAlertView+KFAdd.m */,
 				D3DFB3661FD7A3DF00A9358A /* UIColor+KFColor.h */,
 				D3DFB3671FD7A3DF00A9358A /* UIColor+KFColor.m */,
+				90DC764A20BD344B00C86D92 /* HDMessage+Category.h */,
+				90DC764B20BD344B00C86D92 /* HDMessage+Category.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -5816,6 +5826,7 @@
 				D33CE76A1F7CAEB800236720 /* NSString+Escape.m in Sources */,
 				D33CE6CB1F7CA98D00236720 /* CustomerChatViewController.m in Sources */,
 				D33CE7711F7CAEB800236720 /* UIResponder+Router.m in Sources */,
+				90DC764C20BD344B00C86D92 /* HDMessage+Category.m in Sources */,
 				90591C422068ADC4007367BD /* KFMonitorLabelModel.m in Sources */,
 				90591C3C2068ADC4007367BD /* RadioButton.m in Sources */,
 				D34DF9E11FA818F80018116D /* KFTrendDataModel.m in Sources */,
@@ -5885,6 +5896,7 @@
 				D33CE7091F7CACAC00236720 /* MMDrawerVisualState.m in Sources */,
 				D33CE8121F7CB52500236720 /* DDTTYLogger.m in Sources */,
 				D3DFB3681FD7A3DF00A9358A /* UIColor+KFColor.m in Sources */,
+				90DC765220BD44AE00C86D92 /* KFChatViewRecallCell.m in Sources */,
 				D33CE7331F7CAD2C00236720 /* HistoryOptionViewController.m in Sources */,
 				D33CE85E1F7CD0F800236720 /* UIImage+EMWebP.m in Sources */,
 				90591C8F2068B050007367BD /* AAChartModel.m in Sources */,

@@ -76,38 +76,38 @@
 //客服同事文字消息
 + (HDMessage *)customerTextMessageFormatWithText:(NSString *)text to:(NSString *)toUser {
     NSString *willSendText = [ConvertToCommonEmoticonsHelper convertToCommonEmoticons:text];
-    HDTextMessageBody *bdy = [[HDTextMessageBody alloc] initWithText:willSendText];
-    HDMessage *message = [[HDMessage alloc] initWithSessionId:toUser to:toUser messageBody:bdy];
+    HDTextMessageBody *body = [[HDTextMessageBody alloc] initWithText:willSendText];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:toUser to:toUser messageBody:body];
     return message;
 }
 
 //客服同事image消息
 + (HDMessage *)customerImageMessageFormatWithImageData:(NSData *)imageData to:(NSString *)toUser {
-    HDImageMessageBody *bdy = [[HDImageMessageBody alloc] initWithData:imageData displayName:@"imageName"];
-    HDMessage *message = [[HDMessage alloc] initWithSessionId:toUser to:toUser messageBody:bdy];
+    HDImageMessageBody *body = [[HDImageMessageBody alloc] initWithData:imageData displayName:@"imageName"];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:toUser to:toUser messageBody:body];
     return message;
 }
 
 //文字
 + (HDMessage *)textMessageFormatWithText:(NSString *)text to:(NSString *)toUser sessionId:(NSString *)sessionId {
     NSString *willSendText = [ConvertToCommonEmoticonsHelper convertToCommonEmoticons:text];
-    HDTextMessageBody *bdy = [[HDTextMessageBody alloc] initWithText:willSendText];
+    HDTextMessageBody *body = [[HDTextMessageBody alloc] initWithText:willSendText];
 //    bdy.msgExt = @{@"key":@"value1"};
-    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:bdy];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
 //    NSLog(@"body.msgExt:%@",bdy.msgExt);
     return message;
 }
 
 //图片
 + (HDMessage *)imageMessageFormatWithImageData:(NSData *)data to:(NSString *)toUser sessionId:(NSString *)sessionId {
-    HDImageMessageBody *bdy = [[HDImageMessageBody alloc] initWithData:data displayName:@"imagetest"];
-    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:bdy];
+    HDImageMessageBody *body = [[HDImageMessageBody alloc] initWithData:data displayName:@"imagetest"];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
     return message;
 }
 
 + (HDMessage *)voiceMessageFormatWithPath:(NSString *)path to:(NSString *)toUser sessionId:(NSString *)sessionId {
-    HDVoiceMessageBody *bdy = [[HDVoiceMessageBody alloc] initWithLocalPath:path displayName:@"voicetest"];
-    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:bdy];
+    HDVoiceMessageBody *body = [[HDVoiceMessageBody alloc] initWithLocalPath:path displayName:@"voicetest"];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
     
     return message;
 }

@@ -1,14 +1,14 @@
- /************************************************************
-  *  * EaseMob CONFIDENTIAL 
-  * __________________ 
-  * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved. 
-  *  
-  * NOTICE: All information contained herein is, and remains 
-  * the property of EaseMob Technologies.
-  * Dissemination of this information or reproduction of this material 
-  * is strictly forbidden unless prior written permission is obtained
-  * from EaseMob Technologies.
-  */
+/************************************************************
+ *  * EaseMob CONFIDENTIAL
+ * __________________
+ * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved.
+ *
+ * NOTICE: All information contained herein is, and remains
+ * the property of EaseMob Technologies.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from EaseMob Technologies.
+ */
 
 #import "UIImageView+EMWebCache.h"
 #import "EMChatImageBubbleView.h"
@@ -78,16 +78,11 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     
     HDImageMessageBody *body = (HDImageMessageBody *)model.nBody;
     self.imageView.isLeft = !model.isSender;
-    UIImage *image = nil;
-    NSData *imgData = body.imageData;
-    if (imgData != nil) {
-        image = [UIImage imageWithData:body.imageData];
-    }
-    if (image == nil) {
-        [self.imageView setImageWithURL:[NSURL URLWithString:body.remotePath]
-                       placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big"]];
-    } else {
-        self.imageView.image = image;
+    if (body.thumbnailRemotePath) {
+        [self.imageView setImageWithURL:body.thumbnailRemotePath
+                       placeholderImage:[UIImage imageWithData:body.imageData]];
+    }else {
+        [self.imageView setImage:[UIImage imageWithData:body.imageData] needArrow:YES];
     }
 }
 
@@ -163,25 +158,57 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
     self.imageView.frame = self.bounds;
 }
 
-- (void)setImageWithURL:(NSURL *)aImageURL placeholderImage:(UIImage *)aPlaceholderImage; {
-    self.image = aPlaceholderImage;
-    [self.imageView sd_setImageWithURL:aImageURL
-                      placeholderImage:aPlaceholderImage
-                             completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL)
-     {
-         if (!error) {
-             self.image = image;
-         }
-    }];
+- (BOOL)hasCachedWithStr:(NSString *)str {
+    return [[EMSDImageCache sharedImageCache] imageFromDiskCacheForKey:str];
 }
 
-- (void)setImage:(UIImage *)image {
+- (void)setImageWithURL:(NSString *)aImageURL placeholderImage:(UIImage *)aPlaceholderImage; {
+    NSURL *url = [NSURL URLWithString:aImageURL];
+    //头像需要手动缓存处理成圆角的图片
+    NSString *arrowStr = [aImageURL stringByAppendingString:@"arrowImageCache"];
+    UIImage *cacheImage = [[EMSDImageCache sharedImageCache] imageFromDiskCacheForKey:arrowStr];
+    if (cacheImage) {
+        [self setImage:cacheImage needArrow:NO];
+    }else {
+        
+        [self.imageView sd_setImageWithURL:url
+                          placeholderImage:[self setImage:aPlaceholderImage needArrow:YES]
+                                 completed:^(UIImage *image, NSError *error, EMSDImageCacheType cacheType, NSURL *imageURL)
+         {
+             if (!error) {
+                 [self createArrowImage:image
+                                   size:self.bounds.size
+                                 isLeft:self.isLeft
+                             completion:^(UIImage *aImage)
+                 {
+                     [self setImage:aImage needArrow:NO];
+                     [[EMSDImageCache sharedImageCache] storeImage:aImage forKey:arrowStr];
+                     [[EMSDImageCache sharedImageCache] removeImageForKey:aImageURL];
+                 }];
+             }
+         }];
+    }
+}
+
+- (void)saveImage:(UIImage *)image key:(NSString *)akey {
+    [[EMSDImageCache sharedImageCache] storeImage:image forKey:akey];
+}
+
+- (UIImage *)setImage:(UIImage *)image needArrow:(BOOL)isNeed{
     _image = image;
-    [self createArrowImage:image size:self.bounds.size isLeft:self.isLeft completion:^(UIImage *aImage) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-           self.imageView.image = aImage;
-        });
-    }];
+   __block UIImage *ret = nil;
+    if (isNeed) {
+        [self createArrowImage:image size:self.bounds.size
+                        isLeft:self.isLeft
+                    completion:^(UIImage *aImage) {
+            self.imageView.image = aImage;
+            ret = aImage;
+        }];
+    }else {
+        self.imageView.image = image;
+        ret = image;
+    }
+    return ret;
 }
 
 - (void)createArrowImage:(UIImage *)aImage size:(CGSize)aSize
@@ -192,7 +219,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
         UIGraphicsBeginImageContextWithOptions(aSize, NO, 0.0);
         CGContextRef contextRef = UIGraphicsGetCurrentContext();
         CGFloat imageW = aSize.width;
-        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, 0, aSize.width - kArrowWidth, aSize.height) cornerRadius:6];
+        UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(aIsLeft ? kArrowWidth : 0, 0, aSize.width - kArrowWidth, aSize.height) cornerRadius:6];
         if (aIsLeft) {
             [path moveToPoint:CGPointMake(kArrowWidth, 0)];
             [path addLineToPoint:CGPointMake(kArrowWidth, kArrowMarginTop)];
@@ -210,9 +237,11 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
         [aImage drawInRect:CGRectMake(0, 0, aSize.width, aSize.height)];
         UIImage * arrowImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        if (aCompletion) {
-            aCompletion(arrowImage);
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (aCompletion) {
+                aCompletion(arrowImage);
+            }
+        });
     });
 }
 

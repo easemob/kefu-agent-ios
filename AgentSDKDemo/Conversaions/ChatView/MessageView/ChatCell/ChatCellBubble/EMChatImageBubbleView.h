@@ -1,14 +1,14 @@
 /************************************************************
-  *  * EaseMob CONFIDENTIAL 
-  * __________________ 
-  * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved. 
-  *  
-  * NOTICE: All information contained herein is, and remains 
-  * the property of EaseMob Technologies.
-  * Dissemination of this information or reproduction of this material 
-  * is strictly forbidden unless prior written permission is obtained
-  * from EaseMob Technologies.
-  */
+ *  * EaseMob CONFIDENTIAL
+ * __________________
+ * Copyright (C) 2013-2014 EaseMob Technologies. All rights reserved.
+ *
+ * NOTICE: All information contained herein is, and remains
+ * the property of EaseMob Technologies.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from EaseMob Technologies.
+ */
 
 #import <UIKit/UIKit.h>
 
@@ -26,5 +26,9 @@ extern NSString *const kRouterEventImageBubbleTapEventName;
 @interface BubbleArrowImageView : UIView
 @property (nonatomic, strong) UIImage *image;
 @property (nonatomic, assign) BOOL isLeft;
-- (void)setImageWithURL:(NSURL *)aImageURL placeholderImage:(UIImage *)aPlaceholderImage;
+- (BOOL)hasCachedWithStr:(NSString *)str;
+- (void)saveImage:(UIImage *)image key:(NSString *)akey;
+- (UIImage *)setImage:(UIImage *)image needArrow:(BOOL)isNeed;
+- (void)setImageWithURL:(NSString *)aImageURL
+       placeholderImage:(UIImage *)aPlaceholderImage;
 @end

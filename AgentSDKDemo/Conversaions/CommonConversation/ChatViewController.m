@@ -33,6 +33,8 @@
 #import "DXRecordView.h"
 #import "HDWebViewController.h"
 #import "KFPredictView.h"
+#import "HDMessage+Category.h"
+#import "KFChatViewRecallCell.h"
 
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
@@ -67,6 +69,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     UIMenuController *_menuController;
     UIMenuItem *_copyMenuItem;
+    UIMenuItem *_recallMenuItem;
     NSIndexPath *_longPressIndexPath;
 }
 
@@ -138,7 +141,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-//    [self startNoti];
+    //    [self startNoti];
     [self.headview refreshHeaderView];
 }
 
@@ -149,8 +152,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear: animated];
-//    [[HDClient sharedClient] removeDelegate:self];
-//    [[HDClient sharedClient].chatManager removeDelegate:self];
+    //    [[HDClient sharedClient] removeDelegate:self];
+    //    [[HDClient sharedClient].chatManager removeDelegate:self];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     //clear本地的wav文件
     [self clearTempWav];
@@ -226,7 +229,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         titleView.frame = self.tagBtn.frame;
         [titleView addSubview:self.tagBtn];
         [self.navigationItem setTitleView:titleView];
-
+        
         _tableView.frame = CGRectMake(0, 0, KScreenWidth, KScreenHeight - 48 - iPhoneXBottomHeight);
         [self.view addSubview:self.callBackBtn];
         [self.view addSubview:self.headview];
@@ -242,9 +245,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyBoardHidden:)];
     tap.delegate = self;
     [self.tableView addGestureRecognizer:tap];
-
+    
     [self loadMessage];
-
+    
     [self loadTags];
     [[KFManager sharedInstance] setNavItemBadgeValueWithAllConversations:_allConversations];
     [self tableViewScrollToBottom];
@@ -537,7 +540,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         }
         [_tagBtn setTitleText:title];
         [_tagBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
-
+        
         [_tagBtn addSubview:self.originTypeLable];
     }
     return _tagBtn;
@@ -643,16 +646,25 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         }
         else{
             HDMessage *model = (HDMessage *)obj;
-            NSString *cellIdentifier = [EMChatViewCell cellIdentifierForMessageModel:model];
-            EMChatViewCell *cell = (EMChatViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            if (cell == nil) {
-                cell = [[EMChatViewCell alloc] initWithMessageModel:model reuseIdentifier:cellIdentifier];
-                cell.backgroundColor = [UIColor clearColor];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            if ([model isRecall]) {
+                KFChatViewRecallCell *recallCell = (KFChatViewRecallCell *)[tableView dequeueReusableCellWithIdentifier:@"KFChatViewRecall"];
+                if (!recallCell) {
+                    recallCell = [[KFChatViewRecallCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"KFChatViewRecall"];
+                }
+                return recallCell;
+            }else {
+                NSString *cellIdentifier = [EMChatViewCell cellIdentifierForMessageModel:model];
+                EMChatViewCell *cell = (EMChatViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+                if (cell == nil) {
+                    cell = [[EMChatViewCell alloc] initWithMessageModel:model reuseIdentifier:cellIdentifier];
+                    cell.backgroundColor = [UIColor clearColor];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                }
+                cell.messageModel = model;
+                
+                return cell;
             }
-            cell.messageModel = model;
-            
-            return cell;
+
         }
     }
     
@@ -660,7 +672,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"errorCell"];
     }
-
+    
     return cell;
 }
 
@@ -676,7 +688,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         return 25;
     }
     else{
-        return [EMChatViewCell tableView:tableView heightForRowAtIndexPath:indexPath withObject:(HDMessage *)obj];
+        HDMessage *msg = (HDMessage *)obj;
+        if ([msg isRecall]) {
+            return 40;
+        }else {
+            return [EMChatViewCell tableView:tableView heightForRowAtIndexPath:indexPath withObject:msg];
+        }
     }
 }
 
@@ -759,7 +776,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
     
     [self.recordView removeFromSuperview];
-
+    
 }
 
 /**
@@ -899,8 +916,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     if ([eventName isEqualToString:kRouterEventTextURLTapEventName]) {
         NSString *url=[NSString stringWithUTF8String:[[userInfo objectForKey:@"url"] UTF8String]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
-//        WebViewController *webview = [[WebViewController alloc] initWithUrl:_dataString];
-//        [self.navigationController pushViewController:webview animated:YES];
+        //        WebViewController *webview = [[WebViewController alloc] initWithUrl:_dataString];
+        //        [self.navigationController pushViewController:webview animated:YES];
     } else if ([eventName isEqualToString:kRouterEventImageBubbleTapEventName]){
         [self chatImageCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventChatHeadImageTapEventName]){
@@ -952,7 +969,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         return;
     }
     HDImageMessageBody *body = (HDImageMessageBody *)model.nBody;
-    UIImage *image =  [[EMSDImageCache sharedImageCache] imageFromDiskCacheForKey:body.remotePath];
+    id image =  [[EMSDImageCache sharedImageCache] imageFromDiskCacheForKey:body.remotePath];
+    if (!image) {
+        image = [NSURL URLWithString:body.remotePath];
+    }
     if (image) {
         [self.messageReadManager showBrowserWithImages:@[image]];
     }
@@ -1207,10 +1227,14 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:location];
         id object = [self.dataSource objectAtIndex:indexPath.row];
         if ([object isKindOfClass:[HDMessage class]]) {
+            HDMessage *msg = (HDMessage *)object;
+            if ([msg isRecall]) {
+                return;
+            }
             EMChatViewCell *cell = (EMChatViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
             [cell becomeFirstResponder];
             _longPressIndexPath = indexPath;
-            [self showMenuViewController:cell.bubbleView andIndexPath:indexPath messageType:cell.messageModel.type];
+            [self showMenuViewController:cell.bubbleView andIndexPath:indexPath messageType:cell.messageModel];
         }
     }
 }
@@ -1237,7 +1261,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                 _satisfactionBtn.selected = YES;
             } else {
                 [weakSelf showHint:@"发送失败"];
-//                DDLogError(@"send chat satisfaction --- %@ userId --- %@ error:%@",[HDClient sharedClient].currentAgentUser.nicename,_conversationModel.chatter.userId,error.description);
+                //                DDLogError(@"send chat satisfaction --- %@ userId --- %@ error:%@",[HDClient sharedClient].currentAgentUser.nicename,_conversationModel.chatter.userId,error.description);
             }
         }];
     }
@@ -1283,7 +1307,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [[KFManager sharedInstance].conversation refreshData];
             [weakSelf.navigationController pushViewController:chatView animated:YES];
         } else {
-                [weakSelf showHint:error.errorDescription];
+            [weakSelf showHint:error.errorDescription];
         }
     }];
 }
@@ -1328,7 +1352,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     if (message && message.length > 0) {
         //[self sendTextMessage:message];
         [self.navigationController popToViewController:self animated:YES];
-//        [self.chatToolBar quickReplyViewSeletedTitle:message];
+        //        [self.chatToolBar quickReplyViewSeletedTitle:message];
         self.chatToolBar.inputTextView.text = [self.chatToolBar.inputTextView.text stringByAppendingString:message];
         [self.chatToolBar.inputTextView becomeFirstResponder];
     }
@@ -1447,8 +1471,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     return ret;
 }
 
-
-
 - (void)sendMessage:(HDMessage *)message completion:(void(^)(HDMessage *aMessage,HDError *error))completion {
     [_conversation sendMessage:message progress:nil completion:^(HDMessage *aMessage, HDError *aError) {
         aMessage.messageId = message.messageId;
@@ -1475,11 +1497,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     HDMessage *message = [ChatSendHelper imageMessageFormatWithImageData:UIImageJPEGRepresentation(orgImage, 1.0) to:_conversationModel.chatter.userId sessionId:_conversationModel.sessionId];
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
-        [self updateMessageWithMessage:aMessage];
         if (error == nil) {
-            HDImageMessageBody *bdy = (HDImageMessageBody *)aMessage.nBody;
-            [[EMSDImageCache sharedImageCache] storeImage:orgImage forKey:bdy.remotePath];
+            HDImageMessageBody *body = (HDImageMessageBody *)aMessage.nBody;
+            [[EMSDImageCache sharedImageCache] storeImage:orgImage forKey:body.remotePath];
         }
+        [self updateMessageWithMessage:aMessage];
     }];
 }
 
@@ -1492,10 +1514,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
         [self updateMessageWithMessage:aMessage];
         if (error == nil) {
-            HDVoiceMessageBody *bdy = (HDVoiceMessageBody *)aMessage.nBody;
-            NSString *uuid = [[KFFileCache sharedInstance] uuidWithUrlStr:bdy.remotePath];
+            HDVoiceMessageBody *body = (HDVoiceMessageBody *)aMessage.nBody;
+            NSString *uuid = [[KFFileCache sharedInstance] uuidWithUrlStr:body.remotePath];
             [[KFFileCache sharedInstance] moveItemAtPath:recordPath toCachePath:uuid];
-            [[KFFileCache sharedInstance] storeFileWithRemoteUrl:bdy.remotePath completion:^(id responseObject, NSError *error) {
+            [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSError *error) {
                 ;
             }];
         }
@@ -1523,7 +1545,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
                         [self.tableView endUpdates];
                     });
-                    
                 }
             }
             
@@ -1580,7 +1601,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)loadMessage{
     if (chatType == ChatViewTypeChat) {
         [self showHintNotHide:@""];
-    
+        
         [_conversation loadMessageCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
             [self hideHud];
             if (error == nil) {
@@ -1658,15 +1679,26 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)notifyNumberChange:(NSNotification*)notification
 {
-//    NSString *number = [HomeViewController currentBadgeValue];
+    //    NSString *number = [HomeViewController currentBadgeValue];
     [_backButton setTitle:[NSString stringWithFormat:@"(%@)",notification.object==nil?@(0):notification.object] forState:UIControlStateNormal];
 }
 
 
 #pragma mark - private
 
-- (void)showMenuViewController:(UIView *)showInView andIndexPath:(NSIndexPath *)indexPath messageType:(HDMessageBodyType)messageType
+- (void)showMenuViewController:(UIView *)showInView
+                  andIndexPath:(NSIndexPath *)indexPath
+                   messageType:(HDMessage *)message
 {
+    if (!message.isSender) {
+        return;
+    }
+    
+    NSDate *date = [NSDate dateWithTimeInterval:-120 sinceDate:[NSDate new]];
+    NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:message.timestamp / 1000];
+
+    BOOL isCanRecall = [date isEqualToDate:[date earlierDate:messageDate]];
+
     if (_menuController == nil) {
         _menuController = [UIMenuController sharedMenuController];
     }
@@ -1674,12 +1706,32 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _copyMenuItem = [[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(copyMenuAction:)];
     }
     
-    if (messageType == HDMessageBodyTypeText) {
-        [_menuController setMenuItems:@[_copyMenuItem]];
+    if (_recallMenuItem == nil) {
+        _recallMenuItem = [[UIMenuItem alloc] initWithTitle:@"撤回" action:@selector(recallMenuAction:)];
     }
-    else{
-        return;
+    
+    NSMutableArray *itemAry = [NSMutableArray array];
+    switch (message.type) {
+        case HDMessageBodyTypeText:
+        {
+            [itemAry addObject:_copyMenuItem];
+        }
+        case HDMessageBodyTypeImage:
+        case HDMessageBodyTypeVoice:
+        case HDMessageBodyTypeLocation:
+        case HDMessageBodyTypeFile:
+        case HDMessageBodyTypeVideo:
+        case HDMessageBodyTypeImageText:
+        {
+            if (isCanRecall) {
+                [itemAry addObject:_recallMenuItem];
+            }
+        }
+            
+        default:
+            break;
     }
+    [_menuController setMenuItems:itemAry];
     [_menuController setTargetRect:showInView.frame inView:showInView.superview];
     [_menuController setMenuVisible:YES animated:YES];
 }
@@ -1696,6 +1748,43 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             content = ((HDTextMessageBody *)model.nBody).text;
         }
         pasteboard.string = content;
+    }
+    _longPressIndexPath = nil;
+}
+
+- (void)recallMenuAction:(id)sender {
+    if (_longPressIndexPath.row > 0) {
+        HDMessage *model = [self.dataSource objectAtIndex:_longPressIndexPath.row];
+        [HDClient.sharedClient.chatManager recallMessage:model
+                                              completion:^(HDMessage *message,
+                                                           HDError *error)
+        {
+            // message仍然是之前的指针没有变化，所以发送结束后，可以直接根据是否有error，刷新tableView
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self prehandle:message]; // 重新计算 text bubble size
+                [self.tableView reloadData];
+            });
+        
+            /*  如果指针变化了，可以使用以下方式找到之前的对象
+            __block NSInteger index = -1;
+            [self.dataSource enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([obj isKindOfClass:[HDMessage class]]) {
+                    HDMessage *msg = (HDMessage *)obj;
+                    if ([msg.messageId isEqualToString:message.messageId]) {
+                        *stop = YES;
+                        index = idx;
+                    }
+                }
+            }];
+            
+            if (index != -1) {
+                [self.dataSource replaceObjectAtIndex:index withObject:message];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.tableView reloadData];
+                });
+            }
+             */
+        }];
     }
     _longPressIndexPath = nil;
 }
@@ -1719,13 +1808,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

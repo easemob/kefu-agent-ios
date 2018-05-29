@@ -12,6 +12,7 @@
 
 #import "EMChatViewBaseCell.h"
 #import "UIImageView+EMWebCache.h"
+#import "HDMessage+Category.h"
 
 NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadImageTapEventName";
 
@@ -115,46 +116,50 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
     else{
         identifier = [identifier stringByAppendingString:@"Receiver"];
     }
-    switch (model.type) {
-        case HDMessageBodyTypeText:
-        {
-            identifier = [identifier stringByAppendingString:@"Text"];
-            HDExtMsgType type = HDExtMsgTypeGeneral;
-            type = [HDUtils getMessageExtType:model];
-            if (type == HDExtMsgTypeForm) {
-                identifier = [identifier stringByAppendingString:@"form"];
-            }
-        }
-            break;
-        case HDMessageBodyTypeImage:
-        {
-            identifier = [identifier stringByAppendingString:@"Image"];
-        }
-            break;
-        case HDMessageBodyTypeVoice:
-        {
-            identifier = [identifier stringByAppendingString:@"Audio"];
-        }
-            break;
-        case HDMessageBodyTypeLocation:
-        {
-            identifier = [identifier stringByAppendingString:@"Location"];
-        }
-            break;
-        case HDMessageBodyTypeImageText:
-        {
-            identifier = [identifier stringByAppendingString:@"imageText"];
-        }
-            break;
-            case HDMessageBodyTypeFile:
-        {
-             identifier = [identifier stringByAppendingString:@"file"];
-        }
-            break;
-        default:
-            break;
-    }
     
+    if ([model isRecall]) {
+        identifier = [identifier stringByAppendingString:@"Recell"];
+    }else {
+        switch (model.type) {
+            case HDMessageBodyTypeText:
+            {
+                identifier = [identifier stringByAppendingString:@"Text"];
+                HDExtMsgType type = HDExtMsgTypeGeneral;
+                type = [HDUtils getMessageExtType:model];
+                if (type == HDExtMsgTypeForm) {
+                    identifier = [identifier stringByAppendingString:@"form"];
+                }
+            }
+                break;
+            case HDMessageBodyTypeImage:
+            {
+                identifier = [identifier stringByAppendingString:@"Image"];
+            }
+                break;
+            case HDMessageBodyTypeVoice:
+            {
+                identifier = [identifier stringByAppendingString:@"Audio"];
+            }
+                break;
+            case HDMessageBodyTypeLocation:
+            {
+                identifier = [identifier stringByAppendingString:@"Location"];
+            }
+                break;
+            case HDMessageBodyTypeImageText:
+            {
+                identifier = [identifier stringByAppendingString:@"imageText"];
+            }
+                break;
+            case HDMessageBodyTypeFile:
+            {
+                identifier = [identifier stringByAppendingString:@"file"];
+            }
+                break;
+            default:
+                break;
+        }
+    }
     return identifier;
 }
 
