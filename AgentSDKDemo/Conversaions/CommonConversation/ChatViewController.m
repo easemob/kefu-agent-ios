@@ -203,6 +203,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self.tableView addSubview:self.slimeView];
     
     _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
+    
     [self markAsRead];
     if (chatType == ChatViewTypeChat) {
         [self.navigationItem setTitleView:[UIView new]];

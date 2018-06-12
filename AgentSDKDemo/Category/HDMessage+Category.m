@@ -11,13 +11,19 @@
 @implementation HDMessage (Category)
 - (BOOL)isRecall {
     BOOL ret = NO;
-    NSDictionary *weichat = [self.nBody.msgExt safeDictValueForKey:@"weichat"];
-    if (weichat) {
-        if ([[weichat objectForKey:@"recall_flag"] isKindOfClass:[NSNumber class]]) {
-            ret = [[weichat objectForKey:@"recall_flag"] boolValue];
+    id ext = [self.nBody.msgExt objectForKey:@"weichat"];
+    if (ext != [NSNull null]) {
+        if ([[self.nBody.msgExt objectForKey:@"weichat"] isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *weichat = [self.nBody.msgExt objectForKey:@"weichat"];
+            if (weichat) {
+                if ([[weichat objectForKey:@"recall_flag"] isKindOfClass:[NSNumber class]]) {
+                    ret = [[weichat objectForKey:@"recall_flag"] boolValue];
+                }
+            }
         }
     }
     
     return ret;
 }
+
 @end

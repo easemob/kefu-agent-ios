@@ -117,7 +117,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"会话标签与备注";
-    _conversation = [[HDConversationManager alloc] initWithSessionId:_sessionId ];
+    _conversation = [[HDConversationManager alloc] initWithSessionId:_sessionId];
     // Do any additional setup after loading the view.
     [self setupBarButtonItem];
     self.tableView.tableFooterView = [[UIView alloc] init];
