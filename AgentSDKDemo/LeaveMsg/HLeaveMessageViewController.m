@@ -30,6 +30,22 @@
 
 @implementation HLeaveMessageViewController
 
+- (instancetype)init {
+    if (self = [super init]) {
+        [self updateUnreadCount];
+    }
+    
+    return self;
+}
+
+- (void)updateUnreadCount {
+    [HDClient.sharedClient.leaveMessageMananger asyncFetchLeaveMessageCountWithType:HLeaveMessageType_untreated completion:^(NSInteger count, HDError *error) {
+        if (!error) {
+            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",(int)count];
+        }
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     UINib *nib = [UINib nibWithNibName:@"HLeaveMessageCell" bundle:nil];
@@ -38,7 +54,6 @@
     [self.view addSubview:self.tableView];
     [self beginReload]; // 如果有更新事件，可以通过notification调用 beginReload
     [self registerLeaveMessageDetailChangedNotification];
-    self.tabBarItem.badgeValue = @"10";
 }
 
 - (void)registerLeaveMessageDetailChangedNotification {
@@ -101,6 +116,7 @@
 }
 
 - (void)endReload {
+    self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",(int)_untreatedCount];
     [self.tableView reloadData];
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);

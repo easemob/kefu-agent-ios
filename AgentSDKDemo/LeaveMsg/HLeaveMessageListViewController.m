@@ -13,10 +13,11 @@
 #define kRefreshTagHeight 64
 
 #define kPageSize 10
-@interface HLeaveMessageListViewController () <UITableViewDelegate, UITableViewDataSource> {
+@interface HLeaveMessageListViewController () <UITableViewDelegate, UITableViewDataSource, EMPickerSaveDelegate> {
     BOOL _isReloading;
     NSInteger _currentPage;
     BOOL _isChooseAll;
+    NSArray *_assignees;
 }
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) UILabel *headView;
@@ -27,6 +28,8 @@
 @property (nonatomic, strong) UIBarButtonItem *assignmentItem; // 分配
 @property (nonatomic, strong) UIBarButtonItem *leftItem; // 返回
 @property (nonatomic, strong) UIBarButtonItem *selectAllItem; // 全选/取消全选按钮
+@property (nonatomic, strong) UIBarButtonItem *selectItem;
+@property (nonatomic, strong) EMPickerView *taskView; // 分配
 @end
 
 @implementation HLeaveMessageListViewController
@@ -80,24 +83,24 @@
         [HDClient.sharedClient.leaveMessageMananger asyncFetchUndistributedLeaveMessagesWithPageNum:0
                                                                                            pageSize:kPageSize
                                                                                          completion:^(HResultCursor *result, HDError *error)
-        {
-            _currentPage = result.pageNum;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.datasource removeAllObjects];
-                if (!error && result.elements.count > 0) {
-                    [self.datasource addObjectsFromArray:result.elements];
-                }
-                if (result == nil || result.isLast) {
-                    [self.footView setTitle:@"已经到底了~" forState:UIControlStateNormal];
-                    self.footView.enabled = NO;
-                }else {
-                    [self.footView setTitle:@"加载更多" forState:UIControlStateNormal];
-                    self.footView.enabled = YES;
-                }
-                
-                [self endReload];
-            });
-        }];
+         {
+             _currentPage = result.pageNum;
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [self.datasource removeAllObjects];
+                 if (!error && result.elements.count > 0) {
+                     [self.datasource addObjectsFromArray:result.elements];
+                 }
+                 if (result == nil || result.isLast) {
+                     [self.footView setTitle:@"已经到底了~" forState:UIControlStateNormal];
+                     self.footView.enabled = NO;
+                 }else {
+                     [self.footView setTitle:@"加载更多" forState:UIControlStateNormal];
+                     self.footView.enabled = YES;
+                 }
+                 
+                 [self endReload];
+             });
+         }];
     }else if (self.isCustom) {
         
     }else {
@@ -266,15 +269,15 @@
     if(!_toolbar) {
         _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 64 - 50, self.view.size.width, 50)];
         [_toolbar setBarTintColor:UIColor.whiteColor];
-        UIBarButtonItem *chooseItem = [[UIBarButtonItem alloc] initWithTitle:@"选择"
-                                                                       style:UIBarButtonItemStyleDone
-                                                                      target:self
-                                                                      action:@selector(chooseAction:)];
+        self.selectItem = [[UIBarButtonItem alloc] initWithTitle:@"选择"
+                                                           style:UIBarButtonItemStyleDone
+                                                          target:self
+                                                          action:@selector(chooseAction:)];
         
         UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
-                                                                                  target:self
+                                                                                   target:self
                                                                                    action:nil];
-        _toolbar.items = @[chooseItem, spaceItem, self.assignmentItem];
+        _toolbar.items = @[self.selectItem, spaceItem, self.assignmentItem];
     }
     return _toolbar;
 }
@@ -290,6 +293,16 @@
     
     return _assignmentItem;
 }
+
+- (EMPickerView *)taskView
+{
+    if (_taskView == nil) {
+        _taskView = [[EMPickerView alloc] initWithDataSource:nil topHeight:64];
+        _taskView.delegate = self;
+    }
+    return _taskView;
+}
+
 
 - (void)backAction:(UIBarButtonItem *)item{
     [self.navigationController popViewControllerAnimated:YES];
@@ -307,7 +320,7 @@
             [self.tableView deselectRowAtIndexPath:obj animated:NO];
         }];
     }
-
+    
     _isChooseAll = !_isChooseAll;
 }
 
@@ -315,7 +328,8 @@
     NSMutableArray *selectItems = [NSMutableArray array];
     NSArray *indexPaths = [self.tableView indexPathsForSelectedRows];
     for (NSIndexPath *indexPath in indexPaths) {
-        [selectItems addObject:self.datasource[indexPath.row]];
+        HLeaveMessage *leaveMessage = self.datasource[indexPath.row];
+        [selectItems addObject:leaveMessage.leaveMessageId];
     }
     
     if (selectItems.count == 0) {
@@ -323,6 +337,35 @@
         return;
     }
     
+    if (HDClient.sharedClient.leaveMessageMananger.assignees.count > 0) {
+        _assignees = HDClient.sharedClient.leaveMessageMananger.assignees;
+        NSMutableArray *names = [NSMutableArray array];
+        for (HAssignee *assignee in _assignees) {
+            [names addObject:assignee.nickname];
+        }
+        [self.taskView setDataSource:names];
+        [self showPickerView];
+    }else {
+        [self showHintNotHide:@"获取列表中..."];
+        [HDClient.sharedClient.leaveMessageMananger asyncFetchAssigneeListWithPageNum:0 pageSize:1000 completion:^(HResultCursor *result, HDError *error) {
+            [self hideHud];
+            if (error) {
+                [self showHint:@"获取客服列表失败"];
+            }else {
+                _assignees = result.elements;
+                NSMutableArray *names = [NSMutableArray array];
+                for (HAssignee *assignee in _assignees) {
+                    [names addObject:assignee.nickname];
+                }
+                [self.taskView setDataSource:names];
+                [self showPickerView];
+            }
+        }];
+    }
+}
+
+- (void)showPickerView {
+    [self.view addSubview:self.taskView];
 }
 
 - (void)chooseAction:(UIBarButtonItem *)item{
@@ -338,6 +381,36 @@
         [self.assignmentItem setEnabled:NO];
         self.assignmentItem.title = @"";
     }
+}
+
+
+#pragma mark - EMPickerSaveDelegate
+- (void)savePickerWithValue:(NSString*)value index:(NSInteger)index {
+    NSMutableArray *selectItems = [NSMutableArray array];
+    NSArray *indexPaths = [self.tableView indexPathsForSelectedRows];
+    for (NSIndexPath *indexPath in indexPaths) {
+        HLeaveMessage *leaveMessage = self.datasource[indexPath.row];
+        [selectItems addObject:leaveMessage.leaveMessageId];
+    }
+    HAssignee *assignee = _assignees[index];
+    
+    [self showHintNotHide:@"分配中..."];
+    [HDClient.sharedClient.leaveMessageMananger asyncAssignLeaveMessagesWithMessageIds:selectItems
+                                                                             toAgentId:assignee.agentId
+                                                                            completion:^(HDError *error)
+     {
+         [self hideHud];
+         if (!error) {
+             [self showHint:@"分配成功"];
+         }else {
+             [self showHint:@"分配失败"];
+         }
+     }];
+    
+    [self.taskView removeFromSuperview];
+    [self chooseAction:self.selectItem];
+    [self reload];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLeaveMessageDetailChanged object:nil];
 }
 
 #pragma mark - tableView datesource & tableView delegate

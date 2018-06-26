@@ -183,18 +183,11 @@ static NSInteger currentTotalBadgeValue;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
     [_notifyController viewDidLoad];
     
-//    _leaveMsgController = [[LeaveMsgViewController alloc] init];
-//    [KFManager sharedInstance].leaveMsg = _leaveMsgController;
-//    [self setupChildVc:_leaveMsgController title:@"留言"
-//                 image:@"tabbar_icon_crm"
-//         selectedImage:@"tabbar_icon_crmhighlight" index:3];
-//    [_leaveMsgController viewDidLoad];
     _leaveMessageC = [[HLeaveMessageViewController alloc] init];
     [self setupChildVc:_leaveMessageC
                  title:@"留言"
                  image:@"tabbar_icon_crm"
          selectedImage:@"tabbar_icon_crmhighlight" index:3];
-//    [_leaveMessageC viewDidLoad];
     
     self.view.backgroundColor = RGBACOLOR(25, 25, 25, 1);
     
