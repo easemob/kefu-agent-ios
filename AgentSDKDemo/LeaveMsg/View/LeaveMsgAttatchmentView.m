@@ -8,7 +8,6 @@
 
 #import "LeaveMsgAttatchmentView.h"
 
-#import "LeaveMsgDetailModel.h"
 
 @interface LeaveMsgAttatchmentView ()
 {
@@ -22,10 +21,10 @@
 
 @implementation LeaveMsgAttatchmentView
 {
-    LeaveMsgAttachmentModel *_model;
+    HLeaveMessageCommentAttachment *_model;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame edit:(BOOL)edit model:(LeaveMsgAttachmentModel*)model
+- (instancetype)initWithFrame:(CGRect)frame edit:(BOOL)edit model:(HLeaveMessageCommentAttachment *)model
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -35,7 +34,7 @@
         _edit = edit;
         _model = model;
         [self addSubview:self.nameLabel];
-        self.nameLabel.text = model.name;
+        self.nameLabel.text = model.attachmentName;
         if (edit) {
             [self.nameLabel addSubview:self.removeButton];
         }

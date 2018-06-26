@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LeaveMsgAttachmentModel;
+
 @protocol LeaveMsgAttatchmentViewDelegate <NSObject>
 
 - (void)didRemoveAttatchment:(NSInteger)index;
@@ -20,7 +20,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
                          edit:(BOOL)edit
-                        model:(LeaveMsgAttachmentModel*)model;
+                        model:(HLeaveMessageCommentAttachment *)model;
 
 - (instancetype)initWithFrame:(CGRect)frame
                          edit:(BOOL)edit

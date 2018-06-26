@@ -11,7 +11,6 @@
 #import "XHMessageTextView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
-#import "LeaveMsgDetailModel.h"
 #import "MessageReadManager.h"
 
 typedef NS_ENUM(NSUInteger, InputViewState) {
