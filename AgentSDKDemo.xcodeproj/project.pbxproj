@@ -129,8 +129,6 @@
 		90AFCBDE20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */; };
 		90AFCBDF20CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */; };
 		90AFCBE020CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */; };
-		90AFCBE320CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */; };
-		90AFCBE420CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */; };
 		90D04C752047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
 		90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
 		90D3CBA6201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
@@ -1631,8 +1629,6 @@
 		90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageCell.h; sourceTree = "<group>"; };
 		90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageCell.m; sourceTree = "<group>"; };
 		90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HLeaveMessageCell.xib; sourceTree = "<group>"; };
-		90AFCBE120CFAA3B007D0ADB /* HLeaveMessageDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageDetailViewController.h; sourceTree = "<group>"; };
-		90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageDetailViewController.m; sourceTree = "<group>"; };
 		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
 		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
@@ -3665,8 +3661,6 @@
 				90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */,
 				90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */,
 				90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */,
-				90AFCBE120CFAA3B007D0ADB /* HLeaveMessageDetailViewController.h */,
-				90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */,
 				90091DD920D0CF88002AA808 /* HLeaveMessageListViewController.h */,
 				90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */,
 				90091DDD20D0CF9F002AA808 /* HLeaveMessageListCell.h */,
@@ -5838,7 +5832,6 @@
 				D3A95E3D1EA0F47100ADD394 /* IQUIView+Hierarchy.m in Sources */,
 				D3A95E751EA0F47100ADD394 /* SRSlimeView.m in Sources */,
 				D33CE8141F7CB52500236720 /* DDDispatchQueueLogFormatter.m in Sources */,
-				90AFCBE320CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */,
 				D33CE76A1F7CAEB800236720 /* NSString+Escape.m in Sources */,
 				D33CE6CB1F7CA98D00236720 /* CustomerChatViewController.m in Sources */,
 				D33CE7711F7CAEB800236720 /* UIResponder+Router.m in Sources */,
@@ -6242,7 +6235,6 @@
 				D3E9CD491FBED182005E3677 /* EMClientInfoTagView.m in Sources */,
 				D3E9CD4A1FBED182005E3677 /* HDWebViewController.m in Sources */,
 				D3E9CD4B1FBED182005E3677 /* EMVoiceConverter.mm in Sources */,
-				90AFCBE420CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */,
 				D3E9CD4C1FBED182005E3677 /* IQToolbar.m in Sources */,
 				D3E9CD4D1FBED182005E3677 /* DXLoadingView.m in Sources */,
 				D3E9CD4E1FBED182005E3677 /* EMChatTextBubbleView.m in Sources */,

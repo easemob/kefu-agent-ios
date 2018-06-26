@@ -50,7 +50,6 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (instancetype)initWithModel:(HLeaveMessage *)model {
     if (self = [super init]) {
         _model = model;
-//        _currentLeaveMsgStatusId = model.status.ID;
         rowHeight = 40;
     }
     return self;
@@ -377,11 +376,9 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                         if (!error) {
                             [hud setLabelText:@"分配成功"];
                             _currentAssginee = assignee.nickname;
-                            if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
-                                [_delegate leaveMsgDetailViewController:self];
-                            }
                             [hud hide:YES afterDelay:0.5];
                             [self reloadDetailData];
+                            [self leaveMessageDetailDidChanged];
                         } else {
                             [hud setLabelText:@"分配失败"];
                             [hud hide:YES afterDelay:0.5];
@@ -395,11 +392,9 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                         [HDClient.sharedClient.leaveMessageMananger asyncUnAssignLeaveMessageId:@[_model.leaveMessageId] completion:^(HDError *error) {
                             if (error == nil) {
                                 [hud setLabelText:@"分配成功"];
-                                if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
-                                    [_delegate leaveMsgDetailViewController:self];
-                                }
                                 [hud hide:YES afterDelay:0.5];
                                 [self reloadDetailData];
+                                [self leaveMessageDetailDidChanged];
                             } else {
                                 [hud setLabelText:@"分配失败"];
                                 [hud hide:YES afterDelay:0.5];
@@ -411,9 +406,6 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                         [HDClient.sharedClient.leaveMessageMananger asyncAssignLeaveMessagesWithMessageIds:@[_model.leaveMessageId] toAgentId:assignee.agentId completion:^(HDError *error) {
                             if (!error) {
                                 [hud setLabelText:@"分配成功"];
-                                if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
-                                    [_delegate leaveMsgDetailViewController:self];
-                                }
                                 [hud hide:YES afterDelay:0.5];
                                 [self reloadDetailData];
                             } else {
@@ -444,10 +436,8 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                                                                                     completion:^(HDError *error) {
                 [hud hide:YES afterDelay:0.5];
                 if (error == nil) {
-                    if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
-                        [_delegate leaveMsgDetailViewController:self];
-                    }
                     [weakSelf reloadDetailData];
+                    [self leaveMessageDetailDidChanged];
                 } else {
                     [hud setLabelText:@"保存失败"];
                 }
@@ -469,11 +459,38 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     }
 }
 
+- (void)leaveMessageDetailDidChanged {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kLeaveMessageDetailChanged
+                                                        object:nil
+                                                      userInfo:nil];
+}
+
 - (void)reloadDetailData
 {
     WEAK_SELF
     [HDClient.sharedClient.leaveMessageMananger asyncFetchLeaveMessageInfoWithLeaveMessageId:_model.leaveMessageId completion:^(HLeaveMessage *leaveMessage, HDError *error) {
+        _model = leaveMessage;
         [weakSelf.tableView reloadData];
+        switch (leaveMessage.type) {
+            case HLeaveMessageType_untreated:
+            {
+                [self.statusView.pickView selectRow:0 inComponent:0 animated:NO];
+            }
+                break;
+            case HLeaveMessageType_processing:
+            {
+                [self.statusView.pickView selectRow:1 inComponent:0 animated:NO];
+            }
+                break;
+            case HLeaveMessageType_resolved:
+            {
+                [self.statusView.pickView selectRow:2 inComponent:0 animated:NO];
+            }
+                break;
+            default:
+                break;
+        }
+        
     }];
 }
 

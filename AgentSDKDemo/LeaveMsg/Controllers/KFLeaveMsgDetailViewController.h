@@ -7,14 +7,9 @@
 //
 
 #import "KFBaseViewController.h"
-@class KFLeaveMsgDetailViewController;
-@protocol KFLeaveMsgDetailViewControllerDelegate <NSObject>
 
-- (void)leaveMsgDetailViewController:(KFLeaveMsgDetailViewController *)vc;
-
-@end
+#define kLeaveMessageDetailChanged @"leaveMessageDetailChanged"
 
 @interface KFLeaveMsgDetailViewController : KFBaseViewController
-@property(nonatomic,weak) id<KFLeaveMsgDetailViewControllerDelegate> delegate;
 - (instancetype)initWithModel:(HLeaveMessage *)model;
 @end

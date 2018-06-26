@@ -46,7 +46,15 @@
     self.tableView.tableFooterView = self.footView;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.toolbar];
+    [self registerLeaveMessageDetailDidChanged];
     [self reload];
+}
+
+- (void)registerLeaveMessageDetailDidChanged {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reload)
+                                                 name:kLeaveMessageDetailChanged
+                                               object:nil];
 }
 
 - (NSString *)navTitleWithType:(HLeaveMessageType)aType {

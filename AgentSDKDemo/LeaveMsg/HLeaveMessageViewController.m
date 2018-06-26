@@ -9,6 +9,7 @@
 #import "HLeaveMessageViewController.h"
 #import "HLeaveMessageCell.h"
 #import "HLeaveMessageListViewController.h"
+#import "KFLeaveMsgDetailViewController.h"
 #import <AgentSDK/AgentSDK.h>
 
 #define kRefreshTagHeight 64
@@ -36,8 +37,15 @@
     [self.tableView addSubview:self.headView];
     [self.view addSubview:self.tableView];
     [self beginReload]; // 如果有更新事件，可以通过notification调用 beginReload
-    
+    [self registerLeaveMessageDetailChangedNotification];
     self.tabBarItem.badgeValue = @"10";
+}
+
+- (void)registerLeaveMessageDetailChangedNotification {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(beginReload)
+                                                 name:kLeaveMessageDetailChanged
+                                               object:nil];
 }
 
 - (void)reloadCount {
@@ -198,11 +206,9 @@
             lMsgListVC.type = HLeaveMessageType_resolved;
         } break;
         case 3:{
-            lMsgListVC.type = HLeaveMessageType_all;
             lMsgListVC.isUndistributed = YES;
         } break;
         case 4:{
-            lMsgListVC.type = HLeaveMessageType_custom;
             lMsgListVC.isCustom = YES;
         } break;
         default:
