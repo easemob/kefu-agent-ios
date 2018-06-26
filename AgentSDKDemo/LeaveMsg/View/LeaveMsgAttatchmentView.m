@@ -43,7 +43,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame edit:(BOOL)edit kfmodel:(HDAttachment *)model {
+- (instancetype)initWithFrame:(CGRect)frame edit:(BOOL)edit kfmodel:(HLeaveMessageCommentAttachment *)model {
     self = [super initWithFrame:frame];
     if (self) {
         self.layer.masksToBounds = YES;
@@ -51,7 +51,7 @@
         self.backgroundColor = RGBACOLOR(77, 178, 244, 1);
         _edit = edit;
         [self addSubview:self.nameLabel];
-        self.nameLabel.text = model.name;
+        self.nameLabel.text = model.attachmentName;
         if (edit) {
             [self.nameLabel addSubview:self.removeButton];
         }

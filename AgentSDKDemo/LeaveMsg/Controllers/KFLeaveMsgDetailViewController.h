@@ -16,5 +16,5 @@
 
 @interface KFLeaveMsgDetailViewController : KFBaseViewController
 @property(nonatomic,weak) id<KFLeaveMsgDetailViewControllerDelegate> delegate;
-- (instancetype)initWithModel:(HDLeaveMessage *)model;
+- (instancetype)initWithModel:(HLeaveMessage *)model;
 @end

@@ -524,7 +524,7 @@
 #pragma mark - 发送消息
 - (void)sendTextMessage:(NSString *)text
 {
-   __block HDMessage *message = [ChatSendHelper customerTextMessageFormatWithText:text to:_userModel.userId];
+   __block HDMessage *message = [ChatSendHelper customerTextMessageFormatWithText:text to:_userModel.agentId];
     //new sendMessage
     [[HDClient sharedClient].chatManager customerSendMessage:message completion:^(id responseObject, HDError *error) {
         message = responseObject;
@@ -542,7 +542,7 @@
 - (void)sendImageMessage:(UIImage*)orgImage
 {
     NSData *data = UIImageJPEGRepresentation(orgImage, 0.5);
-    __block  HDMessage *message = [ChatSendHelper customerImageMessageFormatWithImageData:data to:_userModel.userId];
+    __block  HDMessage *message = [ChatSendHelper customerImageMessageFormatWithImageData:data to:_userModel.agentId];
     [[HDClient sharedClient].chatManager customerSendMessage:message completion:^(id responseObject, HDError *error) {
         message = responseObject;
         HDImageMessageBody *body = (HDImageMessageBody *)message.nBody;
@@ -577,7 +577,7 @@
     [self showHintNotHide:@"加载中..."];
     WEAK_SELF
     
-    [[HDClient sharedClient].chatManager asyncGetAgentUnreadMessagesWithRemoteAgentUserId:_userModel.userId parameters:parameters completion:^(NSArray <HDMessage *> *messages, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncGetAgentUnreadMessagesWithRemoteAgentUserId:_userModel.agentId parameters:parameters completion:^(NSArray <HDMessage *> *messages, HDError *error) {
         [self hideHud];
         if (!error) {
             for (HDMessage *message in messages) {
@@ -596,7 +596,7 @@
             }
             HDMessage *lastMessage = [messages lastObject];
             if (lastMessage) {
-                [[HDClient sharedClient].chatManager asyncMarkMessagesAsReadWithRemoteAgentUserId:_userModel.userId lastCreateDateTime:lastMessage.localTime completion:^(id responseObject, HDError *error) {
+                [[HDClient sharedClient].chatManager asyncMarkMessagesAsReadWithRemoteAgentUserId:_userModel.agentId lastCreateDateTime:lastMessage.localTime completion:^(id responseObject, HDError *error) {
                     if (error == nil) {
                         NSLog(@"mark success");
                     }
@@ -655,7 +655,7 @@
     [parameters setObject:[self dateFormate:timeInterval] forKey:@"beginDateTime"];
     [parameters setValue:@(hPageLimit) forKey:@"size"];
     WEAK_SELF
-    [[HDClient sharedClient].chatManager aysncGetAgentMessagesWithRemoteUserId:_userModel.userId parameters:parameters completion:^(NSArray<HDMessage *> *messages, HDError *error) {
+    [[HDClient sharedClient].chatManager aysncGetAgentMessagesWithRemoteUserId:_userModel.agentId parameters:parameters completion:^(NSArray<HDMessage *> *messages, HDError *error) {
         if (error == nil) {
             [weakSelf hideHud];
             for (HDMessage *message in messages) {
@@ -713,7 +713,7 @@
 
 - (void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages {
     for (HDMessage *message in aMessages) {
-        if (![message.fromUser.userId isEqualToString:_userModel.userId]) {
+        if (![message.fromUser.userId isEqualToString:_userModel.agentId]) {
             return;
         }
         if (message.type == HDMessageBodyTypeText) {
@@ -722,7 +722,7 @@
         if (![_msgDic objectForKey:message.messageId]) {
             [_msgDic setObject:@"" forKey:message.messageId];
             [self addMessage:message];
-            [[HDClient sharedClient].chatManager asyncMarkMessagesAsReadWithRemoteAgentUserId:_userModel.userId lastCreateDateTime:message.localTime completion:^(id responseObject, HDError *error) {
+            [[HDClient sharedClient].chatManager asyncMarkMessagesAsReadWithRemoteAgentUserId:_userModel.agentId lastCreateDateTime:message.localTime completion:^(id responseObject, HDError *error) {
                 NSLog(@"标记为已读%@%@",responseObject,error.errorDescription);
             }];
         }

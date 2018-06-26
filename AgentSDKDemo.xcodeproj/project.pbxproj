@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90502AF9201F102C00EE1666 /* KFLeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */; };
-		90502AFB201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */; };
-		90502AFC201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */; };
-		90502AFD201F105600EE1666 /* KFLeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */; };
+		90091DDB20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
+		90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
+		90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */; };
+		90091DE120D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */; };
+		90091DE220D0CF9F002AA808 /* HLeaveMessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90091DDF20D0CF9F002AA808 /* HLeaveMessageListCell.xib */; };
+		90091DE320D0CF9F002AA808 /* HLeaveMessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90091DDF20D0CF9F002AA808 /* HLeaveMessageListCell.xib */; };
 		90591C2E2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
 		90591C2F2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
 		90591C302068ADC4007367BD /* KFMonitorInfoChartViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C1B2068ADC3007367BD /* KFMonitorInfoChartViewCell.m */; };
@@ -121,6 +123,14 @@
 		90A2B53D2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */; };
 		90AA69CD2069FAF000E39745 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; };
 		90AA69CE2069FAF000E39745 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90AFCBD120CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */; };
+		90AFCBD220CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */; };
+		90AFCBDD20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */; };
+		90AFCBDE20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */; };
+		90AFCBDF20CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */; };
+		90AFCBE020CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */; };
+		90AFCBE320CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */; };
+		90AFCBE420CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */; };
 		90D04C752047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
 		90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
 		90D3CBA6201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
@@ -361,7 +371,6 @@
 		D33CE8741F7CD25800236720 /* SWUtilityButtonView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE86E1F7CD25800236720 /* SWUtilityButtonView.m */; };
 		D33CE8781F7CD2B800236720 /* WaitQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8771F7CD2B800236720 /* WaitQueueViewController.m */; };
 		D33CE8951F7CD34000236720 /* KFLeaveMsgDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */; };
-		D33CE8961F7CD34000236720 /* LeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8821F7CD34000236720 /* LeaveMsgViewController.m */; };
 		D33CE8971F7CD34000236720 /* KFLeaveMsgModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8851F7CD34000236720 /* KFLeaveMsgModel.m */; };
 		D33CE8981F7CD34000236720 /* LeaveMsgDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8871F7CD34000236720 /* LeaveMsgDetailModel.m */; };
 		D33CE8991F7CD34000236720 /* KFLeaveMsgCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88A1F7CD34000236720 /* KFLeaveMsgCommentCell.m */; };
@@ -666,7 +675,6 @@
 		D3E9CD131FBED182005E3677 /* KFBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7801F7CAF6700236720 /* KFBaseViewController.m */; };
 		D3E9CD141FBED182005E3677 /* FacialView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE63A1F7CA98D00236720 /* FacialView.m */; };
 		D3E9CD151FBED182005E3677 /* AdminQualityofWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D37EF5401FA72C5F002B8B8D /* AdminQualityofWorkViewController.m */; };
-		D3E9CD161FBED182005E3677 /* LeaveMsgViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8821F7CD34000236720 /* LeaveMsgViewController.m */; };
 		D3E9CD171FBED182005E3677 /* EMFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5EE1F7CA98D00236720 /* EMFileViewController.m */; };
 		D3E9CD181FBED182005E3677 /* DDMultiFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8091F7CB52500236720 /* DDMultiFormatter.m */; };
 		D3E9CD191FBED182005E3677 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7FB1F7CB52500236720 /* DDFileLogger.m */; };
@@ -1511,9 +1519,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		90502AF7201F102C00EE1666 /* KFLeaveMsgViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgViewController.h; sourceTree = "<group>"; };
-		90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgViewController.m; sourceTree = "<group>"; };
-		90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = KFLeaveMsg.storyboard; sourceTree = "<group>"; };
+		90091DD920D0CF88002AA808 /* HLeaveMessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListViewController.h; sourceTree = "<group>"; };
+		90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageListViewController.m; sourceTree = "<group>"; };
+		90091DDD20D0CF9F002AA808 /* HLeaveMessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListCell.h; sourceTree = "<group>"; };
+		90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageListCell.m; sourceTree = "<group>"; };
+		90091DDF20D0CF9F002AA808 /* HLeaveMessageListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HLeaveMessageListCell.xib; sourceTree = "<group>"; };
 		90591C182068ADC3007367BD /* KFMonitorInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoCell.h; sourceTree = "<group>"; };
 		90591C192068ADC3007367BD /* KFMonitorInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInfoCell.m; sourceTree = "<group>"; };
 		90591C1A2068ADC3007367BD /* KFMonitorInfoChartViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoChartViewCell.h; sourceTree = "<group>"; };
@@ -1616,6 +1626,13 @@
 		90A2B53A2069126800EC2A80 /* KFMonitorInstrumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInstrumentView.h; sourceTree = "<group>"; };
 		90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInstrumentView.m; sourceTree = "<group>"; };
 		90AA69CC2069FAF000E39745 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90AFCBCF20CF9FB6007D0ADB /* HLeaveMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageViewController.h; sourceTree = "<group>"; };
+		90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageViewController.m; sourceTree = "<group>"; };
+		90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageCell.h; sourceTree = "<group>"; };
+		90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageCell.m; sourceTree = "<group>"; };
+		90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HLeaveMessageCell.xib; sourceTree = "<group>"; };
+		90AFCBE120CFAA3B007D0ADB /* HLeaveMessageDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageDetailViewController.h; sourceTree = "<group>"; };
+		90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageDetailViewController.m; sourceTree = "<group>"; };
 		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
 		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
@@ -2004,8 +2021,6 @@
 		D33CE8771F7CD2B800236720 /* WaitQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitQueueViewController.m; sourceTree = "<group>"; };
 		D33CE87F1F7CD34000236720 /* KFLeaveMsgDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgDetailViewController.h; sourceTree = "<group>"; };
 		D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgDetailViewController.m; sourceTree = "<group>"; };
-		D33CE8811F7CD34000236720 /* LeaveMsgViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveMsgViewController.h; sourceTree = "<group>"; };
-		D33CE8821F7CD34000236720 /* LeaveMsgViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveMsgViewController.m; sourceTree = "<group>"; };
 		D33CE8841F7CD34000236720 /* KFLeaveMsgModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgModel.h; sourceTree = "<group>"; };
 		D33CE8851F7CD34000236720 /* KFLeaveMsgModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgModel.m; sourceTree = "<group>"; };
 		D33CE8861F7CD34000236720 /* LeaveMsgDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveMsgDetailModel.h; sourceTree = "<group>"; };
@@ -2681,16 +2696,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		90502AF6201F100600EE1666 /* KFLeaveMsgViewController */ = {
-			isa = PBXGroup;
-			children = (
-				90502AF7201F102C00EE1666 /* KFLeaveMsgViewController.h */,
-				90502AF8201F102C00EE1666 /* KFLeaveMsgViewController.m */,
-				90502AFA201F104E00EE1666 /* KFLeaveMsg.storyboard */,
-			);
-			path = KFLeaveMsgViewController;
-			sourceTree = "<group>";
-		};
 		90591C152068ADC3007367BD /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -3655,6 +3660,18 @@
 				D33CE87E1F7CD34000236720 /* Controllers */,
 				D33CE8831F7CD34000236720 /* Model */,
 				D33CE8881F7CD34000236720 /* View */,
+				90AFCBCF20CF9FB6007D0ADB /* HLeaveMessageViewController.h */,
+				90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */,
+				90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */,
+				90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */,
+				90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */,
+				90AFCBE120CFAA3B007D0ADB /* HLeaveMessageDetailViewController.h */,
+				90AFCBE220CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m */,
+				90091DD920D0CF88002AA808 /* HLeaveMessageListViewController.h */,
+				90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */,
+				90091DDD20D0CF9F002AA808 /* HLeaveMessageListCell.h */,
+				90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */,
+				90091DDF20D0CF9F002AA808 /* HLeaveMessageListCell.xib */,
 			);
 			path = LeaveMsg;
 			sourceTree = "<group>";
@@ -3662,11 +3679,8 @@
 		D33CE87E1F7CD34000236720 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				90502AF6201F100600EE1666 /* KFLeaveMsgViewController */,
 				D33CE87F1F7CD34000236720 /* KFLeaveMsgDetailViewController.h */,
 				D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */,
-				D33CE8811F7CD34000236720 /* LeaveMsgViewController.h */,
-				D33CE8821F7CD34000236720 /* LeaveMsgViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -4921,7 +4935,6 @@
 				D33CE6971F7CA98D00236720 /* chat_location_annotation_someone.png in Resources */,
 				D3FDC7A41EA0A5C600C25BB0 /* button_call_select@2x.png in Resources */,
 				D3FDC76B1EA0A5C600C25BB0 /* VoiceSearchFeedback006.png in Resources */,
-				90502AFB201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */,
 				D3FDC7781EA0A5C600C25BB0 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D3A95E7D1EA0F47100ADD394 /* TTOpenInAppActivity8@3x.png in Resources */,
 				D3FDC7EA1EA0A5C600C25BB0 /* ee_35.png in Resources */,
@@ -5116,6 +5129,7 @@
 				D33CE6A71F7CA98D00236720 /* chat_tagarrow@2x.png in Resources */,
 				D3FDC8211EA0A5C600C25BB0 /* gallary_icon_camera_big@2x.png in Resources */,
 				D3FDC8901EA0A5C600C25BB0 /* tabbar_icon_crm@3x.png in Resources */,
+				90AFCBDF20CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */,
 				D3FDC8631EA0A5C600C25BB0 /* expand_icon_sessionend@3x.png in Resources */,
 				D3FDC77E1EA0A5C600C25BB0 /* VoiceSearchFeedback015@2x.png in Resources */,
 				D3FDC7AF1EA0A5C600C25BB0 /* icon_audio_white_1@2x.png in Resources */,
@@ -5145,6 +5159,7 @@
 				D3058D141FD6AD920091E048 /* reception@2x.png in Resources */,
 				D3FDC7D91EA0A5C600C25BB0 /* ee_2.png in Resources */,
 				D3FDC7701EA0A5C600C25BB0 /* VoiceSearchFeedback008@2x.png in Resources */,
+				90091DE220D0CF9F002AA808 /* HLeaveMessageListCell.xib in Resources */,
 				D3A95E711EA0F47100ADD394 /* MWPhotoBrowser.bundle in Resources */,
 				D3058D061FD6AD920091E048 /* controlling@3x.png in Resources */,
 				D3FDC89D1EA0A5C600C25BB0 /* visitor_icon_setting_Text2@3x.png in Resources */,
@@ -5310,7 +5325,6 @@
 				D3E9CDE51FBED182005E3677 /* chat_location_annotation_someone.png in Resources */,
 				D3E9CDE61FBED182005E3677 /* button_call_select@2x.png in Resources */,
 				D3E9CDE71FBED182005E3677 /* VoiceSearchFeedback006.png in Resources */,
-				90502AFC201F104E00EE1666 /* KFLeaveMsg.storyboard in Resources */,
 				D3E9CDE81FBED182005E3677 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D3E9CDE91FBED182005E3677 /* TTOpenInAppActivity8@3x.png in Resources */,
 				D3E9CDEA1FBED182005E3677 /* ee_35.png in Resources */,
@@ -5505,6 +5519,7 @@
 				D3E9CEA31FBED182005E3677 /* chat_tagarrow@2x.png in Resources */,
 				D3E9CEA41FBED182005E3677 /* gallary_icon_camera_big@2x.png in Resources */,
 				D3E9CEA51FBED182005E3677 /* tabbar_icon_crm@3x.png in Resources */,
+				90AFCBE020CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */,
 				D3E9CEA61FBED182005E3677 /* expand_icon_sessionend@3x.png in Resources */,
 				D3E9CEA71FBED182005E3677 /* VoiceSearchFeedback015@2x.png in Resources */,
 				D3E9CEA81FBED182005E3677 /* icon_audio_white_1@2x.png in Resources */,
@@ -5534,6 +5549,7 @@
 				D3058D151FD6AD920091E048 /* reception@2x.png in Resources */,
 				D3E9CEBE1FBED182005E3677 /* ee_2.png in Resources */,
 				D3E9CEBF1FBED182005E3677 /* VoiceSearchFeedback008@2x.png in Resources */,
+				90091DE320D0CF9F002AA808 /* HLeaveMessageListCell.xib in Resources */,
 				D3E9CEC01FBED182005E3677 /* MWPhotoBrowser.bundle in Resources */,
 				D3058D071FD6AD920091E048 /* controlling@3x.png in Resources */,
 				D3E9CEC11FBED182005E3677 /* visitor_icon_setting_Text2@3x.png in Resources */,
@@ -5696,7 +5712,6 @@
 				D3A761511FB55ABE000E1652 /* YYLabel.m in Sources */,
 				D3A761521FB55ABE000E1652 /* YYTextView.m in Sources */,
 				D3DFB36C1FD7A45F00A9358A /* KFLineChart.m in Sources */,
-				90502AF9201F102C00EE1666 /* KFLeaveMsgViewController.m in Sources */,
 				D33CE7C31F7CB08A00236720 /* KFHttpManager.m in Sources */,
 				D324D0AE1EA46ED30009FE68 /* HDBaseViewController.m in Sources */,
 				D33CE6B41F7CA98D00236720 /* DXChatBarMoreView.m in Sources */,
@@ -5763,6 +5778,7 @@
 				9061557620620861006113FF /* KFSwitchTypeButton.m in Sources */,
 				D33CE6B11F7CA98D00236720 /* DXMessageToolBar.m in Sources */,
 				D33CE79F1F7CAF6700236720 /* KFUserModel.m in Sources */,
+				90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */,
 				D33CE76C1F7CAEB800236720 /* UIAlertView+AlertBlock.m in Sources */,
 				D33CE79A1F7CAF6700236720 /* KFInputEmailViewController.m in Sources */,
 				D34DF9DC1FA818E60018116D /* AdminHistoryViewController.m in Sources */,
@@ -5804,7 +5820,6 @@
 				D33CE7981F7CAF6700236720 /* KFBaseViewController.m in Sources */,
 				D33CE6B31F7CA98D00236720 /* FacialView.m in Sources */,
 				D34DF9DD1FA818EC0018116D /* AdminQualityofWorkViewController.m in Sources */,
-				D33CE8961F7CD34000236720 /* LeaveMsgViewController.m in Sources */,
 				D33CE6861F7CA98D00236720 /* EMFileViewController.m in Sources */,
 				90591CBD2068B050007367BD /* AAOptions.m in Sources */,
 				90A2B53C2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */,
@@ -5823,6 +5838,7 @@
 				D3A95E3D1EA0F47100ADD394 /* IQUIView+Hierarchy.m in Sources */,
 				D3A95E751EA0F47100ADD394 /* SRSlimeView.m in Sources */,
 				D33CE8141F7CB52500236720 /* DDDispatchQueueLogFormatter.m in Sources */,
+				90AFCBE320CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */,
 				D33CE76A1F7CAEB800236720 /* NSString+Escape.m in Sources */,
 				D33CE6CB1F7CA98D00236720 /* CustomerChatViewController.m in Sources */,
 				D33CE7711F7CAEB800236720 /* UIResponder+Router.m in Sources */,
@@ -5848,6 +5864,7 @@
 				D33CE8B91F7CD84A00236720 /* WebViewJavascriptBridge_JS.m in Sources */,
 				D3A95E381EA0F47100ADD394 /* EmojiEmoticons.m in Sources */,
 				D33CE79E1F7CAF6700236720 /* LoginViewController.m in Sources */,
+				90AFCBD120CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */,
 				90A2B5382069125100EC2A80 /* KFMonitorInfoViewItem.m in Sources */,
 				D33CE7391F7CAD2C00236720 /* KFBaseNavigationController.m in Sources */,
 				90591C402068ADC4007367BD /* KFMonitorInstrumentModel.m in Sources */,
@@ -5913,6 +5930,7 @@
 				D3A95E741EA0F47100ADD394 /* SRRefreshView.m in Sources */,
 				D33CE6931F7CA98D00236720 /* CompileTableViewCell.m in Sources */,
 				D33CE89C1F7CD34000236720 /* LeaveMsgAttatchmentView.m in Sources */,
+				90091DDB20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */,
 				D3ADC6F61FD522FD00ADE88E /* HDSuperviseManagerViewController.m in Sources */,
 				D33CE6C11F7CA98D00236720 /* MessageReadManager.m in Sources */,
 				D33CE68F1F7CA98D00236720 /* QuickReplyViewController.m in Sources */,
@@ -5961,6 +5979,7 @@
 				D33CE85C1F7CD0F800236720 /* UIImage+EMGIF.m in Sources */,
 				D33CE8AB1F7CD3D400236720 /* UIView+SBExtras.m in Sources */,
 				D3A6BB691FB058BF00066410 /* HDChatFormBubbleView.m in Sources */,
+				90AFCBDD20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */,
 				D396E6811FDFEC7F009C0CF7 /* KFPredictView.m in Sources */,
 				D3DFB3841FD8EA2400A9358A /* KFDetailModel.m in Sources */,
 				D3A95E6E1EA0F47100ADD394 /* PSTGridLayoutItem.m in Sources */,
@@ -6045,7 +6064,6 @@
 				D3E9CC9D1FBED182005E3677 /* YYLabel.m in Sources */,
 				D3E9CC9E1FBED182005E3677 /* YYTextView.m in Sources */,
 				D3DFB36D1FD7A45F00A9358A /* KFLineChart.m in Sources */,
-				90502AFD201F105600EE1666 /* KFLeaveMsgViewController.m in Sources */,
 				D3E9CCBC1FBED182005E3677 /* KFHttpManager.m in Sources */,
 				D3E9CCBD1FBED182005E3677 /* HDBaseViewController.m in Sources */,
 				D3E9CCBE1FBED182005E3677 /* DXChatBarMoreView.m in Sources */,
@@ -6131,6 +6149,7 @@
 				D3E9CD001FBED182005E3677 /* CommentEditViewController.m in Sources */,
 				D3E9CD011FBED182005E3677 /* SWTableViewCell.m in Sources */,
 				D3E9CD021FBED182005E3677 /* DXTipView.m in Sources */,
+				90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */,
 				D3E9CD031FBED182005E3677 /* DXTagView.m in Sources */,
 				D3E9CD041FBED182005E3677 /* KFLeaveMsgListCell.m in Sources */,
 				D3E9CD051FBED182005E3677 /* KFFileCache.m in Sources */,
@@ -6153,7 +6172,6 @@
 				D3E9CD131FBED182005E3677 /* KFBaseViewController.m in Sources */,
 				D3E9CD141FBED182005E3677 /* FacialView.m in Sources */,
 				D3E9CD151FBED182005E3677 /* AdminQualityofWorkViewController.m in Sources */,
-				D3E9CD161FBED182005E3677 /* LeaveMsgViewController.m in Sources */,
 				D3E9CD171FBED182005E3677 /* EMFileViewController.m in Sources */,
 				90591CBE2068B050007367BD /* AAOptions.m in Sources */,
 				90A2B53D2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */,
@@ -6166,6 +6184,7 @@
 				90591CAA2068B050007367BD /* AABar.m in Sources */,
 				90591C2F2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */,
 				D3E9CD1E1FBED182005E3677 /* MWGridViewController.m in Sources */,
+				90AFCBD220CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */,
 				D3E9CD1F1FBED182005E3677 /* IQUIViewController+Additions.m in Sources */,
 				D3E9CD201FBED182005E3677 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				90591CB22068B050007367BD /* AADataLabels.m in Sources */,
@@ -6182,6 +6201,7 @@
 				90591CA82068B050007367BD /* AAAreaspline.m in Sources */,
 				90591CCC2068B050007367BD /* AAStyle.m in Sources */,
 				D3E9CD291FBED182005E3677 /* AppDelegate+EaseMob.m in Sources */,
+				90AFCBDE20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */,
 				D3E9CD2A1FBED182005E3677 /* LeaveMsgCommentCell.m in Sources */,
 				D3E9CD2B1FBED182005E3677 /* KFManager.m in Sources */,
 				D3E9CD2C1FBED182005E3677 /* EMNumberPicker.m in Sources */,
@@ -6222,6 +6242,7 @@
 				D3E9CD491FBED182005E3677 /* EMClientInfoTagView.m in Sources */,
 				D3E9CD4A1FBED182005E3677 /* HDWebViewController.m in Sources */,
 				D3E9CD4B1FBED182005E3677 /* EMVoiceConverter.mm in Sources */,
+				90AFCBE420CFAA3B007D0ADB /* HLeaveMessageDetailViewController.m in Sources */,
 				D3E9CD4C1FBED182005E3677 /* IQToolbar.m in Sources */,
 				D3E9CD4D1FBED182005E3677 /* DXLoadingView.m in Sources */,
 				D3E9CD4E1FBED182005E3677 /* EMChatTextBubbleView.m in Sources */,
@@ -6348,6 +6369,7 @@
 				D3E9CDAE1FBED182005E3677 /* DXDatePickerView.m in Sources */,
 				D3E9CDAF1FBED182005E3677 /* LeaveMsgInputView.m in Sources */,
 				D3E9CDB01FBED182005E3677 /* Helper.m in Sources */,
+				90091DE120D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */,
 				D3E9CDB11FBED182005E3677 /* KFVisitorInfoItem.m in Sources */,
 				90591CDB2068B15B007367BD /* KFMonitorViewController.m in Sources */,
 				D3E9CDB21FBED182005E3677 /* PSTCollectionViewFlowLayout.m in Sources */,

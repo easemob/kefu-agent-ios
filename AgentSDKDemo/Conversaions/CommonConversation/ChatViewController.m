@@ -874,7 +874,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 -(void)clickCustomWebView:(NSDictionary *)data
 {
-    HDMessage *message = [ChatSendHelper sendTextMessageWithString:@"自定义消息" toUser:_conversationModel.chatter.userId sessionId:_conversationModel.sessionId ext:nil];
+    HDMessage *message = [ChatSendHelper sendTextMessageWithString:@"自定义消息" toUser:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId ext:nil];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:self.lastMsgExt];
     [parameters setObject:data forKey:@"msgtype"];
     message.nBody.msgExt = parameters;
@@ -1043,11 +1043,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)chatHeadImageBubblePressed:(HDMessage *)model
 {
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
-    clientView.userId = _conversationModel.chatter.userId;
+    clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;
     clientView.tagImage = self.originTypeImage.image;
     if (clientView.userId.length == 0) {
-        clientView.userId = _conversationModel.vistor.userId;
+        clientView.userId = _conversationModel.vistor.agentId;
     }
     [self keyBoardHidden:nil];
     [self.navigationController pushViewController:clientView animated:YES];
@@ -1109,11 +1109,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
     _moreView.hidden = YES;
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
-    clientView.userId = _conversationModel.chatter.userId;
+    clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;
     clientView.tagImage = self.originTypeImage.image;
     if (clientView.userId.length == 0) {
-        clientView.userId = _conversationModel.vistor.userId;
+        clientView.userId = _conversationModel.vistor.agentId;
     }
     [self keyBoardHidden:nil];
     [self.navigationController pushViewController:clientView animated:YES];
@@ -1269,7 +1269,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 - (void)endConversation {
-    [_conversation endConversationWithVisitorId:_conversationModel.chatter.userId parameters:nil completion:^(id responseObject, HDError *error) {
+    [_conversation endConversationWithVisitorId:_conversationModel.chatter.agentId parameters:nil completion:^(id responseObject, HDError *error) {
         if (!error) {
             [self showHint:@"关闭成功"];
             if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
@@ -1297,7 +1297,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     [self showHintNotHide:@"回呼中..."];
     WEAK_SELF
-    [[HDClient sharedClient].chatManager asyncFetchCreateSessionWithVistorId:_conversationModel.vistor.userId completion:^(HDHistoryConversation *history, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncFetchCreateSessionWithVistorId:_conversationModel.vistor.agentId completion:^(HDHistoryConversation *history, HDError *error) {
         [weakSelf hideHud];
         if (error ==  nil) {
             ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeChat];
@@ -1485,7 +1485,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)sendTextMessage:(NSString *)text
 {
-    HDMessage *message = [ChatSendHelper textMessageFormatWithText:text to:_conversationModel.chatter.userId sessionId:_conversationModel.sessionId];
+    HDMessage *message = [ChatSendHelper textMessageFormatWithText:text to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId];
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
         [self updateMessageWithMessage:aMessage];
@@ -1495,7 +1495,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)sendImageMessage:(UIImage*)orgImage
 {
-    HDMessage *message = [ChatSendHelper imageMessageFormatWithImageData:UIImageJPEGRepresentation(orgImage, 1.0) to:_conversationModel.chatter.userId sessionId:_conversationModel.sessionId];
+    HDMessage *message = [ChatSendHelper imageMessageFormatWithImageData:UIImageJPEGRepresentation(orgImage, 1.0) to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId];
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
         if (error == nil) {
@@ -1510,7 +1510,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //recordPath为本地的amr path
 -(void)sendAudioMessage:(NSString *)recordPath aDuration:(NSInteger )duration
 {
-    HDMessage *message = [ChatSendHelper voiceMessageFormatWithPath:recordPath to:_conversationModel.chatter.userId sessionId:_conversationModel.sessionId];
+    HDMessage *message = [ChatSendHelper voiceMessageFormatWithPath:recordPath to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId];
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
         [self updateMessageWithMessage:aMessage];
@@ -1791,7 +1791,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 - (void)markAsRead {
-    [_conversation markMessagesAsReadWithVisitorId:_conversationModel.chatter.userId parameters:nil completion:^(id responseObject, HDError *error) {
+    [_conversation markMessagesAsReadWithVisitorId:_conversationModel.chatter.agentId parameters:nil completion:^(id responseObject, HDError *error) {
         if (error == nil) {
             NSLog(@"标记已读成功");
         }

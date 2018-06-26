@@ -13,7 +13,7 @@ extern CGFloat rowHeight;
 
 @property(nonatomic,copy) void(^tapTableview)();
 
-- (instancetype)initWithModel:(HDLeaveMessage *)model dataSource:(NSMutableArray *)dataSource heights:(NSArray *)heights;
-- (instancetype)initWithModel:(HDLeaveMessage *)model dataSource:(NSMutableArray *)dataSource height:(CGFloat)height;
+- (instancetype)initWithModel:(HLeaveMessage *)model dataSource:(NSMutableArray *)dataSource heights:(NSArray *)heights;
+- (instancetype)initWithModel:(HLeaveMessage *)model dataSource:(NSMutableArray *)dataSource height:(CGFloat)height;
 
 @end

@@ -44,17 +44,35 @@
     _lineView.frame = CGRectMake(0, self.frame.size.height-1, CGRectGetWidth(self.frame), 1);
 }
 
-- (void)setModel:(HDLeaveMessage *)model {
+- (void)setModel:(HLeaveMessage *)model {
     _model = model;
-    _numberLabel.text = [NSString stringWithFormat:@"No.%@",model.ID];
-    _timeLabel.text = [self formatDate:model.created_at];
+    _numberLabel.text = [NSString stringWithFormat:@"No.%@",model.leaveMessageId];
+    _timeLabel.text = [self formatDate:model.createDate];
     _contentLabel.text = model.content;
     if (_model.assignee) {
-        _statusLabel.text = [NSString stringWithFormat:@"分配:%@",_model.assignee.name];
+        _statusLabel.text = [NSString stringWithFormat:@"分配:%@",_model.assignee.username];
     } else {
         _statusLabel.text = @"分配:未分配";
     }
-    _taskLabel.text = _model.status.name;
+    _taskLabel.text = [self strWithType:_model.type];
+}
+
+- (NSString *)strWithType:(HLeaveMessageType)aType {
+    NSString *ret = @"";
+    switch (aType) {
+        case HLeaveMessageType_untreated:
+            ret = @"未处理";
+            break;
+        case HLeaveMessageType_processing:
+            ret = @"处理中";
+            break;
+        case HLeaveMessageType_resolved:
+            ret = @"已解决";
+            break;
+        default:
+            break;
+    }
+    return ret;
 }
 
 - (NSString*)formatDate:(NSString*)time

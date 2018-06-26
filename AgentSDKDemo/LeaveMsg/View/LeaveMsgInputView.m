@@ -171,8 +171,8 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identify];
     }
     
-    HDAttachment *attachment = [self.dataArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = attachment.name;
+    HLeaveMessageCommentAttachment *attachment = [self.dataArray objectAtIndex:indexPath.row];
+    cell.textLabel.text = attachment.attachmentName;
     return cell;
 }
 
@@ -181,7 +181,7 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    HDAttachment *attachment = [self.dataArray objectAtIndex:indexPath.row];
+    HLeaveMessageCommentAttachment *attachment = [self.dataArray objectAtIndex:indexPath.row];
     NSMutableArray *images = [NSMutableArray array];
     [images addObject:[NSURL URLWithString:attachment.url]];
     if ([images count] > 0) {
@@ -275,10 +275,13 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
             } else {
                 data = UIImageJPEGRepresentation(orgImage, 0.5);
             }
-            [[HDClient sharedClient].leaveMsgManager asyncUploadImageWithFile:data completion:^(HDAttachment *attachment, HDError *error) {
+            
+            [HDClient.sharedClient.leaveMessageMananger asyncUploadCommentAttachmentWithData:data fileName:fileName progress:^(float progress) {
+                
+            } completion:^(HLeaveMessageCommentAttachment *attachment, HDError *error) {
                 [weakHud hide:YES];
                 if (error == nil) {
-                    attachment.name = fileName;
+                    attachment.attachmentName = fileName;
                     [weakSelf.dataArray addObject:attachment];
                     _attachmentLabel.text = [NSString stringWithFormat:@"%@",@([self.dataArray count])];
                     [weakSelf.tableView reloadData];

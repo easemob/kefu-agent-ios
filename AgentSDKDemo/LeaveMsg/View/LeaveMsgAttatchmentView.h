@@ -24,7 +24,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
                          edit:(BOOL)edit
-                        kfmodel:(HDAttachment*)model;
+                        kfmodel:(HLeaveMessageCommentAttachment *)model;
 
 + (CGFloat)widthForName:(NSString*)name maxWidth:(CGFloat)maxWidth;
 

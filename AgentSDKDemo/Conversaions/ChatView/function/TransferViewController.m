@@ -312,7 +312,7 @@
         [self showHintNotHide:@"转接中..."];
         WEAK_SELF
         HDConversationManager *conversation = [[HDConversationManager alloc] initWithSessionId:_conversation.sessionId];
-        [conversation transferConversationWithRemoteUserId:_curModel.chatter.userId completion:^(id responseObject, HDError *error) {
+        [conversation transferConversationWithRemoteUserId:_curModel.chatter.agentId completion:^(id responseObject, HDError *error) {
             [weakSelf hideHud];
             if (!error) {
 //                [weakSelf showHint:@""];
@@ -369,7 +369,7 @@
                 } else {
                     [weakSelf.dataSource addObject:customer];
                 }
-                [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.userId];
+                [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.agentId];
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{

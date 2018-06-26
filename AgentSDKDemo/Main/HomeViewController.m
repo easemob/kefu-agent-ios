@@ -12,7 +12,6 @@
 #import "HistoryConversationsController.h"
 #import "CustomerController.h"
 #import "NotifyViewController.h"
-#import "LeaveMsgViewController.h"
 #import "CustomerViewController.h"
 #import "WaitQueueViewController.h"
 #import "ChatViewController.h"
@@ -25,6 +24,8 @@
 #import "HDSuperviseManagerViewController.h"
 #import "KFWarningViewController.h"
 #import "KFMonitorViewController.h"
+
+#import "HLeaveMessageViewController.h"
 
 @implementation UIImage (tabBarImage)
 
@@ -56,7 +57,8 @@ static NSString *kGroupName = @"GroupName";
 @property (strong, nonatomic) CustomerViewController *customerController;
 @property (strong, nonatomic) NotifyViewController *notifyController;
 @property (strong, nonatomic) WaitQueueViewController *waitqueueController;
-@property (strong, nonatomic) LeaveMsgViewController *leaveMsgController;
+@property (nonatomic, strong) HLeaveMessageViewController *leaveMessageC;
+
 //非管理员
 @property(nonatomic,strong) HomeViewController *homeViewController;
 @property (strong, nonatomic) HistoryConversationsController *historyController;
@@ -181,16 +183,22 @@ static NSInteger currentTotalBadgeValue;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
     [_notifyController viewDidLoad];
     
-    _leaveMsgController = [[LeaveMsgViewController alloc] init];
-    [KFManager sharedInstance].leaveMsg = _leaveMsgController;
-    [self setupChildVc:_leaveMsgController title:@"留言"
+//    _leaveMsgController = [[LeaveMsgViewController alloc] init];
+//    [KFManager sharedInstance].leaveMsg = _leaveMsgController;
+//    [self setupChildVc:_leaveMsgController title:@"留言"
+//                 image:@"tabbar_icon_crm"
+//         selectedImage:@"tabbar_icon_crmhighlight" index:3];
+//    [_leaveMsgController viewDidLoad];
+    _leaveMessageC = [[HLeaveMessageViewController alloc] init];
+    [self setupChildVc:_leaveMessageC
+                 title:@"留言"
                  image:@"tabbar_icon_crm"
          selectedImage:@"tabbar_icon_crmhighlight" index:3];
-    [_leaveMsgController viewDidLoad];
+//    [_leaveMessageC viewDidLoad];
     
     self.view.backgroundColor = RGBACOLOR(25, 25, 25, 1);
     
-    self.viewControllers = @[_conversationsController, _waitqueueController, _notifyController,_leaveMsgController];
+    self.viewControllers = @[_conversationsController, _waitqueueController, _notifyController,_leaveMessageC];
     
     self.navigationItem.titleView = _conversationsController.titleView;
     self.navigationItem.leftBarButtonItem = _conversationsController.headerViewItem;
@@ -268,7 +276,6 @@ static NSInteger currentTotalBadgeValue;
     } else if (item.tag == 3){
         self.title = @"留言";
         self.navigationItem.titleView = nil;
-        self.navigationItem.leftBarButtonItem = _leaveMsgController.headerViewItem;
         self.navigationItem.rightBarButtonItem = nil;
     }
 }
@@ -447,7 +454,7 @@ static NSInteger currentTotalBadgeValue;
 }
 
 - (void)setLeaveMessageyUnRead:(BOOL) aFlag {
-    LeaveMsgViewController *customer = (LeaveMsgViewController*)[self.viewControllers objectAtIndex:3];
+    HLeaveMessageViewController *customer = (HLeaveMessageViewController *)[self.viewControllers objectAtIndex:3];
     if (aFlag) {
         [customer.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_crmhighlight"] rightImage:[self convertViewToImage:_tipLeaveMsgView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_crm"] rightImage:[self convertViewToImage:_tipLeaveMsgView]]];
     }else {

@@ -8,5 +8,5 @@
 
 #import <UIKit/UIKit.h>
 @interface KFLeaveMsgListCell : UITableViewCell
-@property(nonatomic,strong) HDLeaveMessage *model;
+@property(nonatomic,strong) HLeaveMessage *model;
 @end

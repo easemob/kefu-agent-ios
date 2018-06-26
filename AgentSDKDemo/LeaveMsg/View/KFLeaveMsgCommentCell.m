@@ -99,7 +99,7 @@
     self.textLabel.frame = CGRectMake(65, 10, 175, 20);
     
     _detailLabel.text = _model.content;
-    _timeLabel.text =[self formatDate: _model.created_at];
+    _timeLabel.text =[self formatDate: _model.createDate];
     if (_unreadCount > 0) {
         if (_unreadCount < 9) {
             _unreadLabel.font = [UIFont systemFontOfSize:13];
@@ -132,9 +132,9 @@
     _attchmentView.frame = frame;
 }
 
-- (void)setModel:(HDLeaveMessage*)model
+- (void)setModel:(HLeaveMessageComment *)model
 {
-    self.name = model.creator.name;
+    self.name = model.creator.username;
     self.placeholderImage = [UIImage imageNamed:@"default_customer_avatar"];
     self.detailMsg = model.content;
     [self _setAttachments:model.attachments];
@@ -152,7 +152,7 @@
     return 60;
 }
 
-+(CGFloat)tableView:(UITableView *)tableView model:(HDLeaveMessage *)model
++(CGFloat)tableView:(UITableView *)tableView model:(HLeaveMessageComment *)model
 {
     return 60.f + [KFLeaveMsgCommentCell _heightForModel:model];
 }
@@ -173,12 +173,12 @@
     CGFloat left = kDefaultLeft;
     CGFloat height = 40;
     NSInteger index = 0;
-    for (HDAttachment *attachment in attachments) {
-        if (left + [LeaveMsgAttatchmentView widthForName:attachment.name maxWidth:KScreenWidth - kDefaultLeft - 10] >= KScreenWidth) {
+    for (HLeaveMessageCommentAttachment *attachment in attachments) {
+        if (left + [LeaveMsgAttatchmentView widthForName:attachment.attachmentName maxWidth:KScreenWidth - kDefaultLeft - 10] >= KScreenWidth) {
             left = kDefaultLeft;
             height += 40;
         }
-        LeaveMsgAttatchmentView *attatchmentView = [[LeaveMsgAttatchmentView alloc] initWithFrame:CGRectMake(left, height - 30, [LeaveMsgAttatchmentView widthForName:attachment.name maxWidth:KScreenWidth - kDefaultLeft - 10], 30)
+        LeaveMsgAttatchmentView *attatchmentView = [[LeaveMsgAttatchmentView alloc] initWithFrame:CGRectMake(left, height - 30, [LeaveMsgAttatchmentView widthForName:attachment.attachmentName maxWidth:KScreenWidth - kDefaultLeft - 10], 30)
                                                                                              edit:NO
                                                                                             kfmodel:attachment];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAttatchmentAction:)];
@@ -186,7 +186,7 @@
         attatchmentView.tag = index;
         [_attchmentView addSubview:attatchmentView];
         index ++;
-        left += [LeaveMsgAttatchmentView widthForName:attachment.name maxWidth:KScreenWidth - kDefaultLeft - 10] + 10;
+        left += [LeaveMsgAttatchmentView widthForName:attachment.attachmentName maxWidth:KScreenWidth - kDefaultLeft - 10] + 10;
     }
     
     CGRect frame = _attchmentView.frame;
@@ -199,8 +199,8 @@
     UITapGestureRecognizer *tap = (UITapGestureRecognizer*)sender;
     NSInteger index = tap.view.tag;
     if ([_attachments count] > index) {
-        HDAttachment *attachment = [_attachments objectAtIndex:index];
-        if ([attachment.type isEqualToString:@"image"]) {
+        HLeaveMessageCommentAttachment *attachment = [_attachments objectAtIndex:index];
+        if ([self isImageSuffix:attachment.type]) {
             if (self.delegate && [self.delegate respondsToSelector:@selector(didselectImageAttachment:)]) {
                 [self.delegate didselectImageAttachment:attachment];
             }
@@ -210,6 +210,35 @@
             }
         }
     }
+}
+
+- (BOOL)isImageSuffix:(NSString *)aFileName {
+    NSString *fileName = [aFileName lowercaseString];
+    BOOL ret = NO;
+    do {
+        if ([fileName containsString:@"png"]) {
+            ret = YES;
+            break;
+        }
+        if ([fileName containsString:@"jpg"]) {
+            ret = YES;
+            break;
+        }
+        if ([fileName containsString:@"image"]) {
+            ret = YES;
+            break;
+        }
+        if ([fileName containsString:@"img"]) {
+            ret = YES;
+            break;
+        }
+        if ([fileName containsString:@"jpeg"]) {
+            ret = YES;
+            break;
+        }
+    } while (0);
+    
+    return ret;
 }
 
 + (CGFloat)_heightForContent:(NSString*)content
@@ -236,12 +265,12 @@
     if ([attachments count] > 0) {
         CGFloat left = kDefaultLeft;
         CGFloat height = 40;
-        for (HDAttachment *attachment in attachments) {
-            if (left + [LeaveMsgAttatchmentView widthForName:attachment.name maxWidth:KScreenWidth - kDefaultLeft - 10] >= KScreenWidth) {
+        for (HLeaveMessageCommentAttachment *attachment in attachments) {
+            if (left + [LeaveMsgAttatchmentView widthForName:attachment.attachmentName maxWidth:KScreenWidth - kDefaultLeft - 10] >= KScreenWidth) {
                 left = kDefaultLeft;
                 height += 40;
             }
-            left += [LeaveMsgAttatchmentView widthForName:attachment.name maxWidth:KScreenWidth - kDefaultLeft - 10] + 10;
+            left += [LeaveMsgAttatchmentView widthForName:attachment.attachmentName maxWidth:KScreenWidth - kDefaultLeft - 10] + 10;
         }
         return height + 10.f;
     } else {
@@ -249,7 +278,7 @@
     }
 }
 
-+ (CGFloat)_heightForModel:(HDLeaveMessage*)model
++ (CGFloat)_heightForModel:(HLeaveMessageComment *)model
 {
     CGFloat height = 0;
     height += [self _heightForContent:model.content];

@@ -20,7 +20,7 @@ CGFloat rowHeight;
 
 @implementation KFLeaveMsgDetailHeadView
 {
-    HDLeaveMessage *_model;
+    HLeaveMessage *_model;
     NSInteger       _row;
     CGFloat         _height;
     NSArray       *_modelHeights;
@@ -45,7 +45,7 @@ CGFloat rowHeight;
     return _tableView;
 }
 
-- (instancetype)initWithModel:(HDLeaveMessage *)model dataSource:(NSMutableArray *)dataSource heights:(NSArray *)heights{
+- (instancetype)initWithModel:(HLeaveMessage *)model dataSource:(NSMutableArray *)dataSource heights:(NSArray *)heights{
     
     CGFloat height = 0;
     for (NSNumber *heightObj in heights) {
@@ -62,7 +62,7 @@ CGFloat rowHeight;
     return self;
 }
 
-- (instancetype)initWithModel:(HDLeaveMessage *)model dataSource:(NSMutableArray *)dataSource height:(CGFloat)height{
+- (instancetype)initWithModel:(HLeaveMessage *)model dataSource:(NSMutableArray *)dataSource height:(CGFloat)height{
     if (self = [super initWithFrame:CGRectMake(0, 0, KScreenWidth, height)]) {
         _model = model;
          _height = height;

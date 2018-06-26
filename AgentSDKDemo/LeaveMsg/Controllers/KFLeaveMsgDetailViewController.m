@@ -25,12 +25,10 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 };
 
 @interface KFLeaveMsgDetailViewController ()<UITableViewDelegate,UITableViewDataSource,EMPickerSaveDelegate,LeaveMsgInputViewDelegate,LeaveMsgCellDelegate>
-@property(nonatomic,strong) HDLeaveMessage *model;
+@property (nonatomic,strong) HLeaveMessage *model;
 @property (nonatomic, strong) EMPickerView *taskView;
 @property (nonatomic, strong) EMPickerView *statusView;
-@property(nonatomic,strong) NSMutableArray *stateIDs;
-@property(nonatomic,strong) NSMutableArray *stateNames;
-@property(nonatomic,strong) LeaveMsgInputView *inputView;
+@property (nonatomic,strong) LeaveMsgInputView *inputView;
 @end
 
 @implementation KFLeaveMsgDetailViewController
@@ -40,7 +38,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     NSMutableArray *_headInfoHeights;
     NSIndexPath    *_currentIndexPath;
     NSDictionary   *_temp;
-    NSMutableArray <HDLeaveMessage *> *_dataSource;
+    NSMutableArray <HLeaveMessageComment *> *_dataSource;
     NSString *_currentLeaveMsgStatusId;
     //分配
     NSMutableArray *_assginees;
@@ -49,10 +47,10 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 }
 
 
-- (instancetype)initWithModel:(HDLeaveMessage *)model {
+- (instancetype)initWithModel:(HLeaveMessage *)model {
     if (self = [super init]) {
         _model = model;
-        _currentLeaveMsgStatusId = model.status.ID;
+//        _currentLeaveMsgStatusId = model.status.ID;
         rowHeight = 40;
     }
     return self;
@@ -62,31 +60,28 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     [super viewDidLoad];
     self.title = @"留言详情";
     _assginees = [NSMutableArray arrayWithCapacity:0];
-    UserModel *user = [UserModel new];
-    user.nicename = @"未分配";
-    user.userId = nil;
-    [_assginees addObject:user];
+    HAssignee *assigee = [[HAssignee alloc] init];
+    assigee.nickname = @"未分配";
+    [_assginees addObject:assigee];
     [self setup];
 }
 
 - (void)loadAssignees {
-    [[HDClient sharedClient].leaveMsgManager asyncGetAssigneesCompletion:^(NSArray<HDAssignee *> *assignees, HDError *error) {
+    // 获取通讯录
+    [HDClient.sharedClient.leaveMessageMananger asyncFetchAssigneeListWithPageNum:0 pageSize:1000 completion:^(HResultCursor *result, HDError *error) {
         if (error == nil) {
             [_assginees removeObjectsInRange:NSMakeRange(1, _assginees.count - 1)];
         }
-        [_assginees addObjectsFromArray:assignees];
+        [_assginees addObjectsFromArray:result.elements];
     }];
 }
 
 - (void)setup {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    _stateIDs = [NSMutableArray array];
-    _stateNames = [NSMutableArray array];
     _headViewDatasource = [NSMutableArray array];
     _dataSource = [NSMutableArray array];
     _headViewHeight = [self calculateHeight];
-    [self getState];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.inputView];
     self.tableView.height = KScreenHeight - 64 - 88;
@@ -98,33 +93,24 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)loadLeaveMessageAllComments
 {
     [self loadAssignees];
-    [[HDClient sharedClient].leaveMsgManager asyncGetLeaveMsgCommentWithLeaveMsgId:_model.ID completion:^(NSArray<HDLeaveMessage *> *comments, HDError *error) {
-        if (error == nil) {
-            [_dataSource removeAllObjects];
-        }
-        [_dataSource addObjectsFromArray:comments];
-        [self.tableView reloadData];
-    }];
-}
-
-
-//获取处理状态个数及ID
-- (void)getState {
-    [[HDClient sharedClient].leaveMsgManager asyncGetLeaveMsgStatusWithParameters:nil completion:^(NSArray<HDStatus *> *statuses, HDError *error) {
-        if (error == nil) {
-            for (HDStatus *status in statuses) {
-                [_stateNames addObject:status.name];
-                [_stateIDs addObject:status.ID];
-            }
-        }
+    [HDClient.sharedClient.leaveMessageMananger asyncFetchCommentsWithLeaveMessageId:_model.leaveMessageId
+                                                                             pageNum:0
+                                                                            pageSize:1000
+                                                                          completion:^(HResultCursor *cursor, HDError *error)
+    {
+                if (error == nil) {
+                    [_dataSource removeAllObjects];
+                }
+                [_dataSource addObjectsFromArray:cursor.elements];
+                [self.tableView reloadData];
     }];
 }
 
 - (CGFloat)calculateHeight {
     CGFloat height = 0;
-    NSString *projectId = [NSString stringWithFormat:@"No.%@",_model.ID];
+    NSString *projectId = [NSString stringWithFormat:@"No.%@",_model.leaveMessageId];
     NSString *subject = [NSString stringWithFormat:@"主题:%@",_model.subject];
-    NSString *creator = [NSString stringWithFormat:@"发起人:%@",_model.creator.name];
+    NSString *creator = [NSString stringWithFormat:@"发起人:%@",_model.creator.username];
     NSString *content = [NSString stringWithFormat:@"内容:%@",_model.content];
     NSString *phone   = _model.creator.phone ? [NSString stringWithFormat:@"手机:%@",_model.creator.phone]:nil;
     NSString *email   = _model.creator.email ? [NSString stringWithFormat:@"邮箱:%@",_model.creator.email]:nil;
@@ -169,13 +155,13 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 }
 
 
-- (void)didselectImageAttachment:(HDAttachment *)attachment {
+- (void)didselectImageAttachment:(HLeaveMessageCommentAttachment *)attachment {
      [[MessageReadManager defaultManager] showBrowserWithImages:@[[NSURL URLWithString:attachment.url]]];
 }
 
-- (void)didSelectFileAttachment:(HDAttachment*)attachment
+- (void)didSelectFileAttachment:(HLeaveMessageCommentAttachment *)attachment
 {
-    NSString *textToShare = [NSString stringWithFormat:@"%@:%@",@"附件",attachment.name];
+    NSString *textToShare = [NSString stringWithFormat:@"%@:%@",@"附件",attachment.attachmentName];
     NSURL *urlToShare = [NSURL URLWithString:attachment.url];
     NSArray *activityItems = @[textToShare, urlToShare];
     UIActivityViewController *activityVC = [[UIActivityViewController alloc]initWithActivityItems:activityItems
@@ -188,18 +174,22 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 - (void)didSendText:(NSString *)text attachments:(NSArray *)attachments
 {
+    NSArray *atts = [attachments copy];
     WEAK_SELF
     [weakSelf showHint:@"发送中"];
-    [[HDClient sharedClient].leaveMsgManager asyncPostLeaveMsgCommentWithLeaveMsgId:_model.ID text:text attachments:attachments completion:^(id responseObject, HDError *error) {
+    [HDClient.sharedClient.leaveMessageMananger asyncSendLeaveMessageCommentWithMessageId:_model.leaveMessageId
+                                                                                  comment:text
+                                                                              attachments:atts
+                                                                               completion:^(HDError *error)
+    {
         [weakSelf hideHud];
         if (error == nil) {
             [weakSelf.view endEditing:YES];
             [weakSelf loadLeaveMessageAllComments];
         } else {
-             NSLog(@"发送失败，请检查网络");
+            NSLog(@"发送失败，请检查网络");
         }
     }];
-    
 }
 
 - (void)didSelectImageWithPicker:(UIImagePickerController *)imagePicker
@@ -278,17 +268,34 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
         [cell.contentView addSubview:lineView];
         if (indexPath.row == 0) {
             cell.textLabel.text = @"分配:";
-            cell.detailTextLabel.text = _model.assignee==nil? @"未分配":_model.assignee.name;
+            cell.detailTextLabel.text = _model.assignee == nil? @"未分配":_model.assignee.username;
         }
         if (indexPath.row == 1) {
             cell.textLabel.text = @"状态:";
-            cell.detailTextLabel.text = _model.status.name;
+            cell.detailTextLabel.text = [self strWithType:_model.type];
         }
         return cell;
     }
     return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
 }
 
+- (NSString *)strWithType:(HLeaveMessageType)aType {
+    NSString *ret = @"";
+    switch (aType) {
+        case HLeaveMessageType_untreated:
+            ret = @"未处理";
+            break;
+        case HLeaveMessageType_processing:
+            ret = @"处理中";
+            break;
+        case HLeaveMessageType_resolved:
+            ret = @"已解决";
+            break;
+        default:
+            break;
+    }
+    return ret;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -326,9 +333,14 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (EMPickerView *)statusView
 {
     if (_statusView == nil) {
-        _statusView = [[EMPickerView alloc] initWithDataSource:_stateNames topHeight:64];
+        _statusView = [[EMPickerView alloc] initWithDataSource:@[
+                                                                 [self strWithType:HLeaveMessageType_untreated],
+                                                                 [self strWithType:HLeaveMessageType_processing],
+                                                                 [self strWithType:HLeaveMessageType_resolved]]
+                                                     topHeight:64];
         _statusView.tag = PickerViewTagDistribute;
         _statusView.delegate = self;
+        
     }
     return _statusView;
 }
@@ -344,8 +356,8 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 }
 - (NSArray *)getNames {
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
-    for (UserModel *model in _assginees) {
-        [arr addObject:model.nicename];
+    for (HAssignee *assignee in _assginees) {
+        [arr addObject:assignee.nickname];
     }
     return arr;
 }
@@ -359,12 +371,12 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                 if (index == 0) {
                     return;
                 } else {//take
-                    UserModel *user = _assginees[index];
+                    HAssignee *assignee = _assginees[index];
                     MBProgressHUD *hud = [MBProgressHUD showMessag:@"分配中" toView:self.view];
-                    [[HDClient sharedClient].leaveMsgManager asyncAssignLeaveMsgWithUser:user leaveMsgId:_model.ID completion:^(id responseObject, HDError *error) {
+                    [HDClient.sharedClient.leaveMessageMananger asyncAssignLeaveMessagesWithMessageIds:@[_model.leaveMessageId] toAgentId:assignee.agentId completion:^(HDError *error) {
                         if (!error) {
                             [hud setLabelText:@"分配成功"];
-                            _currentAssginee = user.nicename;
+                            _currentAssginee = assignee.nickname;
                             if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
                                 [_delegate leaveMsgDetailViewController:self];
                             }
@@ -377,10 +389,10 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                     }];
                 }
             } else {
-                if ([_model.assignee.name isEqualToString:value]) return; else { //delete
+                if ([_model.assignee.username isEqualToString:value]) return; else { //delete
                     MBProgressHUD *hud = [MBProgressHUD showMessag:@"分配中" toView:self.view];
                     if (index == 0) {
-                        [[HDClient sharedClient].leaveMsgManager asyncUnAssignLeaveMsgWithUserId:_model.assignee.ID leaveMsgId:_model.ID completion:^(id responseObject, HDError *error) {
+                        [HDClient.sharedClient.leaveMessageMananger asyncUnAssignLeaveMessageId:@[_model.leaveMessageId] completion:^(HDError *error) {
                             if (error == nil) {
                                 [hud setLabelText:@"分配成功"];
                                 if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
@@ -394,9 +406,9 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                             }
                         }];
                     } else {
-                        UserModel *user = _assginees[index];
+                        HAssignee *assignee = _assginees[index];
                         
-                        [[HDClient sharedClient].leaveMsgManager asyncAssignLeaveMsgWithUser:user leaveMsgId:_model.ID completion:^(id responseObject, HDError *error) {
+                        [HDClient.sharedClient.leaveMessageMananger asyncAssignLeaveMessagesWithMessageIds:@[_model.leaveMessageId] toAgentId:assignee.agentId completion:^(HDError *error) {
                             if (!error) {
                                 [hud setLabelText:@"分配成功"];
                                 if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
@@ -415,20 +427,29 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
              break;
         }
         case 1:{ //未处理、处理中、已解决
-            //take
-            if ([_currentLeaveMsgStatusId isEqualToString:_stateIDs[index]]) {
-                break;
+            
+            HLeaveMessageType type = 0;
+            if (index == 0) {
+                type = HLeaveMessageType_untreated;
+            }
+            if (index == 1) {
+                type = HLeaveMessageType_processing;
+            }
+            if (index == 2) {
+                type = HLeaveMessageType_resolved;
             }
             MBProgressHUD *hud = [MBProgressHUD showMessag:@"保存中" toView:self.view];
-            [[HDClient sharedClient].leaveMsgManager asyncSetLeaveMsgStatusWithLeaveMsgId:_model.ID statusId:_stateIDs[index] completion:^(id responseObject, HDError *error) {
-                 [hud hide:YES afterDelay:0.5];
+            [HDClient.sharedClient.leaveMessageMananger asyncSetLeaveMessagesTypeWithMessageId:_model.leaveMessageId
+                                                                                          type:type
+                                                                                    completion:^(HDError *error) {
+                [hud hide:YES afterDelay:0.5];
                 if (error == nil) {
                     if (_delegate &&[_delegate respondsToSelector:@selector(leaveMsgDetailViewController:)]) {
                         [_delegate leaveMsgDetailViewController:self];
                     }
                     [weakSelf reloadDetailData];
                 } else {
-                     [hud setLabelText:@"保存失败"];
+                    [hud setLabelText:@"保存失败"];
                 }
             }];
             break;
@@ -451,14 +472,8 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)reloadDetailData
 {
     WEAK_SELF
-    [[HDClient sharedClient].leaveMsgManager asyncGetLeaveMsgDetailWithLeaveMsgId:_model.ID completion:^(id responseObject, HDError *error) {
-        if (error == nil) {
-            if ([responseObject isKindOfClass:[NSDictionary class]]) {
-                _model = [[HDLeaveMessage alloc] initWithDictionary:responseObject];
-                _currentLeaveMsgStatusId = _model.status.ID;
-                [weakSelf.tableView reloadData];
-            }
-        }
+    [HDClient.sharedClient.leaveMessageMananger asyncFetchLeaveMessageInfoWithLeaveMessageId:_model.leaveMessageId completion:^(HLeaveMessage *leaveMessage, HDError *error) {
+        [weakSelf.tableView reloadData];
     }];
 }
 
@@ -468,19 +483,5 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)viewWillDisappear:(BOOL)animated {
     [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
