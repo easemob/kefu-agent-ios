@@ -13,6 +13,14 @@
 		90091DE120D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */; };
 		90091DE220D0CF9F002AA808 /* HLeaveMessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90091DDF20D0CF9F002AA808 /* HLeaveMessageListCell.xib */; };
 		90091DE320D0CF9F002AA808 /* HLeaveMessageListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90091DDF20D0CF9F002AA808 /* HLeaveMessageListCell.xib */; };
+		9029423520E37A1C003D0381 /* NSCalendar+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029423420E37A1C003D0381 /* NSCalendar+Category.m */; };
+		9029423620E37A1C003D0381 /* NSCalendar+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 9029423420E37A1C003D0381 /* NSCalendar+Category.m */; };
+		9046FCDE20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FCDD20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m */; };
+		9046FCDF20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FCDD20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m */; };
+		9046FCE420E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */; };
+		9046FCE520E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */; };
+		9046FD1220E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
+		9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
 		90591C2E2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
 		90591C2F2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
 		90591C302068ADC4007367BD /* KFMonitorInfoChartViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C1B2068ADC3007367BD /* KFMonitorInfoChartViewCell.m */; };
@@ -371,7 +379,6 @@
 		D33CE8951F7CD34000236720 /* KFLeaveMsgDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */; };
 		D33CE8991F7CD34000236720 /* KFLeaveMsgCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88A1F7CD34000236720 /* KFLeaveMsgCommentCell.m */; };
 		D33CE89A1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88C1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m */; };
-		D33CE89B1F7CD34000236720 /* KFLeaveMsgListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88E1F7CD34000236720 /* KFLeaveMsgListCell.m */; };
 		D33CE89C1F7CD34000236720 /* LeaveMsgAttatchmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8901F7CD34000236720 /* LeaveMsgAttatchmentView.m */; };
 		D33CE89E1F7CD34000236720 /* LeaveMsgInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8941F7CD34000236720 /* LeaveMsgInputView.m */; };
 		D33CE8A81F7CD3D400236720 /* SBDoubleSidedLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8A11F7CD3D400236720 /* SBDoubleSidedLayer.m */; };
@@ -652,7 +659,6 @@
 		D3E9CD011FBED182005E3677 /* SWTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE86A1F7CD25800236720 /* SWTableViewCell.m */; };
 		D3E9CD021FBED182005E3677 /* DXTipView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE6601F7CA98D00236720 /* DXTipView.m */; };
 		D3E9CD031FBED182005E3677 /* DXTagView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE65E1F7CA98D00236720 /* DXTagView.m */; };
-		D3E9CD041FBED182005E3677 /* KFLeaveMsgListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88E1F7CD34000236720 /* KFLeaveMsgListCell.m */; };
 		D3E9CD051FBED182005E3677 /* KFFileCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7DF1F7CB44000236720 /* KFFileCache.m */; };
 		D3E9CD061FBED182005E3677 /* EMTimePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE70F1F7CAD2C00236720 /* EMTimePickerViewController.m */; };
 		D3E9CD071FBED182005E3677 /* ConvertToCommonEmoticonsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE6111F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.m */; };
@@ -1516,6 +1522,13 @@
 		90091DDD20D0CF9F002AA808 /* HLeaveMessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListCell.h; sourceTree = "<group>"; };
 		90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageListCell.m; sourceTree = "<group>"; };
 		90091DDF20D0CF9F002AA808 /* HLeaveMessageListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HLeaveMessageListCell.xib; sourceTree = "<group>"; };
+		9029423320E37A1C003D0381 /* NSCalendar+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSCalendar+Category.h"; sourceTree = "<group>"; };
+		9029423420E37A1C003D0381 /* NSCalendar+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSCalendar+Category.m"; sourceTree = "<group>"; };
+		9046FCDC20E2240A009B6376 /* HLeaveMessageRetrievalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageRetrievalViewController.h; sourceTree = "<group>"; };
+		9046FCDD20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageRetrievalViewController.m; sourceTree = "<group>"; };
+		9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HLeaveMessageRetrievalStoryboard.storyboard; sourceTree = "<group>"; };
+		9046FD1020E252F8009B6376 /* HTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTimePickerView.m; sourceTree = "<group>"; };
+		9046FD1120E252F8009B6376 /* HTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTimePickerView.h; sourceTree = "<group>"; };
 		90591C182068ADC3007367BD /* KFMonitorInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoCell.h; sourceTree = "<group>"; };
 		90591C192068ADC3007367BD /* KFMonitorInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInfoCell.m; sourceTree = "<group>"; };
 		90591C1A2068ADC3007367BD /* KFMonitorInfoChartViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoChartViewCell.h; sourceTree = "<group>"; };
@@ -2015,8 +2028,6 @@
 		D33CE88A1F7CD34000236720 /* KFLeaveMsgCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgCommentCell.m; sourceTree = "<group>"; };
 		D33CE88B1F7CD34000236720 /* KFLeaveMsgDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgDetailHeadView.h; sourceTree = "<group>"; };
 		D33CE88C1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgDetailHeadView.m; sourceTree = "<group>"; };
-		D33CE88D1F7CD34000236720 /* KFLeaveMsgListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgListCell.h; sourceTree = "<group>"; };
-		D33CE88E1F7CD34000236720 /* KFLeaveMsgListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgListCell.m; sourceTree = "<group>"; };
 		D33CE88F1F7CD34000236720 /* LeaveMsgAttatchmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveMsgAttatchmentView.h; sourceTree = "<group>"; };
 		D33CE8901F7CD34000236720 /* LeaveMsgAttatchmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveMsgAttatchmentView.m; sourceTree = "<group>"; };
 		D33CE8931F7CD34000236720 /* LeaveMsgInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveMsgInputView.h; sourceTree = "<group>"; };
@@ -2680,9 +2691,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9046FCE620E24B26009B6376 /* HTimePickerView */ = {
+			isa = PBXGroup;
+			children = (
+				9046FD1120E252F8009B6376 /* HTimePickerView.h */,
+				9046FD1020E252F8009B6376 /* HTimePickerView.m */,
+			);
+			path = HTimePickerView;
+			sourceTree = "<group>";
+		};
 		90591C152068ADC3007367BD /* Custom */ = {
 			isa = PBXGroup;
 			children = (
+				9046FCE620E24B26009B6376 /* HTimePickerView */,
 				90591C162068ADC3007367BD /* KFMonitorInfoView */,
 			);
 			path = Custom;
@@ -3363,6 +3384,8 @@
 				D3DFB3671FD7A3DF00A9358A /* UIColor+KFColor.m */,
 				90DC764A20BD344B00C86D92 /* HDMessage+Category.h */,
 				90DC764B20BD344B00C86D92 /* HDMessage+Category.m */,
+				9029423320E37A1C003D0381 /* NSCalendar+Category.h */,
+				9029423420E37A1C003D0381 /* NSCalendar+Category.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -3642,7 +3665,6 @@
 			isa = PBXGroup;
 			children = (
 				D33CE87E1F7CD34000236720 /* Controllers */,
-				D33CE8831F7CD34000236720 /* Model */,
 				D33CE8881F7CD34000236720 /* View */,
 				90AFCBCF20CF9FB6007D0ADB /* HLeaveMessageViewController.h */,
 				90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */,
@@ -3663,15 +3685,11 @@
 			children = (
 				D33CE87F1F7CD34000236720 /* KFLeaveMsgDetailViewController.h */,
 				D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */,
+				9046FCDC20E2240A009B6376 /* HLeaveMessageRetrievalViewController.h */,
+				9046FCDD20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m */,
+				9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */,
 			);
 			path = Controllers;
-			sourceTree = "<group>";
-		};
-		D33CE8831F7CD34000236720 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D33CE8881F7CD34000236720 /* View */ = {
@@ -3681,8 +3699,6 @@
 				D33CE88A1F7CD34000236720 /* KFLeaveMsgCommentCell.m */,
 				D33CE88B1F7CD34000236720 /* KFLeaveMsgDetailHeadView.h */,
 				D33CE88C1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m */,
-				D33CE88D1F7CD34000236720 /* KFLeaveMsgListCell.h */,
-				D33CE88E1F7CD34000236720 /* KFLeaveMsgListCell.m */,
 				D33CE88F1F7CD34000236720 /* LeaveMsgAttatchmentView.h */,
 				D33CE8901F7CD34000236720 /* LeaveMsgAttatchmentView.m */,
 				D33CE8931F7CD34000236720 /* LeaveMsgInputView.h */,
@@ -5246,6 +5262,7 @@
 				D3FDC8521EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy_2@2x.png in Resources */,
 				D3FDC75C1EA0A5C600C25BB0 /* chatFire_audioPlaying1@2x.png in Resources */,
 				D3FDC80C1EA0A5C600C25BB0 /* tip_red@2x.png in Resources */,
+				9046FCE420E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */,
 				D3FDC86B1EA0A5C600C25BB0 /* history_icon_more@3x.png in Resources */,
 				D3FDC7C01EA0A5C600C25BB0 /* pop_white@2x.png in Resources */,
 				D3FDC7DD1EA0A5C600C25BB0 /* ee_23.png in Resources */,
@@ -5636,6 +5653,7 @@
 				D3E9CF1F1FBED182005E3677 /* tips_popup_right_EllipseCopy_2@2x.png in Resources */,
 				D3E9CF201FBED182005E3677 /* chatFire_audioPlaying1@2x.png in Resources */,
 				D3E9CF211FBED182005E3677 /* tip_red@2x.png in Resources */,
+				9046FCE520E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */,
 				D3E9CF221FBED182005E3677 /* history_icon_more@3x.png in Resources */,
 				D3E9CF231FBED182005E3677 /* pop_white@2x.png in Resources */,
 				D3E9CF241FBED182005E3677 /* ee_23.png in Resources */,
@@ -5720,6 +5738,7 @@
 				D33CE7D91F7CB42E00236720 /* DXTableViewController.m in Sources */,
 				90591CBF2068B050007367BD /* AAOptions3d.m in Sources */,
 				D33CE7071F7CACAC00236720 /* MMDrawerBarButtonItem.m in Sources */,
+				9046FD1220E252F8009B6376 /* HTimePickerView.m in Sources */,
 				D33CE7A01F7CAF6700236720 /* KFPromptView.m in Sources */,
 				D3A95E651EA0F47100ADD394 /* PSTCollectionView.m in Sources */,
 				D33CE7BC1F7CB01000236720 /* AFURLConnectionOperation.m in Sources */,
@@ -5762,6 +5781,7 @@
 				D3A95E3C1EA0F47100ADD394 /* IQUITextFieldView+Additions.m in Sources */,
 				D33CE8561F7CD0F800236720 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				D3A95E401EA0F47100ADD394 /* IQKeyboardManager.m in Sources */,
+				9029423520E37A1C003D0381 /* NSCalendar+Category.m in Sources */,
 				D3A95E411EA0F47100ADD394 /* IQKeyboardReturnKeyHandler.m in Sources */,
 				D33CE6C61F7CA98D00236720 /* EMPickerView.m in Sources */,
 				D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */,
@@ -5775,7 +5795,6 @@
 				D33CE8721F7CD25800236720 /* SWTableViewCell.m in Sources */,
 				D33CE6C31F7CA98D00236720 /* DXTipView.m in Sources */,
 				D33CE6C21F7CA98D00236720 /* DXTagView.m in Sources */,
-				D33CE89B1F7CD34000236720 /* KFLeaveMsgListCell.m in Sources */,
 				D33CE7E01F7CB44000236720 /* KFFileCache.m in Sources */,
 				D33CE7311F7CAD2C00236720 /* EMTimePickerViewController.m in Sources */,
 				D33CE6961F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.m in Sources */,
@@ -5990,6 +6009,7 @@
 				D33CE6901F7CA98D00236720 /* SelectTagViewController.m in Sources */,
 				D3DFB35A1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */,
 				D33CE6D31F7CA98D00236720 /* DXDatePickerView.m in Sources */,
+				9046FCDE20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */,
 				D33CE89E1F7CD34000236720 /* LeaveMsgInputView.m in Sources */,
 				D33CE7A11F7CAF6700236720 /* Helper.m in Sources */,
 				D33CE7EA1F7CB48400236720 /* KFVisitorInfoItem.m in Sources */,
@@ -6123,7 +6143,6 @@
 				D3E9CD021FBED182005E3677 /* DXTipView.m in Sources */,
 				90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */,
 				D3E9CD031FBED182005E3677 /* DXTagView.m in Sources */,
-				D3E9CD041FBED182005E3677 /* KFLeaveMsgListCell.m in Sources */,
 				D3E9CD051FBED182005E3677 /* KFFileCache.m in Sources */,
 				D3E9CD061FBED182005E3677 /* EMTimePickerViewController.m in Sources */,
 				D3E9CD071FBED182005E3677 /* ConvertToCommonEmoticonsHelper.m in Sources */,
@@ -6188,6 +6207,7 @@
 				D3E9CD341FBED182005E3677 /* EmojiEmoticons.m in Sources */,
 				D3E9CD351FBED182005E3677 /* LoginViewController.m in Sources */,
 				90A2B5392069125100EC2A80 /* KFMonitorInfoViewItem.m in Sources */,
+				9029423620E37A1C003D0381 /* NSCalendar+Category.m in Sources */,
 				D3E9CD361FBED182005E3677 /* KFBaseNavigationController.m in Sources */,
 				90591C412068ADC4007367BD /* KFMonitorInstrumentModel.m in Sources */,
 				90591CBC2068B050007367BD /* AAMarker.m in Sources */,
@@ -6206,6 +6226,7 @@
 				D3E9CD421FBED182005E3677 /* NSObject+KFAdd.m in Sources */,
 				D3E9CD431FBED182005E3677 /* CJSONSerializer.m in Sources */,
 				D3E9CD441FBED182005E3677 /* DXUserWaitTableViewCell.m in Sources */,
+				9046FCDF20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */,
 				D3E9CD451FBED182005E3677 /* AdminInforViewController.m in Sources */,
 				D3E9CD461FBED182005E3677 /* EmotionEscape.m in Sources */,
 				D3E9CD471FBED182005E3677 /* Appdelegate.m in Sources */,
@@ -6316,6 +6337,7 @@
 				D3E9CD9E1FBED182005E3677 /* EMHeaderImageView.m in Sources */,
 				D3E9CD9F1FBED182005E3677 /* KFCompanyRegisterViewController.m in Sources */,
 				90591CD62068B050007367BD /* AAYAxis.m in Sources */,
+				9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */,
 				D3E9CDA01FBED182005E3677 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				D3E9CDA11FBED182005E3677 /* AFNetworkReachabilityManager.m in Sources */,
 				D3E9CDA21FBED182005E3677 /* WebViewJavascriptBridge.m in Sources */,

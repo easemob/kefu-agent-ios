@@ -14,4 +14,5 @@
 @property (nonatomic, assign) HLeaveMessageType type;
 @property (nonatomic, assign) BOOL isCustom; // 是否是自定义
 @property (nonatomic, assign) BOOL isUndistributed; // 是否是未分配
+@property (nonatomic, strong) HLeaveMessageRetrieval *retrieval;
 @end

@@ -8,12 +8,13 @@
 
 #import "HLeaveMessageListViewController.h"
 #import "KFLeaveMsgDetailViewController.h"
+#import "HLeaveMessageRetrievalViewController.h"
 #import "HLeaveMessageListCell.h"
 #import "EMPickerView.h"
 #define kRefreshTagHeight 64
 
 #define kPageSize 10
-@interface HLeaveMessageListViewController () <UITableViewDelegate, UITableViewDataSource, EMPickerSaveDelegate> {
+@interface HLeaveMessageListViewController () <UITableViewDelegate, UITableViewDataSource, EMPickerSaveDelegate, HLeaveMessageRetrievalDelegate> {
     BOOL _isReloading;
     NSInteger _currentPage;
     BOOL _isChooseAll;
@@ -30,6 +31,9 @@
 @property (nonatomic, strong) UIBarButtonItem *selectAllItem; // 全选/取消全选按钮
 @property (nonatomic, strong) UIBarButtonItem *selectItem;
 @property (nonatomic, strong) EMPickerView *taskView; // 分配
+
+@property (nonatomic, strong) UIBarButtonItem *rightItem; // 筛选
+
 @end
 
 @implementation HLeaveMessageListViewController
@@ -41,6 +45,7 @@
         self.title = @"未分配";
     }else if (self.isCustom == YES) {
         self.title = @"自定义";
+        self.navigationItem.rightBarButtonItem = self.rightItem;
     }else {
         self.title = [self navTitleWithType:self.type];
     }
@@ -102,7 +107,30 @@
              });
          }];
     }else if (self.isCustom) {
-        
+        if (self.retrieval == nil) {
+            [self.footView setTitle:@"已经到底了~" forState:UIControlStateNormal];
+            self.footView.enabled = NO;
+            [self endReload];
+            return;
+        }
+        [HDClient.sharedClient.leaveMessageMananger asyncFetchCustomLeaveMessageWithLeaveMessageRetrieval:self.retrieval pageNum:0 pageSize:kPageSize completion:^(HResultCursor *result, HDError *error) {
+            _currentPage = result.pageNum;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.datasource removeAllObjects];
+                if (!error && result.elements.count > 0) {
+                    [self.datasource addObjectsFromArray:result.elements];
+                }
+                if (result == nil || result.isLast) {
+                    [self.footView setTitle:@"已经到底了~" forState:UIControlStateNormal];
+                    self.footView.enabled = NO;
+                }else {
+                    [self.footView setTitle:@"加载更多" forState:UIControlStateNormal];
+                    self.footView.enabled = YES;
+                }
+                
+                [self endReload];
+            });
+        }];
     }else {
         [HDClient.sharedClient.leaveMessageMananger asyncFetchLeaveMessagesWithType:self.type
                                                                             pageNum:0
@@ -152,7 +180,27 @@
              });
          }];
     }else if (self.isCustom) {
-        
+        [HDClient.sharedClient.leaveMessageMananger asyncFetchCustomLeaveMessageWithLeaveMessageRetrieval:self.retrieval
+                                                                                                  pageNum:_currentPage + 1
+                                                                                                 pageSize:kPageSize
+                                                                                               completion:^(HResultCursor *result, HDError *error)
+        {
+            _currentPage = result.pageNum;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (!error && result.elements.count > 0) {
+                    [self.datasource addObjectsFromArray:result.elements];
+                }
+                if (result == nil || result.isLast) {
+                    [self.footView setTitle:@"已经到底了~" forState:UIControlStateNormal];
+                    self.footView.enabled = NO;
+                }else {
+                    [self.footView setTitle:@"加载更多" forState:UIControlStateNormal];
+                    self.footView.enabled = YES;
+                }
+                
+                [self.tableView reloadData];
+            });
+        }];
     }else {
         [HDClient.sharedClient.leaveMessageMananger asyncFetchLeaveMessagesWithType:self.type
                                                                             pageNum:_currentPage + 1
@@ -258,6 +306,18 @@
     return _selectAllItem;
 }
 
+- (UIBarButtonItem *)rightItem {
+    if (!_rightItem) {
+        _rightItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选"
+                                                      style:UIBarButtonItemStyleDone
+                                                     target:self
+                                                     action:@selector(rightAction:)];
+        [_rightItem setTintColor:UIColor.whiteColor];
+    }
+    
+    return _rightItem;
+}
+
 - (NSMutableArray *)datasource{
     if (!_datasource) {
         _datasource = [NSMutableArray array];
@@ -306,6 +366,13 @@
 
 - (void)backAction:(UIBarButtonItem *)item{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)rightAction:(UIBarButtonItem *)item {
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"HLeaveMessageRetrievalStoryboard" bundle:nil];
+    HLeaveMessageRetrievalViewController *vc = (HLeaveMessageRetrievalViewController *)[story instantiateViewControllerWithIdentifier:@"HLeaveMessageRetrievalViewController"];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)chooseAllAction:(UIBarButtonItem *)item{
@@ -464,5 +531,11 @@
     KFLeaveMsgDetailViewController *leaveMsgDetail = [[KFLeaveMsgDetailViewController alloc] initWithModel:leaveMessage];
     [leaveMsgDetail setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:leaveMsgDetail animated:YES];
+}
+
+#pragma mark - HLeaveMessageRetrievalDelegate
+- (void)didSelectLeaveMessageRetrieval:(HLeaveMessageRetrieval *)aRetrieval {
+    self.retrieval = aRetrieval;
+    [self reload];
 }
 @end
