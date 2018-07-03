@@ -1064,6 +1064,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     self.folderButton.selected = !self.folderButton.selected;
     if (self.folderButton.selected) {
         self.headview.hidden = NO;
+        [self.headview refreshHeaderView];
         self.headview.top = -self.headview.height;
         [UIView animateWithDuration:0.2 animations:^{
             self.headview.top = 0;
@@ -1694,7 +1695,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     NSDate *date = [NSDate dateWithTimeInterval:-120 sinceDate:[NSDate new]];
     NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:message.timestamp / 1000];
 
-    BOOL isCanRecall = [date isEqualToDate:[date earlierDate:messageDate]];
+    
+    BOOL isCanRecall = [date isEqualToDate:[date earlierDate:messageDate]] && [message.fromUser.userId isEqualToString:HDClient.sharedClient.currentAgentUser.agentId];
 
     if (_menuController == nil) {
         _menuController = [UIMenuController sharedMenuController];
@@ -1706,7 +1708,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     if (_recallMenuItem == nil) {
         _recallMenuItem = [[UIMenuItem alloc] initWithTitle:@"撤回" action:@selector(recallMenuAction:)];
     }
-    
+
     NSMutableArray *itemAry = [NSMutableArray array];
     switch (message.type) {
         case HDMessageBodyTypeText:

@@ -146,22 +146,23 @@
     if (_edit) {
         [self setupView];
     } else {
-        WEAK_SELF
-        [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                if (!error) {
-                    NSArray *json = responseObject;
-                    weakSelf.dataSource = [NSMutableArray array];
-                    for (NSString *string in json) {
-                        NSString *key = [NSString stringWithFormat:@"%@",string];
-                        if ([weakSelf.tree objectForKey:key]) {
-                            [weakSelf.dataSource addObject:[weakSelf.tree objectForKey:key]];
-                        }
-                    }
-                }
-                [weakSelf _loadComment];
-            });
-        }];
+        [self _loadComment];
+//        WEAK_SELF
+//        [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                if (!error) {
+//                    NSArray *json = responseObject;
+//                    weakSelf.dataSource = [NSMutableArray array];
+//                    for (NSString *string in json) {
+//                        NSString *key = [NSString stringWithFormat:@"%@",string];
+//                        if ([weakSelf.tree objectForKey:key]) {
+//                            [weakSelf.dataSource addObject:[weakSelf.tree objectForKey:key]];
+//                        }
+//                    }
+//                }
+//
+//            });
+//        }];
     }
 }
 
