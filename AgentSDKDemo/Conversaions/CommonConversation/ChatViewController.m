@@ -141,7 +141,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     [super viewWillAppear:animated];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    //    [self startNoti];
     [self.headview refreshHeaderView];
 }
 
@@ -149,11 +148,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     return _conversation.lastExtWeichat;
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear: animated];
-    //    [[HDClient sharedClient] removeDelegate:self];
-    //    [[HDClient sharedClient].chatManager removeDelegate:self];
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     //clear本地的wav文件
     [self clearTempWav];
@@ -1762,8 +1758,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         {
             // message仍然是之前的指针没有变化，所以发送结束后，可以直接根据是否有error，刷新tableView
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self prehandle:message]; // 重新计算 text bubble size
-                [self.tableView reloadData];
+                if (error) {
+                    [self showHint:error.errorDescription];
+                }else {
+                    [self prehandle:message]; // 重新计算 text bubble size
+                    [self.tableView reloadData];
+                }
             });
         
             /*  如果指针变化了，可以使用以下方式找到之前的对象

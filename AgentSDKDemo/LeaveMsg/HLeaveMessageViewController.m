@@ -10,6 +10,7 @@
 #import "HLeaveMessageCell.h"
 #import "HLeaveMessageListViewController.h"
 #import "KFLeaveMsgDetailViewController.h"
+#import "HomeViewController.h"
 #import <AgentSDK/AgentSDK.h>
 
 #define kRefreshTagHeight 64
@@ -32,16 +33,16 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        [self updateUnreadCount];
+        [self fetchUnreadCount];
     }
     
     return self;
 }
 
-- (void)updateUnreadCount {
+- (void)fetchUnreadCount {
     [HDClient.sharedClient.leaveMessageMananger asyncFetchLeaveMessageCountWithType:HLeaveMessageType_untreated completion:^(NSInteger count, HDError *error) {
         if (!error) {
-            self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",(int)count];
+            [self updateUnreadCount:count];
         }
     }];
 }
@@ -116,13 +117,24 @@
 }
 
 - (void)endReload {
-    self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d",(int)_untreatedCount];
+    [self updateUnreadCount:_untreatedCount];
     [self.tableView reloadData];
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     } completion:^(BOOL finished) {
         _isReloading = NO;
     }];
+}
+
+- (void)updateUnreadCount:(NSInteger)aCount {
+    NSString *badgeStr = nil;
+    if (aCount != 0 && aCount < 100) {
+        badgeStr = [NSString stringWithFormat:@"%d",(int)aCount];
+    }else if (aCount >= 100){
+        badgeStr = @"99+";
+    }
+    self.tabBarItem.badgeValue = badgeStr;
+    [[HomeViewController HomeViewController] setLeaveMessageWithBadgeValue:aCount];
 }
 
 #pragma mark - getter

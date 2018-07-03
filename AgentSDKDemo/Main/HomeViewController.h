@@ -16,31 +16,15 @@
 
 +(void) HomeViewControllerDestory;
 
-+(NSString*) currentBadgeValue;
 
-- (void)setConversationUnRead:(BOOL)aFlag;
-
-- (void)setConversationWithBadgeValue:(NSString*)badgeValue;
-
-- (void)setWaitQueueUnRead:(BOOL)aFlag;
-
-- (void)setWaitQueueWithBadgeValue:(NSString*)badgeValue;
-
-- (void)setNotifyUnRead:(BOOL) aFlag;
-
-- (void)setNotifyWithBadgeValue:(NSString*)badgeValue;
-
-- (void)setLeaveMessageWithBadgeValue:(NSString*)badgeValue;
+- (void)setWaitQueueWithBadgeValue:(NSInteger)badgeValue;
+- (void)setConversationWithBadgeValue:(NSInteger)badgeValue;
+- (void)setNotifyWithBadgeValue:(NSInteger)badgeValue;
+- (void)setLeaveMessageWithBadgeValue:(NSInteger)badgeValue;
 
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification;
 
-- (void)messagesDidReceive:(NSArray *)aMessages;
-
-- (void)setCustomerWithBadgeValue:(NSString *)badge;
-
 - (void)setTotalBadgeValue;
-
-- (NSInteger)totleBadgeValue;
 
 - (void)showLeftView;
 

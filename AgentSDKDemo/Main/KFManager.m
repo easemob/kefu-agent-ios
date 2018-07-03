@@ -257,7 +257,7 @@ singleton_implementation(KFManager)
     }
     _curConversationNum = allConversations.count;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
-    [[HomeViewController HomeViewController] setConversationWithBadgeValue:[self getBadgeValueWithUnreadCount:unreadCount]];
+    [[HomeViewController HomeViewController] setConversationWithBadgeValue:unreadCount];
 }
 
 - (void)setNavItemBadgeValueWithAllConversations:(NSMutableArray *)allConversations {

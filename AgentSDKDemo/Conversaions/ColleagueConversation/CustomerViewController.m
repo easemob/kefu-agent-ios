@@ -67,20 +67,4 @@
 }
 #pragma mark - kvo
 
-/*
--(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-    if([keyPath isEqualToString:CUSTOMER_UNREADCOUNT])
-    {
-        int unreadcount = [[_customerController valueForKey:CUSTOMER_UNREADCOUNT] intValue];
-        if (unreadcount <= 0) {
-            [[HomeViewController HomeViewController] setCustomerWithBadgeValue:nil];
-        } else if (unreadcount > 0 && unreadcount < 100){
-            [[HomeViewController HomeViewController] setCustomerWithBadgeValue:[NSString stringWithFormat:@"%@",@(unreadcount)]];
-        } else {
-            [[HomeViewController HomeViewController] setCustomerWithBadgeValue:[NSString stringWithFormat:@"%@",@"99+"]];
-        }
-    }
-}*/
-
 @end

@@ -32,16 +32,37 @@
     _numLabel.text = [NSString stringWithFormat:@"No.%@",leaveMessage.leaveMessageId];
     _timeLabel.text = [self formatDate:leaveMessage.createDate];
     _subjectLabel.text = leaveMessage.subject;
-    if (leaveMessage.assignee) {
-        _customerLabel.text = [NSString stringWithFormat:@"分配:%@",leaveMessage.assignee.nickname];
+    if (leaveMessage.creator) {
+        _customerLabel.text = [NSString stringWithFormat:@"%@:%@",leaveMessage.creator.nickname, leaveMessage.content];
     } else {
-        _customerLabel.text = @"分配:未分配";
+        _customerLabel.text = @"";
     }
     _typeLabel.text = [self stringFromType:leaveMessage.type];
 }
 
 - (NSString *)stringFromType:(HLeaveMessageType)aType {
-    return @"";
+    NSString *typeName = @"";
+    switch (aType) {
+        case HLeaveMessageType_untreated:
+        {
+            typeName = @"未处理";
+        }
+            break;
+        case HLeaveMessageType_processing:
+        {
+            typeName = @"处理中";
+        }
+            break;
+        case HLeaveMessageType_resolved:
+        {
+            typeName = @"已解决";
+        }
+            break;
+            
+        default:
+            break;
+    }
+    return typeName;
 }
 
 - (NSString *)formatDate:(NSString *)time

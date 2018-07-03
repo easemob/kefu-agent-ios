@@ -102,9 +102,6 @@
 
 #pragma mark - notifiers
 - (void)appDidEnterBackgroundNotif:(NSNotification*)notif{
-    NSInteger unreadCount = [[HomeViewController HomeViewController] totleBadgeValue];
-    UIApplication *application = [UIApplication sharedApplication];
-    application.applicationIconBadgeNumber = unreadCount;
     [[HDClient sharedClient] applicationDidEnterBackground:notif.object];
 }
 

@@ -51,6 +51,12 @@ static NSString *kGroupName = @"GroupName";
     UITapGestureRecognizer *_tap;
     BOOL _isEnterChat;
     NSString *_serviceSessionId;
+    
+    NSInteger _conversationVCUnreadCount;
+    NSInteger _waitVCUnreadCount;
+    NSInteger _notifiersVCUnreadCount;
+    NSInteger _leaveMessageVCUnreadCount;
+    
 }
 
 @property (strong, nonatomic) KFConversationsController *conversationsController;
@@ -78,17 +84,8 @@ static NSString *kGroupName = @"GroupName";
 @end
 
 static HomeViewController *homeViewController;
-static NSString *currentBadgeValue;
-static NSString *currentWaitBadgeValue;
-static NSString *currentNotifyBadgeValue;
-static NSString *currentLeaveMessageBadgeValue;
-static NSInteger currentTotalBadgeValue;
 
 @implementation HomeViewController
-
-- (void)setCustomerWithBadgeValue:(NSString *)badge {
-    
-}
 
 
 +(id) HomeViewController
@@ -107,11 +104,6 @@ static NSInteger currentTotalBadgeValue;
         homeViewController = nil;
     }
 }
-+(NSString*)currentBadgeValue
-{
-    return currentBadgeValue;
-}
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -356,117 +348,40 @@ static NSInteger currentTotalBadgeValue;
     
 }
 
--(void) setConversationWithBadgeValue:(NSString*)badgeValue
+-(void)setConversationWithBadgeValue:(NSInteger)badgeValue
 {
-    currentBadgeValue = badgeValue;
-    //设置提醒数
-    if (badgeValue && [badgeValue intValue] >= 100) {
-        _tipView.tipNumber = @"99+";
-    } else {
-        _tipView.tipNumber = badgeValue;
-    }
+    _conversationVCUnreadCount = badgeValue;
     [self setTotalBadgeValue];
-    if (badgeValue == nil) {
-        [self setConversationUnRead:NO];
-    } else {
-        [self setConversationUnRead:YES];
-    }
 }
 
--(void) setConversationUnRead:(BOOL) aFlag
+-(void) setWaitQueueWithBadgeValue:(NSInteger)badgeValue
 {
-    KFConversationsController *conversation = (KFConversationsController*)[self.viewControllers objectAtIndex:0];
-    if (aFlag) {
-        [conversation.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoinghighlight"] rightImage:[self convertViewToImage:_tipView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoing"] rightImage:[self convertViewToImage:_tipView]]];
-    }else {
-        [conversation.tabBarItem setFinishedSelectedImage:[[UIImage imageNamed:@"tabbar_icon_ongoinghighlight"] tabBarImage] withFinishedUnselectedImage:[[UIImage imageNamed:@"tabbar_icon_ongoing"] tabBarImage]];
-    }
-}
-
--(void) setWaitQueueWithBadgeValue:(NSString*)badgeValue
-{
-    //currentWaitBadgeValue = badgeValue;
-    _tipCustomerView.tipNumber = badgeValue;
+    _waitVCUnreadCount = badgeValue;
     [self setTotalBadgeValue];
-    if (badgeValue == nil) {
-        [self setWaitQueueUnRead:NO];
-    } else {
-        [self setWaitQueueUnRead:YES];
-    }
 }
 
--(void) setWaitQueueUnRead:(BOOL) aFlag
+- (void)setNotifyWithBadgeValue:(NSInteger)badgeValue
 {
-    WaitQueueViewController *customer = (WaitQueueViewController*)[self.viewControllers objectAtIndex:1];
-    if (aFlag) {
-        [customer.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_visitorhighlight_Text6"] rightImage:[self convertViewToImage:_tipCustomerView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_visitor_Text6"] rightImage:[self convertViewToImage:_tipCustomerView]]];
-    }else {
-        [customer.tabBarItem setFinishedSelectedImage:[[UIImage imageNamed:@"tabbar_icon_visitorhighlight_Text6"] tabBarImage] withFinishedUnselectedImage:[[UIImage imageNamed:@"tabbar_icon_visitor_Text6"] tabBarImage]];
-    }
-}
-
-- (void)setNotifyWithBadgeValue:(NSString*)badgeValue
-{
-    currentNotifyBadgeValue = badgeValue;
-    if (badgeValue && [badgeValue intValue] >= 100) {
-        _tipNotifyView.tipNumber = @"99+";
-    } else {
-        _tipNotifyView.tipNumber = badgeValue;
-    }
+    _notifiersVCUnreadCount = badgeValue;
     [self setTotalBadgeValue];
-    if (badgeValue == nil) {
-        [self setNotifyUnRead:NO];
-    } else {
-        [self setNotifyUnRead:YES];
-    }
 }
 
--(void) setNotifyUnRead:(BOOL) aFlag
-{
-    NotifyViewController *customer = (NotifyViewController*)[self.viewControllers objectAtIndex:2];
-    if (aFlag) {
-        [customer.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_noticehighlight"] rightImage:[self convertViewToImage:_tipNotifyView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_notice"] rightImage:[self convertViewToImage:_tipNotifyView]]];
-    }else {
-        [customer.tabBarItem setFinishedSelectedImage:[[UIImage imageNamed:@"tabbar_icon_noticehighlight"] tabBarImage] withFinishedUnselectedImage:[[UIImage imageNamed:@"tabbar_icon_notice"] tabBarImage]];
-    }
-}
 
-- (void)setLeaveMessageWithBadgeValue:(NSString*)badgeValue{
-    currentLeaveMessageBadgeValue = badgeValue;
-    if (badgeValue && [badgeValue intValue] >= 100) {
-        _tipLeaveMsgView.tipNumber = @"99+";
-    } else {
-        _tipLeaveMsgView.tipNumber = badgeValue;
-    }
+- (void)setLeaveMessageWithBadgeValue:(NSInteger)badgeValue{
+    _leaveMessageVCUnreadCount = badgeValue;
     [self setTotalBadgeValue];
-    if (badgeValue == nil) {
-        [self setLeaveMessageyUnRead:NO];
-    } else {
-        [self setLeaveMessageyUnRead:YES];
-    }
-}
-
-- (void)setLeaveMessageyUnRead:(BOOL) aFlag {
-    HLeaveMessageViewController *customer = (HLeaveMessageViewController *)[self.viewControllers objectAtIndex:3];
-    if (aFlag) {
-        [customer.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_crmhighlight"] rightImage:[self convertViewToImage:_tipLeaveMsgView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_crm"] rightImage:[self convertViewToImage:_tipLeaveMsgView]]];
-    }else {
-        [customer.tabBarItem setFinishedSelectedImage:[[UIImage imageNamed:@"tabbar_icon_crmhighlight"] tabBarImage] withFinishedUnselectedImage:[[UIImage imageNamed:@"tabbar_icon_crm"] tabBarImage]];
-    }
 }
 
 - (void)setTotalBadgeValue
 {
     //设置提醒数
-    currentTotalBadgeValue = [currentBadgeValue integerValue] + [currentWaitBadgeValue integerValue] + [currentNotifyBadgeValue integerValue] + [currentLeaveMessageBadgeValue integerValue];
+    NSInteger totalBadge = _conversationVCUnreadCount + _waitVCUnreadCount + _notifiersVCUnreadCount + _leaveMessageVCUnreadCount;
     KFLeftViewController *leftVC = (KFLeftViewController*)self.mm_drawerController.leftDrawerViewController;
-    [leftVC refreshUnreadView:currentTotalBadgeValue];
+    [leftVC refreshUnreadView:totalBadge];
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    application.applicationIconBadgeNumber = totalBadge;
 }
-
-- (NSInteger)totleBadgeValue {
-    return currentTotalBadgeValue;
-}
-
 
 #pragma mark - LeftMenuViewDelegate
 
