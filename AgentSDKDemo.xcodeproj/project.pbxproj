@@ -141,6 +141,8 @@
 		90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D04C742047A17C005B45FC /* HDSelectButton.m */; };
 		90D3CBA6201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
 		90D3CBA7201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */; };
+		90D911F020EB8480008B38AA /* UILabel+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D911EF20EB8480008B38AA /* UILabel+Category.m */; };
+		90D911F120EB8480008B38AA /* UILabel+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D911EF20EB8480008B38AA /* UILabel+Category.m */; };
 		90DC764C20BD344B00C86D92 /* HDMessage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC764B20BD344B00C86D92 /* HDMessage+Category.m */; };
 		90DC765220BD44AE00C86D92 /* KFChatViewRecallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */; };
 		90E0EF4C206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
@@ -378,7 +380,6 @@
 		D33CE8781F7CD2B800236720 /* WaitQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8771F7CD2B800236720 /* WaitQueueViewController.m */; };
 		D33CE8951F7CD34000236720 /* KFLeaveMsgDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */; };
 		D33CE8991F7CD34000236720 /* KFLeaveMsgCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88A1F7CD34000236720 /* KFLeaveMsgCommentCell.m */; };
-		D33CE89A1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88C1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m */; };
 		D33CE89C1F7CD34000236720 /* LeaveMsgAttatchmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8901F7CD34000236720 /* LeaveMsgAttatchmentView.m */; };
 		D33CE89E1F7CD34000236720 /* LeaveMsgInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8941F7CD34000236720 /* LeaveMsgInputView.m */; };
 		D33CE8A81F7CD3D400236720 /* SBDoubleSidedLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8A11F7CD3D400236720 /* SBDoubleSidedLayer.m */; };
@@ -668,7 +669,6 @@
 		D3E9CD0B1FBED182005E3677 /* SBDoubleSidedLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8A11F7CD3D400236720 /* SBDoubleSidedLayer.m */; };
 		D3E9CD0C1FBED182005E3677 /* QuickReplySubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5FF1F7CA98D00236720 /* QuickReplySubViewController.m */; };
 		D3E9CD0D1FBED182005E3677 /* MWTapDetectingImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95DC11EA0F47100ADD394 /* MWTapDetectingImageView.m */; };
-		D3E9CD0E1FBED182005E3677 /* KFLeaveMsgDetailHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE88C1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m */; };
 		D3E9CD0F1FBED182005E3677 /* IQBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D3A95DA11EA0F47100ADD394 /* IQBarButtonItem.m */; };
 		D3E9CD101FBED182005E3677 /* AdminCurSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D37EF53A1FA72C5F002B8B8D /* AdminCurSessionViewController.m */; };
 		D3E9CD111FBED182005E3677 /* DDContextFilterLogFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8051F7CB52500236720 /* DDContextFilterLogFormatter.m */; };
@@ -1639,6 +1639,8 @@
 		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
 		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
+		90D911EE20EB8480008B38AA /* UILabel+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+Category.h"; sourceTree = "<group>"; };
+		90D911EF20EB8480008B38AA /* UILabel+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Category.m"; sourceTree = "<group>"; };
 		90DC764A20BD344B00C86D92 /* HDMessage+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDMessage+Category.h"; sourceTree = "<group>"; };
 		90DC764B20BD344B00C86D92 /* HDMessage+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HDMessage+Category.m"; sourceTree = "<group>"; };
 		90DC765020BD44AE00C86D92 /* KFChatViewRecallCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatViewRecallCell.h; sourceTree = "<group>"; };
@@ -2026,8 +2028,6 @@
 		D33CE8801F7CD34000236720 /* KFLeaveMsgDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgDetailViewController.m; sourceTree = "<group>"; };
 		D33CE8891F7CD34000236720 /* KFLeaveMsgCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgCommentCell.h; sourceTree = "<group>"; };
 		D33CE88A1F7CD34000236720 /* KFLeaveMsgCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgCommentCell.m; sourceTree = "<group>"; };
-		D33CE88B1F7CD34000236720 /* KFLeaveMsgDetailHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFLeaveMsgDetailHeadView.h; sourceTree = "<group>"; };
-		D33CE88C1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFLeaveMsgDetailHeadView.m; sourceTree = "<group>"; };
 		D33CE88F1F7CD34000236720 /* LeaveMsgAttatchmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveMsgAttatchmentView.h; sourceTree = "<group>"; };
 		D33CE8901F7CD34000236720 /* LeaveMsgAttatchmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeaveMsgAttatchmentView.m; sourceTree = "<group>"; };
 		D33CE8931F7CD34000236720 /* LeaveMsgInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeaveMsgInputView.h; sourceTree = "<group>"; };
@@ -3386,6 +3386,8 @@
 				90DC764B20BD344B00C86D92 /* HDMessage+Category.m */,
 				9029423320E37A1C003D0381 /* NSCalendar+Category.h */,
 				9029423420E37A1C003D0381 /* NSCalendar+Category.m */,
+				90D911EE20EB8480008B38AA /* UILabel+Category.h */,
+				90D911EF20EB8480008B38AA /* UILabel+Category.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -3697,8 +3699,6 @@
 			children = (
 				D33CE8891F7CD34000236720 /* KFLeaveMsgCommentCell.h */,
 				D33CE88A1F7CD34000236720 /* KFLeaveMsgCommentCell.m */,
-				D33CE88B1F7CD34000236720 /* KFLeaveMsgDetailHeadView.h */,
-				D33CE88C1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m */,
 				D33CE88F1F7CD34000236720 /* LeaveMsgAttatchmentView.h */,
 				D33CE8901F7CD34000236720 /* LeaveMsgAttatchmentView.m */,
 				D33CE8931F7CD34000236720 /* LeaveMsgInputView.h */,
@@ -5800,11 +5800,11 @@
 				D33CE6961F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				D33CE6CC1F7CA98D00236720 /* CustomerController.m in Sources */,
 				D33CE6C91F7CA98D00236720 /* KFDatePicker.m in Sources */,
+				90D911F020EB8480008B38AA /* UILabel+Category.m in Sources */,
 				D3A95E451EA0F47100ADD394 /* IQTitleBarButtonItem.m in Sources */,
 				D33CE8A81F7CD3D400236720 /* SBDoubleSidedLayer.m in Sources */,
 				D33CE68E1F7CA98D00236720 /* QuickReplySubViewController.m in Sources */,
 				D3A95E501EA0F47100ADD394 /* MWTapDetectingImageView.m in Sources */,
-				D33CE89A1F7CD34000236720 /* KFLeaveMsgDetailHeadView.m in Sources */,
 				90591CC12068B050007367BD /* AAPie.m in Sources */,
 				90591CB52068B050007367BD /* AALabels.m in Sources */,
 				D3A95E431EA0F47100ADD394 /* IQBarButtonItem.m in Sources */,
@@ -6152,7 +6152,6 @@
 				D3E9CD0B1FBED182005E3677 /* SBDoubleSidedLayer.m in Sources */,
 				D3E9CD0C1FBED182005E3677 /* QuickReplySubViewController.m in Sources */,
 				D3E9CD0D1FBED182005E3677 /* MWTapDetectingImageView.m in Sources */,
-				D3E9CD0E1FBED182005E3677 /* KFLeaveMsgDetailHeadView.m in Sources */,
 				90591CC22068B050007367BD /* AAPie.m in Sources */,
 				90591CB62068B050007367BD /* AALabels.m in Sources */,
 				D3E9CD0F1FBED182005E3677 /* IQBarButtonItem.m in Sources */,
@@ -6330,6 +6329,7 @@
 				90615573206205C7006113FF /* KFLeftViewItem.m in Sources */,
 				D3E9CD991FBED182005E3677 /* THProgressView.m in Sources */,
 				D3E9CD9A1FBED182005E3677 /* MBProgressHUD.m in Sources */,
+				90D911F120EB8480008B38AA /* UILabel+Category.m in Sources */,
 				90591CA42068B050007367BD /* AAAnimation.m in Sources */,
 				D3E9CD9B1FBED182005E3677 /* EMChatLocationBubbleView.m in Sources */,
 				D3E9CD9C1FBED182005E3677 /* EMSDWebImagePrefetcher.m in Sources */,

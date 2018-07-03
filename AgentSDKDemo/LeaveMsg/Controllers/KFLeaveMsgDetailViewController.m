@@ -7,11 +7,11 @@
 //
 
 #import "KFLeaveMsgDetailViewController.h"
-#import "KFLeaveMsgDetailHeadView.h"
 #import "EMPickerView.h"
 #import "KFLeaveMsgCommentCell.h"
 #import "MessageReadManager.h"
 #import "LeaveMsgInputView.h"
+#import "UILabel+Category.h"
 
 typedef NS_ENUM(NSUInteger, PickerViewTag) {
     PickerViewTagDistribute=123,
@@ -25,6 +25,9 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 };
 
 @interface KFLeaveMsgDetailViewController ()<UITableViewDelegate,UITableViewDataSource,EMPickerSaveDelegate,LeaveMsgInputViewDelegate,LeaveMsgCellDelegate>
+{
+    NSString *_titleStrInfo;
+}
 @property (nonatomic,strong) HLeaveMessage *model;
 @property (nonatomic, strong) EMPickerView *taskView;
 @property (nonatomic, strong) EMPickerView *statusView;
@@ -33,9 +36,6 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 @implementation KFLeaveMsgDetailViewController
 {
-    NSMutableArray *_headViewDatasource;
-    CGFloat         _headViewHeight;
-    NSMutableArray *_headInfoHeights;
     NSIndexPath    *_currentIndexPath;
     NSDictionary   *_temp;
     NSMutableArray <HLeaveMessageComment *> *_dataSource;
@@ -50,7 +50,6 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (instancetype)initWithModel:(HLeaveMessage *)model {
     if (self = [super init]) {
         _model = model;
-        rowHeight = 40;
     }
     return self;
 }
@@ -78,13 +77,26 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)setup {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    _headViewDatasource = [NSMutableArray array];
     _dataSource = [NSMutableArray array];
-    _headViewHeight = [self calculateHeight];
+    [self setupTitleStrInfo];
+    self.tableView.tableHeaderView = [self tableHeaderViewFormStr:_titleStrInfo];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.inputView];
     self.tableView.height = KScreenHeight - 64 - 88;
     [self loadLeaveMessageAllComments];
+}
+
+- (UIView *)tableHeaderViewFormStr:(NSString *)aStr {
+    UILabel *label = [[UILabel alloc] init];
+    label.numberOfLines = 0;
+    UIFont *font = [UIFont systemFontOfSize:15];
+    [label setLabelSpaceWithValue:_titleStrInfo withFont:font spaceLineHeight:5];
+    CGFloat height = [label getSpaceLabelHeight:_titleStrInfo
+                                       withFont:font
+                                      withWidth:self.view.frame.size.width - 20
+                                spaceLineHeight:5];
+    label.frame = CGRectMake(10, 0, self.view.frame.size.width - 20, height);
+    return label;
 }
 
 #pragma mark - 评论
@@ -105,8 +117,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     }];
 }
 
-- (CGFloat)calculateHeight {
-    CGFloat height = 0;
+- (void)setupTitleStrInfo {
     NSString *projectId = [NSString stringWithFormat:@"No.%@",_model.leaveMessageId];
     NSString *subject = [NSString stringWithFormat:@"主题:%@",_model.subject];
     NSString *creator = [NSString stringWithFormat:@"发起人:%@",_model.creator.username];
@@ -114,25 +125,37 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     NSString *phone   = _model.creator.phone ? [NSString stringWithFormat:@"手机:%@",_model.creator.phone]:nil;
     NSString *email   = _model.creator.email ? [NSString stringWithFormat:@"邮箱:%@",_model.creator.email]:nil;
     NSString *company = _model.creator.company ? [NSString stringWithFormat:@"公司:%@",_model.creator.company]:nil;
-    [_headViewDatasource addObject:projectId];
-    [_headViewDatasource addObject:subject];
-    if(creator) [_headViewDatasource addObject:creator];
-    [_headViewDatasource addObject:content];
-    if(phone) [_headViewDatasource addObject:phone];
-    if(email) [_headViewDatasource addObject:email];
-    if(company) [_headViewDatasource addObject:company];
     
-    for (NSString *str in _headViewDatasource) {
-        CGFloat strHeight = [NSString heightOfString:str font:15.0 width:KScreenWidth - 20] + 5;
-        
-        if (!_headInfoHeights) {
-            _headInfoHeights = [NSMutableArray array];
-        }
-        [_headInfoHeights addObject:[NSNumber numberWithFloat:strHeight]];
-        
-        height += strHeight;
+    _titleStrInfo = @"";
+    if (projectId) {
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:projectId];
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:@"\n"];
     }
-    return height;
+    if (subject) {
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:subject];
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:@"\n"];
+    }
+    if (creator) {
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:creator];
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:@"\n"];
+    }
+    if (content) {
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:content];
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:@"\n"];
+    }
+    if (phone) {
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:phone];
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:@"\n"];
+    }
+    if (email) {
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:email];
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:@"\n"];
+    }
+    if (company) {
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:company];
+        _titleStrInfo = [_titleStrInfo stringByAppendingString:@"\n"];
+    }
+    NSLog(@"_titleStrInfo  ---- %@",_titleStrInfo);
 }
 - (void)didChangeFrameToHeight:(CGFloat)toHeight
 {
@@ -205,25 +228,6 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     return _inputView;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return _headViewHeight;
-    }
-    return 10;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        KFLeaveMsgDetailHeadView *header = [[KFLeaveMsgDetailHeadView alloc] initWithModel:_model dataSource:_headViewDatasource heights:_headInfoHeights];
-        WEAK_SELF
-        header.tapTableview = ^ {
-            [weakSelf inputViewReset];
-        };
-        return header;
-    }
-    return nil;
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1) {
         if (_dataSource.count > 0 && indexPath.row > 0) {
@@ -231,7 +235,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
         }
     }
     if (indexPath.section == 0) {
-        return rowHeight;
+        return 40;
     }
     return 45;
 }

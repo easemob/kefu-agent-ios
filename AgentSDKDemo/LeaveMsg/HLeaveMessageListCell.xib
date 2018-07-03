@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="发起人11111111111111111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6E-Uj-Q07">
-                        <rect key="frame" x="16" y="69" width="132" height="14.5"/>
+                        <rect key="frame" x="16" y="69" width="289" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -58,6 +58,7 @@
                     <constraint firstItem="I6E-Uj-Q07" firstAttribute="leading" secondItem="nk0-fQ-DQI" secondAttribute="leading" id="Dh5-bJ-6X1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="tKo-My-M9S" secondAttribute="trailing" constant="-3" id="FRZ-L7-un5"/>
                     <constraint firstItem="ZI7-tQ-Ve4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GuP-og-J36"/>
+                    <constraint firstAttribute="trailing" secondItem="I6E-Uj-Q07" secondAttribute="trailing" constant="15" id="Oif-5w-VXm"/>
                     <constraint firstAttribute="bottom" secondItem="I6E-Uj-Q07" secondAttribute="bottom" constant="9" id="PCZ-kF-gCD"/>
                     <constraint firstItem="nk0-fQ-DQI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="cLC-O9-VK1"/>
                     <constraint firstItem="tKo-My-M9S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gBY-gj-64e"/>
