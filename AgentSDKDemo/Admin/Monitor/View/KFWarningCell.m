@@ -38,15 +38,15 @@
     } else if (model.superviseLevel == 3) {
         _levelLabel.text = @"三级告警";
     }
-    _tipLabel.text =model.ruleName;
-    _idLabel.text = model.visitorId;
+    _tipLabel.text = model.ruleName;
+    _idLabel.text = model.visitorName;
     _nikeNameLabel.text = model.agentName;
 }
 
 - (void)layoutSubviews {
     _nikeNameLabel.frame = CGRectMake(self.width-100, CGRectGetMaxY(_tipLabel.frame)+kmargin, 90, 20);
     _levelLabel.frame = CGRectMake(self.width-90, kmargin, 80, 20);
-    _idLabel.width = self.width - 2*kmargin -100;
+    _idLabel.width = self.width - 2 * kmargin -100;
 }
 
 - (void)initUI {
