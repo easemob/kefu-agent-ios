@@ -209,12 +209,15 @@
     WEAK_SELF
     [_conversation asyncFetchCustomerInfo:^(HCustomerLocalModel *model, HDError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error) {
+            if (!error && model) {
                 weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注:\n ip:%@ \n 地区:%@\n 系统:%@",model.ip, model.region, model.userAgent];
-                [weakSelf.commentLabel sizeToFit];
             }else {
                 weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注"];
             }
+            [weakSelf.commentLabel sizeToFit];
+            CGRect frame = weakSelf.commentLabel.frame;
+            frame.size.width = self.superview.frame.size.width;
+            weakSelf.commentLabel.frame = frame;
             [weakSelf setupView];
         });
     }];
