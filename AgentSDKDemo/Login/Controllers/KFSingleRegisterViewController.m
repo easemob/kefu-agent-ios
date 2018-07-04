@@ -8,6 +8,7 @@
 
 #import "KFSingleRegisterViewController.h"
 #import "KFPhoneVerifyViewController.h"
+#import "UITextField+KFAdd.h"
 #define kSpace 20   //横向间隙
 #define kMargin 20  //边距
 

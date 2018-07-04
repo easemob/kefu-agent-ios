@@ -7,8 +7,6 @@
 //
 
 #import "LeaveMsgInputView.h"
-
-#import "XHMessageTextView.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "MessageReadManager.h"
@@ -18,9 +16,9 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
     InputViewStateEdit,     //编辑状态
 };
 
-@interface LeaveMsgInputView () <UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface LeaveMsgInputView () <UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate>
 
-@property (strong, nonatomic) XHMessageTextView *inputTextView;
+@property (strong, nonatomic) UITextField *inputField;
 @property (strong, nonatomic) UIButton *sendButton;
 @property (strong, nonatomic) UIButton *attachmentButton;
 @property (strong, nonatomic) UILabel *attachmentLabel;
@@ -28,7 +26,7 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 @property (strong, nonatomic) NSMutableArray *dataArray;
 @property (strong, nonatomic) UIButton *uploadButton;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
-@property(nonatomic,assign) CGRect initFrame;
+@property (nonatomic, assign) CGRect initFrame;
 @end
 
 @implementation LeaveMsgInputView
@@ -42,9 +40,9 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
         [self addSubview:self.attachmentButton];
         [self addSubview:self.attachmentLabel];
         [self addSubview:self.sendButton];
-        [self addSubview:self.inputTextView];
+        [self addSubview:self.inputField];
         [self addSubview:self.tableView];
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     }
     return self;
 }
@@ -130,29 +128,26 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
         _sendButton.frame = CGRectMake(KScreenWidth - 49, 5, 44.f, 30.f);
         [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
         [_sendButton setTitleColor:RGBACOLOR(25, 163, 255, 1) forState:UIControlStateNormal];
-//        [_sendButton setTitleColor:RGBACOLOR(25, 163, 255, 1) forState:UIControlStateSelected];
         [_sendButton addTarget:self action:@selector(sendLeaveMsg) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sendButton;
 }
 
-- (XHMessageTextView*)inputTextView
+- (UITextField *)inputField
 {
-    if (_inputTextView == nil) {
+    if (_inputField == nil) {
         CGFloat width = KScreenWidth - 10;
         // 初始化输入框
-        _inputTextView = [[XHMessageTextView  alloc] initWithFrame:CGRectMake(5, 44, width, 32)];
-        _inputTextView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-        _inputTextView.scrollEnabled = YES;
-        _inputTextView.returnKeyType = UIReturnKeyDone;
-        _inputTextView.enablesReturnKeyAutomatically = YES; // UITextView内部判断send按钮是否可以用
-        _inputTextView.editable = YES;
-        _inputTextView.placeHolder = @"请输入...";
-        _inputTextView.delegate = self;
-        _inputTextView.backgroundColor = [UIColor whiteColor];
-        _inputTextView.layer.borderColor = RGBACOLOR(0xb5, 0xb7, 0xbb, 1).CGColor;
+        _inputField = [[UITextField  alloc] initWithFrame:CGRectMake(5, 44, width, 32)];
+        _inputField.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        _inputField.returnKeyType = UIReturnKeyDone;
+        _inputField.enablesReturnKeyAutomatically = YES; // UITextView内部判断send按钮是否可以用
+        _inputField.placeholder = @"请输入...";
+        _inputField.delegate = self;
+        _inputField.backgroundColor = [UIColor whiteColor];
+        _inputField.layer.borderColor = RGBACOLOR(0xb5, 0xb7, 0xbb, 1).CGColor;
     }
-    return _inputTextView;
+    return _inputField;
 }
 
 #pragma mark - UITableViewDataSource
@@ -204,50 +199,10 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
     }
 }
 
-#pragma mark - UIKeyboardNotification
-
-- (void)keyboardWillChangeFrame:(NSNotification *)notification
-{
-    NSDictionary *userInfo = notification.userInfo;
-    CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGRect beginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    
-    WEAK_SELF
-    void(^animations)() = ^{
-//        [self willShowKeyboardFromFrame:beginFrame toFrame:endFrame];
-        if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(didChangeFrameToHeight:)]) {
-            CGFloat height = weakSelf.height - weakSelf.tableView.height;
-            if (beginFrame.origin.y == [[UIScreen mainScreen] bounds].size.height)
-            {
-                [weakSelf.delegate didChangeFrameToHeight:endFrame.size.height + height];
-            }
-            else if (endFrame.origin.y == [[UIScreen mainScreen] bounds].size.height)
-            {
-                [weakSelf.delegate didChangeFrameToHeight:height];
-            }
-            else{
-                [weakSelf.delegate didChangeFrameToHeight:endFrame.size.height + height];
-            }
-        }
-    };
-    
-    void(^completion)(BOOL) = ^(BOOL finished){
-    };
-    
-    [UIView animateWithDuration:duration delay:0.0f options:(curve << 16 | UIViewAnimationOptionBeginFromCurrentState) animations:animations completion:completion];
-}
-
-#pragma mark - UITextViewDelegate
-
-- (void)textViewDidChange:(UITextView *)textView
-{
-
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-   
+#pragma mark UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [self endEditing:YES];
+    return YES;
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -317,7 +272,7 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 
 - (void)uploadAction
 {
-    [_inputTextView endEditing:YES];
+    [self.inputField endEditing:YES];
     self.imagePicker.mediaTypes = @[(NSString *)kUTTypeImage];
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSelectImageWithPicker:)]) {
         [self.delegate didSelectImageWithPicker:self.imagePicker];
@@ -326,12 +281,11 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 
 - (void)attachmentAction
 {
-    [_inputTextView endEditing:YES];
     _attachmentButton.selected = !_attachmentButton.selected;
     if (_attachmentButton.selected) {
         [self changeHeightWithState:InputViewStateEdit];
     } else {
-         [self changeHeightWithState:InputViewStateInit];
+        [self changeHeightWithState:InputViewStateInit];
     }
 }
 
@@ -340,38 +294,72 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 }
 
 - (void)changeHeightWithState:(InputViewState)inputState{
-    [self endEditing:YES];
-    if (inputState == InputViewStateEdit) {
-        [UIView animateWithDuration:0.25 animations:^{
+    [self.inputView endEditing:YES];
+    [UIView animateWithDuration:0.25 animations:^{
+        if (inputState == InputViewStateEdit) {
             self.top = self.top - 162;
-        }];
-    } else {
-
-        [UIView animateWithDuration:0.25 animations:^{
-            self.top = self.top + 162;
-        }];
-    }
+        } else {
+            if (self.top != KScreenHeight - 88.f - 64) {
+                self.top = self.top + 162;
+            }
+        }
+    }];
 }
 
 //发送留言
 - (void)sendLeaveMsg
 {
-    if (_dataArray.count <=0 && _inputTextView.text.length <=0) {
+    if (_dataArray.count <=0 && self.inputField.text.length <=0) {
         [MBProgressHUD showError:@"请输入内容或附件" toView:fKeyWindow];
         return;
     }
     if (self.delegate && [self.delegate respondsToSelector:@selector(didSendText:attachments:)]) {
-        [self.delegate didSendText:_inputTextView.text attachments:_dataArray];
+        [self.delegate didSendText:self.inputField.text attachments:_dataArray];
         [_dataArray removeAllObjects];
         [self.tableView reloadData];
     }
-    _inputTextView.text = @"";
+    self.inputField.text = @"";
     _attachmentLabel.text = @"0";
-    [_inputTextView resignFirstResponder];
+    [self.inputField resignFirstResponder];
     [UIView animateWithDuration:0.25 animations:^{
         self.top = KScreenHeight-88-64;
     }];
     _attachmentButton.selected = NO;
+}
+
+- (void)keyboardWillChangeFrame:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    CGRect endFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGRect beginFrame = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue];
+    CGFloat duration = [userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    UIViewAnimationCurve curve = [userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    
+    void(^animations)() = ^{
+        [self willShowKeyboardFromFrame:beginFrame toFrame:endFrame];
+    };
+    
+    void(^completion)(BOOL) = ^(BOOL finished){
+    };
+    
+    [UIView animateWithDuration:duration delay:0.0f options:(curve << 16 | UIViewAnimationOptionBeginFromCurrentState) animations:animations completion:completion];
+}
+
+- (void)willShowKeyboardFromFrame:(CGRect)beginFrame toFrame:(CGRect)toFrame
+{
+    [UIView animateWithDuration:0.25 animations:^{
+        if (toFrame.origin.y == [[UIScreen mainScreen] bounds].size.height)
+        {
+            self.top = KScreenHeight - 88.f - 64;
+        }
+        else{
+            self.top = KScreenHeight - 88.f - toFrame.origin.y;
+        }
+    }];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 

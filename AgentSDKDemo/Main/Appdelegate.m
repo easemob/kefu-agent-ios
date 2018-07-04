@@ -34,8 +34,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     [self ddlogInit];
-    [IQKeyboardManager sharedManager].enable = YES;
-    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
     application.statusBarStyle = UIStatusBarStyleLightContent;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:kNavBarBgColor];

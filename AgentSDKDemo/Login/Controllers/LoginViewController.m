@@ -12,6 +12,7 @@
 #import "DXLoadingView.h"
 #import "KFInputEmailViewController.h"
 #import "KFCompanyRegisterViewController.h"
+#import "UIViewController+DismissKeyboard.h"
 
 #define kLoginMargin 20.f
 #define kLoginTextViewHeight 35.f
@@ -25,35 +26,6 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     ButtonTagLogin,   //登录
 };
 
-@implementation UIViewController (DismissKeyboard)
-- (void)setupForDismissKeyboard {
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    UITapGestureRecognizer *singleTapGR =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(tapAnywhereToDismissKeyboard:)];
-    
-    __weak UIViewController *weakSelf = self;
-    
-    NSOperationQueue *mainQuene =[NSOperationQueue mainQueue];
-    [nc addObserverForName:UIKeyboardWillShowNotification
-                    object:nil
-                     queue:mainQuene
-                usingBlock:^(NSNotification *note){
-                    [weakSelf.view addGestureRecognizer:singleTapGR];
-                }];
-    [nc addObserverForName:UIKeyboardWillHideNotification
-                    object:nil
-                     queue:mainQuene
-                usingBlock:^(NSNotification *note){
-                    [weakSelf.view removeGestureRecognizer:singleTapGR];
-                }];
-}
-
-- (void)tapAnywhereToDismissKeyboard:(UIGestureRecognizer *)gestureRecognizer {
-    //此method会将self.view里所有的subview的first responder都resign掉
-    [self.view endEditing:YES];
-}
-@end
 
 @interface LoginViewController ()<UITextFieldDelegate>
 {
@@ -180,7 +152,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_actionView addSubview:loginButton];
     
-  //  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     [self setupForDismissKeyboard];
     

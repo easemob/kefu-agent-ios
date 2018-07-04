@@ -1063,8 +1063,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     self.folderButton.selected = !self.folderButton.selected;
     if (self.folderButton.selected) {
-        self.headview.hidden = NO;
         [self.headview refreshHeaderView];
+        self.headview.hidden = NO;
         self.headview.top = -self.headview.height;
         [UIView animateWithDuration:0.2 animations:^{
             self.headview.top = 0;

@@ -12,6 +12,7 @@
 #import "MessageReadManager.h"
 #import "LeaveMsgInputView.h"
 #import "UILabel+Category.h"
+#import "UIViewController+DismissKeyboard.h"
 
 typedef NS_ENUM(NSUInteger, PickerViewTag) {
     PickerViewTagDistribute=123,
@@ -57,6 +58,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"留言详情";
+    [self setupForDismissKeyboard];
     _assginees = [NSMutableArray arrayWithCapacity:0];
     HAssignee *assigee = [[HAssignee alloc] init];
     assigee.nickname = @"未分配";
@@ -160,7 +162,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)didChangeFrameToHeight:(CGFloat)toHeight
 {
     if (toHeight == self.inputView.height) { //编辑
-         self.inputView.bottom = KScreenHeight;
+         self.inputView.bottom = KScreenHeight - 88.f - toHeight;
     } else {
         [self inputViewReset];
     }
@@ -218,7 +220,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 {
     [self presentViewController:imagePicker animated:YES completion:NULL];
 }
-- (LeaveMsgInputView*)inputView
+- (LeaveMsgInputView *)inputView
 {
     if (_inputView == nil) {
         _inputView = [[LeaveMsgInputView alloc] initWithFrame:CGRectMake(0, KScreenHeight - 88.f, KScreenWidth, 88.f + 162.f)];
@@ -496,13 +498,6 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
         }
         
     }];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:NO];
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
 }
 
 @end

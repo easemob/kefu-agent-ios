@@ -9,6 +9,7 @@
 #import "EMChatHeaderTagView.h"
 #import "AddTagViewController.h"
 #import "EMTagView.h"
+#import "UILabel+Category.h"
 
 #define kChatHeaderTagViewHeight 60.f
 #define kChatHeaderTagViewSpace 5.f
@@ -147,22 +148,6 @@
         [self setupView];
     } else {
         [self _loadComment];
-//        WEAK_SELF
-//        [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                if (!error) {
-//                    NSArray *json = responseObject;
-//                    weakSelf.dataSource = [NSMutableArray array];
-//                    for (NSString *string in json) {
-//                        NSString *key = [NSString stringWithFormat:@"%@",string];
-//                        if ([weakSelf.tree objectForKey:key]) {
-//                            [weakSelf.dataSource addObject:[weakSelf.tree objectForKey:key]];
-//                        }
-//                    }
-//                }
-//
-//            });
-//        }];
     }
 }
 
@@ -215,10 +200,15 @@
             }else {
                 weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注"];
             }
-            [weakSelf.commentLabel sizeToFit];
-            CGRect frame = weakSelf.commentLabel.frame;
-            frame.size.width = self.superview.frame.size.width;
-            weakSelf.commentLabel.frame = frame;
+            
+            CGFloat height = [weakSelf.commentLabel getSpaceLabelHeight:weakSelf.commentLabel.text
+                                                               withFont:weakSelf.commentLabel.font
+                                                              withWidth:self.superview.frame.size.width
+                                                        spaceLineHeight:3];
+            
+
+            
+            weakSelf.commentLabel.frame = CGRectMake(0, 0, self.superview.frame.size.width, height);
             [weakSelf setupView];
         });
     }];
