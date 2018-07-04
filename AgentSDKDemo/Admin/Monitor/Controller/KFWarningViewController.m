@@ -22,8 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [KFManager sharedInstance].curViewController = self;
-    [KFManager sharedInstance].needShowMonitorTip = NO;
-    [kNotiCenter postNotificationName:KFMonitorNoti object:@(YES)];
+    [KFManager sharedInstance].needShowSuperviseTip = NO;
+    [kNotiCenter postNotificationName:KFSuperviseNoti object:@(YES)];
     self.title = @"告警记录";
     [self loadData];
 }

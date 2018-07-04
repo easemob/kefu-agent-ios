@@ -93,7 +93,7 @@
 
 - (void)initData
 {
-    _timeArray = @[@"时间",@"开始时间",@"结束事件"];
+    _timeArray = @[@"时间",@"开始时间",@"结束时间"];
     if (_type == EMHistoryOptionType) {
         _optionArray = @[@"渠道",@"关联",@"标签",@""];
     } else {
@@ -626,7 +626,7 @@
     }
 }
 
-- (NSString*)formatDate:(NSDate*)date
+- (NSString *)formatDate:(NSDate *)date
 {
     if (date) {
         NSDateFormatter *format =[[NSDateFormatter alloc] init];

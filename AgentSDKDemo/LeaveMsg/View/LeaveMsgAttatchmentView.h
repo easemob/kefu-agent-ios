@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class LeaveMsgAttachmentModel;
+
 @protocol LeaveMsgAttatchmentViewDelegate <NSObject>
 
 - (void)didRemoveAttatchment:(NSInteger)index;
@@ -20,11 +20,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame
                          edit:(BOOL)edit
-                        model:(LeaveMsgAttachmentModel*)model;
+                        model:(HLeaveMessageCommentAttachment *)model;
 
 - (instancetype)initWithFrame:(CGRect)frame
                          edit:(BOOL)edit
-                        kfmodel:(HDAttachment*)model;
+                        kfmodel:(HLeaveMessageCommentAttachment *)model;
 
 + (CGFloat)widthForName:(NSString*)name maxWidth:(CGFloat)maxWidth;
 

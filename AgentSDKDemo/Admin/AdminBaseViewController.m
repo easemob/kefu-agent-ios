@@ -32,6 +32,7 @@
 {
     if (_headerImageView == nil) {
         _headerImageView = [[EMHeaderImageView alloc] init];
+        [_headerImageView updateHeadImage];
         _headerImageView.top = 0;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backAction)];
         [_headerImageView addGestureRecognizer:tap];

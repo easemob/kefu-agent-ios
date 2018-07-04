@@ -110,7 +110,7 @@ typedef enum {
  *  是否允许聊天室Owner离开, 默认为YES
  *
  *  \~english
- *  Whether chat room's owner can leave the chat room, default is YES.
+ *  if allow chat room's owner can leave the chat room, default is YES.
  */
 @property (nonatomic, assign) BOOL isChatroomOwnerLeaveAllowed;
 
@@ -133,6 +133,15 @@ typedef enum {
 @property (nonatomic, assign) BOOL isAutoAcceptFriendInvitation;
 
 /*!
+ *  \~chinese
+ *  是否自动下载图片和视频缩略图及语音消息, 默认为YES
+ *
+ *  \~english
+ *  Whether to automatically download thumbnail of image&video and audio, default is YES
+ */
+@property (nonatomic, assign) BOOL isAutoDownloadThumbnail;
+
+/*!
  *  \~chinese 
  *  是否发送消息送达回执, 默认为NO，如果设置为YES，SDK收到单聊消息时会自动发送送达回执
  *
@@ -149,6 +158,15 @@ typedef enum {
  *  Whether to sort messages by server received time when loading message from database, default is YES.
  */
 @property (nonatomic, assign) BOOL sortMessageByServerTime;
+
+/*!
+ *  \~chinese
+ * 是否自动上传或者下载消息中的附件，默认为YES
+ *
+ *  \~english
+ *  Whether to automatically upload or download the attachment in the message, default is YES.
+ */
+@property (nonatomic, assign) BOOL isAutoTransferMessageAttachments;
 
 /*!
  *  \~chinese 

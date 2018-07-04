@@ -143,24 +143,26 @@
 
 - (void)setProgress:(CGFloat)progress animated:(BOOL)animated
 {
-    [self.layer removeAnimationForKey:@"indeterminateAnimation"];
-    [self.circularProgressLayer removeAnimationForKey:@"progress"];
-    
-    CGFloat pinnedProgress = MIN(MAX(progress, 0.0f), 1.0f);
-    if (animated)
-    {
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"progress"];
-        animation.duration = fabsf(self.progress - pinnedProgress); // Same duration as UIProgressView animation
-        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        animation.fromValue = [NSNumber numberWithFloat:self.progress];
-        animation.toValue = [NSNumber numberWithFloat:pinnedProgress];
-        [self.circularProgressLayer addAnimation:animation forKey:@"progress"];
-    }
-    else
-    {
-        [self.circularProgressLayer setNeedsDisplay];
-    }
-    self.circularProgressLayer.progress = pinnedProgress;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.layer removeAnimationForKey:@"indeterminateAnimation"];
+        [self.circularProgressLayer removeAnimationForKey:@"progress"];
+        
+        CGFloat pinnedProgress = MIN(MAX(progress, 0.0f), 1.0f);
+        if (animated)
+        {
+            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"progress"];
+            animation.duration = fabs(self.progress - pinnedProgress); // Same duration as UIProgressView animation
+            animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+            animation.fromValue = [NSNumber numberWithFloat:self.progress];
+            animation.toValue = [NSNumber numberWithFloat:pinnedProgress];
+            [self.circularProgressLayer addAnimation:animation forKey:@"progress"];
+        }
+        else
+        {
+            [self.circularProgressLayer setNeedsDisplay];
+        }
+        self.circularProgressLayer.progress = pinnedProgress;
+    });
 }
 
 #pragma mark - UIAppearance methods

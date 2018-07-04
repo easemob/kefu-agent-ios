@@ -86,8 +86,8 @@
     [dic setObject:@"ee_27" forKey:@"[(*)]"];
     [dic setObject:@"ee_28" forKey:@"[(#)]"];
     [dic setObject:@"ee_29" forKey:@"[(R)]"];
-    [dic setObject:@"ee_30" forKey:@"[(})]"];
-    [dic setObject:@"ee_31" forKey:@"[({)]"];
+    [dic setObject:@"ee_30" forKey:@"[({)]"];
+    [dic setObject:@"ee_31" forKey:@"[(})]"];
     [dic setObject:@"ee_32" forKey:@"[(k)]"];
     [dic setObject:@"ee_33" forKey:@"[(F)]"];
     [dic setObject:@"ee_34" forKey:@"[(W)]"];

@@ -211,8 +211,9 @@ typedef NS_ENUM(NSInteger, EMAudioSession){
 }
 
 #pragma mark - Private
--(NSError *)setupAudioSessionCategory:(EMAudioSession)session
+- (NSError *)setupAudioSessionCategory:(EMAudioSession)session
                              isActive:(BOOL)isActive{
+#if !TARGET_IPHONE_SIMULATOR
     BOOL isNeedActive = NO;
     if (isActive != _currActive) {
         isNeedActive = YES;
@@ -254,6 +255,9 @@ typedef NS_ENUM(NSInteger, EMAudioSession){
     _currCategory = audioSessionCategory;
     
     return error;
+#else
+    return nil;
+#endif
 }
 
 #pragma mark - Convert

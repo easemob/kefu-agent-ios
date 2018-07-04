@@ -18,11 +18,12 @@
 #import "UINavigationItem+Margin.h"
 #import "UIAlertView+KFAdd.h"
 #import "UIImageView+EMWebCache.h"
+#import "HDSelectButton.h"
 
-@interface KFConversationsController ()<ConversationTableControllerDelegate,UIScrollViewDelegate,HDClientDelegate>
+@interface KFConversationsController ()<ConversationTableControllerDelegate,UIScrollViewDelegate,HDClientDelegate, DXTableViewControllerDelegate>
 {
-    UIButton *_conversationButton;
-    UIButton *_waitButton;
+    HDSelectButton *_conversationButton;
+    HDSelectButton *_waitButton;
     DXTipView *_unreadWaitLabel;
     EMHeaderImageView *_headImageView;
     
@@ -53,7 +54,7 @@
     [self setExtendedLayoutIncludesOpaqueBars:YES];
     
     if (![[HDClient sharedClient].currentAgentUser.roles containsString:@"admin"]) {
-        [KFManager sharedInstance].needShowMonitorTip = NO;
+        [KFManager sharedInstance].needShowSuperviseTip = NO;
     }
 }
 
@@ -95,12 +96,12 @@
 }
 
 
-- (void)transferScheduleRequest:(NSString *)sessionId {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"新会话" message:@"收到一个转接会话,是否接受?" delegate:[KFManager sharedInstance].appDelegate cancelButtonTitle:@"拒绝" otherButtonTitles:@"接受", nil];
-    alert.sessionId = sessionId;
-    alert.tag = kTransferScheduleRequestTag;
-    [alert show];
-}
+//- (void)transferScheduleRequest:(NSString *)sessionId {
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"新会话" message:@"收到一个转接会话,是否接受?" delegate:[KFManager sharedInstance].appDelegate cancelButtonTitle:@"拒绝" otherButtonTitles:@"接受", nil];
+//    alert.sessionId = sessionId;
+//    alert.tag = kTransferScheduleRequestTag;
+//    [alert show];
+//}
 
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
     [self reloadDataWithSessionId:serviceSessionId];
@@ -125,7 +126,6 @@
 
 //最后一条消息改变
 - (void)conversationLastMessageChanged:(HDMessage *)message {
-    [_conversationController conversationLastMessageChanged:message];
     if (message.chatType == HDChatTypeCustomer) {
         [_customerViewController loadData];
     }
@@ -148,6 +148,7 @@
 
 - (void)refreshData {
     [_conversationController loadData];
+    [_customerViewController loadData];
 }
 
 #pragma mark - property
@@ -166,6 +167,7 @@
     [self.view addSubview:_scrollView];
     
     _conversationController = [[HConversationViewController alloc] initWithStyle:UITableViewStylePlain type:HDConversationAccessed];
+    _conversationController.dxDelegate = self;
     _conversationController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     _conversationController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _conversationController.showSearchBar = YES;
@@ -174,6 +176,7 @@
     [_scrollView addSubview:_conversationController.view];
     
     _customerViewController = [[CustomerViewController alloc] init];
+    _customerViewController.customerController.dxDelegate = self;
     _customerViewController.view.frame = CGRectMake(self.view.frame.size.width, 0, self.view.frame.size.width, self.view.frame.size.height);
     _customerViewController.view.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _customerViewController.conDelegate = self;
@@ -211,7 +214,7 @@
     return _headerViewItem;
 }
 
-- (EMHeaderImageView*)headImageView
+- (EMHeaderImageView *)headImageView
 {
     return [KFManager sharedInstance].headImageView;
 }
@@ -226,7 +229,7 @@
         _titleView.layer.masksToBounds = YES;
         _titleView.backgroundColor = [UIColor clearColor];
         
-        _conversationButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 80, _titleView.frame.size.height)];
+        _conversationButton = [[HDSelectButton alloc] initWithFrame:CGRectMake(0, 0, 80, _titleView.frame.size.height)];
         _conversationButton.layer.masksToBounds = YES;
         [_conversationButton setTitle:@"进行中" forState:UIControlStateNormal];
         [_conversationButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -239,9 +242,10 @@
 //        _conversationButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0];
         _conversationButton.tag = 100;
         _conversationButton.selected = YES;
+        
         [_titleView addSubview:_conversationButton];
         
-        _waitButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_conversationButton.frame), 0, 80, _titleView.frame.size.height)];
+        _waitButton = [[HDSelectButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_conversationButton.frame), 0, 80, _titleView.frame.size.height)];
         _waitButton.layer.masksToBounds = YES;
         [_waitButton setTitle:@"客服" forState:UIControlStateNormal];
         [_waitButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
@@ -359,7 +363,24 @@
     }
 }
 
-
+#pragma makr - DXTableViewControllerDelegate
+- (void)dxtableView:(DXTableViewController *)aTableVC userInfo:(NSDictionary *)userInfo {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([aTableVC isKindOfClass:[HConversationViewController class]]) {
+            if ([[userInfo valueForKey:@"unreadCount"] intValue] > 0) {
+                [_conversationButton showUnReadStamp];
+            }else {
+                [_conversationButton hiddenUnReadStamp];
+            }
+        }else if ([aTableVC isKindOfClass:[CustomerController class]]) {
+            if ([[userInfo valueForKey:@"unreadCount"] intValue] > 0) {
+                [_waitButton showUnReadStamp];
+            }else {
+                [_waitButton hiddenUnReadStamp];
+            }
+        }
+    });
+}
 
 #pragma mark - HDClientDelegate
 

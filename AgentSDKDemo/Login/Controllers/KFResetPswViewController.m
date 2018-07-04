@@ -7,6 +7,7 @@
 //
 
 #import "KFResetPswViewController.h"
+#import "UITextField+KFAdd.h"
 #import "Helper.h"
 #define kMargin 20
 #define kSpace 20

@@ -24,7 +24,7 @@
 
 - (void)setSubViews:(NSDictionary *)dic {
     UIView *tipView = [[UIView alloc] init];
-    tipView.width = self.width - Margin*2;
+    tipView.width = self.width - Margin * 2;
     tipView.height = TipHeight;
     tipView.layer.cornerRadius = 5;
     tipView.layer.masksToBounds = YES;
@@ -46,37 +46,46 @@
     } else {
         str2 = @"异常";
     }
-    NSString *str3 = @"0";
-//    if ([status isEqualToString:@"正常"]) {
-    NSTimeInterval leftTime = [[dic valueForKey:@"agreementExpireTime"] floatValue]/1000 - [[NSDate date] timeIntervalSince1970];
-    NSInteger day = leftTime/60/60/24;
-    if (leftTime<0) {
+
+    NSTimeInterval leftTime = [[dic valueForKey:@"agreementExpireTime"] floatValue] / 1000 - [[NSDate date] timeIntervalSince1970];
+    NSInteger day = leftTime / 60 / 60 / 24;
+    if (leftTime < 0) {
         day = 0;
     }
-    str3 = [NSString stringWithFormat:@"%ld",day];
+    NSString *str3 = [NSString stringWithFormat:@"%ld",day];
     NSTimeInterval expireTime = [[dic valueForKey:@"agreementExpireTime"] floatValue];
     NSString *str4 = [self dateFormatWith:expireTime];
     tipString = [NSString stringWithFormat:@"您的租户ID: %@\n您的租户状态: %@\n剩余天数: %@\n到期时间: %@",str1,str2,str3,str4];
-    UILabel *m = [[UILabel alloc] initWithFrame:CGRectMake(Margin, CGRectGetMaxY(label.frame)+Margin, tipView.width - 2*Margin, TipHeight-CGRectGetMaxY(label.frame)-4*Margin)];
+    UILabel *m = [[UILabel alloc] initWithFrame:CGRectMake(Margin, CGRectGetMaxY(label.frame) + Margin, tipView.width - 2 * Margin, TipHeight - CGRectGetMaxY(label.frame) - 4 * Margin)];
     m.text = tipString;
     m.font = [UIFont systemFontOfSize:15];
     m.numberOfLines = 0;
     [tipView addSubview:m];
     
-    UIButton *ok = [UIButton buttonWithType:UIButtonTypeCustom];
-    ok.frame = CGRectMake(tipView.width - 80, tipView.height - 50, 60, 40);
-    [ok setTitle:@"确定" forState:UIControlStateNormal];
-    [ok setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [ok addTarget:self action:@selector(reLogin) forControlEvents:UIControlEventTouchUpInside];
-    [tipView addSubview:ok];
-    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(tipView.width - 80, tipView.height - 50, 60, 40);
+    [btn setTitle:@"确定" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    if (leftTime <= 0) { // 剩余时间小于0时才退出
+        [btn addTarget:self action:@selector(reLogin) forControlEvents:UIControlEventTouchUpInside];
+    }else {
+        [btn addTarget:self action:@selector(removeFromSuperviewAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [tipView addSubview:btn];
+
 }
 
 - (void)reLogin {
+    
     [[HDClient sharedClient] logoutCompletion:^(HDError *error) {
         [[KFManager sharedInstance] showLoginViewController];
     }];
 }
+
+- (void)removeFromSuperviewAction {
+    [self removeFromSuperview];
+}
+
 
 - (NSString *)dateFormatWith:(NSTimeInterval)timeInterval {
     NSDateFormatter *format = [[NSDateFormatter alloc] init];

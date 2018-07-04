@@ -8,6 +8,7 @@
 
 #import "AppDelegate+EaseMob.h"
 #import "HomeViewController.h"
+#import <UserNotifications/UserNotifications.h>
 
 @implementation AppDelegate (EaseMob)
 
@@ -36,19 +37,17 @@
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
     
+//    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
+//    options.restServer = @"a1.dongfeng-renault.com.cn";
+//    options.chatServer = @"im1.dongfeng-renault.com.cn";
+//    options.chatPort = 5222;
+    
     [[HDClient sharedClient] initializeSDKWithOptions:options];
-    
-    
     [self registerRemoteNotification];
-    
     [self registerEaseMobNotification];
-    
     [self setupNotifiers];
-    
     [[EMSDImageCache sharedImageCache] cleanDisk];
 }
-
-
 
 // 监听系统生命周期回调，以便将需要的事件传给SDK
 - (void)setupNotifiers{
@@ -172,7 +171,9 @@
 
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
-    [[HDClient sharedClient] bindDeviceToken:deviceToken];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+       [[HDClient sharedClient] bindDeviceToken:deviceToken];
+    });
 }
 
 // 注册deviceToken失败，此处失败，与环信SDK无关，一般是您的环境配置或者证书配置有误
@@ -203,6 +204,19 @@
     UIApplication *application = [UIApplication sharedApplication];
     application.applicationIconBadgeNumber = 0;
     
+    if (NSClassFromString(@"UNUserNotificationCenter")) {
+        [[UNUserNotificationCenter currentNotificationCenter] requestAuthorizationWithOptions:UNAuthorizationOptionBadge | UNAuthorizationOptionSound | UNAuthorizationOptionAlert completionHandler:^(BOOL granted, NSError *error) {
+            if (granted) {
+#if !TARGET_IPHONE_SIMULATOR
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [application registerForRemoteNotifications];
+                });
+#endif
+            }
+        }];
+        return;
+    }
+    
     if([application respondsToSelector:@selector(registerUserNotificationSettings:)])
     {
         UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
@@ -211,13 +225,13 @@
     }
     
 #if !TARGET_IPHONE_SIMULATOR
-    //iOS8 注册APNS
     if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
         [application registerForRemoteNotifications];
     }else{
-        UIUserNotificationType notificationTypes =UIUserNotificationTypeBadge | UIUserNotificationTypeSound |   UIUserNotificationTypeAlert;
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
-        [application registerUserNotificationSettings:settings];
+        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
+        UIRemoteNotificationTypeSound |
+        UIRemoteNotificationTypeAlert;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
     }
 #endif
 }

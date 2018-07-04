@@ -9,6 +9,7 @@
 #import "EMChatHeaderTagView.h"
 #import "AddTagViewController.h"
 #import "EMTagView.h"
+#import "UILabel+Category.h"
 
 #define kChatHeaderTagViewHeight 60.f
 #define kChatHeaderTagViewSpace 5.f
@@ -78,10 +79,10 @@
 - (UILabel*)commentLabel
 {
     if (_commentLabel == nil) {
-        _commentLabel = [[UILabel alloc] init];
+        _commentLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         _commentLabel.font = [UIFont systemFontOfSize:15];
         _commentLabel.textColor = RGBACOLOR(26, 26, 26, 1);
-        _commentLabel.frame = CGRectMake(kChatHeaderTagViewSpace, kChatHeaderTagViewSpace, KScreenWidth - kChatHeaderTagViewSpace * 2, kChatHeaderLabelHeight);
+        _commentLabel.numberOfLines = 0;
     }
     return _commentLabel;
 }
@@ -131,9 +132,12 @@
     }
     
     if (!_edit) {
-        _commentLabel.top = self.height - _commentLabel.height - kChatHeaderTagViewSpace;
+        _commentLabel.top = 0;
         [self addSubview:self.commentLabel];
     }
+    CGRect frame = self.frame;
+    frame.size = _commentLabel.size;
+    self.frame = frame;
 }
 
 #pragma mark - public
@@ -143,20 +147,7 @@
     if (_edit) {
         [self setupView];
     } else {
-        WEAK_SELF
-        [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
-            if (!error) {
-                NSArray *json = responseObject;
-                weakSelf.dataSource = [NSMutableArray array];
-                for (NSString *string in json) {
-                    NSString *key = [NSString stringWithFormat:@"%@",string];
-                    if ([weakSelf.tree objectForKey:key]) {
-                        [weakSelf.dataSource addObject:[weakSelf.tree objectForKey:key]];
-                    }
-                }
-            }
-            [weakSelf _loadComment];
-        }];
+        [self _loadComment];
     }
 }
 
@@ -202,19 +193,25 @@
 - (void)_loadComment
 {
     WEAK_SELF
-    [_conversation asyncGetSessionCommentCompletion:^(id responseObject, HDError *error) {
-        if (!error) {
-            NSDictionary *json = responseObject;
-            if (json != nil) {
-                _comment = [json objectForKey:@"comment"];
-                weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注:%@",_comment];
-            } else {
+    [_conversation asyncFetchCustomerInfo:^(HCustomerLocalModel *model, HDError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (!error && model) {
+                weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注:\n ip:%@ \n 地区:%@\n 系统:%@",model.ip, model.region, model.userAgent];
+            }else {
                 weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注"];
             }
-        }
-        [weakSelf setupView];
-    }];
+            
+            CGFloat height = [weakSelf.commentLabel getSpaceLabelHeight:weakSelf.commentLabel.text
+                                                               withFont:weakSelf.commentLabel.font
+                                                              withWidth:self.superview.frame.size.width
+                                                        spaceLineHeight:3];
+            
 
+            
+            weakSelf.commentLabel.frame = CGRectMake(0, 0, self.superview.frame.size.width, height);
+            [weakSelf setupView];
+        });
+    }];
 }
 
 - (void)_analyzeTree:(NSArray*)array

@@ -565,11 +565,14 @@
 
 - (void)setUnreadCount:(NSInteger)count
 {
-    if (count <= 0) {
-        [[HomeViewController HomeViewController] setNotifyWithBadgeValue:nil];
-    } else {
-        [[HomeViewController HomeViewController] setNotifyWithBadgeValue:[NSString stringWithFormat:@"%@",@(count)]];
+    NSString *badgeStr = nil;
+    if (count != 0 && count < 100) {
+        badgeStr = [NSString stringWithFormat:@"%d",(int)count];
+    }else if (count >= 100){
+        badgeStr = @"99+";
     }
+    self.tabBarItem.badgeValue = badgeStr;
+    [[HomeViewController HomeViewController] setNotifyWithBadgeValue:count];
 }
 
 

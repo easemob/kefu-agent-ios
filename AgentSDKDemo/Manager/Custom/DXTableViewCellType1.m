@@ -71,10 +71,6 @@
     _titleLabel.frame = CGRectMake(CGRectGetMaxX(_headerImageView.frame) + 10, 9, self.frame.size.width - CGRectGetMaxX(_headerImageView.frame) - 20 - 110, 19);
 }
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

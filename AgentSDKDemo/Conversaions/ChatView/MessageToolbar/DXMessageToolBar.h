@@ -105,6 +105,11 @@
  */
 - (void)quickReplyViewSeletedTitle:(NSString*)title;
 
+/*
+ *  禁用发送语音
+ */
+- (void)disableVoice;
+
 @end
 
 @protocol DXMessageToolBarDelegate <NSObject>

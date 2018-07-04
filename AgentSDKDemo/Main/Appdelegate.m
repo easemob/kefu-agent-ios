@@ -16,15 +16,10 @@
 #import "DDASLLogger.h"
 #import "DXUpdateView.h"
 #import "KFLeftViewController.h"
-#import "UMCheckUpdate.h"
-#import "MobClick.h"
 #import "UIAlertView+KFAdd.h"
 #import "EmotionEscape.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
-//================appstore start=================
-#import <PgyUpdate/PgyUpdateManager.h>
-//================appstore end=================
 
 //#import <wax/wax.h>
 
@@ -39,8 +34,6 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     [self ddlogInit];
-    [IQKeyboardManager sharedManager].enable = YES;
-    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;
     application.statusBarStyle = UIStatusBarStyleLightContent;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UINavigationBar appearance] setBarTintColor:kNavBarBgColor];
@@ -53,18 +46,12 @@
 
     [[UITabBar appearance] setTintColor:RGBACOLOR(0x1b, 0xa8, 0xed, 1)];
     [[UITabBar appearance] setBarTintColor:[UIColor whiteColor]];
-    
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self launch];
     [self startLogin];
     [self clearCache];
-    
-    [MobClick startWithAppkey:UMENG_APPKEY];
-    
-    //================appstore start=================
-    [[PgyUpdateManager sharedPgyManager] startManagerWithAppId:@"cc12b8e5d86d7ccef4dd4b7b4313dcac"];
-    [[PgyUpdateManager sharedPgyManager] updateLocalBuildNumber];
-    //================appstore end=================
+
     
     [[EmotionEscape sharedInstance] setEaseEmotionEscapePattern:@"\\[[^\\[\\]]{1,3}\\]"];
     [[EmotionEscape sharedInstance] setEaseEmotionEscapeDictionary:[ConvertToCommonEmoticonsHelper emotionsDictionary]];
@@ -83,7 +70,7 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -144,14 +131,6 @@
     [self.drawerController setOpenDrawerGestureModeMask:MMOpenDrawerGestureModeNone];
     [self.drawerController setCloseDrawerGestureModeMask:MMCloseDrawerGestureModeAll];
     self.window.rootViewController = self.drawerController;
-    //================appstore start=================
-#if !APPSTORE
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
-    });
-#endif
-    //================appstore end=================
-
 }
 
 - (void)launch

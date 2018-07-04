@@ -16,10 +16,11 @@
 - (void)onlineStatusClick:(UIView*)view;
 @end
 
+
 @interface KFLeftViewController : UIViewController
 @property (nonatomic, weak) id<LeftMenuViewDelegate> leftDelegate;
 
 - (void)refreshUnreadView:(NSInteger)badgeNumber;
 
-- (void)switchAdminView;
 @end
+

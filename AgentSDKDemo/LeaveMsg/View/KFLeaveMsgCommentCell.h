@@ -10,13 +10,13 @@
 
 @protocol LeaveMsgCellDelegate <NSObject>
 
-- (void)didSelectFileAttachment:(HDAttachment *)attachment;
+- (void)didSelectFileAttachment:(HLeaveMessageCommentAttachment *)attachment;
 
-- (void)didselectImageAttachment:(HDAttachment *)attachment;
+- (void)didselectImageAttachment:(HLeaveMessageCommentAttachment *)attachment;
 @end
 
 @interface KFLeaveMsgCommentCell : UITableViewCell
-@property(nonatomic,strong) HDLeaveMessage *model;
+@property(nonatomic,strong) HLeaveMessageComment *model;
 
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) UIImage *placeholderImage;
@@ -32,7 +32,7 @@
 +(CGFloat)tableView:(UITableView *)tableView
 heightForRowAtIndexPath:(NSIndexPath *)indexPath;
 
-+(CGFloat)tableView:(UITableView *)tableView model:(HDLeaveMessage *)model;
++(CGFloat)tableView:(UITableView *)tableView model:(HLeaveMessageComment *)model;
 
-+ (CGFloat)_heightForModel:(HDLeaveMessage*)model;
++ (CGFloat)_heightForModel:(HLeaveMessageComment *)model;
 @end

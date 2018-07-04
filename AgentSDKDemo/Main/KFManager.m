@@ -10,12 +10,12 @@
 #import "HomeViewController.h"
 #import "KFWarningViewController.h"
 
-@interface KFManager () <HDChatManagerDelegate,UIAlertViewDelegate>
+@interface KFManager () <HDChatManagerDelegate,UIAlertViewDelegate, HDClientDelegate>
 
 @end
 
 
-static const CGFloat kDefaultPlaySoundInterval = 3.0;
+static const CGFloat kDefaultPlaySoundInterval = 1.0;
 @implementation KFManager
 singleton_implementation(KFManager)
 
@@ -46,10 +46,10 @@ singleton_implementation(KFManager)
      [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
-- (BOOL)needShowMonitorTip {
-    NSString *agentUsername = [HDClient sharedClient].currentAgentUsername;
+- (BOOL)needShowSuperviseTip {
+    NSString *agentUsername = [HDClient sharedClient].currentAgentUser.username;
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSDictionary *dic = [ud dictionaryForKey:@"monitor"];
+    NSDictionary *dic = [ud dictionaryForKey:@"Supervise"];
     if (dic) {
         if ([dic objectForKey:agentUsername]) {
             return [[dic objectForKey:agentUsername] boolValue];
@@ -58,14 +58,14 @@ singleton_implementation(KFManager)
     return NO;
 }
 
-- (void)setNeedShowMonitorTip:(BOOL)needShowMonitorTip {
+- (void)setNeedShowSuperviseTip:(BOOL)needShowSuperviseTip {
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *mdic = [ud dictionaryForKey:@"monitor"].mutableCopy;
+    NSMutableDictionary *mdic = [ud dictionaryForKey:@"Supervise"].mutableCopy;
     if (mdic == nil) {
         mdic = [NSMutableDictionary dictionaryWithCapacity:0];
     }
-    [mdic setValue:@(needShowMonitorTip) forKey:[HDClient sharedClient].currentAgentUsername];
-    [ud setObject:mdic forKey:@"monitor"];
+    [mdic setValue:@(needShowSuperviseTip) forKey:[HDClient sharedClient].currentAgentUser.username];
+    [ud setObject:mdic forKey:@"Supervise"];
 }
 
 - (void)playSoundAndVibration{
@@ -109,6 +109,22 @@ singleton_implementation(KFManager)
 }
 
 #pragma mark - 会话
+- (void)transferScheduleRequest:(NSString *)sessionId {
+    UIApplicationState state = [[UIApplication sharedApplication] applicationState];
+    switch (state) {
+        case UIApplicationStateActive:
+            [self playSoundAndVibration];
+            break;
+        case UIApplicationStateInactive:
+            [self playSoundAndVibration];
+            break;
+        case UIApplicationStateBackground:
+            [self showNotificationWithMessage:@"有一条新消息" message:nil];
+            break;
+        default:
+            break;
+    }
+}
 
 //会话被管理员转接
 - (void)conversationTransferedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
@@ -131,6 +147,7 @@ singleton_implementation(KFManager)
 - (void)newConversationWithSessionId:(NSString *)sessionId {
     NSLog(@"有新会话");
     [_conversation refreshData];
+    [self transferScheduleRequest:sessionId];
 }
 //客服列表改变
 - (void)agentUsersListChange {
@@ -202,19 +219,18 @@ singleton_implementation(KFManager)
 - (void)showNotificationWithMessage:(NSString *)content message:(HDMessage *)message;
 {
     NSInteger PreviousNum = [UIApplication sharedApplication].applicationIconBadgeNumber;
-    [UIApplication sharedApplication].applicationIconBadgeNumber = ++PreviousNum;
     //发送本地推送
     UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.applicationIconBadgeNumber = ++PreviousNum;
     notification.fireDate = [NSDate date]; //触发通知的时间
     notification.alertBody = content;
     notification.alertAction = NSLocalizedString(@"open", @"Open");
-    notification.timeZone = [NSTimeZone defaultTimeZone];
     NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
     if (timeInterval < kDefaultPlaySoundInterval) {
-        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+        notification.soundName = @"";
     } else {
-        notification.soundName = UILocalNotificationDefaultSoundName;
         self.lastPlaySoundDate = [NSDate date];
+        notification.soundName = UILocalNotificationDefaultSoundName;
     }
     
     if (message) {
@@ -235,13 +251,13 @@ singleton_implementation(KFManager)
 }
 
 - (void)setTabbarBadgeValueWithAllConversations:(NSMutableArray *)allConversations {
-    NSInteger unreadCount=0;
+    NSInteger unreadCount = 0;
     for (HDConversation *model in allConversations) {
-        unreadCount+= model.unreadCount;
+        unreadCount += model.unreadCount;
     }
     _curConversationNum = allConversations.count;
     [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
-    [[HomeViewController HomeViewController] setConversationWithBadgeValue:[self getBadgeValueWithUnreadCount:unreadCount]];
+    [[HomeViewController HomeViewController] setConversationWithBadgeValue:unreadCount];
 }
 
 - (void)setNavItemBadgeValueWithAllConversations:(NSMutableArray *)allConversations {
@@ -258,12 +274,11 @@ singleton_implementation(KFManager)
     _curChatViewConvtroller.unreadBadgeValue = [self getBadgeValueWithUnreadCount:unreadCount];
 }
 
-- (void)receiveMonitorAlarm {
-    self.needShowMonitorTip = YES;
+- (void)receiveSuperviseAlarm {
+    self.needShowSuperviseTip = YES;
     if (![[KFManager sharedInstance].curViewController isKindOfClass:[KFWarningViewController class]]) {
-         [kNotiCenter postNotificationName:KFMonitorNoti object:@(NO)];
+         [kNotiCenter postNotificationName:KFSuperviseNoti object:@(NO)];
     }
-   
 }
 
 
@@ -279,7 +294,7 @@ singleton_implementation(KFManager)
 }
 
 #pragma mark UI
-- (EMHeaderImageView*)headImageView
+- (EMHeaderImageView *)headImageView
 {
     if (_headImageView == nil) {
         _headImageView = [[EMHeaderImageView alloc] init];
@@ -287,6 +302,9 @@ singleton_implementation(KFManager)
         [_headImageView addGestureRecognizer:tap];
         _headImageView.userInteractionEnabled = YES;
     }
+    
+    [_headImageView updateHeadImage];
+    
     return _headImageView;
 }
 

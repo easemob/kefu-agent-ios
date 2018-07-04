@@ -12,8 +12,10 @@
 #define kRegistedDeviceToken @"emRegistedDeviceToken"
 #define kBindDeviceToken @"emDeviceToken"
 
+#define kUuid @"emUuid"
 #define kUsername @"emUsername"
 #define kPassword @"emPassword"
+#define kToken @"emToken"
 #define kAutoLogin @"emAutoLogin"
 
 #if DEBUG

@@ -492,9 +492,7 @@
             [weakSelf.tableView reloadData];
         }
         else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
-            });
+            [weakSelf.tableView reloadData];
         }
     }];
     
@@ -637,15 +635,16 @@
 
 - (void)setUnreadCount:(NSInteger)count
 {
-    if (count <= 0) {
-        [[HomeViewController HomeViewController] setWaitQueueWithBadgeValue:nil];
-    } else {
-        if (count>=100) {
-            [[HomeViewController HomeViewController] setWaitQueueWithBadgeValue:[NSString stringWithFormat:@"%@",@"99+"]];
-        } else {
-            [[HomeViewController HomeViewController] setWaitQueueWithBadgeValue:[NSString stringWithFormat:@"%@",@(count)]];
-        }
+    NSString *badgeStr = nil;
+    if (count != 0 && count < 100) {
+        badgeStr = [NSString stringWithFormat:@"%d",(int)count];
+    }else if (count >= 100){
+        badgeStr = @"99+";
     }
+    
+    self.tabBarItem.badgeValue = badgeStr;
+    
+   [[HomeViewController HomeViewController] setWaitQueueWithBadgeValue:count];
 }
 
 - (void)refreshSearchView

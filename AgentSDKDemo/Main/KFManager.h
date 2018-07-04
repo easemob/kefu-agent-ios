@@ -12,7 +12,6 @@
 #import "KFConversationsController.h"
 #import "WaitQueueViewController.h"
 #import "NotifyViewController.h"
-#import "LeaveMsgViewController.h"
 #import "ChatViewController.h"
 #import "EMHeaderImageView.h"
 
@@ -37,7 +36,7 @@ singleton_interface(KFManager);
  */
 @property(nonatomic,strong) UIViewController *curViewController;
 
-@property(nonatomic,assign) BOOL needShowMonitorTip;
+@property(nonatomic,assign) BOOL needShowSuperviseTip;
 
 @property(nonatomic,strong) EMHeaderImageView *headImageView;
 
@@ -57,8 +56,6 @@ singleton_interface(KFManager);
 @property(nonatomic,strong) WaitQueueViewController *wait;
 //通知
 @property(nonatomic,strong) NotifyViewController *noti;
-//留言
-@property(nonatomic,strong) LeaveMsgViewController *leaveMsg;
 
 //@property(nonatomic,strong) HDConversationViewController *homeVC;
 

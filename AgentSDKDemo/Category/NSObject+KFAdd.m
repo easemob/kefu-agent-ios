@@ -49,6 +49,7 @@
 
 - (BOOL)isSupportRecord {
     __block BOOL bCanRecord = YES;
+#if !TARGET_IPHONE_SIMULATOR
     AVAudioSession *audioSession = [AVAudioSession sharedInstance];
     if ([audioSession respondsToSelector:@selector(requestRecordPermission:)]) {
         [audioSession performSelector:@selector(requestRecordPermission:) withObject:^(BOOL granted) {
@@ -56,6 +57,7 @@
             bCanRecord = granted;
         }];
     }
+#endif
     return bCanRecord;
 }
 

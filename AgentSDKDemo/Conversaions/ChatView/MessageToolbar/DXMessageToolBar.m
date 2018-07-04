@@ -759,4 +759,9 @@
     }
 }
 
+- (void)disableVoice {
+    [self.recordButton setTitle:@"暂不支持" forState:UIControlStateNormal];
+    [self.recordButton setEnabled:NO];
+}
+
 @end

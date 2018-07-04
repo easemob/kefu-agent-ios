@@ -12,7 +12,6 @@
 #import "HistoryConversationsController.h"
 #import "CustomerController.h"
 #import "NotifyViewController.h"
-#import "LeaveMsgViewController.h"
 #import "CustomerViewController.h"
 #import "WaitQueueViewController.h"
 #import "ChatViewController.h"
@@ -22,12 +21,11 @@
 #import "ReminderView.h"
 #import "DXTipView.h"
 #import "DXUpdateView.h"
-#import "HDMonitorManagerViewController.h"
+#import "HDSuperviseManagerViewController.h"
 #import "KFWarningViewController.h"
-//================appstore start=================
-#import "UMCheckUpdate.h"
-#import <PgyUpdate/PgyUpdateManager.h>
-//================appstore end=================
+#import "KFMonitorViewController.h"
+
+#import "HLeaveMessageViewController.h"
 
 @implementation UIImage (tabBarImage)
 
@@ -53,13 +51,20 @@ static NSString *kGroupName = @"GroupName";
     UITapGestureRecognizer *_tap;
     BOOL _isEnterChat;
     NSString *_serviceSessionId;
+    
+    NSInteger _conversationVCUnreadCount;
+    NSInteger _waitVCUnreadCount;
+    NSInteger _notifiersVCUnreadCount;
+    NSInteger _leaveMessageVCUnreadCount;
+    
 }
 
 @property (strong, nonatomic) KFConversationsController *conversationsController;
 @property (strong, nonatomic) CustomerViewController *customerController;
 @property (strong, nonatomic) NotifyViewController *notifyController;
 @property (strong, nonatomic) WaitQueueViewController *waitqueueController;
-@property (strong, nonatomic) LeaveMsgViewController *leaveMsgController;
+@property (nonatomic, strong) HLeaveMessageViewController *leaveMessageC;
+
 //非管理员
 @property(nonatomic,strong) HomeViewController *homeViewController;
 @property (strong, nonatomic) HistoryConversationsController *historyController;
@@ -70,6 +75,7 @@ static NSString *kGroupName = @"GroupName";
 @property (strong, nonatomic) DXTipView *tipView;
 @property (strong, nonatomic) DXTipView *tipCustomerView;
 @property (strong, nonatomic) DXTipView *tipNotifyView;
+@property (nonatomic, strong) DXTipView *tipLeaveMsgView;
 
 @property (strong, nonatomic) NSDate *lastPlaySoundDate;
 
@@ -78,16 +84,8 @@ static NSString *kGroupName = @"GroupName";
 @end
 
 static HomeViewController *homeViewController;
-static NSString* currentBadgeValue;
-static NSString* currentWaitBadgeValue;
-static NSString* currentNotifyBadgeValue;
-static NSInteger currentTotalBadgeValue;
 
 @implementation HomeViewController
-
-- (void)setCustomerWithBadgeValue:(NSString *)badge {
-    
-}
 
 
 +(id) HomeViewController
@@ -106,16 +104,11 @@ static NSInteger currentTotalBadgeValue;
         homeViewController = nil;
     }
 }
-+(NSString*)currentBadgeValue
-{
-    return currentBadgeValue;
-}
-
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    [fNotificationCenter addObserver:self selector:@selector(setTotalBadgeValue) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
+    //    [fNotificationCenter addObserver:self selector:@selector(setTotalBadgeValue) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
     [self printViewHierarchy:self.tabBarController.view];
 }
 
@@ -154,7 +147,7 @@ static NSInteger currentTotalBadgeValue;
         }];
     });
     [self _setupChildrenVC];
-//    [self _setupSubviews];
+    //    [self _setupSubviews];
     
     [self registerNotifications];
 }
@@ -180,16 +173,17 @@ static NSInteger currentTotalBadgeValue;
     _notifyController = [[NotifyViewController alloc] init];
     [KFManager sharedInstance].noti = _notifyController;
     [self setupChildVc:_notifyController title:@"通知" image:@"tabbar_icon_notice" selectedImage:@"tabbar_icon_crmhighlight" index:2];
-//    [_notifyController viewDidLoad];
+    [_notifyController viewDidLoad];
     
-    _leaveMsgController = [[LeaveMsgViewController alloc] init];
-    [KFManager sharedInstance].leaveMsg = _leaveMsgController;
-    [self setupChildVc:_leaveMsgController title:@"留言" image:@"tabbar_icon_crm" selectedImage:@"tabbar_icon_crmhighlight" index:3];
-    [_leaveMsgController viewDidLoad];
+    _leaveMessageC = [[HLeaveMessageViewController alloc] init];
+    [self setupChildVc:_leaveMessageC
+                 title:@"留言"
+                 image:@"tabbar_icon_crm"
+         selectedImage:@"tabbar_icon_crmhighlight" index:3];
     
     self.view.backgroundColor = RGBACOLOR(25, 25, 25, 1);
     
-    self.viewControllers = @[_conversationsController, _waitqueueController, _notifyController,_leaveMsgController];
+    self.viewControllers = @[_conversationsController, _waitqueueController, _notifyController,_leaveMessageC];
     
     self.navigationItem.titleView = _conversationsController.titleView;
     self.navigationItem.leftBarButtonItem = _conversationsController.headerViewItem;
@@ -203,7 +197,10 @@ static NSInteger currentTotalBadgeValue;
     
     _tipNotifyView = [[DXTipView alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
     _tipNotifyView.tipNumber = nil;
-
+    
+    _tipLeaveMsgView = [[DXTipView alloc] initWithFrame:CGRectMake(0, 0, 30, 20)];
+    _tipLeaveMsgView.tipNumber = nil;
+    
     _tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showLeftView)];
 }
 
@@ -264,7 +261,6 @@ static NSInteger currentTotalBadgeValue;
     } else if (item.tag == 3){
         self.title = @"留言";
         self.navigationItem.titleView = nil;
-        self.navigationItem.leftBarButtonItem = _leaveMsgController.headerViewItem;
         self.navigationItem.rightBarButtonItem = nil;
     }
 }
@@ -335,12 +331,12 @@ static NSInteger currentTotalBadgeValue;
 
 - (void)historyBackAction
 {
-
+    
 }
 
 - (void)settingBackAction
 {
-   
+    
 }
 
 - (void)showLeftView
@@ -349,94 +345,43 @@ static NSInteger currentTotalBadgeValue;
     leftVC.leftDelegate =  self;
     [self setTotalBadgeValue];
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-
+    
 }
 
--(void) setConversationWithBadgeValue:(NSString*)badgeValue
+-(void)setConversationWithBadgeValue:(NSInteger)badgeValue
 {
-    currentBadgeValue = badgeValue;
-    //设置提醒数
-    if (badgeValue && [badgeValue intValue] >= 100) {
-        _tipView.tipNumber = @"99+";
-    } else {
-        _tipView.tipNumber = badgeValue;
-    }
+    _conversationVCUnreadCount = badgeValue;
     [self setTotalBadgeValue];
-    if (badgeValue == nil) {
-        [self setConversationUnRead:NO];
-    } else {
-        [self setConversationUnRead:YES];
-    }
 }
 
--(void) setConversationUnRead:(BOOL) aFlag
+-(void) setWaitQueueWithBadgeValue:(NSInteger)badgeValue
 {
-    KFConversationsController *conversation = (KFConversationsController*)[self.viewControllers objectAtIndex:0];
-    if (aFlag) {
-        [conversation.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoinghighlight"] rightImage:[self convertViewToImage:_tipView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_ongoing"] rightImage:[self convertViewToImage:_tipView]]];
-    }else {
-        [conversation.tabBarItem setFinishedSelectedImage:[[UIImage imageNamed:@"tabbar_icon_ongoinghighlight"] tabBarImage] withFinishedUnselectedImage:[[UIImage imageNamed:@"tabbar_icon_ongoing"] tabBarImage]];
-    }
-}
-
--(void) setWaitQueueWithBadgeValue:(NSString*)badgeValue
-{
-    //currentWaitBadgeValue = badgeValue;
-    _tipCustomerView.tipNumber = badgeValue;
+    _waitVCUnreadCount = badgeValue;
     [self setTotalBadgeValue];
-    if (badgeValue == nil) {
-        [self setWaitQueueUnRead:NO];
-    } else {
-        [self setWaitQueueUnRead:YES];
-    }
 }
 
--(void) setWaitQueueUnRead:(BOOL) aFlag
+- (void)setNotifyWithBadgeValue:(NSInteger)badgeValue
 {
-    WaitQueueViewController *customer = (WaitQueueViewController*)[self.viewControllers objectAtIndex:1];
-    if (aFlag) {
-        [customer.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_visitorhighlight_Text6"] rightImage:[self convertViewToImage:_tipCustomerView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_visitor_Text6"] rightImage:[self convertViewToImage:_tipCustomerView]]];
-    }else {
-        [customer.tabBarItem setFinishedSelectedImage:[[UIImage imageNamed:@"tabbar_icon_visitorhighlight_Text6"] tabBarImage] withFinishedUnselectedImage:[[UIImage imageNamed:@"tabbar_icon_visitor_Text6"] tabBarImage]];
-    }
-}
-
--(void) setNotifyWithBadgeValue:(NSString*)badgeValue
-{
-    currentNotifyBadgeValue = badgeValue;
-    if (badgeValue && [badgeValue intValue] >= 100) {
-        _tipNotifyView.tipNumber = @"99+";
-    } else {
-        _tipNotifyView.tipNumber = badgeValue;
-    }
+    _notifiersVCUnreadCount = badgeValue;
     [self setTotalBadgeValue];
-    if (badgeValue == nil) {
-        [self setNotifyUnRead:NO];
-    } else {
-        [self setNotifyUnRead:YES];
-    }
 }
 
--(void) setNotifyUnRead:(BOOL) aFlag
-{
-    NotifyViewController *customer = (NotifyViewController*)[self.viewControllers objectAtIndex:2];
-    if (aFlag) {
-        [customer.tabBarItem setFinishedSelectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_noticehighlight"] rightImage:[self convertViewToImage:_tipNotifyView]] withFinishedUnselectedImage:[self combine:[UIImage imageNamed:@"tabbar_icon_notice"] rightImage:[self convertViewToImage:_tipNotifyView]]];
-    }else {
-        [customer.tabBarItem setFinishedSelectedImage:[[UIImage imageNamed:@"tabbar_icon_noticehighlight"] tabBarImage] withFinishedUnselectedImage:[[UIImage imageNamed:@"tabbar_icon_notice"] tabBarImage]];
-    }
+
+- (void)setLeaveMessageWithBadgeValue:(NSInteger)badgeValue{
+    _leaveMessageVCUnreadCount = badgeValue;
+    [self setTotalBadgeValue];
 }
 
 - (void)setTotalBadgeValue
 {
     //设置提醒数
-    currentTotalBadgeValue = [currentBadgeValue integerValue] + [currentWaitBadgeValue integerValue] + [currentNotifyBadgeValue integerValue];
-    UIApplication *application = [UIApplication sharedApplication];
-    application.applicationIconBadgeNumber = currentTotalBadgeValue;
+    NSInteger totalBadge = _conversationVCUnreadCount + _waitVCUnreadCount + _notifiersVCUnreadCount + _leaveMessageVCUnreadCount;
     KFLeftViewController *leftVC = (KFLeftViewController*)self.mm_drawerController.leftDrawerViewController;
-    [leftVC refreshUnreadView:currentTotalBadgeValue];
+    [leftVC refreshUnreadView:totalBadge];
+    
+    UIApplication *application = [UIApplication sharedApplication];
+    application.applicationIconBadgeNumber = totalBadge;
 }
-
 
 #pragma mark - LeftMenuViewDelegate
 
@@ -450,7 +395,7 @@ static NSInteger currentTotalBadgeValue;
         [self.historyController initData];
         [self.navigationController pushViewController:self.historyController animated:NO];
         NSArray *views = [self.navigationController viewControllers];
-         BOOL needPush = YES;
+        BOOL needPush = YES;
         for (UIViewController *view in views) {
             if ([view isKindOfClass:[HistoryConversationsController class]]) {
                 needPush = NO;
@@ -481,12 +426,10 @@ static NSInteger currentTotalBadgeValue;
         }
     }
     
-#else 
+#else
     else if (index == 2)
     {
-        //================appstore start=================
-        [[PgyUpdateManager sharedPgyManager] checkUpdateWithDelegete:self selector:@selector(updateVersion:)];
-        //================appstore end=================
+
     }
     else if (index == 3)
     {
@@ -520,13 +463,24 @@ static NSInteger currentTotalBadgeValue;
             }
         }
         if (needPush) {
+            // todo 可能需要全局持有，以保证切换时不会重新创建对象
+            [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
             [self.navigationController pushViewController:self.adminTypeHomeController animated:NO];
         }
-    } else if (index ==1) { //现场监控
-        HDMonitorManagerViewController *monitorVC = [[HDMonitorManagerViewController alloc] init];
-        [self.navigationController pushViewController:monitorVC animated:YES];
+    } else if (index == 1) { //现场管理
+        // todo 可能需要全局持有，以保证切换时不会重新创建对象
+        HDSuperviseManagerViewController *superviseVC = [[HDSuperviseManagerViewController alloc] init];
+        [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
+        [self.navigationController pushViewController:superviseVC animated:YES];
     } else if (index == 2) {
-        KFWarningViewController *warningVC = [KFWarningViewController new];
+        // todo 可能需要全局持有，以保证切换时不会重新创建对象
+        KFMonitorViewController *monitorVC = [[KFMonitorViewController alloc] init];
+        [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
+        [self.navigationController pushViewController:monitorVC animated:YES];
+    } else if (index == 3) {
+        // todo 可能需要全局持有，以保证切换时不会重新创建对象
+        KFWarningViewController *warningVC = [[KFWarningViewController alloc] init];
+        [self.navigationController setViewControllers:@[self.navigationController.viewControllers[0]]];
         [self.navigationController pushViewController:warningVC animated:YES];
     }
 }
@@ -542,11 +496,11 @@ static NSInteger currentTotalBadgeValue;
 - (void)didAutoReconnectFinishedWithError:(NSError *)error{
     
     if (error) {
-//        DDLogCInfo(@"didAutoReconnectFinished---%@",error.description);
+        //        DDLogCInfo(@"didAutoReconnectFinished---%@",error.description);
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"重连失败" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alertView show];
     } else {
-//        DDLogCInfo(@"didAutoReconnectFinished");
+        //        DDLogCInfo(@"didAutoReconnectFinished");
     }
 }
 
@@ -579,50 +533,50 @@ static NSInteger currentTotalBadgeValue;
 }
 
 
-- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary*)dic;
-{
-    //发送本地推送
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.fireDate = [NSDate date]; //触发通知的时间
-    notification.alertBody = message;
-    notification.alertAction = NSLocalizedString(@"open", @"Open");
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
-    if (timeInterval < kDefaultPlaySoundInterval) {
-        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
-    } else {
-        notification.soundName = UILocalNotificationDefaultSoundName;
-        self.lastPlaySoundDate = [NSDate date];
-    }
-    
-    if (dic) {
-        @try {
-            NSMutableDictionary *userInfo = [self _getSafeDictionary:dic];
-            notification.userInfo = userInfo;
-        } @catch (NSException *exception) {
-            NSLog(@"exception : %@",exception);
-        } @finally {
-            
-        }
-    }
-    
-    if ([notification.userInfo objectForKey:@"body"]) {
-        HDConversation *model = [[HDConversation alloc] initWithDictionary:[notification.userInfo objectForKey:@"body"]];
-        if (_serviceSessionId.length > 0) {
-            if ([_serviceSessionId isEqualToString:model.sessionId]) {
-                _isEnterChat = YES;
-            } else {
-                _isEnterChat = NO;
-            }
-        } else {
-            _isEnterChat = YES;
-            _serviceSessionId = model.sessionId;
-        }
-    }
-    
-    //发送通知
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-}
+//- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary*)dic;
+//{
+//    //发送本地推送
+//    UILocalNotification *notification = [[UILocalNotification alloc] init];
+//    notification.fireDate = [NSDate date]; //触发通知的时间
+//    notification.alertBody = message;
+//    notification.alertAction = NSLocalizedString(@"open", @"Open");
+//    notification.timeZone = [NSTimeZone defaultTimeZone];
+//    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
+//    if (timeInterval < kDefaultPlaySoundInterval) {
+//        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
+//    } else {
+//        notification.soundName = UILocalNotificationDefaultSoundName;
+//        self.lastPlaySoundDate = [NSDate date];
+//    }
+//    
+//    if (dic) {
+//        @try {
+//            NSMutableDictionary *userInfo = [self _getSafeDictionary:dic];
+//            notification.userInfo = userInfo;
+//        } @catch (NSException *exception) {
+//            NSLog(@"exception : %@",exception);
+//        } @finally {
+//            
+//        }
+//    }
+//    
+//    if ([notification.userInfo objectForKey:@"body"]) {
+//        HDConversation *model = [[HDConversation alloc] initWithDictionary:[notification.userInfo objectForKey:@"body"]];
+//        if (_serviceSessionId.length > 0) {
+//            if ([_serviceSessionId isEqualToString:model.sessionId]) {
+//                _isEnterChat = YES;
+//            } else {
+//                _isEnterChat = NO;
+//            }
+//        } else {
+//            _isEnterChat = YES;
+//            _serviceSessionId = model.sessionId;
+//        }
+//    }
+//    
+//    //发送通知
+//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+//}
 
 - (NSMutableDictionary*)_getSafeDictionary:(NSDictionary*)dic
 {
@@ -685,7 +639,7 @@ static NSInteger currentTotalBadgeValue;
 //}
 
 - (void)dealloc {
-
+    
     NSLog(@"dealloc __func__%s",__func__);
 }
 
@@ -702,9 +656,10 @@ static NSInteger currentTotalBadgeValue;
     self.lastPlaySoundDate = [NSDate date];
     
     // 收到消息时，播放音频
-//    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
+    //    [[EMCDDeviceManager sharedInstance] playNewMessageSound];
     // 收到消息时，震动
-//    [[EMCDDeviceManager sharedInstance] playVibration];
+    //    [[EMCDDeviceManager sharedInstance] playVibration];
 }
 
 @end
+

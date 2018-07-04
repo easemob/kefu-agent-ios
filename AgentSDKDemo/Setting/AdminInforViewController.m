@@ -43,7 +43,7 @@
     self.tableView.height -= self.headerView.height;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
-    [self loadData];
+//    [self loadData];
     
     [self showCurrentVersion];
 }
@@ -65,6 +65,8 @@
     [super viewDidAppear:animated];
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+        // 需要重新加载数据并刷新
+        [self loadData];
     }
 }
 

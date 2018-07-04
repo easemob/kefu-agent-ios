@@ -9,6 +9,7 @@
 #import "KFInputEmailViewController.h"
 #import "KFResetPswViewController.h"
 #import "Helper.h"
+#import "UITextField+KFAdd.h"
 
 #define kMargin 20
 #define kSpace 20

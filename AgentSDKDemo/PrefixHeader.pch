@@ -26,7 +26,7 @@
 //noti
 #define NOTIFICATION_SET_MAX_SERVICECOUNT @"NOTIFICATION_SET_MAX_SERVICECOUNT"
 
-#define KFMonitorNoti @"KFMonitorNotiKFMonitorNoti"
+#define KFSuperviseNoti @"KFSuperviseNotification"
 
 
 // Include any system framework and library headers here that should be included in all compilation units.
@@ -48,7 +48,6 @@
 #import "EmotionEscape.h"
 #import "Helper.h"
 #import "KFManager.h"
-#import "IQKeyboardManager.h"
 #import "SRRefreshView.h"
 #import "MWPhotoBrowser.h"
 #import "UIImageView+EMWebCache.h"
@@ -77,7 +76,6 @@
 #import <HyphenateLite/HyphenateLite.h>
 #import "UIImageView+EMWebCache.h"
 #import "KFPromptView.h"
-#import "IQKeyboardManager.h"
 #import "KFBaseViewController.h"
 //#import "MJExtension.h"
 //#import "KFUtilsMacros.h"
@@ -85,7 +83,7 @@
 
 //Category
 #import "UIBarButtonItem+KFAdd.h"
-#import "UITextField+KFAdd.h"
+//#import "UITextField+KFAdd.h"
 #import "UIButton+KFAdd.h"
 #import "NSObject+KFAdd.h"
 #import "UIImage+KFAdd.h"

@@ -39,8 +39,6 @@
 - (NSInteger)safeIntegerValueForKey:(NSString *)key
 {
     NSInteger safeInteger = 0;
-    NSArray *dic = @[].mutableCopy;
-    
     id value = [self objectForKey:key];
     
     do {
@@ -55,6 +53,23 @@
     } while (0);
     
     return safeInteger;
+}
+
+- (NSDictionary *)safeDictValueForKey:(NSString *)key {
+    NSDictionary *ret = nil;
+    do {
+        id value = [self objectForKey:key];
+        if (value == [NSNull null] || value == nil) {
+            break;
+        }
+        
+        if ([value isKindOfClass:[NSDictionary class]]) {
+            ret = value;
+            break;
+        }
+    } while (0);
+    
+    return ret;
 }
 
 @end

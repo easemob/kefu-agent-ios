@@ -109,8 +109,10 @@ NSString *const kRouterEventAudioBubbleTapEventName = @"kRouterEventAudioBubbleT
         [_isReadView setHidden:YES];
         _animationImageView.image = [UIImage imageNamed:SENDER_ANIMATION_IMAGEVIEW_IMAGE_DEFAULT];
         _animationImageView.animationImages = _senderAnimationImages;
+        _timeLabel.textColor = UIColor.whiteColor;
     }
     else{
+        _timeLabel.textColor = UIColor.grayColor;
         if (self.model.isPlayed) {
             [_isReadView setHidden:YES];
         }else{

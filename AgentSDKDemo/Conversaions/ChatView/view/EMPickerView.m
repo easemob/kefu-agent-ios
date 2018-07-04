@@ -88,8 +88,6 @@
         UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetHeight(btnback.frame) - 1, KScreenWidth, 1)];
         line.backgroundColor = [UIColor lightGrayColor];
         line.alpha = 0.3;
-//        [btnback addSubview:line];
-        
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancleSaveBtn:)];
         [_pickerView addGestureRecognizer:tap];
         
@@ -99,8 +97,6 @@
         [save.titleLabel setFont:[UIFont boldSystemFontOfSize:15.f]];
         save.backgroundColor = [UIColor clearColor];
         [save setTitleColor:RGBACOLOR(41, 169, 234, 1) forState:UIControlStateNormal];
-//        [save setBackgroundImage:[[UIImage imageNamed:@"button_blue2"] stretchableImageWithLeftCapWidth:10 topCapHeight:5] forState:UIControlStateNormal];
-//        [save setBackgroundImage:[[UIImage imageNamed:@"button_blue2_select"] stretchableImageWithLeftCapWidth:10 topCapHeight:5] forState:UIControlStateHighlighted];
         [btnback addSubview:save];
     }
     _pickerView.hidden = NO;

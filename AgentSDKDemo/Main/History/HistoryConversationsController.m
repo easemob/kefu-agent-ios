@@ -363,7 +363,7 @@
             HDHistoryConversation *model = [self.dataSource objectAtIndex:cellIndexPath.row];
             [self showHintNotHide:@"回呼中..."];
             WEAK_SELF
-            [[HDClient sharedClient].chatManager asyncFetchCreateSessionWithVistorId:model.chatter.userId completion:^(HDHistoryConversation *history, HDError *error) {
+            [[HDClient sharedClient].chatManager asyncFetchCreateSessionWithVistorId:model.chatter.agentId completion:^(HDHistoryConversation *history, HDError *error) {
                 if (error == nil) {
                     ChatViewController *chatView = [[ChatViewController alloc] init];
                     chatView.conversationModel = model;
@@ -482,7 +482,7 @@
 //        _endPicker.hidden = YES;
 //    }
     SelectTagViewController *selectTagView = [[SelectTagViewController alloc] initWithStyle:UITableViewStylePlain tagId:@"0" treeArray:nil color:nil isSelectRoot:YES];
-    selectTagView.conversation = 
+//    selectTagView.conversation =
     selectTagView.title = @"选择会话标签";
     
     CATransition* transition = [CATransition animation];
@@ -530,7 +530,7 @@
         }
         
         UserModel *user = [HDClient sharedClient].currentAgentUser;
-    
+
         BOOL isAgent = [user.userType isEqualToString:@"Agent"];
         
         [parameters setObject:@(isAgent) forKey:@"isAgent"];
@@ -549,7 +549,6 @@
         [parameters setObject:_userId forKey:@"visitorName"];
     }
     
-    [parameters setObject:@(_page) forKey:@"page"];
     [self showHintNotHide:@"加载历史记录"];
     WEAK_SELF
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EMHeaderImageView : UIView
-
+- (void)updateHeadImage;
 @end

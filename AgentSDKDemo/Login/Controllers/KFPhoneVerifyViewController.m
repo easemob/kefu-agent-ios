@@ -7,7 +7,7 @@
 //
 
 #import "KFPhoneVerifyViewController.h"
-
+#import "UITextField+KFAdd.h"
 #define kMargin 20
 #define kSpace 20
 

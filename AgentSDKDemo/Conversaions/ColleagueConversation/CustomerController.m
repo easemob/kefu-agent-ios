@@ -199,7 +199,7 @@
         [self.tableView reloadData];
         [self.searchDisplayController.searchResultsTableView reloadData];
     }
-    _curRemoteAgentId = model.chatter.userId;
+    _curRemoteAgentId = model.chatter.agentId;
     if ([self.delegate respondsToSelector:@selector(CustomerPushIntoChat:)]) {
         [self.delegate CustomerPushIntoChat:customerChat];
     }
@@ -235,9 +235,11 @@
             for (HDConversation *customer in customers) {
                 customer.searchWord = [ChineseToPinyin pinyinFromChineseString:customer.chatter.nicename];
                 _customerUnreadcount += customer.unreadCount;
-                [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.userId];
+                [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.agentId];
             }
+            [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_customerUnreadcount]}];
             self.dataSource = customers.mutableCopy;
+            
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
             });

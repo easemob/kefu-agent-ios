@@ -117,7 +117,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"会话标签与备注";
-    _conversation = [[HDConversationManager alloc] initWithSessionId:_sessionId ];
+    _conversation = [[HDConversationManager alloc] initWithSessionId:_sessionId];
     // Do any additional setup after loading the view.
     [self setupBarButtonItem];
     self.tableView.tableFooterView = [[UIView alloc] init];
@@ -189,30 +189,26 @@
 
 - (void)saveAction
 {
-    [self showHintNotHide:@"保存中..."];
+    if ([_selectArray count] == 0) {
+        [self showHint:@"请选择标签"];
+        return;
+    }
+    
+    [self showHudInView:self.view hint:@"保存中..."];
     NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:_selectArray,@"array", nil];
     WEAK_SELF
     
     [_conversation asyncSaveSessionSummaryResultsParameters:parameters completion:^(id responseObject, HDError *error) {
+        [weakSelf hideHud];
         if (!error) {
-            [weakSelf hideHud];
             [weakSelf showHint:@"保存成功"];
             if (weakSelf.saveAndEnd) { //结束会话时候
-                if ([_selectArray count]>0) {
-                    if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(saveAndEndChat)]) {
-                        [weakSelf.navigationController popViewControllerAnimated:YES];
-                        [weakSelf.delegate saveAndEndChat];
-                    }
-                } else {
-                    [weakSelf showHint:@"请选择标签"];
+                if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(saveAndEndChat)]) {
+                    [weakSelf.delegate saveAndEndChat];
                 }
+                [weakSelf.navigationController popViewControllerAnimated:YES];
             }
-//            else {
-//                [self.navigationController popViewControllerAnimated:YES];
-//            }
-            
         } else {
-            [weakSelf hideHud];
             [weakSelf showHint:@"保存失败"];
         }
     }];

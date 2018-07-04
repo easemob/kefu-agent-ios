@@ -6,10 +6,10 @@
 //  Copyright © 2017 环信. All rights reserved.
 //
 
-#import "KFMonitorBaseViewController.h"
+#import "KFSuperviseBaseViewController.h"
 
 #define kGetWarnings @"/v1/monitor/alarms"
 
-@interface KFWarningViewController : KFMonitorBaseViewController
+@interface KFWarningViewController : KFSuperviseBaseViewController
 
 @end
