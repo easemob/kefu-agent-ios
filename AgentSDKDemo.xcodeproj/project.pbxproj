@@ -123,6 +123,8 @@
 		9061557720620EF9006113FF /* KFSwitchTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9061557520620860006113FF /* KFSwitchTypeButton.m */; };
 		907090E82060BB2D0062FED6 /* KFLeftItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090E72060BB2D0062FED6 /* KFLeftItemCell.m */; };
 		907090EB2060BB530062FED6 /* KFLeftViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090EA2060BB530062FED6 /* KFLeftViewItem.m */; };
+		9094C5A820ECAD5800E9A057 /* KFChatViewRecallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */; };
+		9094C5A920ECB0A600E9A057 /* HDMessage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC764B20BD344B00C86D92 /* HDMessage+Category.m */; };
 		90A2B534206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B533206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m */; };
 		90A2B535206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B533206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m */; };
 		90A2B5382069125100EC2A80 /* KFMonitorInfoViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B5372069125100EC2A80 /* KFMonitorInfoViewItem.m */; };
@@ -6005,6 +6007,7 @@
 				D3E9CD181FBED182005E3677 /* DDMultiFormatter.m in Sources */,
 				D3E9CD191FBED182005E3677 /* DDFileLogger.m in Sources */,
 				D3E9CD1A1FBED182005E3677 /* PSTGridLayoutInfo.m in Sources */,
+				9094C5A920ECB0A600E9A057 /* HDMessage+Category.m in Sources */,
 				D3E9CD1B1FBED182005E3677 /* PSTCollectionViewLayout.m in Sources */,
 				D3E9CD1C1FBED182005E3677 /* EMHistoryTimeView.m in Sources */,
 				D3E9CD1D1FBED182005E3677 /* AFURLSessionManager.m in Sources */,
@@ -6166,6 +6169,7 @@
 				D3E9CD9D1FBED182005E3677 /* EMTagView.m in Sources */,
 				D3E9CD9E1FBED182005E3677 /* EMHeaderImageView.m in Sources */,
 				D3E9CD9F1FBED182005E3677 /* KFCompanyRegisterViewController.m in Sources */,
+				9094C5A820ECAD5800E9A057 /* KFChatViewRecallCell.m in Sources */,
 				90591CD62068B050007367BD /* AAYAxis.m in Sources */,
 				9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */,
 				D3E9CDA01FBED182005E3677 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
