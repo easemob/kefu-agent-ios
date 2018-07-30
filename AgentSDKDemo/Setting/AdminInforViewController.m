@@ -11,6 +11,7 @@
 #import "CompileTableViewCell.h"
 #import "UIImageView+EMWebCache.h"
 #import "AdminInforEditViewController.h"
+#import <KDAuthSDK/KDAuthManager.h>
 
 #define URLimage @"//kefu-prod-avatar.img-cn-hangzhou.aliyuncs.com/"
 
@@ -422,14 +423,22 @@
 {
     [self showHintNotHide:@"退出登录中..."];
     WEAK_SELF
-    
-    [[HDClient sharedClient] logoutCompletion:^(HDError *error) {
-        [weakSelf hideHud];
-        if (error == nil) {
-            [[KFManager sharedInstance] showLoginViewController];
-        } else {
-            [self showHint:@"退出出错"];
-        }
+    [[KDAuthManager manager] logOutResult:^(BOOL bResult, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            if (bResult) {
+                [[HDClient sharedClient] logoutCompletion:^(HDError *error) {
+                    [weakSelf hideHud];
+                    if (error == nil) {
+                        [[KFManager sharedInstance] showLoginViewController];
+                    } else {
+                        [self showHint:@"退出出错"];
+                    }
+                }];
+            }else{
+                [self showHint:@"退出失败，请重试"];
+            }
+        });
     }];
 }
 

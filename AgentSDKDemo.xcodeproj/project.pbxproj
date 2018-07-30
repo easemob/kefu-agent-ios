@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06D446D9210EE806009F09CB /* KDAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446D7210EE805009F09CB /* KDAuthSDK.framework */; };
+		06D446DB210EE819009F09CB /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446D8210EE805009F09CB /* AgentSDK.framework */; };
+		06D446DC210EE819009F09CB /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446D8210EE805009F09CB /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06D446E0210EE9B9009F09CB /* AuthLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06D446DD210EE9B8009F09CB /* AuthLoginViewController.xib */; };
+		06D446E1210EE9B9009F09CB /* AuthLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D446DF210EE9B9009F09CB /* AuthLoginViewController.m */; };
 		90091DDB20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */; };
@@ -131,8 +136,6 @@
 		90A2B5392069125100EC2A80 /* KFMonitorInfoViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B5372069125100EC2A80 /* KFMonitorInfoViewItem.m */; };
 		90A2B53C2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */; };
 		90A2B53D2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */; };
-		90AA69CD2069FAF000E39745 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; };
-		90AA69CE2069FAF000E39745 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90AFCBD120CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */; };
 		90AFCBD220CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */; };
 		90AFCBDD20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */; };
@@ -149,8 +152,6 @@
 		90DC765220BD44AE00C86D92 /* KFChatViewRecallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */; };
 		90E0EF4C206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
 		90E0EF4D206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
-		90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; };
-		90E15BFA20722288004702EF /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CEA1FD684F30091E048 /* HDTipLabel.m */; };
@@ -1469,7 +1470,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
-				90AA69CE2069FAF000E39745 /* AgentSDK.framework in Embed Frameworks */,
+				06D446DC210EE819009F09CB /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1481,7 +1482,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */,
-				90E15BFA20722288004702EF /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1489,6 +1489,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06D446D7210EE805009F09CB /* KDAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KDAuthSDK.framework; sourceTree = "<group>"; };
+		06D446D8210EE805009F09CB /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
+		06D446DD210EE9B8009F09CB /* AuthLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthLoginViewController.xib; sourceTree = "<group>"; };
+		06D446DE210EE9B9009F09CB /* AuthLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthLoginViewController.h; sourceTree = "<group>"; };
+		06D446DF210EE9B9009F09CB /* AuthLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthLoginViewController.m; sourceTree = "<group>"; };
 		90091DD920D0CF88002AA808 /* HLeaveMessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListViewController.h; sourceTree = "<group>"; };
 		90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageListViewController.m; sourceTree = "<group>"; };
 		90091DDD20D0CF9F002AA808 /* HLeaveMessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListCell.h; sourceTree = "<group>"; };
@@ -1602,7 +1607,6 @@
 		90A2B5372069125100EC2A80 /* KFMonitorInfoViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInfoViewItem.m; sourceTree = "<group>"; };
 		90A2B53A2069126800EC2A80 /* KFMonitorInstrumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInstrumentView.h; sourceTree = "<group>"; };
 		90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInstrumentView.m; sourceTree = "<group>"; };
-		90AA69CC2069FAF000E39745 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFCBCF20CF9FB6007D0ADB /* HLeaveMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageViewController.h; sourceTree = "<group>"; };
 		90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageViewController.m; sourceTree = "<group>"; };
 		90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageCell.h; sourceTree = "<group>"; };
@@ -2597,6 +2601,7 @@
 			files = (
 				D378E6121F569D8900E3AB74 /* SystemConfiguration.framework in Frameworks */,
 				D33CE5E01F7C96BB00236720 /* HyphenateLite.framework in Frameworks */,
+				06D446D9210EE806009F09CB /* KDAuthSDK.framework in Frameworks */,
 				D33CE8201F7CB55700236720 /* Bugly.framework in Frameworks */,
 				D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */,
 				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
@@ -2604,7 +2609,7 @@
 				D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */,
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
-				90AA69CD2069FAF000E39745 /* AgentSDK.framework in Frameworks */,
+				06D446DB210EE819009F09CB /* AgentSDK.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
 			);
@@ -2623,7 +2628,6 @@
 				D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
-				90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
 			);
@@ -3357,6 +3361,9 @@
 		D33CE77E1F7CAF6700236720 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				06D446DE210EE9B9009F09CB /* AuthLoginViewController.h */,
+				06D446DF210EE9B9009F09CB /* AuthLoginViewController.m */,
+				06D446DD210EE9B8009F09CB /* AuthLoginViewController.xib */,
 				D33CE77F1F7CAF6700236720 /* KFBaseViewController.h */,
 				D33CE7801F7CAF6700236720 /* KFBaseViewController.m */,
 				D33CE7811F7CAF6700236720 /* KFCompanyRegisterViewController.h */,
@@ -3772,7 +3779,8 @@
 		D33F465C1E9F71A000FE6DCE = {
 			isa = PBXGroup;
 			children = (
-				90AA69CC2069FAF000E39745 /* AgentSDK.framework */,
+				06D446D8210EE805009F09CB /* AgentSDK.framework */,
+				06D446D7210EE805009F09CB /* KDAuthSDK.framework */,
 				D33F46671E9F71A000FE6DCE /* AgentSDKDemo */,
 				D33F46661E9F71A000FE6DCE /* Products */,
 				D3FDC5121EA08C0900C25BB0 /* Frameworks */,
@@ -4714,7 +4722,7 @@
 					D33F46641E9F71A000FE6DCE = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 499WYUV8Q2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -5095,6 +5103,7 @@
 				D3FDC7BE1EA0A5C600C25BB0 /* pop_blue@2x.png in Resources */,
 				D3FDC77B1EA0A5C600C25BB0 /* VoiceSearchFeedback014.png in Resources */,
 				D3FDC8251EA0A5C600C25BB0 /* image_file2_icon_files@2x.png in Resources */,
+				06D446E0210EE9B9009F09CB /* AuthLoginViewController.xib in Resources */,
 				D3FDC8741EA0A5C600C25BB0 /* input_bar_1_icon_less@3x.png in Resources */,
 				D3FDC83A1EA0A5C600C25BB0 /* main_tab_icon_friend_1@2x.png in Resources */,
 				D3FDC7A01EA0A5C600C25BB0 /* button_blue2@2x.png in Resources */,
@@ -5850,6 +5859,7 @@
 				90591CC52068B050007367BD /* AAPlotOptions.m in Sources */,
 				D3A95E351EA0F47100ADD394 /* EMCDDeviceManager+Remind.m in Sources */,
 				90591CCD2068B050007367BD /* AASubtitle.m in Sources */,
+				06D446E1210EE9B9009F09CB /* AuthLoginViewController.m in Sources */,
 				D3A95E4B1EA0F47100ADD394 /* MWCaptionView.m in Sources */,
 				D33CE8101F7CB52500236720 /* DDLog.m in Sources */,
 				D33CE6901F7CA98D00236720 /* SelectTagViewController.m in Sources */,
@@ -6337,6 +6347,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6364,8 +6375,10 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.easemob.enterprise.kefuapp-sina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "9bfffeda-a319-40d3-b8c7-dc3f791aed24";
+				PROVISIONING_PROFILE_SPECIFIER = SinaKeFu_dev;
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -6379,6 +6392,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6405,8 +6420,10 @@
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.easemob.enterprise.kefuapp-sina";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "da16c607-6d5d-499e-807d-d53a8194a6b7";
+				PROVISIONING_PROFILE_SPECIFIER = SinaKeFu_dis;
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
