@@ -20,9 +20,9 @@
 #import "EmotionEscape.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
+#import "AuthLoginViewController.h"
 
 //#import <wax/wax.h>
-
 @interface AppDelegate () <UIAlertViewDelegate>
 
 @end
@@ -88,32 +88,38 @@
 
 - (void)startLogin
 {
-    if ([HDClient sharedClient].isLoggedInBefore) {
-        [[KFManager sharedInstance] showMainViewController];
-    } else {
-        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-        NSString *username = [userDefaults objectForKey:USERDEFAULTS_LOGINUSERNAME];
-        NSString *password = [userDefaults objectForKey:USERDEFAULTS_LOGINPASSWORD];
-        if (username.length>0 && password.length > 0) {
-            [[HDClient sharedClient] asyncLoginWithUsername:username password:password hidingLogin:NO completion:^(id responseObject, HDError *error) {
-                if (error == nil) {
-                    [[KFManager sharedInstance] showMainViewController];
-                    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-                    [userDefaults setValue:username forKey:USERDEFAULTS_LOGINUSERNAME];
-                    [userDefaults synchronize];
-                } else {
-                    [self showLoginViewController];
-                }
-            }];
-        } else {
-            [self showLoginViewController];
-        }
-    }
+    [self showLoginViewController];
+    
+    /*
+     if ([HDClient sharedClient].isLoggedInBefore) {
+     [[KFManager sharedInstance] showMainViewController];
+     } else {
+     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+     NSString *username = [userDefaults objectForKey:USERDEFAULTS_LOGINUSERNAME];
+     NSString *password = [userDefaults objectForKey:USERDEFAULTS_LOGINPASSWORD];
+     if (username.length>0 && password.length > 0) {
+     [[HDClient sharedClient] asyncLoginWithUsername:username password:password hidingLogin:NO completion:^(id responseObject, HDError *error) {
+     if (error == nil) {
+     [[KFManager sharedInstance] showMainViewController];
+     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+     [userDefaults setValue:username forKey:USERDEFAULTS_LOGINUSERNAME];
+     [userDefaults synchronize];
+     } else {
+     [self showLoginViewController];
+     }
+     }];
+     } else {
+     [self showLoginViewController];
+     }
+     }
+     */
 }
 
 - (void)showLoginViewController {
-    LoginViewController *loginController = [[LoginViewController alloc] init];
-    self.window.rootViewController = [[KFBaseNavigationController alloc] initWithRootViewController:loginController];
+//    LoginViewController *loginController = [[LoginViewController alloc] init];
+    AuthLoginViewController *authLoginController = [[AuthLoginViewController alloc] initWithNibName:@"AuthLoginViewController" bundle:nil];
+
+    self.window.rootViewController = [[KFBaseNavigationController alloc] initWithRootViewController:authLoginController];
     [HomeViewController HomeViewControllerDestory];
     //进入登陆页面,角标清空
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;

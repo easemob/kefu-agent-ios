@@ -6,4 +6,4 @@
   Copyright © 2017 环信. All rights reserved.
 */
 //如果有app名字本地化的需求，可在此处改为英文版
-CFBundleDisplayName = "环信客服";
+CFBundleDisplayName = "新浪在线客服";

@@ -25,9 +25,9 @@
 #else
     
     #if DEBUG
-        apnsCertName = @"push-cert-ios-dev";
+        apnsCertName = @"SinaKeFu_dev";
     #else
-        apnsCertName = @"push-cert-ios-20160229";
+        apnsCertName = @"SinaKeFu_dis";
     #endif
     
 #endif
@@ -36,7 +36,10 @@
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
-    
+    options.kefuRestAddress = @"http://202.108.248.160:80";
+    options.restServer = @"202.108.248.161:80";
+    options.chatServer = @"202.108.248.161";
+    options.chatPort = 6718;
 //    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
 //    options.restServer = @"a1.dongfeng-renault.com.cn";
 //    options.chatServer = @"im1.dongfeng-renault.com.cn";
