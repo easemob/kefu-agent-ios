@@ -8,10 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		06D446D9210EE806009F09CB /* KDAuthSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446D7210EE805009F09CB /* KDAuthSDK.framework */; };
-		06D446DB210EE819009F09CB /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446D8210EE805009F09CB /* AgentSDK.framework */; };
-		06D446DC210EE819009F09CB /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446D8210EE805009F09CB /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06D446E0210EE9B9009F09CB /* AuthLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06D446DD210EE9B8009F09CB /* AuthLoginViewController.xib */; };
 		06D446E1210EE9B9009F09CB /* AuthLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D446DF210EE9B9009F09CB /* AuthLoginViewController.m */; };
+		06D446EA210F2706009F09CB /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446E8210F26F3009F09CB /* AgentSDK.framework */; };
+		06D446EB210F2706009F09CB /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06D446E8210F26F3009F09CB /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90091DDB20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */; };
@@ -1470,7 +1470,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
-				06D446DC210EE819009F09CB /* AgentSDK.framework in Embed Frameworks */,
+				06D446EB210F2706009F09CB /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1490,10 +1490,10 @@
 
 /* Begin PBXFileReference section */
 		06D446D7210EE805009F09CB /* KDAuthSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = KDAuthSDK.framework; sourceTree = "<group>"; };
-		06D446D8210EE805009F09CB /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		06D446DD210EE9B8009F09CB /* AuthLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthLoginViewController.xib; sourceTree = "<group>"; };
 		06D446DE210EE9B9009F09CB /* AuthLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthLoginViewController.h; sourceTree = "<group>"; };
 		06D446DF210EE9B9009F09CB /* AuthLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthLoginViewController.m; sourceTree = "<group>"; };
+		06D446E8210F26F3009F09CB /* AgentSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = "<group>"; };
 		90091DD920D0CF88002AA808 /* HLeaveMessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListViewController.h; sourceTree = "<group>"; };
 		90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageListViewController.m; sourceTree = "<group>"; };
 		90091DDD20D0CF9F002AA808 /* HLeaveMessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListCell.h; sourceTree = "<group>"; };
@@ -2609,7 +2609,7 @@
 				D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */,
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
-				06D446DB210EE819009F09CB /* AgentSDK.framework in Frameworks */,
+				06D446EA210F2706009F09CB /* AgentSDK.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
 			);
@@ -3779,7 +3779,7 @@
 		D33F465C1E9F71A000FE6DCE = {
 			isa = PBXGroup;
 			children = (
-				06D446D8210EE805009F09CB /* AgentSDK.framework */,
+				06D446E8210F26F3009F09CB /* AgentSDK.framework */,
 				06D446D7210EE805009F09CB /* KDAuthSDK.framework */,
 				D33F46671E9F71A000FE6DCE /* AgentSDKDemo */,
 				D33F46661E9F71A000FE6DCE /* Products */,
