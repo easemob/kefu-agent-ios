@@ -43,7 +43,8 @@ singleton_implementation(KFManager)
     [self removeDelegates];
     AppDelegate * appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
     [appDelegate showLoginViewController];
-     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    [self clearInfo];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (BOOL)needShowSuperviseTip {
@@ -208,6 +209,7 @@ singleton_implementation(KFManager)
         [alert show];
     } else {
         [[KFManager sharedInstance] showLoginViewController];
+        [self clearInfo];
     }
 }
 
@@ -325,6 +327,9 @@ singleton_implementation(KFManager)
     [[HDClient sharedClient].chatManager removeDelegate:self];
 }
 
+- (void)clearInfo {
+    _headImageView = nil;
+}
 
 
 @end
