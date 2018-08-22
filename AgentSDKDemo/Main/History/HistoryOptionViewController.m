@@ -559,7 +559,7 @@
             [_headerImageView setTagDatasource:_tagNodes];
             [self.tableView reloadData];
         } else {
-            [MBProgressHUD show:@"已经添加" view:self.view];
+            [MBProgressHUD show:@"已存在" view:self.view];
         }
     }
     [self.navigationController popToViewController:self animated:YES];

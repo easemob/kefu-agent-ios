@@ -67,6 +67,8 @@ singleton_interface(KFManager);
 //本地推送使用
 - (void)registerLocalNoti;
 
+- (void)clearInfo;
+
 
 
 @end
