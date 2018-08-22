@@ -1687,16 +1687,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)showMenuViewController:(UIView *)showInView
                   andIndexPath:(NSIndexPath *)indexPath
                    messageType:(HDMessage *)message
-{
-    if (!message.isSender) {
-        return;
-    }
-    
+{    
     NSDate *date = [NSDate dateWithTimeInterval:-120 sinceDate:[NSDate new]];
     NSDate *messageDate = [NSDate dateWithTimeIntervalSince1970:message.timestamp / 1000];
 
     
-    BOOL isCanRecall = [date isEqualToDate:[date earlierDate:messageDate]] && [message.fromUser.userId isEqualToString:HDClient.sharedClient.currentAgentUser.agentId];
+    BOOL isCanRecall = [date isEqualToDate:[date earlierDate:messageDate]] && [message.fromUser.userId isEqualToString:HDClient.sharedClient.currentAgentUser.agentId] && message.isSender;
 
     if (_menuController == nil) {
         _menuController = [UIMenuController sharedMenuController];
@@ -1732,7 +1728,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
     [_menuController setMenuItems:itemAry];
     [_menuController setTargetRect:showInView.frame inView:showInView.superview];
-    [_menuController setMenuVisible:YES animated:YES];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self->_menuController setMenuVisible:YES animated:YES];
+    });
 }
 
 #pragma mark - MenuItem actions

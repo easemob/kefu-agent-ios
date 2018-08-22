@@ -147,8 +147,6 @@ static HomeViewController *homeViewController;
         }];
     });
     [self _setupChildrenVC];
-    //    [self _setupSubviews];
-    
     [self registerNotifications];
 }
 
