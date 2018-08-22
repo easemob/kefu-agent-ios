@@ -107,6 +107,7 @@
     
     CGFloat left = 0.f;
     CGFloat top = kChatHeaderTagViewSpace;
+    CGFloat lastHeight = 0;
     if ([_tagViews count] > 0) {
         BOOL more = NO;
         for (EMTagView *tagView in _tagViews) {
@@ -120,6 +121,7 @@
             tagView.top = top;
             [self addSubview:tagView];
             left += tagView.width;
+            lastHeight = tagView.height;
         }
         
         if (more) {
@@ -127,17 +129,16 @@
             self.countLabel.text = [NSString stringWithFormat:@"(%@)",@((int)[_tagViews count])];
         }
         
+        self.height = top + lastHeight;
     } else {
         self.height = 30.f;
     }
     
     if (!_edit) {
-        _commentLabel.top = 0;
+        _commentLabel.top = self.height + kChatHeaderTagViewSpace;
         [self addSubview:self.commentLabel];
+        self.height += self.commentLabel.height;
     }
-    CGRect frame = self.frame;
-    frame.size = _commentLabel.size;
-    self.frame = frame;
 }
 
 #pragma mark - public
@@ -147,7 +148,20 @@
     if (_edit) {
         [self setupView];
     } else {
-        [self _loadComment];
+        WEAK_SELF
+        [_conversation asyncGetSessionSummaryResultsCompletion:^(id responseObject, HDError *error) {
+            if (!error) {
+                NSArray *json = responseObject;
+                weakSelf.dataSource = [NSMutableArray array];
+                for (NSString *string in json) {
+                    NSString *key = [NSString stringWithFormat:@"%@",string];
+                    if ([weakSelf.tree objectForKey:key]) {
+                        [weakSelf.dataSource addObject:[weakSelf.tree objectForKey:key]];
+                    }
+                }
+            }
+            [weakSelf _loadComment];
+        }];
     }
 }
 

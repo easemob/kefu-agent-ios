@@ -206,8 +206,8 @@
                 if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(saveAndEndChat)]) {
                     [weakSelf.delegate saveAndEndChat];
                 }
-                [weakSelf.navigationController popViewControllerAnimated:YES];
             }
+            [weakSelf.navigationController popViewControllerAnimated:YES];
         } else {
             [weakSelf showHint:@"保存失败"];
         }
@@ -244,7 +244,7 @@
             }
             [self.navigationController setViewControllers:views animated:YES];
         } else {
-            [self showHint:@"已经添加"];
+            [self showHint:@"该标签已存在"];
         }
     } else {
         NSMutableArray *views = [NSMutableArray array];
@@ -469,7 +469,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && indexPath.row == 1) {
-        return _headerTagView.height;
+        return _headerTagView.height + 5;
     }
     return DEFAULT_CHAT_CELLHEIGHT;
 }
