@@ -189,9 +189,12 @@
 
 - (void)saveAction
 {
-    if ([_selectArray count] == 0) {
-        [self showHint:@"请选择标签"];
-        return;
+    UserModel *user = [HDClient sharedClient].currentAgentUser;
+    if (user.isStopSessionNeedSummary) {
+        if ([_selectArray count] == 0) {
+            [self showHint:@"请选择标签"];
+            return;
+        }
     }
     
     [self showHudInView:self.view hint:@"保存中..."];
