@@ -37,10 +37,11 @@
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
     
-//    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
-//    options.restServer = @"a1.dongfeng-renault.com.cn";
-//    options.chatServer = @"im1.dongfeng-renault.com.cn";
-//    options.chatPort = 5222;
+    options.kefuRestAddress = @"yantian.kefu.easemob.com";
+    options.restServer = @"a1.easemob.com";
+    options.chatServer = @"msync-im1.easemob.com";
+    options.chatPort = 443;
+    options.enableDnsConfig = NO;
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     [self registerRemoteNotification];
