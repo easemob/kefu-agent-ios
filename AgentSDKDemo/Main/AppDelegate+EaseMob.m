@@ -36,7 +36,7 @@
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
-    
+//    options.kefuRestAddress = @"sandbox.kefu.easemob.com";
 //    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
 //    options.restServer = @"a1.dongfeng-renault.com.cn";
 //    options.chatServer = @"im1.dongfeng-renault.com.cn";
