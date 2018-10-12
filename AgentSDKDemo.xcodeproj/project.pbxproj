@@ -422,8 +422,6 @@
 		D350FD121FBD8238004A94D8 /* UIAlertView+KFAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = D350FD111FBD8238004A94D8 /* UIAlertView+KFAdd.m */; };
 		D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6091F569CF100E3AB74 /* Security.framework */; };
 		D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
-		D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */; };
-		D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3A1EA0CED500ADD394 /* libstdc++.6.0.9.tbd */; };
 		D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3C1EA0CF0C00ADD394 /* libz.tbd */; };
 		D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D4E1EA0ED5B00ADD394 /* libsqlite3.tbd */; };
 		D378E6121F569D8900E3AB74 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6111F569D8800E3AB74 /* SystemConfiguration.framework */; };
@@ -2601,8 +2599,6 @@
 				D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */,
 				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
 				D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */,
-				D378E60E1F569D1800E3AB74 /* libstdc++.6.0.9.tbd in Frameworks */,
-				D378E60D1F569D0D00E3AB74 /* libc++.tbd in Frameworks */,
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				90AA69CD2069FAF000E39745 /* AgentSDK.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,

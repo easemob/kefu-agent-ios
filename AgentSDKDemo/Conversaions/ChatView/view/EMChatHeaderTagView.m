@@ -20,6 +20,9 @@
     NSString *_serviceSessionId;
     NSString *_comment;
     BOOL _edit;
+    
+    NSString *_ipInfoStr;
+    NSString *_noteInfoStr;
 }
 
 @property (nonatomic, strong) NSMutableDictionary *tree;
@@ -208,12 +211,14 @@
 {
     WEAK_SELF
     [_conversation asyncFetchCustomerInfo:^(HCustomerLocalModel *model, HDError *error) {
+        
+        if (!error && model) {
+            _ipInfoStr = [NSString stringWithFormat:@"ip:%@ \n 地区:%@\n 系统:%@",model.ip, model.region, model.userAgent];
+        }else {
+            _ipInfoStr = @"";
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (!error && model) {
-                weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注:\n ip:%@ \n 地区:%@\n 系统:%@",model.ip, model.region, model.userAgent];
-            }else {
-                weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注"];
-            }
+            weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注:%@\n%@", _noteInfoStr,_ipInfoStr];
             
             CGFloat height = [weakSelf.commentLabel getSpaceLabelHeight:weakSelf.commentLabel.text
                                                                withFont:weakSelf.commentLabel.font
@@ -221,6 +226,32 @@
                                                         spaceLineHeight:3];
             
 
+            
+            weakSelf.commentLabel.frame = CGRectMake(0, 0, self.superview.frame.size.width, height);
+            [weakSelf setupView];
+        });
+    }];
+    
+    
+    [_conversation asyncGetSessionCommentCompletion:^(id responseObject, HDError *error) {
+        if (!error) {
+            NSDictionary *json = responseObject;
+            if (json != nil) {
+                _noteInfoStr = [json objectForKey:@"comment"] ?: @"";
+            } else {
+                _noteInfoStr = @"";
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.commentLabel.text = [NSString stringWithFormat:@"备注:%@\n%@", _noteInfoStr,_ipInfoStr];
+            
+            CGFloat height = [weakSelf.commentLabel getSpaceLabelHeight:weakSelf.commentLabel.text
+                                                               withFont:weakSelf.commentLabel.font
+                                                              withWidth:self.superview.frame.size.width
+                                                        spaceLineHeight:3];
+            
+            
             
             weakSelf.commentLabel.frame = CGRectMake(0, 0, self.superview.frame.size.width, height);
             [weakSelf setupView];

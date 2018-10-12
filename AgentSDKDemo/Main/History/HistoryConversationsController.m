@@ -364,7 +364,8 @@
             HDHistoryConversation *model = [self.dataSource objectAtIndex:cellIndexPath.row];
             [self showHintNotHide:@"回呼中..."];
             WEAK_SELF
-            [[HDClient sharedClient].chatManager asyncFetchCreateSessionWithVistorId:model.chatter.agentId completion:^(HDHistoryConversation *history, HDError *error) {
+            [[HDClient sharedClient].chatManager asyncFetchCreateSessionWithVistorId:model.vistor.agentId completion:^(HDHistoryConversation *history, HDError *error) {
+                [self hideHud];
                 if (error == nil) {
                     ChatViewController *chatView = [[ChatViewController alloc] init];
                     chatView.conversationModel = model;
