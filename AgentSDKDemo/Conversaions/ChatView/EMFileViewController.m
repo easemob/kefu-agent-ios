@@ -47,6 +47,7 @@
         _nameLabel.textColor = RGBACOLOR(26, 26, 26, 1);
         _nameLabel.font = [UIFont systemFontOfSize:17];
         _nameLabel.text = ((HDFileMessageBody *)_model.nBody).displayName;
+        _nameLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _nameLabel;
 }

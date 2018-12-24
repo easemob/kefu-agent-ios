@@ -23,7 +23,7 @@
 {
     self = [super init];
     if (self) {
-        _url = url;
+        _url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     }
     return self;
 }
@@ -63,10 +63,15 @@
     return YES;
 }
 
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    NSString *theTitle=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    NSString *theTitle = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     self.title = theTitle;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
+    
 }
 
 - (void)didReceiveMemoryWarning {
