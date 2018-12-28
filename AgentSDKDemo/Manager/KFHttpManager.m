@@ -41,12 +41,13 @@ singleton_implementation(KFHttpManager);
     return _instance;
 }
 
-- (NSURLSessionDownloadTask *)asyncDownLoadFileWithFilePath:(NSString *)urlPath completion:(void (^)(id, NSError *))completion {
+- (NSURLSessionDownloadTask *)asyncDownLoadFileWithFilePath:(NSString *)urlPath completion:(void (^)(id, NSString*, NSError *))completion {
     NSURLSessionDownloadTask *task = nil;
     NSData *data =  [[KFFileCache sharedInstance] fileFromMemoryCacheForKey:urlPath];
+    NSString *path = [[KFFileCache sharedInstance] fileFullPathWithUrlStr:urlPath];
     if (data) {
         if (completion) {
-            completion(data, nil);
+            completion(data, path, nil);
             return task;
         }
     }
@@ -64,13 +65,13 @@ singleton_implementation(KFHttpManager);
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     NSData *fileData =[NSData dataWithContentsOfFile:[filePath path]];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        completion(fileData, nil);;
+                        completion(fileData, [filePath path], nil);
                     });
                 });
             }
         } else {
             if (completion) {
-                completion(nil, error);
+                completion(nil, nil, error);
             }
         }
     }];

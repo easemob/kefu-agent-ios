@@ -71,6 +71,10 @@
             content = @"[位置消息]";
             break;
         }
+        case HDMessageBodyTypeVideo: {
+            content = @"[视频]";
+            break;
+        }
         default:
             content = @"[其他消息]";
             break;

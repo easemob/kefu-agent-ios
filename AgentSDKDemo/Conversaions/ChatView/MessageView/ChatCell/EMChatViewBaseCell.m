@@ -156,6 +156,11 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
                 identifier = [identifier stringByAppendingString:@"file"];
             }
                 break;
+            case HDMessageBodyTypeVideo:
+            {
+                identifier = [identifier stringByAppendingString:@"video"];
+            }
+                break;
             default:
                 break;
         }

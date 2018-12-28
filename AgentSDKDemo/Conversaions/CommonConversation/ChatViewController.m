@@ -35,6 +35,8 @@
 #import "KFPredictView.h"
 #import "HDMessage+Category.h"
 #import "KFChatViewRecallCell.h"
+#import "KFFileCache.h"
+#import <AVKit/AVKit.h>
 
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
@@ -607,7 +609,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)downloadVoice:(HDMessage *)message {
     if (message.type == HDMessageBodyTypeVoice) {
         HDVoiceMessageBody *body = (HDVoiceMessageBody *)message.nBody;
-        [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSError *error) {
+        [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSString *path, NSError *error) {
             ;
         }];
     }
@@ -941,6 +943,26 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
         HDFormItem *item = [userInfo objectForKey:KMESSAGEKEY];
         [self chatFormCcellBubblePressed:item];
+    }else if ([eventName isEqualToString:kRouterEventVideoBubbleTapEventName]) {
+        HDVideoMessageBody *body = (HDVideoMessageBody *)model.nBody;
+        [self showHintNotHide:@"正在下载文件"];
+        WEAK_SELF
+        [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath
+                                                  completion:^(id responseObject, NSString *path, NSError *error)
+        {
+            [weakSelf hideHud];
+            if (!error) {
+                NSString *toPath = [path stringByAppendingPathExtension:@"mp4"];
+                [NSFileManager.defaultManager moveItemAtPath:path toPath:toPath error:nil];
+                NSURL *videoURL = [NSURL fileURLWithPath:toPath];;
+                AVPlayerViewController *pVC = [AVPlayerViewController new];
+                pVC.player = [AVPlayer playerWithURL:videoURL];
+                [pVC.player play];
+                [self presentViewController:pVC animated:YES completion:nil];
+            }else {
+                [self showHint:@"下载失败"];
+            }
+        }];
     }
 }
 
@@ -986,8 +1008,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
         [self showHint:@"正在下载声音,请稍后点击"];
-        [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSError *error) {
-            ;
+        [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath
+                                                  completion:^(id responseObject, NSString *path, NSError *error) {
+            
         }];
         return;
     }
@@ -1515,8 +1538,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             HDVoiceMessageBody *body = (HDVoiceMessageBody *)aMessage.nBody;
             NSString *uuid = [[KFFileCache sharedInstance] uuidWithUrlStr:body.remotePath];
             [[KFFileCache sharedInstance] moveItemAtPath:recordPath toCachePath:uuid];
-            [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSError *error) {
-                ;
+            [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSString *path, NSError *error) {
+                
             }];
         }
     }];

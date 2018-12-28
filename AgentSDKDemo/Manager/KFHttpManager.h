@@ -18,7 +18,7 @@ singleton_interface(KFHttpManager)
  @return
  */
 - (NSURLSessionDownloadTask *)asyncDownLoadFileWithFilePath:(NSString*)urlPath
-                                                       completion:(void(^)(id responseObject,NSError *error))completion;
+                                                       completion:(void(^)(id responseObject, NSString *path, NSError *error))completion;
 
 #pragma mark - 管理员
 

@@ -21,14 +21,11 @@ singleton_interface(KFFileCache)
  @param url 语音url
  */
 - (void)storeFileWithRemoteUrl:(NSString *)url
-                    completion:(void(^)(id responseObject,NSError *error))completion;
+                    completion:(void(^)(id responseObject, NSString *path, NSError *error))completion;
 
 
 /**
  将文件移动到
-
- @param srcPath <#srcPath description#>
- @param desPath <#desPath description#>
  */
 - (void)moveItemAtPath:(NSString *)srcPath toCachePath:(NSString *)name;
 

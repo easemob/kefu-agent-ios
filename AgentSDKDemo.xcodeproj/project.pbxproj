@@ -123,6 +123,12 @@
 		9061557720620EF9006113FF /* KFSwitchTypeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9061557520620860006113FF /* KFSwitchTypeButton.m */; };
 		907090E82060BB2D0062FED6 /* KFLeftItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090E72060BB2D0062FED6 /* KFLeftItemCell.m */; };
 		907090EB2060BB530062FED6 /* KFLeftViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 907090EA2060BB530062FED6 /* KFLeftViewItem.m */; };
+		908691DA21D5D1A700C95C22 /* HDChatVideoBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 908691D921D5D1A700C95C22 /* HDChatVideoBubbleView.m */; };
+		908691DB21D5D1A700C95C22 /* HDChatVideoBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 908691D921D5D1A700C95C22 /* HDChatVideoBubbleView.m */; };
+		908691DD21D5D41C00C95C22 /* ic_video_library@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908691DC21D5D41B00C95C22 /* ic_video_library@3x.png */; };
+		908691DE21D5D41C00C95C22 /* ic_video_library@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908691DC21D5D41B00C95C22 /* ic_video_library@3x.png */; };
+		908691E021D5D42900C95C22 /* ic_video_library@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908691DF21D5D42900C95C22 /* ic_video_library@2x.png */; };
+		908691E121D5D42900C95C22 /* ic_video_library@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 908691DF21D5D42900C95C22 /* ic_video_library@2x.png */; };
 		9094C5A820ECAD5800E9A057 /* KFChatViewRecallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */; };
 		9094C5A920ECB0A600E9A057 /* HDMessage+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC764B20BD344B00C86D92 /* HDMessage+Category.m */; };
 		90A2B534206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B533206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m */; };
@@ -809,7 +815,6 @@
 		D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D4E1EA0ED5B00ADD394 /* libsqlite3.tbd */; };
 		D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
 		D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3C1EA0CF0C00ADD394 /* libz.tbd */; };
-		D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3A1EA0CED500ADD394 /* libstdc++.6.0.9.tbd */; };
 		D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */; };
 		D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6091F569CF100E3AB74 /* Security.framework */; };
 		D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95E2E1EA0F47100ADD394 /* libopencore-amrwb.a */; };
@@ -1594,6 +1599,10 @@
 		907090E72060BB2D0062FED6 /* KFLeftItemCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeftItemCell.m; sourceTree = "<group>"; };
 		907090E92060BB530062FED6 /* KFLeftViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFLeftViewItem.h; sourceTree = "<group>"; };
 		907090EA2060BB530062FED6 /* KFLeftViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFLeftViewItem.m; sourceTree = "<group>"; };
+		908691D821D5D1A700C95C22 /* HDChatVideoBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDChatVideoBubbleView.h; sourceTree = "<group>"; };
+		908691D921D5D1A700C95C22 /* HDChatVideoBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDChatVideoBubbleView.m; sourceTree = "<group>"; };
+		908691DC21D5D41B00C95C22 /* ic_video_library@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_library@3x.png"; sourceTree = "<group>"; };
+		908691DF21D5D42900C95C22 /* ic_video_library@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_video_library@2x.png"; sourceTree = "<group>"; };
 		90A2B532206907D600EC2A80 /* KFMonitorInfoInstrumentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoInstrumentCell.h; sourceTree = "<group>"; };
 		90A2B533206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInfoInstrumentCell.m; sourceTree = "<group>"; };
 		90A2B5362069125100EC2A80 /* KFMonitorInfoViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoViewItem.h; sourceTree = "<group>"; };
@@ -2616,7 +2625,6 @@
 				D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */,
 				D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */,
 				D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */,
-				D3E9CDBE1FBED182005E3677 /* libstdc++.6.0.9.tbd in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
 				90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */,
@@ -3121,6 +3129,8 @@
 				D33CE64F1F7CA98D00236720 /* EMChatLocationBubbleView.m */,
 				D33CE6501F7CA98D00236720 /* EMChatTextBubbleView.h */,
 				D33CE6511F7CA98D00236720 /* EMChatTextBubbleView.m */,
+				908691D821D5D1A700C95C22 /* HDChatVideoBubbleView.h */,
+				908691D921D5D1A700C95C22 /* HDChatVideoBubbleView.m */,
 			);
 			path = ChatCellBubble;
 			sourceTree = "<group>";
@@ -4498,6 +4508,7 @@
 				D39839251FDE6B5400D5F853 /* alarmsRecord@2x.png */,
 				D3A6BB661FB0585100066410 /* chat_item_form@2x.png */,
 				D346A81A1FAC8A1100DD0281 /* expand_icon_vote_over@2x.png */,
+				908691DF21D5D42900C95C22 /* ic_video_library@2x.png */,
 				D34DFAB91FA8562E0018116D /* shai@2x.png */,
 				D34DFAB51FA855430018116D /* update@2x.png */,
 				D37EF4EF1FA7263E002B8B8D /* Shape@2x.png */,
@@ -4585,6 +4596,7 @@
 				D3FDC7111EA0A5C600C25BB0 /* agents_icon_shai_Text2@3x.png */,
 				D3FDC7121EA0A5C600C25BB0 /* bar_icon_search_Text3@3x.png */,
 				D3FDC7131EA0A5C600C25BB0 /* btn__icon_qubz@3x.png */,
+				908691DC21D5D41B00C95C22 /* ic_video_library@3x.png */,
 				90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */,
 				D3FDC7141EA0A5C600C25BB0 /* btn_icon_camera@3x.png */,
 				D3FDC7151EA0A5C600C25BB0 /* btn_icon_iframe@3x.png */,
@@ -4872,6 +4884,7 @@
 				D3FDC82D1EA0A5C600C25BB0 /* input_tab_icon_file2@2x.png in Resources */,
 				D3FDC8241EA0A5C600C25BB0 /* historyCopy_icon_morehistory@2x.png in Resources */,
 				D3FDC7E71EA0A5C600C25BB0 /* ee_32.png in Resources */,
+				908691E021D5D42900C95C22 /* ic_video_library@2x.png in Resources */,
 				D3FDC7F41EA0A5C600C25BB0 /* icon_select_right@2x.png in Resources */,
 				D3FDC79D1EA0A5C600C25BB0 /* iconfont.svg in Resources */,
 				D3FDC82E1EA0A5C600C25BB0 /* interactive_list_icon_vote_full@2x.png in Resources */,
@@ -5016,6 +5029,7 @@
 				D3FDC85B1EA0A5C600C25BB0 /* btn_icon_phrase@3x.png in Resources */,
 				D3FDC8801EA0A5C600C25BB0 /* main_icon_open@3x.png in Resources */,
 				D3FDC7871EA0A5C600C25BB0 /* VoiceSearchFeedback020.png in Resources */,
+				908691DD21D5D41C00C95C22 /* ic_video_library@3x.png in Resources */,
 				D3FDC7A81EA0A5C600C25BB0 /* default_agent_avatar@2x.png in Resources */,
 				D3FDC8991EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy@3x.png in Resources */,
 				D3FDC7831EA0A5C600C25BB0 /* VoiceSearchFeedback018.png in Resources */,
@@ -5262,6 +5276,7 @@
 				D3E9CE3B1FBED182005E3677 /* input_tab_icon_file2@2x.png in Resources */,
 				D3E9CE3C1FBED182005E3677 /* historyCopy_icon_morehistory@2x.png in Resources */,
 				D3E9CE3D1FBED182005E3677 /* ee_32.png in Resources */,
+				908691E121D5D42900C95C22 /* ic_video_library@2x.png in Resources */,
 				D3E9CE3E1FBED182005E3677 /* icon_select_right@2x.png in Resources */,
 				D3E9CE3F1FBED182005E3677 /* iconfont.svg in Resources */,
 				D3E9CE401FBED182005E3677 /* interactive_list_icon_vote_full@2x.png in Resources */,
@@ -5406,6 +5421,7 @@
 				D3E9CEC31FBED182005E3677 /* btn_icon_phrase@3x.png in Resources */,
 				D3E9CEC41FBED182005E3677 /* main_icon_open@3x.png in Resources */,
 				D3E9CEC51FBED182005E3677 /* VoiceSearchFeedback020.png in Resources */,
+				908691DE21D5D41C00C95C22 /* ic_video_library@3x.png in Resources */,
 				D3E9CEC61FBED182005E3677 /* default_agent_avatar@2x.png in Resources */,
 				D3E9CEC71FBED182005E3677 /* tips_popup_right_EllipseCopy@3x.png in Resources */,
 				D3E9CEC81FBED182005E3677 /* VoiceSearchFeedback018.png in Resources */,
@@ -5784,6 +5800,7 @@
 				D33CE80B1F7CB52500236720 /* DDAbstractDatabaseLogger.m in Sources */,
 				D33CE7DB1F7CB42E00236720 /* EMSearchDisplayController.m in Sources */,
 				90591CD32068B050007367BD /* AAXAxis.m in Sources */,
+				908691DA21D5D1A700C95C22 /* HDChatVideoBubbleView.m in Sources */,
 				D33CE6CD1F7CA98D00236720 /* CustomerViewController.m in Sources */,
 				90591CB72068B050007367BD /* AALegend.m in Sources */,
 				D33CE8571F7CD0F800236720 /* EMSDWebImageManager.m in Sources */,
@@ -6120,6 +6137,7 @@
 				90591CD42068B050007367BD /* AAXAxis.m in Sources */,
 				D3E9CD781FBED182005E3677 /* CustomerViewController.m in Sources */,
 				90591CB82068B050007367BD /* AALegend.m in Sources */,
+				908691DB21D5D1A700C95C22 /* HDChatVideoBubbleView.m in Sources */,
 				D3E9CD791FBED182005E3677 /* EMSDWebImageManager.m in Sources */,
 				D3E9CD7A1FBED182005E3677 /* DXUpdateView.m in Sources */,
 				D3E9CD7B1FBED182005E3677 /* AFHTTPRequestOperation.m in Sources */,

@@ -135,7 +135,7 @@
         if (body) {
             [self showHintNotHide:@"正在下载文件"];
             WEAK_SELF
-            [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSError *error) {
+            [[KFFileCache sharedInstance] storeFileWithRemoteUrl:body.remotePath completion:^(id responseObject, NSString *path, NSError *error) {
                 [weakSelf hideHud];
                 if (!error) {
                     weakSelf.downloadButton.hidden = YES;

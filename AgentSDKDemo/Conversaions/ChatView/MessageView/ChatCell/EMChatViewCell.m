@@ -210,13 +210,12 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             return [[EMChatFileBubbleView alloc] init];
         }
             break;
-            /*
-        case eMessageBodyType_Video:
+        case HDMessageBodyTypeVideo:
         {
-            return [[EMChatVideoBubbleView alloc] init];
+            return [[HDChatVideoBubbleView alloc] init];
         }
             break;
-             */
+             
         default:
             break;
     }
@@ -260,6 +259,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         case HDMessageBodyTypeFile:
         {
             return [EMChatFileBubbleView heightForBubbleWithObject:messageModel];
+        }
+            break;
+        case HDMessageBodyTypeVideo:
+        {
+            return [HDChatVideoBubbleView heightForBubbleWithObject:messageModel];
         }
             break;
             /*

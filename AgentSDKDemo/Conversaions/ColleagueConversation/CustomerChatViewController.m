@@ -700,7 +700,7 @@
     if (model.type == HDMessageBodyTypeFile) {
         HDFileMessageBody *body = (HDFileMessageBody *)model.nBody;
         if (model.nBody) {
-            [[KFHttpManager sharedInstance] asyncDownLoadFileWithFilePath:body.remotePath completion:^(id responseObject, NSError *error) {
+            [[KFHttpManager sharedInstance] asyncDownLoadFileWithFilePath:body.remotePath completion:^(id responseObject, NSString *path, NSError *error) {
                 if (!error) {
                     model.localPath = [[KFFileCache sharedInstance] fileFullPathWithUrlStr:body.remotePath];
                      [self.tableView reloadData];

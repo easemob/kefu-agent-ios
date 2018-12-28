@@ -36,23 +36,28 @@ singleton_implementation(KFFileCache)
     if ([self isExistFile:[self fileFullPathWithUrlStr:url]]) {
         return;
     }
-    [[KFHttpManager sharedInstance] asyncDownLoadFileWithFilePath:url completion:^(id responseObject, NSError *error) {
+    [[KFHttpManager sharedInstance] asyncDownLoadFileWithFilePath:url completion:^(id responseObject, NSString *path, NSError *error) {
         
     }];
 }
 
 
-- (void)storeFileWithRemoteUrl:(NSString *)url  completion:(void (^)(id, NSError *))completion{
+- (void)storeFileWithRemoteUrl:(NSString *)url completion:(void (^)(id, NSString * , NSError *))completion{
     if ([self isExistFile:[self fileFullPathWithUrlStr:url]]) {
+        NSString *path = [self filePathFromDiskCacheForKey:url];
+        NSData *data = [NSData dataWithContentsOfFile:path];
+        if (completion) {
+            completion(data, path, nil);
+        }
         return;
     }
-    [[KFHttpManager sharedInstance] asyncDownLoadFileWithFilePath:url completion:^(id responseObject, NSError *error) {
+    [[KFHttpManager sharedInstance] asyncDownLoadFileWithFilePath:url completion:^(id responseObject, NSString *path,  NSError *error) {
         if (completion) {
             NSError *nerror = nil;
             if (error != nil) {
                 nerror = [NSError errorWithDomain:error.description code:error.code userInfo:nil];
             }
-            completion(responseObject,nerror);
+            completion(responseObject, path, nerror);
         }
     }];
 }
@@ -96,6 +101,7 @@ singleton_implementation(KFFileCache)
     NSData *data = [NSData dataWithContentsOfFile:fullPath];
     return data;
 }
+
 
 //private
 - (void)createBaseDir {
