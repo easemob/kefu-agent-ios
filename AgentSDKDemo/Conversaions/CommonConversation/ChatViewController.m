@@ -952,7 +952,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         {
             [weakSelf hideHud];
             if (!error) {
-                NSString *toPath = [path stringByAppendingPathExtension:@"mp4"];
+                NSString *toPath = @"";
+                if ([path pathExtension] && [path pathExtension].length > 0) {
+                    toPath = path;
+                }else {
+                    toPath = [path stringByAppendingPathExtension:@"mp4"];
+                }
+                
                 [NSFileManager.defaultManager moveItemAtPath:path toPath:toPath error:nil];
                 NSURL *videoURL = [NSURL fileURLWithPath:toPath];;
                 AVPlayerViewController *pVC = [AVPlayerViewController new];

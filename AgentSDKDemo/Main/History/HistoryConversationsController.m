@@ -154,7 +154,6 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     }
-    [self reloadData];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
