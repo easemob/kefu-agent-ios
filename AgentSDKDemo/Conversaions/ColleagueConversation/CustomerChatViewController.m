@@ -22,9 +22,10 @@
 #import "SRRefreshView.h"
 #import "ChatSendHelper.h"
 #import "UIAlertView+AlertBlock.h"
-#import "TTOpenInAppActivity.h"
 
-@interface CustomerChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,SRRefreshDelegate,UIActionSheetDelegate,HDChatManagerDelegate>
+
+
+@interface CustomerChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,SRRefreshDelegate,UIActionSheetDelegate,HDChatManagerDelegate, UIDocumentInteractionControllerDelegate>
 {
     dispatch_queue_t _messageQueue;
     
@@ -34,6 +35,7 @@
     
     BOOL hasMore;
 }
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
 @property (strong, nonatomic) NSMutableArray *dataSource;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) DXMessageToolBar *chatToolBar;
@@ -346,26 +348,31 @@
         [self downloadMessageAttachments:model];
         return;
     }
+    NSString *filePath = model.localPath;
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *path = [filePath stringByDeletingLastPathComponent];
+    HDFileMessageBody *body = (HDFileMessageBody *)model.nBody;
+    path = [path stringByAppendingPathComponent:body.displayName];
+    [fm moveItemAtPath:filePath toPath:path error:nil];
     
-    NSURL *URL = [NSURL fileURLWithPath:model.localPath];
-    TTOpenInAppActivity *openInAppActivity = [[TTOpenInAppActivity alloc] initWithView:self.view andRect:self.tableView.frame];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[openInAppActivity]];
-    
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        // Store reference to superview (UIActionSheet) to allow dismissal
-        openInAppActivity.superViewController = activityViewController;
-        // Show UIActivityViewController
-        [self presentViewController:activityViewController animated:YES completion:NULL];
-    } else {
-        // Create pop up
-        UIPopoverController *activityPopoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-        // Store reference to superview (UIPopoverController) to allow dismissal
-        openInAppActivity.superViewController = activityPopoverController;
-        // Show UIActivityViewController in popup
-        [activityPopoverController presentPopoverFromRect:self.tableView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    NSURL *URL = [NSURL fileURLWithPath:path];
+    self.documentController = [UIDocumentInteractionController
+                               interactionControllerWithURL:URL];
+    self.documentController.delegate = self;
+    if (![self.documentController presentPreviewAnimated:YES]) {
+        CGRect frame = UIScreen.mainScreen.bounds;
+        CGRect rect = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        [self.documentController presentOptionsMenuFromRect:rect
+                                                     inView:self.view
+                                                   animated:YES];
     }
 }
 
+
+#pragma mark - UIDocumentInteractionControllerDelegate
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+    return self;
+}
 
 // 图片的bubble被点击
 - (void)chatImageCellBubblePressed:(HDMessage *)model

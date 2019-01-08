@@ -132,18 +132,7 @@ singleton_implementation(KFManager)
     NSLog(@"会话被管理员转接");
     
 }
-//会话被管理员关闭
-- (void)conversationClosedByAdminWithServiceSessionId:(NSString *)serviceSessionId {
-    NSLog(@"会话被管理员关闭");
-}
-//会话自动关闭
-- (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
-    NSLog(@"会话自动关闭");
-}
-//会话最后一条消息变化
-- (void)conversationLastMessageChanged:(HDMessage *)message {
-    NSLog(@"会话最后一条消息变化");
-}
+
 //有新会话
 - (void)newConversationWithSessionId:(NSString *)sessionId {
     NSLog(@"有新会话");
@@ -220,10 +209,10 @@ singleton_implementation(KFManager)
 
 - (void)showNotificationWithMessage:(NSString *)content message:(HDMessage *)message;
 {
-    NSInteger PreviousNum = [UIApplication sharedApplication].applicationIconBadgeNumber;
+//    NSInteger PreviousNum = [UIApplication sharedApplication].applicationIconBadgeNumber;
     //发送本地推送
     UILocalNotification *notification = [[UILocalNotification alloc] init];
-    notification.applicationIconBadgeNumber = ++PreviousNum;
+//    notification.applicationIconBadgeNumber = ++PreviousNum;
     notification.fireDate = [NSDate date]; //触发通知的时间
     notification.alertBody = content;
     notification.alertAction = NSLocalizedString(@"open", @"Open");

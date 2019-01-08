@@ -51,7 +51,7 @@ singleton_interface(KFManager);
 - (void)setNavItemBadgeValueWithAllConversations:(NSMutableArray *)allConversations;
 
 //会话
-@property(nonatomic,strong)KFConversationsController *conversation;
+@property(nonatomic,strong) KFConversationsController *conversation;
 //待接入
 @property(nonatomic,strong) WaitQueueViewController *wait;
 //通知

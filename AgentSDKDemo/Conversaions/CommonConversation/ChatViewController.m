@@ -25,7 +25,6 @@
 #import "HomeViewController.h"
 #import "TransferViewController.h"
 #import "AddTagViewController.h"
-#import "TTOpenInAppActivity.h"
 #import "EMChatHeaderTagView.h"
 #import "EMUIWebViewController.h"
 #import "EMFileViewController.h"
@@ -184,6 +183,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appDidBecomeActiveNotif:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
     [KFManager sharedInstance].curChatViewConvtroller = self;
     [KFManager sharedInstance].currentSessionId = self.conversationModel.sessionId;
     [self startNoti];
@@ -252,6 +257,14 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self tableViewScrollToBottom];
     
     [self setupVoiceType];
+}
+
+
+- (void)appDidBecomeActiveNotif:(NSNotification *)aNoti {
+    HomeViewController *homeVC = (HomeViewController *)[HomeViewController HomeViewController];
+    homeVC.conversationVCUnreadCount -= self.conversationModel.unreadCount;
+    [[HomeViewController HomeViewController] setConversationWithBadgeValue:homeVC.conversationVCUnreadCount];
+    self.conversationModel.unreadCount = 0;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -1112,7 +1125,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)backAction
 {
     [[KFManager sharedInstance].conversation refreshData];
-    
     _conversationModel.unreadCount = 0;
     [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:_allConversations];
     [KFManager sharedInstance].curChatViewConvtroller = nil;

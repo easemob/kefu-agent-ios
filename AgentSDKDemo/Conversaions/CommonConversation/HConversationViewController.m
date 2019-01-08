@@ -96,16 +96,21 @@
 
 
 - (void)conversationLastMessageChanged:(HDMessage *)message {
+    if ([message.sessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
+        if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive) {
+            return;
+        }
+    }
     dispatch_async(_conversationQueue, ^{
         HDConversation *model = [self.dataSourceDic objectForKey:message.sessionId];
-        if ([model.lastMessage.messageId isEqualToString:message.messageId]) {
+        if (model.lastMessage.timestamp >= message.timestamp) {
             return ;
         }
         if (model) {
             model.lastMessage = message;
             model.searchWord = model.chatter.nicename;
             if (!message.isSender) {
-                 model.unreadCount += 1;
+                model.unreadCount += 1;
             }
             [self.dataSource removeObject:model];
             [self.dataSource insertObject:model atIndex:0];
@@ -346,6 +351,7 @@
                 chatVC.allConversations = self.dataSource;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self.conDelegate ConversationPushIntoChat:chatVC];
+                    [NSNotificationCenter.defaultCenter postNotificationName:@"UpdateIconBadge" object:nil];
                     [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
                 });
             });
@@ -393,11 +399,10 @@
                 default:
                     break;
             }
-            [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
             [weakSelf.tableView reloadData];
         } else {
             [weakSelf.tableView reloadData];
-        }
+        } 
     }];
 }
 

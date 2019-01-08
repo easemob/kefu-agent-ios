@@ -52,12 +52,12 @@ static NSString *kGroupName = @"GroupName";
     BOOL _isEnterChat;
     NSString *_serviceSessionId;
     
-    NSInteger _conversationVCUnreadCount;
     NSInteger _waitVCUnreadCount;
     NSInteger _notifiersVCUnreadCount;
     NSInteger _leaveMessageVCUnreadCount;
     
 }
+
 
 @property (strong, nonatomic) KFConversationsController *conversationsController;
 @property (strong, nonatomic) CustomerViewController *customerController;
@@ -108,7 +108,6 @@ static HomeViewController *homeViewController;
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //    [fNotificationCenter addObserver:self selector:@selector(setTotalBadgeValue) name:NOTIFICATION_CONVERSATION_REFRESH object:nil];
     [self printViewHierarchy:self.tabBarController.view];
 }
 
@@ -146,6 +145,7 @@ static HomeViewController *homeViewController;
             
         }];
     });
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(setTotalBadgeValue) name:@"UpdateIconBadge" object:nil];
     [self _setupChildrenVC];
     [self registerNotifications];
 }
@@ -343,7 +343,6 @@ static HomeViewController *homeViewController;
     leftVC.leftDelegate =  self;
     [self setTotalBadgeValue];
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
-    
 }
 
 -(void)setConversationWithBadgeValue:(NSInteger)badgeValue

@@ -12,7 +12,8 @@
 
 +(id) HomeViewController;
 
-@property(nonatomic,strong) UIViewController *currentAdminVC;
+@property (nonatomic, strong) UIViewController *currentAdminVC;
+@property (nonatomic, assign) NSInteger conversationVCUnreadCount;
 
 +(void) HomeViewControllerDestory;
 

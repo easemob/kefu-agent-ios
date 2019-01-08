@@ -7,11 +7,10 @@
 //
 
 #import "EMFileViewController.h"
-
-#import "TTOpenInAppActivity.h"
 #import "ChatViewController.h"
 
-@interface EMFileViewController ()
+@interface EMFileViewController ()<UIDocumentInteractionControllerDelegate>
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
 
 @property (nonatomic, strong) UIBarButtonItem *openFileItem;
 @property (nonatomic, strong) UIButton *downloadButton;
@@ -106,27 +105,28 @@
         return;
     }
     
-    NSURL *URL = [NSURL fileURLWithPath:filePath];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *path = [filePath stringByDeletingLastPathComponent];
+    path = [path stringByAppendingPathComponent:body.displayName];
+    [fm moveItemAtPath:filePath toPath:path error:nil];
     
-    TTOpenInAppActivity *openInAppActivity = [[TTOpenInAppActivity alloc] initWithView:self.view andRect:self.tableView.frame];
-    UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[URL] applicationActivities:@[openInAppActivity]];
-    
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone){
-        // Store reference to superview (UIActionSheet) to allow dismissal
-        openInAppActivity.superViewController = activityViewController;
-        // Show UIActivityViewController
-        [self presentViewController:activityViewController animated:YES completion:NULL];
-    } else {
-        // Create pop up
-        UIPopoverController *activityPopoverController = [[UIPopoverController alloc] initWithContentViewController:activityViewController];
-        // Store reference to superview (UIPopoverController) to allow dismissal
-        openInAppActivity.superViewController = activityPopoverController;
-        // Show UIActivityViewController in popup
-        [activityPopoverController presentPopoverFromRect:self.tableView.frame inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    NSURL *URL = [NSURL fileURLWithPath:path];
+    self.documentController = [UIDocumentInteractionController
+                               interactionControllerWithURL:URL];
+    self.documentController.delegate = self;
+    if (![self.documentController presentPreviewAnimated:YES]) {
+        CGRect frame = UIScreen.mainScreen.bounds;
+        CGRect rect = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        [self.documentController presentOptionsMenuFromRect:rect
+                                                     inView:self.view
+                                                   animated:YES];
     }
-
 }
 
+#pragma mark - UIDocumentInteractionControllerDelegate
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+    return self;
+}
 
 - (void)downloadMessageAttachments:(HDMessage *)model
 {
