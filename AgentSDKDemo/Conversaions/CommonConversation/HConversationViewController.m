@@ -17,7 +17,7 @@
 #import "SRRefreshView.h"
 #import "UIAlertView+AlertBlock.h"
 #import "AppDelegate.h"
-@interface HConversationViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate,ChatViewControllerDelegate, HDClientDelegate>
+@interface HConversationViewController ()<UISearchBarDelegate, SRRefreshDelegate,ChatViewControllerDelegate, HDClientDelegate>
 {
     BOOL _isRefresh;
     int _unreadcount;
@@ -204,9 +204,7 @@
     _searchController.active = NO;
     _searchController.searchResultsDataSource = self;
     _searchController.searchResultsDelegate = self;
-    _searchController.delegate = self;
     _searchController.searchResultsTableView.tableFooterView = [UIView new];
-    
 }
 
 - (void)setShowSearchBar:(BOOL)showSearchBar
@@ -248,7 +246,7 @@
     if (_type == HDConversationAccessed) {
         return 1;
     } else if (_type == HDConversationWaitQueues) {
-        if(tableView == self.searchDisplayController.searchResultsTableView){
+        if(tableView == self.searchController.searchResultsTableView){
             return 1;
         }
         return 2;
@@ -259,7 +257,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if(tableView == self.searchDisplayController.searchResultsTableView){
+    if(tableView == self.searchController.searchResultsTableView){
         if ([self.searchController.resultsSource count] == 0) {
             return 1;
         }
@@ -284,7 +282,7 @@
             cell.rightUtilityButtons = nil;
         }
         
-        if (tableView != self.searchDisplayController.searchResultsTableView) {
+        if (tableView != self.searchController.searchResultsTableView) {
             if ([self.dataSource count] == 0) {
                 UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
                 cell.textLabel.text = @"没有会话";
@@ -300,7 +298,7 @@
             }
         }
         cell.textLabel.text = @"";
-        HDConversation *model = tableView != self.searchDisplayController.searchResultsTableView?[self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+        HDConversation *model = tableView != self.searchController.searchResultsTableView?[self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
         if ([model isKindOfClass:[HDConversation class]]) {
             [cell setModel:model];
         }
@@ -332,9 +330,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == self.searchController.searchResultsTableView &&
+        [self.searchController.resultsSource count] == 0) {
+        return;
+    }
     if ([self.dataSource count] == 0) {
         return;
     }
+    
     if (_type == HDConversationAccessed) {
         if (_searchBar.isFirstResponder) {
             [_searchBar resignFirstResponder];
@@ -342,7 +345,7 @@
         if ([self.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
             ChatViewController *chatVC = [[ChatViewController alloc] init];
             chatVC.delegate = self;
-            HDConversation *model = tableView != self.searchDisplayController.searchResultsTableView?[self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+            HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row] : [self.searchController.resultsSource objectAtIndex:indexPath.row];
             chatVC.conversationModel = model;
             model.unreadCount = 0;
             dispatch_async(_conversationQueue, ^{
@@ -446,11 +449,6 @@
     return YES;
 }
 
-- (void)searchBarEnabled
-{
-    _searchBar.userInteractionEnabled = YES;
-}
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
@@ -462,16 +460,6 @@
     [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
-        if([subview isKindOfClass:[UILabel class]]) {
-            [(UILabel*)subview setText:@""];
-        }
-    }
-    return YES;
 }
 
 
