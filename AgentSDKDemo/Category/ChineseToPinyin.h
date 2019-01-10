@@ -16,7 +16,6 @@
     
 }
 
-+ (NSString *) pinyinFromChineseString:(NSString *)string;
-+ (char) sortSectionTitle:(NSString *)string; 
++ (NSString *) pinyinFromChineseString:(NSString *)string; 
 
 @end

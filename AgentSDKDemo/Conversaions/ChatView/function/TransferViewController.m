@@ -16,7 +16,7 @@
 #import "SRRefreshView.h"
 #import "JNGroupViewController.h"
 
-@interface TransferViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate,JNGroupViewDelegate>
+@interface TransferViewController ()<UISearchBarDelegate, SRRefreshDelegate,JNGroupViewDelegate>
 {
     NSString *_curRemoteAgentId;
     BOOL _isRefresh;
@@ -179,7 +179,6 @@
     _searchController.active = NO;
     _searchController.searchResultsDataSource = self;
     _searchController.searchResultsDelegate = self;
-    _searchController.delegate = self;
     _searchController.searchResultsTableView.tableFooterView = [UIView new];
     
 }
@@ -255,7 +254,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if(tableView == self.searchDisplayController.searchResultsTableView){
+    if(tableView == self.searchController.searchResultsTableView){
         if ([self.searchController.resultsSource count] == 0) {
             return 1;
         }
@@ -272,7 +271,7 @@
         cell = [[DXTableViewCellType1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellType1"];
     }
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == self.searchController.searchResultsTableView) {
         if ([self.searchController.resultsSource count] == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
             cell.textLabel.text = @"没有搜索到……";
@@ -281,7 +280,7 @@
         }
     }
     
-    HDConversation *model = tableView != self.searchDisplayController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
     model.unreadCount = 0;
     [cell setModel:model];
     return cell;
@@ -297,10 +296,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == self.searchController.searchResultsTableView) {
+        if ([self.searchController.resultsSource count] == 0) {
+            return;
+        }
+    }
+    
     if (_searchBar.isFirstResponder) {
         [_searchBar resignFirstResponder];
     }
-    HDConversation *model = tableView != self.searchDisplayController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定将该会话转接给%@吗？",model.chatter.nicename] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.tag = 1000;
     [alert show];
@@ -433,16 +438,6 @@
     [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
-        if([subview isKindOfClass:[UILabel class]]) {
-            [(UILabel*)subview setText:@""];
-        }
-    }
-    return YES;
 }
 
 #pragma mark - JNGroupViewDelegate

@@ -119,7 +119,11 @@
             cancleWidth = maxHeight + 1;
         }
         
-        CGSize titleSize = [title sizeWithFont:self.titleLabel.font constrainedToSize:CGSizeMake(maxWidth - cancleWidth, maxHeight) lineBreakMode:NSLineBreakByCharWrapping];
+        CGSize titleSize = [title boundingRectWithSize:CGSizeMake(maxWidth - cancleWidth, maxHeight)
+                                               options:NSStringDrawingUsesLineFragmentOrigin
+                                            attributes:@{NSFontAttributeName:self.titleLabel.font}
+                                               context:nil].size;
+        
         CGFloat titleWidth = titleSize.width == maxWidth ? (titleSize.width + 30) : (titleSize.width + 30);
         
         self.titleLabel.frame = CGRectMake((self.frame.size.width - titleWidth - cancleWidth) / 2, (self.frame.size.height - maxHeight) / 2, titleWidth, maxHeight);

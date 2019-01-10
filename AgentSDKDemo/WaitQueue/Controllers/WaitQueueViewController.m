@@ -21,11 +21,10 @@
 #import "UINavigationItem+Margin.h"
 #import "HistoryOptionViewController.h"
 
-@interface WaitQueueViewController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate,EMChatManagerDelegate,HistoryOptionDelegate>
+@interface WaitQueueViewController ()<UISearchBarDelegate, SRRefreshDelegate,EMChatManagerDelegate,HistoryOptionDelegate>
 {
     BOOL _isRefresh;
     int _unreadcount;
-    NSInteger _waitUnreadcount;
     BOOL _hasMore;
     UILabel *_resultLabel;
 }
@@ -39,6 +38,7 @@
 @property (strong, nonatomic) EMHeaderImageView *headerImageView;
 @property (strong, nonatomic) UIView *networkStateView;
 @property (strong, nonatomic) UILabel *curLabel;
+@property (nonatomic, assign) NSInteger waitUnreadcount;
 
 @end
 
@@ -196,7 +196,6 @@
     _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
     _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _searchController.active = NO;
-    _searchController.delegate = self;
     _searchController.searchResultsTableView.tableFooterView = [UIView new];
     
     WEAK_SELF
@@ -242,8 +241,8 @@
                         [weakSelf refreshSearchView];
                         [weakSelf.dataSource removeObject:weakmodel];
                         [weakSelf.tableView reloadData];
-                        _waitUnreadcount--;
-                        [weakSelf setUnreadCount:_waitUnreadcount];
+                        weakSelf.waitUnreadcount--;
+                        [weakSelf setUnreadCount:weakSelf.waitUnreadcount];
                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                             [[KFManager sharedInstance].wait loadData];
                         });
@@ -303,7 +302,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    if(tableView == self.searchDisplayController.searchResultsTableView){
+    if(tableView == self.searchController.searchResultsTableView){
         return 1;
     }
     return 2;
@@ -311,7 +310,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if(tableView == self.searchDisplayController.searchResultsTableView){
+    if(tableView == self.searchController.searchResultsTableView){
         if ([self.searchController.resultsSource count] == 0) {
             return 1;
         }
@@ -376,6 +375,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == self.searchController.searchResultsTableView) {
+        if ([self.searchController.resultsSource count] == 0) {
+            return;
+        }
+    }
+    
     if (indexPath.section == 0) {
         if ([self.dataSource count] <= indexPath.row) {
             return;
@@ -600,16 +605,6 @@
     [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
-        if([subview isKindOfClass:[UILabel class]]) {
-            [(UILabel*)subview setText:@""];
-        }
-    }
-    return YES;
 }
 
 - (void)sort

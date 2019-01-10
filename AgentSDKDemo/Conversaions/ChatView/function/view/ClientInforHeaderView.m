@@ -73,15 +73,10 @@
     self.nicknameLabel.text = nickName;
     CGSize textBlockMinSize = {CGFLOAT_MAX, self.nicknameLabel.height};
     CGSize retSize;
-    if (kSystemVersion >= 7.0) {
-        retSize = [nickName boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin
-                                            attributes:@{
-                                                         NSFontAttributeName:[UIFont systemFontOfSize:20],
-                                                         }
-                                               context:nil].size;
-    }else{
-        retSize = [nickName sizeWithFont:[UIFont systemFontOfSize:20] constrainedToSize:textBlockMinSize lineBreakMode:NSLineBreakByCharWrapping];
-    }
+    retSize = [nickName boundingRectWithSize:textBlockMinSize
+                                     options:NSStringDrawingUsesLineFragmentOrigin
+                                  attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20]}
+                                     context:nil].size;
     self.nicknameLabel.width = retSize.width;
     self.nicknameLabel.left = (KScreenWidth - retSize.width)/2;
     self.originTypeImage.image = tagImage;

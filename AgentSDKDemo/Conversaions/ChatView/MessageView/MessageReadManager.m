@@ -70,7 +70,6 @@ static MessageReadManager *detailInstance = nil;
         _photoBrowser.displayNavArrows = YES;
         _photoBrowser.displaySelectionButtons = NO;
         _photoBrowser.alwaysShowControls = NO;
-        _photoBrowser.wantsFullScreenLayout = YES;
         _photoBrowser.zoomPhotosToFill = YES;
         _photoBrowser.enableGrid = NO;
         _photoBrowser.startOnGrid = NO;

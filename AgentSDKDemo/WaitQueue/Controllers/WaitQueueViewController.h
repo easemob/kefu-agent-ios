@@ -25,9 +25,6 @@
 
 @property (nonatomic, weak) id<ConversationTableControllerDelegate> conDelegate;
 
-- (instancetype)initWithStyle:(UITableViewStyle)style
-                         type:(HDConversationType)type;
-
 - (void)loadData;
 
 - (void)clearSeesion;

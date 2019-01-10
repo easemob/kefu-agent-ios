@@ -78,22 +78,9 @@
     [self loadData];
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
     [self isConnect:aConnectionState == HDConnectionConnected];
 }
-
 
 - (void)conversationLastMessageChanged:(HDMessage *)message {
     if ([message.sessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
@@ -256,7 +243,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
     if(tableView == self.searchController.searchResultsTableView){
         if ([self.searchController.resultsSource count] == 0) {
             return 1;
@@ -275,12 +261,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_type == HDConversationAccessed) {
-        DXTableViewCellTypeConversation *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation"];
-        // Configure the cell...
-        if (cell == nil) {
-            cell = [[DXTableViewCellTypeConversation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
-            cell.rightUtilityButtons = nil;
-        }
         
         if (tableView != self.searchController.searchResultsTableView) {
             if ([self.dataSource count] == 0) {
@@ -296,6 +276,12 @@
                 cell.textLabel.textAlignment = NSTextAlignmentCenter;
                 return cell;
             }
+        }
+        
+        DXTableViewCellTypeConversation *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation"];
+        if (cell == nil) {
+            cell = [[DXTableViewCellTypeConversation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
+            cell.rightUtilityButtons = nil;
         }
         cell.textLabel.text = @"";
         HDConversation *model = tableView != self.searchController.searchResultsTableView?[self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
@@ -394,7 +380,6 @@
                         model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.chatter.nicename];
                         [weakSelf.dataSource insertObject:model atIndex:0];
                         [_dataSourceDic setObject:model forKey:model.sessionId];
-                        model.lastMessage.sessionId = model.sessionId;
                     }
                     [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
                     break;

@@ -40,12 +40,12 @@
     [_stateBtn setImage:[self getUIImageWithState:model.kfState] forState:UIControlStateNormal];
     [_stateBtn setTitle:[self getTitleWithState:model.kfState] forState:UIControlStateNormal];;
     
-    _receptionLabel.text = [NSString stringWithFormat:@"%ld人  当前接待/%ld人最大接待",model.current_session_count,model.max_session_count];
+    _receptionLabel.text = [NSString stringWithFormat:@"%ld人  当前接待/%ld人最大接待",(long)model.current_session_count,(long)model.max_session_count];
 
     
     _endLabel.text = [NSString stringWithFormat:@"%d条  已结束会话",(int)model.session_terminal_count];
     
-    _avgTimeLabel.text = [NSString stringWithFormat:@"%d  平均会话时长",model.avg_session_time];
+    _avgTimeLabel.text = [NSString stringWithFormat:@"%ld  平均会话时长",(long)model.avg_session_time];
    
     _firstLoginLabel.text = [NSString stringWithFormat:@"%@  今天首次登陆",model.first_login_time_of_today];
 }

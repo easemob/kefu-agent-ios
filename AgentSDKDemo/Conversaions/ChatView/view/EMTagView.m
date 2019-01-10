@@ -155,15 +155,10 @@
 {
     CGSize textBlockMinSize = {CGFLOAT_MAX, kDefaultHeight};
     CGSize retSize;
-    if (kSystemVersion >= 7.0) {
-        retSize = [text boundingRectWithSize:textBlockMinSize options:NSStringDrawingUsesLineFragmentOrigin
-                                                     attributes:@{
-                                                                  NSFontAttributeName:[UIFont systemFontOfSize:kTagViewFontSize],
-                                                                  }
-                                                        context:nil].size;
-    }else{
-        retSize = [text sizeWithFont:[UIFont systemFontOfSize:kTagViewFontSize] constrainedToSize:textBlockMinSize lineBreakMode:NSLineBreakByCharWrapping];
-    }
+    retSize = [text boundingRectWithSize:textBlockMinSize
+                                 options:NSStringDrawingUsesLineFragmentOrigin
+                              attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:kTagViewFontSize]}
+                                 context:nil].size;
     return retSize;
 }
 

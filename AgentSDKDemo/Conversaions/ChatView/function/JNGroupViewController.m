@@ -216,7 +216,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if(tableView == self.searchDisplayController.searchResultsTableView){
+    if(tableView == self.searchController.searchResultsTableView){
         if ([self.searchController.resultsSource count] == 0) {
             return 1;
         }
@@ -233,7 +233,7 @@
         cell = [[DXTableViewCellType1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellType1"];
     }
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == self.searchController.searchResultsTableView) {
         if ([self.searchController.resultsSource count] == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
             cell.textLabel.text = @"没有搜索到……";
@@ -242,7 +242,7 @@
         }
     }
     
-    JiNengGroup *group = tableView != self.searchDisplayController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    JiNengGroup *group = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
     [cell setJiNengGroupModel:group];
     return cell;
 }
@@ -257,10 +257,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == self.searchController.searchResultsTableView) {
+        if ([self.searchController.resultsSource count] == 0) {
+            return;
+        }   
+    }
+    
     if (_searchBar.isFirstResponder) {
         [_searchBar resignFirstResponder];
     }
-    JiNengGroup *group = tableView != self.searchDisplayController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    JiNengGroup *group = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定将该会话转接给%@吗？",group.name] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.tag = 1000;
     [alert show];
@@ -355,8 +361,6 @@
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
 {
-    //    searchBar.userInteractionEnabled = NO;
-    //    [self performSelector:@selector(searchBarEnabled) withObject:nil afterDelay:2.0];
     return YES;
 }
 
@@ -376,16 +380,6 @@
     [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
-}
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
-        if([subview isKindOfClass:[UILabel class]]) {
-            [(UILabel*)subview setText:@""];
-        }
-    }
-    return YES;
 }
 
 #pragma mark - private

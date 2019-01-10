@@ -14,7 +14,7 @@
 #import "ChineseToPinyin.h"
 #import "SRRefreshView.h"
 
-@interface CustomerController ()<UISearchBarDelegate, UISearchDisplayDelegate,SRRefreshDelegate>
+@interface CustomerController ()<UISearchBarDelegate, SRRefreshDelegate>
 {
     NSString *_curRemoteAgentId;
     BOOL _isRefresh;
@@ -94,7 +94,6 @@
     _searchController.active = NO;
     _searchController.searchResultsDataSource = self;
     _searchController.searchResultsDelegate = self;
-    _searchController.delegate = self;
     _searchController.searchResultsTableView.tableFooterView = [UIView new];
     
 }
@@ -154,7 +153,7 @@
         cell = [[DXTableViewCellType1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellType1"];
     }
     
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (tableView == self.searchController.searchResultsTableView) {
         if ([self.searchController.resultsSource count] == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
             cell.textLabel.text = @"没有搜索到……";
@@ -163,7 +162,7 @@
         }
     }
     
-    HDConversation *model = tableView != self.searchDisplayController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
 
     [cell setModel:model];
     return cell;
@@ -179,31 +178,35 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (tableView == self.searchController.searchResultsTableView) {
+        if ([self.searchController.resultsSource count] == 0) {
+            return;
+        }
+    }
+    
     if (_searchBar.isFirstResponder) {
         [_searchBar resignFirstResponder];
     }
     
     CustomerChatViewController *customerChat = [[CustomerChatViewController alloc] init];
-    HDConversation *model = tableView != self.searchDisplayController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
     customerChat.title = model.chatter.nicename;
     customerChat.userModel = model.chatter;
     customerChat.model = model;
     
     _customerUnreadcount -= model.unreadCount;
-//    [self setValue:@(_customerUnreadcount) forKey:CUSTOMER_UNREADCOUNT];
     model.unreadCount = 0;
     
-    if (tableView != self.searchDisplayController.searchResultsTableView) {
+    if (tableView != self.searchController.searchResultsTableView) {
         [self.tableView reloadData];
     } else {
         [self.tableView reloadData];
-        [self.searchDisplayController.searchResultsTableView reloadData];
+        [self.searchController.searchResultsTableView reloadData];
     }
     _curRemoteAgentId = model.chatter.agentId;
     if ([self.delegate respondsToSelector:@selector(CustomerPushIntoChat:)]) {
         [self.delegate CustomerPushIntoChat:customerChat];
     }
-//    [self.navigationController pushViewController:customerChat animated:YES];
 }
 
 #pragma mark - data
@@ -308,17 +311,6 @@
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
-        if([subview isKindOfClass:[UILabel class]]) {
-            [(UILabel*)subview setText:@""];
-        }
-    }
-    return YES;
-}
-
 #pragma mark - public
 
 - (void)searhResignAndSearchDisplayNoActive

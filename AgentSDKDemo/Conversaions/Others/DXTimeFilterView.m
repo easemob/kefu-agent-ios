@@ -477,11 +477,11 @@
     NSLog(@"firstDiff:%ld   lastDiff:%ld",firstDiff,lastDiff);
     
     // 在当前日期(去掉了时分秒)基础上加上差的天数
-    NSDateComponents *firstDayComp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    NSDateComponents *firstDayComp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
     [firstDayComp setDay:day + firstDiff];
     NSDate *firstDayOfWeek= [calendar dateFromComponents:firstDayComp];
     
-    NSDateComponents *lastDayComp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    NSDateComponents *lastDayComp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
     [lastDayComp setDay:day + lastDiff];
     NSDate *lastDayOfWeek= [calendar dateFromComponents:lastDayComp];
     lastDayOfWeek = [lastDayOfWeek dateByAddingTimeInterval:-1];
@@ -492,15 +492,14 @@
 {
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSDayCalendarUnit
-                                         fromDate:now];
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitWeekday|NSCalendarUnitDay fromDate:now];
     
     // 在当前日期(去掉了时分秒)基础上加上差的天数
-    NSDateComponents *firstDayComp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    NSDateComponents *firstDayComp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
     [firstDayComp setDay:1];
     NSDate *firstDayOfWeek= [calendar dateFromComponents:firstDayComp];
     
-    NSDateComponents *lastDayComp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    NSDateComponents *lastDayComp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
     [lastDayComp setMonth:[comp month] + 1];
     [lastDayComp setDay:1];
     NSDate *lastDayOfWeek= [calendar dateFromComponents:lastDayComp];
@@ -512,15 +511,15 @@
 {
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *comp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit|NSWeekdayCalendarUnit|NSDayCalendarUnit
+    NSDateComponents *comp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitWeekday|NSCalendarUnitDay
                                          fromDate:now];
     
-    NSDateComponents *firstDayComp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    NSDateComponents *firstDayComp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
     [firstDayComp setMonth:[comp month] - 1];
     [firstDayComp setDay:1];
     NSDate *firstDayOfWeek= [calendar dateFromComponents:firstDayComp];
     
-    NSDateComponents *lastDayComp = [calendar components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:now];
+    NSDateComponents *lastDayComp = [calendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:now];
     [lastDayComp setDay:1];
     NSDate *lastDayOfWeek= [calendar dateFromComponents:lastDayComp];
     lastDayOfWeek = [lastDayOfWeek dateByAddingTimeInterval:-1];

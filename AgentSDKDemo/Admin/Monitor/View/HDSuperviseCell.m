@@ -44,7 +44,7 @@
     _groupName.text = model.queue_name;
     _queueLabel.text = [NSString stringWithFormat:@"%ld人  正在排队",(long)model.session_wait_count];
     _receptionLabel.text = [NSString stringWithFormat:@"%ld人  当前接待/%ld人最大接待",
-                            model.current_session_count,model.max_session_count];
+                            (long)model.current_session_count,(long)model.max_session_count];
     for (int i=0; i<5; i++) {
         KFLineChartModel *md = [KFLineChartModel new];
         md.status = i;
