@@ -543,11 +543,7 @@ static const CGFloat kDetailsLabelFontSize = 16.f;
     
     CGSize labelSize = MB_TEXTSIZE(label.text, label.font);
     CGRect sizeRect;
-    if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-        sizeRect = [label.text boundingRectWithSize:CGSizeMake(300.f, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:label.font} context:nil];
-    } else {
-        sizeRect.size = [label.text sizeWithFont:label.font constrainedToSize:CGSizeMake(300.f, CGFLOAT_MAX) lineBreakMode:NSLineBreakByCharWrapping];
-    }
+    sizeRect = [label.text boundingRectWithSize:CGSizeMake(300.f, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:label.font} context:nil];
     labelSize = sizeRect.size;
     
     labelSize.width = MIN(labelSize.width, maxWidth);
