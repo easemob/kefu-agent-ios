@@ -55,7 +55,7 @@
 - (void)setHistoryConversationModel:(HDHistoryConversation *)model
 {
     [super setHistoryModel:model];
-    if (model.summarys != [NSNull null] &&[model.summarys count] > 0) {
+    if ([model.summarys isKindOfClass:[NSArray class]] &&[model.summarys count] > 0) {
         NSArray *firstTag = [model.summarys objectAtIndex:0];
         if ([firstTag isKindOfClass:[NSArray class]]) {
             if ([firstTag count] == 1) {
