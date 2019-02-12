@@ -8,12 +8,12 @@
 
 #import "WebViewController.h"
 
-@interface WebViewController () <UIWebViewDelegate>
+@interface WebViewController () <UIWebViewDelegate, UIScrollViewDelegate>
 {
     NSString *_url;
 }
 
-@property (strong, nonatomic) UIWebView *webview;
+@property (strong, nonatomic) UIWebView *webView;
 
 @end
 
@@ -38,11 +38,13 @@
     UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
     [self.navigationItem setLeftBarButtonItem:backItem];
     
-    _webview = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    _webview.delegate = self;
-    [_webview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
-    _webview.userInteractionEnabled = YES;
-    [self.view addSubview:_webview];
+    _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    _webView.delegate = self;
+    [_webView setScalesPageToFit:YES];
+    _webView.scrollView.delegate = self;
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
+    _webView.userInteractionEnabled = YES;
+    [self.view addSubview:_webView];
     // Do any additional setup after loading the view.
 }
 
@@ -77,6 +79,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return _webView.scrollView.subviews.firstObject;
 }
 
 /*
