@@ -14,15 +14,15 @@
 
 @interface EMSDWebImageDownloaderOperation () <NSURLConnectionDataDelegate>
 
-@property (copy, nonatomic) EMSDWebImageDownloaderProgressBlock progressBlock;
-@property (copy, nonatomic) EMSDWebImageDownloaderCompletedBlock completedBlock;
-@property (copy, nonatomic) SDWebImageNoParamsBlock cancelBlock;
+@property (nonatomic, copy) EMSDWebImageDownloaderProgressBlock progressBlock;
+@property (nonatomic, copy) EMSDWebImageDownloaderCompletedBlock completedBlock;
+@property (nonatomic, copy) SDWebImageNoParamsBlock cancelBlock;
 
 @property (assign, nonatomic, getter = isExecuting) BOOL executing;
 @property (assign, nonatomic, getter = isFinished) BOOL finished;
 @property (assign, nonatomic) NSInteger expectedSize;
-@property (strong, nonatomic) NSMutableData *imageData;
-@property (strong, nonatomic) NSURLConnection *connection;
+@property (nonatomic, strong) NSMutableData *imageData;
+@property (nonatomic, strong) NSURLConnection *connection;
 @property (strong, atomic) NSThread *thread;
 
 #if TARGET_OS_IPHONE && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0

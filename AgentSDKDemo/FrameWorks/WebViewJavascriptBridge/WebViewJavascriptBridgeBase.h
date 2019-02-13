@@ -16,22 +16,22 @@ typedef void (^WVJBHandler)(id data, WVJBResponseCallback responseCallback);
 typedef NSDictionary WVJBMessage;
 
 @protocol WebViewJavascriptBridgeBaseDelegate <NSObject>
-- (NSString*) _evaluateJavascript:(NSString*)javascriptCommand;
+- (NSString *) _evaluateJavascript:(NSString *)javascriptCommand;
 @end
 
 @interface WebViewJavascriptBridgeBase : NSObject
 
 
 @property (assign) id <WebViewJavascriptBridgeBaseDelegate> delegate;
-@property (strong, nonatomic) NSMutableArray* startupMessageQueue;
-@property (strong, nonatomic) NSMutableDictionary* responseCallbacks;
-@property (strong, nonatomic) NSMutableDictionary* messageHandlers;
-@property (strong, nonatomic) WVJBHandler messageHandler;
+@property (nonatomic, strong) NSMutableArray* startupMessageQueue;
+@property (nonatomic, strong) NSMutableDictionary* responseCallbacks;
+@property (nonatomic, strong) NSMutableDictionary* messageHandlers;
+@property (nonatomic, strong) WVJBHandler messageHandler;
 
 + (void)enableLogging;
 + (void)setLogMaxLength:(int)length;
 - (void)reset;
-- (void)sendData:(id)data responseCallback:(WVJBResponseCallback)responseCallback handlerName:(NSString*)handlerName;
+- (void)sendData:(id)data responseCallback:(WVJBResponseCallback)responseCallback handlerName:(NSString *)handlerName;
 - (void)flushMessageQueue:(NSString *)messageQueueString;
 - (void)injectJavascriptFile;
 - (BOOL)isCorrectProcotocolScheme:(NSURL*)url;

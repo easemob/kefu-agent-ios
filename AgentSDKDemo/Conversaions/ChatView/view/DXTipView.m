@@ -10,9 +10,9 @@
 
 @interface DXTipView()
 
-@property (nonatomic,strong) UILabel *tipLabel;
-@property (nonatomic,strong) UIButton *bgImageView;
-@property (nonatomic,assign) NSInteger originWidth;
+@property (nonatomic, strong) UILabel *tipLabel;
+@property (nonatomic, strong) UIButton *bgImageView;
+@property (nonatomic, assign) NSInteger originWidth;
 
 @end
 
@@ -38,7 +38,7 @@
     [super setFrame:frame];
 }
 
-- (UIButton*)bgImageView
+- (UIButton *)bgImageView
 {
     if (_bgImageView == nil) {
         _bgImageView = [[UIButton alloc] init];
@@ -64,7 +64,7 @@
     return _tipLabel;
 }
 
-- (void)setTipNumber:(NSString*)tipNumber
+- (void)setTipNumber:(NSString *)tipNumber
 {
     _tipNumber = tipNumber;
     if (tipNumber && tipNumber.length > 0) {

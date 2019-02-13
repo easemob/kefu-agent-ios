@@ -22,7 +22,7 @@
 
 @property (weak, nonatomic) id<DXDatePickerViewDelegate> delegate;
 
-@property (strong, nonatomic) UIDatePicker *datePicker;
+@property (nonatomic, strong) UIDatePicker *datePicker;
 
 + (CGFloat)datePickerViewHeight;
 

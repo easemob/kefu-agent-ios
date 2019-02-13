@@ -16,9 +16,9 @@ NSString *const kRouterEventFileBubbleTapEventName = @"kRouterEventFileBubbleTap
 
 @interface EMChatFileBubbleView ()
 
-@property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) UILabel *sizeLabel;
-@property (strong, nonatomic) UIImageView *imageView;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *sizeLabel;
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end
 

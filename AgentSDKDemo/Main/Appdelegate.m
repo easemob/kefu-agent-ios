@@ -170,7 +170,7 @@
 - (void)updateVersion:(id)dic
 {
     if ([dic isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *updateInfo = (NSDictionary*)dic;
+        NSDictionary *updateInfo = (NSDictionary *)dic;
         NSString *version = [updateInfo objectForKey:@"versionCode"];
         NSString *appVersion = [[[NSBundle mainBundle]infoDictionary]valueForKey:@"CFBundleVersion"];
         if ([version compare:appVersion options:NSNumericSearch] ==NSOrderedDescending) {

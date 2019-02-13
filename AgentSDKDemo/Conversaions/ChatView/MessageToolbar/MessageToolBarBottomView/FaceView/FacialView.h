@@ -15,7 +15,7 @@
 @protocol FacialViewDelegate
 
 @optional
--(void)selectedFacialView:(NSString*)str;
+-(void)selectedFacialView:(NSString *)str;
 -(void)deleteSelected:(NSString *)str;
 -(void)sendFace;
 
@@ -27,9 +27,9 @@
 	NSMutableArray *_faces;
 }
 
-@property(nonatomic) id<FacialViewDelegate> delegate;
+@property (nonatomic) id<FacialViewDelegate> delegate;
 
-@property(strong, nonatomic, readonly) NSArray *faces;
+@property (strong, nonatomic, readonly) NSArray *faces;
 
 -(void)loadFacialView:(int)page size:(CGSize)size;
 

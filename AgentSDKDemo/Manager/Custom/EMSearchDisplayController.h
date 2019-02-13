@@ -14,7 +14,7 @@
 
 @interface EMSearchDisplayController : UISearchDisplayController<UITableViewDataSource, UITableViewDelegate, UISearchDisplayDelegate>
 
-@property (strong, nonatomic) NSMutableArray *resultsSource;
+@property (nonatomic, strong) NSMutableArray *resultsSource;
 
 //编辑cell时显示的风格，默认为UITableViewCellEditingStyleDelete；会将值付给[tableView:editingStyleForRowAtIndexPath:]
 @property (nonatomic) UITableViewCellEditingStyle editingStyle;

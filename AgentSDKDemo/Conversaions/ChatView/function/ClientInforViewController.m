@@ -10,6 +10,7 @@
 #import "ClientInforCompileController.h"
 #import "MBProgressHUD.h"
 #import "DXTagView.h"
+#import "KFiFrameView.h"
 #import "CompileTableViewCell.h"
 #import "ClientInforHeaderView.h"
 #import "EMPickerView.h"
@@ -18,19 +19,23 @@
 @interface ClientInforViewController ()<ClientInforCompileControllerDelegate,EMPickerSaveDelegate,KFDatePickerDelegate>
 {
     NSArray *titleArr;
+    NSString *_kefuIm;
+    NSString *_visitorInfo;
 }
 
-@property (strong ,nonatomic) DXTagView *tagView;
-@property (strong ,nonatomic) NSMutableArray *tagSource;
-@property (strong ,nonatomic) NSMutableDictionary *userInfo;
-@property (strong ,nonatomic) ClientInforHeaderView *headerView;
-@property (strong, nonatomic) UIScrollView *mainScrollView;
-@property (strong, nonatomic) UIView *headerButtonView;
-@property (strong, nonatomic) UIView *selectView;
-@property (strong, nonatomic) UIButton *infoButton;
-@property (strong, nonatomic) UIButton *tagButton;
-@property(nonatomic,strong)   NSMutableArray *dataArr;
-@property(nonatomic,strong) EMPickerView *pickerView;
+@property (nonatomic, strong) DXTagView *tagView;
+@property (nonatomic, strong) KFiFrameView *iframeView;
+@property (nonatomic, strong) NSMutableArray *tagSource;
+@property (nonatomic, strong) NSMutableDictionary *userInfo;
+@property (nonatomic, strong) ClientInforHeaderView *headerView;
+@property (nonatomic, strong) UIScrollView *mainScrollView;
+@property (nonatomic, strong) UIView *headerButtonView;
+@property (nonatomic, strong) UIView *selectView;
+@property (nonatomic, strong) UIButton *infoButton;
+@property (nonatomic, strong) UIButton *tagButton;
+@property (nonatomic, strong) UIButton *iframeButton;
+@property (nonatomic, strong) NSMutableArray *dataArr;
+@property (nonatomic, strong) EMPickerView *pickerView;
 
 @end
 
@@ -47,14 +52,11 @@
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.headerButtonView];
     [self.view addSubview:self.mainScrollView];
-    [self.mainScrollView addSubview:self.tableView];
     self.tableView.height -= CGRectGetMaxY(self.headerButtonView.frame) + 64;
+    [self.mainScrollView addSubview:self.tableView];
     [self.mainScrollView addSubview:self.tagView];
-    
-    // Do any additional setup after loading the view.
+    [self.mainScrollView addSubview:self.iframeView];
     [self.tableView reloadData];
-
-//    [self loadUserInfo];
     [self loadVisitorInfoList];
     
     UIView *hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
@@ -71,13 +73,14 @@
     return _dataArr;
 }
 
-- (UIView*)headerButtonView
+- (UIView *)headerButtonView
 {
     if (_headerButtonView == nil) {
         _headerButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerView.height, KScreenWidth, 44)];
         _headerButtonView.backgroundColor = [UIColor whiteColor];
         [_headerButtonView addSubview:self.infoButton];
         [_headerButtonView addSubview:self.tagButton];
+        [_headerButtonView addSubview:self.iframeButton];
         [_headerButtonView addSubview:self.selectView];
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerButtonView.height - 0.5f, KScreenWidth, 0.5f)];
         line.backgroundColor = [UIColor lightGrayColor];
@@ -86,22 +89,22 @@
     return _headerButtonView;
 }
 
-- (UIView*)selectView
+- (UIView *)selectView
 {
     if (_selectView == nil) {
-        _selectView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerButtonView.height - 1.5f, KScreenWidth/2, 1.f)];
-        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(25.f, 0, KScreenWidth/2 - 50.f, 1.5f)];
+        _selectView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerButtonView.height - 1.5f, KScreenWidth / 3, 1.f)];
+        UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth / 3, 1.5f)];
         line.backgroundColor = RGBACOLOR(25, 163, 255, 1);
         [_selectView addSubview:line];
     }
     return _selectView;
 }
 
-- (UIButton*)infoButton
+- (UIButton *)infoButton
 {
     if (_infoButton == nil) {
         _infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _infoButton.frame = CGRectMake(0, 0, KScreenWidth/2, self.headerButtonView.height - 1.f);
+        _infoButton.frame = CGRectMake(0, 0, KScreenWidth/3, self.headerButtonView.height - 1.f);
         [_infoButton setTitle:@"资料" forState:UIControlStateNormal];
         [_infoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_infoButton addTarget:self action:@selector(infoButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -109,11 +112,11 @@
     return _infoButton;
 }
 
-- (UIButton*)tagButton
+- (UIButton *)tagButton
 {
     if (_tagButton == nil) {
         _tagButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _tagButton.frame = CGRectMake(KScreenWidth/2, 0, KScreenWidth/2, self.headerButtonView.height - 1.f);
+        _tagButton.frame = CGRectMake(KScreenWidth / 3, 0, KScreenWidth / 3, self.headerButtonView.height - 1.f);
         [_tagButton setTitle:@"标签" forState:UIControlStateNormal];
         [_tagButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_tagButton addTarget:self action:@selector(tagButtonAction) forControlEvents:UIControlEventTouchUpInside];
@@ -121,25 +124,37 @@
     return _tagButton;
 }
 
-- (UIScrollView*)mainScrollView
+- (UIButton *)iframeButton
+{
+    if (_iframeButton == nil) {
+        _iframeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _iframeButton.frame = CGRectMake(KScreenWidth / 3 * 2, 0, KScreenWidth / 3, self.headerButtonView.height - 1.f);
+        [_iframeButton setTitle:@"iframe" forState:UIControlStateNormal];
+        [_iframeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_iframeButton addTarget:self action:@selector(iframeButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _iframeButton;
+}
+
+- (UIScrollView *)mainScrollView
 {
     if (_mainScrollView == nil) {
         _mainScrollView = [[UIScrollView alloc] init];
         _mainScrollView.frame = CGRectMake(0, CGRectGetMaxY(self.headerButtonView.frame), KScreenWidth, KScreenHeight - CGRectGetMaxY(self.headerButtonView.frame));
-        _mainScrollView.contentSize = CGSizeMake(KScreenWidth * 2, KScreenHeight - CGRectGetMaxY(self.headerButtonView.frame));
+        _mainScrollView.contentSize = CGSizeMake(KScreenWidth * 3, KScreenHeight - CGRectGetMaxY(self.headerButtonView.frame));
         _mainScrollView.pagingEnabled = YES;
         _mainScrollView.scrollEnabled = NO;
     }
     return _mainScrollView;
 }
 
-- (ClientInforHeaderView*)headerView
+- (ClientInforHeaderView *)headerView
 {
     _headerView = [[ClientInforHeaderView alloc] initWithniceName:_niceName tagImage:_tagImage];
     return _headerView;
 }
 
-- (UIView*)tagView
+- (UIView *)tagView
 {
     if (_tagView == nil) {
         _tagView = [[DXTagView alloc] initWithFrame:CGRectMake(KScreenWidth, 0, KScreenWidth, self.tableView.height) isFromChat:NO];
@@ -147,6 +162,15 @@
         _tagView.bgColor = [UIColor clearColor];
     }
     return _tagView;
+}
+
+- (KFiFrameView *)iframeView {
+    if (!_iframeView) {
+        _iframeView = [[KFiFrameView alloc] initWithFrame:self.tableView.bounds iframe:nil];
+        _iframeView.left = KScreenWidth * 2;
+        _iframeView.backgroundColor = UIColor.redColor;
+    }
+    return _iframeView;
 }
 
 #pragma mark - action
@@ -162,8 +186,45 @@
 {
     [self.mainScrollView setContentOffset:CGPointMake(KScreenWidth, 0) animated:YES];
     [UIView animateWithDuration:0.2 animations:^{
-        self.selectView.left = KScreenWidth/2;
+        self.selectView.left = KScreenWidth / 3;
     }];
+}
+
+- (void)iframeButtonAction {
+    
+    __weak typeof(self)weakSelf = self;
+    dispatch_block_t block = ^{ @autoreleasepool {
+        KFIframeModel *model = [[HDUserManager sharedInstance] getAgentUserModel].iframeModel;
+        if (model) {
+            weakSelf.iframeView.kefuIm = _kefuIm;
+            weakSelf.iframeView.visitorInfo = _visitorInfo;
+            [weakSelf.iframeView reloadWebViewFromModel:model user:weakSelf.user];
+        }
+    }};
+    
+    [self.mainScrollView setContentOffset:CGPointMake(KScreenWidth * 2, 0) animated:YES];
+    [UIView animateWithDuration:0.2 animations:^{
+        self.selectView.left = KScreenWidth / 3 * 2;
+    }];
+    
+    if (!_kefuIm || !_visitorInfo) {
+        [self showHudInView:self.view hint:@"获取中..."];
+        [HDClient.sharedClient.notiManager asyncFetchVisitorChatInfoWithId:_userId
+                                                                completion:^(id info, HDError *error)
+        {
+            [weakSelf hideHud];
+            if (!error) {
+                NSArray *kefus = info[@"kefuIms"];
+                _kefuIm = kefus.firstObject;
+                _visitorInfo = info[@"visitorIm"];
+                block();
+            }else {
+                [weakSelf showHint:@"获取失败..."];
+            }
+        }];
+    }else {
+        block();
+    }
 }
 
 
@@ -313,7 +374,6 @@
 
 #pragma mark - private
 
-
 //new
 - (void)loadVisitorInfoList {
     [self showHintNotHide:@""];
@@ -386,15 +446,5 @@
 - (void)dealloc {
     NSLog(@"__dealloc__%s",__func__);
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

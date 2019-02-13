@@ -10,13 +10,13 @@
 
 @protocol AdminInforEditViewControllerDelegate <NSObject>
 
-- (void)saveParameter:(NSString*)value key:(NSString*)key;
+- (void)saveParameter:(NSString *)value key:(NSString *)key;
 
 @end
 
 @interface AdminInforEditViewController : EMBaseViewController
 
-@property (copy, nonatomic) NSString *editContent;
+@property (nonatomic, copy) NSString *editContent;
 
 @property (weak, nonatomic) id<AdminInforEditViewControllerDelegate> delegate;
 

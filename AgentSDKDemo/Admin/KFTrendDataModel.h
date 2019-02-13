@@ -10,10 +10,10 @@
 
 @interface TodayModel : NSObject
 
-@property(nonatomic,strong) NSString *agentNiceName;
-@property(nonatomic,copy) NSNumber *cnt_sc;
-@property(nonatomic,copy) NSNumber *count;
-@property(nonatomic,copy) NSString *key;
+@property (nonatomic, strong) NSString *agentNiceName;
+@property (nonatomic, copy) NSNumber *cnt_sc;
+@property (nonatomic, copy) NSNumber *count;
+@property (nonatomic, copy) NSString *key;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
@@ -21,16 +21,16 @@
 
 @interface ItemModel : NSObject
 
-@property(nonatomic,assign) NSTimeInterval time;
-@property(nonatomic,assign) NSInteger value;
+@property (nonatomic, assign) NSTimeInterval time;
+@property (nonatomic, assign) NSInteger value;
 
 @end
 
 @interface TypeModel : NSObject
 
-@property(nonatomic,copy) NSString *type;
+@property (nonatomic, copy) NSString *type;
 
-@property(nonatomic,strong) NSMutableDictionary *valueDic;//{time:count}
+@property (nonatomic, strong) NSMutableDictionary *valueDic;//{time:count}
 
 @end
 
@@ -38,6 +38,6 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
-@property(nonatomic,strong) NSArray <TypeModel *> *types;
+@property (nonatomic, strong) NSArray <TypeModel *> *types;
 
 @end

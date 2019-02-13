@@ -21,7 +21,7 @@
 
 @property (nonatomic, weak) id<EMChatHeaderTagViewDelegate> delegate;
 
-- (instancetype)initWithSessionId:(NSString*)serviceSessionId edit:(BOOL)edit;
+- (instancetype)initWithSessionId:(NSString *)serviceSessionId edit:(BOOL)edit;
 
 - (void)setTagDatasource:(NSArray*)datasource;
 

@@ -17,7 +17,7 @@
 
 @interface JNGroupViewController : DXTableViewController
 
-@property (nonatomic,strong) NSString* serviceSessionId;
+@property (nonatomic, strong) NSString * serviceSessionId;
 
 @property (nonatomic,weak) id<JNGroupViewDelegate> delegate;
 

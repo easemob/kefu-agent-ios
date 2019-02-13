@@ -106,7 +106,7 @@
     return text;
 }
 
-+ (NSString*)textFormat:(NSString*)text
++ (NSString *)textFormat:(NSString *)text
 {
     text = [text stringByReplacingOccurrencesOfString:@"&lt;" withString:@"<"];
     return [text stringByReplacingOccurrencesOfString:@"&#39;" withString:@"'"];

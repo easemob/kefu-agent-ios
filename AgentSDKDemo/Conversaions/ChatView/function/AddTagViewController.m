@@ -104,8 +104,8 @@
 @property (nonatomic, strong) NSMutableArray *selectArray;
 @property (nonatomic, strong) NSMutableDictionary *commentDic;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
-@property (strong, nonatomic) EMChatHeaderTagView *headerTagView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
+@property (nonatomic, strong) EMChatHeaderTagView *headerTagView;
 
 @end
 
@@ -373,7 +373,7 @@
     }
 }
 
-- (TagNode*)_getTopParentTree:(NSString*)parentId
+- (TagNode*)_getTopParentTree:(NSString *)parentId
 {
     if ([_tree objectForKey:parentId]) {
         TagNode *node = [_tree objectForKey:parentId];

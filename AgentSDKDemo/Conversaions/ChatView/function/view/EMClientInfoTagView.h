@@ -10,6 +10,6 @@
 
 @interface EMClientInfoTagView : UIView
 
-- (instancetype)initWithUserTagModel:(HDUserTag *)model visitorUserId:(NSString*)visitorUserId;
+- (instancetype)initWithUserTagModel:(HDUserTag *)model visitorUserId:(NSString *)visitorUserId;
 
 @end

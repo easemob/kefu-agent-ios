@@ -14,7 +14,7 @@
     int _type;
 }
 
-@property (strong ,nonatomic) UITextField *editTextField;
+@property (nonatomic, strong) UITextField *editTextField;
 
 @end
 
@@ -109,117 +109,6 @@
     if (_delegate && [_delegate respondsToSelector:@selector(savePatameter:index:)]) {
         [_delegate savePatameter:_editTextField.text index:_type];
     }
-//    switch (_type) {
-//        case 0:
-//        {
-//            if (_editTextField.text.length > 22) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"客户名最大长度22位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            [self.delegate saveParameter:_editTextField.text key:USER_NICENAME];
-//        }
-//            break;
-//        case 1:
-//        {
-//            if (_editTextField.text.length > 22) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"真实姓名最大长度22位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            [self.delegate saveParameter:_editTextField.text key:USER_TRUENAME];
-//        }
-//            break;
-//        case 2:
-//        {
-//            NSString *phone = _editTextField.text;
-//            NSString *regex = @"[0-9]{11,18}";
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//            BOOL isValid = [predicate evaluateWithObject:phone];
-//            if (phone.length > 18 || phone.length < 11) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"手机号为数字有效长度为11-18位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            if (!isValid) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"正确格式为数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            [self.delegate saveParameter:_editTextField.text key:VISTORUSER_PHONE];
-//        }
-//            break;
-//        case 3:
-//        {
-//            NSString *qq = _editTextField.text;
-//            NSString *regex = @"[0-9]{4,22}";
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//            BOOL isValid = [predicate evaluateWithObject:qq];
-//            if (qq.length > 22 || qq.length < 4) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"数字有效长度为4-22位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            if (!isValid) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"正确格式为数字" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            [self.delegate saveParameter:_editTextField.text key:VISTORUSER_QQ];
-//        }
-//            break;
-//        case 4:
-//        {
-//            NSString *email = _editTextField.text;
-//            NSString *regex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//            BOOL isValid = [predicate evaluateWithObject:email];
-//            if (!isValid) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"邮箱为邮箱格式" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            [self.delegate saveParameter:_editTextField.text key:VISTORUSER_EMAIL];
-//        }
-//            break;
-//        case 5:
-//        {
-//            if (_editTextField.text.length > 24) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"公司最大长度为24位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            [self.delegate saveParameter:_editTextField.text key:VISTORUSER_COMPANYNAME];
-//        }
-//            break;
-//        case 6:
-//        {
-//            if (_editTextField.text.length > 100) {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"备注最大长度为100位" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//                [alertView show];
-//                return;
-//            }
-//            [self.delegate saveParameter:_editTextField.text key:VISTORUSER_DESC];
-//        }
-//            break;
-//        default:
-//            break;
-//    }
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

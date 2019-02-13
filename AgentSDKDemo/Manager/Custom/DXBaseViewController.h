@@ -10,12 +10,12 @@
 
 @interface DXBaseViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
-@property (strong, nonatomic) UIBarButtonItem *backItem;
+@property (nonatomic, strong) UIBarButtonItem *backItem;
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 
-@property (strong, nonatomic) UIButton *titleBtn;
+@property (nonatomic, strong) UIButton *titleBtn;
 
-@property (strong, nonatomic) UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
 
 @end

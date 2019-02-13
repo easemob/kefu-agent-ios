@@ -180,7 +180,7 @@ YYEncodingType YYEncodingGetType(const char *typeEncoding) {
                         
                         NSMutableArray *protocols = nil;
                         while ([scanner scanString:@"<" intoString:NULL]) {
-                            NSString* protocol = nil;
+                            NSString * protocol = nil;
                             if ([scanner scanUpToString:@">" intoString: &protocol]) {
                                 if (protocol.length) {
                                     if (!protocols) protocols = [NSMutableArray new];

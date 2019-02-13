@@ -14,14 +14,14 @@
 
 @interface EMSDWebImagePrefetcher ()
 
-@property (strong, nonatomic) EMSDWebImageManager *manager;
-@property (strong, nonatomic) NSArray *prefetchURLs;
+@property (nonatomic, strong) EMSDWebImageManager *manager;
+@property (nonatomic, strong) NSArray *prefetchURLs;
 @property (assign, nonatomic) NSUInteger requestedCount;
 @property (assign, nonatomic) NSUInteger skippedCount;
 @property (assign, nonatomic) NSUInteger finishedCount;
 @property (assign, nonatomic) NSTimeInterval startedTime;
-@property (copy, nonatomic) EMSDWebImagePrefetcherCompletionBlock completionBlock;
-@property (copy, nonatomic) EMSDWebImagePrefetcherProgressBlock progressBlock;
+@property (nonatomic, copy) EMSDWebImagePrefetcherCompletionBlock completionBlock;
+@property (nonatomic, copy) EMSDWebImagePrefetcherProgressBlock progressBlock;
 
 @end
 

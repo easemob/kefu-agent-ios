@@ -10,6 +10,6 @@
 
 @interface UIAlertView (KFAdd)
 
-@property(nonatomic,strong)NSString *sessionId;
+@property (nonatomic, strong) NSString *sessionId;
 
 @end

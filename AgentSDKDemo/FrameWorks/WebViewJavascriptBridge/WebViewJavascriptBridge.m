@@ -71,7 +71,7 @@
     _webViewDelegate = nil;
 }
 
-- (NSString*) _evaluateJavascript:(NSString*)javascriptCommand
+- (NSString *) _evaluateJavascript:(NSString *)javascriptCommand
 {
     return [_webView stringByEvaluatingJavaScriptFromString:javascriptCommand];
 }

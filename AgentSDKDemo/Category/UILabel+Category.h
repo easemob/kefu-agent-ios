@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface UILabel (Category)
--(void)setLabelSpaceWithValue:(NSString*)str
+-(void)setLabelSpaceWithValue:(NSString *)str
             withFont:(UIFont*)font
      spaceLineHeight:(CGFloat)aHeight;
 
-- (CGFloat)getSpaceLabelHeight:(NSString*)str
+- (CGFloat)getSpaceLabelHeight:(NSString *)str
                       withFont:(UIFont*)font
                      withWidth:(CGFloat)width
                spaceLineHeight:(CGFloat)aHeight;

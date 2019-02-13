@@ -10,7 +10,7 @@
 
 @protocol EMPromptBoxViewDelegate <NSObject>
 
-- (void)didSelectPromptBoxViewWithPhrase:(NSString*)phrase;
+- (void)didSelectPromptBoxViewWithPhrase:(NSString *)phrase;
 
 @end
 

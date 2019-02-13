@@ -10,8 +10,8 @@
 
 @interface DXLoadingView()
 
-@property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UIButton *cancleButton;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UIButton *cancleButton;
 
 @end
 

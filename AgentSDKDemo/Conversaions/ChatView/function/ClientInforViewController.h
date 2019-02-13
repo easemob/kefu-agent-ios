@@ -11,15 +11,12 @@
 
 @interface ClientInforViewController : DXBaseViewController
 
-@property(nonatomic,copy) NSString *niceName; //昵称
-@property(nonatomic,strong) UIImage *tagImage; //标记来源
-
-@property(nonatomic,copy) NSString *customerId;
-
-@property (copy, nonatomic) NSString* userId;
-
-@property (strong, nonatomic) VisitorUserModel* vistor;
-
-@property(nonatomic,assign) BOOL readOnly;
+@property (nonatomic, copy) NSString *niceName; //昵称
+@property (nonatomic, copy) NSString *customerId;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, strong) UserModel *user;
+@property (nonatomic, strong) UIImage *tagImage; //标记来源
+@property (nonatomic, strong) VisitorUserModel *vistor;
+@property (nonatomic, assign) BOOL readOnly;
 
 @end

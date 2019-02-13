@@ -10,17 +10,17 @@
 //#import "EMNotifyModel.h"
 
 @interface VisitorModel : NSObject
-@property(nonatomic,copy) NSString *createDateTime;
-@property(nonatomic,strong) NSString *description;
-@property(nonatomic,strong) NSString *email;
-@property(nonatomic,strong) NSString *nicename;
-@property(nonatomic,strong) NSString *phone;
-@property(nonatomic,strong) NSString *techChannelType;
-@property(nonatomic,strong) NSString *userId;
-@property(nonatomic,strong) NSString *username;
+@property (nonatomic, copy) NSString *createDateTime;
+@property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *nicename;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *techChannelType;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *username;
 @end
 
 @interface NotiDetailViewController : UIViewController
 
-@property(nonatomic,strong) HDNotifyModel *model;
+@property (nonatomic, strong) HDNotifyModel *model;
 @end

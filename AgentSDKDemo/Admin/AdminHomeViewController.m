@@ -99,8 +99,8 @@ typedef NS_ENUM(NSUInteger, CardType) {
 #import "SRRefreshView.h"
 
 @interface AdminHomeViewController () <KFScreenViewControllerDelegate,SRRefreshDelegate,UIScrollViewDelegate>
-@property(nonatomic,strong) UIScrollView *backView;
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) UIScrollView *backView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 @end
 
 @implementation AdminHomeViewController
@@ -336,7 +336,7 @@ typedef NS_ENUM(NSUInteger, CardType) {
         [formatter setTimeStyle:NSDateFormatterShortStyle];
         [formatter setDateFormat:@"MM-dd"];
         // 毫秒值转化为秒
-        NSString* dateString = [formatter stringFromDate:date];
+        NSString * dateString = [formatter stringFromDate:date];
         return dateString;
     }
 }
@@ -351,7 +351,7 @@ typedef NS_ENUM(NSUInteger, CardType) {
     [formatter setDateFormat:@"MM-dd"];
     // 毫秒值转化为秒
     NSDate* date = [NSDate dateWithTimeIntervalSince1970:[timeString doubleValue]/ 1000.0];
-    NSString* dateString = [formatter stringFromDate:date];
+    NSString * dateString = [formatter stringFromDate:date];
     return dateString;
 }
 - (NSString *)getStandardName:(NSString *)lite {

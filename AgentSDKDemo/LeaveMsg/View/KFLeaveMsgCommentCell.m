@@ -241,7 +241,7 @@
     return ret;
 }
 
-+ (CGFloat)_heightForContent:(NSString*)content
++ (CGFloat)_heightForContent:(NSString *)content
 {
     if (content.length == 0) {
         return 60.f;
@@ -286,7 +286,7 @@
     return height;
 }
 
-- (NSString*)formatDate:(NSString*)time
+- (NSString *)formatDate:(NSString *)time
 {
     if (time.length > 0) {
         NSDateFormatter *format =[[NSDateFormatter alloc] init];

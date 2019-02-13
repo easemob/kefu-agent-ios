@@ -12,7 +12,7 @@
 
 @interface DXTagView ()
 
-@property (strong ,nonatomic) NSMutableArray *tagSource;
+@property (nonatomic, strong) NSMutableArray *tagSource;
 
 @end
 

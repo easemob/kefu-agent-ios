@@ -16,14 +16,14 @@
 
 @interface AdminInforViewController () <AdminInforEditViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
 
-@property (strong, nonatomic) UIImagePickerController *imagePicker;
-@property (strong, nonatomic) UIImage *uploadImage;
-@property (strong, nonatomic) UIView *headerView;
-@property (strong, nonatomic) UIImageView *headerImageView;
-@property (strong, nonatomic) UILabel *nicknameLabel;
-@property (strong, nonatomic) UISwitch *greetingsSwitch;
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) UIImage *uploadImage;
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UILabel *nicknameLabel;
+@property (nonatomic, strong) UISwitch *greetingsSwitch;
 
-@property (strong, nonatomic) UIView *line;
+@property (nonatomic, strong) UIView *line;
 
 @end
 
@@ -78,7 +78,7 @@
     }
 }
 
-- (UIView*)line
+- (UIView *)line
 {
     if (_line == nil) {
         _line = [[UIView alloc] init];
@@ -101,7 +101,7 @@
     return _imagePicker;
 }
 
-- (UIView*)headerView
+- (UIView *)headerView
 {
     if (_headerView == nil) {
         _headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 100)];

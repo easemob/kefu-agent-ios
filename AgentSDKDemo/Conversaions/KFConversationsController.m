@@ -184,7 +184,7 @@
     [_scrollView addSubview:_customerViewController.view];
 }
 
-- (UIButton*)maxServiceNumButton
+- (UIButton *)maxServiceNumButton
 {
     if (_maxServiceNumButton == nil) {
         _maxServiceNumButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 44)];
@@ -311,7 +311,7 @@
     
     UITouch* touch = [[event allTouches] anyObject];
     
-    UIButton *btn = (UIButton*)sender;
+    UIButton *btn = (UIButton *)sender;
     if (touch.tapCount == 2) {
         if (btn.tag == 100) {
             [_conversationController.tableView setContentOffset:CGPointMake(0, 0) animated:YES];

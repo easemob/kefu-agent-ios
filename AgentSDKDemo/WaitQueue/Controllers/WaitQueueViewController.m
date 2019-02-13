@@ -29,15 +29,15 @@
     UILabel *_resultLabel;
 }
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
-@property (strong, nonatomic) NSMutableDictionary *dataSourceDic;
+@property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
-@property (strong, nonatomic) EMHeaderImageView *headerImageView;
-@property (strong, nonatomic) UIView *networkStateView;
-@property (strong, nonatomic) UILabel *curLabel;
+@property (nonatomic, strong) SRRefreshView *slimeView;
+@property (nonatomic, strong) EMHeaderImageView *headerImageView;
+@property (nonatomic, strong) UIView *networkStateView;
+@property (nonatomic, strong) UILabel *curLabel;
 @property (nonatomic, assign) NSInteger waitUnreadcount;
 
 @end

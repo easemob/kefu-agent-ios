@@ -18,12 +18,12 @@ static MessageReadManager *detailInstance = nil;
 
 @interface MessageReadManager()<UIActionSheetDelegate>
 
-@property (strong, nonatomic) UIWindow *keyWindow;
+@property (nonatomic, strong) UIWindow *keyWindow;
 
-@property (strong, nonatomic) NSMutableArray *photos;
-@property (strong, nonatomic) UINavigationController *photoNavigationController;
+@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) UINavigationController *photoNavigationController;
 
-@property (strong, nonatomic) UIAlertView *textAlertView;
+@property (nonatomic, strong) UIAlertView *textAlertView;
 
 @end
 

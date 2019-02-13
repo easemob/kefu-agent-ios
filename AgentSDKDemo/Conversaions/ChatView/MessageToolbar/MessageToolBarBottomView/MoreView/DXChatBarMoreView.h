@@ -21,7 +21,7 @@ typedef enum{
 @protocol DXChatBarMoreViewDelegate;
 @interface DXChatBarMoreView : UIView
 
-@property (nonatomic,assign) id<DXChatBarMoreViewDelegate> delegate;
+@property (nonatomic, assign) id<DXChatBarMoreViewDelegate> delegate;
 
 @property (nonatomic, strong) UIButton *photoButton;
 @property (nonatomic, strong) UIButton *takePicButton;

@@ -14,7 +14,7 @@
 
 - (void)timeFilterStartDate:(NSDate *)startDate
                     endDate:(NSDate *)endDate
-                      title:(NSString*)title;
+                      title:(NSString *)title;
 
 @end
 
@@ -34,15 +34,15 @@
 
 @property (nonatomic) BOOL isShow;
 
-@property (strong, nonatomic) UIView *contentView;
-@property (strong, nonatomic) DXDatePickerView *datePickerView;
+@property (nonatomic, strong) UIView *contentView;
+@property (nonatomic, strong) DXDatePickerView *datePickerView;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
-+ (NSDictionary*)curWeek;
++ (NSDictionary *)curWeek;
 
-+ (NSDictionary*)curMonth;
++ (NSDictionary *)curMonth;
 
-+ (NSDictionary*)lastMonth;
++ (NSDictionary *)lastMonth;
 
 @end

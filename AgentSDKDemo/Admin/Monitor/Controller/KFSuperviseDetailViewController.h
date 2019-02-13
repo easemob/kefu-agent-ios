@@ -12,7 +12,7 @@
 
 #define kMonitorDetail @"/v1/monitor/agentusers?queueId=%@"
 @interface KFSuperviseDetailViewController : KFSuperviseBaseViewController
-@property(nonatomic,strong) KFArrowButtonView *head;
-@property(nonatomic,copy) NSString *groupName;
-@property(nonatomic,copy) NSString *queueId;
+@property (nonatomic, strong) KFArrowButtonView *head;
+@property (nonatomic, copy) NSString *groupName;
+@property (nonatomic, copy) NSString *queueId;
 @end

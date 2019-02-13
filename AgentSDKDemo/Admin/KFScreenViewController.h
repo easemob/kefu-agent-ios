@@ -11,50 +11,50 @@
 @interface SessionOption : NSObject
 +(instancetype)shareInstance;
 //开始时间戳[单位:秒]
-@property(nonatomic,assign) NSTimeInterval beginTimeInterval;
+@property (nonatomic, assign) NSTimeInterval beginTimeInterval;
 //结束时间戳[单位:秒]
-@property(nonatomic,assign) NSTimeInterval endTimeInterval;
+@property (nonatomic, assign) NSTimeInterval endTimeInterval;
 //开始时间Date
-@property(nonatomic,strong) NSDate *beginTimeDate;
+@property (nonatomic, strong) NSDate *beginTimeDate;
 //结束时间Date
-@property(nonatomic,strong) NSDate *endTimeDate;
+@property (nonatomic, strong) NSDate *endTimeDate;
 //开始时间string
-@property(nonatomic,copy) NSString *beginTimeString;
+@property (nonatomic, copy) NSString *beginTimeString;
 //结束时间string
-@property(nonatomic,copy) NSString *endTimeString;
+@property (nonatomic, copy) NSString *endTimeString;
 
 //展示方式["日、周、月"]
-@property(nonatomic,copy) NSString *display;
+@property (nonatomic, copy) NSString *display;
 
 //展示参数["1d","1w","1M"]
-@property(nonatomic,copy) NSString *displayPa;
+@property (nonatomic, copy) NSString *displayPa;
 @end
 
 @interface MessageOption : NSObject
 +(instancetype)shareInstance;
 //开始时间戳[单位:秒]
-@property(nonatomic,assign) NSTimeInterval beginTimeInterval;
+@property (nonatomic, assign) NSTimeInterval beginTimeInterval;
 //结束时间戳[单位:秒]
-@property(nonatomic,assign) NSTimeInterval endTimeInterval;
+@property (nonatomic, assign) NSTimeInterval endTimeInterval;
 //开始时间Date
-@property(nonatomic,strong) NSDate *beginTimeDate;
+@property (nonatomic, strong) NSDate *beginTimeDate;
 //结束时间Date
-@property(nonatomic,strong) NSDate *endTimeDate;
+@property (nonatomic, strong) NSDate *endTimeDate;
 //开始时间string
-@property(nonatomic,copy) NSString *beginTimeString;
+@property (nonatomic, copy) NSString *beginTimeString;
 //结束时间string
-@property(nonatomic,copy) NSString *endTimeString;
+@property (nonatomic, copy) NSString *endTimeString;
 
 //展示方式["日、周、月"]
-@property(nonatomic,copy) NSString *display;
+@property (nonatomic, copy) NSString *display;
 //展示参数["1d","1w","1M"]
-@property(nonatomic,copy) NSString *displayPa;
+@property (nonatomic, copy) NSString *displayPa;
 @end
 
 @interface KFScreenOption : NSObject
 
-@property(nonatomic,copy) SessionOption *sessionOption;
-@property(nonatomic,copy) MessageOption *messageOption;
+@property (nonatomic, copy) SessionOption *sessionOption;
+@property (nonatomic, copy) MessageOption *messageOption;
 
 + (instancetype)shareInstance;
 
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, TrendDataType) {
 
 @interface KFScreenViewController : KFBaseViewController
 
-@property(nonatomic,assign) id<KFScreenViewControllerDelegate> delegate;
+@property (nonatomic, assign) id<KFScreenViewControllerDelegate> delegate;
 
 - (instancetype)initWithType:(TrendDataType)type;
 

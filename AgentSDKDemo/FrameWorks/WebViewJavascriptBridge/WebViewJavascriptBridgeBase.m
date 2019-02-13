@@ -41,7 +41,7 @@ static int logMaxLength = 500;
     _uniqueId = 0;
 }
 
-- (void)sendData:(id)data responseCallback:(WVJBResponseCallback)responseCallback handlerName:(NSString*)handlerName {
+- (void)sendData:(id)data responseCallback:(WVJBResponseCallback)responseCallback handlerName:(NSString *)handlerName {
     NSMutableDictionary* message = [NSMutableDictionary dictionary];
     
     if (data) {
@@ -49,7 +49,7 @@ static int logMaxLength = 500;
     }
     
     if (responseCallback) {
-        NSString* callbackId = [NSString stringWithFormat:@"objc_cb_%ld", ++_uniqueId];
+        NSString * callbackId = [NSString stringWithFormat:@"objc_cb_%ld", ++_uniqueId];
         self.responseCallbacks[callbackId] = [responseCallback copy];
         message[@"callbackId"] = callbackId;
     }
@@ -74,14 +74,14 @@ static int logMaxLength = 500;
         }
         [self _log:@"RCVD" json:message];
         
-        NSString* responseId = message[@"responseId"];
+        NSString * responseId = message[@"responseId"];
         if (responseId) {
             WVJBResponseCallback responseCallback = _responseCallbacks[responseId];
             responseCallback(message[@"responseData"]);
             [self.responseCallbacks removeObjectForKey:responseId];
         } else {
             WVJBResponseCallback responseCallback = NULL;
-            NSString* callbackId = message[@"callbackId"];
+            NSString * callbackId = message[@"callbackId"];
             if (callbackId) {
                 responseCallback = ^(id responseData) {
                     if (responseData == nil) {
@@ -180,7 +180,7 @@ static int logMaxLength = 500;
     messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2028" withString:@"\\u2028"];
     messageJSON = [messageJSON stringByReplacingOccurrencesOfString:@"\u2029" withString:@"\\u2029"];
     
-    NSString* javascriptCommand = [NSString stringWithFormat:@"WebViewJavascriptBridge._handleMessageFromObjC('%@');", messageJSON];
+    NSString * javascriptCommand = [NSString stringWithFormat:@"WebViewJavascriptBridge._handleMessageFromObjC('%@');", messageJSON];
     if ([[NSThread currentThread] isMainThread]) {
         [self _evaluateJavascript:javascriptCommand];
 

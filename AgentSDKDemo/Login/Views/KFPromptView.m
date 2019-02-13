@@ -10,7 +10,7 @@
 
 @interface KFPromptView ()
 
-@property(nonatomic,strong) UILabel *tipLabel;
+@property (nonatomic, strong) UILabel *tipLabel;
 @end
 
 @implementation KFPromptView

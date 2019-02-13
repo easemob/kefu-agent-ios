@@ -26,6 +26,6 @@
                          edit:(BOOL)edit
                         kfmodel:(HLeaveMessageCommentAttachment *)model;
 
-+ (CGFloat)widthForName:(NSString*)name maxWidth:(CGFloat)maxWidth;
++ (CGFloat)widthForName:(NSString *)name maxWidth:(CGFloat)maxWidth;
 
 @end

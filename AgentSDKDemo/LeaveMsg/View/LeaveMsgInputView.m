@@ -18,13 +18,13 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 
 @interface LeaveMsgInputView () <UITextViewDelegate,UITableViewDelegate,UITableViewDataSource,UINavigationControllerDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate>
 
-@property (strong, nonatomic) UITextField *inputField;
-@property (strong, nonatomic) UIButton *sendButton;
-@property (strong, nonatomic) UIButton *attachmentButton;
-@property (strong, nonatomic) UILabel *attachmentLabel;
-@property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *dataArray;
-@property (strong, nonatomic) UIButton *uploadButton;
+@property (nonatomic, strong) UITextField *inputField;
+@property (nonatomic, strong) UIButton *sendButton;
+@property (nonatomic, strong) UIButton *attachmentButton;
+@property (nonatomic, strong) UILabel *attachmentLabel;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) UIButton *uploadButton;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, assign) CGRect initFrame;
 @end
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
     return _dataArray;
 }
 
-- (UIButton*)uploadButton
+- (UIButton *)uploadButton
 {
     if (_uploadButton == nil) {
         _uploadButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -109,7 +109,7 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 }
 
 //选择附件
-- (UIButton*)attachmentButton
+- (UIButton *)attachmentButton
 {
     if (_attachmentButton == nil) {
         _attachmentButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -121,7 +121,7 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
 }
 
 //发送
-- (UIButton*)sendButton
+- (UIButton *)sendButton
 {
     if (_sendButton == nil) {
         _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];

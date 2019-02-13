@@ -29,10 +29,10 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 {
     NSString *_titleStrInfo;
 }
-@property (nonatomic,strong) HLeaveMessage *model;
+@property (nonatomic, strong) HLeaveMessage *model;
 @property (nonatomic, strong) EMPickerView *taskView;
 @property (nonatomic, strong) EMPickerView *statusView;
-@property (nonatomic,strong) LeaveMsgInputView *inputView;
+@property (nonatomic, strong) LeaveMsgInputView *inputView;
 @end
 
 @implementation KFLeaveMsgDetailViewController

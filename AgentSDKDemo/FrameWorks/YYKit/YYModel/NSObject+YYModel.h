@@ -353,7 +353,7 @@ NS_ASSUME_NONNULL_BEGIN
  
         @implementation YYShape
 
-        + (Class)modelCustomClassForDictionary:(NSDictionary*)dictionary {
+        + (Class)modelCustomClassForDictionary:(NSDictionary *)dictionary {
             if (dictionary[@"radius"] != nil) {
                 return [YYCircle class];
             } else if (dictionary[@"width"] != nil) {

@@ -16,13 +16,13 @@
 
 @property (nonatomic) BOOL isShow;
 
-@property (strong, nonatomic) UIScrollView *contentView;
+@property (nonatomic, strong) UIScrollView *contentView;
 
-@property (copy, nonatomic) NSString *userId;
+@property (nonatomic, copy) NSString *userId;
 
-@property (strong, nonatomic) UIColor *bgColor;
+@property (nonatomic, strong) UIColor *bgColor;
 
-@property (strong, nonatomic) UIView *backgroundView;
+@property (nonatomic, strong) UIView *backgroundView;
 
 - (instancetype)initWithFrame:(CGRect)frame isFromChat:(BOOL)flag;
 

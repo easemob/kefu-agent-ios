@@ -10,8 +10,8 @@
 
 @interface HSearchResultsViewController : UIViewController
 
-@property(nonatomic,strong) NSMutableArray *resultsSource;
+@property (nonatomic, strong) NSMutableArray *resultsSource;
 
-@property(nonatomic,strong) UITableView *resultsTableView;
+@property (nonatomic, strong) UITableView *resultsTableView;
 
 @end

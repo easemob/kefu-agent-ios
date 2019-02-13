@@ -22,11 +22,11 @@
     UILabel *_resultLabel;
 }
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
-@property (strong, nonatomic) NSMutableDictionary *dataSourceDic;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
 @end
 

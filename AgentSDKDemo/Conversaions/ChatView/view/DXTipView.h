@@ -10,8 +10,8 @@
 
 @interface DXTipView : UIView
 
-@property (nonatomic,strong) NSString *tipNumber;
+@property (nonatomic, strong) NSString *tipNumber;
 
-@property (nonatomic,strong) NSString *tipImageNamed;
+@property (nonatomic, strong) NSString *tipImageNamed;
 
 @end

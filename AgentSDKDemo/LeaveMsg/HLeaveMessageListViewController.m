@@ -452,7 +452,7 @@
 
 
 #pragma mark - EMPickerSaveDelegate
-- (void)savePickerWithValue:(NSString*)value index:(NSInteger)index {
+- (void)savePickerWithValue:(NSString *)value index:(NSInteger)index {
     NSMutableArray *selectItems = [NSMutableArray array];
     NSArray *indexPaths = [self.tableView indexPathsForSelectedRows];
     for (NSIndexPath *indexPath in indexPaths) {

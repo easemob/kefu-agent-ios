@@ -135,7 +135,7 @@ static EmotionEscape *_sharedInstance = nil;
     return string;
 }
 
-- (NSString*) getEmojiTextByKey:(NSString*) aKey
+- (NSString *) getEmojiTextByKey:(NSString *) aKey
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *plistPaht = [paths objectAtIndex:0];
@@ -173,7 +173,7 @@ static EmotionEscape *_sharedInstance = nil;
     }
 }
 
-- (NSString*) getEmojiImageNameByKey:(NSString*) aKey
+- (NSString *) getEmojiImageNameByKey:(NSString *) aKey
 {
     return nil;
 }
@@ -183,7 +183,7 @@ static EmotionEscape *_sharedInstance = nil;
     _urlPattern = pattern;
 }
 
-- (void) setEaseEmotionEscapeDictionary:(NSDictionary*)dict
+- (void) setEaseEmotionEscapeDictionary:(NSDictionary *)dict
 {
     _dict = dict;
 }

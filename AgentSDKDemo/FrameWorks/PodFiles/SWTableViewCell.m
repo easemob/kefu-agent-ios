@@ -843,7 +843,7 @@ static NSString * const kTableViewPanState = @"state";
 #pragma mark - action
 - (void)openQuickReply:(id)sender
 {
-    UIButton *btn = (UIButton*)sender;
+    UIButton *btn = (UIButton *)sender;
     btn.selected = !btn.selected;
     if ([self.delegate respondsToSelector:@selector(openQuickReplyToReloadView)]) {
         self.model.isOpen = btn.selected;

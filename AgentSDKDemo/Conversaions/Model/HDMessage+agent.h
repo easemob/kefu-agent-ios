@@ -10,6 +10,6 @@
 
 @interface HDMessage (agent)
 
-@property (nonatomic,copy) NSAttributedString *att;
+@property (nonatomic, copy) NSAttributedString *att;
 
 @end

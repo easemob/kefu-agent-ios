@@ -10,6 +10,6 @@
 
 @interface WebViewController : EMBaseViewController
 
-- (instancetype)initWithUrl:(NSString*)url;
+- (instancetype)initWithUrl:(NSString *)url;
 
 @end

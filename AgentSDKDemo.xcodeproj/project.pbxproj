@@ -21,6 +21,8 @@
 		9046FCE520E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */; };
 		9046FD1220E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
 		9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
+		9050CB5E2213C972003A9359 /* KFiFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9050CB5D2213C972003A9359 /* KFiFrameView.m */; };
+		9050CB5F2213C972003A9359 /* KFiFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9050CB5D2213C972003A9359 /* KFiFrameView.m */; };
 		90591C2E2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
 		90591C2F2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
 		90591C302068ADC4007367BD /* KFMonitorInfoChartViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C1B2068ADC3007367BD /* KFMonitorInfoChartViewCell.m */; };
@@ -1488,6 +1490,8 @@
 		9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HLeaveMessageRetrievalStoryboard.storyboard; sourceTree = "<group>"; };
 		9046FD1020E252F8009B6376 /* HTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTimePickerView.m; sourceTree = "<group>"; };
 		9046FD1120E252F8009B6376 /* HTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTimePickerView.h; sourceTree = "<group>"; };
+		9050CB5C2213C972003A9359 /* KFiFrameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFiFrameView.h; sourceTree = "<group>"; };
+		9050CB5D2213C972003A9359 /* KFiFrameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFiFrameView.m; sourceTree = "<group>"; };
 		90591C182068ADC3007367BD /* KFMonitorInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoCell.h; sourceTree = "<group>"; };
 		90591C192068ADC3007367BD /* KFMonitorInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInfoCell.m; sourceTree = "<group>"; };
 		90591C1A2068ADC3007367BD /* KFMonitorInfoChartViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoChartViewCell.h; sourceTree = "<group>"; };
@@ -2931,6 +2935,8 @@
 				D33CE60A1F7CA98D00236720 /* CompileTableViewCell.m */,
 				D33CE60B1F7CA98D00236720 /* EMClientInfoTagView.h */,
 				D33CE60C1F7CA98D00236720 /* EMClientInfoTagView.m */,
+				9050CB5C2213C972003A9359 /* KFiFrameView.h */,
+				9050CB5D2213C972003A9359 /* KFiFrameView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -5533,6 +5539,7 @@
 				D3A95E531EA0F47100ADD394 /* DACircularProgressView.m in Sources */,
 				D33CE6C01F7CA98D00236720 /* EMChatViewCell.m in Sources */,
 				D33CE6B91F7CA98D00236720 /* EMChatImageBubbleView.m in Sources */,
+				9050CB5E2213C972003A9359 /* KFiFrameView.m in Sources */,
 				90591CCF2068B050007367BD /* AATitle.m in Sources */,
 				D33CE6C41F7CA98D00236720 /* EMChatHeaderTagView.m in Sources */,
 				907090E82060BB2D0062FED6 /* KFLeftItemCell.m in Sources */,
@@ -5869,6 +5876,7 @@
 				D3E9CCC51FBED182005E3677 /* DACircularProgressView.m in Sources */,
 				D3E9CCC61FBED182005E3677 /* EMChatViewCell.m in Sources */,
 				D3E9CCC71FBED182005E3677 /* EMChatImageBubbleView.m in Sources */,
+				9050CB5F2213C972003A9359 /* KFiFrameView.m in Sources */,
 				90591CD02068B050007367BD /* AATitle.m in Sources */,
 				D3E9CCC81FBED182005E3677 /* EMChatHeaderTagView.m in Sources */,
 				90615572206205C5006113FF /* KFLeftItemCell.m in Sources */,

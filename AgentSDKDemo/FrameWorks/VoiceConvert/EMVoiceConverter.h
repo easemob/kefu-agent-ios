@@ -14,8 +14,8 @@
 
 + (int)isAMRFile:(NSString *)filePath;
 
-+ (int)amrToWav:(NSString*)_amrPath wavSavePath:(NSString*)_savePath;
++ (int)amrToWav:(NSString *)_amrPath wavSavePath:(NSString *)_savePath;
 
-+ (int)wavToAmr:(NSString*)_wavPath amrSavePath:(NSString*)_savePath;
++ (int)wavToAmr:(NSString *)_wavPath amrSavePath:(NSString *)_savePath;
 
 @end

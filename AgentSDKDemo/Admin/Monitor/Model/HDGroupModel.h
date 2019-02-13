@@ -10,24 +10,24 @@
 
 @interface HDGroupModel : NSObject
 
-@property(nonatomic,assign) NSString *queue_id;
+@property (nonatomic, assign) NSString *queue_id;
 
-@property(nonatomic,copy) NSString *queue_name;
+@property (nonatomic, copy) NSString *queue_name;
 
-@property(nonatomic,assign) NSInteger busy_count;
+@property (nonatomic, assign) NSInteger busy_count;
 
-@property(nonatomic,assign) NSInteger current_session_count;
+@property (nonatomic, assign) NSInteger current_session_count;
 
-@property(nonatomic,assign) NSInteger hidden_count;
+@property (nonatomic, assign) NSInteger hidden_count;
 
-@property(nonatomic,assign) NSInteger idle_count;
+@property (nonatomic, assign) NSInteger idle_count;
 
-@property(nonatomic,assign) NSInteger leave_count;
+@property (nonatomic, assign) NSInteger leave_count;
 
-@property(nonatomic,assign) NSInteger max_session_count;
+@property (nonatomic, assign) NSInteger max_session_count;
 
-@property(nonatomic,assign) NSInteger offline_count;
+@property (nonatomic, assign) NSInteger offline_count;
 
-@property(nonatomic,assign) NSInteger session_wait_count;
+@property (nonatomic, assign) NSInteger session_wait_count;
 
 @end

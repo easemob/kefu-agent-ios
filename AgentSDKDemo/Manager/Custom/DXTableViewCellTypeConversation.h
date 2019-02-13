@@ -14,17 +14,17 @@
 @class HDMessage;
 @interface DXTableViewCellTypeConversation : SWTableViewCell
 
-@property (strong, nonatomic) UIImageView *headerImageView;
+@property (nonatomic, strong) UIImageView *headerImageView;
 
-@property (strong, nonatomic) UILabel *unreadLabel;
+@property (nonatomic, strong) UILabel *unreadLabel;
 
-@property (strong, nonatomic) DXTipView *tipView;
+@property (nonatomic, strong) DXTipView *tipView;
 
-@property (strong, nonatomic) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 
-@property (strong, nonatomic) UILabel *contentLabel;
+@property (nonatomic, strong) UILabel *contentLabel;
 
-@property (strong, nonatomic) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 
 - (void)setModel:(HDConversation *)model;
 - (void)setMsgModel:(HDMessage *)model;

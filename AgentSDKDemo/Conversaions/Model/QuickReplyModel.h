@@ -25,12 +25,12 @@
 @interface QuickReplyModel : NSObject
 
 @property (copy ,nonatomic) NSString *agentUserId;
-@property (copy, nonatomic) NSString *brief;
-@property (strong, nonatomic) NSDictionary *children;
-@property (copy, nonatomic) NSString *groupType;
-@property (copy, nonatomic) NSString *shortcutMessageGroupId;
-@property (copy, nonatomic) NSString *tenantId;
-@property (copy, nonatomic) NSString *shortcutMessageGroupName;
+@property (nonatomic, copy) NSString *brief;
+@property (nonatomic, strong) NSDictionary *children;
+@property (nonatomic, copy) NSString *groupType;
+@property (nonatomic, copy) NSString *shortcutMessageGroupId;
+@property (nonatomic, copy) NSString *tenantId;
+@property (nonatomic, copy) NSString *shortcutMessageGroupName;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
@@ -39,13 +39,13 @@
 //快速回复消息组
 @interface QuickReplyMessageModel : NSObject
 
-@property (copy, nonatomic) NSString *tenantId;
-@property (copy, nonatomic) NSString *phrase;
-@property (copy, nonatomic) NSString *Id;
+@property (nonatomic, copy) NSString *tenantId;
+@property (nonatomic, copy) NSString *phrase;
+@property (nonatomic, copy) NSString *Id;
 @property (copy ,nonatomic) NSString *agentUserId;
-@property (copy, nonatomic) NSArray *brief;
-@property (copy, nonatomic) NSArray *children;
-@property (strong, nonatomic) NSMutableArray *childrenArray;
+@property (nonatomic, copy) NSArray *brief;
+@property (nonatomic, copy) NSArray *children;
+@property (nonatomic, strong) NSMutableArray *childrenArray;
 @property (assign, nonatomic) NSInteger deleted;
 @property (assign, nonatomic) NSInteger leaf;
 @property (assign, nonatomic) NSInteger seq;

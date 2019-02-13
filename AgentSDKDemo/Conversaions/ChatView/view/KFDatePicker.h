@@ -17,9 +17,9 @@
 
 @interface KFDatePicker : UIView
 
-@property(nonatomic,strong) NSDate *maxDate;
-@property(nonatomic,strong) NSDate *minDate;
-@property(nonatomic,assign) id<KFDatePickerDelegate> delegate;
+@property (nonatomic, strong) NSDate *maxDate;
+@property (nonatomic, strong) NSDate *minDate;
+@property (nonatomic, assign) id<KFDatePickerDelegate> delegate;
 
 - (void)setDate:(NSDate *)date;
 

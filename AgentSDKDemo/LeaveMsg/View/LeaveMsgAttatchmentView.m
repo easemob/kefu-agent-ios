@@ -71,7 +71,7 @@
     return _nameLabel;
 }
 
-- (UIButton*)removeButton
+- (UIButton *)removeButton
 {
     if (_removeButton == nil) {
         _removeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -83,7 +83,7 @@
     return _removeButton;
 }
 
-+ (CGFloat)widthForName:(NSString*)name maxWidth:(CGFloat)maxWidth
++ (CGFloat)widthForName:(NSString *)name maxWidth:(CGFloat)maxWidth
 {
     CGFloat width = [name boundingRectWithSize:CGSizeMake(MAXFLOAT, 16.f)
                                        options:NSStringDrawingUsesLineFragmentOrigin

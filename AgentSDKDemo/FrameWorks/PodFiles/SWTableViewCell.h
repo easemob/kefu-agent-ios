@@ -42,7 +42,7 @@ typedef NS_ENUM(NSInteger, SWCellState)
 
 @property (nonatomic, copy) NSArray *leftUtilityButtons;
 @property (nonatomic, copy) NSArray *rightUtilityButtons;
-@property (strong, nonatomic) QuickReplyMessageModel *model;
+@property (nonatomic, strong) QuickReplyMessageModel *model;
 
 @property (nonatomic, weak) id <SWTableViewCellDelegate> delegate;
 

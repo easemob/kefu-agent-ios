@@ -81,8 +81,8 @@ static NSString *MMDrawerCenterKey = @"MMDrawerCenter";
 static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
 
 @interface MMDrawerCenterContainerView : UIView
-@property (nonatomic,assign) MMDrawerOpenCenterInteractionMode centerInteractionMode;
-@property (nonatomic,assign) MMDrawerSide openSide;
+@property (nonatomic, assign) MMDrawerOpenCenterInteractionMode centerInteractionMode;
+@property (nonatomic, assign) MMDrawerSide openSide;
 @end
 
 @implementation MMDrawerCenterContainerView
@@ -102,7 +102,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     return hitView;
 }
 
--(UINavigationBar*)navigationBarContainedWithinSubviewsOfView:(UIView*)view{
+-(UINavigationBar*)navigationBarContainedWithinSubviewsOfView:(UIView *)view{
     UINavigationBar * navBar = nil;
     for(UIView * subview in [view subviews]){
         if([view isKindOfClass:[UINavigationBar class]]){
@@ -999,7 +999,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     }
 }
 
--(UIView*)childControllerContainerView{
+-(UIView *)childControllerContainerView{
     if(_childControllerContainerView == nil){
         //Issue #152 (https://github.com/mutualmobile/MMDrawerController/issues/152)
         //Turns out we have two child container views getting added to the view during init,
@@ -1020,7 +1020,7 @@ static NSString *MMDrawerOpenSideKey = @"MMDrawerOpenSide";
     return _childControllerContainerView;
 }
 
--(UIView*)dummyStatusBarView{
+-(UIView *)dummyStatusBarView{
     if(_dummyStatusBarView==nil){
         _dummyStatusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 20)];
         [_dummyStatusBarView setAutoresizingMask:UIViewAutoresizingFlexibleWidth];

@@ -12,9 +12,9 @@
 
 @interface ClientInforHeaderView ()
 
-@property (strong, nonatomic) UIImageView *headerImageView;
-@property (strong, nonatomic) UILabel *nicknameLabel;
-@property (strong, nonatomic) UIImageView *originTypeImage;
+@property (nonatomic, strong) UIImageView *headerImageView;
+@property (nonatomic, strong) UILabel *nicknameLabel;
+@property (nonatomic, strong) UIImageView *originTypeImage;
 
 @end
 

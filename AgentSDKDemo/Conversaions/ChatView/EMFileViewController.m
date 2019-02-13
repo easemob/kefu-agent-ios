@@ -63,7 +63,7 @@
     return _fileImageView;
 }
 
-- (UIButton*)downloadButton
+- (UIButton *)downloadButton
 {
     if (_downloadButton == nil) {
         _downloadButton = [UIButton buttonWithType:UIButtonTypeCustom];

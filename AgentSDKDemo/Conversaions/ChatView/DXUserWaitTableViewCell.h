@@ -13,17 +13,17 @@
 //    UserModel *_model;
 }
 
-@property (strong, nonatomic) UIImageView *headerImageView;
+@property (nonatomic, strong) UIImageView *headerImageView;
 
-@property (strong, nonatomic) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 
-@property (strong, nonatomic) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 
-@property (strong, nonatomic) UIButton *joinupBtn;
+@property (nonatomic, strong) UIButton *joinupBtn;
 
-@property (strong, nonatomic) UILabel *contentLabel;
+@property (nonatomic, strong) UILabel *contentLabel;
 
-@property (strong, nonatomic) UIView *lineView;
+@property (nonatomic, strong) UIView *lineView;
 
 
 - (void)setModel:(HDWaitUser *)model;

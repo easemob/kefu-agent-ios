@@ -363,7 +363,7 @@
     [self.view addSubview:self.pickerView];
 }
 
-- (void)savePickerWithValue:(NSString*)value index:(NSInteger)index {
+- (void)savePickerWithValue:(NSString *)value index:(NSInteger)index {
     if ([self isDateLabelSelected]) {
         _timeIndex = index;
     }

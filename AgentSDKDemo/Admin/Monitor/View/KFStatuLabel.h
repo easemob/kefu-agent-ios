@@ -13,10 +13,10 @@
 
 - (instancetype)initWithFrame:(CGRect)frame status:(HDAgentLoginStatus)status;
 
-@property(nonatomic,assign) HDAgentLoginStatus status;
+@property (nonatomic, assign) HDAgentLoginStatus status;
 
-@property(nonatomic,copy) NSString *text;
+@property (nonatomic, copy) NSString *text;
 
-@property(nonatomic,assign) CGFloat fontSize;
+@property (nonatomic, assign) CGFloat fontSize;
 
 @end

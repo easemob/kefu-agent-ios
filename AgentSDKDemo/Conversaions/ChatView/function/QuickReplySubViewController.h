@@ -10,14 +10,14 @@
 
 @protocol QuickReplySubViewDelegate <NSObject>
 
-- (void)clickQuickReplyMessage:(NSString*)message;
+- (void)clickQuickReplyMessage:(NSString *)message;
 
 @end
 
 
 @protocol QuickReplySelfSubViewDelegate <NSObject>
 
-- (void)clickQuickReplyMessage:(NSString*)message;
+- (void)clickQuickReplyMessage:(NSString *)message;
 
 @end
 

@@ -10,8 +10,8 @@
 
 @interface KFDatePicker ()
 
-@property(nonatomic,strong) UIDatePicker *datePicker;
-@property(nonatomic,strong) NSDate *date;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) NSDate *date;
 
 @end
 

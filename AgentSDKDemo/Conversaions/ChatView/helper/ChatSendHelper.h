@@ -11,8 +11,6 @@
 
 @interface ChatSendHelper : NSObject
 
-+(HDMessage *)sendTextMessageWithString:(NSString *)str toUser:(NSString *)userId sessionId:(NSString*)sessionId ext:(NSDictionary*)ext;
-
 #pragma mark - new
 ///---- 同事之间
 //客服文本

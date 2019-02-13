@@ -10,10 +10,10 @@
 
 @interface SelectTagViewController : DXTableViewController
 
-@property(nonatomic,strong) HDConversationManager *conversation;
+@property (nonatomic, strong) HDConversationManager *conversation;
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
-                        tagId:(NSString*)tagId
+                        tagId:(NSString *)tagId
                     treeArray:(NSArray*)treeArray
                         color:(UIColor*)color
                  isSelectRoot:(BOOL)isSelect;

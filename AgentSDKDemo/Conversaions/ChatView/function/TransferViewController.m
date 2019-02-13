@@ -25,18 +25,18 @@
     HDConversation *_curModel;
 }
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
-@property (strong, nonatomic) NSMutableDictionary *dataSourceDic;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
-@property (strong, nonatomic) UIView *headerButtonView;
-@property (strong, nonatomic) UIView *selectView;
-@property (strong, nonatomic) UIButton *infoButton;
-@property (strong, nonatomic) UIButton *tagButton;
+@property (nonatomic, strong) UIView *headerButtonView;
+@property (nonatomic, strong) UIView *selectView;
+@property (nonatomic, strong) UIButton *infoButton;
+@property (nonatomic, strong) UIButton *tagButton;
 
-@property (strong, nonatomic) JNGroupViewController *jn;
+@property (nonatomic, strong) JNGroupViewController *jn;
 
 @end
 
@@ -91,7 +91,7 @@
 
 #pragma mark - getter
 
-- (UIView*)headerButtonView
+- (UIView *)headerButtonView
 {
     if (_headerButtonView == nil) {
         _headerButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 45)];
@@ -106,7 +106,7 @@
     return _headerButtonView;
 }
 
-- (UIView*)selectView
+- (UIView *)selectView
 {
     if (_selectView == nil) {
         _selectView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerButtonView.height - 1.5f, KScreenWidth/2, 1.f)];
@@ -117,7 +117,7 @@
     return _selectView;
 }
 
-- (UIButton*)infoButton
+- (UIButton *)infoButton
 {
     if (_infoButton == nil) {
         _infoButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -129,7 +129,7 @@
     return _infoButton;
 }
 
-- (UIButton*)tagButton
+- (UIButton *)tagButton
 {
     if (_tagButton == nil) {
         _tagButton = [UIButton buttonWithType:UIButtonTypeCustom];

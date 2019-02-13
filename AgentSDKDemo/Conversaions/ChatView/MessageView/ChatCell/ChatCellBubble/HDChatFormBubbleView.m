@@ -38,9 +38,9 @@ NSString *const kRouterEventFormBubbleTapEventName = @"kRouterEventFormBubbleTap
 
 @interface HDChatFormBubbleView ()
 
-@property (strong, nonatomic) UIImageView *imageView;
-@property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UILabel *desLabel;
+@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *desLabel;
 
 @end
 

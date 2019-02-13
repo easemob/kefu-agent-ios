@@ -583,7 +583,7 @@
     }];
 }
 
-- (NSString*)_getAllRootNode
+- (NSString *)_getAllRootNode
 {
     NSString *result = @"";
     NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];
@@ -637,7 +637,7 @@
     return @"";
 }
 
-- (void)updateParameters:(NSString*)key value:(NSString*)value
+- (void)updateParameters:(NSString *)key value:(NSString *)value
 {
     if (_parameters) {
         [_parameters setObject:value forKey:key];

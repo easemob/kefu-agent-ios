@@ -59,27 +59,27 @@ static NSString *kGroupName = @"GroupName";
 }
 
 
-@property (strong, nonatomic) KFConversationsController *conversationsController;
-@property (strong, nonatomic) CustomerViewController *customerController;
-@property (strong, nonatomic) NotifyViewController *notifyController;
-@property (strong, nonatomic) WaitQueueViewController *waitqueueController;
+@property (nonatomic, strong) KFConversationsController *conversationsController;
+@property (nonatomic, strong) CustomerViewController *customerController;
+@property (nonatomic, strong) NotifyViewController *notifyController;
+@property (nonatomic, strong) WaitQueueViewController *waitqueueController;
 @property (nonatomic, strong) HLeaveMessageViewController *leaveMessageC;
 
 //非管理员
-@property(nonatomic,strong) HomeViewController *homeViewController;
-@property (strong, nonatomic) HistoryConversationsController *historyController;
-@property (strong, nonatomic) AdminInforViewController *adminController;
+@property (nonatomic, strong) HomeViewController *homeViewController;
+@property (nonatomic, strong) HistoryConversationsController *historyController;
+@property (nonatomic, strong) AdminInforViewController *adminController;
 
 //管理员
-@property (strong, nonatomic) AdminHomeViewController *adminTypeHomeController;
-@property (strong, nonatomic) DXTipView *tipView;
-@property (strong, nonatomic) DXTipView *tipCustomerView;
-@property (strong, nonatomic) DXTipView *tipNotifyView;
+@property (nonatomic, strong) AdminHomeViewController *adminTypeHomeController;
+@property (nonatomic, strong) DXTipView *tipView;
+@property (nonatomic, strong) DXTipView *tipCustomerView;
+@property (nonatomic, strong) DXTipView *tipNotifyView;
 @property (nonatomic, strong) DXTipView *tipLeaveMsgView;
 
-@property (strong, nonatomic) NSDate *lastPlaySoundDate;
+@property (nonatomic, strong) NSDate *lastPlaySoundDate;
 
-@property (strong, nonatomic) UIView *tapView;
+@property (nonatomic, strong) UIView *tapView;
 
 @end
 
@@ -224,7 +224,7 @@ static HomeViewController *homeViewController;
 
 #pragma mark - getter
 
-- (UIView*)tapView
+- (UIView *)tapView
 {
     if (_tapView == nil) {
         _tapView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - kHomeViewLeft, 0, kHomeViewLeft, KScreenHeight)];
@@ -295,7 +295,7 @@ static HomeViewController *homeViewController;
     return theImage;
 }
 
--(UIImage*)convertViewToImage:(UIView*)v{
+-(UIImage*)convertViewToImage:(UIView *)v{
     CGSize s = v.bounds.size;
     UIGraphicsBeginImageContextWithOptions(s, NO, [UIScreen mainScreen].scale);
     [v.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -482,7 +482,7 @@ static HomeViewController *homeViewController;
     }
 }
 
-- (void)onlineStatusClick:(UIView*)view;
+- (void)onlineStatusClick:(UIView *)view;
 {
     [[UIApplication sharedApplication].keyWindow addSubview:view];
 }
@@ -507,7 +507,7 @@ static HomeViewController *homeViewController;
 - (void)updateVersion:(id)dic
 {
     if ([dic isKindOfClass:[NSDictionary class]]) {
-        NSDictionary *updateInfo = (NSDictionary*)dic;
+        NSDictionary *updateInfo = (NSDictionary *)dic;
         NSString *version = [updateInfo objectForKey:@"versionCode"];
         NSString *appVersion = [[[NSBundle mainBundle]infoDictionary]valueForKey:@"CFBundleVersion"];
         if ([version compare:appVersion options:NSNumericSearch] ==NSOrderedDescending) {
@@ -530,7 +530,7 @@ static HomeViewController *homeViewController;
 }
 
 
-//- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary*)dic;
+//- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary *)dic;
 //{
 //    //发送本地推送
 //    UILocalNotification *notification = [[UILocalNotification alloc] init];
@@ -575,7 +575,7 @@ static HomeViewController *homeViewController;
 //    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
 //}
 
-- (NSMutableDictionary*)_getSafeDictionary:(NSDictionary*)dic
+- (NSMutableDictionary*)_getSafeDictionary:(NSDictionary *)dic
 {
     NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithDictionary:dic];
     if ([[userInfo allKeys] count] > 0) {

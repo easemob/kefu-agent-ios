@@ -12,6 +12,6 @@
 @interface KFBaseViewController : UIViewController
 - (BOOL)testRegisterParametersWithDic:(NSDictionary *)dic;
 - (void)showAlertViewWithTitle:(NSString *)title message:(NSString *)message;
-@property(nonatomic,strong) UITableView *tableView;
-@property(nonatomic,strong) KFUserModel *userModel;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) KFUserModel *userModel;
 @end

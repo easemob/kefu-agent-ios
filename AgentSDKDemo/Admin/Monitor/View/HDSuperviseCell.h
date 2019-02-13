@@ -11,6 +11,6 @@
 
 @interface HDSuperviseCell : UITableViewCell
 
-@property(nonatomic,strong) HDGroupModel *model;
+@property (nonatomic, strong) HDGroupModel *model;
 
 @end

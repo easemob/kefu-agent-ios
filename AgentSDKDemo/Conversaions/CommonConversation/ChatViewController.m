@@ -74,43 +74,43 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     NSIndexPath *_longPressIndexPath;
 }
 
-@property(nonatomic,strong) HDConversationManager *conversation;
+@property (nonatomic, strong) HDConversationManager *conversation;
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
-@property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) DXMessageToolBar *chatToolBar;
+@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) DXMessageToolBar *chatToolBar;
 
-@property (strong, nonatomic) UIImagePickerController *imagePicker;
-@property (strong, nonatomic) MessageReadManager *messageReadManager;//message阅读的管理者
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) MessageReadManager *messageReadManager;//message阅读的管理者
 
-@property (strong, nonatomic) NSDate *chatTagDate;
+@property (nonatomic, strong) NSDate *chatTagDate;
 
-@property (strong, nonatomic) UIButton *tagBtn;//顶部打标签按钮
-@property (strong, nonatomic) UIImageView *originTypeImage;//顶部渠道图片显示
-@property (strong, nonatomic) UILabel *originTypeLable;//顶部渠道显示
-@property (strong, nonatomic) UIButton *callBackBtn;//回呼按钮
+@property (nonatomic, strong) UIButton *tagBtn;//顶部打标签按钮
+@property (nonatomic, strong) UIImageView *originTypeImage;//顶部渠道图片显示
+@property (nonatomic, strong) UILabel *originTypeLable;//顶部渠道显示
+@property (nonatomic, strong) UIButton *callBackBtn;//回呼按钮
 
-@property (strong, nonatomic) UIView *moreView; //结束会话,会话标签,邀请评价,转接下拉菜单
-@property (strong, nonatomic) NSMutableDictionary *sessionDic;
-@property (strong, nonatomic) UIButton * backButton;
-@property (strong, nonatomic) EMChatHeaderTagView *headview;
-@property (strong, nonatomic) UIButton *folderButton;
+@property (nonatomic, strong) UIView *moreView; //结束会话,会话标签,邀请评价,转接下拉菜单
+@property (nonatomic, strong) NSMutableDictionary *sessionDic;
+@property (nonatomic, strong) UIButton * backButton;
+@property (nonatomic, strong) EMChatHeaderTagView *headview;
+@property (nonatomic, strong) UIButton *folderButton;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
-@property (strong, nonatomic) NSMutableDictionary *msgDic;
+@property (nonatomic, strong) NSMutableDictionary *msgDic;
 
 @property (nonatomic) BOOL isPlayingAudio;
 
-@property (strong, nonatomic) NSDictionary *lastMsgExt;
+@property (nonatomic, strong) NSDictionary *lastMsgExt;
 
-@property (strong, nonatomic) EMPromptBoxView *promptBoxView;
+@property (nonatomic, strong) EMPromptBoxView *promptBoxView;
 
-@property(nonatomic,strong) KFPredictView *visitorPredictView;
+@property (nonatomic, strong) KFPredictView *visitorPredictView;
 
-@property(nonatomic,strong) DXRecordView *recordView;
+@property (nonatomic, strong) DXRecordView *recordView;
 
-@property(nonatomic,strong) UIButton *satisfactionBtn;
+@property (nonatomic, strong) UIButton *satisfactionBtn;
 
 @end
 
@@ -373,7 +373,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     return _originTypeLable;
 }
 
-- (UIButton*)folderButton
+- (UIButton *)folderButton
 {
     if (_folderButton == nil) {
         _folderButton = [[UIButton alloc] initWithFrame:CGRectMake((KScreenWidth-48)/2, 0, 48, 24)];
@@ -402,7 +402,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     return _dataSource;
 }
 
-- (UIButton*)callBackBtn
+- (UIButton *)callBackBtn
 {
     if (_callBackBtn == nil) {
         _callBackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -431,7 +431,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     return _slimeView;
 }
 
-- (UIView*)moreView
+- (UIView *)moreView
 {
     if (_moreView == nil) {
         _moreView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight)];
@@ -882,7 +882,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 -(void)clickCustomWebView:(NSDictionary *)data
 {
-    HDMessage *message = [ChatSendHelper sendTextMessageWithString:@"自定义消息" toUser:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId ext:nil];
+    
+    HDMessage *message = [ChatSendHelper textMessageFormatWithText:@"自定义消息" to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId];
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:self.lastMsgExt];
     [parameters setObject:data forKey:@"msgtype"];
     message.nBody.msgExt = parameters;
@@ -896,7 +898,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 #pragma mark - EMPromptBoxViewDelegate
 
-- (void)didSelectPromptBoxViewWithPhrase:(NSString*)phrase
+- (void)didSelectPromptBoxViewWithPhrase:(NSString *)phrase
 {
     [self.promptBoxView searchText:@""];
     self.chatToolBar.inputTextView.text = phrase;
@@ -1080,6 +1082,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
     clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;
+    clientView.user = _conversationModel.chatter;
     clientView.tagImage = self.originTypeImage.image;
     if (clientView.userId.length == 0) {
         clientView.userId = _conversationModel.vistor.agentId;

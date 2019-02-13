@@ -11,10 +11,10 @@
 
 @interface CompileTableViewCell : UITableViewCell
 
-@property(nonatomic,strong) HDVisitorInfoItem *model;
+@property (nonatomic, strong) HDVisitorInfoItem *model;
 
-@property (nonatomic,strong)UIImageView *nextimage;
-@property (nonatomic,strong)UILabel *nickName;
-@property (nonatomic,strong)UILabel *title;
+@property (nonatomic, strong) UIImageView *nextimage;
+@property (nonatomic, strong) UILabel *nickName;
+@property (nonatomic, strong) UILabel *title;
 
 @end

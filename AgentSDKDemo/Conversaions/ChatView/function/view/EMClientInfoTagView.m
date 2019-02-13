@@ -24,7 +24,7 @@
 
 @implementation EMClientInfoTagView
 
-- (instancetype)initWithUserTagModel:(HDUserTag*)model visitorUserId:(NSString*)visitorUserId;
+- (instancetype)initWithUserTagModel:(HDUserTag*)model visitorUserId:(NSString *)visitorUserId;
 {
     self = [super init];
     if (self) {
@@ -43,7 +43,7 @@
     return self;
 }
 
-- (UIButton*)tagButton
+- (UIButton *)tagButton
 {
     if (_tagButton == nil ) {
         _tagButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -124,7 +124,7 @@
     CGContextStrokePath(context);
 }
 
-- (CGSize)makeLabelSize:(NSString*)text
+- (CGSize)makeLabelSize:(NSString *)text
 {
     CGSize textBlockMinSize = {CGFLOAT_MAX, kEMClientViewDefaultHeight};
     CGSize retSize;

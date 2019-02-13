@@ -28,10 +28,10 @@ NSString *const kRouterEventImageTextBubbleTapEventName = @"kRouterEventImageTex
 
 @interface EMChatImageTextBubbleView ()
 
-@property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UILabel *orderTitleLabel;
-@property (strong, nonatomic) UILabel *nameLabel;
-@property (strong, nonatomic) UILabel *priceLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *orderTitleLabel;
+@property (nonatomic, strong) UILabel *nameLabel;
+@property (nonatomic, strong) UILabel *priceLabel;
 
 @end
 

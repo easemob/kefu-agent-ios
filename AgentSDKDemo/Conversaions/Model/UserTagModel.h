@@ -21,9 +21,9 @@
 //会话小结,分类1标签
 @interface SessionCategoryModel : NSObject
 
-@property (copy, nonatomic) NSString *serviceSessionCategoryId;
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *tenantId;
+@property (nonatomic, copy) NSString *serviceSessionCategoryId;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *tenantId;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
@@ -32,6 +32,6 @@
 //会话小结,分类2标签
 @interface SessionSubcategoryModel : SessionCategoryModel
 
-@property (copy, nonatomic) NSString *serviceSessionSubcategoryId;
+@property (nonatomic, copy) NSString *serviceSessionSubcategoryId;
 
 @end

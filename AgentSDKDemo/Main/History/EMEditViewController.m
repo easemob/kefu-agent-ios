@@ -10,7 +10,7 @@
 
 @interface EMEditViewController () <UITextFieldDelegate>
 
-@property (strong ,nonatomic) UITextField *editTextField;
+@property (nonatomic, strong) UITextField *editTextField;
 
 @end
 

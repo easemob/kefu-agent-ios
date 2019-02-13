@@ -11,12 +11,12 @@
 #import "ClientInforViewController.h"
 @interface NotiDetailViewController ()
 
-@property(nonatomic,strong) UILabel *nickName;
-@property(nonatomic,strong) UILabel *createDate;
-@property(nonatomic,strong) UIImageView *avatar;
-@property(nonatomic,strong) UILabel *actorId;
-@property(nonatomic,strong) UIButton *detailBtn;
-@property(nonatomic,strong) UILabel *detail;
+@property (nonatomic, strong) UILabel *nickName;
+@property (nonatomic, strong) UILabel *createDate;
+@property (nonatomic, strong) UIImageView *avatar;
+@property (nonatomic, strong) UILabel *actorId;
+@property (nonatomic, strong) UIButton *detailBtn;
+@property (nonatomic, strong) UILabel *detail;
 
 @end
 

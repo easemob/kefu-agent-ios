@@ -109,14 +109,14 @@
     NSMutableDictionary *_parameters;
 }
 
-@property (strong, nonatomic) NSDate *startDate;
-@property (strong, nonatomic) NSDate *endDate;
+@property (nonatomic, strong) NSDate *startDate;
+@property (nonatomic, strong) NSDate *endDate;
 
-@property (strong, nonatomic) UILabel *headerView;
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
-@property (strong, nonatomic) UIBarButtonItem *optionItem;
-@property (strong, nonatomic) EMHeaderImageView *headerImageView;
+@property (nonatomic, strong) UILabel *headerView;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UIBarButtonItem *optionItem;
+@property (nonatomic, strong) EMHeaderImageView *headerImageView;
 
 @end
 
@@ -597,7 +597,7 @@
     [self loadDataWithParameters:_parameters];
 }
 
-- (NSString*)formatDate:(NSDate*)date
+- (NSString *)formatDate:(NSDate*)date
 {
     if (date) {
         NSDateFormatter *format =[[NSDateFormatter alloc] init];

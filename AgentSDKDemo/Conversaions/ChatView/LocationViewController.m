@@ -23,7 +23,7 @@ static LocationViewController *defaultLocation = nil;
     BOOL _isSendLocation;
 }
 
-@property (copy, nonatomic) NSString *addressString;
+@property (nonatomic, copy) NSString *addressString;
 
 @end
 

@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, UITextFieldType) {
     UITextFieldTypePassword = 5
 };
 
-@property (strong ,nonatomic) UITextField *editTextField;
+@property (nonatomic, strong) UITextField *editTextField;
 
 @end
 

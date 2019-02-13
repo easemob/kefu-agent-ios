@@ -317,7 +317,7 @@ typedef void (^MBProgressHUDCompletionBlock)();
 @property (copy) NSString *detailsLabelText;
 
 
-@property (nonatomic,strong) UILabel *label;
+@property (nonatomic, strong) UILabel *label;
 
 /**
  * The opacity of the HUD window. Defaults to 0.8 (80% opacity).

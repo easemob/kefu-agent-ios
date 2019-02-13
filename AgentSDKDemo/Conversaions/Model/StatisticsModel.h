@@ -15,7 +15,7 @@
 @property (nonatomic) NSInteger curOnlineCount;
 @property (nonatomic) NSInteger todayMessageCount;
 
-@property (strong, nonatomic) NSArray *messsageCount;
-@property (strong, nonatomic) NSArray *sessionCount;
+@property (nonatomic, strong) NSArray *messsageCount;
+@property (nonatomic, strong) NSArray *sessionCount;
 
 @end

@@ -17,7 +17,7 @@
 
 @implementation DXUpdateView
 
-- (id)initWithFrame:(CGRect)frame updateInfo:(NSDictionary*)info
+- (id)initWithFrame:(CGRect)frame updateInfo:(NSDictionary *)info
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -26,7 +26,7 @@
     return self;
 }
 
-- (void)_setupView:(NSDictionary*)info
+- (void)_setupView:(NSDictionary *)info
 {
     _info = info;
     //================appstore start=================

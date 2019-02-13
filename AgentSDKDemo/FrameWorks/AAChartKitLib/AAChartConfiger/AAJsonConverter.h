@@ -49,6 +49,6 @@
  @param series Series array of AAOptions
  @return Pure series string without "\r" && "\n"
  */
-+ (NSString *)getPureSeriesString:(NSArray<NSDictionary*> *)series;
++ (NSString *)getPureSeriesString:(NSArray<NSDictionary *> *)series;
 
 @end 

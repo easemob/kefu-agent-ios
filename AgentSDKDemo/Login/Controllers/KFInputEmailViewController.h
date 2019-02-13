@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface KFInputEmailViewController : KFBaseViewController
-@property(nonatomic,copy) NSString *codeId;
+@property (nonatomic, copy) NSString *codeId;
 @end

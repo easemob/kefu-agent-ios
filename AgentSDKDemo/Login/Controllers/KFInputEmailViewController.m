@@ -19,7 +19,7 @@ typedef NS_ENUM(NSUInteger, UITextFieldViewTag) {
     UITextFieldViewTagCode,
 };
 @interface KFInputEmailViewController ()<UITextFieldDelegate,UIAlertViewDelegate>
-@property(nonatomic,strong) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation KFInputEmailViewController

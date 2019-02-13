@@ -22,13 +22,13 @@
 /**
  * 设置当前时间
  */
-@property(nonatomic, strong)NSDate *currentDate;
+@property (nonatomic, strong) NSDate *currentDate;
 /**
  * 设置中心标题文字
  */
-@property(nonatomic, strong)UILabel *titleL;
+@property (nonatomic, strong) UILabel *titleL;
 
-@property(nonatomic, strong)id<HTimePickerViewDelegate>delegate;
+@property (nonatomic, strong)id<HTimePickerViewDelegate>delegate;
 
 /**
  * 隐藏

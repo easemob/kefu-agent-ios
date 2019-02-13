@@ -12,6 +12,6 @@
 
 @interface KFWarningCell : UITableViewCell
 
-@property(nonatomic,strong) KFWarningModel *model;
+@property (nonatomic, strong) KFWarningModel *model;
 
 @end

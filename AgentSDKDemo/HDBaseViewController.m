@@ -9,7 +9,7 @@
 #import "HDBaseViewController.h"
 
 @interface HDBaseViewController ()<UITableViewDelegate,UITableViewDataSource,SRRefreshDelegate,UIScrollViewDelegate>
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
 @end
 

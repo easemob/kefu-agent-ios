@@ -66,24 +66,24 @@
     NSInteger _page;
 }
 
-@property (strong, nonatomic) EMHeaderImageView *headerImageView;
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) EMHeaderImageView *headerImageView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
 @property (assign, nonatomic) BOOL hasMore;
 @property (assign, nonatomic) BOOL isRefresh;
 @property (assign, nonatomic) NSInteger totalCount;
-@property (strong, nonatomic) UIView *headerView;
-@property(nonatomic,strong) UIView *tabMenuView;
+@property (nonatomic, strong) UIView *headerView;
+@property (nonatomic, strong) UIView *tabMenuView;
 
 @property (nonatomic, strong) UIButton *readButton;
 @property (nonatomic, strong) UIButton *unreadButton;
 @property (nonatomic, strong) UIButton *markButton;
-@property(nonatomic,strong) UIButton *seeReadButton; //查看已读
+@property (nonatomic, strong) UIButton *seeReadButton; //查看已读
 
-@property(nonatomic,strong) NSMutableArray *unreadDataSource; //未读数据
-@property(nonatomic,assign) NSInteger unreadTotleCount;
+@property (nonatomic, strong) NSMutableArray *unreadDataSource; //未读数据
+@property (nonatomic, assign) NSInteger unreadTotleCount;
 @end
 
 

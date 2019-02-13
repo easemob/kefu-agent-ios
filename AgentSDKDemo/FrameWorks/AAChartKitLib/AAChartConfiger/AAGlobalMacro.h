@@ -38,7 +38,7 @@
 
 
 #define AAPropStatementAndFuncStatement(propertyModifier,className, propertyPointerType, propertyName)                  \
-@property(nonatomic,propertyModifier)propertyPointerType  propertyName;                                                 \
+@property (nonatomic,propertyModifier)propertyPointerType  propertyName;                                                 \
 - (className * (^) (propertyPointerType propertyName)) propertyName##Set;
 
 #define AAPropSetFuncImplementation(className, propertyPointerType, propertyName)                                       \

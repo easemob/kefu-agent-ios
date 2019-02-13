@@ -10,7 +10,7 @@
 
 @protocol EMEditViewControllerDelegate <NSObject>
 
-- (void)saveParameter:(NSString*)value key:(NSString*)key;
+- (void)saveParameter:(NSString *)value key:(NSString *)key;
 
 @end
 
@@ -18,6 +18,6 @@
 
 @property (weak, nonatomic) id<EMEditViewControllerDelegate> delegate;
 
-@property (copy, nonatomic) NSString *key;
+@property (nonatomic, copy) NSString *key;
 
 @end

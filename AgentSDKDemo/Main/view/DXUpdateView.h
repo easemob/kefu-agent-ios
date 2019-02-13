@@ -10,6 +10,6 @@
 
 @interface DXUpdateView : UIView
 
-- (id)initWithFrame:(CGRect)frame updateInfo:(NSDictionary*)info;
+- (id)initWithFrame:(CGRect)frame updateInfo:(NSDictionary *)info;
 
 @end

@@ -42,7 +42,7 @@
     return self;
 }
 
-- (UIButton*)delButton
+- (UIButton *)delButton
 {
     if (_delButton == nil) {
         _delButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -102,11 +102,11 @@
     BOOL _edit;
 }
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
 
-@property (strong, nonatomic) UIButton *cancelButton;
-@property (strong, nonatomic) UIButton *addButton;
+@property (nonatomic, strong) UIButton *cancelButton;
+@property (nonatomic, strong) UIButton *addButton;
 
 @end
 
@@ -138,7 +138,7 @@
 
 #pragma mark - getter
 
-- (UIButton*)addButton
+- (UIButton *)addButton
 {
     if (_addButton == nil) {
         _addButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -152,7 +152,7 @@
     return _addButton;
 }
 
-- (UIButton*)cancelButton
+- (UIButton *)cancelButton
 {
     if (_cancelButton == nil) {
         _cancelButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 44)];
@@ -444,7 +444,7 @@
 {
     _edit = !_edit;
     _addButton.hidden = !_edit;
-    UIButton *btn = (UIButton*)sender;
+    UIButton *btn = (UIButton *)sender;
     btn.selected = !btn.selected;
     [self.tableView reloadData];
 }
@@ -558,7 +558,7 @@
 
 #pragma mark - QuickReplySelfSubViewDelegate
 
-- (void)clickQuickReplyMessage:(NSString*)message
+- (void)clickQuickReplyMessage:(NSString *)message
 {
     if ([self.delegate respondsToSelector:@selector(clickQuickReplyMessage:)]) {
         [self.delegate clickQuickReplyMessage:message];

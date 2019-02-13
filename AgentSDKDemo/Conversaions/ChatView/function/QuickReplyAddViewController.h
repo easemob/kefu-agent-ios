@@ -18,11 +18,11 @@
 
 @interface QuickReplyAddViewController : EMBaseViewController
 
-@property (copy, nonatomic) NSString *parentId;
+@property (nonatomic, copy) NSString *parentId;
 
 @property (assign, nonatomic) NSInteger leaf;
 
-@property (strong, nonatomic) QuickReplyMessageModel *qrMsgModel;
+@property (nonatomic, strong) QuickReplyMessageModel *qrMsgModel;
 
 @property (weak, nonatomic) id<QuickReplyAddViewDelegate> delegate;
 

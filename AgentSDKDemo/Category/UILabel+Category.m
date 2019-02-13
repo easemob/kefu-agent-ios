@@ -10,7 +10,7 @@
 
 @implementation UILabel (Category)
 
--(void)setLabelSpaceWithValue:(NSString*)str
+-(void)setLabelSpaceWithValue:(NSString *)str
             withFont:(UIFont*)font
      spaceLineHeight:(CGFloat)aHeight{
     NSMutableParagraphStyle *paraStyle = [[NSMutableParagraphStyle alloc] init];
@@ -27,7 +27,7 @@
     self.attributedText = attributeStr;
 }
 
-- (CGFloat)getSpaceLabelHeight:(NSString*)str
+- (CGFloat)getSpaceLabelHeight:(NSString *)str
                       withFont:(UIFont*)font
                      withWidth:(CGFloat)width
                spaceLineHeight:(CGFloat)aHeight {

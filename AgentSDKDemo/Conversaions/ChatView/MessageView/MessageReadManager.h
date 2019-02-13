@@ -20,10 +20,10 @@ typedef void (^PlayBlock)(BOOL playing, HDMessage *messageModel);
 @class EMChatFireBubbleView;
 @interface MessageReadManager : NSObject<MWPhotoBrowserDelegate>
 
-@property (strong, nonatomic) MWPhotoBrowser *photoBrowser;
-@property (strong, nonatomic) FinishBlock finishBlock;
+@property (nonatomic, strong) MWPhotoBrowser *photoBrowser;
+@property (nonatomic, strong) FinishBlock finishBlock;
 
-@property (strong, nonatomic) HDMessage *audioMessageModel;
+@property (nonatomic, strong) HDMessage *audioMessageModel;
 
 + (id)defaultManager;
 

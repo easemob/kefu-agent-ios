@@ -12,8 +12,8 @@
 
 @interface KFPredictView : UIView
 
-@property(nonatomic,assign) CGFloat fontSize;
+@property (nonatomic, assign) CGFloat fontSize;
 
-@property(nonatomic,copy) NSString *content;
+@property (nonatomic, copy) NSString *content;
 
 @end

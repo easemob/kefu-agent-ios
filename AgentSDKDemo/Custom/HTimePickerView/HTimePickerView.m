@@ -28,7 +28,7 @@
     UIButton *chooseButton;
 }
 @property (nonatomic, strong) UIPickerView *pickerView;
-@property (nonatomic,strong) NSString *string;
+@property (nonatomic, strong) NSString *string;
 @property (nonatomic, strong) UIView *contentV;
 @property (nonatomic, strong) UIView *bgView;
 @end
@@ -184,7 +184,7 @@
 }
 
 
--(UIView*)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
     UILabel*label=[[UILabel alloc]initWithFrame:CGRectMake(ScreenWidth*component/6.0, 0,ScreenWidth/6.0, 30)];
     label.font=[UIFont systemFontOfSize:15.0];

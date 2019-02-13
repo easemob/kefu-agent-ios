@@ -12,7 +12,7 @@
 
 - (void)didChangeFrameToHeight:(CGFloat)toHeight;
 
-- (void)didSendText:(NSString*)text attachments:(NSArray*)attachments;
+- (void)didSendText:(NSString *)text attachments:(NSArray*)attachments;
 
 - (void)didSelectImageWithPicker:(UIImagePickerController*)imagePicker;
 

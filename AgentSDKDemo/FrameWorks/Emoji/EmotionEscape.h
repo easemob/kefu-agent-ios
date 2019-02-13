@@ -27,9 +27,9 @@
 
 - (NSAttributedString *) attStringFromTextForInputView:(NSString *) aInputText textFont:(UIFont*)font;
 
-- (void) setEaseEmotionEscapePattern:(NSString*)pattern;
+- (void) setEaseEmotionEscapePattern:(NSString *)pattern;
 
-- (void) setEaseEmotionEscapeDictionary:(NSDictionary*)dict;
+- (void) setEaseEmotionEscapeDictionary:(NSDictionary *)dict;
 
 - (NSDictionary *)emotionDictionary;
 
@@ -40,6 +40,6 @@
 
 @interface EMTextAttachment : NSTextAttachment
 
-@property(nonatomic, strong) NSString *imageName;
+@property (nonatomic, strong) NSString *imageName;
 
 @end

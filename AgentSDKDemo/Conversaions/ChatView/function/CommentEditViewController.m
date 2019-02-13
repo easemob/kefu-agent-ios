@@ -14,7 +14,7 @@
 
 @interface CommentEditViewController () <UITextViewDelegate>
 
-@property (strong, nonatomic) UITextView *textView;
+@property (nonatomic, strong) UITextView *textView;
 
 @end
 

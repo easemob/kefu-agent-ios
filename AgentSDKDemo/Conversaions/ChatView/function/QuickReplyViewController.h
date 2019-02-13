@@ -10,7 +10,7 @@
 
 @protocol QuickReplyViewControllerDelegate <NSObject>
 
-- (void)sendQuickReplyMessage:(NSString*)message;
+- (void)sendQuickReplyMessage:(NSString *)message;
 
 @end
 

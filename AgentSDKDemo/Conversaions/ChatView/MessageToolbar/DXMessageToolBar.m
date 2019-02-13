@@ -27,23 +27,23 @@
 /**
  *  背景
  */
-@property (strong, nonatomic) UIImageView *toolbarBackgroundImageView;
-@property (strong, nonatomic) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIImageView *toolbarBackgroundImageView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
 /**
  *  按钮、输入框、toolbarView
  */
-@property (strong, nonatomic) UIView *toolbarView;
-@property (strong, nonatomic) UIButton *styleChangeButton;
-@property (strong, nonatomic) UIButton *moreButton;
-@property (strong, nonatomic) UIButton *faceButton;
+@property (nonatomic, strong) UIView *toolbarView;
+@property (nonatomic, strong) UIButton *styleChangeButton;
+@property (nonatomic, strong) UIButton *moreButton;
+@property (nonatomic, strong) UIButton *faceButton;
 
 
 /**
  *  底部扩展页面
  */
 @property (nonatomic) BOOL isShowButtomView;
-@property (strong, nonatomic) UIView *activityButtomView;//当前活跃的底部扩展页面
+@property (nonatomic, strong) UIView *activityButtomView;//当前活跃的底部扩展页面
 
 @end
 
@@ -750,7 +750,7 @@
 /**
  *  当选择快捷回复时,输入框高度改变
  */
-- (void)quickReplyViewSeletedTitle:(NSString*)title
+- (void)quickReplyViewSeletedTitle:(NSString *)title
 {
     if ([title length] > 0) {
         self.inputTextView.text = [self.inputTextView.text stringByAppendingString:title];

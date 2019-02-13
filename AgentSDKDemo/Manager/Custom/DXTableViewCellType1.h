@@ -10,13 +10,13 @@
 @class DXTipView;
 @interface DXTableViewCellType1 : UITableViewCell
 
-@property (strong, nonatomic) UIImageView *headerImageView;
+@property (nonatomic, strong) UIImageView *headerImageView;
 
-@property (strong, nonatomic) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *titleLabel;
 
-@property (strong, nonatomic) UILabel *contentLabel;
+@property (nonatomic, strong) UILabel *contentLabel;
 
-@property (strong, nonatomic) DXTipView *unreadLabel;
+@property (nonatomic, strong) DXTipView *unreadLabel;
 
 - (void)setModel:(HDConversation *)model;
 

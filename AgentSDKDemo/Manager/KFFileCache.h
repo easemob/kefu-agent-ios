@@ -12,7 +12,7 @@
 
 singleton_interface(KFFileCache)
 
-@property(nonatomic,copy) NSString *basePath;
+@property (nonatomic, copy) NSString *basePath;
 
 
 /**

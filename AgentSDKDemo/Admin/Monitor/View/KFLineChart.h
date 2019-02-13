@@ -11,16 +11,16 @@
 
 @interface KFLineChartModel :NSObject
 
-@property(nonatomic,assign) HDAgentLoginStatus status;
+@property (nonatomic, assign) HDAgentLoginStatus status;
 
-@property(nonatomic,assign) NSInteger count;
+@property (nonatomic, assign) NSInteger count;
 
-@property(nonatomic,assign) CGFloat percentage;
+@property (nonatomic, assign) CGFloat percentage;
 
 @end
 
 @interface KFLineChart : UIView
 
-@property(nonatomic,copy) NSArray *models;
+@property (nonatomic, copy) NSArray *models;
 
 @end

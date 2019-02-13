@@ -47,7 +47,7 @@
     [self addSubview:self.endTimeView];
 }
 
-- (UIView*)startTimeView
+- (UIView *)startTimeView
 {
     if (_startTimeView == nil) {
         _startTimeView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth - 22, 43)];
@@ -57,7 +57,7 @@
     return _startTimeView;
 }
 
-- (UIView*)endTimeView
+- (UIView *)endTimeView
 {
     if (_endTimeView == nil) {
         _endTimeView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_startTimeView.frame) + 1.f, KScreenWidth - 22, 43)];

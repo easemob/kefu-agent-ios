@@ -18,8 +18,8 @@
 
 @interface TransferViewController : DXBaseViewController
 
-@property(nonatomic,assign) id<TransferViewControllerDelegate> delegate;
+@property (nonatomic, assign) id<TransferViewControllerDelegate> delegate;
 
-@property (nonatomic,strong) HDConversationManager* conversation;
+@property (nonatomic, strong) HDConversationManager* conversation;
 
 @end

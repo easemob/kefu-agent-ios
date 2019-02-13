@@ -122,11 +122,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)screenViewX {
     CGFloat x = 0;
-    for (UIView* view = self; view; view = view.superview) {
+    for (UIView * view = self; view; view = view.superview) {
         x += view.left;
         
         if ([view isKindOfClass:[UIScrollView class]]) {
-            UIScrollView* scrollView = (UIScrollView*)view;
+            UIScrollView * scrollView = (UIScrollView *)view;
             x -= scrollView.contentOffset.x;
         }
     }
@@ -138,11 +138,11 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (CGFloat)screenViewY {
     CGFloat y = 0;
-    for (UIView* view = self; view; view = view.superview) {
+    for (UIView * view = self; view; view = view.superview) {
         y += view.top;
         
         if ([view isKindOfClass:[UIScrollView class]]) {
-            UIScrollView* scrollView = (UIScrollView*)view;
+            UIScrollView * scrollView = (UIScrollView *)view;
             y -= scrollView.contentOffset.y;
         }
     }
@@ -188,15 +188,15 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (void)removeAllSubviews {
     while (self.subviews.count) {
-        UIView* child = self.subviews.lastObject;
+        UIView * child = self.subviews.lastObject;
         [child removeFromSuperview];
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-- (CGPoint)offsetFromView:(UIView*)otherView {
+- (CGPoint)offsetFromView:(UIView *)otherView {
     CGFloat x = 0, y = 0;
-    for (UIView* view = self; view && view != otherView; view = view.superview) {
+    for (UIView * view = self; view && view != otherView; view = view.superview) {
         x += view.left;
         y += view.top;
     }
@@ -241,7 +241,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 - (UIViewController*)viewController {
-    for (UIView* next = [self superview]; next; next = next.superview) {
+    for (UIView * next = [self superview]; next; next = next.superview) {
         UIResponder* nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {
             return (UIViewController*)nextResponder;

@@ -9,6 +9,6 @@
 #import "KFBaseViewController.h"
 
 @interface KFPhoneVerifyViewController : KFBaseViewController
-@property(nonatomic,copy) NSString *phoneNum;
-@property(nonatomic,strong) KFUserModel *model;
+@property (nonatomic, copy) NSString *phoneNum;
+@property (nonatomic, strong) KFUserModel *model;
 @end

@@ -20,11 +20,11 @@ typedef enum{
 @end
 
 @interface ChatViewController : EMBaseViewController
-@property(nonatomic,assign) id<ChatViewControllerDelegate> delegate;
-@property (strong, nonatomic) HDConversation * conversationModel;
-@property(nonatomic,strong) NSMutableArray *allConversations;
-@property (copy, nonatomic) NSString *notifyNumber;
-@property(nonatomic,copy) NSString *unreadBadgeValue;
+@property (nonatomic, assign) id<ChatViewControllerDelegate> delegate;
+@property (nonatomic, strong) HDConversation * conversationModel;
+@property (nonatomic, strong) NSMutableArray *allConversations;
+@property (nonatomic, copy) NSString *notifyNumber;
+@property (nonatomic, copy) NSString *unreadBadgeValue;
 - (instancetype)initWithtype:(ChatViewType)type;
 
 + (BOOL)isExistFile:(HDMessage *)model;

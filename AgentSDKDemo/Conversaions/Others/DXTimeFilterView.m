@@ -450,7 +450,7 @@
     }
 }
 
-+ (NSDictionary*)curWeek
++ (NSDictionary *)curWeek
 {
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -488,7 +488,7 @@
     return @{@"first":firstDayOfWeek,@"last":lastDayOfWeek};
 }
 
-+ (NSDictionary*)curMonth
++ (NSDictionary *)curMonth
 {
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -507,7 +507,7 @@
     return @{@"first":firstDayOfWeek,@"last":lastDayOfWeek};
 }
 
-+ (NSDictionary*)lastMonth
++ (NSDictionary *)lastMonth
 {
     NSDate *now = [NSDate date];
     NSCalendar *calendar = [NSCalendar currentCalendar];

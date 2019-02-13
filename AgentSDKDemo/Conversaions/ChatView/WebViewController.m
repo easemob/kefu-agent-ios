@@ -13,13 +13,13 @@
     NSString *_url;
 }
 
-@property (strong, nonatomic) UIWebView *webView;
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 
 @implementation WebViewController
 
-- (instancetype)initWithUrl:(NSString*)url
+- (instancetype)initWithUrl:(NSString *)url
 {
     self = [super init];
     if (self) {

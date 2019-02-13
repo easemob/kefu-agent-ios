@@ -13,12 +13,12 @@
 
 @interface KFSuperviseBaseViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,KFArrowButtonViewDelegate,SRRefreshDelegate>
 
-@property(nonatomic,strong) UITableView *tableView;
-@property(nonatomic,strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 
-@property(nonatomic,strong) NSTimer *timer;
+@property (nonatomic, strong) NSTimer *timer;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
 - (void)loadData;
 

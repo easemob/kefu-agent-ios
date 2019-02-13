@@ -38,7 +38,7 @@
 {
     HDConversationManager *_conversation;
 }
-- (instancetype)initWithSessionId:(NSString*)serviceSessionId edit:(BOOL)edit
+- (instancetype)initWithSessionId:(NSString *)serviceSessionId edit:(BOOL)edit
 {
     self = [super init];
     if (self) {
@@ -54,7 +54,7 @@
     return self;
 }
 
-- (UIButton*)unfoldButton
+- (UIButton *)unfoldButton
 {
     if (_unfoldButton == nil) {
         _unfoldButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -273,7 +273,7 @@
     }
 }
 
-- (TagNode*)_getTopParentTree:(NSString*)parentId
+- (TagNode*)_getTopParentTree:(NSString *)parentId
 {
     if ([_tree objectForKey:parentId]) {
         TagNode *node = [_tree objectForKey:parentId];

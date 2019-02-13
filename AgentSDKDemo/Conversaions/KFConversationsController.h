@@ -11,11 +11,11 @@
 
 @interface KFConversationsController : UIViewController
 
-@property (strong, nonatomic) UIView *titleView;
+@property (nonatomic, strong) UIView *titleView;
 
-@property (strong, nonatomic) UIBarButtonItem *rightItem;
+@property (nonatomic, strong) UIBarButtonItem *rightItem;
 
-@property (strong, nonatomic) UIBarButtonItem *headerViewItem;
+@property (nonatomic, strong) UIBarButtonItem *headerViewItem;
 
 - (void)refreshData;
 

@@ -22,11 +22,11 @@
 #import "MMDrawerBarButtonItem.h"
 
 @interface MMDrawerMenuButtonView : UIButton
-@property (nonatomic,strong) UIColor * menuButtonNormalColor;
-@property (nonatomic,strong) UIColor * menuButtonHighlightedColor;
+@property (nonatomic, strong) UIColor * menuButtonNormalColor;
+@property (nonatomic, strong) UIColor * menuButtonHighlightedColor;
 
-@property (nonatomic,strong) UIColor * shadowNormalColor;
-@property (nonatomic,strong) UIColor * shadowHighlightedColor;
+@property (nonatomic, strong) UIColor * shadowNormalColor;
+@property (nonatomic, strong) UIColor * shadowHighlightedColor;
 
 -(UIColor *)menuButtonColorForState:(UIControlState)state;
 -(void)setMenuButtonColor:(UIColor *)color forState:(UIControlState)state;
@@ -195,7 +195,7 @@
 @end
 
 @interface MMDrawerBarButtonItem ()
-@property (nonatomic,strong) MMDrawerMenuButtonView * buttonView;
+@property (nonatomic, strong) MMDrawerMenuButtonView * buttonView;
 
 @end
 

@@ -16,9 +16,9 @@
 
 @interface QuickReplyAddViewController ()<UITextViewDelegate>
 
-@property (strong, nonatomic) UITextView *textView;
+@property (nonatomic, strong) UITextView *textView;
 
-@property (strong, nonatomic) UILabel *numLabel;
+@property (nonatomic, strong) UILabel *numLabel;
 
 @end
 

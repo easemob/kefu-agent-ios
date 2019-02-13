@@ -18,20 +18,20 @@ static RealtimeSearchUtil *defaultUtil = nil;
 
 @interface RealtimeSearchUtil()
 
-@property (strong, nonatomic) id source;
+@property (nonatomic, strong) id source;
 
 @property (nonatomic) SEL selector;
 
-@property (copy, nonatomic) RealtimeSearchResultsBlock resultBlock;
+@property (nonatomic, copy) RealtimeSearchResultsBlock resultBlock;
 
 /**
  *  当前搜索线程
  */
-@property (strong, nonatomic) NSThread *searchThread;
+@property (nonatomic, strong) NSThread *searchThread;
 /**
  *  搜索线程队列
  */
-@property (strong, nonatomic) dispatch_queue_t searchQueue;
+@property (nonatomic, strong) dispatch_queue_t searchQueue;
 
 @end
 

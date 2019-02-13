@@ -250,7 +250,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 #pragma mark - action
 - (void)hiddenButtonAction:(id)sender
 {
-    UIButton *btn = (UIButton*)sender;
+    UIButton *btn = (UIButton *)sender;
     btn.selected = !btn.selected;
 }
 
@@ -280,7 +280,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 - (void)inputHideAction:(id)sender
 {
-    UIButton *btn = (UIButton*)sender;
+    UIButton *btn = (UIButton *)sender;
     btn.selected = !btn.selected;
     if (btn.selected) {
         _passwordField.secureTextEntry = NO;

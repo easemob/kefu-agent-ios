@@ -22,9 +22,9 @@
 @property (nonatomic, copy) NSString *detail;
 @property (nonatomic, copy) NSString *queueId;
 
-- (instancetype)initWithName:(NSString*)name
-                      detail:(NSString*)detail
-                     queueId:(NSString*)queueId;
+- (instancetype)initWithName:(NSString *)name
+                      detail:(NSString *)detail
+                     queueId:(NSString *)queueId;
 
 @end
 
@@ -32,7 +32,7 @@
 
 - (instancetype)initWithName:(NSString *)name
                       detail:(NSString *)detail
-                     queueId:(NSString*)queueId
+                     queueId:(NSString *)queueId
 {
     self = [super init];
     if (self) {
@@ -71,11 +71,11 @@
     dispatch_queue_t _jnRefreshQueue;
 }
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
-@property (strong, nonatomic) NSMutableDictionary *dataSourceDic;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
 @end
 

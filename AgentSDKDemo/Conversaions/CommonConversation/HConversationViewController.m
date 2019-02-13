@@ -32,13 +32,13 @@
     NSTimeInterval _endConversation;
 }
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
-@property (strong, nonatomic) NSMutableDictionary *dataSourceDic;
+@property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
-@property (strong, nonatomic) UIView *networkStateView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
+@property (nonatomic, strong) UIView *networkStateView;
 
 @end
 

@@ -109,12 +109,12 @@ typedef NSDictionary *(^EMSDWebImageDownloaderHeadersFilterBlock)(NSURL *url, NS
 /**
  * Set username
  */
-@property (strong, nonatomic) NSString *username;
+@property (nonatomic, strong) NSString *username;
 
 /**
  * Set password
  */
-@property (strong, nonatomic) NSString *password;
+@property (nonatomic, strong) NSString *password;
 
 /**
  * Set filter to pick headers for downloading image HTTP request.

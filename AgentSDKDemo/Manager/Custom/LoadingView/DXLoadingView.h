@@ -11,7 +11,7 @@
 @interface DXLoadingView : UIView
 
 //颜色，默认黑色
-@property (strong, nonatomic) UIColor *contentColor;
+@property (nonatomic, strong) UIColor *contentColor;
 
 //取消回调
 @property (copy) void (^cancleCompletion)(BOOL didCancle);

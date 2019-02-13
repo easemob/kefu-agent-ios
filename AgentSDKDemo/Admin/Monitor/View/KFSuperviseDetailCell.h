@@ -11,5 +11,5 @@
 
 @interface KFSuperviseDetailCell : UITableViewCell
 
-@property(nonatomic,strong) KFDetailModel *model;
+@property (nonatomic, strong) KFDetailModel *model;
 @end

@@ -29,7 +29,7 @@
     if (_url) {
         trueUrl = [NSURL URLWithString:_url];
     }
-    NSURLRequest *request =[NSURLRequest requestWithURL:trueUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:trueUrl];
     
     [self.view addSubview:webView];
     

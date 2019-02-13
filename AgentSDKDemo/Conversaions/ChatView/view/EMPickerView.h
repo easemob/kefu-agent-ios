@@ -10,7 +10,7 @@
 
 @protocol EMPickerSaveDelegate <NSObject>
 
-- (void)savePickerWithValue:(NSString*)value index:(NSInteger)index;
+- (void)savePickerWithValue:(NSString *)value index:(NSInteger)index;
 
 @end
 

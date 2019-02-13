@@ -12,8 +12,8 @@
 @interface EMSDWebImageCombinedOperation : NSObject <EMSDWebImageOperation>
 
 @property (assign, nonatomic, getter = isCancelled) BOOL cancelled;
-@property (copy, nonatomic) SDWebImageNoParamsBlock cancelBlock;
-@property (strong, nonatomic) NSOperation *cacheOperation;
+@property (nonatomic, copy) SDWebImageNoParamsBlock cancelBlock;
+@property (nonatomic, strong) NSOperation *cacheOperation;
 
 @end
 
@@ -21,8 +21,8 @@
 
 @property (strong, nonatomic, readwrite) EMSDImageCache *imageCache;
 @property (strong, nonatomic, readwrite) EMSDWebImageDownloader *imageDownloader;
-@property (strong, nonatomic) NSMutableArray *failedURLs;
-@property (strong, nonatomic) NSMutableArray *runningOperations;
+@property (nonatomic, strong) NSMutableArray *failedURLs;
+@property (nonatomic, strong) NSMutableArray *runningOperations;
 
 @end
 

@@ -55,7 +55,7 @@
     [self setupTagView];
 }
 
-- (UIButton*)deleteButton
+- (UIButton *)deleteButton
 {
     if (_deleteButton == nil) {
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -95,7 +95,7 @@
     return _childLabel;
 }
 
-- (UIView*)pointView
+- (UIView *)pointView
 {
     if (_pointView == nil) {
         _pointView = [[UIView alloc] init];
@@ -151,7 +151,7 @@
     }
 }
 
-- (CGSize)makeLabelSize:(NSString*)text
+- (CGSize)makeLabelSize:(NSString *)text
 {
     CGSize textBlockMinSize = {CGFLOAT_MAX, kDefaultHeight};
     CGSize retSize;

@@ -11,5 +11,5 @@
 #import "KFSuperviseBaseViewController.h"
 #define kGetAgentGroup @"/v1/monitor/agentqueues"
 @interface HDSuperviseManagerViewController : KFSuperviseBaseViewController
-@property(nonatomic,strong) KFArrowButtonView *head;
+@property (nonatomic, strong) KFArrowButtonView *head;
 @end

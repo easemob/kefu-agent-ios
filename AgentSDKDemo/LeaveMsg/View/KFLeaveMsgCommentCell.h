@@ -16,7 +16,7 @@
 @end
 
 @interface KFLeaveMsgCommentCell : UITableViewCell
-@property(nonatomic,strong) HLeaveMessageComment *model;
+@property (nonatomic, strong) HLeaveMessageComment *model;
 
 @property (nonatomic, strong) NSURL *imageURL;
 @property (nonatomic, strong) UIImage *placeholderImage;

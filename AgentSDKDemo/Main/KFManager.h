@@ -19,31 +19,31 @@
 singleton_interface(KFManager);
 
 //当前会话Id
-@property(nonatomic,strong) NSString *currentSessionId;
+@property (nonatomic, strong) NSString *currentSessionId;
 
-@property (strong, nonatomic) NSDate *lastPlaySoundDate;
+@property (nonatomic, strong) NSDate *lastPlaySoundDate;
 
-@property(nonatomic,assign) AppDelegate *appDelegate;
+@property (nonatomic, assign) AppDelegate *appDelegate;
 
 /**
  当前聊天控制器,进入会话的时候传入
  */
-@property(nonatomic,strong) ChatViewController *curChatViewConvtroller;
+@property (nonatomic, strong) ChatViewController *curChatViewConvtroller;
 
 
 /**
  当前控制器
  */
-@property(nonatomic,strong) UIViewController *curViewController;
+@property (nonatomic, strong) UIViewController *curViewController;
 
-@property(nonatomic,assign) BOOL needShowSuperviseTip;
+@property (nonatomic, assign) BOOL needShowSuperviseTip;
 
-@property(nonatomic,strong) EMHeaderImageView *headImageView;
+@property (nonatomic, strong) EMHeaderImageView *headImageView;
 
 /**
  当前会话数
  */
-@property(nonatomic,assign) NSInteger curConversationNum;
+@property (nonatomic, assign) NSInteger curConversationNum;
 
 
 - (void)setTabbarBadgeValueWithAllConversations:(NSMutableArray *)allConversations;
@@ -51,13 +51,13 @@ singleton_interface(KFManager);
 - (void)setNavItemBadgeValueWithAllConversations:(NSMutableArray *)allConversations;
 
 //会话
-@property(nonatomic,strong) KFConversationsController *conversation;
+@property (nonatomic, strong) KFConversationsController *conversation;
 //待接入
-@property(nonatomic,strong) WaitQueueViewController *wait;
+@property (nonatomic, strong) WaitQueueViewController *wait;
 //通知
-@property(nonatomic,strong) NotifyViewController *noti;
+@property (nonatomic, strong) NotifyViewController *noti;
 
-//@property(nonatomic,strong) HDConversationViewController *homeVC;
+//@property (nonatomic, strong) HDConversationViewController *homeVC;
 
 
 - (void)showMainViewController;

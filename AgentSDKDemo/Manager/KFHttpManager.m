@@ -41,7 +41,7 @@ singleton_implementation(KFHttpManager);
     return _instance;
 }
 
-- (NSURLSessionDownloadTask *)asyncDownLoadFileWithFilePath:(NSString *)urlPath completion:(void (^)(id, NSString*, NSError *))completion {
+- (NSURLSessionDownloadTask *)asyncDownLoadFileWithFilePath:(NSString *)urlPath completion:(void (^)(id, NSString *, NSError *))completion {
     NSURLSessionDownloadTask *task = nil;
     NSData *data =  [[KFFileCache sharedInstance] fileFromMemoryCacheForKey:urlPath];
     NSString *path = [[KFFileCache sharedInstance] fileFullPathWithUrlStr:urlPath];

@@ -13,25 +13,25 @@
     BOOL _isSettingLeft;
 }
 
-@property (strong, nonatomic) UIButton *saveButton;
+@property (nonatomic, strong) UIButton *saveButton;
 
-@property (strong, nonatomic) UIView *headerButtonView;
-@property (strong, nonatomic) UIView *selectView;
-@property (strong, nonatomic) UIButton *leftButton;
-@property (strong, nonatomic) UIButton *rightButton;
+@property (nonatomic, strong) UIView *headerButtonView;
+@property (nonatomic, strong) UIView *selectView;
+@property (nonatomic, strong) UIButton *leftButton;
+@property (nonatomic, strong) UIButton *rightButton;
 
-@property (strong, nonatomic) UIDatePicker *datePicker;
-@property (strong, nonatomic) UIDatePicker *timePicker;
+@property (nonatomic, strong) UIDatePicker *datePicker;
+@property (nonatomic, strong) UIDatePicker *timePicker;
 
-@property (strong, nonatomic) UILabel *dateLabel;
-@property (strong, nonatomic) UILabel *timeLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *timeLabel;
 
-@property (strong, nonatomic) NSDateFormatter *formatter;
-@property (strong, nonatomic) NSDateFormatter *formatterDate;
-@property (strong, nonatomic) NSDateFormatter *formatterTime;
+@property (nonatomic, strong) NSDateFormatter *formatter;
+@property (nonatomic, strong) NSDateFormatter *formatterDate;
+@property (nonatomic, strong) NSDateFormatter *formatterTime;
 
-@property (strong, nonatomic) UILabel *startTimeLabel;
-@property (strong, nonatomic) UILabel *endTimeLabel;
+@property (nonatomic, strong) UILabel *startTimeLabel;
+@property (nonatomic, strong) UILabel *endTimeLabel;
 
 @end
 
@@ -176,7 +176,7 @@
     return _timePicker;
 }
 
-- (UIView*)headerButtonView
+- (UIView *)headerButtonView
 {
     if (_headerButtonView == nil) {
         _headerButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 70)];
@@ -191,7 +191,7 @@
     return _headerButtonView;
 }
 
-- (UIView*)selectView
+- (UIView *)selectView
 {
     if (_selectView == nil) {
         _selectView = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerButtonView.height - 1.5f, KScreenWidth/2, 1.f)];
@@ -202,7 +202,7 @@
     return _selectView;
 }
 
-- (UIButton*)leftButton
+- (UIButton *)leftButton
 {
     if (_leftButton == nil) {
         _leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -218,7 +218,7 @@
     return _leftButton;
 }
 
-- (UIButton*)rightButton
+- (UIButton *)rightButton
 {
     if (_rightButton == nil) {
         _rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -234,7 +234,7 @@
     return _rightButton;
 }
 
-- (UIButton*)saveButton
+- (UIButton *)saveButton
 {
     if (_saveButton == nil) {
         _saveButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];

@@ -18,10 +18,10 @@ static NSString *const kCompletedCallbackKey = @"completed";
 
 @interface EMSDWebImageDownloader ()
 
-@property (strong, nonatomic) NSOperationQueue *downloadQueue;
+@property (nonatomic, strong) NSOperationQueue *downloadQueue;
 @property (weak, nonatomic) NSOperation *lastAddedOperation;
-@property (strong, nonatomic) NSMutableDictionary *URLCallbacks;
-@property (strong, nonatomic) NSMutableDictionary *HTTPHeaders;
+@property (nonatomic, strong) NSMutableDictionary *URLCallbacks;
+@property (nonatomic, strong) NSMutableDictionary *HTTPHeaders;
 // This queue is used to serialize the handling of the network responses of all the download operation in a single queue
 @property (SDDispatchQueueSetterSementics, nonatomic) dispatch_queue_t barrierQueue;
 

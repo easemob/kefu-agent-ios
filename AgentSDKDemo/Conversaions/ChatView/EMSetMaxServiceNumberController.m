@@ -76,7 +76,7 @@
     [self.view addSubview:self.rightBgView];
 }
 
-- (UIView*)leftBgView
+- (UIView *)leftBgView
 {
     if (_leftBgView == nil) {
         _leftBgView = [[UIView alloc] initWithFrame:CGRectMake((KScreenWidth-3*(kNumberWidth+20)-20)/2, 50, kNumberWidth + 20, 198)];
@@ -101,7 +101,7 @@
     return _middleBgView;
 }
 
-- (UIView*)rightBgView
+- (UIView *)rightBgView
 {
     if (_rightBgView == nil) {
         _rightBgView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.middleBgView.frame)+10, 50, kNumberWidth + 20, 198)];
@@ -114,7 +114,7 @@
     return _rightBgView;
 }
 
-- (UIButton*)rightDownButton
+- (UIButton *)rightDownButton
 {
     if (_rightDownButton == nil) {
         _rightDownButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -125,7 +125,7 @@
     return _rightDownButton;
 }
 
-- (UIButton*)rightUpButton
+- (UIButton *)rightUpButton
 {
     if (_rightUpButton == nil) {
         _rightUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -136,7 +136,7 @@
     return _rightUpButton;
 }
 
-- (UIButton*)leftDownButton
+- (UIButton *)leftDownButton
 {
     if (_leftDownButton == nil) {
         _leftDownButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -147,7 +147,7 @@
     return _leftDownButton;
 }
 
-- (UIButton*)leftUpButton
+- (UIButton *)leftUpButton
 {
     if (_leftUpButton == nil) {
         _leftUpButton = [UIButton buttonWithType:UIButtonTypeCustom];

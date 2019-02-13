@@ -44,7 +44,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (UIButton*)titleBtn
+- (UIButton *)titleBtn
 {
     if (!_titleBtn) {
         _titleBtn = [[UIButton alloc] init];

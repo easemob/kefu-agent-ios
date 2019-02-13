@@ -13,7 +13,7 @@
     NSInteger _page;
 }
 
-@property (copy, nonatomic) NSString* userId;
+@property (nonatomic, copy) NSString * userId;
 
 - (void)initData;
 

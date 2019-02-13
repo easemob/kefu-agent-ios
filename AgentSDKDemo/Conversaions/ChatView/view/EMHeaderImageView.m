@@ -13,8 +13,8 @@
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIImageView *statusImageView;
-@property(nonatomic,strong) UIImageView *superviseView;
-@property(nonatomic,strong) UserModel *user;
+@property (nonatomic, strong) UIImageView *superviseView;
+@property (nonatomic, strong) UserModel *user;
 
 @end
 

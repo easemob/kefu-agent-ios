@@ -36,18 +36,18 @@
     BOOL hasMore;
 }
 @property (nonatomic, strong) UIDocumentInteractionController *documentController;
-@property (strong, nonatomic) NSMutableArray *dataSource;
-@property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) DXMessageToolBar *chatToolBar;
+@property (nonatomic, strong) NSMutableArray *dataSource;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) DXMessageToolBar *chatToolBar;
 
-@property (strong, nonatomic) UIImagePickerController *imagePicker;
-@property (strong, nonatomic) MessageReadManager *messageReadManager;//message阅读的管理者
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
+@property (nonatomic, strong) MessageReadManager *messageReadManager;//message阅读的管理者
 
-@property (strong, nonatomic) NSDate *chatTagDate;
+@property (nonatomic, strong) NSDate *chatTagDate;
 
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
-@property (strong, nonatomic) NSMutableDictionary *msgDic;
+@property (nonatomic, strong) NSMutableDictionary *msgDic;
 
 @end
 

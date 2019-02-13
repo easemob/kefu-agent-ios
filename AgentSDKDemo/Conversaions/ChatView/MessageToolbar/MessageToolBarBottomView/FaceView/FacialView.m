@@ -137,7 +137,7 @@
 }
 
 
--(void)selected:(UIButton*)bt
+-(void)selected:(UIButton *)bt
 {
     if (bt.tag == 10000 && _delegate) {
         [_delegate deleteSelected:nil];

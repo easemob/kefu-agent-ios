@@ -10,7 +10,7 @@
 #import "KFTestParameters.h"
 
 @interface KFBaseViewController () <UITableViewDelegate>
-//@property(nonatomic,assign) CGFloat space;
+//@property (nonatomic, assign) CGFloat space;
 @end
 
 @implementation KFBaseViewController

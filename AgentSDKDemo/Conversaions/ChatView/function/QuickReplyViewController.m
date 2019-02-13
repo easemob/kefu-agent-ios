@@ -23,12 +23,12 @@
     dispatch_queue_t _quickReplyRefreshQueue;
     NSMutableDictionary *_selected;
 }
-@property (strong, nonatomic) SRRefreshView *slimeView;
+@property (nonatomic, strong) SRRefreshView *slimeView;
 
-@property (strong, nonatomic) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *dataArray;
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
 
 @end
 

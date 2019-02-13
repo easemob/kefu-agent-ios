@@ -15,11 +15,11 @@
 
 @interface DXTableViewController : UITableViewController
 
-@property (strong, nonatomic) UIBarButtonItem *backItem;
+@property (nonatomic, strong) UIBarButtonItem *backItem;
 
-@property (strong, nonatomic) NSMutableArray *dataSource;
+@property (nonatomic, strong) NSMutableArray *dataSource;
 
-@property (strong, nonatomic) UIButton *titleBtn;
+@property (nonatomic, strong) UIButton *titleBtn;
 
 @property (nonatomic, assign) id <DXTableViewControllerDelegate> dxDelegate;
 

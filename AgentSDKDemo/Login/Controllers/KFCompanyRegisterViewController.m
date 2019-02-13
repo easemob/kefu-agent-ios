@@ -25,8 +25,8 @@ typedef NS_ENUM(NSUInteger, UITextFieldTag) {
 };
 
 @interface KFCompanyRegisterViewController () <UITextFieldDelegate>
-@property(nonatomic,strong) UIImageView *codeImageView;
-@property(nonatomic,copy) NSString *codeId;
+@property (nonatomic, strong) UIImageView *codeImageView;
+@property (nonatomic, copy) NSString *codeId;
 @end
 
 @implementation KFCompanyRegisterViewController

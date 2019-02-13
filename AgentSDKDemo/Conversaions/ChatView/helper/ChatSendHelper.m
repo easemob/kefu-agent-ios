@@ -12,7 +12,7 @@
 
 @implementation UIImage (save)
 
-- (NSString*)saveImageWithTime:(NSTimeInterval)time;
+- (NSString *)saveImageWithTime:(NSTimeInterval)time;
 {
     NSData *data = UIImageJPEGRepresentation(self, 1);
     NSString *tempPath = NSTemporaryDirectory();
@@ -27,12 +27,7 @@
 @implementation ChatSendHelper
 
 
-+(HDMessage *)sendTextMessageWithString:(NSString *)str toUser:(NSString *)userId sessionId:(NSString*)sessionId
-{
-    return [self sendTextMessageWithString:str toUser:userId sessionId:sessionId ext:nil];
-}
-
-+(NSDictionary *)uploadImage:(HDMediaFile*)media
++ (NSDictionary *)uploadImage:(HDMediaFile*)media
 {
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setObject:@"" forKey:@"msg"];

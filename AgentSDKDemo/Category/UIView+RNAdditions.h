@@ -102,7 +102,7 @@
  *
  * otherView should be a parent view of this view.
  */
-- (CGPoint)offsetFromView:(UIView*)otherView;
+- (CGPoint)offsetFromView:(UIView *)otherView;
 
 
 @end

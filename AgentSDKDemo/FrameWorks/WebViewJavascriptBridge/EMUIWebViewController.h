@@ -12,7 +12,7 @@
 
 @protocol EMUIWebViewControllerDelegate <NSObject>
 
-- (void)clickCustomWebView:(NSDictionary*)data;
+- (void)clickCustomWebView:(NSDictionary *)data;
 
 @end
 
@@ -20,6 +20,6 @@
 
 @property (nonatomic, weak) id<EMUIWebViewControllerDelegate> delegate;
 
-- (instancetype)initWithUrl:(NSString*)url;
+- (instancetype)initWithUrl:(NSString *)url;
 
 @end

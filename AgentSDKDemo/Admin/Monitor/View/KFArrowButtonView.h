@@ -15,8 +15,8 @@
 @end
 
 @interface KFArrowButtonView : UIView
-@property(nonatomic,copy) NSString *normalText;
-@property(nonatomic,copy) NSString *selectedText;
+@property (nonatomic, copy) NSString *normalText;
+@property (nonatomic, copy) NSString *selectedText;
 
-@property(nonatomic,assign) id <KFArrowButtonViewDelegate>delegate;
+@property (nonatomic, assign) id <KFArrowButtonViewDelegate>delegate;
 @end

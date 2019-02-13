@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, XHTextViewInputViewType) {
 @property (nonatomic, strong) UIColor *placeHolderTextColor;
 
 
-@property(nonatomic,getter=isEditing)Boolean editing;
+@property (nonatomic,getter=isEditing)Boolean editing;
 
 /**
  *  获取自身文本占据有多少行

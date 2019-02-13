@@ -13,7 +13,7 @@
 
 - (void)saveClientInfor;
 
-- (void)saveParameter:(NSString*)value key:(NSString*)key;
+- (void)saveParameter:(NSString *)value key:(NSString *)key;
 
 - (void)savePatameter:(NSString *)value index:(NSInteger)index;
 
@@ -21,9 +21,9 @@
 
 @interface ClientInforCompileController : UIViewController
 
-@property(nonatomic,assign) BOOL isPlaceHolder;
-@property(nonatomic,assign) BOOL isNumberPad;
-@property (copy, nonatomic) NSString *editContent;
+@property (nonatomic, assign) BOOL isPlaceHolder;
+@property (nonatomic, assign) BOOL isNumberPad;
+@property (nonatomic, copy) NSString *editContent;
 
 @property (weak, nonatomic) id<ClientInforCompileControllerDelegate> delegate;
 

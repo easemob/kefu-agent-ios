@@ -21,17 +21,17 @@
 @property (nonatomic, copy) UIColor *color;
 @property (nonatomic, assign) BOOL isSelectRoot;
 
-@property (strong, nonatomic) UISearchBar *searchBar;
-@property (strong, nonatomic) EMSearchDisplayController *searchController;
-@property (strong, nonatomic) NSMutableArray *searchArray;
-@property (strong, nonatomic) NSMutableDictionary *tree;
+@property (nonatomic, strong) UISearchBar *searchBar;
+@property (nonatomic, strong) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) NSMutableArray *searchArray;
+@property (nonatomic, strong) NSMutableDictionary *tree;
 
 @end
 
 @implementation SelectTagViewController
 
 - (instancetype)initWithStyle:(UITableViewStyle)style
-                        tagId:(NSString*)tagId
+                        tagId:(NSString *)tagId
                     treeArray:(NSArray*)treeArray
                         color:(UIColor*)color
                  isSelectRoot:(BOOL)isSelect
@@ -208,7 +208,7 @@
     }
 }
 
-- (TagNode*)_getTopParentTree:(NSString*)parentId
+- (TagNode*)_getTopParentTree:(NSString *)parentId
 {
     if ([_tree objectForKey:parentId]) {
         TagNode *node = [_tree objectForKey:parentId];

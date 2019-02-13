@@ -14,3 +14,4 @@ hs_err_pid*
 **/xcshareddata/
 
 .DS_Store
+**.zip

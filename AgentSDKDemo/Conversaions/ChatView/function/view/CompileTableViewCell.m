@@ -127,7 +127,7 @@
     
     // 毫秒值转化为秒
     NSDate* date = [NSDate dateWithTimeIntervalSince1970:[timeString doubleValue]/ 1000.0];
-    NSString* dateString = [formatter stringFromDate:date];
+    NSString * dateString = [formatter stringFromDate:date];
     return dateString;
 }
 

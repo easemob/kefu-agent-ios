@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIButton (KFAdd)
-+(UIButton *)buttonWithMargin:(CGFloat)margin originY:(CGFloat)y  target:(id)target sel:(SEL)action title:(NSString*)title;
++(UIButton *)buttonWithMargin:(CGFloat)margin originY:(CGFloat)y  target:(id)target sel:(SEL)action title:(NSString *)title;
 @end
