@@ -17,7 +17,7 @@
 #define kLoginMargin 20.f
 #define kLoginTextViewHeight 35.f
 #define kLogoImageWidth 90
-#define kActionViewHeight 240.f
+#define kActionViewHeight 260.f
 
 typedef NS_ENUM(NSUInteger, ButtonTag) {
     ButtonTagVisible=1000, //密码可见
@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     UITextField *_passwordField;
     UIButton *_inputHideButton;
     UIButton *_hiddenButton;
+    UIButton *_savePwdButton;
     UIButton *_fgtPwdButton;
 }
 
@@ -118,27 +119,27 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [_hiddenButton setTitle:@"隐身登录" forState:UIControlStateNormal];
     [_hiddenButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     _hiddenButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
-    [_hiddenButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 22, 0, 0)];
+    [_hiddenButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
     [_hiddenButton setImage:[UIImage imageNamed:@"icon_mono_off"] forState:UIControlStateNormal];
     [_hiddenButton setImage:[UIImage imageNamed:@"icon_mono_on"] forState:UIControlStateSelected];
-    [_hiddenButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 100)];
+    [_hiddenButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 80)];
     [_hiddenButton addTarget:self action:@selector(hiddenButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     _hiddenButton.tag = ButtonTagHide;
     [_actionView addSubview:_hiddenButton];
     
-    _fgtPwdButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    NSString *title = @"忘记密码";
-    _fgtPwdButton.tag = ButtonTagFgtPsd;
-    [_fgtPwdButton setTitleColor:RGBACOLOR(25, 163, 255, 1) forState:UIControlStateNormal];
-    [_fgtPwdButton setTitle:title forState:UIControlStateNormal];
-    _fgtPwdButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
-    CGSize titleSize =  [title sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:_fgtPwdButton.titleLabel.font.fontName size:_fgtPwdButton.titleLabel.font.pointSize]}];
-    titleSize.height = 20;
-    titleSize.width += 10;
-    _fgtPwdButton.origin = CGPointMake(_actionView.width-titleSize.width-20, _hiddenButton.origin.y);
-    _fgtPwdButton.size = titleSize;
-    [_fgtPwdButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_actionView addSubview:_fgtPwdButton];
+    
+    _savePwdButton = [[UIButton alloc] initWithFrame:_hiddenButton.frame];
+    _savePwdButton.right = _passwordField.right;
+    [_savePwdButton setTitle:@"记住密码" forState:UIControlStateNormal];
+    [_savePwdButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    _savePwdButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+    [_savePwdButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
+    [_savePwdButton setImage:[UIImage imageNamed:@"icon_mono_off"] forState:UIControlStateNormal];
+    [_savePwdButton setImage:[UIImage imageNamed:@"icon_mono_on"] forState:UIControlStateSelected];
+    [_savePwdButton setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 80)];
+    [_savePwdButton addTarget:self action:@selector(savePwdButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_actionView addSubview:_savePwdButton];
+
     
     UIButton *loginButton = [[UIButton alloc] initWithFrame:CGRectMake(kLoginMargin, CGRectGetMaxY(_hiddenButton.frame) + 10, CGRectGetWidth(_actionView.frame) - kLoginMargin * 2, 45)];
     [loginButton setTitle:@"登录" forState:UIControlStateNormal];
@@ -152,7 +153,25 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_actionView addSubview:loginButton];
     
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    
+    
+    _fgtPwdButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    NSString *title = @"忘记密码";
+    _fgtPwdButton.tag = ButtonTagFgtPsd;
+    [_fgtPwdButton setTitleColor:RGBACOLOR(25, 163, 255, 1) forState:UIControlStateNormal];
+    [_fgtPwdButton setTitle:title forState:UIControlStateNormal];
+    _fgtPwdButton.titleLabel.font = [UIFont systemFontOfSize:15.0];
+    CGSize titleSize =  [title sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:_fgtPwdButton.titleLabel.font.fontName size:_fgtPwdButton.titleLabel.font.pointSize]}];
+    titleSize.height = 20;
+    titleSize.width += 10;
+    _fgtPwdButton.size = titleSize;
+    _fgtPwdButton.origin = CGPointMake(_actionView.width-titleSize.width-20, _hiddenButton.origin.y);
+    _fgtPwdButton.center = loginButton.center;
+    _fgtPwdButton.top = loginButton.bottom + 40;
+    [_fgtPwdButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_actionView addSubview:_fgtPwdButton];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
     
     [self setupForDismissKeyboard];
     
@@ -161,6 +180,16 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     if (loginUserName && loginUserName.length > 0) {
         _usernameField.text = loginUserName;
         [_passwordField becomeFirstResponder];
+    }
+    
+    NSString *password = [userDefaults stringForKey:USERDEFAULTS_SAVEPASSWORD];
+    if (password && password.length > 0) {
+        _savePwdButton.selected = YES;
+    }
+    
+    NSString *loginUserPwd = [userDefaults objectForKey:USERDEFAULTS_SAVEPASSWORD];
+    if (loginUserPwd && loginUserPwd.length > 0) {
+        _passwordField.text = loginUserPwd;
     }
 }
 
@@ -254,6 +283,10 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     btn.selected = !btn.selected;
 }
 
+- (void)savePwdButtonAction:(UIButton *)aBtn {
+    aBtn.selected = !aBtn.selected;
+}
+
 - (void)loginButtonAction:(id)sender
 {
     [_usernameField resignFirstResponder];
@@ -268,6 +301,11 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
                 [[KFManager sharedInstance] showMainViewController];
                 NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
                 [userDefaults setValue:_usernameField.text forKey:USERDEFAULTS_LOGINUSERNAME];
+                if (_savePwdButton.selected) {
+                    [userDefaults setValue:_passwordField.text forKey:USERDEFAULTS_SAVEPASSWORD];
+                }else {
+                    [userDefaults removeObjectForKey:USERDEFAULTS_SAVEPASSWORD];
+                }
                 [userDefaults synchronize];
             }
             if (error) {

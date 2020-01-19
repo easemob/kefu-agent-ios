@@ -206,7 +206,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     [self markAsRead];
     if (chatType == ChatViewTypeChat) {
-        [self.navigationItem setTitleView:[UIView new]];
+        [self.navigationItem setTitleView:[[UIView alloc] initWithFrame:self.tagBtn.bounds]];
         [self.navigationItem.titleView addSubview:self.tagBtn];
         self.tagBtn.center = self.navigationItem.titleView.center;
         [self.view addSubview:self.chatToolBar];
@@ -369,6 +369,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _originTypeLable.textColor = [UIColor whiteColor];
         _originTypeLable.attributedText = string;
         _originTypeLable.font = [UIFont systemFontOfSize:15.f];
+        _originTypeLable.userInteractionEnabled = NO;
     }
     return _originTypeLable;
 }
@@ -1074,16 +1075,22 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self.navigationController pushViewController:locationController animated:YES];
 }
 
-
-
-//头像被点击
 - (void)chatHeadImageBubblePressed:(HDMessage *)model
 {
+    
+    
+    //    [HDClient.sharedClient.visitorManager addVisitorToBlacklist:_conversationModel.chatter.agentId
+    //                                               serviceSessionId:_conversationModel.sessionId
+    //                                                         reason:@"reason"
+    //                                                     completion:^(HDError * _Nonnull error) {
+    //        NSLog(@"error -- %@",error);
+    //    }];
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
     clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;
     clientView.user = _conversationModel.chatter;
     clientView.tagImage = self.originTypeImage.image;
+    clientView.serviceSessionId = _conversation.sessionId;
     if (clientView.userId.length == 0) {
         clientView.userId = _conversationModel.vistor.agentId;
     }
@@ -1149,7 +1156,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
     clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;
+    clientView.user = _conversationModel.chatter;
     clientView.tagImage = self.originTypeImage.image;
+    clientView.serviceSessionId = _conversation.sessionId;
     if (clientView.userId.length == 0) {
         clientView.userId = _conversationModel.vistor.agentId;
     }

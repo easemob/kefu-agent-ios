@@ -76,8 +76,7 @@
     }
     [self.tableView addSubview:self.slimeView];//f5f7fa
     self.tableView.backgroundColor = kTableViewBgColor;
-    
-    [self setUpSearchBar];
+
     [self.view addSubview:_searchBar];
     self.tableView.top += _searchBar.height;
     self.tableView.height -= _searchBar.height;
@@ -176,11 +175,11 @@
     return _networkStateView;
 }
 
+/*
 - (void)setUpSearchBar
 {
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
     _searchBar.delegate = self;
-    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     _searchBar.placeholder = @"搜索用户昵称";
     _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
     _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
@@ -255,10 +254,9 @@
         }];
         [alert show];
     }];
-
-    
 }
-
+*/
+ 
 #pragma mark - action
 
 - (void)optionAction
@@ -301,21 +299,10 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
-    if(tableView == self.searchController.searchResultsTableView){
-        return 1;
-    }
     return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    if(tableView == self.searchController.searchResultsTableView){
-        if ([self.searchController.resultsSource count] == 0) {
-            return 1;
-        }
-        return [self.searchController.resultsSource count];
-    }
     if (section == 0) {
         if ([self.dataSource count] == 0) {
             return 1;
@@ -375,11 +362,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (tableView == self.searchController.searchResultsTableView) {
-        if ([self.searchController.resultsSource count] == 0) {
-            return;
-        }
-    }
     
     if (indexPath.section == 0) {
         if ([self.dataSource count] <= indexPath.row) {
@@ -393,7 +375,6 @@
                 WEAK_SELF
                 [[HDClient sharedClient].waitManager asyncFetchUserWaitQueuesWithUserId:model.userWaitQueueId completion:^(id responseObject, HDError *error) {
                     if (error == nil) {
-                        [weakSelf refreshSearchView];
                         [weakSelf.dataSource removeObject:weakmodel];
                         [weakSelf.tableView reloadData];
                         _waitUnreadcount--;
@@ -561,27 +542,6 @@
     if (searchText.length == 0) {
         return;
     }
-    WEAK_SELF
-    NSString *search = [ChineseToPinyin pinyinFromChineseString:searchText];
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)search collationStringSelector:@selector(searchWord) resultBlock:^(NSArray *results) {
-        if (results) {
-            if ([results count] > 0) {
-                if ([[results objectAtIndex:0] isKindOfClass:[HDWaitUser class]]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakSelf.searchController.resultsSource removeAllObjects];
-                        [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-                        [weakSelf.searchController.searchResultsTableView reloadData];
-                    });
-                }
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.searchController.resultsSource removeAllObjects];
-                    [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-                    [weakSelf.searchController.searchResultsTableView reloadData];
-                });
-            }
-        }
-    }];
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
@@ -642,31 +602,5 @@
    [[HomeViewController HomeViewController] setWaitQueueWithBadgeValue:count];
 }
 
-- (void)refreshSearchView
-{
-    if (self.searchBar.text.length == 0) {
-        return;
-    }
-    WEAK_SELF
-    NSString *search = [ChineseToPinyin pinyinFromChineseString:self.searchBar.text];
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)search collationStringSelector:@selector(searchWord) resultBlock:^(NSArray *results) {
-        if (results) {
-            if ([results count] > 0) {
-                if ([[results objectAtIndex:0] isKindOfClass:[HDWaitUser class]]) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakSelf.searchController.resultsSource removeAllObjects];
-                        [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-                        [weakSelf.searchController.searchResultsTableView reloadData];
-                    });
-                }
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.searchController.resultsSource removeAllObjects];
-                    [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-                    [weakSelf.searchController.searchResultsTableView reloadData];
-                });
-            }
-        }
-    }];
-}
+
 @end

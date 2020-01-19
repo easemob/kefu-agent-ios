@@ -301,7 +301,6 @@
 
 - (void)waitButtonAction:(id)sender
 {
-    [_conversationController searhResignAndSearchDisplayNoActive];
     _conversationButton.selected = NO;
     _waitButton.selected = YES;
     [_scrollView setContentOffset:CGPointMake(CGRectGetWidth(_scrollView.frame), 0) animated:NO];
@@ -340,7 +339,6 @@
 - (void)ConversationPushIntoChat:(UIViewController *)viewController
 {
     if (_conversationButton.selected) {
-        [_conversationController searhResign];
         ((ChatViewController*)viewController).notifyNumber = _tipNumber;
     } else {
         [_customerViewController.customerController searhResign];
@@ -357,7 +355,6 @@
         _waitButton.selected = NO;
         _conversationButton.selected = YES;
     } else {
-        [_conversationController searhResignAndSearchDisplayNoActive];
         _conversationButton.selected = NO;
         _waitButton.selected = YES;
     }

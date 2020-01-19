@@ -39,10 +39,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-   
-    [self setUpSearchBar];
-    
+
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
@@ -71,12 +68,12 @@
     return _slimeView;
 }
 
+/*
 - (void)setUpSearchBar
 {
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
-    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
     _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
     [_searchBar setSearchFieldBackgroundPositionAdjustment:UIOffsetMake(0, 0)];
@@ -97,6 +94,7 @@
     _searchController.searchResultsTableView.tableFooterView = [UIView new];
     
 }
+ */
 
 #pragma mark - scrollView delegate
 
@@ -135,13 +133,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    if(tableView == self.searchController.searchResultsTableView){
-        if ([self.searchController.resultsSource count] == 0) {
-            return 1;
-        }
-        return [self.searchController.resultsSource count];
-    }
     return [self.dataSource count];
 }
 
@@ -153,16 +144,7 @@
         cell = [[DXTableViewCellType1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellType1"];
     }
     
-    if (tableView == self.searchController.searchResultsTableView) {
-        if ([self.searchController.resultsSource count] == 0) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
-            cell.textLabel.text = @"没有搜索到……";
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            return cell;
-        }
-    }
-    
-    HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
 
     [cell setModel:model];
     return cell;
@@ -178,31 +160,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (tableView == self.searchController.searchResultsTableView) {
-        if ([self.searchController.resultsSource count] == 0) {
-            return;
-        }
-    }
     
     if (_searchBar.isFirstResponder) {
         [_searchBar resignFirstResponder];
     }
     
     CustomerChatViewController *customerChat = [[CustomerChatViewController alloc] init];
-    HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
     customerChat.title = model.chatter.nicename;
     customerChat.userModel = model.chatter;
     customerChat.model = model;
     
     _customerUnreadcount -= model.unreadCount;
     model.unreadCount = 0;
-    
-    if (tableView != self.searchController.searchResultsTableView) {
-        [self.tableView reloadData];
-    } else {
-        [self.tableView reloadData];
-        [self.searchController.searchResultsTableView reloadData];
-    }
+
     _curRemoteAgentId = model.chatter.agentId;
     if ([self.delegate respondsToSelector:@selector(CustomerPushIntoChat:)]) {
         [self.delegate CustomerPushIntoChat:customerChat];
@@ -275,16 +246,6 @@
     if (searchText.length == 0) {
         return;
     }
-    NSString *search = [ChineseToPinyin pinyinFromChineseString:searchText];
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)search collationStringSelector:@selector(searchWord) resultBlock:^(NSArray *results) {
-        if (results) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.searchController.resultsSource removeAllObjects];
-                [self.searchController.resultsSource addObjectsFromArray:results];
-                [self.searchController.searchResultsTableView reloadData];
-            });
-        }
-    }];
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar

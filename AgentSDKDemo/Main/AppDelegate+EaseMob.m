@@ -36,11 +36,11 @@
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
-//    options.kefuRestAddress = @"sandbox.kefu.easemob.com";
+//    options.kefuRestAddress = @"visitor-kefu.kyemalltest.com";
 //    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
-//    options.restServer = @"a1.dongfeng-renault.com.cn";
-//    options.chatServer = @"im1.dongfeng-renault.com.cn";
-//    options.chatPort = 5222;
+    options.restServer = @"a1-kefu.kyemalltest.com";
+    options.chatServer = @"10.121.224.46";
+    options.chatPort = 16717;
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     [self registerRemoteNotification];

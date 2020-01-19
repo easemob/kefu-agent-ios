@@ -98,7 +98,7 @@
 
 @end
 
-@interface HistoryConversationsController()<SWTableViewCellDelegate,UISearchBarDelegate, UISearchDisplayDelegate,HistoryOptionDelegate>
+@interface HistoryConversationsController()<SWTableViewCellDelegate,UISearchBarDelegate,HistoryOptionDelegate>
 {
     BOOL hasMore;
     BOOL _isRefresh;
@@ -114,9 +114,10 @@
 
 @property (nonatomic, strong) UILabel *headerView;
 @property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) EMSearchDisplayController *searchController;
+@property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UIBarButtonItem *optionItem;
 @property (nonatomic, strong) EMHeaderImageView *headerImageView;
+@property (nonatomic, strong) NSMutableArray *searchDataArray;
 
 @end
 
@@ -139,8 +140,6 @@
     self.navigationItem.rightBarButtonItem = self.optionItem;
     
     [self initData]; //请求历史会话的参数
-    [self setUpSearchBar];
-    [self.view addSubview:self.searchBar];
     self.tableView.tableHeaderView = self.headerView;
     self.tableView.top = self.searchBar.height;
     self.tableView.height -= self.searchBar.height;
@@ -204,64 +203,6 @@
         _headerView.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@(0),@(0)];
     }
     return _headerView;
-}
-
-- (void)setUpSearchBar
-{
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
-    _searchBar.delegate = self;
-    _searchBar.placeholder = @"搜索";
-    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
-    _searchBar.backgroundImage = [self.view imageWithColor:RGBACOLOR(0xef, 0xef, 0xf4, 1) size:_searchBar.frame.size];
-    _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
-    _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
-    [_searchBar setSearchFieldBackgroundPositionAdjustment:UIOffsetMake(0, 0)];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg"] forState:UIControlStateNormal];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg_select"] forState:UIControlStateHighlighted];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg_select"] forState:UIControlStateSelected];
-    
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_searchBar.frame) - 0.5, self.tableView.frame.size.width, 0.5)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    [_searchBar addSubview:line];
-    
-    _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    _searchController.active = NO;
-    _searchController.delegate = self;
-    _searchController.searchResultsTableView.tableFooterView = [UIView new];
-    
-    WEAK_SELF
-    [_searchController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
-        DXHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation"];
-        
-        // Configure the cell...
-        if (cell == nil) {
-            cell = [[DXHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
-            cell.rightUtilityButtons = [weakSelf rightButtons];
-        }
-        
-        cell.delegate = weakSelf;
-        HDHistoryConversation *model = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-        [cell setHistoryConversationModel:model];
-        return cell;
-    }];
-    
-    [_searchController setHeightForRowAtIndexPathCompletion:^CGFloat(UITableView *tableView, NSIndexPath *indexPath) {
-        return DEFAULT_CHAT_CELLHEIGHT;
-    }];
-    
-    [_searchController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        [weakSelf.searchController.searchBar endEditing:YES];
-        
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        if ([weakSelf.searchController.resultsSource count] > indexPath.row) {
-            ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeCallBackChat];
-            HDHistoryConversation *model = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            chatView.conversationModel = model;
-            [weakSelf.navigationController pushViewController:chatView animated:YES];
-        }
-    }];
 }
 
 #pragma mark - Table view data source
@@ -411,45 +352,40 @@
 
 #pragma mark - UISearchBarDelegate
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    [searchBar setShowsCancelButton:YES animated:YES];
-    
-    return YES;
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
+    [self.searchDataArray removeAllObjects];
+    [self.searchDataArray addObjectsFromArray:self.dataSource];
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    WEAK_SELF
-    searchText = [ChineseToPinyin pinyinFromChineseString:searchText];
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(searchWord) resultBlock:^(NSArray *results) {
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
+    [self.dataSource removeAllObjects];
+    [self.dataSource addObjectsFromArray:self.searchDataArray];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+    [self.searchController dismissViewControllerAnimated:YES completion:^{
+        [self.tableView reloadData];
+    }];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    if (searchText.length == 0) {
+        return;
+    }
+    __weak typeof(self) weakSelf = self;
+    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.searchDataArray searchText:searchText
+                                       collationStringSelector:@selector(description)
+                                                   resultBlock:^(NSArray *results) {
         if (results) {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.searchController.resultsSource removeAllObjects];
-                [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-                [weakSelf.searchController.searchResultsTableView reloadData];
+                [self.dataSource removeAllObjects];
+                [self.dataSource addObjectsFromArray:results];
+                [weakSelf.tableView reloadData];
             });
         }
     }];
 }
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    return YES;
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar resignFirstResponder];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    searchBar.text = @"";
-    [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
-    [searchBar resignFirstResponder];
-    [searchBar setShowsCancelButton:NO animated:YES];
-}
 
 
 #pragma mark - private

@@ -21,6 +21,10 @@
 		9046FCE520E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */; };
 		9046FD1220E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
 		9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
+		904C34BC23D4587700EA2521 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BB23D4587700EA2521 /* AgentSDK.framework */; };
+		904C34BD23D4587700EA2521 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BB23D4587700EA2521 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		904C34BF23D4587D00EA2521 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BE23D4587D00EA2521 /* AgentSDK.framework */; };
+		904C34C023D4587D00EA2521 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BE23D4587D00EA2521 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9050CB5E2213C972003A9359 /* KFiFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9050CB5D2213C972003A9359 /* KFiFrameView.m */; };
 		9050CB5F2213C972003A9359 /* KFiFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9050CB5D2213C972003A9359 /* KFiFrameView.m */; };
 		90591C2E2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
@@ -139,8 +143,6 @@
 		90A2B5392069125100EC2A80 /* KFMonitorInfoViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B5372069125100EC2A80 /* KFMonitorInfoViewItem.m */; };
 		90A2B53C2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */; };
 		90A2B53D2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */; };
-		90AA69CD2069FAF000E39745 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; };
-		90AA69CE2069FAF000E39745 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90AFCBD120CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */; };
 		90AFCBD220CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */; };
 		90AFCBDD20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */; };
@@ -157,8 +159,6 @@
 		90DC765220BD44AE00C86D92 /* KFChatViewRecallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90DC765120BD44AE00C86D92 /* KFChatViewRecallCell.m */; };
 		90E0EF4C206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
 		90E0EF4D206CD57B00E8546B /* list_status_radio_droplist_3@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */; };
-		90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; };
-		90E15BFA20722288004702EF /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90AA69CC2069FAF000E39745 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CEA1FD684F30091E048 /* HDTipLabel.m */; };
@@ -1458,7 +1458,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
-				90AA69CE2069FAF000E39745 /* AgentSDK.framework in Embed Frameworks */,
+				904C34BD23D4587700EA2521 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1470,7 +1470,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */,
-				90E15BFA20722288004702EF /* AgentSDK.framework in Embed Frameworks */,
+				904C34C023D4587D00EA2521 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1490,6 +1490,8 @@
 		9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HLeaveMessageRetrievalStoryboard.storyboard; sourceTree = "<group>"; };
 		9046FD1020E252F8009B6376 /* HTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTimePickerView.m; sourceTree = "<group>"; };
 		9046FD1120E252F8009B6376 /* HTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTimePickerView.h; sourceTree = "<group>"; };
+		904C34BB23D4587700EA2521 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		904C34BE23D4587D00EA2521 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9050CB5C2213C972003A9359 /* KFiFrameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFiFrameView.h; sourceTree = "<group>"; };
 		9050CB5D2213C972003A9359 /* KFiFrameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFiFrameView.m; sourceTree = "<group>"; };
 		90591C182068ADC3007367BD /* KFMonitorInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoCell.h; sourceTree = "<group>"; };
@@ -1603,6 +1605,7 @@
 		90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageCell.h; sourceTree = "<group>"; };
 		90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageCell.m; sourceTree = "<group>"; };
 		90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HLeaveMessageCell.xib; sourceTree = "<group>"; };
+		90C3048E233DC3A100AE1DEB /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
 		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
@@ -2588,9 +2591,9 @@
 				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
 				D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */,
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
-				90AA69CD2069FAF000E39745 /* AgentSDK.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
+				904C34BC23D4587700EA2521 /* AgentSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2602,11 +2605,11 @@
 				D3E9CDB81FBED182005E3677 /* HyphenateLite.framework in Frameworks */,
 				D3E9CDB91FBED182005E3677 /* Bugly.framework in Frameworks */,
 				D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */,
+				904C34BF23D4587D00EA2521 /* AgentSDK.framework in Frameworks */,
 				D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */,
 				D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
-				90E15BF920722288004702EF /* AgentSDK.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
 			);
@@ -4186,6 +4189,9 @@
 		D3FDC5121EA08C0900C25BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				904C34BE23D4587D00EA2521 /* AgentSDK.framework */,
+				904C34BB23D4587700EA2521 /* AgentSDK.framework */,
+				90C3048E233DC3A100AE1DEB /* AgentSDK.framework */,
 				D331C2E21FBAF463005CB0D5 /* UIKit.framework */,
 				D331C2E01FBAF43A005CB0D5 /* Accelerate.framework */,
 				D331C2DE1FBAF405005CB0D5 /* QuartzCore.framework */,
@@ -4706,8 +4712,10 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = D33F465C1E9F71A000FE6DCE;
 			productRefGroup = D33F46661E9F71A000FE6DCE /* Products */;
@@ -6325,6 +6333,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
+				MARKETING_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
@@ -6367,6 +6376,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
+				MARKETING_VERSION = 3.1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
@@ -6412,6 +6422,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
+				MARKETING_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
@@ -6429,7 +6440,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
-				DEVELOPMENT_TEAM = JC854K845H;
+				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks",
@@ -6453,6 +6464,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
+				MARKETING_VERSION = 3.1.0;
 				OTHER_LDFLAGS = "-ObjC";
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.kefuapp;

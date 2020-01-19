@@ -12,21 +12,28 @@
 
 #import "EMSearchDisplayController.h"
 
+@interface EMSearchDisplayController ()
+
+@end
+
 @implementation EMSearchDisplayController
 
-- (id)initWithSearchBar:(UISearchBar *)searchBar contentsController:(UIViewController *)viewController
-{
-    self = [super initWithSearchBar:searchBar contentsController:viewController];
-    if (self) {
-        // Custom initialization
+- (instancetype)initWithSearchResultsController:(UIViewController *)searchResultsController {
+    if (self = [super initWithSearchResultsController:searchResultsController]) {
         _resultsSource = [NSMutableArray array];
         _editingStyle = UITableViewCellEditingStyleDelete;
-        
-        self.searchResultsDataSource = self;
-        self.searchResultsDelegate = self;
-        self.searchResultsTitle = NSLocalizedString(@"searchResults", @"The search results");
     }
+    
     return self;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - Table view data source
@@ -102,9 +109,6 @@
         _didDeselectRowAtIndexPathCompletion(tableView, indexPath);
     }
 }
-
-#pragma mark - UISearchDisplayDelegate
-
 
 
 @end

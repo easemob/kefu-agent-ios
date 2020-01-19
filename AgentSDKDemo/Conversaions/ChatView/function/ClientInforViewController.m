@@ -16,6 +16,9 @@
 #import "EMPickerView.h"
 #import "KFDatePicker.h"
 #import "ChatViewController.h"
+
+#define kBlackListBtnHeight 54
+
 @interface ClientInforViewController ()<ClientInforCompileControllerDelegate,EMPickerSaveDelegate,KFDatePickerDelegate>
 {
     NSArray *titleArr;
@@ -37,13 +40,14 @@
 @property (nonatomic, strong) NSMutableArray *dataArr;
 @property (nonatomic, strong) EMPickerView *pickerView;
 
+@property (nonatomic, strong) UIButton *blackListBtn;
+
 @end
 
 @implementation ClientInforViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor redColor];
     self.navigationItem.leftBarButtonItem = self.backItem;
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -58,10 +62,43 @@
     [self.mainScrollView addSubview:self.iframeView];
     [self.tableView reloadData];
     [self loadVisitorInfoList];
-    
+    [self loadBlackType];
     UIView *hudView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
     hudView.tag = 1000;
     [self.tableView addSubview:hudView];
+    
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:self.blackListBtn.bounds];
+    [self.tableView.tableFooterView addSubview:self.blackListBtn];
+}
+
+- (void)addBlackList:(UIButton *)btn {
+    
+    void(^block)(BOOL isSuccess) = ^(BOOL isSuccess) {
+        [self hideHud];
+        if (isSuccess) {
+            self.blackListBtn.selected = !self.blackListBtn.selected;
+        }else {
+            [self showHint:@"设置失败"];
+        }
+    };
+    
+    [self showHintNotHide:@"设置中..."];
+    if (btn.selected) {
+        [HDClient.sharedClient.visitorManager removeVisitorFromBlacklist:self.user.agentId
+                                                              completion:^(HDError * _Nonnull error)
+        {
+            block(!error);
+        }];
+    }else {
+        [HDClient.sharedClient.visitorManager addVisitorToBlacklist:self.user.agentId
+                                                   serviceSessionId:self.serviceSessionId
+                                                             reason:@""
+                                                         completion:^(HDError * _Nonnull error)
+        {
+            block(!error);
+        }];
+    }
 }
 
 #pragma mark - getter
@@ -164,6 +201,7 @@
     return _tagView;
 }
 
+
 - (KFiFrameView *)iframeView {
     if (!_iframeView) {
         _iframeView = [[KFiFrameView alloc] initWithFrame:self.tableView.bounds iframe:nil];
@@ -171,6 +209,19 @@
         _iframeView.backgroundColor = UIColor.redColor;
     }
     return _iframeView;
+}
+
+- (UIButton *)blackListBtn {
+    if (!_blackListBtn) {
+        _blackListBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _blackListBtn.frame = CGRectMake(0, 0, self.tableView.bounds.size.width, 54);
+        _blackListBtn.backgroundColor = UIColor.redColor;
+        _blackListBtn.titleLabel.textColor = UIColor.whiteColor;
+        [_blackListBtn setTitle:@"加入黑名单" forState:UIControlStateNormal];
+        [_blackListBtn setTitle:@"从黑名单移除" forState:UIControlStateSelected];
+        [_blackListBtn addTarget:self action:@selector(addBlackList:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _blackListBtn;
 }
 
 #pragma mark - action
@@ -373,6 +424,16 @@
 }
 
 #pragma mark - private
+
+- (void)loadBlackType {
+    [HDClient.sharedClient.visitorManager checkVisitorInBlacklist:self.user.agentId
+                                                       completion:^(BOOL isInBlackList, HDError * _Nonnull error)
+    {
+        if (isInBlackList) {
+            self.blackListBtn.selected = YES;
+        }
+    }];
+}
 
 //new
 - (void)loadVisitorInfoList {

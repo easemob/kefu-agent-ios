@@ -47,9 +47,9 @@
 
 #define USERDEFAULTS_QUICK_REPLY [NSString stringWithFormat:@"%@quickReply",[HDClient sharedClient].currentAgentUser.username]
 #pragma mark -  login
-#define USERDEFAULTS_LOGINUSERNAME @"usernaem"
-#define USERDEFAULTS_LOGINPASSWORD @"password"
-
+#define USERDEFAULTS_LOGINUSERNAME @"easemob_kefu_username"
+#define USERDEFAULTS_LOGINPASSWORD @"easemob_kefu_password"
+#define USERDEFAULTS_SAVEPASSWORD @"easemob_kefu_save_password"
 
 
 #endif /* LocalDefine_h */
