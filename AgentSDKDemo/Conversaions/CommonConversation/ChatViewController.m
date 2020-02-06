@@ -1077,14 +1077,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)chatHeadImageBubblePressed:(HDMessage *)model
 {
-    
-    
-    //    [HDClient.sharedClient.visitorManager addVisitorToBlacklist:_conversationModel.chatter.agentId
-    //                                               serviceSessionId:_conversationModel.sessionId
-    //                                                         reason:@"reason"
-    //                                                     completion:^(HDError * _Nonnull error) {
-    //        NSLog(@"error -- %@",error);
-    //    }];
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
     clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;

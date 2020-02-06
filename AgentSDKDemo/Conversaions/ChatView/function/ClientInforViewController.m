@@ -57,6 +57,9 @@
     [self.view addSubview:self.headerButtonView];
     [self.view addSubview:self.mainScrollView];
     self.tableView.height -= CGRectGetMaxY(self.headerButtonView.frame) + 64;
+    if (isIPHONEX) {
+        self.tableView.height -= 64;
+    }
     [self.mainScrollView addSubview:self.tableView];
     [self.mainScrollView addSubview:self.tagView];
     [self.mainScrollView addSubview:self.iframeView];
@@ -83,21 +86,43 @@
         }
     };
     
-    [self showHintNotHide:@"设置中..."];
     if (btn.selected) {
+        [self showHintNotHide:@"设置中..."];
         [HDClient.sharedClient.visitorManager removeVisitorFromBlacklist:self.user.agentId
+                                                          vistorNickname:self.user.nicename
                                                               completion:^(HDError * _Nonnull error)
         {
             block(!error);
         }];
     }else {
-        [HDClient.sharedClient.visitorManager addVisitorToBlacklist:self.user.agentId
-                                                   serviceSessionId:self.serviceSessionId
-                                                             reason:@""
-                                                         completion:^(HDError * _Nonnull error)
-        {
-            block(!error);
+        
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"请输入原因"
+                                                                                 message:nil
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addTextFieldWithConfigurationHandler:nil];
+        
+        __weak typeof(self) weakSelf = self;
+        UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [weakSelf showHintNotHide:@"设置中..."];
+            NSString *str = [alertController.textFields firstObject].text;
+            [HDClient.sharedClient.visitorManager addVisitorToBlacklist:weakSelf.user.agentId
+                                                         vistorNickname:weakSelf.user.nicename
+                                                       serviceSessionId:weakSelf.serviceSessionId
+                                                                 reason:str
+                                                             completion:^(HDError * _Nonnull error)
+            {
+                block(!error);
+            }];
         }];
+        
+        
+        [alertController addAction:sureAction];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+        
+        [alertController addAction:cancelAction];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
     }
 }
 
