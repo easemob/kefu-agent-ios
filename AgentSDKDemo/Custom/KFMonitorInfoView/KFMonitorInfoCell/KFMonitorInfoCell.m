@@ -30,7 +30,7 @@
                                               toItem:view2
                                            attribute:NSLayoutAttributeTop
                                           multiplier:1.0
-                                            constant:0],
+                                            constant:isIPHONEX ? 18 : 0],
               [NSLayoutConstraint constraintWithItem:view1
                                            attribute:NSLayoutAttributeBottom
                                            relatedBy:NSLayoutRelationEqual

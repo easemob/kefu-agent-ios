@@ -148,7 +148,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 - (UITableView *)tableView {
     if (!_tableView) {
         CGFloat statusBarHeight = isIPHONEX ? 44: 20;
-        CGRect frame = CGRectMake(0, statusBarHeight, self.view.width, self.view.height - statusBarHeight - kBottomButtonHeight);
+        CGRect frame = CGRectMake(0, statusBarHeight, self.view.width, self.view.height - statusBarHeight - kBottomButtonHeight - iPhoneXBottomHeight);
         _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;

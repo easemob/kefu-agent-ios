@@ -15,12 +15,12 @@
 #define kTableViewHeaderAndFooterColor RGBACOLOR(242, 242, 242, 1)
 
 #define kNotiCenter [NSNotificationCenter defaultCenter]
-#define KScreenWidth [UIApplication sharedApplication].keyWindow.size.width
-#define KScreenHeight [UIApplication sharedApplication].keyWindow.size.height
+#define KScreenWidth [UIScreen mainScreen].bounds.size.width
+#define KScreenHeight [UIScreen mainScreen].bounds.size.height
 #define kHomeViewLeft 70
-#define isIPHONEX ([UIScreen mainScreen].bounds.size.height==812 ? 1:0)
-#define navigationBarHeight ([UIScreen mainScreen].bounds.size.height==88 ? :64)
-#define iPhoneXBottomHeight  ([UIScreen mainScreen].bounds.size.height==812?34:0)
+#define isIPHONEX ([UIScreen mainScreen].bounds.size.height == 812 ? 1 : 0)
+#define navigationBarHeight ([UIScreen mainScreen].bounds.size.height == 88 ?: 64)
+#define iPhoneXBottomHeight  ([UIScreen mainScreen].bounds.size.height == 812 ? 34 : 0)
 
 #define NOTIFICATION_ADD_COMMENT @"addComment"
 #define NOTIFICATION_ADD_SUMMARY_RESULTS @"addSummaryResult"
