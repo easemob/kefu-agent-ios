@@ -170,6 +170,8 @@
         // Configure the cell...
         if (cell == nil) {
             cell = [[CompileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
+            cell.backgroundColor = UIColor.whiteColor;
+            cell.textLabel.textColor = UIColor.grayColor;
         }
         switch (indexPath.row) {
             case 0:
@@ -225,6 +227,8 @@
         // Configure the cell...
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation1"];
+            cell.backgroundColor = UIColor.whiteColor;
+            cell.textLabel.textColor = UIColor.grayColor;
         }
         if (indexPath.row == 0) {
             cell.textLabel.text = @"客服问候语";
@@ -248,6 +252,7 @@
         // Configure the cell...
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation2"];
+            cell.backgroundColor = UIColor.whiteColor;
         }
         cell.textLabel.text = @"退出登录";
         cell.textLabel.textColor = [UIColor redColor];

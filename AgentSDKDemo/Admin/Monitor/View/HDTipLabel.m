@@ -47,6 +47,7 @@
     _imageView.contentMode = UIViewContentModeScaleAspectFill;
     [self addSubview:_imageView];
     _textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+    _textLabel.textColor = UIColor.grayColor;
     [self addSubview:_textLabel];
 }
 

@@ -63,6 +63,8 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellId"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.textLabel.textColor = UIColor.grayColor;
+        cell.backgroundColor = UIColor.whiteColor;
     }
     
     NSArray *ary = _model.selectedType == KFMonitorLabelModel_AgentType ? _model.agents : _model.teams;
@@ -124,6 +126,7 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.tableFooterView = [UIView new];
         _tableView.delegate = self;
+        _tableView.backgroundColor = UIColor.whiteColor;
         _tableView.dataSource = self;
     }
     

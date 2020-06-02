@@ -322,7 +322,9 @@
         
         if ([self.dataSource count] == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
+            cell.backgroundColor = UIColor.whiteColor;
             cell.textLabel.text = @"没有待接入会话";
+            cell.textLabel.textColor = UIColor.grayColor;
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             return cell;
         }

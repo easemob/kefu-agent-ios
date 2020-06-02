@@ -107,10 +107,11 @@
     _jnRefreshQueue = dispatch_queue_create("com.kefuapp.jnRefresh", DISPATCH_QUEUE_SERIAL);
     
     self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.backgroundColor = UIColor.whiteColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView addSubview:self.slimeView];
-    
+    self.view.backgroundColor = UIColor.whiteColor;
     [self loadData];
     self.title = @"技能组";
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];

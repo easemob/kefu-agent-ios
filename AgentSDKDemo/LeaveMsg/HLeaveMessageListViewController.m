@@ -246,6 +246,7 @@
         _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.dataSource = self;
         _tableView.delegate = self;
+        _tableView.backgroundColor = UIColor.whiteColor;
         UINib *nib = [UINib nibWithNibName:@"HLeaveMessageListCell" bundle:nil];
         [_tableView registerNib:nib forCellReuseIdentifier:@"leaveMessageListCell"];
     }
@@ -488,6 +489,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HLeaveMessageListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leaveMessageListCell"];
+    cell.backgroundColor = UIColor.whiteColor;
     cell.leaveMessage = self.datasource[indexPath.row];
     return cell;
 }

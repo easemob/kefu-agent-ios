@@ -37,6 +37,7 @@
     _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(KScreenWidth - 200, 7, 190, 16)];
     _timeLabel.font = [UIFont systemFontOfSize:13];
     _timeLabel.backgroundColor = [UIColor clearColor];
+    _timeLabel.textColor = UIColor.grayColor;
     _timeLabel.textAlignment = NSTextAlignmentRight;
     [self.contentView addSubview:_timeLabel];
     
@@ -97,7 +98,7 @@
     self.textLabel.text = _name;
     self.textLabel.font = [UIFont boldSystemFontOfSize:16];
     self.textLabel.frame = CGRectMake(65, 10, 175, 20);
-    
+    self.textLabel.textColor = UIColor.grayColor;
     _detailLabel.text = _model.content;
     _timeLabel.text =[self formatDate: _model.createDate];
     if (_unreadCount > 0) {

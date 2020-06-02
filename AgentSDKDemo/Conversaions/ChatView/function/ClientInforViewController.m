@@ -82,8 +82,13 @@
         if (isSuccess) {
             self.blackListBtn.selected = !self.blackListBtn.selected;
         }else {
-            [self showHint:@"设置失败"];
+            [self showHint:@"设置失败, 请稍后重试"];
         }
+    };
+    
+    void(^lengthLimitBlock)() = ^() {
+        [self hideHud];
+        [self showHint:@"设置失败，请确认输入的字数在1~150个字之间。"];
     };
     
     if (btn.selected) {
@@ -106,6 +111,12 @@
         UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [weakSelf showHintNotHide:@"设置中..."];
             NSString *str = [alertController.textFields firstObject].text;
+            
+            if (str.length > 150 || str.length == 0) {
+                lengthLimitBlock();
+                return ;
+            }
+            
             [HDClient.sharedClient.visitorManager addVisitorToBlacklist:weakSelf.user.agentId
                                                          vistorNickname:weakSelf.user.nicename
                                                        serviceSessionId:weakSelf.serviceSessionId
@@ -116,8 +127,9 @@
             }];
         }];
         
-        
+    
         [alertController addAction:sureAction];
+
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
         
         [alertController addAction:cancelAction];
@@ -387,6 +399,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    for (UIView *subView in self.view.subviews) {
+        if ([subView isKindOfClass:[KFDatePicker class]] ||
+            [subView isKindOfClass:[EMPickerView class]]) {
+            [subView removeFromSuperview];
+            break;
+        }
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (_readOnly) {
         return;

@@ -52,26 +52,32 @@
 - (void)initUI {
     _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(kmargin, kmargin, 200, 20)];
     _timeLabel.font = [UIFont systemFontOfSize:13];
+    _timeLabel.textColor = UIColor.grayColor;
     [self.contentView addSubview:_timeLabel];
     
     _levelLabel = [[UILabel alloc] initWithFrame:CGRectZero];
     _levelLabel.font = [UIFont systemFontOfSize:14];
     _levelLabel.textAlignment = NSTextAlignmentRight;
+    _levelLabel.textColor = UIColor.grayColor;
     [self.contentView addSubview:_levelLabel];
     
     _tipLabel = [[UILabel alloc] initWithFrame:CGRectMake(kmargin, CGRectGetMaxY(_timeLabel.frame)+ kmargin, 200, 20)];
     _tipLabel.font = [UIFont systemFontOfSize:13];
+    _tipLabel.textColor = UIColor.grayColor;
     [self.contentView addSubview:_tipLabel];
     
     _idLabel = [[UILabel alloc] initWithFrame:CGRectMake(kmargin, CGRectGetMaxY(_tipLabel.frame)+ kmargin, 0, 20)];
     _idLabel.lineBreakMode = NSLineBreakByClipping;
     _idLabel.font = [UIFont systemFontOfSize:13];
+    _idLabel.textColor = UIColor.grayColor;
     [self.contentView addSubview:_idLabel];
     
     _nikeNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_tipLabel.frame)+kmargin, 100, 20)];
     _nikeNameLabel.textAlignment = NSTextAlignmentRight;
     _nikeNameLabel.font = [UIFont systemFontOfSize:13];
+    _nikeNameLabel.textColor = UIColor.grayColor;
     [self.contentView addSubview:_nikeNameLabel];
+    self.backgroundColor = UIColor.whiteColor;
 }
 
 - (void)awakeFromNib {

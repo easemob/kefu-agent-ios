@@ -51,9 +51,11 @@
     _nickName = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 200, 20)];
     _nickName.font = [UIFont boldSystemFontOfSize:18];
     _nickName.text = _model.name;
+    _nickName.textColor = UIColor.grayColor;
     [titleView addSubview:_nickName];
     _createDate = [[UILabel alloc] initWithFrame:CGRectMake(15, 60, 200, 20)];
     _createDate.text = [[NSDate dateWithTimeIntervalSince1970:_model.createDateTime/1000] minuteDescription];;
+    _createDate.textColor = UIColor.grayColor;
     [titleView addSubview:_createDate];
     _avatar = [[UIImageView alloc] initWithFrame:CGRectMake(KScreenWidth-80, 20, 60, 60)];
     _avatar.image = [UIImage imageNamed:@"default_customer_avatar"];
@@ -83,6 +85,7 @@
         [_detailBtn setTitle:@"查看详情" forState:UIControlStateNormal];
         [_detailBtn addTarget:self action:@selector(detailClicked) forControlEvents:UIControlEventTouchUpInside];
         _detailBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _detailBtn.tintColor = UIColor.whiteColor;
         _detailBtn.frame = CGRectMake(KScreenWidth-85, 10, 70, 30);
         _detailBtn.layer.cornerRadius = 5;
         _detailBtn.layer.masksToBounds = YES;
@@ -93,6 +96,7 @@
     
     //detail
     _detail = [[UILabel alloc] initWithFrame:CGRectMake(15, maxY+20, KScreenWidth-30, 20)];
+    _detail.textColor = UIColor.grayColor;
     _detail.font = [UIFont systemFontOfSize:14];
     _detail.numberOfLines = 0;
     _detail.text = [NSString stringWithFormat:@"   %@",_model.detail.length != 0?_model.detail:_model.summary];

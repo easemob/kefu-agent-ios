@@ -235,6 +235,8 @@
         if ([self.dataSource count] == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
             cell.textLabel.text = @"没有记录";
+            cell.backgroundColor = UIColor.whiteColor;
+            cell.textLabel.textColor = UIColor.grayColor;
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
             return cell;
         }

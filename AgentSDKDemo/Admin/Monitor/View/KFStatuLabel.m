@@ -70,6 +70,7 @@
     
     _countLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_icon.frame)+5, 0, self.width-self.height-5, self.height)];
     _countLabel.font = [UIFont systemFontOfSize:10];
+    _countLabel.textColor = UIColor.grayColor;
     [self addSubview:_countLabel];
 }
 

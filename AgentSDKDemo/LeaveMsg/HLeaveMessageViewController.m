@@ -49,6 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = UIColor.whiteColor;
     UINib *nib = [UINib nibWithNibName:@"HLeaveMessageCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"leaveMsgCellId"];
     [self.tableView addSubview:self.headView];
@@ -143,6 +144,7 @@
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = UIColor.whiteColor;
         _tableView.tableFooterView = [UIView new];
     }
     return _tableView;

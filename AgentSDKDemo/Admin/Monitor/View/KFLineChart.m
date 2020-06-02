@@ -29,6 +29,7 @@
         _line = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 8)];
         _line.layer.cornerRadius = 8.0/2;
         _line.layer.masksToBounds = YES;
+        _line.backgroundColor = UIColor.lightGrayColor;
         [self addSubview:_line];
     }
     return self;
@@ -38,6 +39,13 @@
     CGFloat totalNum = 0;
     NSInteger index = 0;
     CGFloat stwidth = 50;
+    
+    for (UIView *subView in self.subviews) {
+        if ([subView isKindOfClass:[KFStatuLabel class]]) {
+            [subView removeFromSuperview];
+        }
+    }
+    
     for (KFLineChartModel *model in models) {
         KFStatuLabel *label = [[KFStatuLabel alloc] initWithFrame:CGRectMake(0+index*stwidth, CGRectGetMaxY(_line.frame)+margin, stwidth, 20) status:model.status];
         label.text = [NSString stringWithFormat:@"%ld",(long)model.count];

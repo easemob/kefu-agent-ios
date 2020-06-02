@@ -54,7 +54,9 @@
     
     if ([self.resultsSource count] == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
+        cell.backgroundColor = UIColor.whiteColor;
         cell.textLabel.text = @"没有会话";
+        cell.textLabel.textColor = UIColor.grayColor;
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         return cell;
     }

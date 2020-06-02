@@ -52,6 +52,7 @@
     _title.backgroundColor = [UIColor clearColor];
     _title.font = [UIFont systemFontOfSize:15.f];
     _title.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _title.textColor = UIColor.grayColor;
     [self addSubview:_title];
     
     _nextimage = [[UIImageView alloc]init];
@@ -70,25 +71,23 @@
 
 - (void)setModel:(HDVisitorInfoItem *)model {
     _title.text = model.displayName;
+    _nickName.textColor = UIColor.grayColor;
     if (model.values.count>0) {
         if (model.columnType == HDColumnTypeDate) {
             _nickName.text = [self timeWithTimeIntervalString:[NSString stringWithFormat:@"%@",model.values[0]]];
+            
         } else if (model.columnType == HDColumnTypeNumber) {
             NSNumber *value = model.values[0];
             if ([value integerValue] == 0) {
-                _nickName.textColor = [UIColor lightGrayColor];
                 _nickName.text = model.columnDescribe;
             } else {
-                _nickName.textColor = [UIColor blackColor];
                 _nickName.text = [NSString stringWithFormat:@"%@",value];
             }
         } else {
             NSString *value = model.values[0];
             if (value.length == 0) {
-                _nickName.textColor = [UIColor lightGrayColor];
                 _nickName.text = model.columnDescribe;
             } else {
-                _nickName.textColor = [UIColor blackColor];
                 if (model.columnType == HDColumnTypeMultiText) {
                     CGFloat height = 30;
                     NSDictionary *att = @{ NSFontAttributeName: [UIFont systemFontOfSize:17.0]};

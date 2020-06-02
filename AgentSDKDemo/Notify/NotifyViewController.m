@@ -321,6 +321,8 @@
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HDNotifyCellNormal"];
             cell.textLabel.text = @"没有记录";
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.backgroundColor = UIColor.whiteColor;
+            cell.textLabel.textColor = UIColor.grayColor;
             return cell;
         }
         cell.delegate = self;

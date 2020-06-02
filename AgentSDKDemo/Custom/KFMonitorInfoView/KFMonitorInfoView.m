@@ -16,7 +16,7 @@
 #define kTargetStartFlag 10001
 
 #define kUnSelectedColor [UIColor lightGrayColor]
-#define kSelectedColor [UIColor whiteColor]
+#define kSelectedColor [UIColor blackColor]
 
 static NSString *const chartCellId = @"ChartCell";
 static NSString *const labelCellId = @"LabelCell";
@@ -83,6 +83,8 @@ static NSString *const instrumentCellId = @"InstrumentCell";
         [btn.titleLabel setFont:[UIFont systemFontOfSize:16]];
         [btn setTitleColor:kUnSelectedColor forState:UIControlStateNormal];
         [btn sizeToFit];
+        btn.backgroundColor = UIColor.whiteColor;
+        btn.tintColor = UIColor.lightGrayColor;
         btn.frame = CGRectMake(flagX, 0, btn.frame.size.width + 40, kItemsViewHeight);
         flagX += btn.frame.size.width;
         [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -232,6 +234,7 @@ static NSString *const instrumentCellId = @"InstrumentCell";
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
         _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:self.layout];
+        _collectionView.backgroundColor = UIColor.whiteColor;
         [_collectionView setPagingEnabled:YES];
         [_collectionView setDelegate:self];
         [_collectionView setDataSource:self];

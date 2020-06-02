@@ -47,6 +47,8 @@
     self.navigationItem.rightBarButtonItem = self.rightItem;
     self.navigationItem.leftBarButtonItem = self.leftItem;
     self.tableView.tableFooterView = [self tableViewFootView];
+    self.tableView.backgroundColor = UIColor.whiteColor;
+    self.view.backgroundColor = UIColor.whiteColor;
     [self updateInfo];
 }
 
@@ -166,6 +168,7 @@
         
         UILabel *label1 = [[UILabel alloc] initWithFrame:CGRectZero];
         label1.text = @"开始时间";
+        label1.textColor = UIColor.grayColor;
         [label1 sizeToFit];
         CGRect frame = label1.frame;
         frame.origin.y = (subView.frame.size.height / 2 - frame.size.height) / 2;
@@ -174,6 +177,7 @@
         [subView addSubview:label1];
         
         UILabel *label2 = [[UILabel alloc] initWithFrame:CGRectZero];
+        label2.textColor = UIColor.grayColor;
         label2.text = @"结束时间";
         [label2 sizeToFit];
         frame = label2.frame;

@@ -34,8 +34,8 @@
 
 -(UIDatePicker *)datePicker {
     if (_datePicker == nil) {
-        _datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 30, self.width, 200)];
-        _datePicker.backgroundColor = [UIColor whiteColor];
+        _datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 30, self.width, 270)];
+//        _datePicker.backgroundColor = [UIColor whiteColor];
         _datePicker.datePickerMode = UIDatePickerModeDate;
         [_datePicker addTarget:self action:@selector(dateValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
@@ -62,8 +62,7 @@
     [ok setTitleColor:RGBACOLOR(41, 169, 234, 1) forState:UIControlStateNormal];
     [ok setTitle:@"保存" forState:UIControlStateNormal];
     [ok addTarget:self action:@selector(okClicked) forControlEvents:UIControlEventTouchUpInside];
-    UIView *backV = [[UIView alloc] initWithFrame:CGRectMake(0, self.height-230, self.width, 200)];
-    backV.backgroundColor = [UIColor whiteColor];
+    UIView *backV = [[UIView alloc] initWithFrame:CGRectMake(0, self.height-300, self.width, 300)];
     [backV addSubview:ok];
     [backV addSubview:self.datePicker];
     [self addSubview:backV];
