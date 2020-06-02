@@ -22,7 +22,7 @@
 //文本消息
 + (HDMessage *)textMessageFormatWithText:(NSString *)text to:(NSString *)toUser sessionId:(NSString *)sessionId;
 //图片消息
-+ (HDMessage *)imageMessageFormatWithImageData:(NSData *)data to:(NSString *)toUser sessionId:(NSString *)sessionId;
++ (HDMessage *)imageMessageFormatWithImage:(UIImage *)aImage to:(NSString *)toUser sessionId:(NSString *)sessionId;
 //语音消息
 
 + (HDMessage *)voiceMessageFormatWithPath:(NSString *)path to:(NSString *)toUser  sessionId:(NSString *)sessionId;

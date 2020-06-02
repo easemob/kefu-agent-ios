@@ -17,7 +17,12 @@
 #import "SRRefreshView.h"
 #import "UIAlertView+AlertBlock.h"
 #import "AppDelegate.h"
-@interface HConversationViewController ()<SRRefreshDelegate,ChatViewControllerDelegate, HDClientDelegate>
+
+
+#import "EMRealtimeSearch.h"
+#import "UIViewController+KFSearch.h"
+
+@interface HConversationViewController ()<SRRefreshDelegate,ChatViewControllerDelegate, HDClientDelegate, HDSearchControllerDelegate>
 {
     BOOL _isRefresh;
     int _unreadcount;
@@ -39,6 +44,7 @@
 
 @property (nonatomic, strong) SRRefreshView *slimeView;
 @property (nonatomic, strong) UIView *networkStateView;
+
 
 @end
 
@@ -72,9 +78,63 @@
     if (_type != HDConversationAccessed) {
         _page = 1;
     }
+    
+    [self enableSearchController];
+    self.searchButton.frame = CGRectMake(15, 10, self.tableView.frame.size.width - 30, 35);
+    
     [self.tableView addSubview:self.slimeView];//f5f7fa
     self.tableView.backgroundColor = kTableViewBgColor;
     [self loadData];
+    
+    [self _setupSearchResultController];
+}
+
+
+- (void)_setupSearchResultController
+{
+    __weak typeof(self) weakself = self;
+    weakself.resultController.tableView.rowHeight = 60;
+    [weakself.resultController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
+        DXTableViewCellTypeConversation *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation"];
+        if (cell == nil) {
+            cell = [[DXTableViewCellTypeConversation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
+            cell.rightUtilityButtons = nil;
+        }
+        cell.textLabel.text = @"";
+        HDConversation *model = [weakself.resultController.dataArray objectAtIndex:indexPath.row];
+        if ([model isKindOfClass:[HDConversation class]]) {
+            [cell setModel:model];
+        }
+        return cell;
+    }];
+ 
+    [weakself.resultController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
+        [weakself.resultController dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+        
+        if (_type == HDConversationAccessed) {
+            if ([weakself.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
+                ChatViewController *chatVC = [[ChatViewController alloc] init];
+                chatVC.delegate = weakself;
+                HDConversation *model = [weakself.resultController.dataArray objectAtIndex:indexPath.row];
+                chatVC.conversationModel = model;
+                model.unreadCount = 0;
+                dispatch_async(self->_conversationQueue, ^{
+                    [weakself.dataSource removeObjectAtIndex:indexPath.row];
+                    [weakself.dataSource insertObject:model atIndex:indexPath.row];
+                    chatVC.allConversations = weakself.dataSource;
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [weakself.conDelegate ConversationPushIntoChat:chatVC];
+                        [NSNotificationCenter.defaultCenter postNotificationName:@"UpdateIconBadge" object:nil];
+                        [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakself.dataSource];
+                    });
+                });
+            }
+        }
+        
+        [self searchBarCancelButtonAction:nil];
+    }];
 }
 
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
@@ -134,6 +194,7 @@
     return _slimeView;
 }
 
+
 - (UIView *)networkStateView
 {
     if (_networkStateView == nil) {
@@ -189,6 +250,19 @@
 }
 
 #pragma mark - Table view data source
+
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectInset(self.searchButton.bounds, -15, -10)];
+    view.backgroundColor = UIColor.whiteColor;
+    [view addSubview:self.searchButton];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return self.searchButton.bounds.size.height + 20;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
@@ -285,6 +359,45 @@
             });
         }
     }
+}
+
+#pragma mark - EMSearchControllerDelegate
+
+- (void)searchBarWillBeginEditing:(UISearchBar *)searchBar
+{
+    self.resultController.searchKeyword = nil;
+}
+
+- (void)searchBarCancelButtonAction:(nullable UISearchBar *)searchBar
+{
+    [[EMRealtimeSearch shared] realtimeSearchStop];
+    
+    [self.resultController.dataArray removeAllObjects];
+    
+    [self.resultController.tableView reloadData];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.view endEditing:YES];
+}
+
+- (void)searchTextDidChangeWithString:(NSString *)aString
+{
+    self.resultController.searchKeyword = aString;
+    
+    __weak typeof(self) weakself = self;
+    [[EMRealtimeSearch shared] realtimeSearchWithSource:self.dataSource
+                                             searchText:aString
+                                collationStringSelector:@selector(chatNicename)
+                                            resultBlock:^(NSArray *results)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself.resultController.dataArray removeAllObjects];
+            [weakself.resultController.dataArray addObjectsFromArray:results];
+            [weakself.resultController.tableView reloadData];
+        });
+    }];
 }
 
 

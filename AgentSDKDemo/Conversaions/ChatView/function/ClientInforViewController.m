@@ -112,7 +112,7 @@
             [weakSelf showHintNotHide:@"设置中..."];
             NSString *str = [alertController.textFields firstObject].text;
             
-            if (str.length > 150 || str.length == 0) {
+            if (str.length > 100 || str.length == 0) {
                 lengthLimitBlock();
                 return ;
             }
@@ -375,6 +375,7 @@
     [self showHintNotHide:@"创建会话中..."];
     WEAK_SELF
     [[HDClient sharedClient].notiManager asyncMessageCenterCreateSessionWithVisitorId:_userId Completion:^(id responseObject, HDError *error) {
+        [self hideHud];
         if (error == nil) {
             HDConversation *model = responseObject;
             ChatViewController *chatView = [[ChatViewController alloc] init];

@@ -141,7 +141,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+//    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self.headview refreshHeaderView];
 }
 
@@ -151,7 +151,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear: animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     //clear本地的wav文件
     [self clearTempWav];
 }
@@ -1534,7 +1534,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)sendImageMessage:(UIImage*)orgImage
 {
-    HDMessage *message = [ChatSendHelper imageMessageFormatWithImageData:UIImageJPEGRepresentation(orgImage, 1.0) to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId];
+    HDMessage *message = [ChatSendHelper imageMessageFormatWithImage:orgImage
+                                                                  to:_conversationModel.chatter.agentId
+                                                           sessionId:_conversationModel.sessionId];
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
         if (error == nil) {

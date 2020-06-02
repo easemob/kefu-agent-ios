@@ -107,7 +107,7 @@
     }
     
     [_headerImageView sd_setImageWithURL:[NSURL URLWithString:model.vistor.avatar] placeholderImage:[UIImage imageNamed:@"default_customer_avatar"]];
-    _titleLabel.text = model.chatter?model.chatter.nicename:model.vistor.nicename;
+    _titleLabel.text = model.chatter ? model.chatter.nicename:model.vistor.nicename;
     NSString *timeDes = model.lastMessage.timeDes;
     if (model.lastMessage.nBody == nil) {
         timeDes = [[NSDate dateWithTimeIntervalSince1970:model.createDateTime/1000] formattedDateDescription];
