@@ -77,6 +77,7 @@
             visitorId = [dic valueForKey:@"visitorUserId"];
         }
         _actorId.text = [NSString stringWithFormat:@"ID:%@",visitorId];
+        _actorId.textColor = UIColor.grayColor;
         [_actorId sizeToFit];
         [middleView addSubview:_actorId];
         _detailBtn = [UIButton buttonWithType:UIButtonTypeCustom];

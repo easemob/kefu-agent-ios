@@ -418,19 +418,35 @@
     [self showHintNotHide:@"加载中..."];
     WEAK_SELF
     
-    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page limit:0 completion:^(NSArray *conversations, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page limit:0
+                                                             completion:^(NSArray *conversations, HDError *error)
+    {
         [weakSelf hideHud];
         @synchronized (weakSelf) {
             _isRefresh = NO;
         }
         if (!error) {
-            [self.dataSource removeAllObjects];
             switch (_type) {
                 case HDConversationAccessed: {
+                    [self.dataSource removeAllObjects];
                     _unreadcount = 0;
+                    
+                    NSMutableArray *sortConversations = [conversations mutableCopy];
+                    
+                    [sortConversations sortUsingComparator:^NSComparisonResult(HDConversation *obj1, HDConversation *obj2) {
+                        long long time1 = obj1.lastMessage ? obj1.lastMessage.timestamp : obj1.createDateTime;
+                        long long time2 = obj2.lastMessage ? obj2.lastMessage.timestamp : obj2.createDateTime;
+                        
+                        
+                        NSLog(@"time1   --- %lld",time1);
+                        NSLog(@"time2   --- %lld",time2);
+                        return time2 < time1 ? NSOrderedAscending : NSOrderedDescending;
+                    }];
+                    
+                    self.dataSource = sortConversations;
+                    
                     for (HDConversation *model in conversations) {
                         model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.chatter.nicename];
-                        [weakSelf.dataSource insertObject:model atIndex:0];
                         [_dataSourceDic setObject:model forKey:model.sessionId];
                     }
                     [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
