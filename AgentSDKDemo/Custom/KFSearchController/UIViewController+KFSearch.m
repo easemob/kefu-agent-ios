@@ -133,8 +133,6 @@ static const void *ResultNavigationControllerKey = &ResultNavigationControllerKe
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
-    [self cancelSearch];
-    
     if ([self conformsToProtocol:@protocol(HDSearchControllerDelegate)]
         && [self respondsToSelector:@selector(searchBarCancelButtonAction:)]) {
         [self performSelector:@selector(searchBarCancelButtonAction:)
@@ -148,18 +146,18 @@ static const void *ResultNavigationControllerKey = &ResultNavigationControllerKe
 {
     [self.resultController.searchBar becomeFirstResponder];
     self.resultController.searchBar.showsCancelButton = YES;
-//    self.resultNavigationController.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.resultNavigationController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:self.resultNavigationController animated:YES completion:nil];
 }
 
 #pragma mark - public
 
-- (void)cancelSearch
+- (void)cancelSearch:(nullable void(^)())aCompletion
 {
     self.resultController.searchBar.text = @"";
     [self.resultController.searchBar resignFirstResponder];
     self.resultController.searchBar.showsCancelButton = NO;
-    [self.resultController dismissViewControllerAnimated:YES completion:nil];
+    [self.resultController dismissViewControllerAnimated:YES completion:aCompletion];
 }
 
 @end

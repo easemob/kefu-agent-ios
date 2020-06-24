@@ -134,7 +134,7 @@
     WEAK_SELF
     [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(phrase) resultBlock:^(NSArray *results) {
         if (results) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 if ([results count] == 1) {
                     weakSelf.tableView.top = 50.f;
                 } else {

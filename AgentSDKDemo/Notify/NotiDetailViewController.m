@@ -110,11 +110,11 @@
 - (void)detailClicked {
     NSLog(@"查看详情");
     NSDictionary *dic = [_model.redirectInfo firstObject];
-    NSString *userId = [dic valueForKey:@"visitorUserId"];
+    NSString *userId = dic[@"visitorUserId"];
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
     clientView.userId = userId;
+    clientView.niceName = dic[@"visitorNickname"];
     clientView.readOnly = YES;
-    clientView.niceName = _model.name;
     [self.navigationController pushViewController:clientView animated:YES];
 }
 

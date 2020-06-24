@@ -91,10 +91,11 @@
         [self showHint:@"设置失败，请确认输入的字数在1~150个字之间。"];
     };
     
+    __weak typeof(self) weakSelf = self;
     if (btn.selected) {
         [self showHintNotHide:@"设置中..."];
-        [HDClient.sharedClient.visitorManager removeVisitorFromBlacklist:self.user.agentId
-                                                          vistorNickname:self.user.nicename
+        [HDClient.sharedClient.visitorManager removeVisitorFromBlacklist:weakSelf.userId
+                                                          vistorNickname:weakSelf.niceName
                                                               completion:^(HDError * _Nonnull error)
         {
             block(!error);
@@ -107,7 +108,7 @@
         
         [alertController addTextFieldWithConfigurationHandler:nil];
         
-        __weak typeof(self) weakSelf = self;
+        
         UIAlertAction *sureAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             [weakSelf showHintNotHide:@"设置中..."];
             NSString *str = [alertController.textFields firstObject].text;
@@ -117,8 +118,8 @@
                 return ;
             }
             
-            [HDClient.sharedClient.visitorManager addVisitorToBlacklist:weakSelf.user.agentId
-                                                         vistorNickname:weakSelf.user.nicename
+            [HDClient.sharedClient.visitorManager addVisitorToBlacklist:weakSelf.userId
+                                                         vistorNickname:weakSelf.niceName
                                                        serviceSessionId:weakSelf.serviceSessionId
                                                                  reason:str
                                                              completion:^(HDError * _Nonnull error)
@@ -473,7 +474,7 @@
 #pragma mark - private
 
 - (void)loadBlackType {
-    [HDClient.sharedClient.visitorManager checkVisitorInBlacklist:self.user.agentId
+    [HDClient.sharedClient.visitorManager checkVisitorInBlacklist:_userId
                                                        completion:^(BOOL isInBlackList, HDError * _Nonnull error)
     {
         if (isInBlackList) {
@@ -488,6 +489,7 @@
     WEAK_SELF
     
     [[HDClient sharedClient].notiManager asyncFetchVisitorItemsWithVisitorId:_userId completion:^(HDVisitorInfo *visitorInfo, HDError *error) {
+        [weakSelf hideHud];
         if (error == nil) {
             [self.dataArr removeAllObjects];
              self.customerId = visitorInfo.customerId;
@@ -511,7 +513,6 @@
             }
             [weakSelf.tableView reloadData];
             [weakSelf.tagView loadTag];
-            [weakSelf hideHud];
         } else {
              [weakSelf showHint:@"获取失败"];
         }
@@ -523,7 +524,7 @@
 #pragma mark - ClientInforCompileControllerDelegate
 - (void)saveClientInfor
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    hd_dispatch_main_async_safe(^{
         [self.tableView reloadData];
     });
 }

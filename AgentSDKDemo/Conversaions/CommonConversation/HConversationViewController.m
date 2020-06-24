@@ -17,7 +17,7 @@
 #import "SRRefreshView.h"
 #import "UIAlertView+AlertBlock.h"
 #import "AppDelegate.h"
-
+#import "Masonry.h"
 
 #import "EMRealtimeSearch.h"
 #import "UIViewController+KFSearch.h"
@@ -35,6 +35,8 @@
     void* _queueTag;
     
     NSTimeInterval _endConversation;
+    
+    CGRect _tableFrame;
 }
 
 @property (nonatomic, strong) NSMutableArray *searchResults;
@@ -71,6 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [HDClient.sharedClient addDelegate:self delegateQueue:nil];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -87,6 +90,10 @@
     [self loadData];
     
     [self _setupSearchResultController];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 
@@ -109,31 +116,15 @@
     }];
  
     [weakself.resultController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
-        [weakself.resultController dismissViewControllerAnimated:YES completion:^{
-            
-        }];
-        
-        if (_type == HDConversationAccessed) {
-            if ([weakself.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
-                ChatViewController *chatVC = [[ChatViewController alloc] init];
-                chatVC.delegate = weakself;
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [weakself cancelSearch:^{
+            if (_type == HDConversationAccessed) {
                 HDConversation *model = [weakself.resultController.dataArray objectAtIndex:indexPath.row];
-                chatVC.conversationModel = model;
-                model.unreadCount = 0;
-                dispatch_async(self->_conversationQueue, ^{
-                    [weakself.dataSource removeObjectAtIndex:indexPath.row];
-                    [weakself.dataSource insertObject:model atIndex:indexPath.row];
-                    chatVC.allConversations = weakself.dataSource;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakself.conDelegate ConversationPushIntoChat:chatVC];
-                        [NSNotificationCenter.defaultCenter postNotificationName:@"UpdateIconBadge" object:nil];
-                        [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakself.dataSource];
-                    });
-                });
+                [weakself pushToChatViewControllerWithModel:model];
             }
-        }
-        
-        [self searchBarCancelButtonAction:nil];
+            // 为了兼容ios系统bug，当dismiss后，tableView的坐标会变成-64；
+            weakself.tableView.frame = CGRectMake(0, 0, weakself.tableView.frame.size.width, weakself.tableView.frame.size.height);
+        }];
     }];
 }
 
@@ -166,7 +157,7 @@
             }
             
             [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 KFManager *cm = [KFManager sharedInstance]; 
                 [cm setTabbarBadgeValueWithAllConversations:self.dataSource];
                 [cm setNavItemBadgeValueWithAllConversations:self.dataSource];
@@ -340,24 +331,26 @@
         return;
     }
     
+    __weak typeof(self) weakSelf = self;
     if (_type == HDConversationAccessed) {
-        if ([self.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
-            ChatViewController *chatVC = [[ChatViewController alloc] init];
-            chatVC.delegate = self;
-            HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
-            chatVC.conversationModel = model;
-            model.unreadCount = 0;
-            dispatch_async(_conversationQueue, ^{
-                [self.dataSource removeObjectAtIndex:indexPath.row];
-                [self.dataSource insertObject:model atIndex:indexPath.row];
-                chatVC.allConversations = self.dataSource;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.conDelegate ConversationPushIntoChat:chatVC];
-                    [NSNotificationCenter.defaultCenter postNotificationName:@"UpdateIconBadge" object:nil];
-                    [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
-                });
+        HDConversation *model = [weakSelf.dataSource objectAtIndex:indexPath.row];
+        [weakSelf pushToChatViewControllerWithModel:model];
+    }
+}
+
+- (void)pushToChatViewControllerWithModel:(HDConversation *)model{
+    ChatViewController *chatVC = [[ChatViewController alloc] init];
+    if ([self.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
+        chatVC.delegate = self;
+        chatVC.conversationModel = model;
+        model.unreadCount = 0;
+        dispatch_async(_conversationQueue, ^{
+            hd_dispatch_main_async_safe(^{
+                [self.conDelegate ConversationPushIntoChat:chatVC];
+                [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_UPDATE_ICON_BADGE object:nil];
+                [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
             });
-        }
+        });
     }
 }
 
@@ -375,6 +368,11 @@
     [self.resultController.dataArray removeAllObjects];
     
     [self.resultController.tableView reloadData];
+    
+    [self cancelSearch:^{
+        // 为了兼容ios系统bug，当dismiss后，tableView的坐标会变成-64;
+        self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    }];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -392,7 +390,7 @@
                                 collationStringSelector:@selector(chatNicename)
                                             resultBlock:^(NSArray *results)
     {
-        dispatch_async(dispatch_get_main_queue(), ^{
+        hd_dispatch_main_async_safe(^{
             [weakself.resultController.dataArray removeAllObjects];
             [weakself.resultController.dataArray addObjectsFromArray:results];
             [weakself.resultController.tableView reloadData];
@@ -434,12 +432,9 @@
                     NSMutableArray *sortConversations = [conversations mutableCopy];
                     
                     [sortConversations sortUsingComparator:^NSComparisonResult(HDConversation *obj1, HDConversation *obj2) {
-                        long long time1 = obj1.lastMessage ? obj1.lastMessage.timestamp : obj1.createDateTime;
-                        long long time2 = obj2.lastMessage ? obj2.lastMessage.timestamp : obj2.createDateTime;
+                        long long time1 = obj1.lasterMessageTime ? obj1.lasterMessageTime : obj1.createDateTime;
+                        long long time2 = obj2.lasterMessageTime ? obj2.lasterMessageTime : obj2.createDateTime;
                         
-                        
-                        NSLog(@"time1   --- %lld",time1);
-                        NSLog(@"time2   --- %lld",time2);
                         return time2 < time1 ? NSOrderedAscending : NSOrderedDescending;
                     }];
                     
@@ -448,6 +443,7 @@
                     for (HDConversation *model in conversations) {
                         model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.chatter.nicename];
                         [_dataSourceDic setObject:model forKey:model.sessionId];
+                        _unreadcount += model.unreadCount;
                     }
                     [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
                     break;
@@ -458,7 +454,8 @@
             [weakSelf.tableView reloadData];
         } else {
             [weakSelf.tableView reloadData];
-        } 
+        }
+        [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakSelf.dataSource];
     }];
 }
 
@@ -511,7 +508,7 @@
         NSString *sessionServiceId = notification.object;
         if ([weakSelf.dataSourceDic objectForKey:sessionServiceId]) {
             HDConversation *model = [weakSelf.dataSourceDic objectForKey:sessionServiceId];
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 [weakSelf.dataSource removeObject:model];
                 [weakSelf.dataSourceDic removeObjectForKey:sessionServiceId];
                 [weakSelf.tableView reloadData];

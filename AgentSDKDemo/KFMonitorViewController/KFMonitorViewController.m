@@ -108,7 +108,8 @@
                                                                                   type:KFMonitorInfoViewItem_ChartType
                                                                                  infos:infos];
          item.index = 0;
-         dispatch_async(dispatch_get_main_queue(), ^{
+        
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -129,7 +130,7 @@
                                                                                   type:KFMonitorInfoViewItem_InstrumentType
                                                                                  infos:@[insModel]];
          item.index = 1;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -160,7 +161,7 @@
                                                                           showInfoType:TitleType];
          
          item.index = 2;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -190,7 +191,7 @@
                                                                           showInfoType:TitleType];
          item.suffixStr = @"条";
          item.index = 3;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -223,7 +224,7 @@
                                                                           showInfoType:TitleType];
          item.suffixStr = @"个";
          item.index = 4;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -256,7 +257,7 @@
                                                                           showInfoType:TitleType];
          item.suffixStr = @"秒";
          item.index = 5;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -292,7 +293,7 @@
                                                                                  infos:@[labelModel]
                                                                           showInfoType:TitleType];
          item.index = 6;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -329,7 +330,7 @@
                                                                           showInfoType:TitleType];
          item.suffixStr = @"秒";
          item.index = 7;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -366,7 +367,7 @@
                                                                                  infos:@[labelModel]
                                                                           showInfoType:TitleType];
          item.index = 8;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -403,7 +404,7 @@
                                                                           showInfoType:TitleType];
          item.suffixStr = @"秒";
          item.index = 9;
-         dispatch_async(dispatch_get_main_queue(), ^{
+         hd_dispatch_main_async_safe(^(){
              self.items[item.index] = item;
              self.monitorView.items = self.items;
          });
@@ -412,7 +413,7 @@
 
 
 - (void)backAction {
-    [[HomeViewController HomeViewController] showLeftView];
+    [[HomeViewController homeViewController] showLeftView];
 }
 
 - (void)setupBaseUI {

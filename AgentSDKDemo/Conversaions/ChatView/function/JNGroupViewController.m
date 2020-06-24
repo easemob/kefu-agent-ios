@@ -303,7 +303,7 @@
                     JiNengGroup *group = [[JiNengGroup alloc] initWithName:[agentQueue objectForKey:@"queueName"] detail:detail queueId:[agentQueue objectForKey:@"queueId"]];
                     [weakSelf.dataSource addObject:group];
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
+                hd_dispatch_main_async_safe(^{
                     [weakSelf.tableView reloadData];
                 });
             }

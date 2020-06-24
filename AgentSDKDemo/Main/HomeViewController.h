@@ -10,16 +10,15 @@
 
 @interface HomeViewController : UITabBarController
 
-+(id) HomeViewController;
++(id) homeViewController;
 
 @property (nonatomic, strong) UIViewController *currentAdminVC;
-@property (nonatomic, assign) NSInteger conversationVCUnreadCount;
+@property (nonatomic, assign) int conversationVCUnreadCount;
 
-+(void) HomeViewControllerDestory;
++(void) homeViewControllerDestory;
 
 
 - (void)setWaitQueueWithBadgeValue:(NSInteger)badgeValue;
-- (void)setConversationWithBadgeValue:(NSInteger)badgeValue;
 - (void)setNotifyWithBadgeValue:(NSInteger)badgeValue;
 - (void)setLeaveMessageWithBadgeValue:(NSInteger)badgeValue;
 

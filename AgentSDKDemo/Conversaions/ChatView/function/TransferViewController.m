@@ -351,12 +351,12 @@
                 [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.agentId];
             }
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 [weakSelf.tableView reloadData];
             });
         }
         else{
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 [weakSelf.tableView reloadData];
             });
         }

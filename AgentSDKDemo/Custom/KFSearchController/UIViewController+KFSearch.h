@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)disableSearchController;
 
-- (void)cancelSearch;
+- (void)cancelSearch:(nullable void(^)())aCompletion;
 
 
 @end

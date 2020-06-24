@@ -68,34 +68,6 @@
     return _slimeView;
 }
 
-/*
-- (void)setUpSearchBar
-{
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
-    _searchBar.delegate = self;
-    _searchBar.placeholder = @"搜索";
-    _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
-    _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
-    [_searchBar setSearchFieldBackgroundPositionAdjustment:UIOffsetMake(0, 0)];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg"] forState:UIControlStateNormal];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg_select"] forState:UIControlStateHighlighted];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg_select"] forState:UIControlStateSelected];
-    
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_searchBar.frame) - 0.5, self.tableView.frame.size.width, 0.5)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    [_searchBar addSubview:line];
-    self.tableView.tableHeaderView = _searchBar;
-    
-    _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    _searchController.active = NO;
-    _searchController.searchResultsDataSource = self;
-    _searchController.searchResultsDelegate = self;
-    _searchController.searchResultsTableView.tableFooterView = [UIView new];
-    
-}
- */
-
 #pragma mark - scrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -193,6 +165,17 @@
     [self showHudInView:self.view hint:@"加载中..."];
     WEAK_SELF
     
+    
+    __block void(^reloadData)(void) = ^(void){
+        if ([NSThread isMainThread]) {
+            [weakSelf.tableView reloadData];
+        }else {
+            hd_dispatch_main_async_safe(^{
+                [weakSelf.tableView reloadData];
+            });
+        }
+    };
+    
     [[HDClient sharedClient].chatManager asyncGetAllCustomersCompletion:^(NSArray<HDConversation *> *customers, HDError *error) {
         [weakSelf hideHud];
         if (!weakSelf) {
@@ -213,15 +196,10 @@
             }
             [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_customerUnreadcount]}];
             self.dataSource = customers.mutableCopy;
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [weakSelf.tableView reloadData];
-            });
+            reloadData();
         }
         else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
+            reloadData();
         }
     }];
 }
@@ -293,7 +271,7 @@
 - (void)lastMessageChange:(NSNotification*)notification
 {
     WEAK_SELF
-    dispatch_async(dispatch_get_main_queue(), ^{
+    hd_dispatch_main_async_safe(^{
         HDMessage *message = notification.object;
         HDConversation *model = [weakSelf.dataSourceDic objectForKey:message.toUser.userId];
         if (model) {

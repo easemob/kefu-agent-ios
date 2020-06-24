@@ -135,7 +135,7 @@
         badgeStr = @"99+";
     }
     self.tabBarItem.badgeValue = badgeStr;
-    [[HomeViewController HomeViewController] setLeaveMessageWithBadgeValue:aCount];
+    [[HomeViewController homeViewController] setLeaveMessageWithBadgeValue:aCount];
 }
 
 #pragma mark - getter

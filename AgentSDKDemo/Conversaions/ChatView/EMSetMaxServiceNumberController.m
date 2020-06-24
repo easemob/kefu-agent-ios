@@ -362,16 +362,16 @@
         [[HDClient sharedClient].setManager updateServiceUsersWithNum:value completion:^(id responseObject, HDError *error) {
             [weakSelf hideHud];
             if (!error) {
-                dispatch_async(dispatch_get_main_queue(), ^{
+                hd_dispatch_main_async_safe(^(){
                     [weakSelf.tableView reloadData];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
+                    if ([value integerValue] == 0) {
+                        [weakSelf showHint:@"已关闭自动接入"];
+                    } else {
+                        [weakSelf showHint:@"修改成功"];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    }
                 });
-                [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
-                if ([value integerValue] == 0) {
-                    [weakSelf showHint:@"已关闭自动接入"];
-                } else {
-                    [weakSelf showHint:@"修改成功"];
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                }
             } else {
                 [weakSelf showHint:@"修改失败"];
             }

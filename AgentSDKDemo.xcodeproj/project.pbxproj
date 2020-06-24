@@ -318,7 +318,6 @@
 		D33CE7311F7CAD2C00236720 /* EMTimePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE70F1F7CAD2C00236720 /* EMTimePickerViewController.m */; };
 		D33CE7321F7CAD2C00236720 /* HistoryConversationsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7111F7CAD2C00236720 /* HistoryConversationsController.m */; };
 		D33CE7331F7CAD2C00236720 /* HistoryOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7131F7CAD2C00236720 /* HistoryOptionViewController.m */; };
-		D33CE7341F7CAD2C00236720 /* HistoryConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7161F7CAD2C00236720 /* HistoryConversationModel.m */; };
 		D33CE7351F7CAD2C00236720 /* EMHistoryTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7191F7CAD2C00236720 /* EMHistoryTimeView.m */; };
 		D33CE7361F7CAD2C00236720 /* EMNumberPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE71B1F7CAD2C00236720 /* EMNumberPicker.m */; };
 		D33CE7371F7CAD2C00236720 /* HistoryCompileTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE71D1F7CAD2C00236720 /* HistoryCompileTableViewCell.m */; };
@@ -614,7 +613,6 @@
 		D3E9CCC91FBED182005E3677 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7B21F7CB01000236720 /* AFURLRequestSerialization.m */; };
 		D3E9CCCA1FBED182005E3677 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7A91F7CB01000236720 /* AFHTTPSessionManager.m */; };
 		D3E9CCCB1FBED182005E3677 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7B41F7CB01000236720 /* AFURLResponseSerialization.m */; };
-		D3E9CCCC1FBED182005E3677 /* HistoryConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7161F7CAD2C00236720 /* HistoryConversationModel.m */; };
 		D3E9CCCD1FBED182005E3677 /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE8291F7CD01100236720 /* CJSONDeserializer.m */; };
 		D3E9CCCE1FBED182005E3677 /* DXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7C61F7CB42E00236720 /* DXBaseViewController.m */; };
 		D3E9CCCF1FBED182005E3677 /* RealtimeSearchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE7511F7CAEB800236720 /* RealtimeSearchUtil.m */; };
@@ -1625,7 +1623,6 @@
 		90A2B5372069125100EC2A80 /* KFMonitorInfoViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInfoViewItem.m; sourceTree = "<group>"; };
 		90A2B53A2069126800EC2A80 /* KFMonitorInstrumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInstrumentView.h; sourceTree = "<group>"; };
 		90A2B53B2069126800EC2A80 /* KFMonitorInstrumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFMonitorInstrumentView.m; sourceTree = "<group>"; };
-		90AA69CC2069FAF000E39745 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90AFCBCF20CF9FB6007D0ADB /* HLeaveMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageViewController.h; sourceTree = "<group>"; };
 		90AFCBD020CF9FB6007D0ADB /* HLeaveMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageViewController.m; sourceTree = "<group>"; };
 		90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageCell.h; sourceTree = "<group>"; };
@@ -1856,8 +1853,6 @@
 		D33CE7111F7CAD2C00236720 /* HistoryConversationsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryConversationsController.m; sourceTree = "<group>"; };
 		D33CE7121F7CAD2C00236720 /* HistoryOptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryOptionViewController.h; sourceTree = "<group>"; };
 		D33CE7131F7CAD2C00236720 /* HistoryOptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryOptionViewController.m; sourceTree = "<group>"; };
-		D33CE7151F7CAD2C00236720 /* HistoryConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryConversationModel.h; sourceTree = "<group>"; };
-		D33CE7161F7CAD2C00236720 /* HistoryConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryConversationModel.m; sourceTree = "<group>"; };
 		D33CE7181F7CAD2C00236720 /* EMHistoryTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHistoryTimeView.h; sourceTree = "<group>"; };
 		D33CE7191F7CAD2C00236720 /* EMHistoryTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHistoryTimeView.m; sourceTree = "<group>"; };
 		D33CE71A1F7CAD2C00236720 /* EMNumberPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMNumberPicker.h; sourceTree = "<group>"; };
@@ -3311,19 +3306,9 @@
 				D33CE7111F7CAD2C00236720 /* HistoryConversationsController.m */,
 				D33CE7121F7CAD2C00236720 /* HistoryOptionViewController.h */,
 				D33CE7131F7CAD2C00236720 /* HistoryOptionViewController.m */,
-				D33CE7141F7CAD2C00236720 /* Model */,
 				D33CE7171F7CAD2C00236720 /* View */,
 			);
 			path = History;
-			sourceTree = "<group>";
-		};
-		D33CE7141F7CAD2C00236720 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				D33CE7151F7CAD2C00236720 /* HistoryConversationModel.h */,
-				D33CE7161F7CAD2C00236720 /* HistoryConversationModel.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		D33CE7171F7CAD2C00236720 /* View */ = {
@@ -3865,7 +3850,6 @@
 		D33F465C1E9F71A000FE6DCE = {
 			isa = PBXGroup;
 			children = (
-				90AA69CC2069FAF000E39745 /* AgentSDK.framework */,
 				D33F46671E9F71A000FE6DCE /* AgentSDKDemo */,
 				D33F46661E9F71A000FE6DCE /* Products */,
 				D3FDC5121EA08C0900C25BB0 /* Frameworks */,
@@ -5658,7 +5642,6 @@
 				D33CE7BD1F7CB01000236720 /* AFURLRequestSerialization.m in Sources */,
 				D33CE7B91F7CB01000236720 /* AFHTTPSessionManager.m in Sources */,
 				D33CE7BE1F7CB01000236720 /* AFURLResponseSerialization.m in Sources */,
-				D33CE7341F7CAD2C00236720 /* HistoryConversationModel.m in Sources */,
 				D33CE82D1F7CD01100236720 /* CJSONDeserializer.m in Sources */,
 				D3DFB3881FD8ECDF00A9358A /* KFSuperviseDetailCell.m in Sources */,
 				D33CE7D61F7CB42E00236720 /* DXBaseViewController.m in Sources */,
@@ -6008,7 +5991,6 @@
 				D3E9CCC91FBED182005E3677 /* AFURLRequestSerialization.m in Sources */,
 				D3E9CCCA1FBED182005E3677 /* AFHTTPSessionManager.m in Sources */,
 				D3E9CCCB1FBED182005E3677 /* AFURLResponseSerialization.m in Sources */,
-				D3E9CCCC1FBED182005E3677 /* HistoryConversationModel.m in Sources */,
 				D3E9CCCD1FBED182005E3677 /* CJSONDeserializer.m in Sources */,
 				D3DFB3891FD8ECDF00A9358A /* KFSuperviseDetailCell.m in Sources */,
 				D3E9CCCE1FBED182005E3677 /* DXBaseViewController.m in Sources */,
@@ -6439,7 +6421,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6483,7 +6465,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (

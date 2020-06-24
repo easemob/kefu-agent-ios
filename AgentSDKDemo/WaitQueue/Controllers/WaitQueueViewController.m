@@ -601,7 +601,7 @@
     
     self.tabBarItem.badgeValue = badgeStr;
     
-   [[HomeViewController HomeViewController] setWaitQueueWithBadgeValue:count];
+   [[HomeViewController homeViewController] setWaitQueueWithBadgeValue:count];
 }
 
 

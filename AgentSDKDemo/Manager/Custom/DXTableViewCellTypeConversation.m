@@ -108,11 +108,13 @@
     
     [_headerImageView sd_setImageWithURL:[NSURL URLWithString:model.vistor.avatar] placeholderImage:[UIImage imageNamed:@"default_customer_avatar"]];
     _titleLabel.text = model.chatter ? model.chatter.nicename:model.vistor.nicename;
-    NSString *timeDes = model.lastMessage.timeDes;
-    if (model.lastMessage.nBody == nil) {
-        timeDes = [[NSDate dateWithTimeIntervalSince1970:model.createDateTime/1000] formattedDateDescription];
+    
+    NSString *timeDes = [[NSDate dateWithTimeIntervalSince1970:model.lasterMessageTime / 1000] minuteDescription];
+    if (model.lasterMessageTime == 0) {
+        timeDes = [[NSDate dateWithTimeIntervalSince1970:model.createDateTime / 1000] formattedDateDescription];
     }
-    _timeLabel.text =timeDes;
+    
+    _timeLabel.text = timeDes;
     if ([model.lastMessage isRecall]) {
         _contentLabel.text = kRecallMsg;
     }else {
@@ -157,7 +159,7 @@
 - (void)setHistoryModel:(HDConversation *)model
 {
     _headerImageView.image = [UIImage imageNamed:@"default_customer_avatar"];
-    _titleLabel.text = model.chatter?model.chatter.nicename:model.vistor.nicename;
+    _titleLabel.text = model.vistor.nicename ? model.vistor.nicename : model.chatter.nicename;
     NSString *startTime = @"";
     if (model.startDateTime.length > 11) {
         startTime = [model.startDateTime substringToIndex:11];

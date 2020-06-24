@@ -407,7 +407,7 @@
     }
     [[HDClient sharedClient].chatManager customerSendMessage:message completion:^(id responseObject, HDError *error) {
         message = responseObject;
-        dispatch_async(dispatch_get_main_queue(), ^{
+        hd_dispatch_main_async_safe(^{
             [self.tableView reloadData];
         });
     }];
@@ -420,6 +420,11 @@
     [[KFManager sharedInstance].conversation refreshData];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)willMoveToParentViewController:(UIViewController *)parent {
+    [[KFManager sharedInstance].conversation refreshData];
+}
+
 
 - (void)dealloc {
     NSLog(@"%s dealloc",__func__);
@@ -478,7 +483,7 @@
     dispatch_async(_messageQueue, ^{
         NSArray *messages = [weakSelf formatMessage:message];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        hd_dispatch_main_async_safe(^{
             [weakSelf.dataSource addObjectsFromArray:messages];
             [weakSelf.tableView reloadData];
             [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
@@ -501,7 +506,7 @@
     dispatch_async(_messageQueue, ^{
         NSArray *messages = [weakSelf formatMessage:message];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        hd_dispatch_main_async_safe(^{
             NSIndexSet *indexes = [NSIndexSet indexSetWithIndexesInRange:
                                    NSMakeRange(0,[messages count])];
             [weakSelf.dataSource insertObjects:messages atIndexes:indexes];
@@ -535,7 +540,7 @@
     //new sendMessage
     [[HDClient sharedClient].chatManager customerSendMessage:message completion:^(id responseObject, HDError *error) {
         message = responseObject;
-        dispatch_async(dispatch_get_main_queue(), ^{
+        hd_dispatch_main_async_safe(^{
             [self.tableView reloadData];
         });
     }];
@@ -556,7 +561,7 @@
         NSString *key = body.remotePath;
         UIImage *image = [UIImage imageWithData:body.imageData];
         [[EMSDImageCache sharedImageCache] storeImage:image forKey:key];
-        dispatch_async(dispatch_get_main_queue(), ^{
+        hd_dispatch_main_async_safe(^{
             [self.tableView reloadData];
         });
     }];

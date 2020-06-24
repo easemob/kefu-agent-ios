@@ -379,7 +379,7 @@
                                        collationStringSelector:@selector(description)
                                                    resultBlock:^(NSArray *results) {
         if (results) {
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^(){
                 [self.dataSource removeAllObjects];
                 [self.dataSource addObjectsFromArray:results];
                 [weakSelf.tableView reloadData];
@@ -513,12 +513,15 @@
                     hasMore = NO;
                 }
             }
-            dispatch_async(dispatch_get_main_queue(), ^{
+            
+            hd_dispatch_main_async_safe(^(){
                 [weakSelf.tableView reloadData];
             });
         } else {
-            weakSelf.headerView.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@(0),@(0)];
-            [weakSelf showHint:@"加载失败"];
+            hd_dispatch_main_async_safe((^(){
+                weakSelf.headerView.text = [NSString stringWithFormat:@"  当前展示数%@ (总共 %@)",@(0),@(0)];
+                [weakSelf showHint:@"加载失败"];
+            }));
         }
     }];
 

@@ -114,14 +114,14 @@
 - (void)showLoginViewController {
     LoginViewController *loginController = [[LoginViewController alloc] init];
     self.window.rootViewController = [[KFBaseNavigationController alloc] initWithRootViewController:loginController];
-    [HomeViewController HomeViewControllerDestory];
+    [HomeViewController homeViewControllerDestory];
     //进入登陆页面,角标清空
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)showHomeViewController {
     KFLeftViewController *leftMenuVC = [[KFLeftViewController alloc] init];
-    HomeViewController *homeController = [HomeViewController HomeViewController];
+    HomeViewController *homeController = [HomeViewController homeViewController];
     KFBaseNavigationController *navigationController = [[KFBaseNavigationController alloc] initWithRootViewController:homeController];
     self.drawerController = [[MMDrawerController alloc] initWithCenterViewController:navigationController leftDrawerViewController:leftMenuVC];
     [self.drawerController setMaximumLeftDrawerWidth:KScreenWidth-kHomeViewLeft];

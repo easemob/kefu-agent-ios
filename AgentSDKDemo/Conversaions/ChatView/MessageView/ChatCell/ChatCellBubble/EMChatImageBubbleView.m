@@ -237,7 +237,7 @@ NSString *const kRouterEventImageBubbleTapEventName = @"kRouterEventImageBubbleT
         [aImage drawInRect:CGRectMake(0, 0, aSize.width, aSize.height)];
         UIImage * arrowImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        dispatch_async(dispatch_get_main_queue(), ^{
+        hd_dispatch_main_async_safe(^{
             if (aCompletion) {
                 aCompletion(arrowImage);
             }

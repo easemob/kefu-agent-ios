@@ -195,7 +195,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                                                                             applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
                                          UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll,UIActivityTypeMail];
-    
+    activityVC.modalPresentationStyle = 0;
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
@@ -221,6 +221,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 - (void)didSelectImageWithPicker:(UIImagePickerController *)imagePicker
 {
+    imagePicker.modalPresentationStyle = 0;
     [self presentViewController:imagePicker animated:YES completion:NULL];
 }
 - (LeaveMsgInputView *)inputView

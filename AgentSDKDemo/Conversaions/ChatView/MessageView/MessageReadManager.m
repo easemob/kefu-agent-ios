@@ -141,6 +141,7 @@ static MessageReadManager *detailInstance = nil;
     UIViewController *rootController = [self.keyWindow rootViewController];
 //    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showMenu)];
 //    [self.photoNavigationController.view addGestureRecognizer:longPress];
+    self.photoNavigationController.modalPresentationStyle = 0;
     [rootController presentViewController:self.photoNavigationController animated:YES completion:nil];
 }
 

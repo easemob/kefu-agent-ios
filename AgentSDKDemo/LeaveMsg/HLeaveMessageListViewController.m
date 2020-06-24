@@ -11,6 +11,7 @@
 #import "HLeaveMessageRetrievalViewController.h"
 #import "HLeaveMessageListCell.h"
 #import "EMPickerView.h"
+#import "Masonry.h"
 #define kRefreshTagHeight 64
 
 #define kPageSize 10
@@ -54,6 +55,22 @@
     self.tableView.tableFooterView = self.footView;
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.toolbar];
+    
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).offset(0);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-60);
+    }];
+    
+    [self.toolbar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.tableView.mas_bottom);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.view);
+    }];
+    
+    
     [self registerLeaveMessageDetailDidChanged];
     [self reload];
 }
@@ -90,7 +107,7 @@
                                                                                          completion:^(HResultCursor *result, HDError *error)
          {
              _currentPage = result.pageNum;
-             dispatch_async(dispatch_get_main_queue(), ^{
+             hd_dispatch_main_async_safe(^{
                  [self.datasource removeAllObjects];
                  if (!error && result.elements.count > 0) {
                      [self.datasource addObjectsFromArray:result.elements];
@@ -115,7 +132,7 @@
         }
         [HDClient.sharedClient.leaveMessageMananger asyncFetchCustomLeaveMessageWithLeaveMessageRetrieval:self.retrieval pageNum:0 pageSize:kPageSize completion:^(HResultCursor *result, HDError *error) {
             _currentPage = result.pageNum;
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 [self.datasource removeAllObjects];
                 if (!error && result.elements.count > 0) {
                     [self.datasource addObjectsFromArray:result.elements];
@@ -138,7 +155,7 @@
                                                                          completion:^(HResultCursor *result, HDError *error)
          {
              _currentPage = result.pageNum;
-             dispatch_async(dispatch_get_main_queue(), ^{
+             hd_dispatch_main_async_safe(^{
                  [self.datasource removeAllObjects];
                  if (!error && result.elements.count > 0) {
                      [self.datasource addObjectsFromArray:result.elements];
@@ -164,7 +181,7 @@
                                                                                          completion:^(HResultCursor *result, HDError *error)
          {
              _currentPage = result.pageNum;
-             dispatch_async(dispatch_get_main_queue(), ^{
+             hd_dispatch_main_async_safe(^{
                  if (!error && result.elements.count > 0) {
                      [self.datasource addObjectsFromArray:result.elements];
                  }
@@ -186,7 +203,7 @@
                                                                                                completion:^(HResultCursor *result, HDError *error)
         {
             _currentPage = result.pageNum;
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 if (!error && result.elements.count > 0) {
                     [self.datasource addObjectsFromArray:result.elements];
                 }
@@ -208,7 +225,7 @@
                                                                          completion:^(HResultCursor *result, HDError *error)
          {
              _currentPage = result.pageNum;
-             dispatch_async(dispatch_get_main_queue(), ^{
+             hd_dispatch_main_async_safe(^{
                  if (!error && result.elements.count > 0) {
                      [self.datasource addObjectsFromArray:result.elements];
                  }
@@ -328,7 +345,7 @@
 
 - (UIToolbar *)toolbar {
     if(!_toolbar) {
-        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 64 - 50, self.view.size.width, 50)];
+        _toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 64 - 50, self.view.size.width, 60)];
         [_toolbar setBarTintColor:UIColor.whiteColor];
         self.selectItem = [[UIBarButtonItem alloc] initWithTitle:@"选择"
                                                            style:UIBarButtonItemStyleDone

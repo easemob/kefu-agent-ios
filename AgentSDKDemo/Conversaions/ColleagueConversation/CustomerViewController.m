@@ -47,7 +47,7 @@
 {
     [super viewDidAppear:animated];
     [_customerController clearSession];
-//    [[HomeViewController HomeViewController] setCustomerUnRead:NO];
+//    [[[HomeViewController homeViewController];] setCustomerUnRead:NO];
 }
 
 - (void)didReceiveMemoryWarning {

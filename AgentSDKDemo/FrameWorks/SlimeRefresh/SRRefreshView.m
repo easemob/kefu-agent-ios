@@ -312,16 +312,7 @@
      {
          self.loading = NO;
          self->_slime.state = SRSlimeStateNormal;
- //some bug here.
- //             CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:
- //                                            @"transform"];
- //             animation.fromValue = [NSValue valueWithCATransform3D:
- //                                    CATransform3DMakeScale(0.1, 0.1, 1)];
- //             animation.toValue = [NSValue valueWithCATransform3D:
- //                                  CATransform3DIdentity];
- //             animation.duration = 0.2f;
- //             [_slime.layer addAnimation:animation
- //                                 forKey:@""];
+
      }];
 }
 

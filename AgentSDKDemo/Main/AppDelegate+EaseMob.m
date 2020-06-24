@@ -193,8 +193,8 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    if ([HomeViewController HomeViewController]) {
-        [[HomeViewController HomeViewController] didReceiveLocalNotification:notification];
+    if ([HomeViewController homeViewController]) {
+        [[HomeViewController homeViewController] didReceiveLocalNotification:notification];
     }
 }
 
