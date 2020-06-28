@@ -147,6 +147,8 @@
 
 - (void)dealloc
 {
+    _conversationController.dxDelegate = nil;
+    _customerViewController.customerController.dxDelegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
