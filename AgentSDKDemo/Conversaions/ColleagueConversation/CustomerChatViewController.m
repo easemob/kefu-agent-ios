@@ -668,8 +668,8 @@
     [parameters setValue:@(hPageLimit) forKey:@"size"];
     WEAK_SELF
     [[HDClient sharedClient].chatManager aysncGetAgentMessagesWithRemoteUserId:_userModel.agentId parameters:parameters completion:^(NSArray<HDMessage *> *messages, HDError *error) {
+        [weakSelf hideHud];
         if (error == nil) {
-            [weakSelf hideHud];
             for (HDMessage *message in messages) {
                 if (message.nBody) {
                     if (message.type == HDMessageBodyTypeText) {

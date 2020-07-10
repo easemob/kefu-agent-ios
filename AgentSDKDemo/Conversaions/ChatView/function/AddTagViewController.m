@@ -333,6 +333,7 @@
     
     WEAK_SELF
     [_conversation asyncGetTreeCompletion:^(id responseObject, HDError *error) {
+        [weakSelf hideHud];
         if (!error) {
             NSArray *json = responseObject;
             NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];
@@ -343,7 +344,6 @@
             [weakSelf _loadData];
             [weakSelf _loadComment];
             _treeArray = [json copy];
-            [weakSelf hideHud];
         } else {
             NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];
             NSData *jsonData = [ud objectForKey:USERDEFAULTS_DEVICE_TREE];
@@ -353,7 +353,6 @@
                 [weakSelf _loadData];
                 [weakSelf _loadComment];
                 _treeArray = [json copy];
-                [weakSelf hideHud];
             }
         }
     }];

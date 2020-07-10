@@ -26,12 +26,8 @@
 {
     self = [super init];
     if (self) {
-        NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];
-        if ([ud objectForKey:USERDEFAULTS_QUICK_REPLY]) {
-            [self loadReplyFromLocal];
-        } else {
-            [self loadReplyFromServer];
-        }
+        [self loadReplyFromLocal];
+        [self loadReplyFromServer];
         [self addSubview:self.tableView];
     }
     return self;
@@ -77,7 +73,6 @@
 
 - (void)loadReplyFromServer
 {
-    
     [[HDClient sharedClient].chatManager getQuickReplyCompletion:^(id responseObject, HDError *error) {
         if (error == nil) {
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -132,7 +127,10 @@
         return;
     }
     WEAK_SELF
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(phrase) resultBlock:^(NSArray *results) {
+    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:weakSelf.dataSource
+                                                    searchText:(NSString *)searchText
+                                       collationStringSelector:@selector(phrase) resultBlock:^(NSArray *results)
+    {
         if (results) {
             hd_dispatch_main_async_safe(^{
                 if ([results count] == 1) {
@@ -146,6 +144,10 @@
             });
         }
     }];
+}
+
+- (void)dealloc {
+    
 }
 
 #pragma mark - UITableViewDataSource

@@ -416,7 +416,8 @@
     [self showHintNotHide:@"加载中..."];
     WEAK_SELF
     
-    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page limit:0
+    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page
+                                                                  limit:0
                                                              completion:^(NSArray *conversations, HDError *error)
     {
         [weakSelf hideHud];
@@ -451,10 +452,9 @@
                 default:
                     break;
             }
-            [weakSelf.tableView reloadData];
-        } else {
-            [weakSelf.tableView reloadData];
         }
+        [weakSelf.tableView reloadData];
+        
         [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakSelf.dataSource];
     }];
 }
