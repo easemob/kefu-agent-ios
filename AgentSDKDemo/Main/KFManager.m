@@ -242,13 +242,16 @@ singleton_implementation(KFManager)
 }
 
 - (void)setTabbarBadgeValueWithAllConversations:(NSMutableArray *)allConversations {
-    NSInteger unreadCount = 0;
+    int unreadCount = 0;
     for (HDConversation *model in allConversations) {
         unreadCount += model.unreadCount;
     }
+    // 更新当前存在会话；
     _curConversationNum = allConversations.count;
-    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
-    [[HomeViewController HomeViewController] setConversationWithBadgeValue:unreadCount];
+    
+    // 发送未读数变化通知；
+    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_UPDATE_SERVICECOUNT
+                                                        object:[NSString stringWithFormat:@"%d",unreadCount]];
 }
 
 - (void)setNavItemBadgeValueWithAllConversations:(NSMutableArray *)allConversations {

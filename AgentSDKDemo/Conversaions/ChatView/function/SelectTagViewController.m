@@ -51,7 +51,6 @@
     // Do any additional setup after loading the view.
     
     [self setupBarButtonItem];
-    [self setUpSearchBar];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = kTableViewBgColor;
     
@@ -62,7 +61,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 - (void)setUpSearchBar
 {
     _searchArray = [NSMutableArray array];
@@ -71,7 +70,6 @@
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索标签";
-    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
     _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
     [_searchBar setSearchFieldBackgroundPositionAdjustment:UIOffsetMake(0, 0)];
@@ -156,6 +154,7 @@
     }];
     
 }
+ */
 
 - (void)setupBarButtonItem
 {
@@ -349,28 +348,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    WEAK_SELF
-    if ([_tagId isEqualToString:@"0"]) {
-        [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.searchArray searchText:(NSString *)searchText collationStringSelector:@selector(name) resultBlock:^(NSArray *results) {
-            if (results) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.searchController.resultsSource removeAllObjects];
-                    [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-                    [weakSelf.searchController.searchResultsTableView reloadData];
-                });
-            }
-        }];
-    } else {
-        [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(name) resultBlock:^(NSArray *results) {
-            if (results) {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [weakSelf.searchController.resultsSource removeAllObjects];
-                    [weakSelf.searchController.resultsSource addObjectsFromArray:results];
-                    [weakSelf.searchController.searchResultsTableView reloadData];
-                });
-            }
-        }];
-    }
+
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar

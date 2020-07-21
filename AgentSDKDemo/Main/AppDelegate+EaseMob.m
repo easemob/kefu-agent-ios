@@ -36,11 +36,11 @@
     options.apnsCertName = apnsCertName;
     options.enableConsoleLog = YES;
     options.showVisitorInputState = YES;
-//    options.kefuRestAddress = @"sandbox.kefu.easemob.com";
+//    options.kefuRestAddress = @"visitor-kefu.kyemalltest.com";
 //    options.kefuRestAddress = @"kefu.dongfeng-renault.com.cn";
-//    options.restServer = @"a1.dongfeng-renault.com.cn";
-//    options.chatServer = @"im1.dongfeng-renault.com.cn";
-//    options.chatPort = 5222;
+    options.restServer = @"a1-kefu.kyemalltest.com";
+    options.chatServer = @"10.121.224.46";
+    options.chatPort = 16717;
     
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     [self registerRemoteNotification];
@@ -172,8 +172,40 @@
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       [[HDClient sharedClient] bindDeviceToken:deviceToken];
+       [[HDClient sharedClient] bindDeviceToken:[self _extractTokenFromRawData:deviceToken]];
     });
+}
+
+- (NSString *)_extractTokenFromRawData:(NSData *)deviceToken
+{
+    
+    NSString *token = @"";
+    do {
+        if (@available(iOS 13.0, *)) {
+            if ([deviceToken isKindOfClass:[NSData class]]) {
+                const unsigned *tokenBytes = (const unsigned *)[deviceToken bytes];
+                token = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
+                                      ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
+                                      ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
+                                      ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+                break;
+            }else if ([deviceToken isKindOfClass:[NSString class]]) {
+                token = [NSString stringWithFormat:@"%@",deviceToken];
+                token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
+                token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
+                token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+                break;
+            }
+        }else {
+            token = [NSString stringWithFormat:@"%@",deviceToken];
+            token = [token stringByReplacingOccurrencesOfString:@"<" withString:@""];
+            token = [token stringByReplacingOccurrencesOfString:@">" withString:@""];
+            token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+            break;
+        }
+    } while (0);
+    
+    return token;
 }
 
 // 注册deviceToken失败，此处失败，与环信SDK无关，一般是您的环境配置或者证书配置有误
@@ -193,8 +225,8 @@
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    if ([HomeViewController HomeViewController]) {
-        [[HomeViewController HomeViewController] didReceiveLocalNotification:notification];
+    if ([HomeViewController homeViewController]) {
+        [[HomeViewController homeViewController] didReceiveLocalNotification:notification];
     }
 }
 

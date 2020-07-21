@@ -28,6 +28,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.backgroundColor = UIColor.whiteColor;
         _headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 7.5, 40, 40)];
         _headerImageView.clipsToBounds = YES;
         _headerImageView.layer.cornerRadius = CGRectGetWidth(_headerImageView.frame)/2;

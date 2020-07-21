@@ -28,13 +28,22 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     AgentMenuTagSet
 };
 
-@interface KFLeftViewController () <UITableViewDelegate,UITableViewDataSource,EMPickerSaveDelegate>
+@interface KFLeftViewController () <UITableViewDelegate,UITableViewDataSource,EMPickerSaveDelegate
+#if DEBUG
+, UIDocumentInteractionControllerDelegate
+#endif
+>
 @property (nonatomic, strong) LeftMenuHeaderView *headerView;
 @property (nonatomic, strong) EMPickerView *pickerView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) KFSwitchTypeButton *switchBtn;
 @property (nonatomic, strong) NSArray *adminDatasrouce;
 @property (nonatomic, strong) NSArray *nomalDatasource;
+
+#if DEBUG
+@property (nonatomic, strong) UIDocumentInteractionController *documentController;
+#endif
+
 @end
 
 @implementation KFLeftViewController
@@ -104,7 +113,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (void)refreshUnreadView:(NSInteger)badgeNumber
 {
-    KFLeftViewItem *item = item = self.nomalDatasource[0];
+    KFLeftViewItem *item = self.nomalDatasource[0];
     [item setUnreadCount:(int)badgeNumber];
     [self.tableView reloadData];
 }
@@ -148,7 +157,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 - (UITableView *)tableView {
     if (!_tableView) {
         CGFloat statusBarHeight = isIPHONEX ? 44: 20;
-        CGRect frame = CGRectMake(0, statusBarHeight, self.view.width, self.view.height - statusBarHeight - kBottomButtonHeight);
+        CGRect frame = CGRectMake(0, statusBarHeight, self.view.width, self.view.height - statusBarHeight - kBottomButtonHeight - iPhoneXBottomHeight);
         _tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -211,6 +220,15 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+#if DEBUG
+    KFLeftViewItem *item = _menuData[indexPath.row];
+    if ([item.name isEqualToString:@"导出日志"]) {
+        [self exprotLog];
+        return;
+    }
+#endif
+    
 #if !APPSTORE
     if (!_adminModel) { //点击"更新",只有更新动作
         if (indexPath.row == AgentMenuTagUpdate) {
@@ -221,7 +239,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 #endif
     __block BOOL isAdmin = _adminModel;
     WEAK_SELF
-    HomeViewController *homeController = [HomeViewController HomeViewController];
+    HomeViewController *homeController = [HomeViewController homeViewController];
     KFBaseNavigationController *navigationController = [[KFBaseNavigationController alloc] initWithRootViewController:homeController];
     if (isAdmin) {
         if (self.leftDelegate && [self.leftDelegate respondsToSelector:@selector(adminMenuClickWithIndex:)]) {
@@ -281,6 +299,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
              [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_realtime"]],
              [KFLeftViewItem name:@"告警记录" image:[UIImage imageNamed:@"alarmsRecord"]]
              ];
+    
 }
 
 - (NSArray *)nomalAgentItems {
@@ -298,8 +317,40 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
              [KFLeftViewItem name:@"现场管理" image:[UIImage imageNamed:@"icon_manager_supervise"]],
              [KFLeftViewItem name:@"实时监控" image:[UIImage imageNamed:@"icon_manager_realtime"]],
              [KFLeftViewItem name:@"告警记录" image:[UIImage imageNamed:@"alarmsRecord"]]
+#if DEBUG
+             ,[KFLeftViewItem name:@"导出日志" image:[UIImage imageNamed:@"icon_manager_supervise"]]
+#endif
              ];
 }
+
+#if DEBUG
+- (void)exprotLog {
+    NSString *logPath = [HDClient.sharedClient.chatManager zipLog];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *toPath = [NSString stringWithFormat:@"%@/Documents/", NSHomeDirectory()];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MM-dd HH:mm:ss"];
+    NSDate *datenow = [NSDate date];
+    NSString *currentTimeString = [formatter stringFromDate:datenow];
+    toPath = [toPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@ log.gz", currentTimeString]];
+    if ([fm fileExistsAtPath:toPath]) {
+        [fm removeItemAtPath:toPath error:nil];
+    }
+    [fm copyItemAtPath:logPath toPath:toPath error:nil];
+    
+    
+    NSURL *url = [NSURL fileURLWithPath:toPath];
+    self.documentController = [UIDocumentInteractionController interactionControllerWithURL:url];
+    self.documentController.delegate = self;
+    [self.documentController presentPreviewAnimated:YES];
+}
+
+#pragma mark - UIDocumentInteractionControllerDelegate
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+    return self;
+}
+
+#endif
 
 
 

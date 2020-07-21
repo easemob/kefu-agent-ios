@@ -30,12 +30,14 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    _tableView.backgroundColor = UIColor.whiteColor;
     
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.delegate = nil;
         
     }
     [self.view addSubview:_tableView];
+    self.view.backgroundColor = UIColor.whiteColor;
 }
 
 

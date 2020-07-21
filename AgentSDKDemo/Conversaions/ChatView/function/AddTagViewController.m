@@ -333,6 +333,7 @@
     
     WEAK_SELF
     [_conversation asyncGetTreeCompletion:^(id responseObject, HDError *error) {
+        [weakSelf hideHud];
         if (!error) {
             NSArray *json = responseObject;
             NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];
@@ -343,7 +344,6 @@
             [weakSelf _loadData];
             [weakSelf _loadComment];
             _treeArray = [json copy];
-            [weakSelf hideHud];
         } else {
             NSUserDefaults *ud= [NSUserDefaults standardUserDefaults];
             NSData *jsonData = [ud objectForKey:USERDEFAULTS_DEVICE_TREE];
@@ -353,7 +353,6 @@
                 [weakSelf _loadData];
                 [weakSelf _loadComment];
                 _treeArray = [json copy];
-                [weakSelf hideHud];
             }
         }
     }];
@@ -427,20 +426,23 @@
         // Configure the cell...
         if (cell == nil) {
             cell = [[EMAddTagCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellType1"];
+            cell.backgroundColor = UIColor.whiteColor;
         }
         if (indexPath.section == 0) {
             cell.textLabel.text = @"添加会话标签";
+            cell.textLabel.textColor = UIColor.grayColor;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
             cell.textLabel.text = [_commentDic objectForKey:@"comment"];
+            cell.textLabel.textColor = UIColor.grayColor;
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
         return cell;
     } else {
         EMAddTagCell *colorCell = [tableView dequeueReusableCellWithIdentifier:@"CellColor"];
-        
         if (colorCell == nil) {
             colorCell = [[EMAddTagCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellColor"];
+            colorCell.backgroundColor = UIColor.whiteColor;
         }
         
         [colorCell addSubview:self.headerTagView];

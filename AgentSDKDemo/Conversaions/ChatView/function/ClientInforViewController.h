@@ -18,5 +18,6 @@
 @property (nonatomic, strong) UIImage *tagImage; //标记来源
 @property (nonatomic, strong) VisitorUserModel *vistor;
 @property (nonatomic, assign) BOOL readOnly;
+@property (nonatomic, copy) NSString *serviceSessionId;
 
 @end

@@ -106,13 +106,12 @@
     
     _jnRefreshQueue = dispatch_queue_create("com.kefuapp.jnRefresh", DISPATCH_QUEUE_SERIAL);
     
-    [self setUpSearchBar];
-    
     self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.backgroundColor = UIColor.whiteColor;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView addSubview:self.slimeView];
-    
+    self.view.backgroundColor = UIColor.whiteColor;
     [self loadData];
     self.title = @"技能组";
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
@@ -140,12 +139,12 @@
     return _slimeView;
 }
 
+/*
 - (void)setUpSearchBar
 {
     _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(2.5, 0, self.tableView.frame.size.width-5, 44)];
     _searchBar.delegate = self;
     _searchBar.placeholder = @"搜索";
-    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
     _searchBar.backgroundImage = [self.view imageWithColor:RGBACOLOR(0xef, 0xef, 0xf4, 1) size:_searchBar.frame.size];
     _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
     self.tableView.tableHeaderView = _searchBar;
@@ -164,6 +163,7 @@
     _searchController.searchResultsTableView.tableFooterView = [UIView new];
     
 }
+*/
 
 #pragma mark - private
 - (void)backAction
@@ -215,34 +215,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-    if(tableView == self.searchController.searchResultsTableView){
-        if ([self.searchController.resultsSource count] == 0) {
-            return 1;
-        }
-        return [self.searchController.resultsSource count];
-    }
     return [self.dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DXTableViewCellType1 *cell = [tableView dequeueReusableCellWithIdentifier:@"CellType1"];
     
-    // Configure the cell...
     if (cell == nil) {
         cell = [[DXTableViewCellType1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellType1"];
     }
-    
-    if (tableView == self.searchController.searchResultsTableView) {
-        if ([self.searchController.resultsSource count] == 0) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
-            cell.textLabel.text = @"没有搜索到……";
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            return cell;
-        }
-    }
-    
-    JiNengGroup *group = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+
+    JiNengGroup *group = [self.dataSource objectAtIndex:indexPath.row];
     [cell setJiNengGroupModel:group];
     return cell;
 }
@@ -257,16 +240,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (tableView == self.searchController.searchResultsTableView) {
-        if ([self.searchController.resultsSource count] == 0) {
-            return;
-        }   
-    }
-    
+
     if (_searchBar.isFirstResponder) {
         [_searchBar resignFirstResponder];
     }
-    JiNengGroup *group = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+    JiNengGroup *group = [self.dataSource objectAtIndex:indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定将该会话转接给%@吗？",group.name] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.tag = 1000;
     [alert show];
@@ -325,7 +303,7 @@
                     JiNengGroup *group = [[JiNengGroup alloc] initWithName:[agentQueue objectForKey:@"queueName"] detail:detail queueId:[agentQueue objectForKey:@"queueId"]];
                     [weakSelf.dataSource addObject:group];
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
+                hd_dispatch_main_async_safe(^{
                     [weakSelf.tableView reloadData];
                 });
             }
@@ -347,16 +325,6 @@
     if (searchText.length == 0) {
         return;
     }
-    NSString *search = [ChineseToPinyin pinyinFromChineseString:searchText];
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)search collationStringSelector:@selector(name) resultBlock:^(NSArray *results) {
-        if (results) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.searchController.resultsSource removeAllObjects];
-                [self.searchController.resultsSource addObjectsFromArray:results];
-                [self.searchController.searchResultsTableView reloadData];
-            });
-        }
-    }];
 }
 
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar

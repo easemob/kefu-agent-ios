@@ -35,7 +35,7 @@
     }
 
     if (self.model.unreadCount != 0) {
-        if (self.model.unreadCount > 100) {
+        if (self.model.unreadCount >= 100) {
             self.unreadLabel.text = @"99+";
             self.unreadLabel.font = [UIFont systemFontOfSize:11];
         }else {

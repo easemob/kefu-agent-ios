@@ -93,9 +93,6 @@
     HDNoticeStatus _currentStatus;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
 
 - (instancetype)init {
     self = [super init];
@@ -112,10 +109,17 @@
     [self loadData];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [UIView performWithoutAnimation:^{
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
+    }];
+}
+
+
 - (void)loadData {
     [self.tableView addSubview:self.slimeView];
     [self.view addSubview:self.tabMenuView];
-//    self.tableView.tableHeaderView = self.headerView;
     self.tableView.top = self.tabMenuView.height;
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = kTableViewBgColor;
@@ -198,7 +202,7 @@
 }
 
 - (void)seeReadButtonClicked:(UIButton *)btn { //rightItem
-    HomeViewController *homeVC = [HomeViewController HomeViewController];
+    HomeViewController *homeVC = [HomeViewController homeViewController];
     if (!btn.selected) {
         homeVC.title = @"已读通知";
         _unreadDataSource = [NSMutableArray arrayWithArray:self.dataSource];
@@ -252,7 +256,6 @@
         _headerView.backgroundColor = RGBACOLOR(229, 229, 229, 1);
         UILabel *tip = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
         tip.font = [UIFont systemFontOfSize:12.0];
-        tip.tag = 12306;
         tip.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@(0),@(0)];
         [_headerView addSubview:tip];
         [_headerView addSubview:self.markButton];
@@ -261,8 +264,13 @@
 }
 
 - (void)setHeaderNumWithtotle:(NSInteger)totle {
-    UILabel *lb = [self.headerView viewWithTag:12306];
-    lb.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@([self.dataSource count]),@(totle)];
+    UILabel *label = nil;
+    for (UIView *view in self.headerView.subviews) {
+        if ([view isKindOfClass:[UILabel class]]) {
+            label = (UILabel *)view;
+        }
+    }
+    label.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@([self.dataSource count]),@(totle)];
 }
 
 #pragma mark - action
@@ -321,6 +329,8 @@
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"HDNotifyCellNormal"];
             cell.textLabel.text = @"没有记录";
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            cell.backgroundColor = UIColor.whiteColor;
+            cell.textLabel.textColor = UIColor.grayColor;
             return cell;
         }
         cell.delegate = self;
@@ -399,7 +409,6 @@
 {
     _page = 1;
     [self loadDataWithPage:_page type:_currentTabMenu];
-    [_slimeView endRefresh];
 }
 
 #pragma mark - LoadData
@@ -411,9 +420,8 @@
     }
     WEAK_SELF
     _isRefresh = YES;
-    [self showHintNotHide:@"加载中..."];
     [[HDClient sharedClient].notiManager asyncGetNoticeWithPageIndex:page pageSize:kNotifyPageSize status:_currentStatus type:notiType prameters:nil completion:^(NSArray<HDNotifyModel *> *notices, HDError *error) {
-        [MBProgressHUD  hideAllHUDsForView:weakSelf.view animated:YES];
+        [weakSelf.slimeView endRefresh];
         weakSelf.isRefresh = NO;
         if (nil == error) {
             if (page == 1) {
@@ -492,8 +500,8 @@
             [weakSelf.dataSource removeObject:model];
             [weakSelf setHeaderNumWithtotle:[HDClient sharedClient].notiManager.unreadCount];
             [weakSelf.tableView reloadData];
-            NSLog(@"标记成功");
             [weakSelf resetBadge];
+            NSLog(@"标记成功");
         } else {
             NSLog(@"标记失败");
         }
@@ -572,7 +580,7 @@
         badgeStr = @"99+";
     }
     self.tabBarItem.badgeValue = badgeStr;
-    [[HomeViewController HomeViewController] setNotifyWithBadgeValue:count];
+    [[HomeViewController homeViewController] setNotifyWithBadgeValue:count];
 }
 
 

@@ -65,7 +65,16 @@
     
 }
 - (void)initNoti {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMaxServiceNumber) name:NOTIFICATION_SET_MAX_SERVICECOUNT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateMaxServiceNumber)
+                                                 name:NOTIFICATION_SET_MAX_SERVICECOUNT
+                                               object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateMaxServiceNumber)
+                                                 name:NOTIFICATION_UPDATE_SERVICECOUNT
+                                               object:nil];
     
     [[HDClient sharedClient] removeDelegate:self];
     [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
@@ -138,6 +147,8 @@
 
 - (void)dealloc
 {
+    _conversationController.dxDelegate = nil;
+    _customerViewController.customerController.dxDelegate = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -229,6 +240,8 @@
         _titleView.layer.masksToBounds = YES;
         _titleView.backgroundColor = [UIColor clearColor];
         
+        __weak typeof(self) weakSelf = self;
+        
         _conversationButton = [[HDSelectButton alloc] initWithFrame:CGRectMake(0, 0, 80, _titleView.frame.size.height)];
         _conversationButton.layer.masksToBounds = YES;
         [_conversationButton setTitle:@"进行中" forState:UIControlStateNormal];
@@ -237,8 +250,8 @@
         [_conversationButton addTarget:self action:@selector(multipleTap:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
         [_conversationButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_conversationButton setTitleColor:kNavBarBgColor forState:UIControlStateSelected];
-        [_conversationButton setBackgroundImage:[self.view imageWithColor:kNavBarBgColor size:_conversationButton.frame.size] forState:UIControlStateNormal];
-        [_conversationButton setBackgroundImage:[self.view imageWithColor:[UIColor whiteColor] size:_conversationButton.frame.size] forState:UIControlStateSelected];
+        [_conversationButton setBackgroundImage:[weakSelf.view imageWithColor:kNavBarBgColor size:_conversationButton.frame.size] forState:UIControlStateNormal];
+        [_conversationButton setBackgroundImage:[weakSelf.view imageWithColor:[UIColor whiteColor] size:_conversationButton.frame.size] forState:UIControlStateSelected];
 //        _conversationButton.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:18.0];
         _conversationButton.tag = 100;
         _conversationButton.selected = YES;
@@ -301,7 +314,6 @@
 
 - (void)waitButtonAction:(id)sender
 {
-    [_conversationController searhResignAndSearchDisplayNoActive];
     _conversationButton.selected = NO;
     _waitButton.selected = YES;
     [_scrollView setContentOffset:CGPointMake(CGRectGetWidth(_scrollView.frame), 0) animated:NO];
@@ -340,7 +352,6 @@
 - (void)ConversationPushIntoChat:(UIViewController *)viewController
 {
     if (_conversationButton.selected) {
-        [_conversationController searhResign];
         ((ChatViewController*)viewController).notifyNumber = _tipNumber;
     } else {
         [_customerViewController.customerController searhResign];
@@ -357,7 +368,6 @@
         _waitButton.selected = NO;
         _conversationButton.selected = YES;
     } else {
-        [_conversationController searhResignAndSearchDisplayNoActive];
         _conversationButton.selected = NO;
         _waitButton.selected = YES;
     }
@@ -365,20 +375,25 @@
 
 #pragma makr - DXTableViewControllerDelegate
 - (void)dxtableView:(DXTableViewController *)aTableVC userInfo:(NSDictionary *)userInfo {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    
+    __block void(^reloadData)(void) = ^(void){
         if ([aTableVC isKindOfClass:[HConversationViewController class]]) {
-            if ([[userInfo valueForKey:@"unreadCount"] intValue] > 0) {
-                [_conversationButton showUnReadStamp];
-            }else {
-                [_conversationButton hiddenUnReadStamp];
-            }
-        }else if ([aTableVC isKindOfClass:[CustomerController class]]) {
-            if ([[userInfo valueForKey:@"unreadCount"] intValue] > 0) {
-                [_waitButton showUnReadStamp];
-            }else {
-                [_waitButton hiddenUnReadStamp];
-            }
-        }
+                 if ([[userInfo valueForKey:@"unreadCount"] intValue] > 0) {
+                     [_conversationButton showUnReadStamp];
+                 }else {
+                     [_conversationButton hiddenUnReadStamp];
+                 }
+             }else if ([aTableVC isKindOfClass:[CustomerController class]]) {
+                 if ([[userInfo valueForKey:@"unreadCount"] intValue] > 0) {
+                     [_waitButton showUnReadStamp];
+                 }else {
+                     [_waitButton hiddenUnReadStamp];
+                 }
+             }
+    };
+    
+    hd_dispatch_main_async_safe(^{
+        reloadData();
     });
 }
 

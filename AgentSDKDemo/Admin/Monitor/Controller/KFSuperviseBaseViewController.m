@@ -129,7 +129,7 @@
 
 - (void)backAction {
     [self.timer invalidate];
-    [[HomeViewController HomeViewController] showLeftView];
+    [[HomeViewController homeViewController] showLeftView];
 }
 
 - (void)arrowButtonClicked:(UIButton *)btn {

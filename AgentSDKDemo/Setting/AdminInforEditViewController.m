@@ -98,6 +98,7 @@ typedef NS_ENUM(NSUInteger, UITextFieldType) {
         _editTextField.backgroundColor = [UIColor whiteColor];
         _editTextField.text = _editContent;
         _editTextField.clearButtonMode = YES;
+        _editTextField.textColor = UIColor.grayColor;
         
         UIView *upline = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 0.5)];
         upline.backgroundColor = [UIColor lightGrayColor];

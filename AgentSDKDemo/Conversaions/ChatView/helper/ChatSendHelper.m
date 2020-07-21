@@ -94,8 +94,10 @@
 }
 
 //图片
-+ (HDMessage *)imageMessageFormatWithImageData:(NSData *)data to:(NSString *)toUser sessionId:(NSString *)sessionId {
-    HDImageMessageBody *body = [[HDImageMessageBody alloc] initWithData:data displayName:@"imagetest"];
++ (HDMessage *)imageMessageFormatWithImage:(UIImage *)aImage to:(NSString *)toUser sessionId:(NSString *)sessionId {
+    NSData *imageData = UIImageJPEGRepresentation(aImage, 0.6);
+    HDImageMessageBody *body = [[HDImageMessageBody alloc] initWithData:imageData displayName:@"imagetest"];
+    body.size = aImage.size;
     HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
     return message;
 }

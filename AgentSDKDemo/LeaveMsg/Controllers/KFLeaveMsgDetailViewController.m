@@ -64,6 +64,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     assigee.nickname = @"未分配";
     [_assginees addObject:assigee];
     [self setup];
+    self.view.backgroundColor = UIColor.whiteColor;
 }
 
 - (void)loadAssignees {
@@ -79,6 +80,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 - (void)setup {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.backgroundColor = UIColor.whiteColor;
     _dataSource = [NSMutableArray array];
     [self setupTitleStrInfo];
     self.tableView.tableHeaderView = [self tableHeaderViewFormStr:_titleStrInfo];
@@ -98,6 +100,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                                       withWidth:self.view.frame.size.width - 20
                                 spaceLineHeight:5];
     label.frame = CGRectMake(10, 0, self.view.frame.size.width - 20, height);
+    label.textColor = UIColor.grayColor;
     return label;
 }
 
@@ -192,7 +195,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                                                                             applicationActivities:nil];
     activityVC.excludedActivityTypes = @[UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
                                          UIActivityTypeAssignToContact,UIActivityTypeSaveToCameraRoll,UIActivityTypeMail];
-    
+    activityVC.modalPresentationStyle = 0;
     [self presentViewController:activityVC animated:YES completion:nil];
 }
 
@@ -218,6 +221,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
 
 - (void)didSelectImageWithPicker:(UIImagePickerController *)imagePicker
 {
+    imagePicker.modalPresentationStyle = 0;
     [self presentViewController:imagePicker animated:YES completion:NULL];
 }
 - (LeaveMsgInputView *)inputView
@@ -246,11 +250,13 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+            cell.backgroundColor = UIColor.whiteColor;
             UIButton *tip = [[UIButton alloc] initWithFrame:cell.contentView.bounds];
             [tip setTitle:@"评论" forState:UIControlStateNormal];
             [tip setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             tip.userInteractionEnabled = YES;
             tip.centerX = KScreenWidth / 2;
+            tip.backgroundColor = UIColor.whiteColor;
             [cell.contentView  addSubview:tip];
             return cell;
         } else {
@@ -267,6 +273,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
     }
     if (indexPath.section == 0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:nil];
+        cell.backgroundColor = UIColor.whiteColor;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, 1)];
         lineView.backgroundColor = RGBACOLOR(207, 210, 213, 0.7);
@@ -279,6 +286,7 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
             cell.textLabel.text = @"状态:";
             cell.detailTextLabel.text = [self strWithType:_model.type];
         }
+        cell.textLabel.textColor = UIColor.grayColor;
         return cell;
     }
     return [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];

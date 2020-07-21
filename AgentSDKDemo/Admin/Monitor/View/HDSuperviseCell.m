@@ -66,6 +66,7 @@
 }
 
 - (void)initUI {
+    self.backgroundColor = UIColor.whiteColor;
     //技能组昵称
     _groupName = [[UILabel alloc] initWithFrame:CGRectMake(kmargin, kmargin, 150, 20)];
     _groupName.text = @"技能组";

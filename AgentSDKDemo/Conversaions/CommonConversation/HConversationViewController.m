@@ -17,7 +17,12 @@
 #import "SRRefreshView.h"
 #import "UIAlertView+AlertBlock.h"
 #import "AppDelegate.h"
-@interface HConversationViewController ()<UISearchBarDelegate, SRRefreshDelegate,ChatViewControllerDelegate, HDClientDelegate>
+#import "Masonry.h"
+
+#import "EMRealtimeSearch.h"
+#import "UIViewController+KFSearch.h"
+
+@interface HConversationViewController ()<SRRefreshDelegate,ChatViewControllerDelegate, HDClientDelegate, HDSearchControllerDelegate>
 {
     BOOL _isRefresh;
     int _unreadcount;
@@ -30,15 +35,18 @@
     void* _queueTag;
     
     NSTimeInterval _endConversation;
+    
+    CGRect _tableFrame;
 }
 
-@property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) EMSearchDisplayController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
 
+@property (nonatomic, strong) NSMutableArray *searchDataArray;
+
 @property (nonatomic, strong) SRRefreshView *slimeView;
 @property (nonatomic, strong) UIView *networkStateView;
+
 
 @end
 
@@ -51,7 +59,6 @@
     if (self) {
         _type = type;
         _page = -1;
-        _showSearchBar = NO;
         _dataSourceDic = [NSMutableDictionary new];
         hasMore = NO;
         _conversationQueue = dispatch_queue_create("com.easemob.kefu.conversation", DISPATCH_QUEUE_SERIAL);
@@ -66,6 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     [HDClient.sharedClient addDelegate:self delegateQueue:nil];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -73,9 +81,51 @@
     if (_type != HDConversationAccessed) {
         _page = 1;
     }
+    
+    [self enableSearchController];
+    self.searchButton.frame = CGRectMake(15, 10, self.tableView.frame.size.width - 30, 35);
+    
     [self.tableView addSubview:self.slimeView];//f5f7fa
     self.tableView.backgroundColor = kTableViewBgColor;
     [self loadData];
+    
+    [self _setupSearchResultController];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+
+- (void)_setupSearchResultController
+{
+    __weak typeof(self) weakself = self;
+    weakself.resultController.tableView.rowHeight = 60;
+    [weakself.resultController setCellForRowAtIndexPathCompletion:^UITableViewCell *(UITableView *tableView, NSIndexPath *indexPath) {
+        DXTableViewCellTypeConversation *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation"];
+        if (cell == nil) {
+            cell = [[DXTableViewCellTypeConversation alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
+            cell.rightUtilityButtons = nil;
+        }
+        cell.textLabel.text = @"";
+        HDConversation *model = [weakself.resultController.dataArray objectAtIndex:indexPath.row];
+        if ([model isKindOfClass:[HDConversation class]]) {
+            [cell setModel:model];
+        }
+        return cell;
+    }];
+ 
+    [weakself.resultController setDidSelectRowAtIndexPathCompletion:^(UITableView *tableView, NSIndexPath *indexPath) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [weakself cancelSearch:^{
+            if (_type == HDConversationAccessed) {
+                HDConversation *model = [weakself.resultController.dataArray objectAtIndex:indexPath.row];
+                [weakself pushToChatViewControllerWithModel:model];
+            }
+            // 为了兼容ios系统bug，当dismiss后，tableView的坐标会变成-64；
+            weakself.tableView.frame = CGRectMake(0, 0, weakself.tableView.frame.size.width, weakself.tableView.frame.size.height);
+        }];
+    }];
 }
 
 - (void)connectionStateDidChange:(HDConnectionState)aConnectionState {
@@ -107,7 +157,7 @@
             }
             
             [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 KFManager *cm = [KFManager sharedInstance]; 
                 [cm setTabbarBadgeValueWithAllConversations:self.dataSource];
                 [cm setNavItemBadgeValueWithAllConversations:self.dataSource];
@@ -135,6 +185,7 @@
     return _slimeView;
 }
 
+
 - (UIView *)networkStateView
 {
     if (_networkStateView == nil) {
@@ -159,49 +210,12 @@
 - (void)isConnect:(BOOL)isConnect{
     if (!isConnect) {
         self.tableView.tableHeaderView = self.networkStateView;
-    }
-    else{
-        self.tableView.tableHeaderView = self.searchBar;
+    } else{
+        self.tableView.tableHeaderView = nil;
         [self refreshConversationList];
     }
 }
-
-#pragma mark - 
-
-- (void)setUpSearchBar
-{
-    _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 44)];
-    _searchBar.delegate = self;
-    _searchBar.placeholder = @"搜索名字、昵称";
-    [_searchBar setValue:@"取消" forKey:@"_cancelButtonText"];
-    _searchBar.backgroundImage = [self.view imageWithColor:[UIColor whiteColor] size:_searchBar.frame.size];
-    _searchBar.tintColor = RGBACOLOR(0x4d, 0x4d, 0x4d, 1);
-    [_searchBar setSearchFieldBackgroundPositionAdjustment:UIOffsetMake(0, 0)];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg"] forState:UIControlStateNormal];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg_select"] forState:UIControlStateHighlighted];
-    [_searchBar setSearchFieldBackgroundImage:[UIImage imageNamed:@"search_bg_select"] forState:UIControlStateSelected];
-    
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_searchBar.frame) - 0.5, self.tableView.frame.size.width, 0.5)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    [_searchBar addSubview:line];
-    self.tableView.tableHeaderView = _searchBar;
-    
-    _searchController = [[EMSearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
-    _searchController.searchResultsTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    _searchController.active = NO;
-    _searchController.searchResultsDataSource = self;
-    _searchController.searchResultsDelegate = self;
-    _searchController.searchResultsTableView.tableFooterView = [UIView new];
-}
-
-- (void)setShowSearchBar:(BOOL)showSearchBar
-{
-    if(showSearchBar != _showSearchBar){
-        _showSearchBar = showSearchBar;
-        [self setUpSearchBar];
-    }
-}
-
+ 
 #pragma mark - scrollView delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -228,14 +242,24 @@
 
 #pragma mark - Table view data source
 
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectInset(self.searchButton.bounds, -15, -10)];
+    view.backgroundColor = UIColor.whiteColor;
+    [view addSubview:self.searchButton];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return self.searchButton.bounds.size.height + 20;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
     if (_type == HDConversationAccessed) {
         return 1;
     } else if (_type == HDConversationWaitQueues) {
-        if(tableView == self.searchController.searchResultsTableView){
-            return 1;
-        }
         return 2;
     } else {
         return 1;
@@ -243,12 +267,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(tableView == self.searchController.searchResultsTableView){
-        if ([self.searchController.resultsSource count] == 0) {
-            return 1;
-        }
-        return [self.searchController.resultsSource count];
-    }
     if (section == 0) {
         if ([self.dataSource count] == 0) {
             return 1;
@@ -262,20 +280,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_type == HDConversationAccessed) {
         
-        if (tableView != self.searchController.searchResultsTableView) {
-            if ([self.dataSource count] == 0) {
-                UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
-                cell.textLabel.text = @"没有会话";
-                cell.textLabel.textAlignment = NSTextAlignmentCenter;
-                return cell;
-            }
-        } else {
-            if ([self.searchController.resultsSource count] == 0) {
-                UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
-                cell.textLabel.text = @"没有会话";
-                cell.textLabel.textAlignment = NSTextAlignmentCenter;
-                return cell;
-            }
+        if ([self.dataSource count] == 0) {
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
+            cell.textLabel.text = @"没有会话";
+            cell.backgroundColor = UIColor.whiteColor;
+            cell.textLabel.textColor = UIColor.grayColor;
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            return cell;
         }
         
         DXTableViewCellTypeConversation *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation"];
@@ -284,7 +295,7 @@
             cell.rightUtilityButtons = nil;
         }
         cell.textLabel.text = @"";
-        HDConversation *model = tableView != self.searchController.searchResultsTableView?[self.dataSource objectAtIndex:indexPath.row]:[self.searchController.resultsSource objectAtIndex:indexPath.row];
+        HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
         if ([model isKindOfClass:[HDConversation class]]) {
             [cell setModel:model];
         }
@@ -316,36 +327,75 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (tableView == self.searchController.searchResultsTableView &&
-        [self.searchController.resultsSource count] == 0) {
-        return;
-    }
     if ([self.dataSource count] == 0) {
         return;
     }
     
+    __weak typeof(self) weakSelf = self;
     if (_type == HDConversationAccessed) {
-        if (_searchBar.isFirstResponder) {
-            [_searchBar resignFirstResponder];
-        }
-        if ([self.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
-            ChatViewController *chatVC = [[ChatViewController alloc] init];
-            chatVC.delegate = self;
-            HDConversation *model = tableView != self.searchController.searchResultsTableView ? [self.dataSource objectAtIndex:indexPath.row] : [self.searchController.resultsSource objectAtIndex:indexPath.row];
-            chatVC.conversationModel = model;
-            model.unreadCount = 0;
-            dispatch_async(_conversationQueue, ^{
-                [self.dataSource removeObjectAtIndex:indexPath.row];
-                [self.dataSource insertObject:model atIndex:indexPath.row];
-                chatVC.allConversations = self.dataSource;
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [self.conDelegate ConversationPushIntoChat:chatVC];
-                    [NSNotificationCenter.defaultCenter postNotificationName:@"UpdateIconBadge" object:nil];
-                    [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
-                });
-            });
-        }
+        HDConversation *model = [weakSelf.dataSource objectAtIndex:indexPath.row];
+        [weakSelf pushToChatViewControllerWithModel:model];
     }
+}
+
+- (void)pushToChatViewControllerWithModel:(HDConversation *)model{
+    ChatViewController *chatVC = [[ChatViewController alloc] init];
+    if ([self.conDelegate respondsToSelector:@selector(ConversationPushIntoChat:)]) {
+        chatVC.delegate = self;
+        chatVC.conversationModel = model;
+        model.unreadCount = 0;
+        dispatch_async(_conversationQueue, ^{
+            hd_dispatch_main_async_safe(^{
+                [self.conDelegate ConversationPushIntoChat:chatVC];
+                [NSNotificationCenter.defaultCenter postNotificationName:NOTIFICATION_UPDATE_ICON_BADGE object:nil];
+                [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:self.dataSource];
+            });
+        });
+    }
+}
+
+#pragma mark - EMSearchControllerDelegate
+
+- (void)searchBarWillBeginEditing:(UISearchBar *)searchBar
+{
+    self.resultController.searchKeyword = nil;
+}
+
+- (void)searchBarCancelButtonAction:(nullable UISearchBar *)searchBar
+{
+    [[EMRealtimeSearch shared] realtimeSearchStop];
+    
+    [self.resultController.dataArray removeAllObjects];
+    
+    [self.resultController.tableView reloadData];
+    
+    [self cancelSearch:^{
+        // 为了兼容ios系统bug，当dismiss后，tableView的坐标会变成-64;
+        self.tableView.frame = CGRectMake(0, 0, self.tableView.frame.size.width, self.tableView.frame.size.height);
+    }];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.view endEditing:YES];
+}
+
+- (void)searchTextDidChangeWithString:(NSString *)aString
+{
+    self.resultController.searchKeyword = aString;
+    
+    __weak typeof(self) weakself = self;
+    [[EMRealtimeSearch shared] realtimeSearchWithSource:self.dataSource
+                                             searchText:aString
+                                collationStringSelector:@selector(chatNicename)
+                                            resultBlock:^(NSArray *results)
+    {
+        hd_dispatch_main_async_safe(^{
+            [weakself.resultController.dataArray removeAllObjects];
+            [weakself.resultController.dataArray addObjectsFromArray:results];
+            [weakself.resultController.tableView reloadData];
+        });
+    }];
 }
 
 
@@ -366,20 +416,35 @@
     [self showHintNotHide:@"加载中..."];
     WEAK_SELF
     
-    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page limit:0 completion:^(NSArray *conversations, HDError *error) {
+    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page
+                                                                  limit:0
+                                                             completion:^(NSArray *conversations, HDError *error)
+    {
         [weakSelf hideHud];
         @synchronized (weakSelf) {
             _isRefresh = NO;
         }
         if (!error) {
-            [self.dataSource removeAllObjects];
             switch (_type) {
                 case HDConversationAccessed: {
+                    [self.dataSource removeAllObjects];
                     _unreadcount = 0;
+                    
+                    NSMutableArray *sortConversations = [conversations mutableCopy];
+                    
+                    [sortConversations sortUsingComparator:^NSComparisonResult(HDConversation *obj1, HDConversation *obj2) {
+                        long long time1 = obj1.lasterMessageTime ? obj1.lasterMessageTime : obj1.createDateTime;
+                        long long time2 = obj2.lasterMessageTime ? obj2.lasterMessageTime : obj2.createDateTime;
+                        
+                        return time2 < time1 ? NSOrderedAscending : NSOrderedDescending;
+                    }];
+                    
+                    self.dataSource = sortConversations;
+                    
                     for (HDConversation *model in conversations) {
                         model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.chatter.nicename];
-                        [weakSelf.dataSource insertObject:model atIndex:0];
                         [_dataSourceDic setObject:model forKey:model.sessionId];
+                        _unreadcount += model.unreadCount;
                     }
                     [super dxDelegateAction:@{@"unreadCount": [NSNumber numberWithInt:_unreadcount]}];
                     break;
@@ -387,10 +452,10 @@
                 default:
                     break;
             }
-            [weakSelf.tableView reloadData];
-        } else {
-            [weakSelf.tableView reloadData];
-        } 
+        }
+        [weakSelf.tableView reloadData];
+        
+        [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakSelf.dataSource];
     }];
 }
 
@@ -399,61 +464,10 @@
     [[KFManager sharedInstance] setCurrentSessionId:@""];
 }
 
-- (void)searhResignAndSearchDisplayNoActive
-{
-    _searchBar.text = @"";
-    [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
-    [_searchBar setShowsCancelButton:NO animated:YES];
-    _searchController.active = NO;
-    [_searchBar resignFirstResponder];
-}
-
-- (void)searhResign
-{
-    [_searchBar resignFirstResponder];
-}
-#pragma mark - UISearchBarDelegate
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    [searchBar setShowsCancelButton:YES animated:YES];
-    return YES;
-}
-
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    if (searchText.length == 0) {
-        return;
-    }
-    [self refreshSearchView];
-    
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    return YES;
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar resignFirstResponder];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    searchBar.text = @"";
-    [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
-    [searchBar resignFirstResponder];
-    [searchBar setShowsCancelButton:NO animated:YES];
-}
-
 
 #pragma mark - chatViewControllerDelegate
 
 - (void)refreshConversationList {
-    if (_searchController.active == YES) {
-        [self searhResignAndSearchDisplayNoActive];
-    }
     [self loadData];
 }
 
@@ -494,11 +508,10 @@
         NSString *sessionServiceId = notification.object;
         if ([weakSelf.dataSourceDic objectForKey:sessionServiceId]) {
             HDConversation *model = [weakSelf.dataSourceDic objectForKey:sessionServiceId];
-            dispatch_async(dispatch_get_main_queue(), ^{
+            hd_dispatch_main_async_safe(^{
                 [weakSelf.dataSource removeObject:model];
                 [weakSelf.dataSourceDic removeObjectForKey:sessionServiceId];
                 [weakSelf.tableView reloadData];
-                [weakSelf refreshSearchView];
             });
         }
     });
@@ -524,42 +537,4 @@
     }
 }
 
-- (void)refreshSearchView
-{
-    if (self.searchBar.text.length == 0) {
-        return;
-    }
-    NSString *search = [ChineseToPinyin pinyinFromChineseString:self.searchBar.text];
-    WEAK_SELF
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:search collationStringSelector:@selector(chatNicename) resultBlock:^(NSArray *results) {
-        if (results) {
-            NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:0];
-            if (results.count > 0) {
-                for (HDConversation *obj in results) {
-                    HDConversation *objc = (HDConversation *)obj;
-                    if ([obj isKindOfClass:[HDConversation class]]) {
-                        [mDic setObject:objc forKey:objc.conversationId];
-                    }
-                }
-            }
-            [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:search collationStringSelector:@selector(chatTruename) resultBlock:^(NSArray *results) {
-                if (results) {
-                    if (results.count > 0) {
-                        for (HDConversation *obj in results) {
-                            HDConversation *objc = (HDConversation *)obj;
-                            if ([obj isKindOfClass:[HDConversation class]]) {
-                                [mDic setObject:objc forKey:objc.conversationId];
-                            }
-                        }
-                    }
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        [weakSelf.searchController.resultsSource removeAllObjects];
-                        [weakSelf.searchController.resultsSource addObjectsFromArray:mDic.allValues];
-                        [weakSelf.searchController.searchResultsTableView reloadData];
-                    });
-                }
-            }];
-        }
-    }];
-}
 @end

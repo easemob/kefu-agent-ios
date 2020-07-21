@@ -136,6 +136,7 @@
         }
     } else {
     }
+    pickerLabel.textColor = UIColor.grayColor;
     return pickerLabel;
     
 }

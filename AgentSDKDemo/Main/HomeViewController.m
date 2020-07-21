@@ -88,7 +88,7 @@ static HomeViewController *homeViewController;
 @implementation HomeViewController
 
 
-+(id) HomeViewController
++(id) homeViewController
 {
     @synchronized(self) {
         if(homeViewController == nil) {
@@ -98,7 +98,7 @@ static HomeViewController *homeViewController;
     return homeViewController;
 }
 
-+(void) HomeViewControllerDestory
++(void) homeViewControllerDestory
 {
     @synchronized(self) {
         homeViewController = nil;
@@ -137,7 +137,7 @@ static HomeViewController *homeViewController;
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [[HDClient sharedClient] getExpiredInformationCompletion:^(id responseObject, HDError *error) {
             if (error==nil && responseObject != nil) {
-                dispatch_async(dispatch_get_main_queue(), ^{
+                hd_dispatch_main_async_safe(^(){
                     ReminderView *remindView = [[ReminderView alloc] initWithDictionary:responseObject];
                     [[UIApplication sharedApplication].keyWindow addSubview:remindView];
                 });
@@ -145,7 +145,16 @@ static HomeViewController *homeViewController;
             
         }];
     });
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(setTotalBadgeValue) name:@"UpdateIconBadge" object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(setTotalBadgeValue)
+                                               name:NOTIFICATION_UPDATE_ICON_BADGE
+                                             object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(setConversationWithBadgeValue:)
+                                               name:NOTIFICATION_UPDATE_SERVICECOUNT
+                                             object:nil];
+    
     [self _setupChildrenVC];
     [self registerNotifications];
 }
@@ -345,9 +354,10 @@ static HomeViewController *homeViewController;
     [self.mm_drawerController toggleDrawerSide:MMDrawerSideLeft animated:YES completion:nil];
 }
 
--(void)setConversationWithBadgeValue:(NSInteger)badgeValue
+-(void)setConversationWithBadgeValue:(NSNotification *)aNotification
 {
-    _conversationVCUnreadCount = badgeValue;
+    NSString *badgeStr = aNotification.object;
+    _conversationVCUnreadCount = [badgeStr intValue];
     [self setTotalBadgeValue];
 }
 
@@ -638,6 +648,7 @@ static HomeViewController *homeViewController;
 - (void)dealloc {
     
     NSLog(@"dealloc __func__%s",__func__);
+    [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
 - (void)playSoundAndVibration{

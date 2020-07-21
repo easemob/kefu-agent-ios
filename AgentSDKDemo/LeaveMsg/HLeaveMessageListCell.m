@@ -30,14 +30,19 @@
 - (void)setLeaveMessage:(HLeaveMessage *)leaveMessage {
     _leaveMessage = leaveMessage;
     _numLabel.text = [NSString stringWithFormat:@"No.%@",leaveMessage.leaveMessageId];
+    _numLabel.textColor = UIColor.grayColor;
     _timeLabel.text = [self formatDate:leaveMessage.createDate];
+    _timeLabel.textColor = UIColor.grayColor;
     _subjectLabel.text = leaveMessage.subject;
+    _subjectLabel.textColor = UIColor.grayColor;
     if (leaveMessage.creator) {
         _customerLabel.text = [NSString stringWithFormat:@"%@:%@",leaveMessage.creator.nickname, leaveMessage.content];
     } else {
         _customerLabel.text = @"";
     }
+    _customerLabel.textColor = UIColor.grayColor;
     _typeLabel.text = [self stringFromType:leaveMessage.type];
+    _typeLabel.textColor = UIColor.grayColor;
 }
 
 - (NSString *)stringFromType:(HLeaveMessageType)aType {
