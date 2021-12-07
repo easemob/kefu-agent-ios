@@ -83,7 +83,8 @@
     }
     
     [self enableSearchController];
-    self.searchButton.frame = CGRectMake(15, 10, self.tableView.frame.size.width - 30, 35);
+    CGRect frame = UIScreen.mainScreen.bounds;
+    self.searchButton.frame = CGRectMake(15, 10, frame.size.width - 30, 35);
     
     [self.tableView addSubview:self.slimeView];//f5f7fa
     self.tableView.backgroundColor = kTableViewBgColor;
