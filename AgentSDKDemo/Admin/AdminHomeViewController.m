@@ -113,6 +113,7 @@ typedef NS_ENUM(NSUInteger, CardType) {
     
     TrendDataType _currentChartType;
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -120,7 +121,21 @@ typedef NS_ENUM(NSUInteger, CardType) {
     [self setupUI];
     [self loadData];
 }
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    }
+}
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    }
+}
 - (void)loadData {
     [self loadDataToday];
     [self loadDataSessions];
