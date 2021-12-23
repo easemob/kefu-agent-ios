@@ -23,14 +23,25 @@
 {
     self = [super init];
     if (self) {
-        _url = [url stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        _url = [self URLEncodeString:url];
     }
     return self;
 }
-
+- (void)viewDidAppear:(BOOL)animated{
+    
+    [super viewDidAppear:animated];
+  
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //导航栏设置不透明进入这个页面h5需要适配一下
+//    if ([UIDevice currentDevice].systemVersion.floatValue >= 7) {
+//        self.navigationController.navigationBar.translucent = YES;
+//        self.edgesForExtendedLayout = UIRectEdgeAll;
+//    }
     UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     [backButton setImage:[UIImage imageNamed:@"shai_icon_backCopy"] forState:UIControlStateNormal];
     backButton.imageEdgeInsets = UIEdgeInsetsMake(0, -22, 0, 0);
@@ -85,14 +96,12 @@
     return _webView.scrollView.subviews.firstObject;
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - url 编码
+- (NSString *)URLEncodeString:(NSString *)str {
+    NSString *encodedString = [str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;='\"`<>()[]{}\\| "] invertedSet]];
+    return encodedString;
 }
-*/
+
 
 @end

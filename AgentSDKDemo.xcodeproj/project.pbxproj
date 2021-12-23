@@ -185,6 +185,7 @@
 		90FC92552486323B00014CCC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92412486323B00014CCC /* MASViewAttribute.m */; };
 		90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
+		935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CEA1FD684F30091E048 /* HDTipLabel.m */; };
@@ -1670,6 +1671,8 @@
 		90FC92412486323B00014CCC /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		90FC92562486363C00014CCC /* EMRealtimeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRealtimeSearch.h; sourceTree = "<group>"; };
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
+		935FF7FC277451320034ED6F /* KFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebViewController.h; sourceTree = "<group>"; };
+		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDSuperviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSuperviseCell.h; sourceTree = "<group>"; };
 		D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSuperviseCell.m; sourceTree = "<group>"; };
 		D3058CE91FD684F30091E048 /* HDTipLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDTipLabel.h; sourceTree = "<group>"; };
@@ -2995,6 +2998,8 @@
 				D33CE65C1F7CA98D00236720 /* view */,
 				D33CE66D1F7CA98D00236720 /* WebViewController.h */,
 				D33CE66E1F7CA98D00236720 /* WebViewController.m */,
+				935FF7FC277451320034ED6F /* KFWebViewController.h */,
+				935FF7FD277451320034ED6F /* KFWebViewController.m */,
 			);
 			path = ChatView;
 			sourceTree = "<group>";
@@ -3911,7 +3916,6 @@
 			isa = PBXGroup;
 			children = (
 				D33CE7401F7CAD4E00236720 /* ViewControllers */,
-				D33CE72B1F7CAD2C00236720 /* view */,
 				D33CE70B1F7CAD2C00236720 /* History */,
 				D33CE71E1F7CAD2C00236720 /* HomeViewController.h */,
 				D33CE71F1F7CAD2C00236720 /* HomeViewController.m */,
@@ -3920,6 +3924,7 @@
 				D33CE6F91F7CAC7D00236720 /* AppDelegate+EaseMob.h */,
 				D33CE6FA1F7CAC7D00236720 /* AppDelegate+EaseMob.m */,
 				D39BD81F1EA8D13A008F428C /* KFManager.h */,
+				D33CE72B1F7CAD2C00236720 /* view */,
 				D39BD8201EA8D13A008F428C /* KFManager.m */,
 			);
 			path = Main;
@@ -4780,7 +4785,7 @@
 					D33F46641E9F71A000FE6DCE = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 499WYUV8Q2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -5911,6 +5916,7 @@
 				D33CE8B81F7CD84A00236720 /* WebViewJavascriptBridge.m in Sources */,
 				D3A95E7F1EA0F47100ADD394 /* amrFileCodec.mm in Sources */,
 				D33CE7D71F7CB42E00236720 /* DXTableViewCellType1.m in Sources */,
+				935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */,
 				D3A95E4E1EA0F47100ADD394 /* MWPhoto.m in Sources */,
 				D33CE8BA1F7CD84A00236720 /* WebViewJavascriptBridgeBase.m in Sources */,
 				90591C952068B050007367BD /* AAOptionsConstructor.m in Sources */,
@@ -6421,6 +6427,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
@@ -6436,7 +6443,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AgentSDKDemo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6452,6 +6459,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = ease_wildcard;
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -6465,6 +6473,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
@@ -6480,7 +6489,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = AgentSDKDemo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -6495,6 +6504,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = ease_wildcard;
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};

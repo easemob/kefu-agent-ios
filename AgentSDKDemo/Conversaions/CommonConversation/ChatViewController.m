@@ -36,7 +36,7 @@
 #import "KFChatViewRecallCell.h"
 #import "KFFileCache.h"
 #import <AVKit/AVKit.h>
-
+#import "KFWebViewController.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -1066,7 +1066,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 // 图文混排的bubble被点击
 - (void)chatImageTextCellBubblePressed:(HDMessage *)model
 {
-    WebViewController *webview = [[WebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
+    //ios
+//    WebViewController *webview = [[WebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
+    KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
     [self.navigationController pushViewController:webview animated:YES];
 }
 
