@@ -368,11 +368,15 @@
 
 // 页面开始加载时调用
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"didStartProvisionalNavigation");
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 }
 
 // 页面加载失败时调用
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
 //    [self.progressView setProgress:0.0f animated:NO];
+    NSLog(@"didFailNavigation");
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 // 当内容开始返回时调用
@@ -383,6 +387,8 @@
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self getCookie];
+    NSLog(@"didFinishNavigation");
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
 }
 
 //提交发生错误时调用
