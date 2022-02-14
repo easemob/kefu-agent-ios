@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B7495EA4DD336BD5509DD18 /* Pods_AgentSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */; };
+		673C1B1209F420D67D2BAD4F /* Pods_AgentSDKDemoAppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58B3F889C5490843FB29BFE /* Pods_AgentSDKDemoAppStore.framework */; };
 		90091DDB20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */; };
@@ -1503,6 +1505,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1259FDCC5C06794FF06C9C17 /* Pods-AgentSDKDemoAppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemoAppStore.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemoAppStore/Pods-AgentSDKDemoAppStore.debug.xcconfig"; sourceTree = "<group>"; };
+		57CF2A204D71AD6B384A387C /* Pods-AgentSDKDemoAppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemoAppStore.release.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemoAppStore/Pods-AgentSDKDemoAppStore.release.xcconfig"; sourceTree = "<group>"; };
+		65DAEE22A1A7E276F44363CC /* Pods-AgentSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.release.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
 		90091DD920D0CF88002AA808 /* HLeaveMessageListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListViewController.h; sourceTree = "<group>"; };
 		90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageListViewController.m; sourceTree = "<group>"; };
 		90091DDD20D0CF9F002AA808 /* HLeaveMessageListCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageListCell.h; sourceTree = "<group>"; };
@@ -1673,6 +1678,8 @@
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
 		935FF7FC277451320034ED6F /* KFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebViewController.h; sourceTree = "<group>"; };
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
+		9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDSuperviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSuperviseCell.h; sourceTree = "<group>"; };
 		D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSuperviseCell.m; sourceTree = "<group>"; };
 		D3058CE91FD684F30091E048 /* HDTipLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDTipLabel.h; sourceTree = "<group>"; };
@@ -2632,6 +2639,7 @@
 		D3FDC7561EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy_3@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tips_popup_right_EllipseCopy_3@3x.png"; sourceTree = "<group>"; };
 		D3FDC7571EA0A5C600C25BB0 /* visitor_icon_imagebroken_big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visitor_icon_imagebroken_big@3x.png"; sourceTree = "<group>"; };
 		D3FDC7581EA0A5C600C25BB0 /* visitor_icon_setting_Text2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visitor_icon_setting_Text2@3x.png"; sourceTree = "<group>"; };
+		F58B3F889C5490843FB29BFE /* Pods_AgentSDKDemoAppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemoAppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2649,6 +2657,7 @@
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
 				904C34BC23D4587700EA2521 /* AgentSDK.framework in Frameworks */,
+				3B7495EA4DD336BD5509DD18 /* Pods_AgentSDKDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2667,6 +2676,7 @@
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
+				673C1B1209F420D67D2BAD4F /* Pods_AgentSDKDemoAppStore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2899,6 +2909,17 @@
 				90FC92412486323B00014CCC /* MASViewAttribute.m */,
 			);
 			path = Masonry;
+			sourceTree = "<group>";
+		};
+		A84D80CC0398B25C70FD7235 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */,
+				65DAEE22A1A7E276F44363CC /* Pods-AgentSDKDemo.release.xcconfig */,
+				1259FDCC5C06794FF06C9C17 /* Pods-AgentSDKDemoAppStore.debug.xcconfig */,
+				57CF2A204D71AD6B384A387C /* Pods-AgentSDKDemoAppStore.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		D3058CE21FD675810091E048 /* Controller */ = {
@@ -3858,6 +3879,7 @@
 				D33F46671E9F71A000FE6DCE /* AgentSDKDemo */,
 				D33F46661E9F71A000FE6DCE /* Products */,
 				D3FDC5121EA08C0900C25BB0 /* Frameworks */,
+				A84D80CC0398B25C70FD7235 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -4305,6 +4327,8 @@
 				D3A95D3E1EA0CF1700ADD394 /* libc++.tbd */,
 				D3A95D3C1EA0CF0C00ADD394 /* libz.tbd */,
 				D3A95D3A1EA0CED500ADD394 /* libstdc++.6.0.9.tbd */,
+				9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */,
+				F58B3F889C5490843FB29BFE /* Pods_AgentSDKDemoAppStore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4740,6 +4764,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D33F467C1E9F71A000FE6DCE /* Build configuration list for PBXNativeTarget "AgentSDKDemo" */;
 			buildPhases = (
+				50274A09567FC250D27BA17D /* [CP] Check Pods Manifest.lock */,
 				D33F46611E9F71A000FE6DCE /* Sources */,
 				D33F46621E9F71A000FE6DCE /* Frameworks */,
 				D33F46631E9F71A000FE6DCE /* Resources */,
@@ -4758,6 +4783,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3E9CF2F1FBED182005E3677 /* Build configuration list for PBXNativeTarget "AgentSDKDemoAppStore" */;
 			buildPhases = (
+				343FD62733AD6F765A927D45 /* [CP] Check Pods Manifest.lock */,
 				D3E9CC851FBED182005E3677 /* Sources */,
 				D3E9CDB61FBED182005E3677 /* Frameworks */,
 				D3E9CDC61FBED182005E3677 /* Resources */,
@@ -5594,6 +5620,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		343FD62733AD6F765A927D45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgentSDKDemoAppStore-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		50274A09567FC250D27BA17D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgentSDKDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D33F46611E9F71A000FE6DCE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -6421,12 +6494,14 @@
 		};
 		D33F467D1E9F71A000FE6DCE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer: LI HOU (UGP7ZG964L)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
@@ -6467,6 +6542,7 @@
 		};
 		D33F467E1E9F71A000FE6DCE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65DAEE22A1A7E276F44363CC /* Pods-AgentSDKDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -6513,6 +6589,7 @@
 		};
 		D3E9CF301FBED182005E3677 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1259FDCC5C06794FF06C9C17 /* Pods-AgentSDKDemoAppStore.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -6560,6 +6637,7 @@
 		};
 		D3E9CF311FBED182005E3677 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 57CF2A204D71AD6B384A387C /* Pods-AgentSDKDemoAppStore.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
