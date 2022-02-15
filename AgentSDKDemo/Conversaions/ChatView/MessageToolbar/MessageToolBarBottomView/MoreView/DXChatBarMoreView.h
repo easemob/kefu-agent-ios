@@ -54,7 +54,7 @@ typedef enum{
 - (void)moreViewTransferAction:(DXChatBarMoreView *)moreView;
 - (void)moreViewQuickReplyAction:(DXChatBarMoreView *)moreView;
 - (void)moreViewCustomAction:(DXChatBarMoreView *)moreView;
-
+- (void)moreViewVideoAction:(DXChatBarMoreView *)moreView;
 @end
 
 

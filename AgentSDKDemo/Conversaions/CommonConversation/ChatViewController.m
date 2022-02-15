@@ -37,6 +37,7 @@
 #import "KFFileCache.h"
 #import <AVKit/AVKit.h>
 #import "KFWebViewController.h"
+#import "HDAgoraCallViewController.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -851,6 +852,26 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [actionSheet showInView:self.view];
 }
 
+
+/// 视频通话
+/// @param moreView  moreView
+- (void)moreViewVideoAction:(DXChatBarMoreView *)moreView
+{
+    //创建 声网房间入口
+    [self onAgoraCallReceivedNickName:@"测试"];
+}
+- (void)onAgoraCallReceivedNickName:(NSString *)nickName{
+    
+        HDAgoraCallViewController *hdCallVC = [HDAgoraCallViewController hasReceivedCallWithAgentName:nickName
+                                                                                  avatarStr:@"HelpDeskUIResource.bundle/user"
+                                                                                   nickName:@"test"];
+        hdCallVC.hangUpCallback = ^(UIViewController *callVC, NSString *timeStr) {
+//            [callVC dismissViewControllerAnimated:YES completion:nil];
+        };
+        hdCallVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [self presentViewController:hdCallVC animated:YES completion:nil];
+    
+}
 - (void)moreViewQuickReplyAction:(DXChatBarMoreView *)moreView
 {
     QuickReplyViewController *quickView = [[QuickReplyViewController alloc] init];
