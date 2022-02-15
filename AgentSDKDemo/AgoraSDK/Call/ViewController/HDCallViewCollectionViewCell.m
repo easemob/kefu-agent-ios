@@ -28,6 +28,7 @@
     _item = item;
     self.avatarImageView.image = _item.defaultImage; // 可能需要用sdWebImage根据url设置
     self.avatarImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    
     self.nicknameLabel.text = _item.nickname;
     if (_item.isSelected) {
         [self selected];

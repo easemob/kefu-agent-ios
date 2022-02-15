@@ -9,10 +9,26 @@
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
-
+typedef NS_ENUM(NSInteger, HDCallAlertType) {
+    HDCallAlertTypeVideo, //  视频界面
+};
 @interface HDAgoraCallViewController : UIViewController
 typedef void (^HangAgroaUpCallback)(HDAgoraCallViewController *callVC, NSString *timeStr);
 @property (nonatomic, copy) HangAgroaUpCallback hangUpCallback;
+
+
+/**
+ *  视频通话界面
+ */
++(id)alertLoginWithView:(UIView *)view;
+/**
+ *  界面展示
+ */
+-(void)showView;
+/**
+ *  界面移除
+ */
+-(void)hideView;
 /*!
  *  \~chinese
  *  初始化被叫页面

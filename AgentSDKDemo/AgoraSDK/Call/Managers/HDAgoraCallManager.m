@@ -79,6 +79,8 @@ static HDAgoraCallManager *shareCall = nil;
     return self;
 }
 
+
+
 - (void)setCallOptions:(HDAgoraCallOptions *)aOptions{
     
     _options = aOptions;

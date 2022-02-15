@@ -38,6 +38,7 @@
 #import <AVKit/AVKit.h>
 #import "KFWebViewController.h"
 #import "HDAgoraCallViewController.h"
+#import "HDAgoraCallManager.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -112,6 +113,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 @property (nonatomic, strong) DXRecordView *recordView;
 
 @property (nonatomic, strong) UIButton *satisfactionBtn;
+
+@property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
 
 @end
 
@@ -862,14 +865,24 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 - (void)onAgoraCallReceivedNickName:(NSString *)nickName{
     
-        HDAgoraCallViewController *hdCallVC = [HDAgoraCallViewController hasReceivedCallWithAgentName:nickName
-                                                                                  avatarStr:@"HelpDeskUIResource.bundle/user"
-                                                                                   nickName:@"test"];
-        hdCallVC.hangUpCallback = ^(UIViewController *callVC, NSString *timeStr) {
-//            [callVC dismissViewControllerAnimated:YES completion:nil];
-        };
-        hdCallVC.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self presentViewController:hdCallVC animated:YES completion:nil];
+    if ([HDAgoraCallManager shareInstance].hdVC) {
+        
+        [[HDAgoraCallManager shareInstance].hdVC showView];
+    }else{
+    
+        [self.hdCallVC showView];
+    }
+}
+- (HDAgoraCallViewController *)hdCallVC{
+    
+    if (!_hdCallVC) {
+        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:@"123"
+                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
+                                                                                      nickName:@"test"];
+        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
+    }
+    
+    return _hdCallVC;
     
 }
 - (void)moreViewQuickReplyAction:(DXChatBarMoreView *)moreView

@@ -15,7 +15,7 @@
 #define kCamViewTag 100001
 #define kScreenShareExtensionBundleId @"com.easemob.enterprise.demo.customer.shareWindow"
 #define kNotificationShareWindow kScreenShareExtensionBundleId
-@interface HDAgoraCallViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,HDChatManagerDelegate,HDAgoraCallManagerDelegate>
+@interface HDAgoraCallViewController ()<UICollectionViewDelegate, UICollectionViewDataSource,HDAgoraCallManagerDelegate>
 {
     NSMutableArray *_members; // 通话人
     NSTimer *_timer;
@@ -49,8 +49,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *offBtn;
 @property (weak, nonatomic) IBOutlet UIView *videoView;
 @property (nonatomic, strong) RPSystemBroadcastPickerView *broadPickerView API_AVAILABLE(ios(12.0));
-
-
+@property (nonatomic, assign) HDCallAlertType type;
 
 
 
@@ -85,6 +84,7 @@
          
     return callVC;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     _localUid= 12344;
@@ -99,9 +99,7 @@
     [self setAgoraVideo];
     // 设置 ui
     [self.collectionView reloadData];
-    // 响铃
-//    [self startRing];
-  
+    
     [self updateInfoLabel]; // 尝试更新“正在通话中...(n)”中的n。
     [self initBroadPickerView];
     [self  addNotifications];
@@ -199,6 +197,37 @@
         _num++;
     }
 }
+#pragma mark - 初始化
+
++(id)alertWithView:(UIView *)view AlertType:(HDCallAlertType)type;
+{
+    HDAgoraCallViewController *alertVC = [[HDAgoraCallViewController alloc]
+                                       initWithNibName:@"HDAgoraCallViewController"
+                                       bundle:nil];
+    alertVC.type = type;
+    alertVC.view = view;
+    return alertVC;
+}
++ (id)alertLoginWithView:(UIView *)view{
+    
+    return [HDAgoraCallViewController alertWithView:view AlertType:HDCallAlertTypeVideo];
+    
+}
+- (void)showView{
+    if (self.view.hidden) {
+        NSLog(@"view 是隐藏状态");
+        self.view.hidden = NO;
+    }else{
+        NSLog(@"view 是其他状态");
+        UIWindow *window = [UIApplication sharedApplication].keyWindow ;
+        self.view.frame = [UIScreen mainScreen].bounds;
+        [window  addSubview:self.view];
+    }
+}
+- (void)hideView{
+    self.view.hidden = YES;
+}
+
 /// 初始化屏幕分享view
 - (void)initBroadPickerView{
     if (@available(iOS 12.0, *)) {
@@ -276,17 +305,8 @@
 // 隐藏按钮事件
 - (IBAction)hiddenBtnClicked:(UIButton *)btn
 {
-    btn.selected = !btn.selected;
-    [self.collectionView setHidden:btn.selected];
-    [self.infoLabel setHidden:btn.selected];
-    [self.timeLabel setHidden:btn.selected];
-    [self.camBtn setHidden:btn.selected];
-    [self.muteBtn setHidden:btn.selected];
-    [self.videoBtn setHidden:btn.selected];
-    [self.speakerBtn setHidden:btn.selected];
-    [self.shareDeskTopBtn setHidden:btn.selected];
-    [self.screenBtn setHidden:btn.selected];
-    [self.offBtn setHidden:btn.selected];
+    
+    [self hideView];
 }
 
 // 挂断事件
@@ -364,6 +384,7 @@
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     HDCallViewCollectionViewCell * cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"cellid" forIndexPath:indexPath];
     cell.item = _members[indexPath.section];
+    
     return cell;
 }
 
@@ -386,7 +407,9 @@
     [self.view addSubview:view];
     [self.view sendSubviewToBack:view];
     
+    
     HDCallViewCollectionViewCell *cell = (HDCallViewCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    [cell.smallView addSubview:view];
     [cell selected];
 }
 
@@ -394,7 +417,6 @@
 // 成员加入回调
 - (void)onMemberJoin:(HDAgoraCallMember *)member {
     // 有 member 加入，添加到datasource中。
-
         @synchronized(_members){
             BOOL isNeedAdd = YES;
             for (HDCallViewCollectionViewCellItem *item in _members) {
@@ -404,7 +426,6 @@
                 }
             }
             if (isNeedAdd) {
-                
                 [_members addObject: [self createCallerWithMember2:member]];
             }
         };
@@ -511,4 +532,5 @@ void NotificationCallback(CFNotificationCenterRef center,
         NSLog(@"processSampleBuffer");
     }
 }
+
 @end

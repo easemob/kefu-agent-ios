@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14105" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,20 +40,35 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13L-Ir-023">
+                        <rect key="frame" x="0.0" y="0.0" width="78" height="96"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <constraints>
                 <constraint firstItem="K5J-Xb-fCY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="0lD-Pf-qz0"/>
+                <constraint firstAttribute="trailing" secondItem="13L-Ir-023" secondAttribute="trailing" id="9o7-sC-817"/>
+                <constraint firstAttribute="bottom" secondItem="13L-Ir-023" secondAttribute="bottom" id="Daf-cc-dCr"/>
                 <constraint firstItem="VNC-N7-VEs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="NKB-37-hHL"/>
+                <constraint firstItem="13L-Ir-023" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VZY-Gz-S8d"/>
                 <constraint firstAttribute="bottom" secondItem="K5J-Xb-fCY" secondAttribute="bottom" constant="5" id="gQC-8b-vdx"/>
+                <constraint firstItem="13L-Ir-023" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="jH7-XW-Idv"/>
                 <constraint firstItem="VNC-N7-VEs" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="lBT-p0-6vk"/>
                 <constraint firstAttribute="trailing" secondItem="K5J-Xb-fCY" secondAttribute="trailing" id="uCK-Ii-peA"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="SEy-5g-ep8"/>
             <connections>
                 <outlet property="avatarImageView" destination="VNC-N7-VEs" id="wkJ-fV-uL1"/>
                 <outlet property="nicknameLabel" destination="K5J-Xb-fCY" id="eN8-ZD-iNc"/>
+                <outlet property="smallView" destination="13L-Ir-023" id="o0t-oh-mGv"/>
             </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="80.959520239880064"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

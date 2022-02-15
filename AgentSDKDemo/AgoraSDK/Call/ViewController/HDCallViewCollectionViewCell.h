@@ -11,6 +11,8 @@
 @class HDCallViewCollectionViewCellItem;
 @interface HDCallViewCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) HDCallViewCollectionViewCellItem *item;
+@property (weak, nonatomic) IBOutlet UIView *smallView;
+
 - (void)selected;
 @end
 

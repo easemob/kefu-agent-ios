@@ -10,10 +10,24 @@
 #import <AgoraRtcKit/AgoraRtcEngineKit.h>
 #import "HDAgoraCallOptions.h"
 #import "HDAgoraCallManagerDelegate.h"
+@class HDAgoraCallViewController;
 NS_ASSUME_NONNULL_BEGIN
 @interface HDAgoraCallManager : NSObject
+@property (nonatomic, strong) HDAgoraCallViewController *hdVC;
 
 + (instancetype _Nullable )shareInstance;
+
+/*!
+ *  \~chinese
+ *  发起视频邀请，发起后，客服会收到申请，客服同意后，会自动给访客拨过来。
+ *
+ *  @param aImId   会话id
+ *  @param aContent   文本内容
+ *
+ */
+- (HDMessage *)creteVideoInviteMessageWithImId:(NSString *)aImId
+                                       content:(NSString *)aContent;
+
 
 /*!
  *  \~chinese
