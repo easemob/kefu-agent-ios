@@ -14,31 +14,53 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface HDAgoraCallManager : NSObject
 @property (nonatomic, strong) HDAgoraCallViewController *hdVC;
+@property (nonatomic, strong) NSString *sessionId;
 
 + (instancetype _Nullable )shareInstance;
 
 /*!
  *  \~chinese
- *  发起视频邀请，发起后，客服会收到申请，客服同意后，会自动给访客拨过来。
- *
- *  @param aImId   会话id
- *  @param aContent   文本内容
+ *   初始化 agora init 
  *
  */
-- (HDMessage *)creteVideoInviteMessageWithImId:(NSString *)aImId
-                                       content:(NSString *)aContent;
-
+- (void)createTicketDidReceiveAgoraInit;
 
 /*!
  *  \~chinese
- *  发起视频邀请，发起后，客服会收到申请，客服同意后，会自动给访客拨过来。
- *
- *  @param aImId   会话id
- *  @param aContent   文本内容
+ *  坐席主动 发起视频邀请
+ *  @param sessionId   sessionId
+ *  @param toUser   agentId
+ *  @param text   文本内容
  *
  */
-- (HDMessage *)creteVideoInviteMessageWithImId:(NSString *)aImId
-                                       content:(NSString *)aContent;
+- (HDMessage *)creteVideoInviteMessageWithSessionId:(NSString *)sessionId
+                                                 to:(NSString *)toUser
+                                           WithText:(NSString *)text;
+
+/*!
+ *  \~chinese
+ *  获取坐席创建房间的设置项
+ *
+ *  @result 设置项
+ *
+ *  \~english
+ *  Get setting options
+ *
+ *  @result Setting options
+ */
+- (NSDictionary * )getAgentCallOptions;
+/*!
+ *  \~chinese
+ *  获取访客创建房间的设置项
+ *
+ *  @result 设置项
+ *
+ *  \~english
+ *  Get setting options
+ *
+ *  @result Setting options
+ */
+- (NSDictionary * )getVisitorCallOptions;
 #pragma mark - Options
 /*!
  *  \~chinese

@@ -9,8 +9,10 @@
 #import "HDAgoraCallManager.h"
 #import <ReplayKit/ReplayKit.h>
 #import <CoreMedia/CoreMedia.h>
+#import "ConvertToCommonEmoticonsHelper.h"
 #import "HDKeyCenter.h"
 #import "HDSSKeychain.h"
+#import "HDAgoraTicketModel.h"
 #define kToken @"00674855635d3a64920b0c7ee3684f68a9fIACDuk6y5dEmj8KroRHLukc9ONx1Fqw7Ve+Y3ADi6jAvqRo6pkUAAAAAEACdNB6V1moMYgEAAQDVagxi";
 #define kAPPid  @"74855635d3a64920b0c7ee3684f68a9f";
 #define kChannelName @"huanxin"
@@ -45,6 +47,7 @@ static uint32_t SCREEN_SHARE_UID_MAX  = 1000;
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
 @property (nonatomic, strong) AgoraRtcEngineKit *agoraKitScreenShare;
 @property (nonatomic, copy) void (^Completion)(id, HDError *)  ;
+@property (nonatomic, strong) HDConversation * conversationModel;
 
 
 @end
@@ -73,13 +76,19 @@ static HDAgoraCallManager *shareCall = nil;
         _waitingQueue = [NSMutableArray arrayWithCapacity:0];
         _onCalling = NO;
         _callQueue = dispatch_queue_create("com.helpdesk.agoracall.queue", NULL);
-       
-        [self createTicketDidReceiveAgoraInit];
     }
     return self;
 }
 
-
+- (NSDictionary *)getAgentCallOptions{
+    
+    return [[HLCallManager sharedInstance] getAgentTicketCallOptions];
+    
+}
+- (NSDictionary *)getVisitorCallOptions{
+    
+    return [[HLCallManager sharedInstance] getVisitorTicketCallOptions];
+}
 
 - (void)setCallOptions:(HDAgoraCallOptions *)aOptions{
     
@@ -237,55 +246,32 @@ static HDAgoraCallManager *shareCall = nil;
     
 }
 /**
- * 发起视频邀请，发起后，客服会收到申请，客服同意后，会自动给访客拨过来。
+ * 发起视频邀请，
  */
-- (HDMessage *)creteVideoInviteMessageWithImId:(NSString *)aImId
-                                       content:(NSString *)aContent {
+- (HDMessage *)creteVideoInviteMessageWithSessionId:(NSString *)sessionId
+                                                 to:(NSString *)toUser
+                                           WithText:(NSString *)text {
     
-    _conversationId= aImId;
-//    EMTextMessageBody *txtBody = [[EMTextMessageBody alloc] initWithText:aContent];
-//    HDMessage *hdMessage = [[HDMessage alloc] initWithConversationID:aImId
-//                                                                from:[HDClient sharedClient].currentUsername
-//                                                                  to:aImId
-//                                                                body:txtBody];
-//    NSDictionary *dic = @{
-//                          @"type":@"rtcmedia/video",
-//                          @"msgtype":@{
-//                                  @"liveStreamInvitation":@{
-//                                          @"resource": @"mobile",
-//                                          @"isNewInvitation":@(YES)
-//                                          }
-//                                  }
-//                          };
-//    hdMessage.ext = dic;
-//    return hdMessage;
-    
-    return  nil;
+    HDTextMessageBody *body = [[HDTextMessageBody alloc] initWithText:text];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
+    NSDictionary *dic = @{
+                          @"type":@"agorartcmedia/video",
+                          @"msgtype":@{
+                                  @"liveStreamInvitation":@{
+                                          @"resource": @"mobile",
+                                          @"msg": @"邀请访客进行视频",
+                                          @"isNewInvitation":@(YES)
+                                          }
+                                  }
+                          };
+    message.ext = [[MessageExtModel alloc] initWithDictionary:dic];
+    return message;
 }
 - (void)endCall{
     [self.agoraKit leaveChannel:nil];
-//    if(_keyCenter.callid >0){
-//    //发送透传消息cmd
-//    EMCmdMessageBody *body = [[EMCmdMessageBody alloc] initWithAction:@"Agorartcmedia"];
-//    NSString *from = [[HDClient sharedClient] currentUsername];
-//    HDMessage *message = [[HDMessage alloc] initWithConversationID:_conversationId from:from to:_conversationId body:body];
-//    NSDictionary *dic = @{
-//                          @"type":@"agorartcmedia/video",
-//                          @"msgtype":@{
-//                                  @"visitorRejectInvitation":@{
-//                                          @"callId":_keyCenter.callid
-//                                          }
-//                                  }
-//                          };
-//    message.ext = dic;
-//
-//    [[HDClient sharedClient].chatManager sendMessage:message progress:nil completion:^(HDMessage *aMessage, HDError *aError) {
-//
-//        NSLog(@"===%@",aError);
-//
-//    }];
-//    }
-    
+    if(_keyCenter.callid >0){
+  
+    }
     //该方法为同步调用，需要等待 AgoraRtcEngineKit 实例资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议 在 SDK 的回调中调用 destroy，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
     [self destroy];
 }
@@ -298,10 +284,13 @@ static HDAgoraCallManager *shareCall = nil;
     [[HDClient sharedClient].chatManager removeDelegate:self];
     [self.agoraKit leaveChannel:nil];
 //    [_delegates onCallEndReason:HDErrorCallReasonHangup desc:@"reason-conference-dismissed"];
-    
     [self destroy];
-   
 }
+- (void)endRecord{
+    // 结束录制
+    [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:[HDAgoraCallManager shareInstance].sessionId];
+}
+
 - (int)startPreview{
     return [self.agoraKit startPreview];
 }
@@ -317,6 +306,8 @@ static HDAgoraCallManager *shareCall = nil;
     
     self.agoraKit = nil;
     self.agoraKitScreenShare = nil;
+    //结束录制
+    [self endRecord];
 }
 - (void)setEnableSpeakerphone:(BOOL)enableSpeaker{
     
@@ -329,16 +320,11 @@ static HDAgoraCallManager *shareCall = nil;
 
 /*
   这个地方是 创建 坐席加入房间 必要参数
- 
  */
 - (void)createTicketDidReceiveAgoraInit {
-//    [DDLog logD:@"receive ticket->%@", sendVisitorTicket];
-        
         //1、发消息获取callid
         //2、拿到callid 调用获取视频通行证信息接口
         //3、封装拿到的参数给访客端 使用 并发送消息 以及 本身使用参数存储
-        
-    
     //接收到坐席发来的消息获取token appid channel 等必要字段
         NSString *token;
         NSString *appId;
@@ -350,12 +336,25 @@ static HDAgoraCallManager *shareCall = nil;
     channel = kChannelName;
     //初始化 声网参数
     HDKeyCenter *key = [[HDKeyCenter alloc] init];
-    key.agoraToken = token;
-    key.agoraAppid = appId;
-    key.agoraChannel = channel;
-    key.agoraUid = uid;
-    key.callid = callId;
-    _keyCenter = key;
+    HDAgoraTicketModel * model = [HDAgoraTicketModel yy_modelWithDictionary:[self getAgentCallOptions]];
+    if (model) {
+        key.agoraToken = model.token;
+        key.agoraAppid = model.appId;
+        key.agoraChannel = model.channel;
+        key.agoraUid = model.uid;
+        key.callid = model.callId;
+        _keyCenter = key;
+    }else{
+        //初始化 声网参数
+        HDKeyCenter *key = [[HDKeyCenter alloc] init];
+        key.agoraToken = token;
+        key.agoraAppid = appId;
+        key.agoraChannel = channel;
+        key.agoraUid = uid;
+        key.callid = callId;
+        _keyCenter = key;
+        
+    }
     //存储参数等待 其他app 使用
     [self saveAppKeyCenter:key];
 }
@@ -369,9 +368,12 @@ static HDAgoraCallManager *shareCall = nil;
     self.Completion = completion;
     [self hd_joinChannelByToken:_keyCenter.agoraToken channelId:_keyCenter.agoraChannel info:nil uid:_options.uid joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
 //        [HDLog logI:@"joinSuccess channel=%@  uid=%lu",channel,(unsigned long)uid];
+        //加入成功以后 开始 录制
+        [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: [HDAgoraCallManager shareInstance].sessionId];
         self.Completion(nil, nil);
     }];
     
+    [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: [HDAgoraCallManager shareInstance].sessionId];
 }
 - (void)hd_joinChannelByToken:(NSString *)token channelId:(NSString *)channelId info:(NSString *)info uid:(NSUInteger)uid joinSuccess:(void (^)(NSString * _Nullable, NSUInteger, NSInteger))joinSuccessBlock{
     

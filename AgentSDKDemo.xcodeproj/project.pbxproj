@@ -188,6 +188,7 @@
 		90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
+		93D9D07427BF7E0500BD037D /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		93EFFC7627BA3FC50043DE06 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */; };
 		93EFFC7727BA3FC50043DE06 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */; };
 		93EFFC7827BA3FC50043DE06 /* HDAgoraCallOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC6C27BA3FC20043DE06 /* HDAgoraCallOptions.m */; };
@@ -1764,6 +1765,8 @@
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
 		935FF7FC277451320034ED6F /* KFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebViewController.h; sourceTree = "<group>"; };
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
+		93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraTicketModel.m; sourceTree = "<group>"; };
+		93D9D07327BF7E0500BD037D /* HDAgoraTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraTicketModel.h; sourceTree = "<group>"; };
 		93EFFC6827BA3FC10043DE06 /* HDAgoraCallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManager.h; sourceTree = "<group>"; };
 		93EFFC6927BA3FC10043DE06 /* HDAgoraCallMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallMember.h; sourceTree = "<group>"; };
 		93EFFC6A27BA3FC10043DE06 /* HDAgoraCallEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallEnum.h; sourceTree = "<group>"; };
@@ -3096,6 +3099,8 @@
 				93EFFC7527BA3FC50043DE06 /* HDKeyCenter.m */,
 				93EFFC7127BA3FC30043DE06 /* HDSSKeychain.h */,
 				93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */,
+				93D9D07327BF7E0500BD037D /* HDAgoraTicketModel.h */,
+				93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -6358,6 +6363,7 @@
 				90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */,
 				D3DFB35A1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */,
 				D33CE6D31F7CA98D00236720 /* DXDatePickerView.m in Sources */,
+				93D9D07427BF7E0500BD037D /* HDAgoraTicketModel.m in Sources */,
 				9046FCDE20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */,
 				D33CE89E1F7CD34000236720 /* LeaveMsgInputView.m in Sources */,
 				D33CE7A11F7CAF6700236720 /* Helper.m in Sources */,

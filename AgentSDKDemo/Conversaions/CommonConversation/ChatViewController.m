@@ -621,6 +621,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self markAsRead];
         [self addMessage:msg];
         [self downloadVoice:msg];
+        
+        // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
+        if ([msg.messageType isEqualToString:@"AgoraRtcMediaForInitiative"]) {
+            [self  onAgoraCallReceivedNickName:@"nickName"];
+        }
+    
     }
 }
 
@@ -861,15 +867,33 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)moreViewVideoAction:(DXChatBarMoreView *)moreView
 {
     //创建 声网房间入口
-    [self onAgoraCallReceivedNickName:@"测试"];
+    [self sendVideoTextMessage:@"邀请访客进行视频"];
+}
+- (void)sendVideoTextMessage:(NSString *)text{
+   
+    HDMessage *message =  [[HDAgoraCallManager shareInstance]  creteVideoInviteMessageWithSessionId:_conversationModel.sessionId to:_conversationModel.chatter.agentId WithText:text];
+    [self addMessage:message];
+    [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+       // 如果通知回来 在这个地方处理。现在后台没有做移动的 所以还不知道如何回来
+//        if ([aMessage.messageType isEqualToString:@"AgoraRtcMediaForInitiative"]) {
+//            [self onAgoraCallReceivedNickName:@"nickName"];
+//        }
+    
+        [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:@"341" withSessionId:_conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+            if (error == nil) {
+                
+                [self onAgoraCallReceivedNickName:@"nickName"];
+            }
+        }] ;
+        
+        [self updateMessageWithMessage:aMessage];
+    }];
 }
 - (void)onAgoraCallReceivedNickName:(NSString *)nickName{
-    
+    [HDAgoraCallManager shareInstance].sessionId = _conversationModel.sessionId;
     if ([HDAgoraCallManager shareInstance].hdVC) {
-        
         [[HDAgoraCallManager shareInstance].hdVC showView];
     }else{
-    
         [self.hdCallVC showView];
     }
 }
