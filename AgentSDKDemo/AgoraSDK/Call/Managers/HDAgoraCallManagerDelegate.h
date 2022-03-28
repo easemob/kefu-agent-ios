@@ -58,7 +58,7 @@
  *  End of the session
  *
  */
-- (void)onCallEndReason:(int)reason desc:(NSString *)desc;
+- (void)onCallEndReason:(int)reason desc:(NSString *)desc withRecordData:(id)result;
 
 /// 远端用户/主播加入回调  Occurs when the local user joins a specified channel.
 /// @param agoraCallManager  agoraCallManager instance

@@ -13,7 +13,7 @@ typedef NS_ENUM(NSInteger, HDCallAlertType) {
     HDCallAlertTypeVideo, //  视频界面
 };
 @interface HDAgoraCallViewController : UIViewController
-typedef void (^HangAgroaUpCallback)(HDAgoraCallViewController *callVC, NSString *timeStr);
+typedef void (^HangAgroaUpCallback)(HDAgoraCallViewController *callVC, NSString *timeStr,id result);
 @property (nonatomic, copy) HangAgroaUpCallback hangUpCallback;
 
 

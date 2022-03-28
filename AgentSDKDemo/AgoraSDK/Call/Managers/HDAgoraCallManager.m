@@ -13,9 +13,10 @@
 #import "HDKeyCenter.h"
 #import "HDSSKeychain.h"
 #import "HDAgoraTicketModel.h"
-#define kToken @"00674855635d3a64920b0c7ee3684f68a9fIACDuk6y5dEmj8KroRHLukc9ONx1Fqw7Ve+Y3ADi6jAvqRo6pkUAAAAAEACdNB6V1moMYgEAAQDVagxi";
-#define kAPPid  @"74855635d3a64920b0c7ee3684f68a9f";
-#define kChannelName @"huanxin"
+#import "KFVideoDetailModel.h"
+#define kToken @"0060e400b86d6ac439db7533aceace13cadIAB4YYt30sf2PYhpUK5+6ulDqUUCS7vWan+eRWaUB599qwlCEgIy4S2rIgBGwGhEAt0QYgQAAQAC3RBiAgAC3RBiAwAC3RBiBAAC3RBi";
+#define kAPPid  @"0e400b86d6ac439db7533aceace13cad";
+#define kChannelName @"54eaa3a3-e076-4511-9b7f-3a7c8338ccc1"
 
 #define kForService @"com.easemob.enterprise.demo.customer.ScreenShare"
 #define kSaveAgoraToken @"call_agoraToken"
@@ -245,6 +246,9 @@ static HDAgoraCallManager *shareCall = nil;
     [self.agoraKit  muteLocalVideoStream:NO];
     
 }
+
+
+
 /**
  * 发起视频邀请，
  */
@@ -267,6 +271,32 @@ static HDAgoraCallManager *shareCall = nil;
     message.ext = [[MessageExtModel alloc] initWithDictionary:dic];
     return message;
 }
+- (HDMessage *)hangUpVideoInviteMessageWithSessionId:(NSString *)sessionId to:(NSString *)toUser WithText:(NSString *)text{
+    
+    HDTextMessageBody *body = [[HDTextMessageBody alloc] initWithText:text];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
+    NSDictionary *dic = @{
+                          @"type":@"agorartcmedia/video",
+                          @"msgtype":@{
+                                  @"videoPlayback":@{
+                                          @"msg": @"playback",
+                                          @"videoObj":@{
+                                              @"ssId": sessionId,
+                                     @"visitorUserId": toUser,
+                                       @"visitorName": [HDAgoraCallManager shareInstance].chatter.nicename,
+                                    @"videoStartTime": @"2022-02-22T04:10:01.086Z",
+                                      @"videoEndTime": @"2022-02-22T04:10:01.086Z",
+                                            @"callId": _keyCenter.callid,
+                                         @"videoType": @"agora"
+                                          },
+                                          @"agentName":[HDClient sharedClient].currentAgentUser.nicename
+                                          }
+                                  }
+                          };
+    message.ext = [[MessageExtModel alloc] initWithDictionary:dic];
+    return message;
+}
+
 - (void)endCall{
     [self.agoraKit leaveChannel:nil];
     if(_keyCenter.callid >0){
@@ -288,7 +318,17 @@ static HDAgoraCallManager *shareCall = nil;
 }
 - (void)endRecord{
     // 结束录制
-    [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:[HDAgoraCallManager shareInstance].sessionId];
+    [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:[HDAgoraCallManager shareInstance].sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        if (responseObject && [responseObject isKindOfClass:[NSArray class]]) {
+            
+            //详情数据返回
+            NSLog(@"responseObject = %@",responseObject);
+            [_delegates onCallEndReason:1 desc:@"reason-conference-dismissed"  withRecordData:responseObject];
+        }else{
+            [_delegates onCallEndReason:1 desc:@"reason-conference-dismissed"  withRecordData:nil];
+            
+        }
+    }];
 }
 
 - (int)startPreview{
@@ -316,6 +356,13 @@ static HDAgoraCallManager *shareCall = nil;
 }
 - (NSArray *)hasJoinedMembers {
     return self.members;
+}
+
+/// 获取会话全部视频通话详情
+- (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion{
+    
+    [[HLCallManager sharedInstance] getAllVideoDetailsSession:sessionId completion:aCompletion];
+    
 }
 
 /*
@@ -366,14 +413,13 @@ static HDAgoraCallManager *shareCall = nil;
  */
 - (void)hd_joinCallWithNickname:(NSString *)nickname completion:(void (^)(id, HDError *))completion{
     self.Completion = completion;
-    [self hd_joinChannelByToken:_keyCenter.agoraToken channelId:_keyCenter.agoraChannel info:nil uid:_options.uid joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
+    [self hd_joinChannelByToken:_keyCenter.agoraToken channelId:_keyCenter.agoraChannel info:nil uid:[_keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
 //        [HDLog logI:@"joinSuccess channel=%@  uid=%lu",channel,(unsigned long)uid];
         //加入成功以后 开始 录制
         [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: [HDAgoraCallManager shareInstance].sessionId];
         self.Completion(nil, nil);
     }];
-    
-    [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: [HDAgoraCallManager shareInstance].sessionId];
+
 }
 - (void)hd_joinChannelByToken:(NSString *)token channelId:(NSString *)channelId info:(NSString *)info uid:(NSUInteger)uid joinSuccess:(void (^)(NSString * _Nullable, NSUInteger, NSInteger))joinSuccessBlock{
     

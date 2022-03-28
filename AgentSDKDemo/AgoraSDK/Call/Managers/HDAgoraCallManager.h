@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface HDAgoraCallManager : NSObject
 @property (nonatomic, strong) HDAgoraCallViewController *hdVC;
 @property (nonatomic, strong) NSString *sessionId;
+@property (nonatomic, strong) UserModel *chatter;
 
 + (instancetype _Nullable )shareInstance;
 
@@ -36,7 +37,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (HDMessage *)creteVideoInviteMessageWithSessionId:(NSString *)sessionId
                                                  to:(NSString *)toUser
                                            WithText:(NSString *)text;
-
+/*!
+ *  \~chinese
+ *  坐席挂断视频邀请
+ *  @param sessionId   sessionId
+ *  @param toUser   agentId
+ *  @param text   文本内容
+ *
+ */
+- (HDMessage *)hangUpVideoInviteMessageWithSessionId:(NSString *)sessionId
+                                                 to:(NSString *)toUser
+                                           WithText:(NSString *)text;
 /*!
  *  \~chinese
  *  获取坐席创建房间的设置项
@@ -86,6 +97,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (HDAgoraCallOptions *_Nullable)getCallOptions;
 
+/// 获取会话全部视频通话详情
+- (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion;
 /*!
  *  \~chinese
  *    加入 视频会话

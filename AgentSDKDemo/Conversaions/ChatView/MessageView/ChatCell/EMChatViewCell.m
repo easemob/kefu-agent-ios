@@ -212,7 +212,14 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             break;
         case HDMessageBodyTypeVideo:
         {
-            return [[HDChatVideoBubbleView alloc] init];
+            return [[HDChatVideoDetailBubbleView alloc] init];
+            //todo 
+//            return [[HDChatVideoBubbleView alloc] init];
+        }
+            break;
+        case HDMessageBodyTypePlayBack:
+        {
+            return [[HDChatVideoDetailBubbleView alloc] init];
         }
             break;
              

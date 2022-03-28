@@ -125,8 +125,8 @@
 - (void)viewDidDisappear:(BOOL)animated{
     
     [super viewDidDisappear:animated];
-    [[HDAgoraCallManager shareInstance] endCall];
-    [[HDAgoraCallManager shareInstance] destroy];
+//    [[HDAgoraCallManager shareInstance] endCall];
+//    [[HDAgoraCallManager shareInstance] destroy];
 }
 
 - (void)setAgoraVideo{
@@ -135,8 +135,8 @@
     options.videoOff = NO; // 这个值要和按钮状态统一。
     options.mute = NO; // 这个值要和按钮状态统一。
     options.shareUid = 1234; //屏幕分享uid 不设置 走默认
-    options.uid = _localUid; // 不设置 走随机 uid 最好设置用户自己登陆后的uid
-    NSDictionary * dic = @{ @"call_agoraToken":@"call_agoraToken",@"call_agoraChannel":@"call_agoraChannel",@"call_agoraAppid":@"call_agoraAppid"};
+   
+//    NSDictionary * dic = @{ @"call_agoraToken":@"call_agoraToken",@"call_agoraChannel":@"call_agoraChannel",@"call_agoraAppid":@"call_agoraAppid"};
 //    options.extension =dic;
     [[HDAgoraCallManager shareInstance] setCallOptions:options];
     //add local render view
@@ -236,7 +236,13 @@
         self.view.hidden = YES;
     }
 }
-
+- (void)removeView{
+   
+    [self.view removeFromSuperview];
+    
+    self.view = nil;
+    
+}
 /// 初始化屏幕分享view
 - (void)initBroadPickerView{
     if (@available(iOS 12.0, *)) {
@@ -324,9 +330,7 @@
     //挂断和拒接 都走这个
     [[HDAgoraCallManager shareInstance]  endCall];
     [self stopTimer];
-    if (self.hangUpCallback) {
-        self.hangUpCallback(self, self.timeLabel.text);
-    }
+    [self removeView];
 }
 // 应答事件
 - (IBAction)anwersBtnClicked:(id)sender {
@@ -347,7 +351,7 @@
         [audioSession setActive:YES error:nil];
     });
     if (self.hangUpCallback) {
-        self.hangUpCallback(self, self.timeLabel.text);
+        self.hangUpCallback(self, self.timeLabel.text,nil);
     }
 
 }
@@ -464,10 +468,10 @@
     }
 }
 // 坐席主动 挂断 结束回调
-- (void)onCallEndReason:(int)reason desc:(NSString *)desc {
+- (void)onCallEndReason:(int)reason desc:(NSString *)desc withRecordData:(id)result {
     [self stopTimer];
     if (self.hangUpCallback) {
-        self.hangUpCallback(self, self.timeLabel.text);
+        self.hangUpCallback(self, self.timeLabel.text,result);
     }
 }
 

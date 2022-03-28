@@ -39,6 +39,9 @@
 #import "KFWebViewController.h"
 #import "HDAgoraCallViewController.h"
 #import "HDAgoraCallManager.h"
+#import "KFVideoDetailViewController.h"
+#import "KFVideoDetailModel.h"
+#import "iCloudManager.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -115,6 +118,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 @property (nonatomic, strong) UIButton *satisfactionBtn;
 
 @property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
+
+@property (nonatomic, strong) NSArray  *recordVideoDetailAll;
 
 @end
 
@@ -259,10 +264,24 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self tableViewScrollToBottom];
     
     [self setupVoiceType];
+    
+    //每次进入聊天会话 都要获取一次 获取会话全部视频通话详情 接口
+    
      
 }
+- (void)getCurrentSessionRecordVideoDetailAll{
+    
+    
 
-
+    
+    
+}
+- (NSArray *)recordVideoDetailAll {
+    if (!_recordVideoDetailAll) {
+        self.recordVideoDetailAll = [[NSArray alloc] init];
+    }
+    return _recordVideoDetailAll;
+}
 - (void)appDidBecomeActiveNotif:(NSNotification *)aNoti {
     HomeViewController *homeVC = (HomeViewController *)[HomeViewController homeViewController];
     homeVC.conversationVCUnreadCount -= self.conversationModel.unreadCount;
@@ -291,7 +310,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
     
     UIView *btnViews = [[UIView alloc] init];
-    btnViews.frame = CGRectMake(0, 0, 100.f, 44);
+    btnViews.frame = CGRectMake(0, 0, 100.f, 440);
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
     [button setImage:[UIImage imageNamed:@"history_icon_more"] forState:UIControlStateNormal];
@@ -861,13 +880,68 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [actionSheet showInView:self.view];
 }
 
+/// 视频通话详情
+/// @param moreView  moreView
+- (void)moreViewVideoDetailAction:(DXChatBarMoreView *)moreView{
+    
+    [self clickVideoDatail];
+    
+}
+
+- (void) clickVideoDatail{
+    
+    
+//    KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
+////    vc.recordVideos = detailArray;
+//    vc.callId = @"344";
+//    [self.navigationController pushViewController:vc animated:YES];
+//
+//    return;
+    
+    [[HDAgoraCallManager shareInstance] getAllVideoDetailsSession:_conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        if (error == nil) {
+            NSArray * detailArray = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:responseObject];
+            
+            for (KFVideoDetailModel * model in detailArray) {
+                NSLog(@"kf-callId= %@ \n recordStart= %@ \n playbackUrl = %@",model.callId,model.recordStart,model.playbackUrl);
+            }
+            self.recordVideoDetailAll =  [self sortVideoDetails:detailArray];
+            KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
+            vc.recordVideos = detailArray;
+            vc.callId = @"344";
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+    }];
+}
+
+- (NSArray *)sortVideoDetails:(NSArray *)modelArray{
+    
+    //降序 要是升序ascending传yes
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"recordStart" ascending:NO];
+    NSArray* sortPackageResListArr = [modelArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSLog(@"%@",sortPackageResListArr);
+
+    return  sortPackageResListArr;
+}
+
+/// 获取文件
+/// @param moreView  moreView
+- (void)moreViewFileAction:(DXChatBarMoreView *)moreView
+{
+    [self presentDocumentPicker];
+}
 
 /// 视频通话
 /// @param moreView  moreView
 - (void)moreViewVideoAction:(DXChatBarMoreView *)moreView
 {
     //创建 声网房间入口
-    [self sendVideoTextMessage:@"邀请访客进行视频"];
+//    [self sendVideoTextMessage:@"邀请访客进行视频"];
+
+    [self moreViewVideoDetailAction:moreView];
+    return;
+
 }
 - (void)sendVideoTextMessage:(NSString *)text{
    
@@ -879,7 +953,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //            [self onAgoraCallReceivedNickName:@"nickName"];
 //        }
     
-        [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:@"341" withSessionId:_conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:@"344" withSessionId:_conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
             if (error == nil) {
                 
                 [self onAgoraCallReceivedNickName:@"nickName"];
@@ -891,18 +965,54 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 - (void)onAgoraCallReceivedNickName:(NSString *)nickName{
     [HDAgoraCallManager shareInstance].sessionId = _conversationModel.sessionId;
+    [HDAgoraCallManager shareInstance].chatter = _conversationModel.chatter;
     if ([HDAgoraCallManager shareInstance].hdVC) {
         [[HDAgoraCallManager shareInstance].hdVC showView];
     }else{
         [self.hdCallVC showView];
     }
+    [HDAgoraCallManager shareInstance].hdVC.hangUpCallback = ^(HDAgoraCallViewController * _Nonnull callVC, NSString * _Nonnull timeStr, id  _Nonnull result) {
+        NSLog(@"------%@",timeStr);
+        HDMessage *message =    [[HDAgoraCallManager shareInstance] hangUpVideoInviteMessageWithSessionId:[HDAgoraCallManager shareInstance].sessionId to:[HDAgoraCallManager shareInstance].chatter.agentId WithText:@"视频通话已结束"];
+        [self addVideoMessage:message];
+        [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+            [self updateMessageWithMessage:aMessage];
+        }];
+    };
+    
+   
+}
+- (void)addVideoMessage:(HDMessage *)message{
+    
+    [self prehandle:message];
+    __weak ChatViewController *weakSelf = self;
+    dispatch_async(_messageQueue, ^{
+        NSArray *msgs = [weakSelf formatMessage:message];
+        hd_dispatch_main_async_safe(^{
+            [_messages addObject:message];
+            [weakSelf.dataSource addObjectsFromArray:msgs];
+            NSMutableArray *paths = [NSMutableArray arrayWithCapacity:0];
+            NSInteger count = msgs.count;
+            for (int i=0; i<count; i++) {
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:weakSelf.dataSource.count-1-i inSection:0];
+                [paths addObject:ip];
+            }
+            [UIView setAnimationsEnabled:NO];
+            [weakSelf.tableView beginUpdates];
+            [weakSelf.tableView insertRowsAtIndexPaths:paths.copy withRowAnimation:UITableViewRowAnimationNone];
+            [weakSelf.tableView endUpdates];
+            [UIView setAnimationsEnabled:YES];
+            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+        });
+    });
+    
 }
 - (HDAgoraCallViewController *)hdCallVC{
     
     if (!_hdCallVC) {
-        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:@"123"
+        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
                                                                                      avatarStr:@"HelpDeskUIResource.bundle/user"
-                                                                                      nickName:@"test"];
+                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
         [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
     }
     
@@ -1611,7 +1721,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         }
     }];
 }
-
+//文件路径
+-(void)sendFileMessagePath:(NSString *)localPath withDisplayName:(NSString *)withDisplayName
+{
+    HDMessage *message = [ChatSendHelper fileMessageFormatWithPath:localPath to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId withDisplayName:withDisplayName];
+    [self addMessage:message];
+    [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+        [self updateMessageWithMessage:aMessage];
+        if (error == nil) {
+          
+        }
+    }];
+}
 - (void)updateMessageWithMessage:(HDMessage *)aMessage {
     dispatch_async(_messageQueue, ^{
         //更新
@@ -1888,6 +2009,72 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             NSLog(@"标记已读成功");
         }
     }];
+}
+#pragma mark - 文件上传
+
+- (void)presentDocumentPicker {
+
+    [self presentViewController:self.documentPickerVC animated:YES completion:nil];
+}
+- (UIDocumentPickerViewController *)documentPickerVC {
+    if (!_documentPickerVC) {
+        NSArray *documentTypes = @[@"public.content", @"public.text", @"public.source-code ", @"public.image", @"public.audiovisual-content", @"com.adobe.pdf", @"com.apple.keynote.key", @"com.microsoft.word.doc", @"com.microsoft.excel.xls", @"com.microsoft.powerpoint.ppt"];
+        self.documentPickerVC = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentTypes inMode:UIDocumentPickerModeOpen];
+        _documentPickerVC.delegate = self;
+        _documentPickerVC.modalPresentationStyle = UIModalPresentationFormSheet; //设置模态弹出方式
+    }
+    return _documentPickerVC;
+}
+
+#pragma mark - UIDocumentPickerDelegate
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
+    //获取授权
+    BOOL fileUrlAuthozied = [urls.firstObject startAccessingSecurityScopedResource];
+    if (fileUrlAuthozied) {
+        //通过文件协调工具来得到新的文件地址，以此得到文件保护功能
+        NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init];
+        NSError *error;
+        
+        [fileCoordinator coordinateReadingItemAtURL:urls.firstObject options:0 error:&error byAccessor:^(NSURL *newURL) {
+            //读取文件
+            NSString *fileName = [newURL lastPathComponent];
+            NSError *error = nil;
+            NSData *fileData = [NSData dataWithContentsOfURL:newURL options:NSDataReadingMappedIfSafe error:&error];
+            if (error) {
+                //读取出错
+            } else {
+                //文件 上传或者其它操作
+//                [self uploadingWithFileData:fileData fileName:fileName fileURL:newURL];
+                NSLog(@"------------->文件 上传或者其它操作");
+                
+                NSArray *array = [[newURL absoluteString] componentsSeparatedByString:@"/"];
+                NSString *fileName = [array lastObject];
+                fileName = [fileName stringByRemovingPercentEncoding];
+                
+//                if ([iCloudManager iCloudEnable]) {
+                    [iCloudManager downloadWithDocumentURL:newURL callBack:^(id obj) {
+                        NSData *data = obj;
+                        //写入沙盒Documents
+                         NSString *path = [NSHomeDirectory() stringByAppendingString:[NSString stringWithFormat:@"/Library/kefuAppFile%@",fileName]];
+                     BOOL success =   [data writeToFile:path atomically:YES];
+                        
+                        if (success) {
+                            //发送文件
+                            [self sendFileMessagePath:path withDisplayName:fileName];
+                        }
+                        
+                    }];
+//                }
+                
+                
+                
+            }
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        }];
+        [urls.firstObject stopAccessingSecurityScopedResource];
+    } else {
+        //授权失败
+    }
 }
 
 - (void)dealloc {

@@ -20,6 +20,7 @@
 #import "EMChatFileBubbleView.h"
 #import "HDChatFormBubbleView.h"
 #import "HDChatVideoBubbleView.h"
+#import "HDChatVideoDetailBubbleView.h"
 
 #define SEND_STATUS_SIZE 32 // 发送状态View的Size
 #define ACTIVTIYVIEW_BUBBLE_PADDING 5 // 菊花和bubbleView之间的间距
