@@ -1,5 +1,4 @@
 //
-//  ExampleUIWebViewController.h
 //  ExampleApp-iOS
 //
 //  Created by Marcus Westin on 1/13/14.
@@ -9,14 +8,14 @@
 #import <UIKit/UIKit.h>
 
 #import "DXBaseViewController.h"
-
+#import <WebKit/WebKit.h>
 @protocol EMUIWebViewControllerDelegate <NSObject>
 
 - (void)clickCustomWebView:(NSDictionary *)data;
 
 @end
 
-@interface EMUIWebViewController : DXBaseViewController <UIWebViewDelegate>
+@interface EMUIWebViewController : DXBaseViewController <WKUIDelegate>
 
 @property (nonatomic, weak) id<EMUIWebViewControllerDelegate> delegate;
 

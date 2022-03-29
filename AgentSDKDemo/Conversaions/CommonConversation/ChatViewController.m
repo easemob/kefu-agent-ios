@@ -20,7 +20,6 @@
 #import "ChatSendHelper.h"
 #import "SRRefreshView.h"
 #import "LocationViewController.h"
-#import "WebViewController.h"
 #import "EMCDDeviceManager.h"
 #import "HomeViewController.h"
 #import "TransferViewController.h"
@@ -1235,7 +1234,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)chatImageTextCellBubblePressed:(HDMessage *)model
 {
     //ios 2020-4-30 提交appstore 必须使用 WKWebView 使用UIWebView 审核不通过 开始替换WebViewController 中的UIWebView
-//    WebViewController *webview = [[WebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
     KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
     [self.navigationController pushViewController:webview animated:YES];
 }
