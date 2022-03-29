@@ -2055,7 +2055,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                     [iCloudManager downloadWithDocumentURL:newURL callBack:^(id obj) {
                         NSData *data = obj;
                         //写入沙盒Documents
-                         NSString *path = [NSHomeDirectory() stringByAppendingString:[NSString stringWithFormat:@"/Library/kefuAppFile%@",fileName]];
+                         NSString *path = [NSHomeDirectory() stringByAppendingString:[NSString stringWithFormat:@"/Library/kefuAppFile/%@",fileName]];
                      BOOL success =   [data writeToFile:path atomically:YES];
                         
                         if (success) {
