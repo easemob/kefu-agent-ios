@@ -116,54 +116,97 @@
 		90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		935CFB5427C4E5D60093B9DF /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
-		935CFBBA27C617220093B9DF /* DBPlayerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5927C617210093B9DF /* DBPlayerData.m */; };
-		935CFBBB27C617220093B9DF /* DBPlayerDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5A27C617210093B9DF /* DBPlayerDataManager.m */; };
-		935CFBBC27C617220093B9DF /* DBPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5C27C617210093B9DF /* DBPlayer.xcdatamodeld */; };
-		935CFBBD27C617220093B9DF /* KJBasePlayer+KJTryTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6127C617210093B9DF /* KJBasePlayer+KJTryTime.m */; };
-		935CFBBE27C617220093B9DF /* KJScreenshotsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6427C617220093B9DF /* KJScreenshotsManager.m */; };
-		935CFBBF27C617220093B9DF /* KJCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6727C617220093B9DF /* KJCacheManager.m */; };
-		935CFBC027C617220093B9DF /* KJBasePlayer+KJCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6927C617220093B9DF /* KJBasePlayer+KJCache.m */; };
-		935CFBC127C617220093B9DF /* KJDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6C27C617220093B9DF /* KJDownloader.m */; };
-		935CFBC227C617220093B9DF /* KJFileHandleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6D27C617220093B9DF /* KJFileHandleInfo.m */; };
-		935CFBC327C617220093B9DF /* KJFileHandleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6E27C617220093B9DF /* KJFileHandleManager.m */; };
-		935CFBC427C617220093B9DF /* KJPlayerSharedInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB6F27C617220093B9DF /* KJPlayerSharedInstance.m */; };
-		935CFBC527C617220093B9DF /* KJBasePlayer+KJPingTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB7527C617220093B9DF /* KJBasePlayer+KJPingTimer.m */; };
-		935CFBC627C617220093B9DF /* KJBasePlayer+KJDynamicSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB7727C617220093B9DF /* KJBasePlayer+KJDynamicSource.m */; };
-		935CFBC727C617220093B9DF /* KJBasePlayer+KJSkipTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB7A27C617220093B9DF /* KJBasePlayer+KJSkipTime.m */; };
-		935CFBC827C617220093B9DF /* KJBasePlayer+KJBackgroundMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB7D27C617220093B9DF /* KJBasePlayer+KJBackgroundMonitoring.m */; };
-		935CFBC927C617220093B9DF /* KJBasePlayer+KJRecordTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB8127C617220093B9DF /* KJBasePlayer+KJRecordTime.m */; };
-		935CFBCA27C617230093B9DF /* KJPlayerConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB8327C617220093B9DF /* KJPlayerConst.m */; };
-		935CFBCB27C617230093B9DF /* KJPlayerLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB8427C617220093B9DF /* KJPlayerLog.m */; };
-		935CFBCC27C617230093B9DF /* KJPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB8727C617220093B9DF /* KJPlayerView.m */; };
-		935CFBCD27C617230093B9DF /* KJPlayerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB8827C617220093B9DF /* KJPlayerBridge.m */; };
-		935CFBCE27C617230093B9DF /* KJBasePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB8927C617220093B9DF /* KJBasePlayer.m */; };
-		935CFBCF27C617230093B9DF /* KJPlayerPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB8C27C617220093B9DF /* KJPlayerPod.m */; };
-		935CFBD027C617230093B9DF /* KJIJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB9327C617220093B9DF /* KJIJKPlayer.m */; };
-		935CFBD127C617230093B9DF /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 935CFB9527C617220093B9DF /* .gitkeep */; };
-		935CFBD227C617230093B9DF /* KJAVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB9727C617220093B9DF /* KJAVPlayer.m */; };
-		935CFBD327C617230093B9DF /* KJResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB9B27C617220093B9DF /* KJResourceLoader.m */; };
-		935CFBD427C617230093B9DF /* KJAVPlayer+KJCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB9C27C617220093B9DF /* KJAVPlayer+KJCache.m */; };
-		935CFBD527C617230093B9DF /* KJResourceLoaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB9D27C617220093B9DF /* KJResourceLoaderManager.m */; };
-		935CFBD627C617230093B9DF /* KJPlayerStatusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBA127C617220093B9DF /* KJPlayerStatusLayer.m */; };
-		935CFBD727C617230093B9DF /* KJMIDIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBA527C617220093B9DF /* KJMIDIPlayer.m */; };
-		935CFBD827C617230093B9DF /* KJMidiSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 935CFBA627C617220093B9DF /* KJMidiSource.bundle */; };
-		935CFBD927C617230093B9DF /* KJRotateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBA927C617220093B9DF /* KJRotateManager.m */; };
-		935CFBDA27C617230093B9DF /* KJBasePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBAB27C617220093B9DF /* KJBasePlayerView.m */; };
-		935CFBDB27C617230093B9DF /* KJPlayerLoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBAC27C617220093B9DF /* KJPlayerLoadingLayer.m */; };
-		935CFBDC27C617230093B9DF /* KJPlayerFastLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBB127C617220093B9DF /* KJPlayerFastLayer.m */; };
-		935CFBDD27C617230093B9DF /* KJPlayerFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 935CFBB427C617220093B9DF /* KJPlayerFont.ttf */; };
-		935CFBDE27C617230093B9DF /* KJPlayerSystemLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBB527C617220093B9DF /* KJPlayerSystemLayer.m */; };
-		935CFBDF27C617230093B9DF /* KJPlayerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBB627C617220093B9DF /* KJPlayerButton.m */; };
-		935CFBE027C617230093B9DF /* KJPlayerOperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBB727C617220093B9DF /* KJPlayerOperationView.m */; };
-		935CFBE127C617230093B9DF /* KJPlayerHintLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBB827C617220093B9DF /* KJPlayerHintLayer.m */; };
 		935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
 		935CFBE827C6185A0093B9DF /* KFPlayerVideoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */; };
 		935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */; };
 		935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
-		938AE99827F1BD3B00B461C4 /* iCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE99327F1BD3800B461C4 /* iCloudManager.m */; };
-		938AE99927F1BD3B00B461C4 /* iCloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE99327F1BD3800B461C4 /* iCloudManager.m */; };
-		938AE99A27F1BD3B00B461C4 /* ZZDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE99627F1BD3A00B461C4 /* ZZDocument.m */; };
-		938AE99B27F1BD3B00B461C4 /* ZZDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE99627F1BD3A00B461C4 /* ZZDocument.m */; };
+		938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
+		938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
+		938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
+		938AE9A827F3F7D300B461C4 /* KFPlayerVideoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */; };
+		938AE9A927F3F82C00B461C4 /* HDAgoraCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC9027BA6FD70043DE06 /* HDAgoraCallViewController.m */; };
+		938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
+		938AE9AB27F3F87B00B461C4 /* HDChatVideoDetailBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */; };
+		938AEA1327F3F8FB00B461C4 /* DBPlayerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */; };
+		938AEA1427F3F8FB00B461C4 /* DBPlayerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */; };
+		938AEA1527F3F8FB00B461C4 /* DBPlayerDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */; };
+		938AEA1627F3F8FB00B461C4 /* DBPlayerDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */; };
+		938AEA1727F3F8FB00B461C4 /* DBPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9B527F3F8FB00B461C4 /* DBPlayer.xcdatamodeld */; };
+		938AEA1827F3F8FB00B461C4 /* DBPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9B527F3F8FB00B461C4 /* DBPlayer.xcdatamodeld */; };
+		938AEA1927F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9BA27F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m */; };
+		938AEA1A27F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9BA27F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m */; };
+		938AEA1B27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9BD27F3F8FB00B461C4 /* KJScreenshotsManager.m */; };
+		938AEA1C27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9BD27F3F8FB00B461C4 /* KJScreenshotsManager.m */; };
+		938AEA1D27F3F8FB00B461C4 /* KJCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C027F3F8FB00B461C4 /* KJCacheManager.m */; };
+		938AEA1E27F3F8FB00B461C4 /* KJCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C027F3F8FB00B461C4 /* KJCacheManager.m */; };
+		938AEA1F27F3F8FB00B461C4 /* KJBasePlayer+KJCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C227F3F8FB00B461C4 /* KJBasePlayer+KJCache.m */; };
+		938AEA2027F3F8FB00B461C4 /* KJBasePlayer+KJCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C227F3F8FB00B461C4 /* KJBasePlayer+KJCache.m */; };
+		938AEA2127F3F8FB00B461C4 /* KJDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C527F3F8FB00B461C4 /* KJDownloader.m */; };
+		938AEA2227F3F8FB00B461C4 /* KJDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C527F3F8FB00B461C4 /* KJDownloader.m */; };
+		938AEA2327F3F8FB00B461C4 /* KJFileHandleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C627F3F8FB00B461C4 /* KJFileHandleInfo.m */; };
+		938AEA2427F3F8FB00B461C4 /* KJFileHandleInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C627F3F8FB00B461C4 /* KJFileHandleInfo.m */; };
+		938AEA2527F3F8FB00B461C4 /* KJFileHandleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C727F3F8FB00B461C4 /* KJFileHandleManager.m */; };
+		938AEA2627F3F8FB00B461C4 /* KJFileHandleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C727F3F8FB00B461C4 /* KJFileHandleManager.m */; };
+		938AEA2727F3F8FB00B461C4 /* KJPlayerSharedInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C827F3F8FB00B461C4 /* KJPlayerSharedInstance.m */; };
+		938AEA2827F3F8FB00B461C4 /* KJPlayerSharedInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9C827F3F8FB00B461C4 /* KJPlayerSharedInstance.m */; };
+		938AEA2927F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9CE27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m */; };
+		938AEA2A27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9CE27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m */; };
+		938AEA2B27F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9D027F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m */; };
+		938AEA2C27F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9D027F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m */; };
+		938AEA2D27F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9D327F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m */; };
+		938AEA2E27F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9D327F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m */; };
+		938AEA2F27F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9D627F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m */; };
+		938AEA3027F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9D627F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m */; };
+		938AEA3127F3F8FC00B461C4 /* KJBasePlayer+KJRecordTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9DA27F3F8FB00B461C4 /* KJBasePlayer+KJRecordTime.m */; };
+		938AEA3227F3F8FC00B461C4 /* KJBasePlayer+KJRecordTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9DA27F3F8FB00B461C4 /* KJBasePlayer+KJRecordTime.m */; };
+		938AEA3327F3F8FC00B461C4 /* KJPlayerConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9DC27F3F8FB00B461C4 /* KJPlayerConst.m */; };
+		938AEA3427F3F8FC00B461C4 /* KJPlayerConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9DC27F3F8FB00B461C4 /* KJPlayerConst.m */; };
+		938AEA3527F3F8FC00B461C4 /* KJPlayerLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9DD27F3F8FB00B461C4 /* KJPlayerLog.m */; };
+		938AEA3627F3F8FC00B461C4 /* KJPlayerLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9DD27F3F8FB00B461C4 /* KJPlayerLog.m */; };
+		938AEA3727F3F8FC00B461C4 /* KJPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E027F3F8FB00B461C4 /* KJPlayerView.m */; };
+		938AEA3827F3F8FC00B461C4 /* KJPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E027F3F8FB00B461C4 /* KJPlayerView.m */; };
+		938AEA3927F3F8FC00B461C4 /* KJPlayerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E127F3F8FB00B461C4 /* KJPlayerBridge.m */; };
+		938AEA3A27F3F8FC00B461C4 /* KJPlayerBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E127F3F8FB00B461C4 /* KJPlayerBridge.m */; };
+		938AEA3B27F3F8FC00B461C4 /* KJBasePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E227F3F8FB00B461C4 /* KJBasePlayer.m */; };
+		938AEA3C27F3F8FC00B461C4 /* KJBasePlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E227F3F8FB00B461C4 /* KJBasePlayer.m */; };
+		938AEA3D27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E527F3F8FB00B461C4 /* KJPlayerPod.m */; };
+		938AEA3E27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9E527F3F8FB00B461C4 /* KJPlayerPod.m */; };
+		938AEA3F27F3F8FC00B461C4 /* KJIJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9EC27F3F8FB00B461C4 /* KJIJKPlayer.m */; };
+		938AEA4027F3F8FC00B461C4 /* KJIJKPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9EC27F3F8FB00B461C4 /* KJIJKPlayer.m */; };
+		938AEA4127F3F8FC00B461C4 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 938AE9EE27F3F8FB00B461C4 /* .gitkeep */; };
+		938AEA4227F3F8FC00B461C4 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 938AE9EE27F3F8FB00B461C4 /* .gitkeep */; };
+		938AEA4327F3F8FC00B461C4 /* KJAVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F027F3F8FB00B461C4 /* KJAVPlayer.m */; };
+		938AEA4427F3F8FC00B461C4 /* KJAVPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F027F3F8FB00B461C4 /* KJAVPlayer.m */; };
+		938AEA4527F3F8FC00B461C4 /* KJResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F427F3F8FB00B461C4 /* KJResourceLoader.m */; };
+		938AEA4627F3F8FC00B461C4 /* KJResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F427F3F8FB00B461C4 /* KJResourceLoader.m */; };
+		938AEA4727F3F8FC00B461C4 /* KJAVPlayer+KJCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F527F3F8FB00B461C4 /* KJAVPlayer+KJCache.m */; };
+		938AEA4827F3F8FC00B461C4 /* KJAVPlayer+KJCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F527F3F8FB00B461C4 /* KJAVPlayer+KJCache.m */; };
+		938AEA4927F3F8FC00B461C4 /* KJResourceLoaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F627F3F8FB00B461C4 /* KJResourceLoaderManager.m */; };
+		938AEA4A27F3F8FC00B461C4 /* KJResourceLoaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9F627F3F8FB00B461C4 /* KJResourceLoaderManager.m */; };
+		938AEA4B27F3F8FC00B461C4 /* KJPlayerStatusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9FA27F3F8FB00B461C4 /* KJPlayerStatusLayer.m */; };
+		938AEA4C27F3F8FC00B461C4 /* KJPlayerStatusLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9FA27F3F8FB00B461C4 /* KJPlayerStatusLayer.m */; };
+		938AEA4D27F3F8FC00B461C4 /* KJMIDIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9FE27F3F8FB00B461C4 /* KJMIDIPlayer.m */; };
+		938AEA4E27F3F8FC00B461C4 /* KJMIDIPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AE9FE27F3F8FB00B461C4 /* KJMIDIPlayer.m */; };
+		938AEA4F27F3F8FC00B461C4 /* KJMidiSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 938AE9FF27F3F8FB00B461C4 /* KJMidiSource.bundle */; };
+		938AEA5027F3F8FC00B461C4 /* KJMidiSource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 938AE9FF27F3F8FB00B461C4 /* KJMidiSource.bundle */; };
+		938AEA5127F3F8FC00B461C4 /* KJRotateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0227F3F8FB00B461C4 /* KJRotateManager.m */; };
+		938AEA5227F3F8FC00B461C4 /* KJRotateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0227F3F8FB00B461C4 /* KJRotateManager.m */; };
+		938AEA5327F3F8FC00B461C4 /* KJBasePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0427F3F8FB00B461C4 /* KJBasePlayerView.m */; };
+		938AEA5427F3F8FC00B461C4 /* KJBasePlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0427F3F8FB00B461C4 /* KJBasePlayerView.m */; };
+		938AEA5527F3F8FC00B461C4 /* KJPlayerLoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0527F3F8FB00B461C4 /* KJPlayerLoadingLayer.m */; };
+		938AEA5627F3F8FC00B461C4 /* KJPlayerLoadingLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0527F3F8FB00B461C4 /* KJPlayerLoadingLayer.m */; };
+		938AEA5727F3F8FC00B461C4 /* KJPlayerFastLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0A27F3F8FB00B461C4 /* KJPlayerFastLayer.m */; };
+		938AEA5827F3F8FC00B461C4 /* KJPlayerFastLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0A27F3F8FB00B461C4 /* KJPlayerFastLayer.m */; };
+		938AEA5927F3F8FC00B461C4 /* KJPlayerFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 938AEA0D27F3F8FB00B461C4 /* KJPlayerFont.ttf */; };
+		938AEA5A27F3F8FC00B461C4 /* KJPlayerFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 938AEA0D27F3F8FB00B461C4 /* KJPlayerFont.ttf */; };
+		938AEA5B27F3F8FC00B461C4 /* KJPlayerSystemLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0E27F3F8FB00B461C4 /* KJPlayerSystemLayer.m */; };
+		938AEA5C27F3F8FC00B461C4 /* KJPlayerSystemLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0E27F3F8FB00B461C4 /* KJPlayerSystemLayer.m */; };
+		938AEA5D27F3F8FC00B461C4 /* KJPlayerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0F27F3F8FB00B461C4 /* KJPlayerButton.m */; };
+		938AEA5E27F3F8FC00B461C4 /* KJPlayerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA0F27F3F8FB00B461C4 /* KJPlayerButton.m */; };
+		938AEA5F27F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA1027F3F8FB00B461C4 /* KJPlayerOperationView.m */; };
+		938AEA6027F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA1027F3F8FB00B461C4 /* KJPlayerOperationView.m */; };
+		938AEA6127F3F8FC00B461C4 /* KJPlayerHintLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA1127F3F8FB00B461C4 /* KJPlayerHintLayer.m */; };
+		938AEA6227F3F8FC00B461C4 /* KJPlayerHintLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA1127F3F8FB00B461C4 /* KJPlayerHintLayer.m */; };
 		93D9D07427BF7E0500BD037D /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		93EFFC7627BA3FC50043DE06 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */; };
 		93EFFC7727BA3FC50043DE06 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */; };
@@ -1662,86 +1705,6 @@
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
 		935CFB5227C4E5D60093B9DF /* KFVideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailModel.h; sourceTree = "<group>"; };
 		935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoDetailModel.m; sourceTree = "<group>"; };
-		935CFB5927C617210093B9DF /* DBPlayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerData.m; sourceTree = "<group>"; };
-		935CFB5A27C617210093B9DF /* DBPlayerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerDataManager.m; sourceTree = "<group>"; };
-		935CFB5B27C617210093B9DF /* DBPlayerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerDataManager.h; sourceTree = "<group>"; };
-		935CFB5D27C617210093B9DF /* DBPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DBPlayer.xcdatamodel; sourceTree = "<group>"; };
-		935CFB5E27C617210093B9DF /* DBPlayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerData.h; sourceTree = "<group>"; };
-		935CFB6027C617210093B9DF /* KJBasePlayer+KJTryTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJTryTime.h"; sourceTree = "<group>"; };
-		935CFB6127C617210093B9DF /* KJBasePlayer+KJTryTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJTryTime.m"; sourceTree = "<group>"; };
-		935CFB6327C617210093B9DF /* KJScreenshotsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJScreenshotsManager.h; sourceTree = "<group>"; };
-		935CFB6427C617220093B9DF /* KJScreenshotsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJScreenshotsManager.m; sourceTree = "<group>"; };
-		935CFB6627C617220093B9DF /* KJBasePlayer+KJCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJCache.h"; sourceTree = "<group>"; };
-		935CFB6727C617220093B9DF /* KJCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCacheManager.m; sourceTree = "<group>"; };
-		935CFB6827C617220093B9DF /* KJCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCacheManager.h; sourceTree = "<group>"; };
-		935CFB6927C617220093B9DF /* KJBasePlayer+KJCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJCache.m"; sourceTree = "<group>"; };
-		935CFB6B27C617220093B9DF /* KJPlayerSharedInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerSharedInstance.h; sourceTree = "<group>"; };
-		935CFB6C27C617220093B9DF /* KJDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJDownloader.m; sourceTree = "<group>"; };
-		935CFB6D27C617220093B9DF /* KJFileHandleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJFileHandleInfo.m; sourceTree = "<group>"; };
-		935CFB6E27C617220093B9DF /* KJFileHandleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJFileHandleManager.m; sourceTree = "<group>"; };
-		935CFB6F27C617220093B9DF /* KJPlayerSharedInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerSharedInstance.m; sourceTree = "<group>"; };
-		935CFB7027C617220093B9DF /* KJDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJDownloader.h; sourceTree = "<group>"; };
-		935CFB7127C617220093B9DF /* KJFileHandleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJFileHandleInfo.h; sourceTree = "<group>"; };
-		935CFB7227C617220093B9DF /* KJFileHandleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJFileHandleManager.h; sourceTree = "<group>"; };
-		935CFB7427C617220093B9DF /* KJBasePlayer+KJPingTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJPingTimer.h"; sourceTree = "<group>"; };
-		935CFB7527C617220093B9DF /* KJBasePlayer+KJPingTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJPingTimer.m"; sourceTree = "<group>"; };
-		935CFB7727C617220093B9DF /* KJBasePlayer+KJDynamicSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJDynamicSource.m"; sourceTree = "<group>"; };
-		935CFB7827C617220093B9DF /* KJBasePlayer+KJDynamicSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJDynamicSource.h"; sourceTree = "<group>"; };
-		935CFB7A27C617220093B9DF /* KJBasePlayer+KJSkipTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJSkipTime.m"; sourceTree = "<group>"; };
-		935CFB7B27C617220093B9DF /* KJBasePlayer+KJSkipTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJSkipTime.h"; sourceTree = "<group>"; };
-		935CFB7D27C617220093B9DF /* KJBasePlayer+KJBackgroundMonitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJBackgroundMonitoring.m"; sourceTree = "<group>"; };
-		935CFB7E27C617220093B9DF /* KJBasePlayer+KJBackgroundMonitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJBackgroundMonitoring.h"; sourceTree = "<group>"; };
-		935CFB8027C617220093B9DF /* KJBasePlayer+KJRecordTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJRecordTime.h"; sourceTree = "<group>"; };
-		935CFB8127C617220093B9DF /* KJBasePlayer+KJRecordTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJRecordTime.m"; sourceTree = "<group>"; };
-		935CFB8327C617220093B9DF /* KJPlayerConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerConst.m; sourceTree = "<group>"; };
-		935CFB8427C617220093B9DF /* KJPlayerLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerLog.m; sourceTree = "<group>"; };
-		935CFB8527C617220093B9DF /* KJPlayerPod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerPod.h; sourceTree = "<group>"; };
-		935CFB8627C617220093B9DF /* KJPlayerFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerFunction.h; sourceTree = "<group>"; };
-		935CFB8727C617220093B9DF /* KJPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerView.m; sourceTree = "<group>"; };
-		935CFB8827C617220093B9DF /* KJPlayerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerBridge.m; sourceTree = "<group>"; };
-		935CFB8927C617220093B9DF /* KJBasePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJBasePlayer.m; sourceTree = "<group>"; };
-		935CFB8A27C617220093B9DF /* KJPlayerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerConst.h; sourceTree = "<group>"; };
-		935CFB8B27C617220093B9DF /* KJPlayerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerType.h; sourceTree = "<group>"; };
-		935CFB8C27C617220093B9DF /* KJPlayerPod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerPod.m; sourceTree = "<group>"; };
-		935CFB8D27C617220093B9DF /* KJPlayerLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerLog.h; sourceTree = "<group>"; };
-		935CFB8E27C617220093B9DF /* KJPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerProtocol.h; sourceTree = "<group>"; };
-		935CFB8F27C617220093B9DF /* KJPlayerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerBridge.h; sourceTree = "<group>"; };
-		935CFB9027C617220093B9DF /* KJPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerView.h; sourceTree = "<group>"; };
-		935CFB9127C617220093B9DF /* KJBasePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJBasePlayer.h; sourceTree = "<group>"; };
-		935CFB9327C617220093B9DF /* KJIJKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJIJKPlayer.m; sourceTree = "<group>"; };
-		935CFB9427C617220093B9DF /* KJIJKPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJIJKPlayer.h; sourceTree = "<group>"; };
-		935CFB9527C617220093B9DF /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		935CFB9727C617220093B9DF /* KJAVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJAVPlayer.m; sourceTree = "<group>"; };
-		935CFB9927C617220093B9DF /* KJResourceLoaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJResourceLoaderManager.h; sourceTree = "<group>"; };
-		935CFB9A27C617220093B9DF /* KJAVPlayer+KJCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJAVPlayer+KJCache.h"; sourceTree = "<group>"; };
-		935CFB9B27C617220093B9DF /* KJResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJResourceLoader.m; sourceTree = "<group>"; };
-		935CFB9C27C617220093B9DF /* KJAVPlayer+KJCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJAVPlayer+KJCache.m"; sourceTree = "<group>"; };
-		935CFB9D27C617220093B9DF /* KJResourceLoaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJResourceLoaderManager.m; sourceTree = "<group>"; };
-		935CFB9E27C617220093B9DF /* KJResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJResourceLoader.h; sourceTree = "<group>"; };
-		935CFB9F27C617220093B9DF /* KJAVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJAVPlayer.h; sourceTree = "<group>"; };
-		935CFBA127C617220093B9DF /* KJPlayerStatusLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerStatusLayer.m; sourceTree = "<group>"; };
-		935CFBA227C617220093B9DF /* KJPlayerStatusLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerStatusLayer.h; sourceTree = "<group>"; };
-		935CFBA427C617220093B9DF /* KJMIDIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJMIDIPlayer.h; sourceTree = "<group>"; };
-		935CFBA527C617220093B9DF /* KJMIDIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJMIDIPlayer.m; sourceTree = "<group>"; };
-		935CFBA627C617220093B9DF /* KJMidiSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KJMidiSource.bundle; sourceTree = "<group>"; };
-		935CFBA827C617220093B9DF /* KJPlayerFastLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerFastLayer.h; sourceTree = "<group>"; };
-		935CFBA927C617220093B9DF /* KJRotateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJRotateManager.m; sourceTree = "<group>"; };
-		935CFBAA27C617220093B9DF /* KJPlayerSystemLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerSystemLayer.h; sourceTree = "<group>"; };
-		935CFBAB27C617220093B9DF /* KJBasePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJBasePlayerView.m; sourceTree = "<group>"; };
-		935CFBAC27C617220093B9DF /* KJPlayerLoadingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerLoadingLayer.m; sourceTree = "<group>"; };
-		935CFBAD27C617220093B9DF /* KJPlayerOperationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerOperationView.h; sourceTree = "<group>"; };
-		935CFBAE27C617220093B9DF /* KJPlayerHintLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerHintLayer.h; sourceTree = "<group>"; };
-		935CFBAF27C617220093B9DF /* KJPlayerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerButton.h; sourceTree = "<group>"; };
-		935CFBB027C617220093B9DF /* KJRotateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJRotateManager.h; sourceTree = "<group>"; };
-		935CFBB127C617220093B9DF /* KJPlayerFastLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerFastLayer.m; sourceTree = "<group>"; };
-		935CFBB227C617220093B9DF /* KJBasePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJBasePlayerView.h; sourceTree = "<group>"; };
-		935CFBB327C617220093B9DF /* KJPlayerLoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerLoadingLayer.h; sourceTree = "<group>"; };
-		935CFBB427C617220093B9DF /* KJPlayerFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KJPlayerFont.ttf; sourceTree = "<group>"; };
-		935CFBB527C617220093B9DF /* KJPlayerSystemLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerSystemLayer.m; sourceTree = "<group>"; };
-		935CFBB627C617220093B9DF /* KJPlayerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerButton.m; sourceTree = "<group>"; };
-		935CFBB727C617220093B9DF /* KJPlayerOperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerOperationView.m; sourceTree = "<group>"; };
-		935CFBB827C617220093B9DF /* KJPlayerHintLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerHintLayer.m; sourceTree = "<group>"; };
-		935CFBB927C617220093B9DF /* KJPlayerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerHeader.h; sourceTree = "<group>"; };
 		935CFBE327C617F70093B9DF /* KFVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailViewController.h; sourceTree = "<group>"; };
 		935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoDetailViewController.m; sourceTree = "<group>"; };
 		935CFBE627C6185A0093B9DF /* KFPlayerVideoBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFPlayerVideoBaseViewController.h; sourceTree = "<group>"; };
@@ -1750,10 +1713,86 @@
 		935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDChatVideoDetailBubbleView.m; sourceTree = "<group>"; };
 		935FF7FC277451320034ED6F /* KFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebViewController.h; sourceTree = "<group>"; };
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
-		938AE99227F1BD3800B461C4 /* iCloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCloudManager.h; sourceTree = "<group>"; };
-		938AE99327F1BD3800B461C4 /* iCloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCloudManager.m; sourceTree = "<group>"; };
-		938AE99427F1BD3900B461C4 /* ZZDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZZDocument.h; sourceTree = "<group>"; };
-		938AE99627F1BD3A00B461C4 /* ZZDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZZDocument.m; sourceTree = "<group>"; };
+		938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerData.m; sourceTree = "<group>"; };
+		938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerDataManager.m; sourceTree = "<group>"; };
+		938AE9B427F3F8FB00B461C4 /* DBPlayerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerDataManager.h; sourceTree = "<group>"; };
+		938AE9B627F3F8FB00B461C4 /* DBPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DBPlayer.xcdatamodel; sourceTree = "<group>"; };
+		938AE9B727F3F8FB00B461C4 /* DBPlayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerData.h; sourceTree = "<group>"; };
+		938AE9B927F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJTryTime.h"; sourceTree = "<group>"; };
+		938AE9BA27F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJTryTime.m"; sourceTree = "<group>"; };
+		938AE9BC27F3F8FB00B461C4 /* KJScreenshotsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJScreenshotsManager.h; sourceTree = "<group>"; };
+		938AE9BD27F3F8FB00B461C4 /* KJScreenshotsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJScreenshotsManager.m; sourceTree = "<group>"; };
+		938AE9BF27F3F8FB00B461C4 /* KJBasePlayer+KJCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJCache.h"; sourceTree = "<group>"; };
+		938AE9C027F3F8FB00B461C4 /* KJCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCacheManager.m; sourceTree = "<group>"; };
+		938AE9C127F3F8FB00B461C4 /* KJCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCacheManager.h; sourceTree = "<group>"; };
+		938AE9C227F3F8FB00B461C4 /* KJBasePlayer+KJCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJCache.m"; sourceTree = "<group>"; };
+		938AE9C427F3F8FB00B461C4 /* KJPlayerSharedInstance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerSharedInstance.h; sourceTree = "<group>"; };
+		938AE9C527F3F8FB00B461C4 /* KJDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJDownloader.m; sourceTree = "<group>"; };
+		938AE9C627F3F8FB00B461C4 /* KJFileHandleInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJFileHandleInfo.m; sourceTree = "<group>"; };
+		938AE9C727F3F8FB00B461C4 /* KJFileHandleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJFileHandleManager.m; sourceTree = "<group>"; };
+		938AE9C827F3F8FB00B461C4 /* KJPlayerSharedInstance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerSharedInstance.m; sourceTree = "<group>"; };
+		938AE9C927F3F8FB00B461C4 /* KJDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJDownloader.h; sourceTree = "<group>"; };
+		938AE9CA27F3F8FB00B461C4 /* KJFileHandleInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJFileHandleInfo.h; sourceTree = "<group>"; };
+		938AE9CB27F3F8FB00B461C4 /* KJFileHandleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJFileHandleManager.h; sourceTree = "<group>"; };
+		938AE9CD27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJPingTimer.h"; sourceTree = "<group>"; };
+		938AE9CE27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJPingTimer.m"; sourceTree = "<group>"; };
+		938AE9D027F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJDynamicSource.m"; sourceTree = "<group>"; };
+		938AE9D127F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJDynamicSource.h"; sourceTree = "<group>"; };
+		938AE9D327F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJSkipTime.m"; sourceTree = "<group>"; };
+		938AE9D427F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJSkipTime.h"; sourceTree = "<group>"; };
+		938AE9D627F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJBackgroundMonitoring.m"; sourceTree = "<group>"; };
+		938AE9D727F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJBackgroundMonitoring.h"; sourceTree = "<group>"; };
+		938AE9D927F3F8FB00B461C4 /* KJBasePlayer+KJRecordTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJBasePlayer+KJRecordTime.h"; sourceTree = "<group>"; };
+		938AE9DA27F3F8FB00B461C4 /* KJBasePlayer+KJRecordTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJBasePlayer+KJRecordTime.m"; sourceTree = "<group>"; };
+		938AE9DC27F3F8FB00B461C4 /* KJPlayerConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerConst.m; sourceTree = "<group>"; };
+		938AE9DD27F3F8FB00B461C4 /* KJPlayerLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerLog.m; sourceTree = "<group>"; };
+		938AE9DE27F3F8FB00B461C4 /* KJPlayerPod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerPod.h; sourceTree = "<group>"; };
+		938AE9DF27F3F8FB00B461C4 /* KJPlayerFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerFunction.h; sourceTree = "<group>"; };
+		938AE9E027F3F8FB00B461C4 /* KJPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerView.m; sourceTree = "<group>"; };
+		938AE9E127F3F8FB00B461C4 /* KJPlayerBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerBridge.m; sourceTree = "<group>"; };
+		938AE9E227F3F8FB00B461C4 /* KJBasePlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJBasePlayer.m; sourceTree = "<group>"; };
+		938AE9E327F3F8FB00B461C4 /* KJPlayerConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerConst.h; sourceTree = "<group>"; };
+		938AE9E427F3F8FB00B461C4 /* KJPlayerType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerType.h; sourceTree = "<group>"; };
+		938AE9E527F3F8FB00B461C4 /* KJPlayerPod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerPod.m; sourceTree = "<group>"; };
+		938AE9E627F3F8FB00B461C4 /* KJPlayerLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerLog.h; sourceTree = "<group>"; };
+		938AE9E727F3F8FB00B461C4 /* KJPlayerProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerProtocol.h; sourceTree = "<group>"; };
+		938AE9E827F3F8FB00B461C4 /* KJPlayerBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerBridge.h; sourceTree = "<group>"; };
+		938AE9E927F3F8FB00B461C4 /* KJPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerView.h; sourceTree = "<group>"; };
+		938AE9EA27F3F8FB00B461C4 /* KJBasePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJBasePlayer.h; sourceTree = "<group>"; };
+		938AE9EC27F3F8FB00B461C4 /* KJIJKPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJIJKPlayer.m; sourceTree = "<group>"; };
+		938AE9ED27F3F8FB00B461C4 /* KJIJKPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJIJKPlayer.h; sourceTree = "<group>"; };
+		938AE9EE27F3F8FB00B461C4 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		938AE9F027F3F8FB00B461C4 /* KJAVPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJAVPlayer.m; sourceTree = "<group>"; };
+		938AE9F227F3F8FB00B461C4 /* KJResourceLoaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJResourceLoaderManager.h; sourceTree = "<group>"; };
+		938AE9F327F3F8FB00B461C4 /* KJAVPlayer+KJCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "KJAVPlayer+KJCache.h"; sourceTree = "<group>"; };
+		938AE9F427F3F8FB00B461C4 /* KJResourceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJResourceLoader.m; sourceTree = "<group>"; };
+		938AE9F527F3F8FB00B461C4 /* KJAVPlayer+KJCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "KJAVPlayer+KJCache.m"; sourceTree = "<group>"; };
+		938AE9F627F3F8FB00B461C4 /* KJResourceLoaderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJResourceLoaderManager.m; sourceTree = "<group>"; };
+		938AE9F727F3F8FB00B461C4 /* KJResourceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJResourceLoader.h; sourceTree = "<group>"; };
+		938AE9F827F3F8FB00B461C4 /* KJAVPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJAVPlayer.h; sourceTree = "<group>"; };
+		938AE9FA27F3F8FB00B461C4 /* KJPlayerStatusLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerStatusLayer.m; sourceTree = "<group>"; };
+		938AE9FB27F3F8FB00B461C4 /* KJPlayerStatusLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerStatusLayer.h; sourceTree = "<group>"; };
+		938AE9FD27F3F8FB00B461C4 /* KJMIDIPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJMIDIPlayer.h; sourceTree = "<group>"; };
+		938AE9FE27F3F8FB00B461C4 /* KJMIDIPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJMIDIPlayer.m; sourceTree = "<group>"; };
+		938AE9FF27F3F8FB00B461C4 /* KJMidiSource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KJMidiSource.bundle; sourceTree = "<group>"; };
+		938AEA0127F3F8FB00B461C4 /* KJPlayerFastLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerFastLayer.h; sourceTree = "<group>"; };
+		938AEA0227F3F8FB00B461C4 /* KJRotateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJRotateManager.m; sourceTree = "<group>"; };
+		938AEA0327F3F8FB00B461C4 /* KJPlayerSystemLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerSystemLayer.h; sourceTree = "<group>"; };
+		938AEA0427F3F8FB00B461C4 /* KJBasePlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJBasePlayerView.m; sourceTree = "<group>"; };
+		938AEA0527F3F8FB00B461C4 /* KJPlayerLoadingLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerLoadingLayer.m; sourceTree = "<group>"; };
+		938AEA0627F3F8FB00B461C4 /* KJPlayerOperationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerOperationView.h; sourceTree = "<group>"; };
+		938AEA0727F3F8FB00B461C4 /* KJPlayerHintLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerHintLayer.h; sourceTree = "<group>"; };
+		938AEA0827F3F8FB00B461C4 /* KJPlayerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerButton.h; sourceTree = "<group>"; };
+		938AEA0927F3F8FB00B461C4 /* KJRotateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJRotateManager.h; sourceTree = "<group>"; };
+		938AEA0A27F3F8FB00B461C4 /* KJPlayerFastLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerFastLayer.m; sourceTree = "<group>"; };
+		938AEA0B27F3F8FB00B461C4 /* KJBasePlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJBasePlayerView.h; sourceTree = "<group>"; };
+		938AEA0C27F3F8FB00B461C4 /* KJPlayerLoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerLoadingLayer.h; sourceTree = "<group>"; };
+		938AEA0D27F3F8FB00B461C4 /* KJPlayerFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KJPlayerFont.ttf; sourceTree = "<group>"; };
+		938AEA0E27F3F8FB00B461C4 /* KJPlayerSystemLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerSystemLayer.m; sourceTree = "<group>"; };
+		938AEA0F27F3F8FB00B461C4 /* KJPlayerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerButton.m; sourceTree = "<group>"; };
+		938AEA1027F3F8FB00B461C4 /* KJPlayerOperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerOperationView.m; sourceTree = "<group>"; };
+		938AEA1127F3F8FB00B461C4 /* KJPlayerHintLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerHintLayer.m; sourceTree = "<group>"; };
+		938AEA1227F3F8FB00B461C4 /* KJPlayerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerHeader.h; sourceTree = "<group>"; };
 		93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraTicketModel.m; sourceTree = "<group>"; };
 		93D9D07327BF7E0500BD037D /* HDAgoraTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraTicketModel.h; sourceTree = "<group>"; };
 		93EFFC6827BA3FC10043DE06 /* HDAgoraCallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManager.h; sourceTree = "<group>"; };
@@ -2932,245 +2971,6 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
-		935CFB5527C617210093B9DF /* KJPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB5627C617210093B9DF /* Classes */,
-			);
-			path = KJPlayer;
-			sourceTree = "<group>";
-		};
-		935CFB5627C617210093B9DF /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB5727C617210093B9DF /* Tools */,
-				935CFB8227C617220093B9DF /* Core */,
-				935CFB9227C617220093B9DF /* IJKPlayer */,
-				935CFB9527C617220093B9DF /* .gitkeep */,
-				935CFB9627C617220093B9DF /* AVPlayer */,
-				935CFBA027C617220093B9DF /* OtherView */,
-				935CFBA327C617220093B9DF /* MidiPlayer */,
-				935CFBA727C617220093B9DF /* View */,
-				935CFBB927C617220093B9DF /* KJPlayerHeader.h */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		935CFB5727C617210093B9DF /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB5827C617210093B9DF /* Database */,
-				935CFB5F27C617210093B9DF /* TryTime */,
-				935CFB6227C617210093B9DF /* Screenshots */,
-				935CFB6527C617220093B9DF /* Cache */,
-				935CFB6A27C617220093B9DF /* Downloader */,
-				935CFB7327C617220093B9DF /* PingTimer */,
-				935CFB7627C617220093B9DF /* DynamicSource */,
-				935CFB7927C617220093B9DF /* SkipTime */,
-				935CFB7C27C617220093B9DF /* BackgroundMonitoring */,
-				935CFB7F27C617220093B9DF /* RecordTime */,
-			);
-			path = Tools;
-			sourceTree = "<group>";
-		};
-		935CFB5827C617210093B9DF /* Database */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB5927C617210093B9DF /* DBPlayerData.m */,
-				935CFB5A27C617210093B9DF /* DBPlayerDataManager.m */,
-				935CFB5B27C617210093B9DF /* DBPlayerDataManager.h */,
-				935CFB5C27C617210093B9DF /* DBPlayer.xcdatamodeld */,
-				935CFB5E27C617210093B9DF /* DBPlayerData.h */,
-			);
-			path = Database;
-			sourceTree = "<group>";
-		};
-		935CFB5F27C617210093B9DF /* TryTime */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB6027C617210093B9DF /* KJBasePlayer+KJTryTime.h */,
-				935CFB6127C617210093B9DF /* KJBasePlayer+KJTryTime.m */,
-			);
-			path = TryTime;
-			sourceTree = "<group>";
-		};
-		935CFB6227C617210093B9DF /* Screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB6327C617210093B9DF /* KJScreenshotsManager.h */,
-				935CFB6427C617220093B9DF /* KJScreenshotsManager.m */,
-			);
-			path = Screenshots;
-			sourceTree = "<group>";
-		};
-		935CFB6527C617220093B9DF /* Cache */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB6627C617220093B9DF /* KJBasePlayer+KJCache.h */,
-				935CFB6727C617220093B9DF /* KJCacheManager.m */,
-				935CFB6827C617220093B9DF /* KJCacheManager.h */,
-				935CFB6927C617220093B9DF /* KJBasePlayer+KJCache.m */,
-			);
-			path = Cache;
-			sourceTree = "<group>";
-		};
-		935CFB6A27C617220093B9DF /* Downloader */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB6B27C617220093B9DF /* KJPlayerSharedInstance.h */,
-				935CFB6C27C617220093B9DF /* KJDownloader.m */,
-				935CFB6D27C617220093B9DF /* KJFileHandleInfo.m */,
-				935CFB6E27C617220093B9DF /* KJFileHandleManager.m */,
-				935CFB6F27C617220093B9DF /* KJPlayerSharedInstance.m */,
-				935CFB7027C617220093B9DF /* KJDownloader.h */,
-				935CFB7127C617220093B9DF /* KJFileHandleInfo.h */,
-				935CFB7227C617220093B9DF /* KJFileHandleManager.h */,
-			);
-			path = Downloader;
-			sourceTree = "<group>";
-		};
-		935CFB7327C617220093B9DF /* PingTimer */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB7427C617220093B9DF /* KJBasePlayer+KJPingTimer.h */,
-				935CFB7527C617220093B9DF /* KJBasePlayer+KJPingTimer.m */,
-			);
-			path = PingTimer;
-			sourceTree = "<group>";
-		};
-		935CFB7627C617220093B9DF /* DynamicSource */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB7727C617220093B9DF /* KJBasePlayer+KJDynamicSource.m */,
-				935CFB7827C617220093B9DF /* KJBasePlayer+KJDynamicSource.h */,
-			);
-			path = DynamicSource;
-			sourceTree = "<group>";
-		};
-		935CFB7927C617220093B9DF /* SkipTime */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB7A27C617220093B9DF /* KJBasePlayer+KJSkipTime.m */,
-				935CFB7B27C617220093B9DF /* KJBasePlayer+KJSkipTime.h */,
-			);
-			path = SkipTime;
-			sourceTree = "<group>";
-		};
-		935CFB7C27C617220093B9DF /* BackgroundMonitoring */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB7D27C617220093B9DF /* KJBasePlayer+KJBackgroundMonitoring.m */,
-				935CFB7E27C617220093B9DF /* KJBasePlayer+KJBackgroundMonitoring.h */,
-			);
-			path = BackgroundMonitoring;
-			sourceTree = "<group>";
-		};
-		935CFB7F27C617220093B9DF /* RecordTime */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB8027C617220093B9DF /* KJBasePlayer+KJRecordTime.h */,
-				935CFB8127C617220093B9DF /* KJBasePlayer+KJRecordTime.m */,
-			);
-			path = RecordTime;
-			sourceTree = "<group>";
-		};
-		935CFB8227C617220093B9DF /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB8327C617220093B9DF /* KJPlayerConst.m */,
-				935CFB8427C617220093B9DF /* KJPlayerLog.m */,
-				935CFB8527C617220093B9DF /* KJPlayerPod.h */,
-				935CFB8627C617220093B9DF /* KJPlayerFunction.h */,
-				935CFB8727C617220093B9DF /* KJPlayerView.m */,
-				935CFB8827C617220093B9DF /* KJPlayerBridge.m */,
-				935CFB8927C617220093B9DF /* KJBasePlayer.m */,
-				935CFB8A27C617220093B9DF /* KJPlayerConst.h */,
-				935CFB8B27C617220093B9DF /* KJPlayerType.h */,
-				935CFB8C27C617220093B9DF /* KJPlayerPod.m */,
-				935CFB8D27C617220093B9DF /* KJPlayerLog.h */,
-				935CFB8E27C617220093B9DF /* KJPlayerProtocol.h */,
-				935CFB8F27C617220093B9DF /* KJPlayerBridge.h */,
-				935CFB9027C617220093B9DF /* KJPlayerView.h */,
-				935CFB9127C617220093B9DF /* KJBasePlayer.h */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		935CFB9227C617220093B9DF /* IJKPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB9327C617220093B9DF /* KJIJKPlayer.m */,
-				935CFB9427C617220093B9DF /* KJIJKPlayer.h */,
-			);
-			path = IJKPlayer;
-			sourceTree = "<group>";
-		};
-		935CFB9627C617220093B9DF /* AVPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB9727C617220093B9DF /* KJAVPlayer.m */,
-				935CFB9827C617220093B9DF /* AVDownloader */,
-				935CFB9F27C617220093B9DF /* KJAVPlayer.h */,
-			);
-			path = AVPlayer;
-			sourceTree = "<group>";
-		};
-		935CFB9827C617220093B9DF /* AVDownloader */ = {
-			isa = PBXGroup;
-			children = (
-				935CFB9927C617220093B9DF /* KJResourceLoaderManager.h */,
-				935CFB9A27C617220093B9DF /* KJAVPlayer+KJCache.h */,
-				935CFB9B27C617220093B9DF /* KJResourceLoader.m */,
-				935CFB9C27C617220093B9DF /* KJAVPlayer+KJCache.m */,
-				935CFB9D27C617220093B9DF /* KJResourceLoaderManager.m */,
-				935CFB9E27C617220093B9DF /* KJResourceLoader.h */,
-			);
-			path = AVDownloader;
-			sourceTree = "<group>";
-		};
-		935CFBA027C617220093B9DF /* OtherView */ = {
-			isa = PBXGroup;
-			children = (
-				935CFBA127C617220093B9DF /* KJPlayerStatusLayer.m */,
-				935CFBA227C617220093B9DF /* KJPlayerStatusLayer.h */,
-			);
-			path = OtherView;
-			sourceTree = "<group>";
-		};
-		935CFBA327C617220093B9DF /* MidiPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				935CFBA427C617220093B9DF /* KJMIDIPlayer.h */,
-				935CFBA527C617220093B9DF /* KJMIDIPlayer.m */,
-				935CFBA627C617220093B9DF /* KJMidiSource.bundle */,
-			);
-			path = MidiPlayer;
-			sourceTree = "<group>";
-		};
-		935CFBA727C617220093B9DF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				935CFBA827C617220093B9DF /* KJPlayerFastLayer.h */,
-				935CFBA927C617220093B9DF /* KJRotateManager.m */,
-				935CFBAA27C617220093B9DF /* KJPlayerSystemLayer.h */,
-				935CFBAB27C617220093B9DF /* KJBasePlayerView.m */,
-				935CFBAC27C617220093B9DF /* KJPlayerLoadingLayer.m */,
-				935CFBAD27C617220093B9DF /* KJPlayerOperationView.h */,
-				935CFBAE27C617220093B9DF /* KJPlayerHintLayer.h */,
-				935CFBAF27C617220093B9DF /* KJPlayerButton.h */,
-				935CFBB027C617220093B9DF /* KJRotateManager.h */,
-				935CFBB127C617220093B9DF /* KJPlayerFastLayer.m */,
-				935CFBB227C617220093B9DF /* KJBasePlayerView.h */,
-				935CFBB327C617220093B9DF /* KJPlayerLoadingLayer.h */,
-				935CFBB427C617220093B9DF /* KJPlayerFont.ttf */,
-				935CFBB527C617220093B9DF /* KJPlayerSystemLayer.m */,
-				935CFBB627C617220093B9DF /* KJPlayerButton.m */,
-				935CFBB727C617220093B9DF /* KJPlayerOperationView.m */,
-				935CFBB827C617220093B9DF /* KJPlayerHintLayer.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		935CFBE227C617980093B9DF /* Player */ = {
 			isa = PBXGroup;
 			children = (
@@ -3182,15 +2982,243 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
-		938AE99127F1BCF900B461C4 /* file */ = {
+		938AE9AE27F3F8FB00B461C4 /* KJPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				938AE99227F1BD3800B461C4 /* iCloudManager.h */,
-				938AE99327F1BD3800B461C4 /* iCloudManager.m */,
-				938AE99427F1BD3900B461C4 /* ZZDocument.h */,
-				938AE99627F1BD3A00B461C4 /* ZZDocument.m */,
+				938AE9AF27F3F8FB00B461C4 /* Classes */,
 			);
-			path = file;
+			path = KJPlayer;
+			sourceTree = "<group>";
+		};
+		938AE9AF27F3F8FB00B461C4 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9B027F3F8FB00B461C4 /* Tools */,
+				938AE9DB27F3F8FB00B461C4 /* Core */,
+				938AE9EB27F3F8FB00B461C4 /* IJKPlayer */,
+				938AE9EE27F3F8FB00B461C4 /* .gitkeep */,
+				938AE9EF27F3F8FB00B461C4 /* AVPlayer */,
+				938AE9F927F3F8FB00B461C4 /* OtherView */,
+				938AE9FC27F3F8FB00B461C4 /* MidiPlayer */,
+				938AEA0027F3F8FB00B461C4 /* View */,
+				938AEA1227F3F8FB00B461C4 /* KJPlayerHeader.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		938AE9B027F3F8FB00B461C4 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9B127F3F8FB00B461C4 /* Database */,
+				938AE9B827F3F8FB00B461C4 /* TryTime */,
+				938AE9BB27F3F8FB00B461C4 /* Screenshots */,
+				938AE9BE27F3F8FB00B461C4 /* Cache */,
+				938AE9C327F3F8FB00B461C4 /* Downloader */,
+				938AE9CC27F3F8FB00B461C4 /* PingTimer */,
+				938AE9CF27F3F8FB00B461C4 /* DynamicSource */,
+				938AE9D227F3F8FB00B461C4 /* SkipTime */,
+				938AE9D527F3F8FB00B461C4 /* BackgroundMonitoring */,
+				938AE9D827F3F8FB00B461C4 /* RecordTime */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		938AE9B127F3F8FB00B461C4 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */,
+				938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */,
+				938AE9B427F3F8FB00B461C4 /* DBPlayerDataManager.h */,
+				938AE9B527F3F8FB00B461C4 /* DBPlayer.xcdatamodeld */,
+				938AE9B727F3F8FB00B461C4 /* DBPlayerData.h */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		938AE9B827F3F8FB00B461C4 /* TryTime */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9B927F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.h */,
+				938AE9BA27F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m */,
+			);
+			path = TryTime;
+			sourceTree = "<group>";
+		};
+		938AE9BB27F3F8FB00B461C4 /* Screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9BC27F3F8FB00B461C4 /* KJScreenshotsManager.h */,
+				938AE9BD27F3F8FB00B461C4 /* KJScreenshotsManager.m */,
+			);
+			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		938AE9BE27F3F8FB00B461C4 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9BF27F3F8FB00B461C4 /* KJBasePlayer+KJCache.h */,
+				938AE9C027F3F8FB00B461C4 /* KJCacheManager.m */,
+				938AE9C127F3F8FB00B461C4 /* KJCacheManager.h */,
+				938AE9C227F3F8FB00B461C4 /* KJBasePlayer+KJCache.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
+		938AE9C327F3F8FB00B461C4 /* Downloader */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9C427F3F8FB00B461C4 /* KJPlayerSharedInstance.h */,
+				938AE9C527F3F8FB00B461C4 /* KJDownloader.m */,
+				938AE9C627F3F8FB00B461C4 /* KJFileHandleInfo.m */,
+				938AE9C727F3F8FB00B461C4 /* KJFileHandleManager.m */,
+				938AE9C827F3F8FB00B461C4 /* KJPlayerSharedInstance.m */,
+				938AE9C927F3F8FB00B461C4 /* KJDownloader.h */,
+				938AE9CA27F3F8FB00B461C4 /* KJFileHandleInfo.h */,
+				938AE9CB27F3F8FB00B461C4 /* KJFileHandleManager.h */,
+			);
+			path = Downloader;
+			sourceTree = "<group>";
+		};
+		938AE9CC27F3F8FB00B461C4 /* PingTimer */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9CD27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.h */,
+				938AE9CE27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m */,
+			);
+			path = PingTimer;
+			sourceTree = "<group>";
+		};
+		938AE9CF27F3F8FB00B461C4 /* DynamicSource */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9D027F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m */,
+				938AE9D127F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.h */,
+			);
+			path = DynamicSource;
+			sourceTree = "<group>";
+		};
+		938AE9D227F3F8FB00B461C4 /* SkipTime */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9D327F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m */,
+				938AE9D427F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.h */,
+			);
+			path = SkipTime;
+			sourceTree = "<group>";
+		};
+		938AE9D527F3F8FB00B461C4 /* BackgroundMonitoring */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9D627F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m */,
+				938AE9D727F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.h */,
+			);
+			path = BackgroundMonitoring;
+			sourceTree = "<group>";
+		};
+		938AE9D827F3F8FB00B461C4 /* RecordTime */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9D927F3F8FB00B461C4 /* KJBasePlayer+KJRecordTime.h */,
+				938AE9DA27F3F8FB00B461C4 /* KJBasePlayer+KJRecordTime.m */,
+			);
+			path = RecordTime;
+			sourceTree = "<group>";
+		};
+		938AE9DB27F3F8FB00B461C4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9DC27F3F8FB00B461C4 /* KJPlayerConst.m */,
+				938AE9DD27F3F8FB00B461C4 /* KJPlayerLog.m */,
+				938AE9DE27F3F8FB00B461C4 /* KJPlayerPod.h */,
+				938AE9DF27F3F8FB00B461C4 /* KJPlayerFunction.h */,
+				938AE9E027F3F8FB00B461C4 /* KJPlayerView.m */,
+				938AE9E127F3F8FB00B461C4 /* KJPlayerBridge.m */,
+				938AE9E227F3F8FB00B461C4 /* KJBasePlayer.m */,
+				938AE9E327F3F8FB00B461C4 /* KJPlayerConst.h */,
+				938AE9E427F3F8FB00B461C4 /* KJPlayerType.h */,
+				938AE9E527F3F8FB00B461C4 /* KJPlayerPod.m */,
+				938AE9E627F3F8FB00B461C4 /* KJPlayerLog.h */,
+				938AE9E727F3F8FB00B461C4 /* KJPlayerProtocol.h */,
+				938AE9E827F3F8FB00B461C4 /* KJPlayerBridge.h */,
+				938AE9E927F3F8FB00B461C4 /* KJPlayerView.h */,
+				938AE9EA27F3F8FB00B461C4 /* KJBasePlayer.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		938AE9EB27F3F8FB00B461C4 /* IJKPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9EC27F3F8FB00B461C4 /* KJIJKPlayer.m */,
+				938AE9ED27F3F8FB00B461C4 /* KJIJKPlayer.h */,
+			);
+			path = IJKPlayer;
+			sourceTree = "<group>";
+		};
+		938AE9EF27F3F8FB00B461C4 /* AVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9F027F3F8FB00B461C4 /* KJAVPlayer.m */,
+				938AE9F127F3F8FB00B461C4 /* AVDownloader */,
+				938AE9F827F3F8FB00B461C4 /* KJAVPlayer.h */,
+			);
+			path = AVPlayer;
+			sourceTree = "<group>";
+		};
+		938AE9F127F3F8FB00B461C4 /* AVDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9F227F3F8FB00B461C4 /* KJResourceLoaderManager.h */,
+				938AE9F327F3F8FB00B461C4 /* KJAVPlayer+KJCache.h */,
+				938AE9F427F3F8FB00B461C4 /* KJResourceLoader.m */,
+				938AE9F527F3F8FB00B461C4 /* KJAVPlayer+KJCache.m */,
+				938AE9F627F3F8FB00B461C4 /* KJResourceLoaderManager.m */,
+				938AE9F727F3F8FB00B461C4 /* KJResourceLoader.h */,
+			);
+			path = AVDownloader;
+			sourceTree = "<group>";
+		};
+		938AE9F927F3F8FB00B461C4 /* OtherView */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9FA27F3F8FB00B461C4 /* KJPlayerStatusLayer.m */,
+				938AE9FB27F3F8FB00B461C4 /* KJPlayerStatusLayer.h */,
+			);
+			path = OtherView;
+			sourceTree = "<group>";
+		};
+		938AE9FC27F3F8FB00B461C4 /* MidiPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				938AE9FD27F3F8FB00B461C4 /* KJMIDIPlayer.h */,
+				938AE9FE27F3F8FB00B461C4 /* KJMIDIPlayer.m */,
+				938AE9FF27F3F8FB00B461C4 /* KJMidiSource.bundle */,
+			);
+			path = MidiPlayer;
+			sourceTree = "<group>";
+		};
+		938AEA0027F3F8FB00B461C4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				938AEA0127F3F8FB00B461C4 /* KJPlayerFastLayer.h */,
+				938AEA0227F3F8FB00B461C4 /* KJRotateManager.m */,
+				938AEA0327F3F8FB00B461C4 /* KJPlayerSystemLayer.h */,
+				938AEA0427F3F8FB00B461C4 /* KJBasePlayerView.m */,
+				938AEA0527F3F8FB00B461C4 /* KJPlayerLoadingLayer.m */,
+				938AEA0627F3F8FB00B461C4 /* KJPlayerOperationView.h */,
+				938AEA0727F3F8FB00B461C4 /* KJPlayerHintLayer.h */,
+				938AEA0827F3F8FB00B461C4 /* KJPlayerButton.h */,
+				938AEA0927F3F8FB00B461C4 /* KJRotateManager.h */,
+				938AEA0A27F3F8FB00B461C4 /* KJPlayerFastLayer.m */,
+				938AEA0B27F3F8FB00B461C4 /* KJBasePlayerView.h */,
+				938AEA0C27F3F8FB00B461C4 /* KJPlayerLoadingLayer.h */,
+				938AEA0D27F3F8FB00B461C4 /* KJPlayerFont.ttf */,
+				938AEA0E27F3F8FB00B461C4 /* KJPlayerSystemLayer.m */,
+				938AEA0F27F3F8FB00B461C4 /* KJPlayerButton.m */,
+				938AEA1027F3F8FB00B461C4 /* KJPlayerOperationView.m */,
+				938AEA1127F3F8FB00B461C4 /* KJPlayerHintLayer.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		93EFFBEF27BA3E1E0043DE06 /* AgoraSDK */ = {
@@ -3447,7 +3475,6 @@
 		D33CE60D1F7CA98D00236720 /* helper */ = {
 			isa = PBXGroup;
 			children = (
-				938AE99127F1BCF900B461C4 /* file */,
 				D33CE60E1F7CA98D00236720 /* ChatSendHelper.h */,
 				D33CE60F1F7CA98D00236720 /* ChatSendHelper.m */,
 				D33CE6101F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.h */,
@@ -4381,7 +4408,7 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
-				935CFB5527C617210093B9DF /* KJPlayer */,
+				938AE9AE27F3F8FB00B461C4 /* KJPlayer */,
 				90FC92282486323B00014CCC /* Masonry */,
 				D33E84C71FB4812400BD622D /* YYKit */,
 				D33CE8AC1F7CD84A00236720 /* WebViewJavascriptBridge */,
@@ -5231,6 +5258,7 @@
 				D3FDC8501EA0A5C600C25BB0 /* tips_false_message@2x.png in Resources */,
 				D3FDC88A1EA0A5C600C25BB0 /* message_agent_2_chatpop_agent@3x.png in Resources */,
 				D3FDC7A21EA0A5C600C25BB0 /* button_blue_select@2x.png in Resources */,
+				938AEA4F27F3F8FC00B461C4 /* KJMidiSource.bundle in Resources */,
 				D3FDC8681EA0A5C600C25BB0 /* fileCopy3_icon_files_small@3x.png in Resources */,
 				90591C342068ADC4007367BD /* checked.png in Resources */,
 				D3FDC8141EA0A5C600C25BB0 /* channel_APP_icon@2x.png in Resources */,
@@ -5254,6 +5282,7 @@
 				93EFFCB827BA6FEB0043DE06 /* record.png in Resources */,
 				D3FDC80E1EA0A5C600C25BB0 /* agents_icon_shai_Text2@2x.png in Resources */,
 				D33CE6A11F7CA98D00236720 /* chat_end@2x.png in Resources */,
+				938AEA4127F3F8FC00B461C4 /* .gitkeep in Resources */,
 				D33CE69D1F7CA98D00236720 /* chat_location_preview.png in Resources */,
 				D3FDC8691EA0A5C600C25BB0 /* gallary_icon_camera_big@3x.png in Resources */,
 				D3FDC76A1EA0A5C600C25BB0 /* VoiceSearchFeedback005@2x.png in Resources */,
@@ -5358,7 +5387,6 @@
 				D3FDC83D1EA0A5C600C25BB0 /* main_tab_icon_ongoing@2x.png in Resources */,
 				D3FDC82D1EA0A5C600C25BB0 /* input_tab_icon_file2@2x.png in Resources */,
 				D3FDC8241EA0A5C600C25BB0 /* historyCopy_icon_morehistory@2x.png in Resources */,
-				935CFBDD27C617230093B9DF /* KJPlayerFont.ttf in Resources */,
 				D3FDC7E71EA0A5C600C25BB0 /* ee_32.png in Resources */,
 				908691E021D5D42900C95C22 /* ic_video_library@2x.png in Resources */,
 				D3FDC7F41EA0A5C600C25BB0 /* icon_select_right@2x.png in Resources */,
@@ -5482,7 +5510,6 @@
 				D3FDC8161EA0A5C600C25BB0 /* channel_web_icon@2x.png in Resources */,
 				D3FDC79E1EA0A5C600C25BB0 /* iconfont.ttf in Resources */,
 				D3FDC8011EA0A5C600C25BB0 /* icon_180@2x.png in Resources */,
-				935CFBD127C617230093B9DF /* .gitkeep in Resources */,
 				D3FDC7F11EA0A5C600C25BB0 /* icon_back@2x.png in Resources */,
 				D3FDC7C11EA0A5C600C25BB0 /* pop_white_select@2x.png in Resources */,
 				D3FDC81C1EA0A5C600C25BB0 /* expand_icon_sessiontag@2x.png in Resources */,
@@ -5567,7 +5594,6 @@
 				D3058D1C1FD6AD920091E048 /* stop@2x.png in Resources */,
 				93EFFCC227BA6FEB0043DE06 /* mac on.png in Resources */,
 				D3FDC7761EA0A5C600C25BB0 /* VoiceSearchFeedback011@2x.png in Resources */,
-				935CFBD827C617230093B9DF /* KJMidiSource.bundle in Resources */,
 				D398392C1FDE6BE100D5F853 /* icon_manager_home@2x.png in Resources */,
 				93EFFCB627BA6FEB0043DE06 /* shareDesktop@2x.png in Resources */,
 				D3FDC8361EA0A5C600C25BB0 /* list_status_radio_droplist_big_3@2x.png in Resources */,
@@ -5607,6 +5633,7 @@
 				D3FDC7751EA0A5C600C25BB0 /* VoiceSearchFeedback011.png in Resources */,
 				D3FDC8531EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy_3@2x.png in Resources */,
 				93EFFCEC27BA6FEB0043DE06 /* mute.png in Resources */,
+				938AEA5927F3F8FC00B461C4 /* KJPlayerFont.ttf in Resources */,
 				D3FDC7621EA0A5C600C25BB0 /* VoiceSearchFeedback001@2x.png in Resources */,
 				D3FDC8651EA0A5C600C25BB0 /* expand_icon_transfer@3x.png in Resources */,
 				D3FDC77F1EA0A5C600C25BB0 /* VoiceSearchFeedback016.png in Resources */,
@@ -5774,6 +5801,7 @@
 				D3E9CE311FBED182005E3677 /* iconfont.css in Resources */,
 				D3058D111FD6AD920091E048 /* line_up@2x.png in Resources */,
 				D3E9CE321FBED182005E3677 /* tabbar_icon_notice@3x.png in Resources */,
+				938AEA4227F3F8FC00B461C4 /* .gitkeep in Resources */,
 				D3E9CE331FBED182005E3677 /* chatBar_keyboard@2x.png in Resources */,
 				D3E9CE341FBED182005E3677 /* info_expand_icon_push@2x.png in Resources */,
 				D3E9CE351FBED182005E3677 /* icon_faceborad_delete.png in Resources */,
@@ -5991,6 +6019,7 @@
 				D398392D1FDE6BE100D5F853 /* icon_manager_home@2x.png in Resources */,
 				D3E9CEF01FBED182005E3677 /* list_status_radio_droplist_big_3@2x.png in Resources */,
 				D3E9CEF11FBED182005E3677 /* icon_contact@2x.png in Resources */,
+				938AEA5A27F3F8FC00B461C4 /* KJPlayerFont.ttf in Resources */,
 				D3E9CEF21FBED182005E3677 /* chatFire_audioPlaying0.png in Resources */,
 				D3E9CEF31FBED182005E3677 /* ee_8.png in Resources */,
 				D3E9CEF41FBED182005E3677 /* main_tab_icon_friend@2x.png in Resources */,
@@ -6012,6 +6041,7 @@
 				D3058D011FD6AD920091E048 /* average_time@2x.png in Resources */,
 				93EFFD0027BA70160043DE06 /* HDCallViewCollectionViewCell.xib in Resources */,
 				D3E9CF021FBED182005E3677 /* tips_false_message@3x.png in Resources */,
+				938AEA5027F3F8FC00B461C4 /* KJMidiSource.bundle in Resources */,
 				D3E9CF031FBED182005E3677 /* pop_blue@2x.png in Resources */,
 				D3E9CF041FBED182005E3677 /* VoiceSearchFeedback014.png in Resources */,
 				D3E9CF051FBED182005E3677 /* image_file2_icon_files@2x.png in Resources */,
@@ -6217,6 +6247,7 @@
 				D3A761461FB55ABE000E1652 /* YYTextParser.m in Sources */,
 				D3A761471FB55ABE000E1652 /* YYTextRubyAnnotation.m in Sources */,
 				D3A761481FB55ABE000E1652 /* YYTextRunDelegate.m in Sources */,
+				938AEA1727F3F8FB00B461C4 /* DBPlayer.xcdatamodeld in Sources */,
 				D3A761491FB55ABE000E1652 /* NSAttributedString+YYText.m in Sources */,
 				D3A7614A1FB55ABE000E1652 /* NSParagraphStyle+YYText.m in Sources */,
 				D3A7614B1FB55ABE000E1652 /* UIPasteboard+YYText.m in Sources */,
@@ -6226,14 +6257,13 @@
 				D3A7614E1FB55ABE000E1652 /* YYTextTransaction.m in Sources */,
 				D350FD121FBD8238004A94D8 /* UIAlertView+KFAdd.m in Sources */,
 				D3A7614F1FB55ABE000E1652 /* YYTextUtilities.m in Sources */,
+				938AEA3727F3F8FC00B461C4 /* KJPlayerView.m in Sources */,
 				D3A761501FB55ABE000E1652 /* YYTextWeakProxy.m in Sources */,
-				935CFBC827C617220093B9DF /* KJBasePlayer+KJBackgroundMonitoring.m in Sources */,
 				D3A761511FB55ABE000E1652 /* YYLabel.m in Sources */,
 				D3A761521FB55ABE000E1652 /* YYTextView.m in Sources */,
 				D3DFB36C1FD7A45F00A9358A /* KFLineChart.m in Sources */,
 				D33CE7C31F7CB08A00236720 /* KFHttpManager.m in Sources */,
 				D324D0AE1EA46ED30009FE68 /* HDBaseViewController.m in Sources */,
-				935CFBD527C617230093B9DF /* KJResourceLoaderManager.m in Sources */,
 				D33CE6B41F7CA98D00236720 /* DXChatBarMoreView.m in Sources */,
 				D33CE68D1F7CA98D00236720 /* QuickReplyAddViewController.m in Sources */,
 				D3A95E311EA0F47100ADD394 /* EMAudioRecorderUtil.m in Sources */,
@@ -6242,37 +6272,40 @@
 				D3A95E531EA0F47100ADD394 /* DACircularProgressView.m in Sources */,
 				D33CE6C01F7CA98D00236720 /* EMChatViewCell.m in Sources */,
 				D33CE6B91F7CA98D00236720 /* EMChatImageBubbleView.m in Sources */,
-				935CFBCB27C617230093B9DF /* KJPlayerLog.m in Sources */,
 				9050CB5E2213C972003A9359 /* KFiFrameView.m in Sources */,
 				93EFFCFD27BA70160043DE06 /* HDCallViewCollectionViewCell.m in Sources */,
 				D33CE6C41F7CA98D00236720 /* EMChatHeaderTagView.m in Sources */,
 				907090E82060BB2D0062FED6 /* KFLeftItemCell.m in Sources */,
+				938AEA4527F3F8FC00B461C4 /* KJResourceLoader.m in Sources */,
 				D33CE7BD1F7CB01000236720 /* AFURLRequestSerialization.m in Sources */,
 				D33CE7B91F7CB01000236720 /* AFHTTPSessionManager.m in Sources */,
 				D33CE7BE1F7CB01000236720 /* AFURLResponseSerialization.m in Sources */,
 				D33CE82D1F7CD01100236720 /* CJSONDeserializer.m in Sources */,
 				D3DFB3881FD8ECDF00A9358A /* KFSuperviseDetailCell.m in Sources */,
 				D33CE7D61F7CB42E00236720 /* DXBaseViewController.m in Sources */,
+				938AEA3527F3F8FC00B461C4 /* KJPlayerLog.m in Sources */,
+				938AEA4727F3F8FC00B461C4 /* KJAVPlayer+KJCache.m in Sources */,
 				90FC924A2486323B00014CCC /* MASLayoutConstraint.m in Sources */,
 				D39838CF1FDA3CE500D5F853 /* KFWarningViewController.m in Sources */,
 				D33CE76B1F7CAEB800236720 /* RealtimeSearchUtil.m in Sources */,
+				938AEA5727F3F8FC00B461C4 /* KJPlayerFastLayer.m in Sources */,
 				D33CE80C1F7CB52500236720 /* DDASLLogger.m in Sources */,
+				938AEA3F27F3F8FC00B461C4 /* KJIJKPlayer.m in Sources */,
 				D33CE68A1F7CA98D00236720 /* ClientInforViewController.m in Sources */,
 				D33CE6CF1F7CA98D00236720 /* HConversationViewController.m in Sources */,
 				D34DF9DF1FA818F30018116D /* AdminWorkloadViewController.m in Sources */,
 				D3A95E641EA0F47100ADD394 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D33CE7D91F7CB42E00236720 /* DXTableViewController.m in Sources */,
-				935CFBD227C617230093B9DF /* KJAVPlayer.m in Sources */,
-				935CFBDA27C617230093B9DF /* KJBasePlayerView.m in Sources */,
 				D33CE7071F7CACAC00236720 /* MMDrawerBarButtonItem.m in Sources */,
-				935CFBC627C617220093B9DF /* KJBasePlayer+KJDynamicSource.m in Sources */,
 				9046FD1220E252F8009B6376 /* HTimePickerView.m in Sources */,
 				D33CE7A01F7CAF6700236720 /* KFPromptView.m in Sources */,
 				D3A95E651EA0F47100ADD394 /* PSTCollectionView.m in Sources */,
+				938AEA5F27F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */,
 				D33CE7BC1F7CB01000236720 /* AFURLConnectionOperation.m in Sources */,
 				90591C442068ADC4007367BD /* KFMonitorInfoView.m in Sources */,
 				D33CE68C1F7CA98D00236720 /* JNGroupViewController.m in Sources */,
 				D33CE7681F7CAEB800236720 /* NSDictionary+SafeValue.m in Sources */,
+				938AEA5D27F3F8FC00B461C4 /* KJPlayerButton.m in Sources */,
 				90D04C752047A17C005B45FC /* HDSelectButton.m in Sources */,
 				D34DF9D91FA818B70018116D /* AdminHomeViewController.m in Sources */,
 				D3B0E9B41FA9E53400014E74 /* ReminderView.m in Sources */,
@@ -6281,20 +6314,22 @@
 				D3A95E6C1EA0F47100ADD394 /* PSTCollectionViewUpdateItem.m in Sources */,
 				93EFFC7E27BA3FC60043DE06 /* HDAgoraCallManager.m in Sources */,
 				D33CE6871F7CA98D00236720 /* EMSetMaxServiceNumberController.m in Sources */,
-				935CFBCD27C617230093B9DF /* KJPlayerBridge.m in Sources */,
 				D33CE7381F7CAD2C00236720 /* HomeViewController.m in Sources */,
 				D33CE76F1F7CAEB800236720 /* UIImage+KFAdd.m in Sources */,
 				D33CE8521F7CD0F800236720 /* EMSDImageCache.m in Sources */,
 				D33CE8711F7CD25800236720 /* SWLongPressGestureRecognizer.m in Sources */,
+				938AEA5527F3F8FC00B461C4 /* KJPlayerLoadingLayer.m in Sources */,
 				D33CE8951F7CD34000236720 /* KFLeaveMsgDetailViewController.m in Sources */,
 				D33CE77C1F7CAF1200236720 /* NotifyViewController.m in Sources */,
 				D33CE7321F7CAD2C00236720 /* HistoryConversationsController.m in Sources */,
-				935CFBC727C617220093B9DF /* KJBasePlayer+KJSkipTime.m in Sources */,
 				D33CE7671F7CAEB800236720 /* NSDate+Formatter.m in Sources */,
 				D33CE77B1F7CAF1200236720 /* NotiDetailViewController.m in Sources */,
 				D33CE6B51F7CA98D00236720 /* DXRecordView.m in Sources */,
+				938AEA2727F3F8FB00B461C4 /* KJPlayerSharedInstance.m in Sources */,
+				938AEA4B27F3F8FC00B461C4 /* KJPlayerStatusLayer.m in Sources */,
 				D34DF9DE1FA818EF0018116D /* AdminStatisticsViewController.m in Sources */,
 				D3A95E661EA0F47100ADD394 /* PSTCollectionViewCell.m in Sources */,
+				938AEA1D27F3F8FB00B461C4 /* KJCacheManager.m in Sources */,
 				D33CE7721F7CAEB800236720 /* UITextField+KFAdd.m in Sources */,
 				D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */,
 				D3DFB35C1FD78F6B00A9358A /* YYClassInfo.m in Sources */,
@@ -6302,18 +6337,19 @@
 				9061557620620861006113FF /* KFSwitchTypeButton.m in Sources */,
 				D33CE6B11F7CA98D00236720 /* DXMessageToolBar.m in Sources */,
 				D33CE79F1F7CAF6700236720 /* KFUserModel.m in Sources */,
+				938AEA2127F3F8FB00B461C4 /* KJDownloader.m in Sources */,
 				90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */,
 				90FC924E2486323B00014CCC /* View+MASAdditions.m in Sources */,
 				D33CE76C1F7CAEB800236720 /* UIAlertView+AlertBlock.m in Sources */,
 				D33CE79A1F7CAF6700236720 /* KFInputEmailViewController.m in Sources */,
-				935CFBDB27C617230093B9DF /* KJPlayerLoadingLayer.m in Sources */,
 				D34DF9DC1FA818E60018116D /* AdminHistoryViewController.m in Sources */,
-				935CFBCE27C617230093B9DF /* KJBasePlayer.m in Sources */,
+				938AEA2D27F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m in Sources */,
 				D3A95E491EA0F47100ADD394 /* MBProgressHUD+Add.m in Sources */,
 				D33CE8561F7CD0F800236720 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				9029423520E37A1C003D0381 /* NSCalendar+Category.m in Sources */,
 				D33CE6C61F7CA98D00236720 /* EMPickerView.m in Sources */,
 				D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */,
+				938AEA3D27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */,
 				90FC924C2486323B00014CCC /* NSArray+MASAdditions.m in Sources */,
 				D33CE76D1F7CAEB800236720 /* UIBarButtonItem+KFAdd.m in Sources */,
 				935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */,
@@ -6327,18 +6363,18 @@
 				D33CE6C21F7CA98D00236720 /* DXTagView.m in Sources */,
 				D33CE7E01F7CB44000236720 /* KFFileCache.m in Sources */,
 				D33CE7311F7CAD2C00236720 /* EMTimePickerViewController.m in Sources */,
+				938AEA2B27F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m in Sources */,
 				D33CE6961F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.m in Sources */,
-				938AE99827F1BD3B00B461C4 /* iCloudManager.m in Sources */,
 				D33CE6CC1F7CA98D00236720 /* CustomerController.m in Sources */,
 				D33CE6C91F7CA98D00236720 /* KFDatePicker.m in Sources */,
 				90D911F020EB8480008B38AA /* UILabel+Category.m in Sources */,
 				D33CE8A81F7CD3D400236720 /* SBDoubleSidedLayer.m in Sources */,
 				D33CE68E1F7CA98D00236720 /* QuickReplySubViewController.m in Sources */,
+				938AEA4927F3F8FC00B461C4 /* KJResourceLoaderManager.m in Sources */,
 				D3A95E501EA0F47100ADD394 /* MWTapDetectingImageView.m in Sources */,
 				D34DF9DB1FA818E40018116D /* AdminCurSessionViewController.m in Sources */,
 				D33CE8131F7CB52500236720 /* DDContextFilterLogFormatter.m in Sources */,
 				D33CE8A91F7CD3D400236720 /* SBGradientOverlayLayer.m in Sources */,
-				935CFBDC27C617230093B9DF /* KJPlayerFastLayer.m in Sources */,
 				D33CE7981F7CAF6700236720 /* KFBaseViewController.m in Sources */,
 				D33CE6B31F7CA98D00236720 /* FacialView.m in Sources */,
 				D34DF9DD1FA818EC0018116D /* AdminQualityofWorkViewController.m in Sources */,
@@ -6349,13 +6385,11 @@
 				D3A95E6D1EA0F47100ADD394 /* PSTGridLayoutInfo.m in Sources */,
 				D3A95E6B1EA0F47100ADD394 /* PSTCollectionViewLayout.m in Sources */,
 				D33CE7351F7CAD2C00236720 /* EMHistoryTimeView.m in Sources */,
-				935CFBCF27C617230093B9DF /* KJPlayerPod.m in Sources */,
 				D33CE7BF1F7CB01000236720 /* AFURLSessionManager.m in Sources */,
 				90591C2E2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */,
 				D3A95E4D1EA0F47100ADD394 /* MWGridViewController.m in Sources */,
 				D33CE85F1F7CD0F800236720 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				90FC9222248627AC00014CCC /* KFSearchController.m in Sources */,
-				935CFBD427C617230093B9DF /* KJAVPlayer+KJCache.m in Sources */,
 				D3A95E751EA0F47100ADD394 /* SRSlimeView.m in Sources */,
 				D33CE8141F7CB52500236720 /* DDDispatchQueueLogFormatter.m in Sources */,
 				D33CE76A1F7CAEB800236720 /* NSString+Escape.m in Sources */,
@@ -6369,9 +6403,11 @@
 				D33CE6FC1F7CAC7D00236720 /* AppDelegate+EaseMob.m in Sources */,
 				D39BD8211EA8D13A008F428C /* KFManager.m in Sources */,
 				D33CE7361F7CAD2C00236720 /* EMNumberPicker.m in Sources */,
+				938AEA5127F3F8FC00B461C4 /* KJRotateManager.m in Sources */,
 				D33CE6CE1F7CA98D00236720 /* ChatViewController.m in Sources */,
 				D33CE7701F7CAEB800236720 /* UINavigationItem+Margin.m in Sources */,
 				90FC922624862C6600014CCC /* UIViewController+KFSearch.m in Sources */,
+				938AEA5B27F3F8FC00B461C4 /* KJPlayerSystemLayer.m in Sources */,
 				D3DFB37C1FD8130000A9358A /* KFSuperviseDetailViewController.m in Sources */,
 				D33CE8601F7CD0F800236720 /* UIImageView+EMWebCache.m in Sources */,
 				D33CE76E1F7CAEB800236720 /* UIButton+KFAdd.m in Sources */,
@@ -6387,7 +6423,6 @@
 				D33CE79C1F7CAF6700236720 /* KFResetPswViewController.m in Sources */,
 				90FC92422486323B00014CCC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D33CE6C71F7CA98D00236720 /* EMPromptBoxView.m in Sources */,
-				935CFBBE27C617220093B9DF /* KJScreenshotsManager.m in Sources */,
 				D33CE85D1F7CD0F800236720 /* UIImage+EMMultiFormat.m in Sources */,
 				D33CE8541F7CD0F800236720 /* EMSDWebImageDecoder.m in Sources */,
 				D3A95E361EA0F47100ADD394 /* EMCDDeviceManagerBase.m in Sources */,
@@ -6396,7 +6431,6 @@
 				D39838D71FDA3D2000D5F853 /* KFWarningModel.m in Sources */,
 				D33CE73F1F7CAD2C00236720 /* LeftMenuHeaderView.m in Sources */,
 				D3A95E321EA0F47100ADD394 /* EMCDDeviceManager+Media.m in Sources */,
-				935CFBC527C617220093B9DF /* KJBasePlayer+KJPingTimer.m in Sources */,
 				D33CE7691F7CAEB800236720 /* NSObject+KFAdd.m in Sources */,
 				D33CE82E1F7CD01100236720 /* CJSONSerializer.m in Sources */,
 				D33CE8BE1F7CDC1B00236720 /* DXUserWaitTableViewCell.m in Sources */,
@@ -6405,6 +6439,8 @@
 				D33CE6FB1F7CAC7D00236720 /* Appdelegate.m in Sources */,
 				93EFFC8027BA3FC60043DE06 /* HDKeyCenter.m in Sources */,
 				D33CE6941F7CA98D00236720 /* EMClientInfoTagView.m in Sources */,
+				938AEA2F27F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m in Sources */,
+				938AEA6127F3F8FC00B461C4 /* KJPlayerHintLayer.m in Sources */,
 				D3A6BB701FB1617400066410 /* HDWebViewController.m in Sources */,
 				D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */,
 				D33CE7DC1F7CB42E00236720 /* DXLoadingView.m in Sources */,
@@ -6413,15 +6449,17 @@
 				D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */,
 				D34DF9E01FA818F60018116D /* KFScreenViewController.m in Sources */,
 				D3A95E331EA0F47100ADD394 /* EMCDDeviceManager+Microphone.m in Sources */,
+				938AEA4327F3F8FC00B461C4 /* KJAVPlayer.m in Sources */,
 				D33CE73A1F7CAD2C00236720 /* KFLeftViewController.m in Sources */,
 				D33CE6D01F7CA98D00236720 /* KFConversationsController.m in Sources */,
 				D33CE7301F7CAD2C00236720 /* EMEditViewController.m in Sources */,
-				935CFBDE27C617230093B9DF /* KJPlayerSystemLayer.m in Sources */,
+				938AEA4D27F3F8FC00B461C4 /* KJMIDIPlayer.m in Sources */,
 				D33CE7DA1F7CB42E00236720 /* EMBaseViewController.m in Sources */,
-				935CFBCC27C617230093B9DF /* KJPlayerView.m in Sources */,
+				938AEA3B27F3F8FC00B461C4 /* KJBasePlayer.m in Sources */,
 				D33CE6B01F7CA98D00236720 /* LocationViewController.m in Sources */,
 				D33CE7EB1F7CB48400236720 /* QuickReplyModel.m in Sources */,
 				D331C2E61FBB0031005CB0D5 /* HDMessage+agent.m in Sources */,
+				938AEA1327F3F8FB00B461C4 /* DBPlayerData.m in Sources */,
 				D33CE7371F7CAD2C00236720 /* HistoryCompileTableViewCell.m in Sources */,
 				D33CE7091F7CACAC00236720 /* MMDrawerVisualState.m in Sources */,
 				D33CE8121F7CB52500236720 /* DDTTYLogger.m in Sources */,
@@ -6430,9 +6468,7 @@
 				D33CE7331F7CAD2C00236720 /* HistoryOptionViewController.m in Sources */,
 				D33CE85E1F7CD0F800236720 /* UIImage+EMWebP.m in Sources */,
 				D3A95E6F1EA0F47100ADD394 /* PSTGridLayoutRow.m in Sources */,
-				935CFBBB27C617220093B9DF /* DBPlayerDataManager.m in Sources */,
 				D3DFB3741FD7E2A000A9358A /* KFArrowButtonView.m in Sources */,
-				935CFBE127C617230093B9DF /* KJPlayerHintLayer.m in Sources */,
 				D33CE7BB1F7CB01000236720 /* AFSecurityPolicy.m in Sources */,
 				D34DF9DA1FA818E10018116D /* AdminBaseViewController.m in Sources */,
 				D3A95E6A1EA0F47100ADD394 /* PSTCollectionViewItemKey.m in Sources */,
@@ -6440,9 +6476,6 @@
 				D398391C1FDA935D00D5F853 /* KFWarningCell.m in Sources */,
 				D33CE8611F7CD0F800236720 /* UIView+EMWebCacheOperation.m in Sources */,
 				D33CE8551F7CD0F800236720 /* EMSDWebImageDownloader.m in Sources */,
-				935CFBD027C617230093B9DF /* KJIJKPlayer.m in Sources */,
-				935CFBBD27C617220093B9DF /* KJBasePlayer+KJTryTime.m in Sources */,
-				935CFBC327C617220093B9DF /* KJFileHandleManager.m in Sources */,
 				D3A95E741EA0F47100ADD394 /* SRRefreshView.m in Sources */,
 				D33CE6931F7CA98D00236720 /* CompileTableViewCell.m in Sources */,
 				D33CE89C1F7CD34000236720 /* LeaveMsgAttatchmentView.m in Sources */,
@@ -6452,25 +6485,20 @@
 				D3ADC6F61FD522FD00ADE88E /* HDSuperviseManagerViewController.m in Sources */,
 				D33CE6C11F7CA98D00236720 /* MessageReadManager.m in Sources */,
 				D33CE68F1F7CA98D00236720 /* QuickReplyViewController.m in Sources */,
-				935CFBBA27C617220093B9DF /* DBPlayerData.m in Sources */,
 				D3DFB3801FD814BE00A9358A /* KFSuperviseBaseViewController.m in Sources */,
-				938AE99A27F1BD3B00B461C4 /* ZZDocument.m in Sources */,
-				935CFBBC27C617220093B9DF /* DBPlayer.xcdatamodeld in Sources */,
+				938AEA1527F3F8FB00B461C4 /* DBPlayerDataManager.m in Sources */,
 				90FC92462486323B00014CCC /* MASCompositeConstraint.m in Sources */,
-				935CFBC227C617220093B9DF /* KJFileHandleInfo.m in Sources */,
 				90FC92482486323B00014CCC /* MASConstraintMaker.m in Sources */,
 				D33CE8591F7CD0F800236720 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D33CE6911F7CA98D00236720 /* TransferViewController.m in Sources */,
 				D33CE8991F7CD34000236720 /* KFLeaveMsgCommentCell.m in Sources */,
 				D33CE85A1F7CD0F800236720 /* NSData+EMImageContentType.m in Sources */,
 				D33CE6921F7CA98D00236720 /* ClientInforHeaderView.m in Sources */,
+				938AEA1F27F3F8FB00B461C4 /* KJBasePlayer+KJCache.m in Sources */,
 				D3A95E4F1EA0F47100ADD394 /* MWPhotoBrowser.m in Sources */,
 				D33CE6891F7CA98D00236720 /* ClientInforCompileController.m in Sources */,
 				D33CE8AA1F7CD3D400236720 /* SBTickerView.m in Sources */,
 				D33CE7081F7CACAC00236720 /* MMDrawerController.m in Sources */,
-				935CFBD327C617230093B9DF /* KJResourceLoader.m in Sources */,
-				935CFBCA27C617230093B9DF /* KJPlayerConst.m in Sources */,
-				935CFBE027C617230093B9DF /* KJPlayerOperationView.m in Sources */,
 				D33CE80B1F7CB52500236720 /* DDAbstractDatabaseLogger.m in Sources */,
 				D33CE7DB1F7CB42E00236720 /* EMSearchDisplayController.m in Sources */,
 				908691DA21D5D1A700C95C22 /* HDChatVideoBubbleView.m in Sources */,
@@ -6478,12 +6506,10 @@
 				D33CE8571F7CD0F800236720 /* EMSDWebImageManager.m in Sources */,
 				D33CE73E1F7CAD2C00236720 /* DXUpdateView.m in Sources */,
 				D33CE7B71F7CB01000236720 /* AFHTTPRequestOperation.m in Sources */,
-				935CFBC127C617220093B9DF /* KJDownloader.m in Sources */,
 				D33CE6BE1F7CA98D00236720 /* EMChatTimeCell.m in Sources */,
 				D33CE7661F7CAEB800236720 /* ChineseToPinyin.m in Sources */,
 				D33F466A1E9F71A000FE6DCE /* main.m in Sources */,
 				D33CE79B1F7CAF6700236720 /* KFPhoneVerifyViewController.m in Sources */,
-				935CFBD627C617230093B9DF /* KJPlayerStatusLayer.m in Sources */,
 				D3A95E671EA0F47100ADD394 /* PSTCollectionViewController.m in Sources */,
 				90FC92542486323B00014CCC /* MASViewAttribute.m in Sources */,
 				D3A95E701EA0F47100ADD394 /* PSTGridLayoutSection.m in Sources */,
@@ -6491,7 +6517,6 @@
 				D3A95E301EA0F47100ADD394 /* EMAudioPlayerUtil.m in Sources */,
 				D33CE6D21F7CA98D00236720 /* HSearchResultsViewController.m in Sources */,
 				D33CE6B71F7CA98D00236720 /* EMChatBaseBubbleView.m in Sources */,
-				935CFBD727C617230093B9DF /* KJMIDIPlayer.m in Sources */,
 				D33CE7D81F7CB42E00236720 /* DXTableViewCellTypeConversation.m in Sources */,
 				D33CE70A1F7CACAC00236720 /* UIViewController+MMDrawerController.m in Sources */,
 				D33CE7B81F7CB01000236720 /* AFHTTPRequestOperationManager.m in Sources */,
@@ -6500,7 +6525,7 @@
 				D33CE7751F7CAEB800236720 /* UIViewController+HUD.m in Sources */,
 				D3A95E511EA0F47100ADD394 /* MWTapDetectingView.m in Sources */,
 				D33CE85C1F7CD0F800236720 /* UIImage+EMGIF.m in Sources */,
-				935CFBC927C617220093B9DF /* KJBasePlayer+KJRecordTime.m in Sources */,
+				938AEA2327F3F8FB00B461C4 /* KJFileHandleInfo.m in Sources */,
 				D33CE8AB1F7CD3D400236720 /* UIView+SBExtras.m in Sources */,
 				D3A6BB691FB058BF00066410 /* HDChatFormBubbleView.m in Sources */,
 				90AFCBDD20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */,
@@ -6511,11 +6536,13 @@
 				D33CE6B81F7CA98D00236720 /* EMChatFileBubbleView.m in Sources */,
 				D3A95E521EA0F47100ADD394 /* MWZoomingScrollView.m in Sources */,
 				D33CE6B21F7CA98D00236720 /* DXFaceView.m in Sources */,
-				935CFBD927C617230093B9DF /* KJRotateManager.m in Sources */,
 				D33CE7731F7CAEB800236720 /* UIView+RNAdditions.m in Sources */,
+				938AEA3127F3F8FC00B461C4 /* KJBasePlayer+KJRecordTime.m in Sources */,
 				90FC92442486323B00014CCC /* ViewController+MASAdditions.m in Sources */,
 				907090EB2060BB530062FED6 /* KFLeftViewItem.m in Sources */,
 				D3A95E761EA0F47100ADD394 /* THProgressView.m in Sources */,
+				938AEA2527F3F8FB00B461C4 /* KJFileHandleManager.m in Sources */,
+				938AEA1927F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m in Sources */,
 				935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */,
 				D3A95E4A1EA0F47100ADD394 /* MBProgressHUD.m in Sources */,
 				90FC92502486323B00014CCC /* MASConstraint.m in Sources */,
@@ -6525,11 +6552,15 @@
 				93EFFC7627BA3FC50043DE06 /* HDSSKeychain.m in Sources */,
 				D33CE6C51F7CA98D00236720 /* EMHeaderImageView.m in Sources */,
 				935CFB5427C4E5D60093B9DF /* KFVideoDetailModel.m in Sources */,
+				938AEA2927F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */,
 				D33CE7991F7CAF6700236720 /* KFCompanyRegisterViewController.m in Sources */,
+				938AEA3327F3F8FC00B461C4 /* KJPlayerConst.m in Sources */,
 				D33CE8731F7CD25800236720 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				D33CE7BA1F7CB01000236720 /* AFNetworkReachabilityManager.m in Sources */,
 				93EFFC7C27BA3FC60043DE06 /* HDAgoraCallMember.m in Sources */,
 				D3A95E7F1EA0F47100ADD394 /* amrFileCodec.mm in Sources */,
+				938AEA1B27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */,
+				938AEA5327F3F8FC00B461C4 /* KJBasePlayerView.m in Sources */,
 				D33CE7D71F7CB42E00236720 /* DXTableViewCellType1.m in Sources */,
 				935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */,
 				D3A95E4E1EA0F47100ADD394 /* MWPhoto.m in Sources */,
@@ -6538,7 +6569,6 @@
 				D33CE6BA1F7CA98D00236720 /* EMChatImageTextBubbleView.m in Sources */,
 				D33CE7A21F7CAF6700236720 /* KFTestParameters.m in Sources */,
 				D3A95E351EA0F47100ADD394 /* EMCDDeviceManager+Remind.m in Sources */,
-				935CFBC427C617220093B9DF /* KJPlayerSharedInstance.m in Sources */,
 				935CFBE827C6185A0093B9DF /* KFPlayerVideoBaseViewController.m in Sources */,
 				D3A95E4B1EA0F47100ADD394 /* MWCaptionView.m in Sources */,
 				D33CE8101F7CB52500236720 /* DDLog.m in Sources */,
@@ -6546,18 +6576,16 @@
 				90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */,
 				D3DFB35A1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */,
 				D33CE6D31F7CA98D00236720 /* DXDatePickerView.m in Sources */,
+				938AEA3927F3F8FC00B461C4 /* KJPlayerBridge.m in Sources */,
 				93D9D07427BF7E0500BD037D /* HDAgoraTicketModel.m in Sources */,
 				9046FCDE20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */,
 				D33CE89E1F7CD34000236720 /* LeaveMsgInputView.m in Sources */,
-				935CFBBF27C617220093B9DF /* KJCacheManager.m in Sources */,
 				D33CE7A11F7CAF6700236720 /* Helper.m in Sources */,
-				935CFBC027C617220093B9DF /* KJBasePlayer+KJCache.m in Sources */,
 				D33CE7EA1F7CB48400236720 /* KFVisitorInfoItem.m in Sources */,
 				90591CDA2068B15B007367BD /* KFMonitorViewController.m in Sources */,
 				D3A95E691EA0F47100ADD394 /* PSTCollectionViewFlowLayout.m in Sources */,
 				D3A95E371EA0F47100ADD394 /* Emoji.m in Sources */,
 				D3A95E801EA0F47100ADD394 /* wav.mm in Sources */,
-				935CFBDF27C617230093B9DF /* KJPlayerButton.m in Sources */,
 				D33CE6951F7CA98D00236720 /* ChatSendHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6566,6 +6594,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				938AE9AB27F3F87B00B461C4 /* HDChatVideoDetailBubbleView.m in Sources */,
+				938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */,
+				938AE9A927F3F82C00B461C4 /* HDAgoraCallViewController.m in Sources */,
+				938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */,
+				938AE9A827F3F7D300B461C4 /* KFPlayerVideoBaseViewController.m in Sources */,
+				938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */,
+				938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */,
 				D3E9CC861FBED182005E3677 /* YYTextContainerView.m in Sources */,
 				D3E9CC871FBED182005E3677 /* YYTextDebugOption.m in Sources */,
 				D3E9CC881FBED182005E3677 /* YYTextEffectWindow.m in Sources */,
@@ -6575,6 +6610,7 @@
 				D3E9CC8C1FBED182005E3677 /* YYTextLine.m in Sources */,
 				D3E9CC8D1FBED182005E3677 /* YYTextMagnifier.m in Sources */,
 				90591C312068ADC4007367BD /* KFMonitorInfoChartViewCell.m in Sources */,
+				938AEA1827F3F8FB00B461C4 /* DBPlayer.xcdatamodeld in Sources */,
 				D3E9CC8E1FBED182005E3677 /* YYTextSelectionView.m in Sources */,
 				D3E9CC8F1FBED182005E3677 /* YYTextArchiver.m in Sources */,
 				D3E9CC901FBED182005E3677 /* YYTextAttribute.m in Sources */,
@@ -6584,6 +6620,7 @@
 				D3E9CC931FBED182005E3677 /* YYTextRunDelegate.m in Sources */,
 				D3E9CC941FBED182005E3677 /* NSAttributedString+YYText.m in Sources */,
 				D3E9CC951FBED182005E3677 /* NSParagraphStyle+YYText.m in Sources */,
+				938AEA3827F3F8FC00B461C4 /* KJPlayerView.m in Sources */,
 				D3E9CC961FBED182005E3677 /* UIPasteboard+YYText.m in Sources */,
 				D3E9CC971FBED182005E3677 /* UIView+YYText.m in Sources */,
 				D3E9CC981FBED182005E3677 /* YYTextAsyncLayer.m in Sources */,
@@ -6602,16 +6639,21 @@
 				D3E9CCC01FBED182005E3677 /* EMAudioRecorderUtil.m in Sources */,
 				D3E9CCC11FBED182005E3677 /* MWGridCell.m in Sources */,
 				D3E9CCC31FBED182005E3677 /* DXTimeFilterView.m in Sources */,
+				938AEA4627F3F8FC00B461C4 /* KJResourceLoader.m in Sources */,
 				D3E9CCC51FBED182005E3677 /* DACircularProgressView.m in Sources */,
 				D3E9CCC61FBED182005E3677 /* EMChatViewCell.m in Sources */,
 				D3E9CCC71FBED182005E3677 /* EMChatImageBubbleView.m in Sources */,
 				9050CB5F2213C972003A9359 /* KFiFrameView.m in Sources */,
 				D3E9CCC81FBED182005E3677 /* EMChatHeaderTagView.m in Sources */,
 				90615572206205C5006113FF /* KFLeftItemCell.m in Sources */,
+				938AEA3627F3F8FC00B461C4 /* KJPlayerLog.m in Sources */,
+				938AEA4827F3F8FC00B461C4 /* KJAVPlayer+KJCache.m in Sources */,
 				D3E9CCC91FBED182005E3677 /* AFURLRequestSerialization.m in Sources */,
 				D3E9CCCA1FBED182005E3677 /* AFHTTPSessionManager.m in Sources */,
 				D3E9CCCB1FBED182005E3677 /* AFURLResponseSerialization.m in Sources */,
+				938AEA5827F3F8FC00B461C4 /* KJPlayerFastLayer.m in Sources */,
 				D3E9CCCD1FBED182005E3677 /* CJSONDeserializer.m in Sources */,
+				938AEA4027F3F8FC00B461C4 /* KJIJKPlayer.m in Sources */,
 				D3DFB3891FD8ECDF00A9358A /* KFSuperviseDetailCell.m in Sources */,
 				D3E9CCCE1FBED182005E3677 /* DXBaseViewController.m in Sources */,
 				90FC924B2486323B00014CCC /* MASLayoutConstraint.m in Sources */,
@@ -6621,10 +6663,12 @@
 				D3E9CCD11FBED182005E3677 /* ClientInforViewController.m in Sources */,
 				D3E9CCD21FBED182005E3677 /* HConversationViewController.m in Sources */,
 				D3E9CCD31FBED182005E3677 /* AdminWorkloadViewController.m in Sources */,
+				938AEA6027F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */,
 				D3E9CCD41FBED182005E3677 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D3E9CCD51FBED182005E3677 /* DXTableViewController.m in Sources */,
 				D3E9CCD61FBED182005E3677 /* MMDrawerBarButtonItem.m in Sources */,
 				D3E9CCD71FBED182005E3677 /* KFPromptView.m in Sources */,
+				938AEA5E27F3F8FC00B461C4 /* KJPlayerButton.m in Sources */,
 				D3E9CCD81FBED182005E3677 /* PSTCollectionView.m in Sources */,
 				D3E9CCD91FBED182005E3677 /* AFURLConnectionOperation.m in Sources */,
 				90591C452068ADC4007367BD /* KFMonitorInfoView.m in Sources */,
@@ -6637,14 +6681,18 @@
 				D3E9CCDE1FBED182005E3677 /* AddTagViewController.m in Sources */,
 				D3E9CCDF1FBED182005E3677 /* SWCellScrollView.m in Sources */,
 				D3E9CCE01FBED182005E3677 /* PSTCollectionViewUpdateItem.m in Sources */,
+				938AEA5627F3F8FC00B461C4 /* KJPlayerLoadingLayer.m in Sources */,
 				D3E9CCE11FBED182005E3677 /* EMSetMaxServiceNumberController.m in Sources */,
 				D3E9CCE21FBED182005E3677 /* HomeViewController.m in Sources */,
 				D3E9CCE31FBED182005E3677 /* UIImage+KFAdd.m in Sources */,
 				D3E9CCE41FBED182005E3677 /* EMSDImageCache.m in Sources */,
 				D3E9CCE51FBED182005E3677 /* SWLongPressGestureRecognizer.m in Sources */,
 				D3E9CCE61FBED182005E3677 /* KFLeaveMsgDetailViewController.m in Sources */,
+				938AEA2827F3F8FB00B461C4 /* KJPlayerSharedInstance.m in Sources */,
+				938AEA4C27F3F8FC00B461C4 /* KJPlayerStatusLayer.m in Sources */,
 				D3E9CCE71FBED182005E3677 /* NotifyViewController.m in Sources */,
 				D3E9CCE81FBED182005E3677 /* HistoryConversationsController.m in Sources */,
+				938AEA1E27F3F8FB00B461C4 /* KJCacheManager.m in Sources */,
 				D3E9CCE91FBED182005E3677 /* NSDate+Formatter.m in Sources */,
 				D3E9CCEA1FBED182005E3677 /* NotiDetailViewController.m in Sources */,
 				D3E9CCEB1FBED182005E3677 /* DXRecordView.m in Sources */,
@@ -6652,16 +6700,19 @@
 				D3E9CCED1FBED182005E3677 /* PSTCollectionViewCell.m in Sources */,
 				D3E9CCEF1FBED182005E3677 /* UITextField+KFAdd.m in Sources */,
 				D3058CEC1FD684F30091E048 /* HDTipLabel.m in Sources */,
+				938AEA2227F3F8FB00B461C4 /* KJDownloader.m in Sources */,
 				D3DFB35D1FD78F6B00A9358A /* YYClassInfo.m in Sources */,
 				D3E9CCF01FBED182005E3677 /* EMChatViewBaseCell.m in Sources */,
 				9061557720620EF9006113FF /* KFSwitchTypeButton.m in Sources */,
 				D3E9CCF11FBED182005E3677 /* DXMessageToolBar.m in Sources */,
 				D3E9CCF21FBED182005E3677 /* KFUserModel.m in Sources */,
+				938AEA2E27F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m in Sources */,
 				D3E9CCF31FBED182005E3677 /* UIAlertView+AlertBlock.m in Sources */,
 				D3E9CCF41FBED182005E3677 /* KFInputEmailViewController.m in Sources */,
 				90FC924F2486323B00014CCC /* View+MASAdditions.m in Sources */,
 				D3E9CCF51FBED182005E3677 /* AdminHistoryViewController.m in Sources */,
 				93EFFC8127BA3FC60043DE06 /* HDKeyCenter.m in Sources */,
+				938AEA3E27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */,
 				D3E9CCF61FBED182005E3677 /* MBProgressHUD+Add.m in Sources */,
 				D3E9CCF81FBED182005E3677 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				D3E9CCFB1FBED182005E3677 /* EMPickerView.m in Sources */,
@@ -6675,6 +6726,7 @@
 				D3E9CD001FBED182005E3677 /* CommentEditViewController.m in Sources */,
 				D3E9CD011FBED182005E3677 /* SWTableViewCell.m in Sources */,
 				D3E9CD021FBED182005E3677 /* DXTipView.m in Sources */,
+				938AEA2C27F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m in Sources */,
 				90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */,
 				D3E9CD031FBED182005E3677 /* DXTagView.m in Sources */,
 				D3E9CD051FBED182005E3677 /* KFFileCache.m in Sources */,
@@ -6682,6 +6734,7 @@
 				D3E9CD071FBED182005E3677 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				D3E9CD081FBED182005E3677 /* CustomerController.m in Sources */,
 				D3E9CD091FBED182005E3677 /* KFDatePicker.m in Sources */,
+				938AEA4A27F3F8FC00B461C4 /* KJResourceLoaderManager.m in Sources */,
 				D3E9CD0B1FBED182005E3677 /* SBDoubleSidedLayer.m in Sources */,
 				D3E9CD0C1FBED182005E3677 /* QuickReplySubViewController.m in Sources */,
 				D3E9CD0D1FBED182005E3677 /* MWTapDetectingImageView.m in Sources */,
@@ -6714,9 +6767,11 @@
 				90591C432068ADC4007367BD /* KFMonitorLabelModel.m in Sources */,
 				90591C3D2068ADC4007367BD /* RadioButton.m in Sources */,
 				D3E9CD271FBED182005E3677 /* KFTrendDataModel.m in Sources */,
+				938AEA5227F3F8FC00B461C4 /* KJRotateManager.m in Sources */,
 				D3E9CD281FBED182005E3677 /* NSMutableArray+SWUtilityButtons.m in Sources */,
 				D3E9CD291FBED182005E3677 /* AppDelegate+EaseMob.m in Sources */,
 				90AFCBDE20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */,
+				938AEA5C27F3F8FC00B461C4 /* KJPlayerSystemLayer.m in Sources */,
 				D3E9CD2B1FBED182005E3677 /* KFManager.m in Sources */,
 				D3E9CD2C1FBED182005E3677 /* EMNumberPicker.m in Sources */,
 				D3E9CD2E1FBED182005E3677 /* ChatViewController.m in Sources */,
@@ -6748,6 +6803,8 @@
 				D3E9CD421FBED182005E3677 /* NSObject+KFAdd.m in Sources */,
 				D3E9CD431FBED182005E3677 /* CJSONSerializer.m in Sources */,
 				D3E9CD441FBED182005E3677 /* DXUserWaitTableViewCell.m in Sources */,
+				938AEA3027F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m in Sources */,
+				938AEA6227F3F8FC00B461C4 /* KJPlayerHintLayer.m in Sources */,
 				9046FCDF20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */,
 				D3E9CD451FBED182005E3677 /* AdminInforViewController.m in Sources */,
 				D3E9CD461FBED182005E3677 /* EmotionEscape.m in Sources */,
@@ -6756,13 +6813,17 @@
 				D3E9CD4A1FBED182005E3677 /* HDWebViewController.m in Sources */,
 				D3E9CD4B1FBED182005E3677 /* EMVoiceConverter.mm in Sources */,
 				D3E9CD4D1FBED182005E3677 /* DXLoadingView.m in Sources */,
+				938AEA4427F3F8FC00B461C4 /* KJAVPlayer.m in Sources */,
 				D3E9CD4E1FBED182005E3677 /* EMChatTextBubbleView.m in Sources */,
 				D3E9CD4F1FBED182005E3677 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				D3E9CD501FBED182005E3677 /* HDBaseNavigationController.m in Sources */,
+				938AEA4E27F3F8FC00B461C4 /* KJMIDIPlayer.m in Sources */,
 				D3E9CD511FBED182005E3677 /* KFScreenViewController.m in Sources */,
+				938AEA3C27F3F8FC00B461C4 /* KJBasePlayer.m in Sources */,
 				D3E9CD531FBED182005E3677 /* EMCDDeviceManager+Microphone.m in Sources */,
 				D3E9CD541FBED182005E3677 /* KFLeftViewController.m in Sources */,
 				D3E9CD551FBED182005E3677 /* KFConversationsController.m in Sources */,
+				938AEA1427F3F8FB00B461C4 /* DBPlayerData.m in Sources */,
 				D3E9CD561FBED182005E3677 /* EMEditViewController.m in Sources */,
 				93EFFC7927BA3FC50043DE06 /* HDAgoraCallOptions.m in Sources */,
 				D3E9CD571FBED182005E3677 /* EMBaseViewController.m in Sources */,
@@ -6789,6 +6850,7 @@
 				D3E9CD681FBED182005E3677 /* CompileTableViewCell.m in Sources */,
 				D3E9CD691FBED182005E3677 /* LeaveMsgAttatchmentView.m in Sources */,
 				D3ADC6F71FD522FD00ADE88E /* HDSuperviseManagerViewController.m in Sources */,
+				938AEA1627F3F8FB00B461C4 /* DBPlayerDataManager.m in Sources */,
 				D3E9CD6A1FBED182005E3677 /* MessageReadManager.m in Sources */,
 				90FC92532486323B00014CCC /* MASViewConstraint.m in Sources */,
 				D3E9CD6B1FBED182005E3677 /* QuickReplyViewController.m in Sources */,
@@ -6797,6 +6859,7 @@
 				D3E9CD6E1FBED182005E3677 /* TransferViewController.m in Sources */,
 				90FC92472486323B00014CCC /* MASCompositeConstraint.m in Sources */,
 				90FC92492486323B00014CCC /* MASConstraintMaker.m in Sources */,
+				938AEA2027F3F8FB00B461C4 /* KJBasePlayer+KJCache.m in Sources */,
 				D3E9CD6F1FBED182005E3677 /* KFLeaveMsgCommentCell.m in Sources */,
 				D3E9CD701FBED182005E3677 /* NSData+EMImageContentType.m in Sources */,
 				D3E9CD711FBED182005E3677 /* ClientInforHeaderView.m in Sources */,
@@ -6827,6 +6890,7 @@
 				D3E9CD891FBED182005E3677 /* UIViewController+MMDrawerController.m in Sources */,
 				D3E9CD8A1FBED182005E3677 /* AFHTTPRequestOperationManager.m in Sources */,
 				D3E9CD8B1FBED182005E3677 /* EMChatAudioBubbleView.m in Sources */,
+				938AEA2427F3F8FB00B461C4 /* KJFileHandleInfo.m in Sources */,
 				D3E9CD8C1FBED182005E3677 /* EMSDWebImageCompat.m in Sources */,
 				D3E9CD8D1FBED182005E3677 /* UIViewController+HUD.m in Sources */,
 				D3E9CD8E1FBED182005E3677 /* MWTapDetectingView.m in Sources */,
@@ -6838,9 +6902,12 @@
 				D3E9CD921FBED182005E3677 /* PSTGridLayoutItem.m in Sources */,
 				D3E9CD931FBED182005E3677 /* WaitQueueViewController.m in Sources */,
 				D3E9CD941FBED182005E3677 /* EMChatFileBubbleView.m in Sources */,
+				938AEA3227F3F8FC00B461C4 /* KJBasePlayer+KJRecordTime.m in Sources */,
 				D3E9CD951FBED182005E3677 /* MWZoomingScrollView.m in Sources */,
 				D3E9CD961FBED182005E3677 /* DXFaceView.m in Sources */,
 				D3E9CD981FBED182005E3677 /* UIView+RNAdditions.m in Sources */,
+				938AEA2627F3F8FB00B461C4 /* KJFileHandleManager.m in Sources */,
+				938AEA1A27F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m in Sources */,
 				90615573206205C7006113FF /* KFLeftViewItem.m in Sources */,
 				D3E9CD991FBED182005E3677 /* THProgressView.m in Sources */,
 				D3E9CD9A1FBED182005E3677 /* MBProgressHUD.m in Sources */,
@@ -6850,11 +6917,15 @@
 				D3E9CD9C1FBED182005E3677 /* EMSDWebImagePrefetcher.m in Sources */,
 				90FC92512486323B00014CCC /* MASConstraint.m in Sources */,
 				D3E9CD9D1FBED182005E3677 /* EMTagView.m in Sources */,
+				938AEA2A27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */,
 				D3E9CD9E1FBED182005E3677 /* EMHeaderImageView.m in Sources */,
+				938AEA3427F3F8FC00B461C4 /* KJPlayerConst.m in Sources */,
 				D3E9CD9F1FBED182005E3677 /* KFCompanyRegisterViewController.m in Sources */,
 				9094C5A820ECAD5800E9A057 /* KFChatViewRecallCell.m in Sources */,
 				9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */,
 				D3E9CDA01FBED182005E3677 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
+				938AEA1C27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */,
+				938AEA5427F3F8FC00B461C4 /* KJBasePlayerView.m in Sources */,
 				D3E9CDA11FBED182005E3677 /* AFNetworkReachabilityManager.m in Sources */,
 				D3E9CDA31FBED182005E3677 /* amrFileCodec.mm in Sources */,
 				D3E9CDA41FBED182005E3677 /* DXTableViewCellType1.m in Sources */,
@@ -6870,16 +6941,15 @@
 				D3DFB35B1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */,
 				D3E9CDAE1FBED182005E3677 /* DXDatePickerView.m in Sources */,
 				D3E9CDAF1FBED182005E3677 /* LeaveMsgInputView.m in Sources */,
+				938AEA3A27F3F8FC00B461C4 /* KJPlayerBridge.m in Sources */,
 				D3E9CDB01FBED182005E3677 /* Helper.m in Sources */,
 				90091DE120D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */,
 				D3E9CDB11FBED182005E3677 /* KFVisitorInfoItem.m in Sources */,
 				90591CDB2068B15B007367BD /* KFMonitorViewController.m in Sources */,
 				D3E9CDB21FBED182005E3677 /* PSTCollectionViewFlowLayout.m in Sources */,
 				D3E9CDB31FBED182005E3677 /* Emoji.m in Sources */,
-				938AE99927F1BD3B00B461C4 /* iCloudManager.m in Sources */,
 				D3E9CDB41FBED182005E3677 /* wav.mm in Sources */,
 				D3E9CDB51FBED182005E3677 /* ChatSendHelper.m in Sources */,
-				938AE99B27F1BD3B00B461C4 /* ZZDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7118,7 +7188,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = JC854K845H;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7136,7 +7206,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/AgentSDKDemo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7148,7 +7218,10 @@
 				);
 				MARKETING_VERSION = 3.1.0;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7165,7 +7238,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = JC854K845H;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7179,7 +7252,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "APPSTORE=1";
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/AgentSDKDemo/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7190,7 +7263,10 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
 				MARKETING_VERSION = 3.1.0;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"$(inherited)",
+				);
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -7231,12 +7307,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		935CFB5C27C617210093B9DF /* DBPlayer.xcdatamodeld */ = {
+		938AE9B527F3F8FB00B461C4 /* DBPlayer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				935CFB5D27C617210093B9DF /* DBPlayer.xcdatamodel */,
+				938AE9B627F3F8FB00B461C4 /* DBPlayer.xcdatamodel */,
 			);
-			currentVersion = 935CFB5D27C617210093B9DF /* DBPlayer.xcdatamodel */;
+			currentVersion = 938AE9B627F3F8FB00B461C4 /* DBPlayer.xcdatamodel */;
 			path = DBPlayer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

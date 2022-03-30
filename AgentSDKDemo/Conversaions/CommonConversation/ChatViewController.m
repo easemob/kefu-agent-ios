@@ -40,7 +40,6 @@
 #import "HDAgoraCallManager.h"
 #import "KFVideoDetailViewController.h"
 #import "KFVideoDetailModel.h"
-#import "iCloudManager.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -2049,19 +2048,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                 NSString *fileName = [array lastObject];
                 fileName = [fileName stringByRemovingPercentEncoding];
                 
-//                if ([iCloudManager iCloudEnable]) {
-                    [iCloudManager downloadWithDocumentURL:newURL callBack:^(id obj) {
-                        NSData *data = obj;
-                        //写入沙盒Documents
-                         NSString *path = [NSHomeDirectory() stringByAppendingString:[NSString stringWithFormat:@"/Library/kefuAppFile/%@",fileName]];
-                     BOOL success =   [data writeToFile:path atomically:YES];
-                        
-                        if (success) {
-                            //发送文件
-                            [self sendFileMessagePath:path withDisplayName:fileName];
-                        }
-                        
-                    }];
+//       
 //                }
                 
                 
