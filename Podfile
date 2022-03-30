@@ -13,7 +13,7 @@ end
 target 'AgentSDKDemoAppStore' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
+  pod 'AgoraRtcEngine_iOS'
   # Pods for AgentSDKDemoAppStore
   pod 'AAChartKit', :git => 'https://github.com/AAChartModel/AAChartKit.git'
   pod 'WebViewJavascriptBridge', '~> 6.0'
