@@ -57,18 +57,18 @@
     _takePicButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_takePicButton];
     
-    _videoButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_videoButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
-    [_videoButton setImage:[UIImage imageNamed:@"btn__icon_qubz"] forState:UIControlStateNormal];
-    [_videoButton setImage:[UIImage imageNamed:@"btn__icon_qubz"] forState:UIControlStateHighlighted];
-    [_videoButton setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
-    [_videoButton addTarget:self action:@selector(fileAction) forControlEvents:UIControlEventTouchUpInside];
-    [_videoButton setTitle:@"文件" forState:UIControlStateNormal];
-    [_videoButton setTitleEdgeInsets:CHAT_BUTTON_TITLE_EDGEINSETS];
-    [_videoButton setTitleColor:CHAT_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
-    [_videoButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    _videoButton.titleLabel.font = [UIFont systemFontOfSize:CHAT_BUTTON_TEXT_FONT];
-    _videoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+//    _videoButton =[UIButton buttonWithType:UIButtonTypeCustom];
+//    [_videoButton setFrame:CGRectMake(insets * 2 + CHAT_BUTTON_SIZE, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+//    [_videoButton setImage:[UIImage imageNamed:@"btn__icon_qubz"] forState:UIControlStateNormal];
+//    [_videoButton setImage:[UIImage imageNamed:@"btn__icon_qubz"] forState:UIControlStateHighlighted];
+//    [_videoButton setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
+//    [_videoButton addTarget:self action:@selector(fileAction) forControlEvents:UIControlEventTouchUpInside];
+//    [_videoButton setTitle:@"文件" forState:UIControlStateNormal];
+//    [_videoButton setTitleEdgeInsets:CHAT_BUTTON_TITLE_EDGEINSETS];
+//    [_videoButton setTitleColor:CHAT_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
+//    [_videoButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+//    _videoButton.titleLabel.font = [UIFont systemFontOfSize:CHAT_BUTTON_TEXT_FONT];
+//    _videoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
 //    [self addSubview:_videoButton];
     
     CGRect frame = self.frame;

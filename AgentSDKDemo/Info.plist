@@ -38,6 +38,8 @@
 	<string>需要访问你的摄像机</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>需要访问你的位置</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>需要访问你的位置</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>需要访问你的位置</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -45,9 +47,7 @@
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要访问你的相册</string>
 	<key>UIBackgroundModes</key>
-	<array>
-		<string>audio</string>
-	</array>
+	<array/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

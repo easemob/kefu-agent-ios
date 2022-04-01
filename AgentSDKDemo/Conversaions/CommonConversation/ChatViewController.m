@@ -40,6 +40,7 @@
 #import "HDAgoraCallManager.h"
 #import "KFVideoDetailViewController.h"
 #import "KFVideoDetailModel.h"
+#import "KFICloudManager.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -2034,21 +2035,21 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         
         [fileCoordinator coordinateReadingItemAtURL:urls.firstObject options:0 error:&error byAccessor:^(NSURL *newURL) {
             //读取文件
-            NSString *fileName = [newURL lastPathComponent];
-            NSError *error = nil;
-            NSData *fileData = [NSData dataWithContentsOfURL:newURL options:NSDataReadingMappedIfSafe error:&error];
             if (error) {
                 //读取出错
             } else {
-                //文件 上传或者其它操作
-//                [self uploadingWithFileData:fileData fileName:fileName fileURL:newURL];
-                NSLog(@"------------->文件 上传或者其它操作");
-                
-                NSArray *array = [[newURL absoluteString] componentsSeparatedByString:@"/"];
-                NSString *fileName = [array lastObject];
-                fileName = [fileName stringByRemovingPercentEncoding];
-                
-//       
+//                if ([KFICloudManager iCloudEnable]) {
+                    [KFICloudManager downloadWithDocumentURL:newURL callBack:^(id obj) {
+                        NSData *data = obj;
+                        //写入沙盒Documents
+                        NSArray *array = [[newURL absoluteString] componentsSeparatedByString:@"/"];
+                        NSString *fileName = [array lastObject];
+                        fileName = [fileName stringByRemovingPercentEncoding];
+                        NSString *docPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",fileName]];
+                                        
+                        [self writeToFile:docPath withData:data];
+                    }];
+                        
 //                }
                 
                 
@@ -2059,6 +2060,25 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [urls.firstObject stopAccessingSecurityScopedResource];
     } else {
         //授权失败
+    }
+}
+- (void)writeToFile:(NSString *)path withData:(NSData *)data{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //访问【沙盒的document】目录下的问题件，该目录下支持手动增加、修改、删除文件及目录
+    if(![fileManager fileExistsAtPath:path]){
+        //如果不存在
+        BOOL success =   [data writeToFile:path atomically:YES];
+        if (success) {
+            //取出来
+            NSData *   datastr = [NSData dataWithContentsOfFile:path];
+            NSLog(@"------------->开始发送文件==%@",datastr);
+            [self sendFileMessagePath:path withDisplayName:@"12"];
+        }
+    }else{
+        //取出来 发送
+        NSData *   datastr = [NSData dataWithContentsOfFile:path];
+        NSLog(@"------------->开始发送文件==%@",datastr);
+        [self sendFileMessagePath:path withDisplayName:@"12"];
     }
 }
 

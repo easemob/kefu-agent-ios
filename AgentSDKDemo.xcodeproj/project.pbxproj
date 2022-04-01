@@ -115,11 +115,19 @@
 		90FC92552486323B00014CCC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92412486323B00014CCC /* MASViewAttribute.m */; };
 		90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
+		93119A4227F58FC100F749F3 /* KFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A3F27F58FC100F749F3 /* KFDocument.m */; };
+		93119A4327F58FC100F749F3 /* KFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A3F27F58FC100F749F3 /* KFDocument.m */; };
+		93119A4427F58FC100F749F3 /* KFICloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A4027F58FC100F749F3 /* KFICloudManager.m */; };
+		93119A4527F58FC100F749F3 /* KFICloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A4027F58FC100F749F3 /* KFICloudManager.m */; };
 		935CFB5427C4E5D60093B9DF /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
 		935CFBE827C6185A0093B9DF /* KFPlayerVideoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */; };
 		935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */; };
 		935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
+		9363604327F4668E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; };
+		9363604427F4668E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9363604627F4669E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; };
+		9363604727F4669E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
@@ -1594,6 +1602,8 @@
 			files = (
 				D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */,
 				904C34C023D4587D00EA2521 /* AgentSDK.framework in Embed Frameworks */,
+				9363604427F4668E003D4667 /* AgentSDK.framework in Embed Frameworks */,
+				9363604727F4669E003D4667 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1703,6 +1713,12 @@
 		90FC92412486323B00014CCC /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		90FC92562486363C00014CCC /* EMRealtimeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRealtimeSearch.h; sourceTree = "<group>"; };
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
+		93119A3E27F58FC100F749F3 /* KFICloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFICloudManager.h; sourceTree = "<group>"; };
+		93119A3F27F58FC100F749F3 /* KFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDocument.m; sourceTree = "<group>"; };
+		93119A4027F58FC100F749F3 /* KFICloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFICloudManager.m; sourceTree = "<group>"; };
+		93119A4127F58FC100F749F3 /* KFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDocument.h; sourceTree = "<group>"; };
+		93119A4627F5937F00F749F3 /* AgentSDKDemoRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemoRelease.entitlements; sourceTree = "<group>"; };
+		93119A4727F593AA00F749F3 /* AgentSDKDemoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemoDebug.entitlements; sourceTree = "<group>"; };
 		935CFB5227C4E5D60093B9DF /* KFVideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailModel.h; sourceTree = "<group>"; };
 		935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoDetailModel.m; sourceTree = "<group>"; };
 		935CFBE327C617F70093B9DF /* KFVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailViewController.h; sourceTree = "<group>"; };
@@ -1713,6 +1729,8 @@
 		935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDChatVideoDetailBubbleView.m; sourceTree = "<group>"; };
 		935FF7FC277451320034ED6F /* KFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebViewController.h; sourceTree = "<group>"; };
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
+		9363604227F4668E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9363604527F4669E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerData.m; sourceTree = "<group>"; };
 		938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerDataManager.m; sourceTree = "<group>"; };
 		938AE9B427F3F8FB00B461C4 /* DBPlayerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerDataManager.h; sourceTree = "<group>"; };
@@ -2828,6 +2846,7 @@
 				D3E9CDB71FBED182005E3677 /* SystemConfiguration.framework in Frameworks */,
 				D3E9CDB81FBED182005E3677 /* HyphenateLite.framework in Frameworks */,
 				D3E9CDB91FBED182005E3677 /* Bugly.framework in Frameworks */,
+				9363604627F4669E003D4667 /* AgentSDK.framework in Frameworks */,
 				D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */,
 				904C34BF23D4587D00EA2521 /* AgentSDK.framework in Frameworks */,
 				D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */,
@@ -2835,6 +2854,7 @@
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
+				9363604327F4668E003D4667 /* AgentSDK.framework in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
 				673C1B1209F420D67D2BAD4F /* Pods_AgentSDKDemoAppStore.framework in Frameworks */,
 			);
@@ -2969,6 +2989,17 @@
 				90FC92412486323B00014CCC /* MASViewAttribute.m */,
 			);
 			path = Masonry;
+			sourceTree = "<group>";
+		};
+		93119A3D27F58FC100F749F3 /* Document */ = {
+			isa = PBXGroup;
+			children = (
+				93119A3E27F58FC100F749F3 /* KFICloudManager.h */,
+				93119A4027F58FC100F749F3 /* KFICloudManager.m */,
+				93119A4127F58FC100F749F3 /* KFDocument.h */,
+				93119A3F27F58FC100F749F3 /* KFDocument.m */,
+			);
+			path = Document;
 			sourceTree = "<group>";
 		};
 		935CFBE227C617980093B9DF /* Player */ = {
@@ -3475,6 +3506,7 @@
 		D33CE60D1F7CA98D00236720 /* helper */ = {
 			isa = PBXGroup;
 			children = (
+				93119A3D27F58FC100F749F3 /* Document */,
 				D33CE60E1F7CA98D00236720 /* ChatSendHelper.h */,
 				D33CE60F1F7CA98D00236720 /* ChatSendHelper.m */,
 				D33CE6101F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.h */,
@@ -4294,6 +4326,8 @@
 		D33F46671E9F71A000FE6DCE /* AgentSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
+				93119A4727F593AA00F749F3 /* AgentSDKDemoDebug.entitlements */,
+				93119A4627F5937F00F749F3 /* AgentSDKDemoRelease.entitlements */,
 				93EFFBEF27BA3E1E0043DE06 /* AgoraSDK */,
 				90591CD72068B14F007367BD /* KFMonitorViewController */,
 				90591C152068ADC3007367BD /* Custom */,
@@ -4704,6 +4738,8 @@
 		D3FDC5121EA08C0900C25BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9363604527F4669E003D4667 /* AgentSDK.framework */,
+				9363604227F4668E003D4667 /* AgentSDK.framework */,
 				904C34BE23D4587D00EA2521 /* AgentSDK.framework */,
 				904C34BB23D4587700EA2521 /* AgentSDK.framework */,
 				90C3048E233DC3A100AE1DEB /* AgentSDK.framework */,
@@ -6256,6 +6292,7 @@
 				90A2B534206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */,
 				D3A7614E1FB55ABE000E1652 /* YYTextTransaction.m in Sources */,
 				D350FD121FBD8238004A94D8 /* UIAlertView+KFAdd.m in Sources */,
+				93119A4427F58FC100F749F3 /* KFICloudManager.m in Sources */,
 				D3A7614F1FB55ABE000E1652 /* YYTextUtilities.m in Sources */,
 				938AEA3727F3F8FC00B461C4 /* KJPlayerView.m in Sources */,
 				D3A761501FB55ABE000E1652 /* YYTextWeakProxy.m in Sources */,
@@ -6411,6 +6448,7 @@
 				D3DFB37C1FD8130000A9358A /* KFSuperviseDetailViewController.m in Sources */,
 				D33CE8601F7CD0F800236720 /* UIImageView+EMWebCache.m in Sources */,
 				D33CE76E1F7CAEB800236720 /* UIButton+KFAdd.m in Sources */,
+				93119A4227F58FC100F749F3 /* KFDocument.m in Sources */,
 				D33CE8B71F7CD84A00236720 /* EMUIWebViewController.m in Sources */,
 				D3A95E381EA0F47100ADD394 /* EmojiEmoticons.m in Sources */,
 				D33CE79E1F7CAF6700236720 /* LoginViewController.m in Sources */,
@@ -6619,6 +6657,7 @@
 				D3E9CC921FBED182005E3677 /* YYTextRubyAnnotation.m in Sources */,
 				D3E9CC931FBED182005E3677 /* YYTextRunDelegate.m in Sources */,
 				D3E9CC941FBED182005E3677 /* NSAttributedString+YYText.m in Sources */,
+				93119A4527F58FC100F749F3 /* KFICloudManager.m in Sources */,
 				D3E9CC951FBED182005E3677 /* NSParagraphStyle+YYText.m in Sources */,
 				938AEA3827F3F8FC00B461C4 /* KJPlayerView.m in Sources */,
 				D3E9CC961FBED182005E3677 /* UIPasteboard+YYText.m in Sources */,
@@ -6774,6 +6813,7 @@
 				938AEA5C27F3F8FC00B461C4 /* KJPlayerSystemLayer.m in Sources */,
 				D3E9CD2B1FBED182005E3677 /* KFManager.m in Sources */,
 				D3E9CD2C1FBED182005E3677 /* EMNumberPicker.m in Sources */,
+				93119A4327F58FC100F749F3 /* KFDocument.m in Sources */,
 				D3E9CD2E1FBED182005E3677 /* ChatViewController.m in Sources */,
 				D3E9CD2F1FBED182005E3677 /* UINavigationItem+Margin.m in Sources */,
 				D3DFB37D1FD8130000A9358A /* KFSuperviseDetailViewController.m in Sources */,
@@ -7086,7 +7126,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemoDebug.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: LI HOU (UGP7ZG964L)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
@@ -7137,7 +7177,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
-				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
+				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemoRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EaseMob Inc.";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
@@ -7188,7 +7228,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = JC854K845H;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7225,6 +7265,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_WORKSPACE = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
@@ -7238,7 +7279,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = JC854K845H;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7270,6 +7311,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_WORKSPACE = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;

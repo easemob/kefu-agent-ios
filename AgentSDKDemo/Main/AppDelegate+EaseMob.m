@@ -41,7 +41,7 @@
 //    options.restServer = @"a1-kefu.kyemalltest.com";
 //    options.chatServer = @"10.121.224.46";
 //    options.chatPort = 16717;
-    
+//    options.kefuRestAddress = @"https://sandbox.kefu.easemob.com";
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     [self registerRemoteNotification];
     [self registerEaseMobNotification];
