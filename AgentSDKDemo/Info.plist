@@ -46,8 +46,6 @@
 	<string>需要访问你的麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要访问你的相册</string>
-	<key>UIBackgroundModes</key>
-	<array/>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
