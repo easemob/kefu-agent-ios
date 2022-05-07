@@ -11,10 +11,13 @@
 #import "CompileTableViewCell.h"
 #import "UIImageView+EMWebCache.h"
 #import "AdminInforEditViewController.h"
-
+#import "LMJDropdownMenu.h"
+#import "Masonry.h"
 #define URLimage @"//kefu-prod-avatar.img-cn-hangzhou.aliyuncs.com/"
 
-@interface AdminInforViewController () <AdminInforEditViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate>
+@interface AdminInforViewController () <AdminInforEditViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,LMJDropdownMenuDelegate, LMJDropdownMenuDataSource>{
+    NSArray * _answerPatterns;
+}
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic, strong) UIImage *uploadImage;
@@ -22,7 +25,8 @@
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) UISwitch *greetingsSwitch;
-
+@property (nonatomic, strong) UISwitch *appAssistantSwitch;
+@property (nonatomic, strong) LMJDropdownMenu *menu;
 @property (nonatomic, strong) UIView *line;
 
 @end
@@ -46,6 +50,7 @@
 //    [self loadData];
     
     [self showCurrentVersion];
+    _answerPatterns = @[@"精准匹配",@"模糊匹配"];
 }
 
 - (void)showCurrentVersion {
@@ -138,7 +143,16 @@
     }
     return _greetingsSwitch;
 }
-
+- (UISwitch*)appAssistantSwitch
+{
+    if (_appAssistantSwitch == nil) {
+        _appAssistantSwitch = [[UISwitch alloc] init];
+        [_appAssistantSwitch addTarget:self action:@selector(appAssistantSwitchStateAction) forControlEvents:UIControlEventValueChanged];
+        _appAssistantSwitch.left = self.tableView.width - 10 - _appAssistantSwitch.width;
+        _appAssistantSwitch.top = (DEFAULT_CELLHEIGHT - _appAssistantSwitch.height) / 2;
+    }
+    return _appAssistantSwitch;
+}
 #pragma mark - Action
 
 - (void)backAction
@@ -150,7 +164,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -158,6 +172,9 @@
     if (section == 0) {
         return 6;
     } else if (section == 1) {
+        return 2;
+    }
+    else if (section == 2) {
         return 2;
     }
     return 1;
@@ -221,7 +238,7 @@
                 break;
         }
         return cell;
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation1"];
         
         // Configure the cell...
@@ -244,6 +261,33 @@
                 cell.textLabel.textColor = [UIColor blackColor];
             }
             cell.textLabel.width = KScreenWidth - cell.textLabel.left;
+        }
+        return cell;
+    }else if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation1"];
+        // Configure the cell...
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation1"];
+            cell.backgroundColor = UIColor.whiteColor;
+            cell.textLabel.textColor = UIColor.grayColor;
+        }
+        if (indexPath.row == 0) {
+            cell.textLabel.text = @"移动助手";
+            [cell addSubview:self.appAssistantSwitch];
+            [cell addSubview:self.line];
+            [self.appAssistantSwitch setOn:[HDClient sharedClient].currentAgentUser.appAssistantEnable];
+        } else if (indexPath.row == 1) {
+            cell.textLabel.text = @"答案匹配模式";
+            cell.textLabel.width =130;
+            [cell addSubview:self.menu];
+            [self.menu mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.top.offset(10);
+                make.bottom.offset(-10);
+                make.trailing.offset(-15);
+//                make.width.offset(cell.width/2);
+                make.leading.offset(cell.textLabel.width +20);
+                
+            }];
         }
         return cell;
     } else {
@@ -276,9 +320,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 10.f;
+        return 5.f;
     } else if (section == 1) {
-        return 40.f;
+        return 5.f;
+    }
+    else if (section == 2) {
+        return 20.f;
     }
     return 0.f;
 }
@@ -312,7 +359,7 @@
             admin.editContent = cell.nickName.text;
         }
         [self.navigationController pushViewController:admin animated:YES];
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 2) {
         if (indexPath.row == 1) {
             AdminInforEditViewController *admin = [[AdminInforEditViewController alloc] initWithType:6];
             admin.delegate = self;
@@ -320,7 +367,12 @@
             admin.editContent = [HDClient sharedClient].currentAgentUser.greetingContent;
             [self.navigationController pushViewController:admin animated:YES];
         }
-    } else if (indexPath.section == 2) {
+    }else if (indexPath.section == 1) {
+        if (indexPath.row == 1) {
+           
+            
+        }
+    }  else if (indexPath.section == 3) {
         [self logoffButtonAction];
     }
 }
@@ -419,6 +471,24 @@
             [weakSelf refreshView];
         } else {
             [weakSelf showHint:@"保存失败"];
+            
+        }
+    }];
+}
+
+
+- (void)appAssistantSwitchStateAction
+{
+    
+    BOOL isOn = _appAssistantSwitch.isOn;
+    WEAK_SELF
+    [[HDClient sharedClient].setManager enableAppAssistant:isOn completion:^(id responseObject, HDError *error) {
+        if (error == nil) {
+            [weakSelf refreshView];
+            [weakSelf showHint:@"保存成功"];
+        } else {
+            [weakSelf showHint:@"保存失败"];
+            [weakSelf.appAssistantSwitch setOn:NO];
         }
     }];
 }
@@ -464,4 +534,65 @@
     [self refreshView];
 }
 
+- (LMJDropdownMenu *)menu{
+    if (!_menu) {
+        
+        _menu = [[LMJDropdownMenu alloc] init];
+        _menu.delegate   = self;
+        _menu.dataSource = self;
+        
+        _menu.layer.borderColor  = [UIColor whiteColor].CGColor;
+        _menu.layer.cornerRadius  = 5;
+        
+        _menu.title           = @"精准匹配";
+        _menu.titleBgColor    = [UIColor groupTableViewBackgroundColor];
+        _menu.titleFont       = [UIFont boldSystemFontOfSize:15];
+        _menu.titleColor      = [UIColor blackColor];
+        _menu.titleAlignment  = NSTextAlignmentLeft;
+        _menu.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+        
+        _menu.rotateIcon      = [UIImage imageNamed:@"setting_arrowIcon"];
+        _menu.rotateIconSize  = CGSizeMake(15, 15);
+
+        _menu.optionBgColor       = _menu.titleBgColor;
+        _menu.optionFont          = [UIFont systemFontOfSize:15];
+        _menu.optionTextColor     = [UIColor blackColor];
+        _menu.optionTextAlignment = NSTextAlignmentLeft;
+        _menu.optionNumberOfLines = 0;
+        _menu.optionLineColor     = [UIColor whiteColor];
+        _menu.optionIconSize      = CGSizeMake(15, 15);
+    }
+    
+    return _menu;
+}
+
+
+#pragma mark - LMJDropdownMenu DataSource
+- (NSUInteger)numberOfOptionsInDropdownMenu:(LMJDropdownMenu *)menu{
+    return _answerPatterns.count;
+}
+- (CGFloat)dropdownMenu:(LMJDropdownMenu *)menu heightForOptionAtIndex:(NSUInteger)index{
+    return 44;
+}
+- (NSString *)dropdownMenu:(LMJDropdownMenu *)menu titleForOptionAtIndex:(NSUInteger)index{
+    return _answerPatterns[index];
+}
+
+#pragma mark - LMJDropdownMenu Delegate
+- (void)dropdownMenu:(LMJDropdownMenu *)menu didSelectOptionAtIndex:(NSUInteger)index optionTitle:(NSString *)title{
+    NSLog(@"你选择了(you selected)：menu1，index: %ld - title: %@", index, title);
+}
+- (void)dropdownMenuWillShow:(LMJDropdownMenu *)menu{
+    NSLog(@"--将要显示(will appear)--menu1");
+}
+- (void)dropdownMenuDidShow:(LMJDropdownMenu *)menu{
+    NSLog(@"--已经显示(did appear)--menu1");
+}
+
+- (void)dropdownMenuWillHidden:(LMJDropdownMenu *)menu{
+    NSLog(@"--将要隐藏(will disappear)--menu1");
+}
+- (void)dropdownMenuDidHidden:(LMJDropdownMenu *)menu{
+    NSLog(@"--已经隐藏(did disappear)--menu1");
+}
 @end

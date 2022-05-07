@@ -19,6 +19,8 @@
 - (void)hideHud;
 
 - (void)showHint:(NSString *)hint;
+//不带转菊花
+- (void)showNotActivityIndicatorHint:(NSString *)hint;
 
 - (void)showHintNotHide:(NSString *)hint;
 

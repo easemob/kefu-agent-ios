@@ -128,6 +128,20 @@
 		9363604427F4668E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9363604627F4669E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; };
 		9363604727F4669E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		936F2E4928261CA9001FB60A /* HDSanBoxFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */; };
+		936F2E4A28261CA9001FB60A /* HDSanBoxFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */; };
+		936F2E4D2826426F001FB60A /* expand_icon_session_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */; };
+		936F2E4E2826426F001FB60A /* expand_icon_session_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */; };
+		936F2E5328264284001FB60A /* expand_icon_session_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E5128264280001FB60A /* expand_icon_session_off@3x.png */; };
+		936F2E5428264284001FB60A /* expand_icon_session_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E5128264280001FB60A /* expand_icon_session_off@3x.png */; };
+		936F2E5E28266035001FB60A /* expand_icon_session_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E5D28266035001FB60A /* expand_icon_session_on@2x.png */; };
+		936F2E5F28266035001FB60A /* expand_icon_session_on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E5D28266035001FB60A /* expand_icon_session_on@2x.png */; };
+		936F2E6128266065001FB60A /* expand_icon_session_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E6028266065001FB60A /* expand_icon_session_on@3x.png */; };
+		936F2E6228266065001FB60A /* expand_icon_session_on@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E6028266065001FB60A /* expand_icon_session_on@3x.png */; };
+		936F2E6428266109001FB60A /* setting_arrowIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E6328266109001FB60A /* setting_arrowIcon@3x.png */; };
+		936F2E6528266109001FB60A /* setting_arrowIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E6328266109001FB60A /* setting_arrowIcon@3x.png */; };
+		936F2E672826611A001FB60A /* setting_arrowIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */; };
+		936F2E682826611A001FB60A /* setting_arrowIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */; };
 		938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
@@ -1731,6 +1745,14 @@
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
 		9363604227F4668E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9363604527F4669E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDSanBoxFileManager.m; sourceTree = "<group>"; };
+		936F2E4828261CA9001FB60A /* HDSanBoxFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDSanBoxFileManager.h; sourceTree = "<group>"; };
+		936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand_icon_session_off@2x.png"; sourceTree = "<group>"; };
+		936F2E5128264280001FB60A /* expand_icon_session_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand_icon_session_off@3x.png"; sourceTree = "<group>"; };
+		936F2E5D28266035001FB60A /* expand_icon_session_on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand_icon_session_on@2x.png"; sourceTree = "<group>"; };
+		936F2E6028266065001FB60A /* expand_icon_session_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand_icon_session_on@3x.png"; sourceTree = "<group>"; };
+		936F2E6328266109001FB60A /* setting_arrowIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_arrowIcon@3x.png"; sourceTree = "<group>"; };
+		936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_arrowIcon@2x.png"; sourceTree = "<group>"; };
 		938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerData.m; sourceTree = "<group>"; };
 		938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerDataManager.m; sourceTree = "<group>"; };
 		938AE9B427F3F8FB00B461C4 /* DBPlayerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerDataManager.h; sourceTree = "<group>"; };
@@ -2994,6 +3016,8 @@
 		93119A3D27F58FC100F749F3 /* Document */ = {
 			isa = PBXGroup;
 			children = (
+				936F2E4828261CA9001FB60A /* HDSanBoxFileManager.h */,
+				936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */,
 				93119A3E27F58FC100F749F3 /* KFICloudManager.h */,
 				93119A4027F58FC100F749F3 /* KFICloudManager.m */,
 				93119A4127F58FC100F749F3 /* KFDocument.h */,
@@ -5026,6 +5050,9 @@
 		D3FDC6C71EA0A5C600C25BB0 /* UI2.0_images@2x */ = {
 			isa = PBXGroup;
 			children = (
+				936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */,
+				936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */,
+				936F2E5D28266035001FB60A /* expand_icon_session_on@2x.png */,
 				D39839281FDE6BA000D5F853 /* icon_manager_realtime@2x.png */,
 				90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */,
 				D39839251FDE6B5400D5F853 /* alarmsRecord@2x.png */,
@@ -5114,6 +5141,9 @@
 		D3FDC7101EA0A5C600C25BB0 /* UI2.0_images@3x */ = {
 			isa = PBXGroup;
 			children = (
+				936F2E6328266109001FB60A /* setting_arrowIcon@3x.png */,
+				936F2E5128264280001FB60A /* expand_icon_session_off@3x.png */,
+				936F2E6028266065001FB60A /* expand_icon_session_on@3x.png */,
 				D34DFABC1FA8566E0018116D /* shai@3x.png */,
 				D34DFAB71FA855A70018116D /* update@3x.png */,
 				D3FDC7111EA0A5C600C25BB0 /* agents_icon_shai_Text2@3x.png */,
@@ -5323,6 +5353,7 @@
 				D3FDC8691EA0A5C600C25BB0 /* gallary_icon_camera_big@3x.png in Resources */,
 				D3FDC76A1EA0A5C600C25BB0 /* VoiceSearchFeedback005@2x.png in Resources */,
 				D3FDC7CE1EA0A5C600C25BB0 /* ee_1.png in Resources */,
+				936F2E5328264284001FB60A /* expand_icon_session_off@3x.png in Resources */,
 				D3FDC8331EA0A5C600C25BB0 /* list_status_radio_droplist_4@2x.png in Resources */,
 				D3FDC8151EA0A5C600C25BB0 /* channel_call_icon@2x.png in Resources */,
 				D3FDC7841EA0A5C600C25BB0 /* VoiceSearchFeedback018@2x.png in Resources */,
@@ -5337,6 +5368,7 @@
 				D3FDC7781EA0A5C600C25BB0 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D3FDC7EA1EA0A5C600C25BB0 /* ee_35.png in Resources */,
 				D3FDC85E1EA0A5C600C25BB0 /* channel_web_icon@3x.png in Resources */,
+				936F2E672826611A001FB60A /* setting_arrowIcon@2x.png in Resources */,
 				D3FDC6001EA0A5BE00C25BB0 /* icon1_selected@3x.png in Resources */,
 				D3FDC8581EA0A5C600C25BB0 /* btn__icon_qubz@3x.png in Resources */,
 				D3FDC8461EA0A5C600C25BB0 /* shai_setting_icon_open@2x.png in Resources */,
@@ -5398,6 +5430,7 @@
 				D33CE6A01F7CA98D00236720 /* chat_close@3x.png in Resources */,
 				D3FDC8121EA0A5C600C25BB0 /* btn_icon_iframe@2x.png in Resources */,
 				D3FDC7A71EA0A5C600C25BB0 /* button_conclusion_select@2x.png in Resources */,
+				936F2E4D2826426F001FB60A /* expand_icon_session_off@2x.png in Resources */,
 				D3FDC87C1EA0A5C600C25BB0 /* list_status_radio_droplist_big_1@3x.png in Resources */,
 				D3FDC8821EA0A5C600C25BB0 /* main_tab_icon_friend_1@3x.png in Resources */,
 				D3FDC83E1EA0A5C600C25BB0 /* main_tab_icon_ongoing_1@2x.png in Resources */,
@@ -5441,6 +5474,7 @@
 				D3FDC85F1EA0A5C600C25BB0 /* channel_wechat_icon@3x.png in Resources */,
 				D39839261FDE6B5400D5F853 /* alarmsRecord@2x.png in Resources */,
 				D3FDC7B81EA0A5C600C25BB0 /* icon_history_select@2x.png in Resources */,
+				936F2E5E28266035001FB60A /* expand_icon_session_on@2x.png in Resources */,
 				D3FDC8891EA0A5C600C25BB0 /* message_agent_1_chatpop_agent@3x.png in Resources */,
 				D3058D021FD6AD920091E048 /* average_time@3x.png in Resources */,
 				D3058D1A1FD6AD920091E048 /* right@3x.png in Resources */,
@@ -5502,6 +5536,7 @@
 				D3FDC7B31EA0A5C600C25BB0 /* icon_close_select@2x.png in Resources */,
 				D3FDC87E1EA0A5C600C25BB0 /* list_status_radio_droplist_big_3@3x.png in Resources */,
 				D3FDC7BF1EA0A5C600C25BB0 /* pop_blue_select@2x.png in Resources */,
+				936F2E6128266065001FB60A /* expand_icon_session_on@3x.png in Resources */,
 				D3FDC7991EA0A5C600C25BB0 /* demo.css in Resources */,
 				D34DFABE1FA858900018116D /* shai@3x.png in Resources */,
 				D3FDC8411EA0A5C600C25BB0 /* message_agent_1_chatpop_agent@2x.png in Resources */,
@@ -5696,6 +5731,7 @@
 				D3FDC7C01EA0A5C600C25BB0 /* pop_white@2x.png in Resources */,
 				D3FDC7DD1EA0A5C600C25BB0 /* ee_23.png in Resources */,
 				D3FDC8421EA0A5C600C25BB0 /* message_agent_2_chatpop_agent@2x.png in Resources */,
+				936F2E6428266109001FB60A /* setting_arrowIcon@3x.png in Resources */,
 				D3FDC7E91EA0A5C600C25BB0 /* ee_34.png in Resources */,
 				D3FDC86D1EA0A5C600C25BB0 /* image_file2_icon_files@3x.png in Resources */,
 				D3FDC7F31EA0A5C600C25BB0 /* icon_screen@2x.png in Resources */,
@@ -5845,6 +5881,7 @@
 				D3E9CE371FBED182005E3677 /* chatFire_audioPlaying1.png in Resources */,
 				D3E9CE381FBED182005E3677 /* bar_icon_search_Text3@3x.png in Resources */,
 				D3E9CE391FBED182005E3677 /* input_bar_1_icon_expand@2x.png in Resources */,
+				936F2E5F28266035001FB60A /* expand_icon_session_on@2x.png in Resources */,
 				D3E9CE3A1FBED182005E3677 /* main_tab_icon_ongoing@2x.png in Resources */,
 				D3E9CE3B1FBED182005E3677 /* input_tab_icon_file2@2x.png in Resources */,
 				D3E9CE3C1FBED182005E3677 /* historyCopy_icon_morehistory@2x.png in Resources */,
@@ -5983,6 +6020,7 @@
 				D3E9CEB51FBED182005E3677 /* button_blue2_select@2x.png in Resources */,
 				D3E9CEB61FBED182005E3677 /* shai_setting_icon_open@3x.png in Resources */,
 				D3E9CEB71FBED182005E3677 /* list_status_radio_droplist_big_2@3x.png in Resources */,
+				936F2E6528266109001FB60A /* setting_arrowIcon@3x.png in Resources */,
 				D3E9CEB81FBED182005E3677 /* button_gray@2x.png in Resources */,
 				D3E9CEB91FBED182005E3677 /* list_status_radio_droplist_big_4@2x.png in Resources */,
 				D3E9CEBA1FBED182005E3677 /* channel_weibo_icon@3x.png in Resources */,
@@ -6040,6 +6078,7 @@
 				D3058D051FD6AD920091E048 /* controlling@2x.png in Resources */,
 				D3E9CEE51FBED182005E3677 /* sr_refresh@2X.png in Resources */,
 				D3E9CEE61FBED182005E3677 /* icon_audio_blue_2@2x.png in Resources */,
+				936F2E682826611A001FB60A /* setting_arrowIcon@2x.png in Resources */,
 				D3058D1F1FD6AD920091E048 /* stop@3x.png in Resources */,
 				D3E9CEE71FBED182005E3677 /* tabbar_icon_notice@2x.png in Resources */,
 				D3E9CEE81FBED182005E3677 /* 5-1.png in Resources */,
@@ -6089,6 +6128,7 @@
 				93EFFCCB27BA6FEB0043DE06 /* videoOff.png in Resources */,
 				D3E9CF0B1FBED182005E3677 /* ee_4.png in Resources */,
 				D3E9CF0C1FBED182005E3677 /* VoiceSearchFeedback011.png in Resources */,
+				936F2E6228266065001FB60A /* expand_icon_session_on@3x.png in Resources */,
 				D3E9CF0D1FBED182005E3677 /* tips_popup_right_EllipseCopy_3@2x.png in Resources */,
 				D3E9CF0E1FBED182005E3677 /* VoiceSearchFeedback001@2x.png in Resources */,
 				D3E9CF0F1FBED182005E3677 /* expand_icon_transfer@3x.png in Resources */,
@@ -6103,7 +6143,9 @@
 				D3E9CF191FBED182005E3677 /* list_status_radio_droplist_2@3x.png in Resources */,
 				D3E9CF1A1FBED182005E3677 /* update@3x.png in Resources */,
 				D3E9CF1B1FBED182005E3677 /* list_status_radio_droplist_4@3x.png in Resources */,
+				936F2E4E2826426F001FB60A /* expand_icon_session_off@2x.png in Resources */,
 				D3E9CF1C1FBED182005E3677 /* channel_call_icon@3x.png in Resources */,
+				936F2E5428264284001FB60A /* expand_icon_session_off@3x.png in Resources */,
 				D3E9CF1D1FBED182005E3677 /* VoiceSearchFeedback020@2x.png in Resources */,
 				90D3CBA7201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */,
 				D3E9CF1E1FBED182005E3677 /* VoiceSearchFeedback015.png in Resources */,
@@ -6170,6 +6212,7 @@
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.framework",
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework",
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework",
+				"${BUILT_PRODUCTS_DIR}/LMJDropdownMenu/LMJDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -6187,6 +6230,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LMJDropdownMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6236,6 +6280,7 @@
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/AgoraVideoSegmentationExtension.framework",
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agorafdkaac.framework",
 				"${PODS_ROOT}/AgoraRtcEngine_iOS/Agoraffmpeg.framework",
+				"${BUILT_PRODUCTS_DIR}/LMJDropdownMenu/LMJDropdownMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -6253,6 +6298,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LMJDropdownMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -6339,6 +6385,7 @@
 				D3A95E651EA0F47100ADD394 /* PSTCollectionView.m in Sources */,
 				938AEA5F27F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */,
 				D33CE7BC1F7CB01000236720 /* AFURLConnectionOperation.m in Sources */,
+				936F2E4928261CA9001FB60A /* HDSanBoxFileManager.m in Sources */,
 				90591C442068ADC4007367BD /* KFMonitorInfoView.m in Sources */,
 				D33CE68C1F7CA98D00236720 /* JNGroupViewController.m in Sources */,
 				D33CE7681F7CAEB800236720 /* NSDictionary+SafeValue.m in Sources */,
@@ -6704,6 +6751,7 @@
 				D3E9CCD31FBED182005E3677 /* AdminWorkloadViewController.m in Sources */,
 				938AEA6027F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */,
 				D3E9CCD41FBED182005E3677 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
+				936F2E4A28261CA9001FB60A /* HDSanBoxFileManager.m in Sources */,
 				D3E9CCD51FBED182005E3677 /* DXTableViewController.m in Sources */,
 				D3E9CCD61FBED182005E3677 /* MMDrawerBarButtonItem.m in Sources */,
 				D3E9CCD71FBED182005E3677 /* KFPromptView.m in Sources */,
@@ -7127,7 +7175,7 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemoDebug.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: LI HOU (UGP7ZG964L)";
+				CODE_SIGN_IDENTITY = "Apple Development: LI HOU (UGP7ZG964L)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;

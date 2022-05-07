@@ -41,6 +41,8 @@
 #import "KFVideoDetailViewController.h"
 #import "KFVideoDetailModel.h"
 #import "KFICloudManager.h"
+#import "HDSanBoxFileManager.h"
+
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -115,7 +117,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 @property (nonatomic, strong) DXRecordView *recordView;
 
 @property (nonatomic, strong) UIButton *satisfactionBtn;
-
+@property (nonatomic, strong) UIButton *sessionAssistantBtn;
 @property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
 
 @property (nonatomic, strong) NSArray  *recordVideoDetailAll;
@@ -196,7 +198,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     __weak typeof(self) weakSelf = self;
     [KFManager sharedInstance].curChatViewConvtroller = weakSelf;
     [KFManager sharedInstance].currentSessionId = weakSelf.conversationModel.sessionId;
-     
+    
+    NSLog(@"==currentSessionId=== %@",weakSelf.conversationModel.sessionId);
+    
+    
     [self startNoti];
      
     // Do any additional setup after loading the view.
@@ -469,14 +474,33 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [_moreView addGestureRecognizer:tap];
         
         if (chatType == ChatViewTypeChat) {
-            UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - 160, 0, 150, 40*4)];
+            UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - 160, 0, 150, 40*5)];
             contentView.backgroundColor = [UIColor whiteColor];
             contentView.userInteractionEnabled = YES;
             contentView.layer.cornerRadius = 2.f;
             [_moreView addSubview:contentView];
             
+            
+            UIButton *sessionAssistantBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            sessionAssistantBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
+            [sessionAssistantBtn setTitle:@"会话助手" forState:UIControlStateNormal];
+            sessionAssistantBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+            [sessionAssistantBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
+            [sessionAssistantBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+            [sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_off"] forState:UIControlStateNormal];
+
+            [sessionAssistantBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+            [sessionAssistantBtn addTarget:self action:@selector(sessionAssistantAction) forControlEvents:UIControlEventTouchUpInside];
+            [contentView addSubview:sessionAssistantBtn];
+            _sessionAssistantBtn = sessionAssistantBtn;
+            UIView *line0 = [[UIView alloc] init];
+            line0.frame = CGRectMake(0, CGRectGetMaxY(sessionAssistantBtn.frame) - 0.5, contentView.width, 1);
+            line0.backgroundColor = [UIColor lightGrayColor];
+            [contentView addSubview:line0];
+            
+            
             UIButton *transferBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            transferBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
+            transferBtn.frame = CGRectMake(0, CGRectGetMaxY(sessionAssistantBtn.frame), CGRectGetWidth(contentView.frame), 40);
             [transferBtn setTitle:@"会话转接" forState:UIControlStateNormal];
             transferBtn.titleLabel.font = [UIFont systemFontOfSize:17];
             [transferBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
@@ -1321,7 +1345,25 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _moreView.hidden = YES;
     }
 }
-
+- (void)sessionAssistantAction
+{
+    // 会话开关   设置 先判断 设置页的移动助手有没有开启 如果开启了 才能开启 这个会话助手
+    
+    [self keyBoardHidden:nil];
+    
+    if ([HDClient sharedClient].currentAgentUser.appAssistantEnable) {
+        [self.sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_on"] forState:UIControlStateNormal];
+        self.moreView.hidden = YES;
+    }else{
+//        [self showHudInView:self.view hint:@"您还没有开启移动助手开关暂时不能使用会话助手请去设置页开启"];
+//        [self showHint:@"您还没有开启移动助手开关暂时不能使用会话助手请去设置页开启"];
+        [self.sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_off"] forState:UIControlStateNormal];
+        [self showNotActivityIndicatorHint:@"您还没有开启移动助手开关暂时不能使用会话助手请去设置页开启"];
+    }
+    
+    
+    
+}
 - (void)transferAction
 {
     //转接
@@ -2045,24 +2087,33 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                         NSArray *array = [[newURL absoluteString] componentsSeparatedByString:@"/"];
                         NSString *fileName = [array lastObject];
                         fileName = [fileName stringByRemovingPercentEncoding];
-                        NSString *docPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",fileName]];
+//                        NSString *docPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",fileName]];
                                         
-                        [self writeToFile:docPath withData:data];
+//                        [self writeToFile:docPath withData:data withDisplayName:fileName];
+                        [self writeToFileData:data withFileName:fileName];
                     }];
                         
 //                }
-                
-                
-                
             }
             [self dismissViewControllerAnimated:YES completion:NULL];
         }];
         [urls.firstObject stopAccessingSecurityScopedResource];
     } else {
         //授权失败
+        
     }
 }
-- (void)writeToFile:(NSString *)path withData:(NSData *)data{
+- (void)writeToFileData:(NSData *)data withFileName:(NSString *)fileName{
+    NSError * error;
+    NSString * fileDir = [NSString stringWithFormat:@"%@/%@/%@",[HDSanBoxFileManager libraryDir],kfAgentUploadFile,fileName];
+    BOOL success = [HDSanBoxFileManager createFileAtPath:fileDir content:data overwrite:NO error:&error];
+    if (success) {
+        [self sendFileMessagePath:fileDir withDisplayName:fileName];
+    }
+    
+}
+
+- (void)writeToFile:(NSString *)path withData:(NSData *)data withDisplayName:(NSString *)displayName{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     //访问【沙盒的document】目录下的问题件，该目录下支持手动增加、修改、删除文件及目录
     if(![fileManager fileExistsAtPath:path]){
@@ -2070,15 +2121,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         BOOL success =   [data writeToFile:path atomically:YES];
         if (success) {
             //取出来
-            NSData *   datastr = [NSData dataWithContentsOfFile:path];
-            NSLog(@"------------->开始发送文件==%@",datastr);
-            [self sendFileMessagePath:path withDisplayName:@"12"];
+            [self sendFileMessagePath:path withDisplayName:displayName];
         }
     }else{
         //取出来 发送
-        NSData *   datastr = [NSData dataWithContentsOfFile:path];
-        NSLog(@"------------->开始发送文件==%@",datastr);
-        [self sendFileMessagePath:path withDisplayName:@"12"];
+        [self sendFileMessagePath:path withDisplayName:displayName];
     }
 }
 
