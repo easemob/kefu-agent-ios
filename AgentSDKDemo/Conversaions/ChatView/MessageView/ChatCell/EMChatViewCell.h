@@ -27,6 +27,7 @@
 
 extern NSString *const kResendButtonTapEventName;
 extern NSString *const kShouldResendCell;
+extern NSString *const kSmartButtonTapEventName;
 
 @interface EMChatViewCell : EMChatViewBaseCell
 
@@ -35,5 +36,6 @@ extern NSString *const kShouldResendCell;
 @property (nonatomic, strong) UIView *activityView;
 @property (nonatomic, strong) UIButton *retryButton;
 @property (nonatomic, strong) UILabel *hasRead;
+@property (nonatomic, strong) UIButton *smartBtn;
 
 @end

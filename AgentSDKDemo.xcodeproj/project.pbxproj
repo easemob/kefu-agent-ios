@@ -115,6 +115,9 @@
 		90FC92552486323B00014CCC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92412486323B00014CCC /* MASViewAttribute.m */; };
 		90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
+		930EF9B12834BCF800A3C205 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
+		930EF9B42835155600A3C205 /* KFPatternModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B32835155500A3C205 /* KFPatternModel.m */; };
+		930EF9B52835155700A3C205 /* KFPatternModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B32835155500A3C205 /* KFPatternModel.m */; };
 		93119A4227F58FC100F749F3 /* KFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A3F27F58FC100F749F3 /* KFDocument.m */; };
 		93119A4327F58FC100F749F3 /* KFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A3F27F58FC100F749F3 /* KFDocument.m */; };
 		93119A4427F58FC100F749F3 /* KFICloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A4027F58FC100F749F3 /* KFICloudManager.m */; };
@@ -128,6 +131,26 @@
 		9363604427F4668E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9363604627F4669E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; };
 		9363604727F4669E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9365448F2838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9365448D2838A283009854AF /* KFSmartArticleMoreTableViewCell.m */; };
+		936544902838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9365448D2838A283009854AF /* KFSmartArticleMoreTableViewCell.m */; };
+		936544912838A283009854AF /* KFSmartArticleMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9365448E2838A283009854AF /* KFSmartArticleMoreTableViewCell.xib */; };
+		936544922838A283009854AF /* KFSmartArticleMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9365448E2838A283009854AF /* KFSmartArticleMoreTableViewCell.xib */; };
+		9365449D2838C1CB009854AF /* smart_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544942838C1C9009854AF /* smart_menu@2x.png */; };
+		9365449E2838C1CB009854AF /* smart_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544942838C1C9009854AF /* smart_menu@2x.png */; };
+		936544A12838C1CB009854AF /* smart_tuwen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544962838C1C9009854AF /* smart_tuwen@2x.png */; };
+		936544A22838C1CB009854AF /* smart_tuwen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544962838C1C9009854AF /* smart_tuwen@2x.png */; };
+		936544A32838C1CB009854AF /* smart_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544972838C1C9009854AF /* smart_message@2x.png */; };
+		936544A42838C1CB009854AF /* smart_message@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544972838C1C9009854AF /* smart_message@2x.png */; };
+		936544A52838C1CB009854AF /* smart_tuwen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544982838C1CA009854AF /* smart_tuwen@3x.png */; };
+		936544A62838C1CB009854AF /* smart_tuwen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544982838C1CA009854AF /* smart_tuwen@3x.png */; };
+		936544A72838C1CB009854AF /* smart_message@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544992838C1CA009854AF /* smart_message@3x.png */; };
+		936544A82838C1CB009854AF /* smart_message@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544992838C1CA009854AF /* smart_message@3x.png */; };
+		936544A92838C1CB009854AF /* smart_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9365449A2838C1CB009854AF /* smart_menu@3x.png */; };
+		936544AA2838C1CB009854AF /* smart_menu@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9365449A2838C1CB009854AF /* smart_menu@3x.png */; };
+		936544AD2838C3EC009854AF /* samrt_media@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544AB2838C3EB009854AF /* samrt_media@2x.png */; };
+		936544AE2838C3EC009854AF /* samrt_media@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544AB2838C3EB009854AF /* samrt_media@2x.png */; };
+		936544AF2838C3EC009854AF /* samrt_media@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544AC2838C3EC009854AF /* samrt_media@3x.png */; };
+		936544B02838C3EC009854AF /* samrt_media@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544AC2838C3EC009854AF /* samrt_media@3x.png */; };
 		936F2E4928261CA9001FB60A /* HDSanBoxFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */; };
 		936F2E4A28261CA9001FB60A /* HDSanBoxFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */; };
 		936F2E4D2826426F001FB60A /* expand_icon_session_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */; };
@@ -142,6 +165,18 @@
 		936F2E6528266109001FB60A /* setting_arrowIcon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E6328266109001FB60A /* setting_arrowIcon@3x.png */; };
 		936F2E672826611A001FB60A /* setting_arrowIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */; };
 		936F2E682826611A001FB60A /* setting_arrowIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */; };
+		9374F9B828379EF4007924C9 /* KFSmartImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9B628379EF4007924C9 /* KFSmartImageTableViewCell.m */; };
+		9374F9B928379EF4007924C9 /* KFSmartImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9B628379EF4007924C9 /* KFSmartImageTableViewCell.m */; };
+		9374F9BA28379EF4007924C9 /* KFSmartImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9B728379EF4007924C9 /* KFSmartImageTableViewCell.xib */; };
+		9374F9BB28379EF4007924C9 /* KFSmartImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9B728379EF4007924C9 /* KFSmartImageTableViewCell.xib */; };
+		9374F9BF28379F3E007924C9 /* KFSmartChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9BD28379F3E007924C9 /* KFSmartChoiceTableViewCell.m */; };
+		9374F9C028379F3E007924C9 /* KFSmartChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9BD28379F3E007924C9 /* KFSmartChoiceTableViewCell.m */; };
+		9374F9C128379F3E007924C9 /* KFSmartChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9BE28379F3E007924C9 /* KFSmartChoiceTableViewCell.xib */; };
+		9374F9C228379F3E007924C9 /* KFSmartChoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9BE28379F3E007924C9 /* KFSmartChoiceTableViewCell.xib */; };
+		9374F9C628379F77007924C9 /* KFSmartArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9C428379F77007924C9 /* KFSmartArticleTableViewCell.m */; };
+		9374F9C728379F77007924C9 /* KFSmartArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9C428379F77007924C9 /* KFSmartArticleTableViewCell.m */; };
+		9374F9C828379F77007924C9 /* KFSmartArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */; };
+		9374F9C928379F77007924C9 /* KFSmartArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */; };
 		938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
@@ -229,6 +264,28 @@
 		938AEA6027F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA1027F3F8FB00B461C4 /* KJPlayerOperationView.m */; };
 		938AEA6127F3F8FC00B461C4 /* KJPlayerHintLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA1127F3F8FB00B461C4 /* KJPlayerHintLayer.m */; };
 		938AEA6227F3F8FC00B461C4 /* KJPlayerHintLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 938AEA1127F3F8FB00B461C4 /* KJPlayerHintLayer.m */; };
+		93D0CF2B283720C5004D93E3 /* smartselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF29283720C5004D93E3 /* smartselect@2x.png */; };
+		93D0CF2C283720C5004D93E3 /* smartselect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF29283720C5004D93E3 /* smartselect@2x.png */; };
+		93D0CF2D283720C5004D93E3 /* smart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF2A283720C5004D93E3 /* smart@2x.png */; };
+		93D0CF2E283720C5004D93E3 /* smart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF2A283720C5004D93E3 /* smart@2x.png */; };
+		93D0CF3228372B35004D93E3 /* KFSmartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF3128372B35004D93E3 /* KFSmartModel.m */; };
+		93D0CF3328372B35004D93E3 /* KFSmartModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF3128372B35004D93E3 /* KFSmartModel.m */; };
+		93D0CF36283730F1004D93E3 /* KFMSGTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF35283730F1004D93E3 /* KFMSGTypeModel.m */; };
+		93D0CF37283730F1004D93E3 /* KFMSGTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF35283730F1004D93E3 /* KFMSGTypeModel.m */; };
+		93D0CF3A283736DA004D93E3 /* KFSmartUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF39283736DA004D93E3 /* KFSmartUtils.m */; };
+		93D0CF3B283736DA004D93E3 /* KFSmartUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF39283736DA004D93E3 /* KFSmartUtils.m */; };
+		93D0CF3F28373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */; };
+		93D0CF4028373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */; };
+		93D0CF4128373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */; };
+		93D0CF4228373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */; };
+		93D0CF4628373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */; };
+		93D0CF4728373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */; };
+		93D0CF4828373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */; };
+		93D0CF4928373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */; };
+		93D0CF4D283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */; };
+		93D0CF4E283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */; };
+		93D0CF4F283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */; };
+		93D0CF50283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */; };
 		93D9D07427BF7E0500BD037D /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		93EFFC7627BA3FC50043DE06 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */; };
 		93EFFC7727BA3FC50043DE06 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */; };
@@ -1727,6 +1784,10 @@
 		90FC92412486323B00014CCC /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		90FC92562486363C00014CCC /* EMRealtimeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRealtimeSearch.h; sourceTree = "<group>"; };
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
+		930EF9AF2834BCF800A3C205 /* KFChatSmartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatSmartView.h; sourceTree = "<group>"; };
+		930EF9B02834BCF800A3C205 /* KFChatSmartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatSmartView.m; sourceTree = "<group>"; };
+		930EF9B22835155500A3C205 /* KFPatternModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFPatternModel.h; sourceTree = "<group>"; };
+		930EF9B32835155500A3C205 /* KFPatternModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFPatternModel.m; sourceTree = "<group>"; };
 		93119A3E27F58FC100F749F3 /* KFICloudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFICloudManager.h; sourceTree = "<group>"; };
 		93119A3F27F58FC100F749F3 /* KFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFDocument.m; sourceTree = "<group>"; };
 		93119A4027F58FC100F749F3 /* KFICloudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFICloudManager.m; sourceTree = "<group>"; };
@@ -1745,6 +1806,17 @@
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
 		9363604227F4668E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9363604527F4669E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9365448C2838A283009854AF /* KFSmartArticleMoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartArticleMoreTableViewCell.h; sourceTree = "<group>"; };
+		9365448D2838A283009854AF /* KFSmartArticleMoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartArticleMoreTableViewCell.m; sourceTree = "<group>"; };
+		9365448E2838A283009854AF /* KFSmartArticleMoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartArticleMoreTableViewCell.xib; sourceTree = "<group>"; };
+		936544942838C1C9009854AF /* smart_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart_menu@2x.png"; sourceTree = "<group>"; };
+		936544962838C1C9009854AF /* smart_tuwen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart_tuwen@2x.png"; sourceTree = "<group>"; };
+		936544972838C1C9009854AF /* smart_message@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart_message@2x.png"; sourceTree = "<group>"; };
+		936544982838C1CA009854AF /* smart_tuwen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart_tuwen@3x.png"; sourceTree = "<group>"; };
+		936544992838C1CA009854AF /* smart_message@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart_message@3x.png"; sourceTree = "<group>"; };
+		9365449A2838C1CB009854AF /* smart_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart_menu@3x.png"; sourceTree = "<group>"; };
+		936544AB2838C3EB009854AF /* samrt_media@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "samrt_media@2x.png"; sourceTree = "<group>"; };
+		936544AC2838C3EC009854AF /* samrt_media@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "samrt_media@3x.png"; sourceTree = "<group>"; };
 		936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDSanBoxFileManager.m; sourceTree = "<group>"; };
 		936F2E4828261CA9001FB60A /* HDSanBoxFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDSanBoxFileManager.h; sourceTree = "<group>"; };
 		936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand_icon_session_off@2x.png"; sourceTree = "<group>"; };
@@ -1753,6 +1825,15 @@
 		936F2E6028266065001FB60A /* expand_icon_session_on@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand_icon_session_on@3x.png"; sourceTree = "<group>"; };
 		936F2E6328266109001FB60A /* setting_arrowIcon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_arrowIcon@3x.png"; sourceTree = "<group>"; };
 		936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_arrowIcon@2x.png"; sourceTree = "<group>"; };
+		9374F9B528379EF4007924C9 /* KFSmartImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartImageTableViewCell.h; sourceTree = "<group>"; };
+		9374F9B628379EF4007924C9 /* KFSmartImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartImageTableViewCell.m; sourceTree = "<group>"; };
+		9374F9B728379EF4007924C9 /* KFSmartImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartImageTableViewCell.xib; sourceTree = "<group>"; };
+		9374F9BC28379F3E007924C9 /* KFSmartChoiceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartChoiceTableViewCell.h; sourceTree = "<group>"; };
+		9374F9BD28379F3E007924C9 /* KFSmartChoiceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartChoiceTableViewCell.m; sourceTree = "<group>"; };
+		9374F9BE28379F3E007924C9 /* KFSmartChoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartChoiceTableViewCell.xib; sourceTree = "<group>"; };
+		9374F9C328379F77007924C9 /* KFSmartArticleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartArticleTableViewCell.h; sourceTree = "<group>"; };
+		9374F9C428379F77007924C9 /* KFSmartArticleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartArticleTableViewCell.m; sourceTree = "<group>"; };
+		9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartArticleTableViewCell.xib; sourceTree = "<group>"; };
 		938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerData.m; sourceTree = "<group>"; };
 		938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerDataManager.m; sourceTree = "<group>"; };
 		938AE9B427F3F8FB00B461C4 /* DBPlayerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerDataManager.h; sourceTree = "<group>"; };
@@ -1833,6 +1914,23 @@
 		938AEA1027F3F8FB00B461C4 /* KJPlayerOperationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerOperationView.m; sourceTree = "<group>"; };
 		938AEA1127F3F8FB00B461C4 /* KJPlayerHintLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJPlayerHintLayer.m; sourceTree = "<group>"; };
 		938AEA1227F3F8FB00B461C4 /* KJPlayerHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJPlayerHeader.h; sourceTree = "<group>"; };
+		93D0CF29283720C5004D93E3 /* smartselect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smartselect@2x.png"; sourceTree = "<group>"; };
+		93D0CF2A283720C5004D93E3 /* smart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart@2x.png"; sourceTree = "<group>"; };
+		93D0CF3028372B35004D93E3 /* KFSmartModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartModel.h; sourceTree = "<group>"; };
+		93D0CF3128372B35004D93E3 /* KFSmartModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartModel.m; sourceTree = "<group>"; };
+		93D0CF34283730F1004D93E3 /* KFMSGTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFMSGTypeModel.h; sourceTree = "<group>"; };
+		93D0CF35283730F1004D93E3 /* KFMSGTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFMSGTypeModel.m; sourceTree = "<group>"; };
+		93D0CF38283736DA004D93E3 /* KFSmartUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartUtils.h; sourceTree = "<group>"; };
+		93D0CF39283736DA004D93E3 /* KFSmartUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartUtils.m; sourceTree = "<group>"; };
+		93D0CF3C28373DEE004D93E3 /* KFSmartTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartTableViewCell.h; sourceTree = "<group>"; };
+		93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartTableViewCell.m; sourceTree = "<group>"; };
+		93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartTableViewCell.xib; sourceTree = "<group>"; };
+		93D0CF4328373EA5004D93E3 /* KFSmartMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartMenuTableViewCell.h; sourceTree = "<group>"; };
+		93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartMenuTableViewCell.m; sourceTree = "<group>"; };
+		93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartMenuTableViewCell.xib; sourceTree = "<group>"; };
+		93D0CF4A283792D4004D93E3 /* KFSmartDefaultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartDefaultTableViewCell.h; sourceTree = "<group>"; };
+		93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartDefaultTableViewCell.m; sourceTree = "<group>"; };
+		93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartDefaultTableViewCell.xib; sourceTree = "<group>"; };
 		93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraTicketModel.m; sourceTree = "<group>"; };
 		93D9D07327BF7E0500BD037D /* HDAgoraTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraTicketModel.h; sourceTree = "<group>"; };
 		93EFFC6827BA3FC10043DE06 /* HDAgoraCallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManager.h; sourceTree = "<group>"; };
@@ -3276,6 +3374,40 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		93D0CF2F28372A60004D93E3 /* smart */ = {
+			isa = PBXGroup;
+			children = (
+				93D0CF34283730F1004D93E3 /* KFMSGTypeModel.h */,
+				93D0CF35283730F1004D93E3 /* KFMSGTypeModel.m */,
+				93D0CF4328373EA5004D93E3 /* KFSmartMenuTableViewCell.h */,
+				93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */,
+				93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */,
+				93D0CF3028372B35004D93E3 /* KFSmartModel.h */,
+				93D0CF3128372B35004D93E3 /* KFSmartModel.m */,
+				93D0CF3C28373DEE004D93E3 /* KFSmartTableViewCell.h */,
+				93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */,
+				93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */,
+				93D0CF4A283792D4004D93E3 /* KFSmartDefaultTableViewCell.h */,
+				93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */,
+				93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */,
+				9374F9B528379EF4007924C9 /* KFSmartImageTableViewCell.h */,
+				9374F9B628379EF4007924C9 /* KFSmartImageTableViewCell.m */,
+				9374F9B728379EF4007924C9 /* KFSmartImageTableViewCell.xib */,
+				9374F9BC28379F3E007924C9 /* KFSmartChoiceTableViewCell.h */,
+				9374F9BD28379F3E007924C9 /* KFSmartChoiceTableViewCell.m */,
+				9374F9BE28379F3E007924C9 /* KFSmartChoiceTableViewCell.xib */,
+				9365448C2838A283009854AF /* KFSmartArticleMoreTableViewCell.h */,
+				9365448D2838A283009854AF /* KFSmartArticleMoreTableViewCell.m */,
+				9365448E2838A283009854AF /* KFSmartArticleMoreTableViewCell.xib */,
+				9374F9C328379F77007924C9 /* KFSmartArticleTableViewCell.h */,
+				9374F9C428379F77007924C9 /* KFSmartArticleTableViewCell.m */,
+				9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */,
+				93D0CF38283736DA004D93E3 /* KFSmartUtils.h */,
+				93D0CF39283736DA004D93E3 /* KFSmartUtils.m */,
+			);
+			path = smart;
+			sourceTree = "<group>";
+		};
 		93EFFBEF27BA3E1E0043DE06 /* AgoraSDK */ = {
 			isa = PBXGroup;
 			children = (
@@ -3428,6 +3560,8 @@
 				D3DFB3831FD8EA2400A9358A /* KFDetailModel.m */,
 				D39838D51FDA3D2000D5F853 /* KFWarningModel.h */,
 				D39838D61FDA3D2000D5F853 /* KFWarningModel.m */,
+				930EF9B22835155500A3C205 /* KFPatternModel.h */,
+				930EF9B32835155500A3C205 /* KFPatternModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3701,6 +3835,9 @@
 				908691D921D5D1A700C95C22 /* HDChatVideoBubbleView.m */,
 				935F639227C78F24003CE6FE /* HDChatVideoDetailBubbleView.h */,
 				935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */,
+				930EF9AF2834BCF800A3C205 /* KFChatSmartView.h */,
+				930EF9B02834BCF800A3C205 /* KFChatSmartView.m */,
+				93D0CF2F28372A60004D93E3 /* smart */,
 			);
 			path = ChatCellBubble;
 			sourceTree = "<group>";
@@ -4889,6 +5026,14 @@
 		D3FDC6511EA0A5C500C25BB0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				936544AB2838C3EB009854AF /* samrt_media@2x.png */,
+				936544AC2838C3EC009854AF /* samrt_media@3x.png */,
+				936544962838C1C9009854AF /* smart_tuwen@2x.png */,
+				936544982838C1CA009854AF /* smart_tuwen@3x.png */,
+				936544942838C1C9009854AF /* smart_menu@2x.png */,
+				9365449A2838C1CB009854AF /* smart_menu@3x.png */,
+				936544972838C1C9009854AF /* smart_message@2x.png */,
+				936544992838C1CA009854AF /* smart_message@3x.png */,
 				D3FDC6521EA0A5C500C25BB0 /* button_blue2@2x.png */,
 				D3FDC6531EA0A5C500C25BB0 /* button_blue2_select@2x.png */,
 				D3FDC6541EA0A5C500C25BB0 /* button_blue_select@2x.png */,
@@ -5050,6 +5195,8 @@
 		D3FDC6C71EA0A5C600C25BB0 /* UI2.0_images@2x */ = {
 			isa = PBXGroup;
 			children = (
+				93D0CF2A283720C5004D93E3 /* smart@2x.png */,
+				93D0CF29283720C5004D93E3 /* smartselect@2x.png */,
 				936F2E662826611A001FB60A /* setting_arrowIcon@2x.png */,
 				936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */,
 				936F2E5D28266035001FB60A /* expand_icon_session_on@2x.png */,
@@ -5333,8 +5480,10 @@
 				D39839291FDE6BA000D5F853 /* icon_manager_realtime@2x.png in Resources */,
 				D346A8191FAB12CE00DD0281 /* state_red@2x.png in Resources */,
 				93EFFCC627BA6FEB0043DE06 /* off.png in Resources */,
+				936544AD2838C3EC009854AF /* samrt_media@2x.png in Resources */,
 				D3FDC7AA1EA0A5C600C25BB0 /* ease_chat_item_file@2x.png in Resources */,
 				93EFFCE627BA6FEB0043DE06 /* share desktop on@2x.png in Resources */,
+				93D0CF2B283720C5004D93E3 /* smartselect@2x.png in Resources */,
 				93EFFCF027BA6FEB0043DE06 /* camera.png in Resources */,
 				D3FDC88B1EA0A5C600C25BB0 /* phrase_delete_Ellipse@3x.png in Resources */,
 				D3FDC8711EA0A5C600C25BB0 /* input_bar_1_icon_expand@3x.png in Resources */,
@@ -5362,6 +5511,7 @@
 				93EFFCDC27BA6FEB0043DE06 /* share desktop on.png in Resources */,
 				D33CE69A1F7CA98D00236720 /* chat_location_detail_disclosure@2x.png in Resources */,
 				D3FDC7BA1EA0A5C600C25BB0 /* icon_over_select@2x.png in Resources */,
+				9374F9C128379F3E007924C9 /* KFSmartChoiceTableViewCell.xib in Resources */,
 				D33CE6971F7CA98D00236720 /* chat_location_annotation_someone.png in Resources */,
 				D3FDC7A41EA0A5C600C25BB0 /* button_call_select@2x.png in Resources */,
 				D3FDC76B1EA0A5C600C25BB0 /* VoiceSearchFeedback006.png in Resources */,
@@ -5369,11 +5519,13 @@
 				D3FDC7EA1EA0A5C600C25BB0 /* ee_35.png in Resources */,
 				D3FDC85E1EA0A5C600C25BB0 /* channel_web_icon@3x.png in Resources */,
 				936F2E672826611A001FB60A /* setting_arrowIcon@2x.png in Resources */,
+				936544A52838C1CB009854AF /* smart_tuwen@3x.png in Resources */,
 				D3FDC6001EA0A5BE00C25BB0 /* icon1_selected@3x.png in Resources */,
 				D3FDC8581EA0A5C600C25BB0 /* btn__icon_qubz@3x.png in Resources */,
 				D3FDC8461EA0A5C600C25BB0 /* shai_setting_icon_open@2x.png in Resources */,
 				D3FDC8871EA0A5C600C25BB0 /* main_tab_icon_update_1@3x.png in Resources */,
 				D3FDC7B21EA0A5C600C25BB0 /* icon_close@2x.png in Resources */,
+				936544A12838C1CB009854AF /* smart_tuwen@2x.png in Resources */,
 				D3FDC86A1EA0A5C600C25BB0 /* gallaryCopy2_icon_camera_small@3x.png in Resources */,
 				D3FDC89C1EA0A5C600C25BB0 /* visitor_icon_imagebroken_big@3x.png in Resources */,
 				D3FDC81F1EA0A5C600C25BB0 /* file_btn_icon_file@2x.png in Resources */,
@@ -5396,6 +5548,7 @@
 				D3FDC7601EA0A5C600C25BB0 /* chatFire_audioPlaying3@2x.png in Resources */,
 				D3FDC7E21EA0A5C600C25BB0 /* ee_28.png in Resources */,
 				93EFFCEE27BA6FEB0043DE06 /* shareDesktop.png in Resources */,
+				936544A32838C1CB009854AF /* smart_message@2x.png in Resources */,
 				93EFFCE027BA6FEB0043DE06 /* show@2x.png in Resources */,
 				D33CE6991F7CA98D00236720 /* chat_location_detail_disclosure.png in Resources */,
 				D3FDC7DA1EA0A5C600C25BB0 /* ee_20.png in Resources */,
@@ -5405,6 +5558,7 @@
 				D3FDC80D1EA0A5C600C25BB0 /* tip_red_white@2x.png in Resources */,
 				D3FDC8541EA0A5C600C25BB0 /* visitor_icon_imagebroken_big@2x.png in Resources */,
 				D3FDC7DB1EA0A5C600C25BB0 /* ee_21.png in Resources */,
+				936544A92838C1CB009854AF /* smart_menu@3x.png in Resources */,
 				D346A8181FAB12CB00DD0281 /* state_yellow@2x.png in Resources */,
 				D3FDC81D1EA0A5C600C25BB0 /* expand_icon_transfer@2x.png in Resources */,
 				D3FDC7EC1EA0A5C600C25BB0 /* ee_5.png in Resources */,
@@ -5416,6 +5570,7 @@
 				D3FDC7851EA0A5C600C25BB0 /* VoiceSearchFeedback019.png in Resources */,
 				D3FDC8641EA0A5C600C25BB0 /* expand_icon_sessiontag@3x.png in Resources */,
 				D3FDC8941EA0A5C600C25BB0 /* tabbar_icon_ongoing@3x.png in Resources */,
+				93D0CF4828373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */,
 				D3FDC8851EA0A5C600C25BB0 /* main_tab_icon_ongoing@3x.png in Resources */,
 				93EFFC8327BA411F0043DE06 /* Podfile in Resources */,
 				D3FDC7D31EA0A5C600C25BB0 /* ee_14.png in Resources */,
@@ -5453,6 +5608,7 @@
 				D3FDC75B1EA0A5C600C25BB0 /* chatFire_audioPlaying1.png in Resources */,
 				D3FDC8571EA0A5C600C25BB0 /* bar_icon_search_Text3@3x.png in Resources */,
 				D3FDC8291EA0A5C600C25BB0 /* input_bar_1_icon_expand@2x.png in Resources */,
+				936544A72838C1CB009854AF /* smart_message@3x.png in Resources */,
 				D3FDC83D1EA0A5C600C25BB0 /* main_tab_icon_ongoing@2x.png in Resources */,
 				D3FDC82D1EA0A5C600C25BB0 /* input_tab_icon_file2@2x.png in Resources */,
 				D3FDC8241EA0A5C600C25BB0 /* historyCopy_icon_morehistory@2x.png in Resources */,
@@ -5470,6 +5626,7 @@
 				D3FDC82F1EA0A5C600C25BB0 /* list_icon_file_image@2x.png in Resources */,
 				D3FDC7E11EA0A5C600C25BB0 /* ee_27.png in Resources */,
 				D3FDC7731EA0A5C600C25BB0 /* VoiceSearchFeedback010.png in Resources */,
+				93D0CF4F283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib in Resources */,
 				D3FDC8611EA0A5C600C25BB0 /* expand_arror_sesstion_tag_display@3x.png in Resources */,
 				D3FDC85F1EA0A5C600C25BB0 /* channel_wechat_icon@3x.png in Resources */,
 				D39839261FDE6B5400D5F853 /* alarmsRecord@2x.png in Resources */,
@@ -5495,6 +5652,8 @@
 				D3FDC76D1EA0A5C600C25BB0 /* VoiceSearchFeedback007.png in Resources */,
 				D3FDC80B1EA0A5C600C25BB0 /* switch_on@2x.png in Resources */,
 				D3FDC82B1EA0A5C600C25BB0 /* input_bar_1_icon_keyboard@2x.png in Resources */,
+				93D0CF2D283720C5004D93E3 /* smart@2x.png in Resources */,
+				9374F9BA28379EF4007924C9 /* KFSmartImageTableViewCell.xib in Resources */,
 				D3FDC81B1EA0A5C600C25BB0 /* expand_icon_sessionend@2x.png in Resources */,
 				D3FDC7D01EA0A5C600C25BB0 /* ee_11.png in Resources */,
 				D3FDC8481EA0A5C600C25BB0 /* tabbar_icon_crm@2x.png in Resources */,
@@ -5583,6 +5742,7 @@
 				D3FDC8011EA0A5C600C25BB0 /* icon_180@2x.png in Resources */,
 				D3FDC7F11EA0A5C600C25BB0 /* icon_back@2x.png in Resources */,
 				D3FDC7C11EA0A5C600C25BB0 /* pop_white_select@2x.png in Resources */,
+				9365449D2838C1CB009854AF /* smart_menu@2x.png in Resources */,
 				D3FDC81C1EA0A5C600C25BB0 /* expand_icon_sessiontag@2x.png in Resources */,
 				D33CE6AF1F7CA98D00236720 /* chat_sender_bg@2x.png in Resources */,
 				D3FDC8381EA0A5C600C25BB0 /* main_icon_open@2x.png in Resources */,
@@ -5614,6 +5774,7 @@
 				D3FDC85B1EA0A5C600C25BB0 /* btn_icon_phrase@3x.png in Resources */,
 				D3FDC8801EA0A5C600C25BB0 /* main_icon_open@3x.png in Resources */,
 				D3FDC7871EA0A5C600C25BB0 /* VoiceSearchFeedback020.png in Resources */,
+				9374F9C828379F77007924C9 /* KFSmartArticleTableViewCell.xib in Resources */,
 				908691DD21D5D41C00C95C22 /* ic_video_library@3x.png in Resources */,
 				D3FDC7A81EA0A5C600C25BB0 /* default_agent_avatar@2x.png in Resources */,
 				D3FDC8991EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy@3x.png in Resources */,
@@ -5632,6 +5793,7 @@
 				93EFFCC427BA6FEB0043DE06 /* screen2.png in Resources */,
 				D3FDC82C1EA0A5C600C25BB0 /* input_bar_1_icon_less@2x.png in Resources */,
 				D3FDC7791EA0A5C600C25BB0 /* VoiceSearchFeedback013.png in Resources */,
+				93D0CF4128373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */,
 				D3058D121FD6AD920091E048 /* line_up@3x.png in Resources */,
 				D3FDC8431EA0A5C600C25BB0 /* phrase_delete_Ellipse@2x.png in Resources */,
 				D3FDC8051EA0A5C600C25BB0 /* icon_mono_on@2x.png in Resources */,
@@ -5654,6 +5816,7 @@
 				D3A95E731EA0F47100ADD394 /* sr_refresh@2X.png in Resources */,
 				D3FDC7AD1EA0A5C600C25BB0 /* icon_audio_blue_2@2x.png in Resources */,
 				D3058D1E1FD6AD920091E048 /* stop@3x.png in Resources */,
+				936544912838A283009854AF /* KFSmartArticleMoreTableViewCell.xib in Resources */,
 				D3FDC84A1EA0A5C600C25BB0 /* tabbar_icon_notice@2x.png in Resources */,
 				D3FDC7F61EA0A5C600C25BB0 /* 5-1.png in Resources */,
 				D3A95E721EA0F47100ADD394 /* sr_refresh.png in Resources */,
@@ -5678,6 +5841,7 @@
 				D3FDC75E1EA0A5C600C25BB0 /* chatFire_audioPlaying2@2x.png in Resources */,
 				D34DFAB61FA8554A0018116D /* update@2x.png in Resources */,
 				D3FDC84E1EA0A5C600C25BB0 /* tabbar_icon_visitor_Text6@2x.png in Resources */,
+				936544AF2838C3EC009854AF /* samrt_media@3x.png in Resources */,
 				D3FDC7661EA0A5C600C25BB0 /* VoiceSearchFeedback003@2x.png in Resources */,
 				D33CE6AA1F7CA98D00236720 /* messageSendFail@2x.png in Resources */,
 				D3FDC7671EA0A5C600C25BB0 /* VoiceSearchFeedback004.png in Resources */,
@@ -5758,6 +5922,7 @@
 				93EFFCC927BA6FEB0043DE06 /* show.png in Resources */,
 				D398392A1FDE6BA000D5F853 /* icon_manager_realtime@2x.png in Resources */,
 				D3E9CDCE1FBED182005E3677 /* state_red@2x.png in Resources */,
+				9374F9BB28379EF4007924C9 /* KFSmartImageTableViewCell.xib in Resources */,
 				93EFFCC127BA6FEB0043DE06 /* camera@2x.png in Resources */,
 				D3E9CDCF1FBED182005E3677 /* ease_chat_item_file@2x.png in Resources */,
 				D3E9CDD01FBED182005E3677 /* phrase_delete_Ellipse@3x.png in Resources */,
@@ -5776,9 +5941,11 @@
 				D3E9CDDA1FBED182005E3677 /* chat_location_preview.png in Resources */,
 				D3E9CDDB1FBED182005E3677 /* gallary_icon_camera_big@3x.png in Resources */,
 				D3E9CDDC1FBED182005E3677 /* VoiceSearchFeedback005@2x.png in Resources */,
+				9374F9C228379F3E007924C9 /* KFSmartChoiceTableViewCell.xib in Resources */,
 				D3E9CDDD1FBED182005E3677 /* ee_1.png in Resources */,
 				D3E9CDDE1FBED182005E3677 /* list_status_radio_droplist_4@2x.png in Resources */,
 				D3E9CDDF1FBED182005E3677 /* channel_call_icon@2x.png in Resources */,
+				936544AE2838C3EC009854AF /* samrt_media@2x.png in Resources */,
 				D3E9CDE01FBED182005E3677 /* VoiceSearchFeedback018@2x.png in Resources */,
 				D3E9CDE11FBED182005E3677 /* info_expand_icon_pull@2x.png in Resources */,
 				D3E9CDE21FBED182005E3677 /* agents_icon_shai_Text2@3x.png in Resources */,
@@ -5791,6 +5958,7 @@
 				D3E9CDE81FBED182005E3677 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D3E9CDEA1FBED182005E3677 /* ee_35.png in Resources */,
 				D3E9CDEB1FBED182005E3677 /* channel_web_icon@3x.png in Resources */,
+				93D0CF4928373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */,
 				93EFFCC727BA6FEB0043DE06 /* off.png in Resources */,
 				D3E9CDEC1FBED182005E3677 /* icon1_selected@3x.png in Resources */,
 				D3E9CDED1FBED182005E3677 /* btn__icon_qubz@3x.png in Resources */,
@@ -5831,6 +5999,7 @@
 				D3E9CE0E1FBED182005E3677 /* visitor_icon_imagebroken_big@2x.png in Resources */,
 				D3E9CE0F1FBED182005E3677 /* ee_21.png in Resources */,
 				D3E9CE101FBED182005E3677 /* state_yellow@2x.png in Resources */,
+				936544AA2838C1CB009854AF /* smart_menu@3x.png in Resources */,
 				D3E9CE111FBED182005E3677 /* expand_icon_transfer@2x.png in Resources */,
 				D3E9CE121FBED182005E3677 /* ee_5.png in Resources */,
 				D3E9CE131FBED182005E3677 /* ee_30.png in Resources */,
@@ -5858,6 +6027,7 @@
 				D3E9CE231FBED182005E3677 /* main_tab_icon_histroy_1@3x.png in Resources */,
 				93EFFCD127BA6FEB0043DE06 /* mac on@2x.png in Resources */,
 				D3E9CE241FBED182005E3677 /* chat_close@3x.png in Resources */,
+				936544A82838C1CB009854AF /* smart_message@3x.png in Resources */,
 				D3E9CE251FBED182005E3677 /* btn_icon_iframe@2x.png in Resources */,
 				D3E9CE261FBED182005E3677 /* button_conclusion_select@2x.png in Resources */,
 				D3E9CE271FBED182005E3677 /* list_status_radio_droplist_big_1@3x.png in Resources */,
@@ -5865,12 +6035,15 @@
 				D3E9CE2A1FBED182005E3677 /* main_tab_icon_ongoing_1@2x.png in Resources */,
 				D3E9CE2B1FBED182005E3677 /* icon_input_hide@2x.png in Resources */,
 				93EFFCD727BA6FEB0043DE06 /* sound.png in Resources */,
+				936544A22838C1CB009854AF /* smart_tuwen@2x.png in Resources */,
 				D3E9CE2C1FBED182005E3677 /* VoiceSearchFeedback005.png in Resources */,
 				D3E9CE2D1FBED182005E3677 /* ee_13.png in Resources */,
 				D3E9CE2E1FBED182005E3677 /* input_bar_1_icon_face@2x.png in Resources */,
 				D3E9CE2F1FBED182005E3677 /* VoiceSearchFeedback003.png in Resources */,
 				D3E9CE301FBED182005E3677 /* history_icon_more@2x.png in Resources */,
 				D3E9CE311FBED182005E3677 /* iconfont.css in Resources */,
+				93D0CF50283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib in Resources */,
+				93D0CF2C283720C5004D93E3 /* smartselect@2x.png in Resources */,
 				D3058D111FD6AD920091E048 /* line_up@2x.png in Resources */,
 				D3E9CE321FBED182005E3677 /* tabbar_icon_notice@3x.png in Resources */,
 				938AEA4227F3F8FC00B461C4 /* .gitkeep in Resources */,
@@ -5893,6 +6066,7 @@
 				D3E9CE411FBED182005E3677 /* tabbar_icon_visitorhighlight_Text6@2x.png in Resources */,
 				D3E9CE421FBED182005E3677 /* LaunchScreen.storyboard in Resources */,
 				D3E9CE431FBED182005E3677 /* icon_back_select@2x.png in Resources */,
+				93D0CF2E283720C5004D93E3 /* smart@2x.png in Resources */,
 				D3E9CE441FBED182005E3677 /* icon_over@2x.png in Resources */,
 				D3E9CE451FBED182005E3677 /* chat_tagarrow@3x.png in Resources */,
 				D3E9CE461FBED182005E3677 /* list_icon_file_image@2x.png in Resources */,
@@ -5942,6 +6116,7 @@
 				D3E9CE6A1FBED182005E3677 /* VoiceSearchFeedback002.png in Resources */,
 				D3E9CE6B1FBED182005E3677 /* state_gray@2x.png in Resources */,
 				D3E9CE6C1FBED182005E3677 /* tabbar_icon_visitorhighlight_Text6@3x.png in Resources */,
+				936544922838A283009854AF /* KFSmartArticleMoreTableViewCell.xib in Resources */,
 				D3E9CE6D1FBED182005E3677 /* list_status_radio_droplist_3@2x.png in Resources */,
 				D3E9CE6F1FBED182005E3677 /* VoiceSearchFeedback016@2x.png in Resources */,
 				D3E9CE701FBED182005E3677 /* VoiceSearchFeedback002@2x.png in Resources */,
@@ -6000,9 +6175,11 @@
 				D3E9CEA31FBED182005E3677 /* chat_tagarrow@2x.png in Resources */,
 				D3E9CEA41FBED182005E3677 /* gallary_icon_camera_big@2x.png in Resources */,
 				D3E9CEA51FBED182005E3677 /* tabbar_icon_crm@3x.png in Resources */,
+				93D0CF4228373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */,
 				90AFCBE020CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */,
 				D3E9CEA61FBED182005E3677 /* expand_icon_sessionend@3x.png in Resources */,
 				93EFFCB727BA6FEB0043DE06 /* shareDesktop@2x.png in Resources */,
+				936544A42838C1CB009854AF /* smart_message@2x.png in Resources */,
 				D3E9CEA71FBED182005E3677 /* VoiceSearchFeedback015@2x.png in Resources */,
 				D3E9CEA81FBED182005E3677 /* icon_audio_white_1@2x.png in Resources */,
 				D3E9CEA91FBED182005E3677 /* channel_web_icon@2x.png in Resources */,
@@ -6026,6 +6203,7 @@
 				D3E9CEBA1FBED182005E3677 /* channel_weibo_icon@3x.png in Resources */,
 				D3E9CEBB1FBED182005E3677 /* icon_input_hide_select@2x.png in Resources */,
 				D3E9CEBC1FBED182005E3677 /* ee_25.png in Resources */,
+				936544B02838C3EC009854AF /* samrt_media@3x.png in Resources */,
 				D3E9CEBD1FBED182005E3677 /* btn__icon_qubz@2x.png in Resources */,
 				D3058D151FD6AD920091E048 /* reception@2x.png in Resources */,
 				D3E9CEBE1FBED182005E3677 /* ee_2.png in Resources */,
@@ -6150,6 +6328,7 @@
 				90D3CBA7201B13FD005FD40F /* icon_manager_supervise@2x.png in Resources */,
 				D3E9CF1E1FBED182005E3677 /* VoiceSearchFeedback015.png in Resources */,
 				D3E9CF1F1FBED182005E3677 /* tips_popup_right_EllipseCopy_2@2x.png in Resources */,
+				9365449E2838C1CB009854AF /* smart_menu@2x.png in Resources */,
 				D3E9CF201FBED182005E3677 /* chatFire_audioPlaying1@2x.png in Resources */,
 				D3E9CF211FBED182005E3677 /* tip_red@2x.png in Resources */,
 				9046FCE520E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */,
@@ -6158,12 +6337,14 @@
 				D3E9CF241FBED182005E3677 /* ee_23.png in Resources */,
 				D3E9CF251FBED182005E3677 /* message_agent_2_chatpop_agent@2x.png in Resources */,
 				D3E9CF261FBED182005E3677 /* ee_34.png in Resources */,
+				9374F9C928379F77007924C9 /* KFSmartArticleTableViewCell.xib in Resources */,
 				D3E9CF271FBED182005E3677 /* image_file2_icon_files@3x.png in Resources */,
 				D3E9CF281FBED182005E3677 /* icon_screen@2x.png in Resources */,
 				D3E9CF291FBED182005E3677 /* ee_3.png in Resources */,
 				D39839241FDE6A2700D5F853 /* MonitorAlarm@2x.png in Resources */,
 				D3E9CF2A1FBED182005E3677 /* VoiceSearchFeedback013@2x.png in Resources */,
 				D3E9CF2B1FBED182005E3677 /* icon_audio_white_3@2x.png in Resources */,
+				936544A62838C1CB009854AF /* smart_tuwen@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6330,9 +6511,11 @@
 				D3A761471FB55ABE000E1652 /* YYTextRubyAnnotation.m in Sources */,
 				D3A761481FB55ABE000E1652 /* YYTextRunDelegate.m in Sources */,
 				938AEA1727F3F8FB00B461C4 /* DBPlayer.xcdatamodeld in Sources */,
+				9374F9C628379F77007924C9 /* KFSmartArticleTableViewCell.m in Sources */,
 				D3A761491FB55ABE000E1652 /* NSAttributedString+YYText.m in Sources */,
 				D3A7614A1FB55ABE000E1652 /* NSParagraphStyle+YYText.m in Sources */,
 				D3A7614B1FB55ABE000E1652 /* UIPasteboard+YYText.m in Sources */,
+				93D0CF3F28373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */,
 				D3A7614C1FB55ABE000E1652 /* UIView+YYText.m in Sources */,
 				D3A7614D1FB55ABE000E1652 /* YYTextAsyncLayer.m in Sources */,
 				90A2B534206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */,
@@ -6367,6 +6550,7 @@
 				D3DFB3881FD8ECDF00A9358A /* KFSuperviseDetailCell.m in Sources */,
 				D33CE7D61F7CB42E00236720 /* DXBaseViewController.m in Sources */,
 				938AEA3527F3F8FC00B461C4 /* KJPlayerLog.m in Sources */,
+				930EF9B42835155600A3C205 /* KFPatternModel.m in Sources */,
 				938AEA4727F3F8FC00B461C4 /* KJAVPlayer+KJCache.m in Sources */,
 				90FC924A2486323B00014CCC /* MASLayoutConstraint.m in Sources */,
 				D39838CF1FDA3CE500D5F853 /* KFWarningViewController.m in Sources */,
@@ -6496,6 +6680,7 @@
 				D33CE8601F7CD0F800236720 /* UIImageView+EMWebCache.m in Sources */,
 				D33CE76E1F7CAEB800236720 /* UIButton+KFAdd.m in Sources */,
 				93119A4227F58FC100F749F3 /* KFDocument.m in Sources */,
+				93D0CF4628373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */,
 				D33CE8B71F7CD84A00236720 /* EMUIWebViewController.m in Sources */,
 				D3A95E381EA0F47100ADD394 /* EmojiEmoticons.m in Sources */,
 				D33CE79E1F7CAF6700236720 /* LoginViewController.m in Sources */,
@@ -6508,6 +6693,7 @@
 				D33CE79C1F7CAF6700236720 /* KFResetPswViewController.m in Sources */,
 				90FC92422486323B00014CCC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D33CE6C71F7CA98D00236720 /* EMPromptBoxView.m in Sources */,
+				9365448F2838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */,
 				D33CE85D1F7CD0F800236720 /* UIImage+EMMultiFormat.m in Sources */,
 				D33CE8541F7CD0F800236720 /* EMSDWebImageDecoder.m in Sources */,
 				D3A95E361EA0F47100ADD394 /* EMCDDeviceManagerBase.m in Sources */,
@@ -6539,6 +6725,7 @@
 				D33CE6D01F7CA98D00236720 /* KFConversationsController.m in Sources */,
 				D33CE7301F7CAD2C00236720 /* EMEditViewController.m in Sources */,
 				938AEA4D27F3F8FC00B461C4 /* KJMIDIPlayer.m in Sources */,
+				9374F9BF28379F3E007924C9 /* KFSmartChoiceTableViewCell.m in Sources */,
 				D33CE7DA1F7CB42E00236720 /* EMBaseViewController.m in Sources */,
 				938AEA3B27F3F8FC00B461C4 /* KJBasePlayer.m in Sources */,
 				D33CE6B01F7CA98D00236720 /* LocationViewController.m in Sources */,
@@ -6577,6 +6764,7 @@
 				D33CE8591F7CD0F800236720 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D33CE6911F7CA98D00236720 /* TransferViewController.m in Sources */,
 				D33CE8991F7CD34000236720 /* KFLeaveMsgCommentCell.m in Sources */,
+				93D0CF36283730F1004D93E3 /* KFMSGTypeModel.m in Sources */,
 				D33CE85A1F7CD0F800236720 /* NSData+EMImageContentType.m in Sources */,
 				D33CE6921F7CA98D00236720 /* ClientInforHeaderView.m in Sources */,
 				938AEA1F27F3F8FB00B461C4 /* KJBasePlayer+KJCache.m in Sources */,
@@ -6625,13 +6813,16 @@
 				938AEA3127F3F8FC00B461C4 /* KJBasePlayer+KJRecordTime.m in Sources */,
 				90FC92442486323B00014CCC /* ViewController+MASAdditions.m in Sources */,
 				907090EB2060BB530062FED6 /* KFLeftViewItem.m in Sources */,
+				93D0CF3A283736DA004D93E3 /* KFSmartUtils.m in Sources */,
 				D3A95E761EA0F47100ADD394 /* THProgressView.m in Sources */,
+				93D0CF3228372B35004D93E3 /* KFSmartModel.m in Sources */,
 				938AEA2527F3F8FB00B461C4 /* KJFileHandleManager.m in Sources */,
 				938AEA1927F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m in Sources */,
 				935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */,
 				D3A95E4A1EA0F47100ADD394 /* MBProgressHUD.m in Sources */,
 				90FC92502486323B00014CCC /* MASConstraint.m in Sources */,
 				D33CE6BB1F7CA98D00236720 /* EMChatLocationBubbleView.m in Sources */,
+				930EF9B12834BCF800A3C205 /* KFChatSmartView.m in Sources */,
 				D33CE8581F7CD0F800236720 /* EMSDWebImagePrefetcher.m in Sources */,
 				D33CE6C81F7CA98D00236720 /* EMTagView.m in Sources */,
 				93EFFC7627BA3FC50043DE06 /* HDSSKeychain.m in Sources */,
@@ -6646,6 +6837,7 @@
 				D3A95E7F1EA0F47100ADD394 /* amrFileCodec.mm in Sources */,
 				938AEA1B27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */,
 				938AEA5327F3F8FC00B461C4 /* KJBasePlayerView.m in Sources */,
+				9374F9B828379EF4007924C9 /* KFSmartImageTableViewCell.m in Sources */,
 				D33CE7D71F7CB42E00236720 /* DXTableViewCellType1.m in Sources */,
 				935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */,
 				D3A95E4E1EA0F47100ADD394 /* MWPhoto.m in Sources */,
@@ -6654,6 +6846,7 @@
 				D33CE6BA1F7CA98D00236720 /* EMChatImageTextBubbleView.m in Sources */,
 				D33CE7A21F7CAF6700236720 /* KFTestParameters.m in Sources */,
 				D3A95E351EA0F47100ADD394 /* EMCDDeviceManager+Remind.m in Sources */,
+				93D0CF4D283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */,
 				935CFBE827C6185A0093B9DF /* KFPlayerVideoBaseViewController.m in Sources */,
 				D3A95E4B1EA0F47100ADD394 /* MWCaptionView.m in Sources */,
 				D33CE8101F7CB52500236720 /* DDLog.m in Sources */,
@@ -6680,6 +6873,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				938AE9AB27F3F87B00B461C4 /* HDChatVideoDetailBubbleView.m in Sources */,
+				93D0CF3B283736DA004D93E3 /* KFSmartUtils.m in Sources */,
 				938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */,
 				938AE9A927F3F82C00B461C4 /* HDAgoraCallViewController.m in Sources */,
 				938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */,
@@ -6745,7 +6939,9 @@
 				90FC924B2486323B00014CCC /* MASLayoutConstraint.m in Sources */,
 				D39838D01FDA3CE500D5F853 /* KFWarningViewController.m in Sources */,
 				D3E9CCCF1FBED182005E3677 /* RealtimeSearchUtil.m in Sources */,
+				93D0CF37283730F1004D93E3 /* KFMSGTypeModel.m in Sources */,
 				D3E9CCD01FBED182005E3677 /* DDASLLogger.m in Sources */,
+				93D0CF4728373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */,
 				D3E9CCD11FBED182005E3677 /* ClientInforViewController.m in Sources */,
 				D3E9CCD21FBED182005E3677 /* HConversationViewController.m in Sources */,
 				D3E9CCD31FBED182005E3677 /* AdminWorkloadViewController.m in Sources */,
@@ -6754,6 +6950,7 @@
 				936F2E4A28261CA9001FB60A /* HDSanBoxFileManager.m in Sources */,
 				D3E9CCD51FBED182005E3677 /* DXTableViewController.m in Sources */,
 				D3E9CCD61FBED182005E3677 /* MMDrawerBarButtonItem.m in Sources */,
+				936544902838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */,
 				D3E9CCD71FBED182005E3677 /* KFPromptView.m in Sources */,
 				938AEA5E27F3F8FC00B461C4 /* KJPlayerButton.m in Sources */,
 				D3E9CCD81FBED182005E3677 /* PSTCollectionView.m in Sources */,
@@ -6761,6 +6958,7 @@
 				90591C452068ADC4007367BD /* KFMonitorInfoView.m in Sources */,
 				D3E9CCDA1FBED182005E3677 /* JNGroupViewController.m in Sources */,
 				D3E9CCDB1FBED182005E3677 /* NSDictionary+SafeValue.m in Sources */,
+				93D0CF4028373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */,
 				90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */,
 				D3E9CCDC1FBED182005E3677 /* AdminHomeViewController.m in Sources */,
 				D3E9CCDD1FBED182005E3677 /* ReminderView.m in Sources */,
@@ -6778,6 +6976,7 @@
 				938AEA2827F3F8FB00B461C4 /* KJPlayerSharedInstance.m in Sources */,
 				938AEA4C27F3F8FC00B461C4 /* KJPlayerStatusLayer.m in Sources */,
 				D3E9CCE71FBED182005E3677 /* NotifyViewController.m in Sources */,
+				930EF9B52835155700A3C205 /* KFPatternModel.m in Sources */,
 				D3E9CCE81FBED182005E3677 /* HistoryConversationsController.m in Sources */,
 				938AEA1E27F3F8FB00B461C4 /* KJCacheManager.m in Sources */,
 				D3E9CCE91FBED182005E3677 /* NSDate+Formatter.m in Sources */,
@@ -6832,6 +7031,7 @@
 				D3E9CD141FBED182005E3677 /* FacialView.m in Sources */,
 				D3E9CD151FBED182005E3677 /* AdminQualityofWorkViewController.m in Sources */,
 				D3E9CD171FBED182005E3677 /* EMFileViewController.m in Sources */,
+				9374F9C728379F77007924C9 /* KFSmartArticleTableViewCell.m in Sources */,
 				90A2B53D2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */,
 				D3E9CD181FBED182005E3677 /* DDMultiFormatter.m in Sources */,
 				93EFFC7F27BA3FC60043DE06 /* HDAgoraCallManager.m in Sources */,
@@ -6847,6 +7047,7 @@
 				D3E9CD201FBED182005E3677 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				D3E9CD221FBED182005E3677 /* SRSlimeView.m in Sources */,
 				90FC9223248627AC00014CCC /* KFSearchController.m in Sources */,
+				9374F9C028379F3E007924C9 /* KFSmartChoiceTableViewCell.m in Sources */,
 				D3E9CD231FBED182005E3677 /* DDDispatchQueueLogFormatter.m in Sources */,
 				D3E9CD241FBED182005E3677 /* NSString+Escape.m in Sources */,
 				D3E9CD251FBED182005E3677 /* CustomerChatViewController.m in Sources */,
@@ -6859,6 +7060,7 @@
 				D3E9CD291FBED182005E3677 /* AppDelegate+EaseMob.m in Sources */,
 				90AFCBDE20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */,
 				938AEA5C27F3F8FC00B461C4 /* KJPlayerSystemLayer.m in Sources */,
+				93D0CF3328372B35004D93E3 /* KFSmartModel.m in Sources */,
 				D3E9CD2B1FBED182005E3677 /* KFManager.m in Sources */,
 				D3E9CD2C1FBED182005E3677 /* EMNumberPicker.m in Sources */,
 				93119A4327F58FC100F749F3 /* KFDocument.m in Sources */,
@@ -6898,6 +7100,7 @@
 				D3E9CD461FBED182005E3677 /* EmotionEscape.m in Sources */,
 				D3E9CD471FBED182005E3677 /* Appdelegate.m in Sources */,
 				D3E9CD491FBED182005E3677 /* EMClientInfoTagView.m in Sources */,
+				9374F9B928379EF4007924C9 /* KFSmartImageTableViewCell.m in Sources */,
 				D3E9CD4A1FBED182005E3677 /* HDWebViewController.m in Sources */,
 				D3E9CD4B1FBED182005E3677 /* EMVoiceConverter.mm in Sources */,
 				D3E9CD4D1FBED182005E3677 /* DXLoadingView.m in Sources */,
@@ -6953,6 +7156,7 @@
 				D3E9CD711FBED182005E3677 /* ClientInforHeaderView.m in Sources */,
 				D3E9CD721FBED182005E3677 /* MWPhotoBrowser.m in Sources */,
 				D3E9CD731FBED182005E3677 /* ClientInforCompileController.m in Sources */,
+				93D0CF4E283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */,
 				D3E9CD741FBED182005E3677 /* SBTickerView.m in Sources */,
 				D3E9CD751FBED182005E3677 /* MMDrawerController.m in Sources */,
 				D3E9CD761FBED182005E3677 /* DDAbstractDatabaseLogger.m in Sources */,

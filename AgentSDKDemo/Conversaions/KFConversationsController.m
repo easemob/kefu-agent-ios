@@ -113,7 +113,17 @@
 //}
 
 - (void)conversationAutoClosedWithServiceSessionId:(NSString *)serviceSessionId {
+
     [self reloadDataWithSessionId:serviceSessionId];
+    // 会话自动关闭的时候 清除 本地存储会话助手状态
+    
+    NSUserDefaults *def = [NSUserDefaults standardUserDefaults];
+    
+    if ([def valueForKey:serviceSessionId]) {
+        [def removeObjectForKey:serviceSessionId];
+        [def synchronize];
+    }
+
 }
 
 //会话被管理员转接
@@ -124,6 +134,8 @@
 - (void)reloadDataWithSessionId:(NSString *)sessionId {
     if ([sessionId isEqualToString:[KFManager sharedInstance].currentSessionId]) {
         [[KFManager sharedInstance].curChatViewConvtroller.navigationController popViewControllerAnimated:YES];
+       
+        
     }
     [_conversationController loadData];
 }

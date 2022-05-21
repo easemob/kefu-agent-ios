@@ -42,7 +42,8 @@
 #import "KFVideoDetailModel.h"
 #import "KFICloudManager.h"
 #import "HDSanBoxFileManager.h"
-
+#import "KFChatSmartView.h"
+#import "KFSmartModel.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -121,6 +122,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 @property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
 
 @property (nonatomic, strong) NSArray  *recordVideoDetailAll;
+@property (nonatomic, strong) KFChatSmartView  *smartView;
 
 @end
 
@@ -137,7 +139,15 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     return _recordView;
 }
-
+- (KFChatSmartView *)smartView{
+    
+    if (!_smartView) {
+        _smartView = [[KFChatSmartView alloc] init];
+//        _smartView.backgroundColor = [UIColor redColor];
+    }
+    
+    return _smartView;
+}
 - (instancetype)initWithtype:(ChatViewType)type
 {
     self = [super init];
@@ -481,26 +491,46 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [_moreView addSubview:contentView];
             
             
-            UIButton *sessionAssistantBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            sessionAssistantBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
-            [sessionAssistantBtn setTitle:@"会话助手" forState:UIControlStateNormal];
-            sessionAssistantBtn.titleLabel.font = [UIFont systemFontOfSize:17];
-            [sessionAssistantBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
-            [sessionAssistantBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
-            [sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_off"] forState:UIControlStateNormal];
-
-            [sessionAssistantBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
-            [sessionAssistantBtn addTarget:self action:@selector(sessionAssistantAction) forControlEvents:UIControlEventTouchUpInside];
-            [contentView addSubview:sessionAssistantBtn];
-            _sessionAssistantBtn = sessionAssistantBtn;
-            UIView *line0 = [[UIView alloc] init];
-            line0.frame = CGRectMake(0, CGRectGetMaxY(sessionAssistantBtn.frame) - 0.5, contentView.width, 1);
-            line0.backgroundColor = [UIColor lightGrayColor];
-            [contentView addSubview:line0];
-            
+//            UIButton *sessionAssistantBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//            sessionAssistantBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
+//            [sessionAssistantBtn setTitle:@"会话助手" forState:UIControlStateNormal];
+//            sessionAssistantBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+//            [sessionAssistantBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
+//            [sessionAssistantBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+//
+//            [sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_on"] forState:UIControlStateSelected ];
+//
+//            [sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_off"] forState:UIControlStateNormal];
+//
+//            //这个地方的逻辑是。如果 本地没有存状态说明是首次进入并且没有修改状态 那就走默认的移动助手开关设置 如果有状态 说明 这个会话根据自己是操作状态 进行展示
+//            NSUserDefaults *def= [NSUserDefaults standardUserDefaults];
+//
+//            if ([def valueForKey:self.conversationModel.sessionId]) {
+//                BOOL selected;
+//                NSString * state =[def valueForKey:self.conversationModel.sessionId] ;
+//                if ([state isEqualToString:@"YES" ]) {
+//                    selected = YES;
+//                }else{
+//                    selected = NO;
+//                }
+//                sessionAssistantBtn.selected = selected;
+//            }else{
+//
+//                sessionAssistantBtn.selected =[HDClient sharedClient].currentAgentUser.appAssistantEnable;
+//
+//            }
+//            [sessionAssistantBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+//            [sessionAssistantBtn addTarget:self action:@selector(sessionAssistantAction:) forControlEvents:UIControlEventTouchUpInside];
+//            [contentView addSubview:sessionAssistantBtn];
+//            _sessionAssistantBtn = sessionAssistantBtn;
+//            UIView *line0 = [[UIView alloc] init];
+//            line0.frame = CGRectMake(0, CGRectGetMaxY(sessionAssistantBtn.frame) - 0.5, contentView.width, 1);
+//            line0.backgroundColor = [UIColor lightGrayColor];
+//            [contentView addSubview:line0];
+//
             
             UIButton *transferBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            transferBtn.frame = CGRectMake(0, CGRectGetMaxY(sessionAssistantBtn.frame), CGRectGetWidth(contentView.frame), 40);
+            transferBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
             [transferBtn setTitle:@"会话转接" forState:UIControlStateNormal];
             transferBtn.titleLabel.font = [UIFont systemFontOfSize:17];
             [transferBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
@@ -1105,6 +1135,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 -(void)keyBoardHidden:(UIGestureRecognizer *)gestureRecognizer
 {
     [self.chatToolBar endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -1119,6 +1150,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
     HDMessage *model = [userInfo objectForKey:KMESSAGEKEY];
+    
+    
     if ([eventName isEqualToString:kRouterEventTextURLTapEventName]) {
         NSString *url=[NSString stringWithUTF8String:[[userInfo objectForKey:@"url"] UTF8String]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -1130,7 +1163,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         if (!model.isSender) {
             [self chatHeadImageBubblePressed:model];
         }
-    } else if ([eventName isEqualToString:kResendButtonTapEventName]){
+    }else if ([eventName isEqualToString:kSmartButtonTapEventName]){
+        [self chatTextSmartCellBubblePressed:model];
+    } else if ([eventName isEqualToString:kRouterEventCopyTextTapEventName]){
+        [self chatTextSmartCopyCellBubblePressed:[userInfo objectForKey:@"smartText"]];
+    } else if ([eventName isEqualToString:kRouterEventSendMessageTapEventName]){
+        [self chatTextSmartSendMessageCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
+    }  else if ([eventName isEqualToString:kResendButtonTapEventName]){
         EMChatViewCell *resendCell = [userInfo objectForKey:kShouldResendCell];
         HDMessage *messageModel = resendCell.messageModel;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:resendCell];
@@ -1191,6 +1230,47 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     EMFileViewController *viewController = [[EMFileViewController alloc] init];
     viewController.model = model;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+// 文本的小书被点击
+- (void)chatTextSmartCellBubblePressed:(HDMessage *)model{
+    
+    [self.view addSubview:self.smartView];
+    
+    [self.smartView setModel:model];
+    
+    [self.smartView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.offset(0);
+        make.trailing.offset(0);
+        make.bottom.mas_equalTo(self.chatToolBar.mas_top).offset(-5);
+        make.height.offset(300);
+    }];
+}
+
+- (void)chatTextSmartCopyCellBubblePressed:(NSString *)text{
+    
+    self.chatToolBar.inputTextView.text = text;
+    
+    
+}
+- (void)chatTextSmartSendMessageCellBubblePressed:(KFSmartModel *)model{
+    
+    switch (model.msgtype) {
+        case HDSmartExtMsgTypeText:
+            if (model.answer && model.answer.length > 0) {
+                [self.promptBoxView searchText:nil];
+                [self sendTextMessage:model.answer];
+            }
+            break;
+        case HDSmartExtMsgTypeImamge:
+            [self sendImageMessage:[UIImage imageNamed:@""]];
+        case HDSmartExtMsgTypearticle:
+            [self sendImageMessage:[UIImage imageNamed:@""]];
+        case HDSmartExtMsgTypeMenu:
+            [self sendTextMessage:model.answer];
+        default:
+            break;
+    }
+   
 }
 
 // 图片的bubble被点击
@@ -1345,24 +1425,28 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _moreView.hidden = YES;
     }
 }
-- (void)sessionAssistantAction
+- (void)sessionAssistantAction:(UIButton *)sender
 {
+    sender.selected = !sender.selected;
     // 会话开关   设置 先判断 设置页的移动助手有没有开启 如果开启了 才能开启 这个会话助手
-    
     [self keyBoardHidden:nil];
+    self.moreView.hidden = YES;
     
-    if ([HDClient sharedClient].currentAgentUser.appAssistantEnable) {
-        [self.sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_on"] forState:UIControlStateNormal];
-        self.moreView.hidden = YES;
+    NSUserDefaults *def= [NSUserDefaults standardUserDefaults];
+    
+    NSString * state;
+    if (sender.selected) {
+        
+        state = @"YES";
     }else{
-//        [self showHudInView:self.view hint:@"您还没有开启移动助手开关暂时不能使用会话助手请去设置页开启"];
-//        [self showHint:@"您还没有开启移动助手开关暂时不能使用会话助手请去设置页开启"];
-        [self.sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_off"] forState:UIControlStateNormal];
-        [self showNotActivityIndicatorHint:@"您还没有开启移动助手开关暂时不能使用会话助手请去设置页开启"];
+        
+        state = @"NO";
     }
+    [def setObject:state forKey:self.conversationModel.sessionId];
+    [def synchronize];
     
-    
-    
+    //调用接口的时候 没开通智能辅助提示
+//    [self showHint:@"您请联系此管理员开通权限"];
 }
 - (void)transferAction
 {
@@ -1507,6 +1591,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [_conversation endConversationWithVisitorId:_conversationModel.chatter.agentId parameters:nil completion:^(id responseObject, HDError *error) {
         if (!error) {
             [self showHint:@"关闭成功"];
+            
             if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
                 [_delegate refreshConversationList];
             }

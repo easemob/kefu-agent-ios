@@ -91,6 +91,7 @@
     [self loadData];
     
     [self _setupSearchResultController];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -458,6 +459,16 @@
         
         [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakSelf.dataSource];
     }];
+    
+    //请求灰度
+    [[HDClient sharedClient].setManager kf_getInitGrayCompletion:^(id responseObject, HDError *error) {
+        
+        NSLog(@"======%@",responseObject);
+        
+        
+    }];
+    
+    
 }
 
 - (void)clearSeesion

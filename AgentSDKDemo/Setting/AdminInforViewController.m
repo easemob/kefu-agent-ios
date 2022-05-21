@@ -13,10 +13,20 @@
 #import "AdminInforEditViewController.h"
 #import "LMJDropdownMenu.h"
 #import "Masonry.h"
+#import "KFPatternModel.h"
 #define URLimage @"//kefu-prod-avatar.img-cn-hangzhou.aliyuncs.com/"
 
 @interface AdminInforViewController () <AdminInforEditViewControllerDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIActionSheetDelegate,LMJDropdownMenuDelegate, LMJDropdownMenuDataSource>{
     NSArray * _answerPatterns;
+    NSArray * _answerSendPatterns;
+    
+    BOOL _isOn;
+    
+    int   answerMatchPattern;
+    int   sendPattern ;
+    
+    
+    NSMutableDictionary *_setPatternDic;
 }
 
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
@@ -26,8 +36,11 @@
 @property (nonatomic, strong) UILabel *nicknameLabel;
 @property (nonatomic, strong) UISwitch *greetingsSwitch;
 @property (nonatomic, strong) UISwitch *appAssistantSwitch;
-@property (nonatomic, strong) LMJDropdownMenu *menu;
+@property (nonatomic, strong) LMJDropdownMenu *menu; //匹配模式菜单
+@property (nonatomic, strong) LMJDropdownMenu *sendMenu;//发送模式菜单
 @property (nonatomic, strong) UIView *line;
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) KFPatternModel *patternModel;
 
 @end
 
@@ -50,7 +63,15 @@
 //    [self loadData];
     
     [self showCurrentVersion];
-    _answerPatterns = @[@"精准匹配",@"模糊匹配"];
+    
+    
+   
+}
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self getMatchPattern];
 }
 
 - (void)showCurrentVersion {
@@ -81,6 +102,14 @@
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     }
+}
+
+- (NSMutableArray *)dataArray{
+    if (!_dataArray) {
+        _dataArray = [[NSMutableArray alloc ]init];
+    }
+    
+    return  _dataArray;
 }
 
 - (UIView *)line
@@ -164,20 +193,30 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 4;
+    return 3 + self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    if (section == 0) {
-        return 6;
-    } else if (section == 1) {
-        return 2;
+    
+    if (self.dataArray.count > 0) {
+        if (section == 0) {
+            return 6;
+        } else if (section == 1) {
+            return 3;
+        }
+        else if (section == 2) {
+            return 2;
+        }
+        return 1;
+    }else{
+        if (section == 0) {
+            return 6;
+        } else if (section == 1) {
+            return 2;
+        }
+        return 1;
     }
-    else if (section == 2) {
-        return 2;
-    }
-    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -239,31 +278,51 @@
         }
         return cell;
     } else if (indexPath.section == 2) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation1"];
         
-        // Configure the cell...
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation1"];
-            cell.backgroundColor = UIColor.whiteColor;
-            cell.textLabel.textColor = UIColor.grayColor;
-        }
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"客服问候语";
-            [cell addSubview:self.greetingsSwitch];
-            [cell addSubview:self.line];
-            [self.greetingsSwitch setOn:[HDClient sharedClient].currentAgentUser.greetingEnable];
-        } else if (indexPath.row == 1) {
-            if ([HDClient sharedClient].currentAgentUser.greetingContent <= 0) {
-                cell.textLabel.text = @"会话分配到客服时，将自动发送客服个人的问候语";
-                cell.textLabel.textColor = [UIColor lightGrayColor];
-            } else {
-                cell.textLabel.text = [HDClient sharedClient].currentAgentUser.greetingContent;
-                cell.textLabel.textColor = [UIColor blackColor];
+        
+        if (self.dataArray.count >0 ) {
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation1"];
+            
+            // Configure the cell...
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation1"];
+                cell.backgroundColor = UIColor.whiteColor;
+                cell.textLabel.textColor = UIColor.grayColor;
             }
-            cell.textLabel.width = KScreenWidth - cell.textLabel.left;
+            if (indexPath.row == 0) {
+                cell.textLabel.text = @"客服问候语";
+                [cell addSubview:self.greetingsSwitch];
+                [cell addSubview:self.line];
+                [self.greetingsSwitch setOn:[HDClient sharedClient].currentAgentUser.greetingEnable];
+            } else if (indexPath.row == 1) {
+                if ([HDClient sharedClient].currentAgentUser.greetingContent <= 0) {
+                    cell.textLabel.text = @"会话分配到客服时，将自动发送客服个人的问候语";
+                    cell.textLabel.textColor = [UIColor lightGrayColor];
+                } else {
+                    cell.textLabel.text = [HDClient sharedClient].currentAgentUser.greetingContent;
+                    cell.textLabel.textColor = [UIColor blackColor];
+                }
+                cell.textLabel.width = KScreenWidth - cell.textLabel.left;
+            }
+            return cell;
+        }else{
+            
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation2"];
+            
+            // Configure the cell...
+            if (cell == nil) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation2"];
+                cell.backgroundColor = UIColor.whiteColor;
+            }
+            cell.textLabel.text = @"退出登录";
+            cell.textLabel.textColor = [UIColor redColor];
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+            return cell;
+            
         }
-        return cell;
-    }else if (indexPath.section == 1) {
+        
+     
+    } else if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation1"];
         // Configure the cell...
         if (cell == nil) {
@@ -271,23 +330,53 @@
             cell.backgroundColor = UIColor.whiteColor;
             cell.textLabel.textColor = UIColor.grayColor;
         }
-        if (indexPath.row == 0) {
-            cell.textLabel.text = @"移动助手";
-            [cell addSubview:self.appAssistantSwitch];
-            [cell addSubview:self.line];
-            [self.appAssistantSwitch setOn:[HDClient sharedClient].currentAgentUser.appAssistantEnable];
-        } else if (indexPath.row == 1) {
-            cell.textLabel.text = @"答案匹配模式";
-            cell.textLabel.width =130;
-            [cell addSubview:self.menu];
-            [self.menu mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.top.offset(10);
-                make.bottom.offset(-10);
-                make.trailing.offset(-15);
-//                make.width.offset(cell.width/2);
-                make.leading.offset(cell.textLabel.width +20);
-                
-            }];
+        //如果 有显示 智能辅助
+        if (self.dataArray.count >0) {
+            
+            if (indexPath.row == 0) {
+                cell.textLabel.text = @"智能辅助";
+                cell.textLabel.width =130;
+            } else if (indexPath.row == 1) {
+                cell.textLabel.text = @"答案匹配模式";
+                cell.textLabel.width =130;
+                [cell addSubview:self.menu];
+                [self.menu mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.offset(10);
+                    make.bottom.offset(-10);
+                    make.trailing.offset(-15);
+    //                make.width.offset(cell.width/2);
+                    make.leading.offset(cell.textLabel.width +20);
+                    
+                }];
+            }else if (indexPath.row == 2) {
+                cell.textLabel.text = @"答案发送模式";
+                cell.textLabel.width =130;
+                [cell addSubview:self.sendMenu];
+                [self.sendMenu mas_makeConstraints:^(MASConstraintMaker *make) {
+                    make.top.offset(10);
+                    make.bottom.offset(-10);
+                    make.trailing.offset(-15);
+    //                make.width.offset(cell.width/2);
+                    make.leading.offset(cell.textLabel.width +20);
+                    
+                }];
+            }
+        }else{
+            if (indexPath.row == 0) {
+                cell.textLabel.text = @"客服问候语";
+                [cell addSubview:self.greetingsSwitch];
+                [cell addSubview:self.line];
+                [self.greetingsSwitch setOn:[HDClient sharedClient].currentAgentUser.greetingEnable];
+            } else if (indexPath.row == 1) {
+                if ([HDClient sharedClient].currentAgentUser.greetingContent <= 0) {
+                    cell.textLabel.text = @"会话分配到客服时，将自动发送客服个人的问候语";
+                    cell.textLabel.textColor = [UIColor lightGrayColor];
+                } else {
+                    cell.textLabel.text = [HDClient sharedClient].currentAgentUser.greetingContent;
+                    cell.textLabel.textColor = [UIColor blackColor];
+                }
+                cell.textLabel.width = KScreenWidth - cell.textLabel.left;
+            }
         }
         return cell;
     } else {
@@ -359,22 +448,37 @@
             admin.editContent = cell.nickName.text;
         }
         [self.navigationController pushViewController:admin animated:YES];
-    } else if (indexPath.section == 2) {
-        if (indexPath.row == 1) {
-            AdminInforEditViewController *admin = [[AdminInforEditViewController alloc] initWithType:6];
-            admin.delegate = self;
-            admin.title = @"客服问候语";
-            admin.editContent = [HDClient sharedClient].currentAgentUser.greetingContent;
-            [self.navigationController pushViewController:admin animated:YES];
-        }
-    }else if (indexPath.section == 1) {
-        if (indexPath.row == 1) {
-           
+    }else{
+        if (self.dataArray.count >0) {
+            if (indexPath.section == 2) {
+                if (indexPath.row == 1) {
+                    AdminInforEditViewController *admin = [[AdminInforEditViewController alloc] initWithType:6];
+                    admin.delegate = self;
+                    admin.title = @"客服问候语";
+                    admin.editContent = [HDClient sharedClient].currentAgentUser.greetingContent;
+                    [self.navigationController pushViewController:admin animated:YES];
+                }
+            }  else if (indexPath.section == 3) {
+                [self logoffButtonAction];
+            }
+        }else{
+            if (indexPath.section == 1) {
+                if (indexPath.row == 1) {
+                    AdminInforEditViewController *admin = [[AdminInforEditViewController alloc] initWithType:6];
+                    admin.delegate = self;
+                    admin.title = @"客服问候语";
+                    admin.editContent = [HDClient sharedClient].currentAgentUser.greetingContent;
+                    [self.navigationController pushViewController:admin animated:YES];
+                    
+                }
+            }  else if (indexPath.section == 2) {
+                [self logoffButtonAction];
+            }
             
         }
-    }  else if (indexPath.section == 3) {
-        [self logoffButtonAction];
+            
     }
+
 }
 
 #pragma mark - AdminInforEditViewControllerDelegate
@@ -516,6 +620,86 @@
     [actionSheet showInView:self.view];
 
 }
+- (void)saveAnswerMatchPattern:(NSInteger)answerMatchPattern withSendPattern:(NSInteger)sendPattern{
+    
+    
+    [[HDClient sharedClient].setManager kf_setCooperationWithsendPattern:sendPattern withAnswerMatchPattern:answerMatchPattern Completion:^(id responseObject, HDError *error) {
+        
+        NSLog(@"======%@",responseObject);
+    }];
+    
+    
+}
+- (void)getMatchPattern{
+    
+    
+    [[HDClient sharedClient].setManager kf_getCooperationWithPatternCompletion:^(id responseObject, HDError *error) {
+        
+        NSLog(@"-----%@",responseObject);
+        WEAK_SELF
+        if (error == nil) {
+            if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary * dic = responseObject;
+                if ([[dic allKeys] containsObject:@"entity"]) {
+                    
+                    NSDictionary * entity = [dic objectForKey:@"entity"];
+                    
+                    int open  =  [[entity valueForKey:@"open"] intValue];
+                    
+                    if (open == 1) {
+                        //判断接口有没有 开启这个开关
+                        [weakSelf.dataArray addObject:@(open)];
+                    }else{
+                        
+                        [weakSelf.dataArray removeAllObjects];
+                        
+                    }
+                    
+                    //精准模式 是1   模糊是 1
+                    //自动发送 1  手动发送 0
+                     answerMatchPattern = [[entity valueForKey:@"answerMatchPattern"] intValue];
+                     sendPattern = [[entity valueForKey:@"sendPattern"] intValue];
+                    
+                    if (answerMatchPattern == 1) {
+                        
+                        _answerPatterns = @[@"模糊匹配",@"精准匹配"];
+                        
+                    }else{
+                        
+                        _answerPatterns = @[@"精准匹配",@"模糊匹配"];
+                    }
+                    
+                    if (sendPattern == 1) {
+                        _answerSendPatterns = @[@"自动发送",@"手动发送"];
+                    }else{
+                        
+                        _answerSendPatterns = @[@"手动发送",@"自动发送"];
+                    }
+                    self.menu.title = [_answerPatterns firstObject];
+                    self.sendMenu.title =[_answerSendPatterns firstObject];
+                    
+                    self.patternModel = [[KFPatternModel alloc] init];
+                    
+                    self.patternModel.sendPattern =sendPattern;
+                    self.patternModel.answerMatchPattern =answerMatchPattern;
+                    self.patternModel.sendPatternName = self.menu.title;
+                    self.patternModel.answerMatchPatternName = self.sendMenu.title;
+    
+                    [self.tableView reloadData];
+                }
+            }
+        }
+        
+    }];
+    
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    if (self.dataArray.count > 0) {
+        [self saveAnswerMatchPattern:self.patternModel.answerMatchPattern withSendPattern:self.patternModel.sendPattern];
+    }
+}
 
 - (void)refreshView
 {
@@ -544,7 +728,7 @@
         _menu.layer.borderColor  = [UIColor whiteColor].CGColor;
         _menu.layer.cornerRadius  = 5;
         
-        _menu.title           = @"精准匹配";
+//        _menu.title           = @"精准匹配";
         _menu.titleBgColor    = [UIColor groupTableViewBackgroundColor];
         _menu.titleFont       = [UIFont boldSystemFontOfSize:15];
         _menu.titleColor      = [UIColor blackColor];
@@ -565,34 +749,90 @@
     
     return _menu;
 }
+- (LMJDropdownMenu *)sendMenu{
+    if (!_sendMenu) {
+        
+        _sendMenu = [[LMJDropdownMenu alloc] init];
+        _sendMenu.delegate   = self;
+        _sendMenu.dataSource = self;
+        
+        _sendMenu.layer.borderColor  = [UIColor whiteColor].CGColor;
+        _sendMenu.layer.cornerRadius  = 5;
+        
+//        _sendMenu.title           = @"自动发送";
+        _sendMenu.titleBgColor    = [UIColor groupTableViewBackgroundColor];
+        _sendMenu.titleFont       = [UIFont boldSystemFontOfSize:15];
+        _sendMenu.titleColor      = [UIColor blackColor];
+        _sendMenu.titleAlignment  = NSTextAlignmentLeft;
+        _sendMenu.titleEdgeInsets = UIEdgeInsetsMake(0, 15, 0, 0);
+        
+        _sendMenu.rotateIcon      = [UIImage imageNamed:@"setting_arrowIcon"];
+        _sendMenu.rotateIconSize  = CGSizeMake(15, 15);
+
+        _sendMenu.optionBgColor       = _menu.titleBgColor;
+        _sendMenu.optionFont          = [UIFont systemFontOfSize:15];
+        _sendMenu.optionTextColor     = [UIColor blackColor];
+        _sendMenu.optionTextAlignment = NSTextAlignmentLeft;
+        _sendMenu.optionNumberOfLines = 0;
+        _sendMenu.optionLineColor     = [UIColor whiteColor];
+        _sendMenu.optionIconSize      = CGSizeMake(15, 15);
+    }
+    
+    return _sendMenu;
+}
 
 
 #pragma mark - LMJDropdownMenu DataSource
 - (NSUInteger)numberOfOptionsInDropdownMenu:(LMJDropdownMenu *)menu{
+    
+    if (menu == self.sendMenu) {
+        
+        return _answerSendPatterns.count;
+    }
+    
     return _answerPatterns.count;
 }
 - (CGFloat)dropdownMenu:(LMJDropdownMenu *)menu heightForOptionAtIndex:(NSUInteger)index{
     return 44;
 }
 - (NSString *)dropdownMenu:(LMJDropdownMenu *)menu titleForOptionAtIndex:(NSUInteger)index{
+    
+    if (menu == self.sendMenu) {
+        
+        return _answerSendPatterns[index];
+    }
     return _answerPatterns[index];
 }
 
 #pragma mark - LMJDropdownMenu Delegate
 - (void)dropdownMenu:(LMJDropdownMenu *)menu didSelectOptionAtIndex:(NSUInteger)index optionTitle:(NSString *)title{
     NSLog(@"你选择了(you selected)：menu1，index: %ld - title: %@", index, title);
-}
-- (void)dropdownMenuWillShow:(LMJDropdownMenu *)menu{
-    NSLog(@"--将要显示(will appear)--menu1");
-}
-- (void)dropdownMenuDidShow:(LMJDropdownMenu *)menu{
-    NSLog(@"--已经显示(did appear)--menu1");
+    
+    
+    if (menu == self.sendMenu) {
+       
+        if (![self.patternModel.sendPatternName isEqualToString:title]) {
+            
+            if (self.patternModel.sendPattern == 1) {
+                self.patternModel.sendPattern = 0;
+            }else{
+                self.patternModel.sendPattern=1;
+            }
+        }
+        
+    }else{
+         if (![self.patternModel.answerMatchPatternName isEqualToString:title]) {
+             if (self.patternModel.answerMatchPattern == 1) {
+                 self.patternModel.answerMatchPattern = 0;
+             }else{
+                 self.patternModel.answerMatchPattern=1;
+             }
+
+         }
+    }
+    
 }
 
-- (void)dropdownMenuWillHidden:(LMJDropdownMenu *)menu{
-    NSLog(@"--将要隐藏(will disappear)--menu1");
-}
-- (void)dropdownMenuDidHidden:(LMJDropdownMenu *)menu{
-    NSLog(@"--已经隐藏(did disappear)--menu1");
-}
+
+
 @end
