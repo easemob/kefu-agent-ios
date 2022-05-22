@@ -274,14 +274,6 @@
 		93D0CF37283730F1004D93E3 /* KFMSGTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF35283730F1004D93E3 /* KFMSGTypeModel.m */; };
 		93D0CF3A283736DA004D93E3 /* KFSmartUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF39283736DA004D93E3 /* KFSmartUtils.m */; };
 		93D0CF3B283736DA004D93E3 /* KFSmartUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF39283736DA004D93E3 /* KFSmartUtils.m */; };
-		93D0CF3F28373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */; };
-		93D0CF4028373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */; };
-		93D0CF4128373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */; };
-		93D0CF4228373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */; };
-		93D0CF4628373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */; };
-		93D0CF4728373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */; };
-		93D0CF4828373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */; };
-		93D0CF4928373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */; };
 		93D0CF4D283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */; };
 		93D0CF4E283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */; };
 		93D0CF4F283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */; };
@@ -1922,12 +1914,6 @@
 		93D0CF35283730F1004D93E3 /* KFMSGTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFMSGTypeModel.m; sourceTree = "<group>"; };
 		93D0CF38283736DA004D93E3 /* KFSmartUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartUtils.h; sourceTree = "<group>"; };
 		93D0CF39283736DA004D93E3 /* KFSmartUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartUtils.m; sourceTree = "<group>"; };
-		93D0CF3C28373DEE004D93E3 /* KFSmartTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartTableViewCell.h; sourceTree = "<group>"; };
-		93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartTableViewCell.m; sourceTree = "<group>"; };
-		93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartTableViewCell.xib; sourceTree = "<group>"; };
-		93D0CF4328373EA5004D93E3 /* KFSmartMenuTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartMenuTableViewCell.h; sourceTree = "<group>"; };
-		93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartMenuTableViewCell.m; sourceTree = "<group>"; };
-		93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartMenuTableViewCell.xib; sourceTree = "<group>"; };
 		93D0CF4A283792D4004D93E3 /* KFSmartDefaultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartDefaultTableViewCell.h; sourceTree = "<group>"; };
 		93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartDefaultTableViewCell.m; sourceTree = "<group>"; };
 		93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartDefaultTableViewCell.xib; sourceTree = "<group>"; };
@@ -3379,14 +3365,8 @@
 			children = (
 				93D0CF34283730F1004D93E3 /* KFMSGTypeModel.h */,
 				93D0CF35283730F1004D93E3 /* KFMSGTypeModel.m */,
-				93D0CF4328373EA5004D93E3 /* KFSmartMenuTableViewCell.h */,
-				93D0CF4428373EA5004D93E3 /* KFSmartMenuTableViewCell.m */,
-				93D0CF4528373EA5004D93E3 /* KFSmartMenuTableViewCell.xib */,
 				93D0CF3028372B35004D93E3 /* KFSmartModel.h */,
 				93D0CF3128372B35004D93E3 /* KFSmartModel.m */,
-				93D0CF3C28373DEE004D93E3 /* KFSmartTableViewCell.h */,
-				93D0CF3D28373DEE004D93E3 /* KFSmartTableViewCell.m */,
-				93D0CF3E28373DEE004D93E3 /* KFSmartTableViewCell.xib */,
 				93D0CF4A283792D4004D93E3 /* KFSmartDefaultTableViewCell.h */,
 				93D0CF4B283792D4004D93E3 /* KFSmartDefaultTableViewCell.m */,
 				93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */,
@@ -5570,7 +5550,6 @@
 				D3FDC7851EA0A5C600C25BB0 /* VoiceSearchFeedback019.png in Resources */,
 				D3FDC8641EA0A5C600C25BB0 /* expand_icon_sessiontag@3x.png in Resources */,
 				D3FDC8941EA0A5C600C25BB0 /* tabbar_icon_ongoing@3x.png in Resources */,
-				93D0CF4828373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */,
 				D3FDC8851EA0A5C600C25BB0 /* main_tab_icon_ongoing@3x.png in Resources */,
 				93EFFC8327BA411F0043DE06 /* Podfile in Resources */,
 				D3FDC7D31EA0A5C600C25BB0 /* ee_14.png in Resources */,
@@ -5793,7 +5772,6 @@
 				93EFFCC427BA6FEB0043DE06 /* screen2.png in Resources */,
 				D3FDC82C1EA0A5C600C25BB0 /* input_bar_1_icon_less@2x.png in Resources */,
 				D3FDC7791EA0A5C600C25BB0 /* VoiceSearchFeedback013.png in Resources */,
-				93D0CF4128373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */,
 				D3058D121FD6AD920091E048 /* line_up@3x.png in Resources */,
 				D3FDC8431EA0A5C600C25BB0 /* phrase_delete_Ellipse@2x.png in Resources */,
 				D3FDC8051EA0A5C600C25BB0 /* icon_mono_on@2x.png in Resources */,
@@ -5958,7 +5936,6 @@
 				D3E9CDE81FBED182005E3677 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D3E9CDEA1FBED182005E3677 /* ee_35.png in Resources */,
 				D3E9CDEB1FBED182005E3677 /* channel_web_icon@3x.png in Resources */,
-				93D0CF4928373EA5004D93E3 /* KFSmartMenuTableViewCell.xib in Resources */,
 				93EFFCC727BA6FEB0043DE06 /* off.png in Resources */,
 				D3E9CDEC1FBED182005E3677 /* icon1_selected@3x.png in Resources */,
 				D3E9CDED1FBED182005E3677 /* btn__icon_qubz@3x.png in Resources */,
@@ -6175,7 +6152,6 @@
 				D3E9CEA31FBED182005E3677 /* chat_tagarrow@2x.png in Resources */,
 				D3E9CEA41FBED182005E3677 /* gallary_icon_camera_big@2x.png in Resources */,
 				D3E9CEA51FBED182005E3677 /* tabbar_icon_crm@3x.png in Resources */,
-				93D0CF4228373DEE004D93E3 /* KFSmartTableViewCell.xib in Resources */,
 				90AFCBE020CFA1D0007D0ADB /* HLeaveMessageCell.xib in Resources */,
 				D3E9CEA61FBED182005E3677 /* expand_icon_sessionend@3x.png in Resources */,
 				93EFFCB727BA6FEB0043DE06 /* shareDesktop@2x.png in Resources */,
@@ -6515,7 +6491,6 @@
 				D3A761491FB55ABE000E1652 /* NSAttributedString+YYText.m in Sources */,
 				D3A7614A1FB55ABE000E1652 /* NSParagraphStyle+YYText.m in Sources */,
 				D3A7614B1FB55ABE000E1652 /* UIPasteboard+YYText.m in Sources */,
-				93D0CF3F28373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */,
 				D3A7614C1FB55ABE000E1652 /* UIView+YYText.m in Sources */,
 				D3A7614D1FB55ABE000E1652 /* YYTextAsyncLayer.m in Sources */,
 				90A2B534206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */,
@@ -6680,7 +6655,6 @@
 				D33CE8601F7CD0F800236720 /* UIImageView+EMWebCache.m in Sources */,
 				D33CE76E1F7CAEB800236720 /* UIButton+KFAdd.m in Sources */,
 				93119A4227F58FC100F749F3 /* KFDocument.m in Sources */,
-				93D0CF4628373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */,
 				D33CE8B71F7CD84A00236720 /* EMUIWebViewController.m in Sources */,
 				D3A95E381EA0F47100ADD394 /* EmojiEmoticons.m in Sources */,
 				D33CE79E1F7CAF6700236720 /* LoginViewController.m in Sources */,
@@ -6941,7 +6915,6 @@
 				D3E9CCCF1FBED182005E3677 /* RealtimeSearchUtil.m in Sources */,
 				93D0CF37283730F1004D93E3 /* KFMSGTypeModel.m in Sources */,
 				D3E9CCD01FBED182005E3677 /* DDASLLogger.m in Sources */,
-				93D0CF4728373EA5004D93E3 /* KFSmartMenuTableViewCell.m in Sources */,
 				D3E9CCD11FBED182005E3677 /* ClientInforViewController.m in Sources */,
 				D3E9CCD21FBED182005E3677 /* HConversationViewController.m in Sources */,
 				D3E9CCD31FBED182005E3677 /* AdminWorkloadViewController.m in Sources */,
@@ -6958,7 +6931,6 @@
 				90591C452068ADC4007367BD /* KFMonitorInfoView.m in Sources */,
 				D3E9CCDA1FBED182005E3677 /* JNGroupViewController.m in Sources */,
 				D3E9CCDB1FBED182005E3677 /* NSDictionary+SafeValue.m in Sources */,
-				93D0CF4028373DEE004D93E3 /* KFSmartTableViewCell.m in Sources */,
 				90D04C762047A17C005B45FC /* HDSelectButton.m in Sources */,
 				D3E9CCDC1FBED182005E3677 /* AdminHomeViewController.m in Sources */,
 				D3E9CCDD1FBED182005E3677 /* ReminderView.m in Sources */,

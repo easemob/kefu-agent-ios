@@ -76,15 +76,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZV-Me-DyU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smart_media.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Zk-3k-auR">
-                                        <rect key="frame" x="20" y="16.5" width="32" height="32"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="samrt_media.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Zk-3k-auR">
+                                        <rect key="frame" x="20" y="20.5" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="32" id="3D3-jT-yqH"/>
-                                            <constraint firstAttribute="width" constant="32" id="7bY-WH-iJR"/>
+                                            <constraint firstAttribute="height" constant="24" id="3D3-jT-yqH"/>
+                                            <constraint firstAttribute="width" constant="24" id="7bY-WH-iJR"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ki5-6G-fCT">
-                                        <rect key="frame" x="62" y="10" width="135" height="45"/>
+                                        <rect key="frame" x="54" y="10" width="135" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="ki5-6G-fCT" secondAttribute="height" multiplier="3:1" id="IF0-5R-mjC"/>
                                         </constraints>
@@ -135,7 +135,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="smart_media.png" width="16" height="16"/>
+        <image name="samrt_media.png" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

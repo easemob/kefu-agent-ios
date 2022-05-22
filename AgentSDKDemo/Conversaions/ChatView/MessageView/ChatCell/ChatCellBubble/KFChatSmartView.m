@@ -10,8 +10,6 @@
 #import "KFMSGTypeModel.h"
 #import "KFSmartModel.h"
 #import "KFSmartUtils.h"
-#import "KFSmartTableViewCell.h"
-#import "KFSmartMenuTableViewCell.h"
 #import "KFSmartDefaultTableViewCell.h"
 #import "KFSmartImageTableViewCell.h"
 #import "KFSmartChoiceTableViewCell.h"
@@ -20,7 +18,7 @@
 
 NSString *const kRouterEventCopyTextTapEventName = @"kRouterEventCopyTextTapEventName";
 NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageTapEventName";
-
+NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHiddenTapEventName";
 
 @interface KFChatSmartView()
 {
@@ -32,25 +30,23 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
 @property (nonatomic,strong) UILabel *sendLabel;
 @property (nonatomic,strong) UILabel *sendLabelNum;
 @property (nonatomic,strong) UIView * notDataView;
+@property (nonatomic,strong) UIView * searchView;
 @end
 @implementation KFChatSmartView
 
 - (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.backgroundColor = [UIColor whiteColor];
         [self createUI];
     }
     return self;
 }
 - (void)createUI{
-    
-    [self addSubview: self.tableView];
 
-    [self.tableView.superview addSubview:self.closeBtn];
-    
-    [self.tableView.superview addSubview:self.notDataView];
-    
-    
+    [self addSubview: self.searchView];
+    [self addSubview: self.tableView];
+    [self addSubview: self.notDataView];
 }
 - (NSMutableArray *)dataArray{
     if (!_dataArray) {
@@ -58,26 +54,51 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
     }
     return _dataArray;
 }
+- (UIView *)searchView{
+    if (!_searchView) {
+        _searchView = [[UIView alloc ]init];
+//        _searchView.backgroundColor = [UIColor redColor];
+        [_searchView addSubview:self.searchBar];
+        [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(25);
+            make.leading.offset(20);
+            make.trailing.offset(-20);
+            make.bottom.offset(-5);
+        }];
+        [_searchView addSubview:self.closeBtn];
+        [self.closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(0);
+            make.trailing.offset(-8);
+            make.height.width.offset(32);
+        }];
+    }
+    return _searchView;
+}
 -(void)layoutSubviews{
-    
+
+    [self.searchView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.offset(5);
+        make.leading.offset(0);
+        make.trailing.offset(0);
+        make.height.offset(70);
+    }];
+
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(0);
+        make.top.offset(70);
         make.leading.offset(20);
         make.trailing.offset(-20);
         make.bottom.offset(0);
     }];
-    
-    [self.closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(2);
-        make.trailing.offset(-8);
-        make.height.width.offset(32);
-    }];
-    [self.notDataView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(68);
-        make.leading.offset(20);
-        make.trailing.offset(-20);
-        make.bottom.offset(0);
-    }];
+
+  
+        [self.notDataView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(70);
+            make.leading.offset(20);
+            make.trailing.offset(-20);
+            make.bottom.offset(0);
+        }];
+
+
 }
 - (void)_setupBubbleConstraints
 {
@@ -117,7 +138,7 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
     _model = model;
     _body = (HDTextMessageBody *)model.nBody;
     self.searchBar.text = _body.text;
-    
+    [self endEditing:YES];
     //调用搜索接口
     [self kf_searchQuestion:_body.text];
 
@@ -181,6 +202,7 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
             }
             
             [self.tableView reloadData];
+            [self endEditing:YES];
         }
         
     }];
@@ -196,11 +218,6 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
   
-//    if (_msgtype == HDSmartExtMsgTypeMenu) {
-//
-//        KFMSGTypeModel  *model = [self.dataArray firstObject];
-//        return  model.itemModel.dataArray.count;
-//    }
     return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -210,14 +227,13 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
     
     if (model.msgtype == HDSmartExtMsgTypearticle) {
 
-        _msgtype =  _msgtype = HDSmartExtMsgTypeMenu;;
+        _msgtype = HDSmartExtMsgTypearticle;;
         KFSmartArticleTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"KFSmartArticleTableViewCell"];
            if(!cell){
            cell =[[KFSmartArticleTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:@"KFSmartArticleTableViewCell"];
            }
-        
-        
+
         [cell setModel:model];
         
         return cell;
@@ -262,16 +278,17 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
         
     }else if(model.msgtype == HDSmartExtMsgTypeImamge){
         _msgtype = HDSmartExtMsgTypeImamge;
-        KFSmartChoiceTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"KFSmartChoiceTableViewCell"];
+        KFSmartImageTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"KFSmartImageTableViewCell"];
            if(!cell){
-           cell =[[KFSmartChoiceTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
-                                       reuseIdentifier:@"KFSmartChoiceTableViewCell"];
+           cell =[[KFSmartImageTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+                                       reuseIdentifier:@"KFSmartImageTableViewCell"];
            }
         [cell setModel:model];
      
-        cell.clickChoiceItemBlock = ^(KFSmartModel * _Nonnull model, id  _Nonnull cell) {
+        cell.clickImageItemBlock = ^(KFSmartModel * _Nonnull model, UIImage * _Nonnull image) {
             
             [self labelSendClick:model];
+            
         };
         
         return cell;
@@ -286,52 +303,6 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
         return cell;
     }
     return nil;
-}
-+ (NSString *)cellIdentifierForMessageModel:(KFSmartModel *)model
-{
-    NSString *identifier = @"SmartMessageCell";
-        switch (model.msgtype) {
-            case HDMessageBodyTypeText:
-            {
-                identifier = [identifier stringByAppendingString:@"Text"];
-               
-            }
-                break;
-            case HDMessageBodyTypeImage:
-            {
-                identifier = [identifier stringByAppendingString:@"Image"];
-            }
-                break;
-            case HDMessageBodyTypeVoice:
-            {
-                identifier = [identifier stringByAppendingString:@"Audio"];
-            }
-                break;
-            case HDMessageBodyTypeLocation:
-            {
-                identifier = [identifier stringByAppendingString:@"Location"];
-            }
-                break;
-            case HDMessageBodyTypeImageText:
-            {
-                identifier = [identifier stringByAppendingString:@"imageText"];
-            }
-                break;
-            case HDMessageBodyTypeFile:
-            {
-                identifier = [identifier stringByAppendingString:@"file"];
-            }
-                break;
-            case HDMessageBodyTypeVideo:
-            {
-                identifier = [identifier stringByAppendingString:@"video"];
-            }
-                break;
-            default:
-                break;
-        }
- 
-    return identifier;
 }
 
 // called when keyboard search button pressed
@@ -350,27 +321,27 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
 }
 
 //此协议方法中header不受约束影响，不用设置固定高度也不会出问题
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    return  self.searchBar;
-    
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//
+//    return  self.searchBar;
+//
+//}
 //- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
 //
 //    return  self.footerView;
 //}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  
+    KFSmartModel *model = [self.dataArray objectAtIndex:indexPath.row];
     CGFloat height;
-    switch (_msgtype) {
+    switch (model.msgtype) {
         case HDSmartExtMsgTypearticle:
             
-            height = 170;
+            height = 220;
             
             break;
         case HDSmartExtMsgTypeText:
             
-            height = 77;
+            height = 88;
             break;
         case HDSmartExtMsgTypeMenu:
             
@@ -391,11 +362,11 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
     
     return height;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    
-    return 44;
-    
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//
+//    return 44;
+//
+//}
 //- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
 //
 //    return 44;
@@ -407,7 +378,9 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
 - (void)close:(UIButton *)sender{
     
     [self removeFromSuperview];
+    
 
+ 
 }
 -(void)labelCopyClick {
     
@@ -424,16 +397,24 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
 -(void)labelCopyClick:(KFSmartModel *)model{
     
     
+//    [self routerEventWithName:kRouterEventCopyTextTapEventName
+//                     userInfo:@{@"smartText":model.answer}];
+    
     [self routerEventWithName:kRouterEventCopyTextTapEventName
-                     userInfo:@{@"smartText":model.answer}];
+                     userInfo:@{@"smartModel":model}];
     
     
 }
 -(void)labelSendClick:(KFSmartModel *)model{
     
     
-    [self routerEventWithName:kRouterEventSendMessageTapEventName
-                     userInfo:@{@"smartModel":model}];
+    if (model) {
+       
+        
+        [self routerEventWithName:kRouterEventSendMessageTapEventName
+                         userInfo:@{@"smartModel":model}];
+    }
+   
     
     [self close:nil];
 }
@@ -495,11 +476,7 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
         _tableView.allowsSelection = YES;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
-        _tableView.dataSource = self;
-//        self.tableView.tableHeaderView = self.searchTextField;
-        [_tableView registerNib:[UINib nibWithNibName:@"KFSmartTableViewCell" bundle:nil] forCellReuseIdentifier:@"KFSmartTableViewCell"];
-        [_tableView registerNib:[UINib nibWithNibName:@"KFSmartMenuTableViewCell" bundle:nil] forCellReuseIdentifier:@"KFSmartMenuTableViewCell"];
-        
+        _tableView.dataSource = self;        
         [_tableView registerNib:[UINib nibWithNibName:@"KFSmartDefaultTableViewCell" bundle:nil] forCellReuseIdentifier:@"KFSmartDefaultTableViewCell"];
         
         [_tableView registerNib:[UINib nibWithNibName:@"KFSmartImageTableViewCell" bundle:nil] forCellReuseIdentifier:@"KFSmartImageTableViewCell"];
@@ -507,6 +484,7 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
         [_tableView registerNib:[UINib nibWithNibName:@"KFSmartChoiceTableViewCell" bundle:nil] forCellReuseIdentifier:@"KFSmartChoiceTableViewCell"];
         
         [_tableView registerNib:[UINib nibWithNibName:@"KFSmartArticleTableViewCell" bundle:nil] forCellReuseIdentifier:@"KFSmartArticleTableViewCell"];
+       
     }
     return _tableView;
 }
@@ -531,21 +509,6 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
     return _notDataView;
 }
 
-- (UITextField *)searchTextField{
-    if (!_searchTextField) {
-        _searchTextField = [[UITextField alloc] init];
-        _searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        NSAttributedString *stingAtt = [[NSAttributedString alloc] initWithString:@"请输入关键词" attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0f],NSForegroundColorAttributeName:[UIColor grayColor]}];
-        _searchTextField.attributedPlaceholder = stingAtt;
-        _searchTextField.returnKeyType = UIReturnKeySearch;
-        _searchTextField.enablesReturnKeyAutomatically = YES;
-        _searchTextField.delegate = self;
-        
-        _searchTextField.layer.cornerRadius = 10;
-    }
-    
-    return _searchTextField;
-}
 
 - (UISearchBar *)searchBar{
     if (!_searchBar) {
@@ -562,7 +525,7 @@ NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageT
             searTextField =[_searchBar valueForKey:@"_searchField"];
         }
         searTextField.font = [UIFont systemFontOfSize:14];
-        searTextField.layer.cornerRadius = 20;
+        searTextField.layer.cornerRadius = 22;
         searTextField.layer.masksToBounds = YES;
        
     }

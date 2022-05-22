@@ -21,7 +21,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    self.iconImage.image = [UIImage imageNamed:@"tabbar_icon_ongoing"];
+//    self.iconImage.image = [UIImage imageNamed:@"tabbar_icon_ongoing"];
     self.labelSend.font  = [UIFont systemFontOfSize:18];
      self.labelSend.textColor = [UIColor colorWithRed:75/255.0 green:131/255.0 blue:235/255.0 alpha:1];
     _knowledgeLabel.font = [UIFont systemFontOfSize:16];
@@ -67,8 +67,16 @@
                                    reuseIdentifier:@"KFSmartArticleMoreTableViewCell"];
        }
     KFMSGTypeModel * model = [self.itemArray objectAtIndex:indexPath.row];
-
+    
     [cell setModel:model];
+    
+    cell.clickAtricleModorItemBlock = ^(KFMSGTypeModel * _Nonnull model, id  _Nonnull cell) {
+        
+        //跳转 url
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
+
+        
+    };
 
 
     return cell;
@@ -79,15 +87,13 @@
    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    KFMSGTypeModel * model = [self.itemArray objectAtIndex:indexPath.row];
-    //跳转 url
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.url]];
+  
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-    return 170;
+    return 175;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -112,7 +118,23 @@
                                    
     self.itemArray = articles;
     
+    if (self.itemArray.count > 1) {
+        
+        self.tableView.scrollEnabled = YES;
+    }else{
+        
+        self.tableView.scrollEnabled = NO;
+        
+    }
     [self.tableView reloadData];
+    
+    self.labelCopyNum.text =  [NSString stringWithFormat:@"%ld",model.quoteFrequencyStr] ;
+    self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
+    if ([model.cooperationSource isEqualToString:@"knowledge"]) {
+        self.knowledgeLabel.text = @"知识库";
+    }else{
+        self.knowledgeLabel.text =@"";
+    }
 }
 - (NSArray *)itemArray{
     

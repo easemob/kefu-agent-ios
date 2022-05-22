@@ -40,6 +40,7 @@ typedef NS_ENUM(NSUInteger, HDSmartExtMsgType) {
 @property (nonatomic, copy) NSString *mediaFileUrl;
 @property (nonatomic, copy) NSString *mediaId;
 @property (nonatomic, copy) NSString *cancelFrequencyStr;
+@property (nonatomic, copy) UIImage *sendImage;
 
 @end
 

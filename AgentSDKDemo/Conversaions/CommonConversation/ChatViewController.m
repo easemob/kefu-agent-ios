@@ -484,7 +484,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [_moreView addGestureRecognizer:tap];
         
         if (chatType == ChatViewTypeChat) {
-            UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - 160, 0, 150, 40*5)];
+            UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(KScreenWidth - 160, 0, 150, 40*4)];
             contentView.backgroundColor = [UIColor whiteColor];
             contentView.userInteractionEnabled = YES;
             contentView.layer.cornerRadius = 2.f;
@@ -1166,7 +1166,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }else if ([eventName isEqualToString:kSmartButtonTapEventName]){
         [self chatTextSmartCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventCopyTextTapEventName]){
-        [self chatTextSmartCopyCellBubblePressed:[userInfo objectForKey:@"smartText"]];
+        [self chatTextSmartCopyCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
     } else if ([eventName isEqualToString:kRouterEventSendMessageTapEventName]){
         [self chatTextSmartSendMessageCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
     }  else if ([eventName isEqualToString:kResendButtonTapEventName]){
@@ -1231,6 +1231,32 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     viewController.model = model;
     [self.navigationController pushViewController:viewController animated:YES];
 }
+
+// 自动发送 接收到通知上屏 逻辑
+-  (void)kf_smartAutoSendMessageReloadDataUI{
+    
+    [_conversation loadMessageCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
+        [self hideHud];
+        if (error == nil) {
+            for (HDMessage *msg in messages) {
+                
+                NSString *msgType = [msg.nBody.msgExt objectForKey:@"messageType"];
+                 
+                if ([msgType isEqualToString:@"cooperationAnswer"]) {
+                    NSLog(@"===%@",msgType);
+                    [self markAsRead];
+                    [self addMessage:msg];
+                }
+            }
+        } else {
+
+        }
+    }];
+    
+    
+    
+}
+
 // 文本的小书被点击
 - (void)chatTextSmartCellBubblePressed:(HDMessage *)model{
     
@@ -1246,10 +1272,17 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }];
 }
 
-- (void)chatTextSmartCopyCellBubblePressed:(NSString *)text{
+- (void)chatTextSmartCopyCellBubblePressed:(KFSmartModel *)model{
     
-    self.chatToolBar.inputTextView.text = text;
-    
+    if (model) {
+        self.chatToolBar.inputTextView.text = model.answer;
+        [[HDClient sharedClient].setManager kf_getCooperationWithstatisticsWithOperationEnum:@"quote" withAnswerId:model.answerId withSessionId:self.conversationModel.sessionId withMsgId:@"" completion:^(id responseObject, HDError *error) {
+            
+            NSLog(@"====%@",responseObject);
+            
+        }];
+    }
+   
     
 }
 - (void)chatTextSmartSendMessageCellBubblePressed:(KFSmartModel *)model{
@@ -1262,15 +1295,25 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             }
             break;
         case HDSmartExtMsgTypeImamge:
-            [self sendImageMessage:[UIImage imageNamed:@""]];
+            [self sendImageMessage:model.sendImage];
+            break;
         case HDSmartExtMsgTypearticle:
-            [self sendImageMessage:[UIImage imageNamed:@""]];
+//            [self sendImageMessage:[UIImage imageNamed:@""]];
+            break;
         case HDSmartExtMsgTypeMenu:
             [self sendTextMessage:model.answer];
+            break;
         default:
             break;
     }
    
+    [[HDClient sharedClient].setManager kf_getCooperationWithstatisticsWithOperationEnum:@"send" withAnswerId:model.answerId withSessionId:self.conversationModel.sessionId withMsgId:@"" completion:^(id responseObject, HDError *error) {
+        
+        NSLog(@"====%@",responseObject);
+        
+    }];
+    
+    
 }
 
 // 图片的bubble被点击
@@ -1961,6 +2004,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         CGSize size = [EMChatTextBubbleView textSize:message];
         message.textSize = size;
     }
+      
 }
 
 

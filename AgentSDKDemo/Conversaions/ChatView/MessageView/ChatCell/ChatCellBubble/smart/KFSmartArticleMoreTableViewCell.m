@@ -19,12 +19,26 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    UITapGestureRecognizer *labelTapGestureRecognizer1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(labelSendClick)];
+
+    [self addGestureRecognizer:labelTapGestureRecognizer1];
+
+    self.userInteractionEnabled = YES; // 可以理解
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)labelSendClick{
+    
+    if (self.clickAtricleModorItemBlock) {
+        
+        self.clickAtricleModorItemBlock(_model, self);
+    }
+    
 }
 
 - (void)setModel:(KFMSGTypeModel *)model{

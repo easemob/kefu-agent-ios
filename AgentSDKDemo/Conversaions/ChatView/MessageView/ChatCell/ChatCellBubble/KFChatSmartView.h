@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 extern  NSString *const kRouterEventCopyTextTapEventName ;
 extern  NSString *const kRouterEventSendMessageTapEventName ;
+extern  NSString *const kSearchDatakeyBoardHiddenTapEventName ;
 
 
 
@@ -23,7 +24,7 @@ extern  NSString *const kRouterEventSendMessageTapEventName ;
 @property (nonatomic, strong) UITextField *searchTextField;
 @property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) UIButton *closeBtn;
-@property (nonatomic,strong) UITableView *tableView;
+@property (nonatomic,strong) UITableView *__nullable tableView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) UIView *footerView;
 - (void)updateFileMargin:(UIEdgeInsets)margin;

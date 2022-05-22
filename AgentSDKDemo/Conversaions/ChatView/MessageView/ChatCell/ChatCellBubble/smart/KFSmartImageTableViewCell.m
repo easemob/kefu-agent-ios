@@ -44,15 +44,24 @@
     
     if (self.clickImageItemBlock) {
         
+        _model.sendImage =self.image.image;
         self.clickImageItemBlock(_model, self.image.image);
     }
     
 }
 - (void)setModel:(KFSmartModel *)model{
+    _model = model;
     NSString *kefuAddress = HDClient.sharedClient.option.kefuRestAddress;
     NSString *url = [NSString stringWithFormat:@"%@%@",kefuAddress,model.mediaFileUrl];
     [self.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big@2x.png"]];
+    self.labelCopyNum.text =  [NSString stringWithFormat:@"%ld",model.quoteFrequencyStr] ;
+    self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
     
+    if ([model.cooperationSource isEqualToString:@"knowledge"]) {
+        self.knowledgeLabel.text = @"知识库";
+    }else{
+        self.knowledgeLabel.text =@"";
+    }
     
 }
 @end

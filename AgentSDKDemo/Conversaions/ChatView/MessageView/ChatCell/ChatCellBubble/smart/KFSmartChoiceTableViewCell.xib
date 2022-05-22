@@ -76,15 +76,15 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DX9-od-eBa">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smart_menu.png" translatesAutoresizingMaskIntoConstraints="NO" id="MyH-Mu-rW2">
-                                        <rect key="frame" x="20" y="10" width="32" height="32"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smart_menu.png" translatesAutoresizingMaskIntoConstraints="NO" id="MyH-Mu-rW2">
+                                        <rect key="frame" x="20" y="10" width="24" height="24"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="32" id="QDI-I5-w79"/>
-                                            <constraint firstAttribute="height" constant="32" id="fD3-oQ-mlX"/>
+                                            <constraint firstAttribute="width" constant="24" id="QDI-I5-w79"/>
+                                            <constraint firstAttribute="height" constant="24" id="fD3-oQ-mlX"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5dT-ub-hoI">
-                                        <rect key="frame" x="62" y="10" width="258" height="21"/>
+                                        <rect key="frame" x="54" y="10" width="266" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
