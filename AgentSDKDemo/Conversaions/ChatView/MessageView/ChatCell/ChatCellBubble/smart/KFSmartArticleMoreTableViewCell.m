@@ -24,6 +24,14 @@
     [self addGestureRecognizer:labelTapGestureRecognizer1];
 
     self.userInteractionEnabled = YES; // 可以理解
+    
+    
+    self.answerLabel.verticalAlignment = VerticalAlignmentTop;
+    _answerLabel.verticalAlignment = VerticalAlignmentTop;
+//        _answerLabel.backgroundColor = [UIColor redColor];
+    _answerLabel.textAlignment=NSTextAlignmentLeft;
+    _answerLabel.numberOfLines = 0;
+    _answerLabel.lineBreakMode =NSLineBreakByTruncatingTail;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

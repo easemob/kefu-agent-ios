@@ -13,7 +13,7 @@
 #import "KFSmartDefaultTableViewCell.h"
 #import "KFSmartImageTableViewCell.h"
 #import "KFSmartChoiceTableViewCell.h"
-#import "KFSmartArticleTableViewCell.h"
+
 
 
 NSString *const kRouterEventCopyTextTapEventName = @"kRouterEventCopyTextTapEventName";
@@ -23,6 +23,8 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
 @interface KFChatSmartView()
 {
     HDSmartExtMsgType _msgtype;
+    
+    NSArray *_articleArray;
 }
 @property (nonatomic,strong) UILabel *knowledgeLabel;
 @property (nonatomic,strong) UILabel *copyLabel;
@@ -44,6 +46,13 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
 }
 - (void)createUI{
 
+    if (@available(iOS 13.0, *)) {
+           self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+     } else {
+           // Fallback on earlier versions
+     }
+    
+    
     [self addSubview: self.searchView];
     [self addSubview: self.tableView];
     [self addSubview: self.notDataView];
@@ -233,8 +242,18 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
            cell =[[KFSmartArticleTableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
                                        reuseIdentifier:@"KFSmartArticleTableViewCell"];
            }
+        cell.delegate = self;
+        
+        if (_articleArray.count >0) {
 
-        [cell setModel:model];
+
+
+        }else{
+            
+            [cell setModel:model];
+            
+        }
+        
         
         return cell;
         
@@ -309,7 +328,7 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
     NSLog(@"====%@",searchBar.text);
-
+    _articleArray  = nil;
     [self kf_searchQuestion:searchBar.text];
     
 }
@@ -330,22 +349,32 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
 //
 //    return  self.footerView;
 //}
+
+- (void)didChangeCell:(NSArray *)items{
+    
+    _articleArray = [NSArray arrayWithArray:items];
+    
+    [self.tableView reloadData];
+
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     KFSmartModel *model = [self.dataArray objectAtIndex:indexPath.row];
+
     CGFloat height;
     switch (model.msgtype) {
         case HDSmartExtMsgTypearticle:
-            
-            height = 220;
+            height = [self kf_smartArticleTableViewCellHeight];
             
             break;
         case HDSmartExtMsgTypeText:
             
-            height = 88;
+            height = model.cellHeight > 0 ? model.cellHeight : 100;
             break;
         case HDSmartExtMsgTypeMenu:
             
-            height = 200;
+            height = model.cellHeight > 0 ? model.cellHeight : 200;
             break;
         case HDSmartExtMsgTypeImamge:
             
@@ -362,6 +391,22 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
     
     return height;
 }
+
+- (CGFloat)kf_smartArticleTableViewCellHeight{
+    
+    CGFloat height = 0;
+    for (KFMSGTypeModel *model in _articleArray) {
+        
+        height = height + model.cellHeight;
+    }
+    
+    if (height > 200) {
+        return height;
+    }
+    
+    return 215;
+}
+
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
 //
 //    return 44;
@@ -649,4 +694,6 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
     return _footerView;
     
 }
+
+
 @end

@@ -702,6 +702,16 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
 }
 
+- (void)messagesCmdCooperationAnswerDidReceive:(NSDictionary *)dic{
+    
+    
+    
+    [self kf_smartAutoSendMessageReloadDataUI];
+    NSLog(@"====%@",dic);
+    
+}
+
+
 - (void)downloadVoice:(HDMessage *)message {
     if (message.type == HDMessageBodyTypeVoice) {
         HDVoiceMessageBody *body = (HDVoiceMessageBody *)message.nBody;

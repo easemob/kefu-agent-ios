@@ -177,6 +177,8 @@
 		9374F9C728379F77007924C9 /* KFSmartArticleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9C428379F77007924C9 /* KFSmartArticleTableViewCell.m */; };
 		9374F9C828379F77007924C9 /* KFSmartArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */; };
 		9374F9C928379F77007924C9 /* KFSmartArticleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */; };
+		938A4DC0283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DBF283BD5CD0069CA51 /* HDVideoVerticalAlignmentLabel.m */; };
+		938A4DC1283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 938A4DBF283BD5CD0069CA51 /* HDVideoVerticalAlignmentLabel.m */; };
 		938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
@@ -1826,6 +1828,8 @@
 		9374F9C328379F77007924C9 /* KFSmartArticleTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartArticleTableViewCell.h; sourceTree = "<group>"; };
 		9374F9C428379F77007924C9 /* KFSmartArticleTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartArticleTableViewCell.m; sourceTree = "<group>"; };
 		9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartArticleTableViewCell.xib; sourceTree = "<group>"; };
+		938A4DBE283BD5CD0069CA51 /* HDVideoVerticalAlignmentLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVideoVerticalAlignmentLabel.h; sourceTree = "<group>"; };
+		938A4DBF283BD5CD0069CA51 /* HDVideoVerticalAlignmentLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVideoVerticalAlignmentLabel.m; sourceTree = "<group>"; };
 		938AE9B227F3F8FB00B461C4 /* DBPlayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerData.m; sourceTree = "<group>"; };
 		938AE9B327F3F8FB00B461C4 /* DBPlayerDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPlayerDataManager.m; sourceTree = "<group>"; };
 		938AE9B427F3F8FB00B461C4 /* DBPlayerDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPlayerDataManager.h; sourceTree = "<group>"; };
@@ -3382,6 +3386,8 @@
 				9374F9C328379F77007924C9 /* KFSmartArticleTableViewCell.h */,
 				9374F9C428379F77007924C9 /* KFSmartArticleTableViewCell.m */,
 				9374F9C528379F77007924C9 /* KFSmartArticleTableViewCell.xib */,
+				938A4DBE283BD5CD0069CA51 /* HDVideoVerticalAlignmentLabel.h */,
+				938A4DBF283BD5CD0069CA51 /* HDVideoVerticalAlignmentLabel.m */,
 				93D0CF38283736DA004D93E3 /* KFSmartUtils.h */,
 				93D0CF39283736DA004D93E3 /* KFSmartUtils.m */,
 			);
@@ -6596,6 +6602,7 @@
 				90FC924C2486323B00014CCC /* NSArray+MASAdditions.m in Sources */,
 				D33CE76D1F7CAEB800236720 /* UIBarButtonItem+KFAdd.m in Sources */,
 				935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */,
+				938A4DC0283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */,
 				D33CE8741F7CD25800236720 /* SWUtilityButtonView.m in Sources */,
 				D33CE7EC1F7CB48400236720 /* StatisticsModel.m in Sources */,
 				D33CE8C31F7CE31B00236720 /* AdminInforEditViewController.m in Sources */,
@@ -7160,6 +7167,7 @@
 				D3E9CD8E1FBED182005E3677 /* MWTapDetectingView.m in Sources */,
 				D3E9CD8F1FBED182005E3677 /* UIImage+EMGIF.m in Sources */,
 				D3E9CD901FBED182005E3677 /* UIView+SBExtras.m in Sources */,
+				938A4DC1283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */,
 				D3E9CD911FBED182005E3677 /* HDChatFormBubbleView.m in Sources */,
 				D396E6821FDFEC7F009C0CF7 /* KFPredictView.m in Sources */,
 				D3DFB3851FD8EA2400A9358A /* KFDetailModel.m in Sources */,

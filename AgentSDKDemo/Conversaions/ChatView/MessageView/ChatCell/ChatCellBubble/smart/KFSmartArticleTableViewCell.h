@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol KFSmartArticleTableViewCellDelegate<NSObject>
+- (void)didChangeCell:(NSArray * )items;
+@end
+
+
 typedef void(^ClickArticleItemBlock)(KFSmartModel *model,id cell);
 @interface KFSmartArticleTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *iconImage;
@@ -20,6 +26,8 @@ typedef void(^ClickArticleItemBlock)(KFSmartModel *model,id cell);
 @property (weak, nonatomic) IBOutlet UILabel *labelSendNum;
 @property (weak, nonatomic) IBOutlet UILabel *labelSend;
 @property(nonatomic,copy) ClickArticleItemBlock clickArticleItemBlock;
+@property (nonatomic,assign) id<KFSmartArticleTableViewCellDelegate> delegate;
+
 - (void)setModel:(KFSmartModel *)model;
 @end
 

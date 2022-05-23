@@ -7,7 +7,7 @@
 //
 
 #import "EMChatBaseBubbleView.h"
-
+#import "KFSmartArticleTableViewCell.h"
 NS_ASSUME_NONNULL_BEGIN
 extern  NSString *const kRouterEventCopyTextTapEventName ;
 extern  NSString *const kRouterEventSendMessageTapEventName ;
@@ -15,7 +15,7 @@ extern  NSString *const kSearchDatakeyBoardHiddenTapEventName ;
 
 
 
-@interface KFChatSmartView : EMChatBaseBubbleView<UITextFieldDelegate,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface KFChatSmartView : EMChatBaseBubbleView<UITextFieldDelegate,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,KFSmartArticleTableViewCellDelegate>
 {
     UIEdgeInsets _margin;
     HDTextMessageBody *_body;

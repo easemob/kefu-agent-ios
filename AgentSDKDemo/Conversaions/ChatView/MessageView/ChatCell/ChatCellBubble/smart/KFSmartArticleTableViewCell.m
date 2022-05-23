@@ -68,8 +68,11 @@
        }
     KFMSGTypeModel * model = [self.itemArray objectAtIndex:indexPath.row];
     
+ 
     [cell setModel:model];
     
+  
+   
     cell.clickAtricleModorItemBlock = ^(KFMSGTypeModel * _Nonnull model, id  _Nonnull cell) {
         
         //跳转 url
@@ -86,14 +89,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-  
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   
-    return 175;
+    KFMSGTypeModel *model = [self.itemArray objectAtIndex:indexPath.row];
+    return model.cellHeight>0 ? model.cellHeight : 175;
+}
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        //end of loading
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.delegate didChangeCell:self.itemArray ];
+        });
+       
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -114,8 +125,8 @@
     _model = model;
     
     NSArray * articles = [NSArray yy_modelArrayWithClass:[KFMSGTypeModel class] json:[[model.ext valueForKey:@"msgtype"] valueForKey:@"articles"]];
-    NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
-                                   
+    
+                                
     self.itemArray = articles;
     
     if (self.itemArray.count > 1) {
@@ -135,6 +146,8 @@
     }else{
         self.knowledgeLabel.text =@"";
     }
+    
+   
 }
 - (NSArray *)itemArray{
     

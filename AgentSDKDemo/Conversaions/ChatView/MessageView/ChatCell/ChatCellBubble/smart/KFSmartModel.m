@@ -8,8 +8,12 @@
 
 #import "KFSmartModel.h"
 #import "KFSmartUtils.h"
+CGFloat const YMTopicCellMargin = 10;
+CGFloat const YMTopicCellTextY = 44;
 @implementation KFSmartModel
-
+{
+    CGFloat _cellHeight;
+}
 
 
 -(void)setType:(NSString *)type{
@@ -39,6 +43,17 @@
     
 }
 
+-(CGFloat)cellHeight{
 
+    // 文字的最大尺寸
+    CGSize maxSize = CGSizeMake([UIScreen mainScreen].bounds.size.width - 2*YMTopicCellMargin, MAXFLOAT);
+    // 计算文字的高度
+    CGFloat textH = [self.answer boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]} context:nil].size.height;
+    // c文字部分的高度
+    _cellHeight = YMTopicCellTextY + textH + YMTopicCellMargin;
+    
+    return _cellHeight;
+    
+}
 
 @end

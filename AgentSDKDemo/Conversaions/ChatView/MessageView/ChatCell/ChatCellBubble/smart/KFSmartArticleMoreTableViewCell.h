@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "HDVideoVerticalAlignmentLabel.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^ClickAtricleModorItemBlock)(KFMSGTypeModel *model,id cell);
 @interface KFSmartArticleMoreTableViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *answerLabel;
+@property (weak, nonatomic) IBOutlet HDVideoVerticalAlignmentLabel *answerLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *readFullArticle;

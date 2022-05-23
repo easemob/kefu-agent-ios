@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *des;
 @property (nonatomic, assign) NSInteger sendFrequencyStr ;
 @property (nonatomic, strong) KFMSGTypeItemModel *itemModel;
-
+@property (nonatomic,assign)CGFloat cellHeight;
 
 @end
 

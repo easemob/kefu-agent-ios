@@ -20,6 +20,7 @@
     [super awakeFromNib];
     // Initialization code
 //    self.iconImage.image = [UIImage imageNamed:@"tabbar_icon_ongoing"];
+    self.answerLabel.numberOfLines = 0;
    self.labelSend.font =  self.labelCopy.font = [UIFont systemFontOfSize:18];
     self.labelSend.textColor= self.labelCopy.textColor = [UIColor colorWithRed:75/255.0 green:131/255.0 blue:235/255.0 alpha:1];
 

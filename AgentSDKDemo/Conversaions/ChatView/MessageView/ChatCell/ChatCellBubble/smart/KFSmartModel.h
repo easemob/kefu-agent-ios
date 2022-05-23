@@ -41,7 +41,7 @@ typedef NS_ENUM(NSUInteger, HDSmartExtMsgType) {
 @property (nonatomic, copy) NSString *mediaId;
 @property (nonatomic, copy) NSString *cancelFrequencyStr;
 @property (nonatomic, copy) UIImage *sendImage;
-
+@property (nonatomic,assign)CGFloat cellHeight;
 @end
 
 NS_ASSUME_NONNULL_END
