@@ -147,8 +147,10 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
 // 辅助按钮事件
 -(void)smartBtnAction:(UIButton *)sender
 {
+    
+    sender.selected = !sender.selected;
     [self routerEventWithName:kSmartButtonTapEventName
-                     userInfo:@{KMESSAGEKEY:self.messageModel}];
+                     userInfo:@{KMESSAGEKEY:self.messageModel,@"smartButton":sender}];
 }
 #pragma mark - private
 
@@ -190,7 +192,7 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
 }
 - (UIButton *)smartBtn{
     if (!_smartBtn) {
-        _smartBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        _smartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //        _smartBtn.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:1];
 //        [_smartBtn setTitleColor:UIColor.blueColor forState:(UIControlStateNormal)];
 //        [_smartBtn setTitle:@"上条" forState:(UIControlStateNormal)];

@@ -48,7 +48,7 @@ CGFloat const YMTopicCellTextY = 44;
     // 文字的最大尺寸
     CGSize maxSize = CGSizeMake([UIScreen mainScreen].bounds.size.width - 2*YMTopicCellMargin, MAXFLOAT);
     // 计算文字的高度
-    CGFloat textH = [self.answer boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:17]} context:nil].size.height;
+    CGFloat textH = [self.answer boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:19]} context:nil].size.height;
     // c文字部分的高度
     _cellHeight = YMTopicCellTextY + textH + YMTopicCellMargin;
     

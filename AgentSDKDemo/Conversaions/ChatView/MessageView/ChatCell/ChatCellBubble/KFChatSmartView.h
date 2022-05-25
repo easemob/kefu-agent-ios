@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern  NSString *const kRouterEventCopyTextTapEventName ;
 extern  NSString *const kRouterEventSendMessageTapEventName ;
 extern  NSString *const kSearchDatakeyBoardHiddenTapEventName ;
-
+extern  NSString *const kSmartRemoveViewTapEventName;
 
 
 @interface KFChatSmartView : EMChatBaseBubbleView<UITextFieldDelegate,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource,KFSmartArticleTableViewCellDelegate>
@@ -27,6 +27,10 @@ extern  NSString *const kSearchDatakeyBoardHiddenTapEventName ;
 @property (nonatomic,strong) UITableView *__nullable tableView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) UIView *footerView;
+
+//小书的button
+@property (nonatomic, strong) UIButton *smartButton;
+
 - (void)updateFileMargin:(UIEdgeInsets)margin;
 - (void)setModel:(HDMessage *)model;
 @end

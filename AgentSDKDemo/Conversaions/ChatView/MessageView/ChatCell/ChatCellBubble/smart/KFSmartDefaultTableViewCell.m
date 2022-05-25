@@ -76,11 +76,11 @@
     self.labelCopyNum.text =  [NSString stringWithFormat:@"%ld",model.quoteFrequencyStr] ;
     self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
     
-    if ([model.cooperationSource isEqualToString:@"knowledge"]) {
-        self.knowledgeLabel.text = @"知识库";
-    }else{
-        self.knowledgeLabel.text =@"";
-    }
+//    if ([model.cooperationSource isEqualToString:@"knowledge"]) {
+//        self.knowledgeLabel.text = @"知识库";
+//    }else{
+//        self.knowledgeLabel.text =@"";
+//    }
     
 }
 @end

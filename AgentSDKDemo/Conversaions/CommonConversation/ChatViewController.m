@@ -1174,11 +1174,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             [self chatHeadImageBubblePressed:model];
         }
     }else if ([eventName isEqualToString:kSmartButtonTapEventName]){
-        [self chatTextSmartCellBubblePressed:model];
+        [self chatTextSmartCellBubblePressed:model withButton:[userInfo objectForKey:@"smartButton"]];
     } else if ([eventName isEqualToString:kRouterEventCopyTextTapEventName]){
         [self chatTextSmartCopyCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
     } else if ([eventName isEqualToString:kRouterEventSendMessageTapEventName]){
         [self chatTextSmartSendMessageCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
+    } else if ([eventName isEqualToString:kSmartRemoveViewTapEventName]){
+        [self chatTextSmartRemoveCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
     }  else if ([eventName isEqualToString:kResendButtonTapEventName]){
         EMChatViewCell *resendCell = [userInfo objectForKey:kShouldResendCell];
         HDMessage *messageModel = resendCell.messageModel;
@@ -1268,11 +1270,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 // 文本的小书被点击
-- (void)chatTextSmartCellBubblePressed:(HDMessage *)model{
+- (void)chatTextSmartCellBubblePressed:(HDMessage *)model withButton:(UIButton *)sender{
     
     [self.view addSubview:self.smartView];
     
     [self.smartView setModel:model];
+    
+    self.smartView.smartButton = sender;
     
     [self.smartView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.offset(0);
@@ -1293,6 +1297,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         }];
     }
    
+    
+}
+- (void)chatTextSmartRemoveCellBubblePressed:(KFSmartModel *)model{
+    
+    
     
 }
 - (void)chatTextSmartSendMessageCellBubblePressed:(KFSmartModel *)model{

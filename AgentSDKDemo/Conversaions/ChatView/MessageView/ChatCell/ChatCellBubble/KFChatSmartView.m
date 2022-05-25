@@ -19,6 +19,7 @@
 NSString *const kRouterEventCopyTextTapEventName = @"kRouterEventCopyTextTapEventName";
 NSString *const kRouterEventSendMessageTapEventName = @"kRouterEventSendMessageTapEventName";
 NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHiddenTapEventName";
+NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
 
 @interface KFChatSmartView()
 {
@@ -339,16 +340,6 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-//此协议方法中header不受约束影响，不用设置固定高度也不会出问题
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//
-//    return  self.searchBar;
-//
-//}
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//
-//    return  self.footerView;
-//}
 
 - (void)didChangeCell:(NSArray *)items{
     
@@ -424,7 +415,10 @@ NSString *const kSearchDatakeyBoardHiddenTapEventName = @"kSearchDatakeyBoardHid
     
     [self removeFromSuperview];
     
+//    [self routerEventWithName:kSmartRemoveViewTapEventName
+//                     userInfo:@{@"smartModel":_model}];
 
+    self.smartButton.selected = NO;
  
 }
 -(void)labelCopyClick {
