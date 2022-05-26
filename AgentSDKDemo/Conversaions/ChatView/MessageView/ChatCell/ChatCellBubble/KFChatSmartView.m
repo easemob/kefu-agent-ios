@@ -441,7 +441,7 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
     
     [self routerEventWithName:kRouterEventCopyTextTapEventName
                      userInfo:@{@"smartModel":model}];
-    
+    [self close:nil];
     
 }
 -(void)labelSendClick:(KFSmartModel *)model{
