@@ -702,13 +702,24 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
 }
 
-- (void)messagesCmdCooperationAnswerDidReceive:(NSDictionary *)dic{
+- (void)messagesCmdCooperationAnswerDidReceive:(NSArray<HDMessage *> *)aMessages{
     
+//    [self markAsRead];
+//    [self addMessage:msg];
+//
+//    [self kf_smartAutoSendMessageReloadDataUI];
     
-    
-    [self kf_smartAutoSendMessageReloadDataUI];
-    NSLog(@"====%@",dic);
-    
+    if ( [HDClient sharedClient].currentAgentUser.sendPattern) {
+        //自动发送
+        for (HDMessage *msg in aMessages) {
+            if (![_conversationModel.sessionId isEqualToString:msg.sessionId]) {
+                return;
+            }
+            [self markAsRead];
+            [self addMessage:msg];
+        }
+    }
+  
 }
 
 

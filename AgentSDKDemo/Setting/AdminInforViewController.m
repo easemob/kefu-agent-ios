@@ -222,7 +222,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         CompileTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation"];
-        
         // Configure the cell...
         if (cell == nil) {
             cell = [[CompileTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
@@ -277,121 +276,120 @@
                 break;
         }
         return cell;
-    } else if (indexPath.section == 2) {
-        
-        
-        if (self.dataArray.count >0 ) {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation1"];
-            
-            // Configure the cell...
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation1"];
-                cell.backgroundColor = UIColor.whiteColor;
-                cell.textLabel.textColor = UIColor.grayColor;
-            }
-            if (indexPath.row == 0) {
-                cell.textLabel.text = @"客服问候语";
-                [cell addSubview:self.greetingsSwitch];
-                [cell addSubview:self.line];
-                [self.greetingsSwitch setOn:[HDClient sharedClient].currentAgentUser.greetingEnable];
-            } else if (indexPath.row == 1) {
-                if ([HDClient sharedClient].currentAgentUser.greetingContent <= 0) {
-                    cell.textLabel.text = @"会话分配到客服时，将自动发送客服个人的问候语";
-                    cell.textLabel.textColor = [UIColor lightGrayColor];
-                } else {
-                    cell.textLabel.text = [HDClient sharedClient].currentAgentUser.greetingContent;
-                    cell.textLabel.textColor = [UIColor blackColor];
-                }
-                cell.textLabel.width = KScreenWidth - cell.textLabel.left;
-            }
-            return cell;
-        }else{
-            
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation2"];
-            
-            // Configure the cell...
-            if (cell == nil) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation2"];
-                cell.backgroundColor = UIColor.whiteColor;
-            }
-            cell.textLabel.text = @"退出登录";
-            cell.textLabel.textColor = [UIColor redColor];
-            cell.textLabel.textAlignment = NSTextAlignmentCenter;
-            return cell;
-            
-        }
-        
-     
-    } else if (indexPath.section == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation1"];
-        // Configure the cell...
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation1"];
-            cell.backgroundColor = UIColor.whiteColor;
-            cell.textLabel.textColor = UIColor.grayColor;
-        }
-        //如果 有显示 智能辅助
-        if (self.dataArray.count >0) {
-            
-            if (indexPath.row == 0) {
-                cell.textLabel.text = @"智能辅助";
-                cell.textLabel.width =130;
-            } else if (indexPath.row == 1) {
-                cell.textLabel.text = @"答案匹配模式";
-                cell.textLabel.width =130;
-                [cell addSubview:self.menu];
-                [self.menu mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.offset(10);
-                    make.bottom.offset(-10);
-                    make.trailing.offset(-15);
-    //                make.width.offset(cell.width/2);
-                    make.leading.offset(cell.textLabel.width +20);
-                    
-                }];
-            }else if (indexPath.row == 2) {
-                cell.textLabel.text = @"答案发送模式";
-                cell.textLabel.width =130;
-                [cell addSubview:self.sendMenu];
-                [self.sendMenu mas_makeConstraints:^(MASConstraintMaker *make) {
-                    make.top.offset(10);
-                    make.bottom.offset(-10);
-                    make.trailing.offset(-15);
-    //                make.width.offset(cell.width/2);
-                    make.leading.offset(cell.textLabel.width +20);
-                    
-                }];
-            }
-        }else{
-            if (indexPath.row == 0) {
-                cell.textLabel.text = @"客服问候语";
-                [cell addSubview:self.greetingsSwitch];
-                [cell addSubview:self.line];
-                [self.greetingsSwitch setOn:[HDClient sharedClient].currentAgentUser.greetingEnable];
-            } else if (indexPath.row == 1) {
-                if ([HDClient sharedClient].currentAgentUser.greetingContent <= 0) {
-                    cell.textLabel.text = @"会话分配到客服时，将自动发送客服个人的问候语";
-                    cell.textLabel.textColor = [UIColor lightGrayColor];
-                } else {
-                    cell.textLabel.text = [HDClient sharedClient].currentAgentUser.greetingContent;
-                    cell.textLabel.textColor = [UIColor blackColor];
-                }
-                cell.textLabel.width = KScreenWidth - cell.textLabel.left;
-            }
-        }
-        return cell;
-    } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversation2"];
-        
-        // Configure the cell...
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation2"];
-            cell.backgroundColor = UIColor.whiteColor;
-        }
-        cell.textLabel.text = @"退出登录";
-        cell.textLabel.textColor = [UIColor redColor];
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        return cell;
     }
+    
+    if (self.dataArray.count > 0) {
+        //有智能辅助
+        if (indexPath.section == 1) {
+            //创建 问候语cell
+            return  [self createSmartCellAtIndexpath:indexPath];
+        }else if(indexPath.section ==2){
+            //创建 问候语cell
+            return  [self createGreetingCellAtIndexpath:indexPath];
+            
+        }else{
+            return  [self createLogoutCellAtIndexpath:indexPath];
+        }
+        
+    }else{
+        //没有智能辅助
+        if (indexPath.section == 1) {
+         
+            //创建 问候语cell
+            return  [self createGreetingCellAtIndexpath:indexPath];
+        }else {
+            
+            return  [self createLogoutCellAtIndexpath:indexPath];
+        }
+    }
+    
+    
+    return nil;
+}
+- (UITableViewCell *)createSmartCellAtIndexpath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"SmartCellTypeConversation1"];
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"SmartCellTypeConversation1"];
+        cell.backgroundColor = UIColor.whiteColor;
+        cell.textLabel.textColor = UIColor.grayColor;
+    }
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"智能辅助";
+        cell.textLabel.width =130;
+    } else if (indexPath.row == 1) {
+        cell.textLabel.text = @"答案匹配模式";
+        cell.textLabel.width =130;
+        [cell addSubview:self.menu];
+        [self.menu mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(10);
+            make.bottom.offset(-10);
+            make.trailing.offset(-15);
+//                make.width.offset(cell.width/2);
+            make.leading.offset(cell.textLabel.width +20);
+            
+        }];
+    }else if (indexPath.row == 2) {
+        cell.textLabel.text = @"答案发送模式";
+        cell.textLabel.width =130;
+        [cell addSubview:self.sendMenu];
+        [self.sendMenu mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(10);
+            make.bottom.offset(-10);
+            make.trailing.offset(-15);
+//                make.width.offset(cell.width/2);
+            make.leading.offset(cell.textLabel.width +20);
+            
+        }];
+    }
+    
+    return cell;
+}
+- (UITableViewCell *)createGreetingCellAtIndexpath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"GreetingCellTypeConversation1"];
+    
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"GreetingCellTypeConversation1"];
+        cell.backgroundColor = UIColor.whiteColor;
+        cell.textLabel.textColor = UIColor.grayColor;
+    }
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"客服问候语";
+        [cell addSubview:self.greetingsSwitch];
+        [cell addSubview:self.line];
+        [self.greetingsSwitch setOn:[HDClient sharedClient].currentAgentUser.greetingEnable];
+    } else if (indexPath.row == 1) {
+        if ([HDClient sharedClient].currentAgentUser.greetingContent <= 0) {
+            cell.textLabel.text = @"会话分配到客服时，将自动发送客服个人的问候语";
+            cell.textLabel.textColor = [UIColor lightGrayColor];
+        } else {
+            cell.textLabel.text = [HDClient sharedClient].currentAgentUser.greetingContent;
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
+        cell.textLabel.width = KScreenWidth - cell.textLabel.left;
+    }
+    return cell;
+    
+    
+}
+- (UITableViewCell *)createLogoutCellAtIndexpath:(NSIndexPath *)indexPath{
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"LogoutCellTypeConversation1"];
+    
+    // Configure the cell...
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"LogoutCellTypeConversation1"];
+        cell.backgroundColor = UIColor.whiteColor;
+    }
+    cell.textLabel.text = @"退出登录";
+    cell.textLabel.textColor = [UIColor redColor];
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    return cell;
+    
+    
 }
 
 #pragma mark - Table view delegate
@@ -626,6 +624,10 @@
     [[HDClient sharedClient].setManager kf_setCooperationWithsendPattern:sendPattern withAnswerMatchPattern:answerMatchPattern Completion:^(id responseObject, HDError *error) {
         
         NSLog(@"======%@",responseObject);
+        
+        
+        
+        
     }];
     
     
