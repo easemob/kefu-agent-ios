@@ -244,7 +244,11 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
                                        reuseIdentifier:@"KFSmartArticleTableViewCell"];
            }
         cell.delegate = self;
-        
+        cell.clickArticleItemBlock = ^(KFSmartModel * _Nonnull model, id  _Nonnull cell) {
+            
+            [self labelSendClick:model];
+            
+        };
         if (_articleArray.count >0) {
 
 
@@ -454,7 +458,6 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
                          userInfo:@{@"smartModel":model}];
     }
    
-    
     [self close:nil];
 }
 

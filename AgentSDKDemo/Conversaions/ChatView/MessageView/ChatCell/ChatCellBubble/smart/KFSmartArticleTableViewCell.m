@@ -37,8 +37,8 @@
 
     self.labelSend.userInteractionEnabled = YES; // 可以理解
     
-    self.labelSend.hidden = YES;
-    self.labelSendNum.hidden = YES;
+//    self.labelSend.hidden = YES;
+//    self.labelSendNum.hidden = YES;
     
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     _tableView.autoresizingMask=UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;;

@@ -128,6 +128,9 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
                 type = [HDUtils getMessageExtType:model];
                 if (type == HDExtMsgTypeForm) {
                     identifier = [identifier stringByAppendingString:@"form"];
+                }else if(type == HDExtMsgTypeArticle){
+                    
+                    identifier = [identifier stringByAppendingString:@"Article"];
                 }
             }
                 break;

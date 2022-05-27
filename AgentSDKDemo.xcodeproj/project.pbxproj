@@ -115,6 +115,8 @@
 		90FC92552486323B00014CCC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92412486323B00014CCC /* MASViewAttribute.m */; };
 		90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
+		93074B152840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93074B142840A35600B41B8C /* KFChatArticleBubbleView.m */; };
+		93074B162840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93074B142840A35600B41B8C /* KFChatArticleBubbleView.m */; };
 		930EF9B12834BCF800A3C205 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
 		930EF9B42835155600A3C205 /* KFPatternModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B32835155500A3C205 /* KFPatternModel.m */; };
 		930EF9B52835155700A3C205 /* KFPatternModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B32835155500A3C205 /* KFPatternModel.m */; };
@@ -1778,6 +1780,8 @@
 		90FC92412486323B00014CCC /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		90FC92562486363C00014CCC /* EMRealtimeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRealtimeSearch.h; sourceTree = "<group>"; };
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
+		93074B132840A35600B41B8C /* KFChatArticleBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatArticleBubbleView.h; sourceTree = "<group>"; };
+		93074B142840A35600B41B8C /* KFChatArticleBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatArticleBubbleView.m; sourceTree = "<group>"; };
 		930EF9AF2834BCF800A3C205 /* KFChatSmartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatSmartView.h; sourceTree = "<group>"; };
 		930EF9B02834BCF800A3C205 /* KFChatSmartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatSmartView.m; sourceTree = "<group>"; };
 		930EF9B22835155500A3C205 /* KFPatternModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFPatternModel.h; sourceTree = "<group>"; };
@@ -3813,6 +3817,8 @@
 				D33CE64B1F7CA98D00236720 /* EMChatImageBubbleView.m */,
 				D33CE64C1F7CA98D00236720 /* EMChatImageTextBubbleView.h */,
 				D33CE64D1F7CA98D00236720 /* EMChatImageTextBubbleView.m */,
+				93074B132840A35600B41B8C /* KFChatArticleBubbleView.h */,
+				93074B142840A35600B41B8C /* KFChatArticleBubbleView.m */,
 				D33CE64E1F7CA98D00236720 /* EMChatLocationBubbleView.h */,
 				D33CE64F1F7CA98D00236720 /* EMChatLocationBubbleView.m */,
 				D33CE6501F7CA98D00236720 /* EMChatTextBubbleView.h */,
@@ -6592,6 +6598,7 @@
 				D33CE76C1F7CAEB800236720 /* UIAlertView+AlertBlock.m in Sources */,
 				D33CE79A1F7CAF6700236720 /* KFInputEmailViewController.m in Sources */,
 				D34DF9DC1FA818E60018116D /* AdminHistoryViewController.m in Sources */,
+				93074B152840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */,
 				938AEA2D27F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m in Sources */,
 				D3A95E491EA0F47100ADD394 /* MBProgressHUD+Add.m in Sources */,
 				D33CE8561F7CD0F800236720 /* EMSDWebImageDownloaderOperation.m in Sources */,
@@ -7157,6 +7164,7 @@
 				D3E9CD851FBED182005E3677 /* EMAudioPlayerUtil.m in Sources */,
 				D3E9CD861FBED182005E3677 /* HSearchResultsViewController.m in Sources */,
 				D3E9CD871FBED182005E3677 /* EMChatBaseBubbleView.m in Sources */,
+				93074B162840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */,
 				D3E9CD881FBED182005E3677 /* DXTableViewCellTypeConversation.m in Sources */,
 				D3E9CD891FBED182005E3677 /* UIViewController+MMDrawerController.m in Sources */,
 				D3E9CD8A1FBED182005E3677 /* AFHTTPRequestOperationManager.m in Sources */,

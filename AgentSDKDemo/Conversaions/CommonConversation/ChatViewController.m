@@ -163,6 +163,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [super viewWillAppear:animated];
 //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self.headview refreshHeaderView];
+    
+    
+    [[HDClient sharedClient].setManager kf_getCooperationWithPatternCompletion:^(id responseObject, HDError *error) {
+        
+        
+        
+    }];
 }
 
 - (NSDictionary *)lastMsgExt {
@@ -1205,6 +1212,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self chatLocationCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventImageTextBubbleTapEventName]) {
         [self chatImageTextCellBubblePressed:model];
+    }else if ([eventName isEqualToString:kRouterEventArticleBubbleTapEventName]) {
+        [self chatArticleCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventAudioBubbleTapEventName]) {
         [self chatAudioCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
@@ -1329,9 +1338,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             break;
         case HDSmartExtMsgTypearticle:
 //            [self sendImageMessage:[UIImage imageNamed:@""]];
+            [self sendSmartTextMessage:model withText:@"自定义消息"];
             break;
         case HDSmartExtMsgTypeMenu:
-            [self sendTextMessage:model.answer];
+            
+            [self sendSmartTextMessage:model withText:model.answer];
             break;
         default:
             break;
@@ -1414,7 +1425,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
     [self.navigationController pushViewController:webview animated:YES];
 }
-
+// 图文混排格式的bubble被点击
+- (void)chatArticleCellBubblePressed:(KFMSGTypeModel *)model
+{
+    //ios 2020-4-30 提交appstore 必须使用 WKWebView 使用UIWebView 审核不通过 开始替换WebViewController 中的UIWebView
+    KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:model.url];
+    [self.navigationController pushViewController:webview animated:YES];
+}
 // 位置的bubble被点击
 - (void)chatLocationCellBubblePressed:(HDMessage *)model
 {
@@ -1885,6 +1902,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }];
 }
 
+//发送智能辅助的时候需要把model 里边的msgtype 放到ext里边
+- (void)sendSmartTextMessage:(KFSmartModel *)model withText:(NSString *)text
+{
+    HDMessage *message = [ChatSendHelper textMessageFormatWithText:text to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:self.lastMsgExt];
+    [parameters setObject: [model.ext valueForKey:@"msgtype"] forKey:@"msgtype"];
+    message.nBody.msgExt = parameters;
+    [self addMessage:message];
+    [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+        [self updateMessageWithMessage:aMessage];
+    }];
+}
 
 - (void)sendImageMessage:(UIImage*)orgImage
 {
