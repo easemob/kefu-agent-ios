@@ -68,7 +68,7 @@
        }
     KFMSGTypeModel * model = [self.itemArray objectAtIndex:indexPath.row];
     
- 
+    cell.fTitleLabel.hidden = YES;
     [cell setModel:model];
     
   
@@ -94,7 +94,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   
     KFMSGTypeModel *model = [self.itemArray objectAtIndex:indexPath.row];
-    return model.cellHeight>0 ? model.cellHeight : 175;
+    return model.cellHeight > 0 ? model.cellHeight : 198;
 }
 -(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {

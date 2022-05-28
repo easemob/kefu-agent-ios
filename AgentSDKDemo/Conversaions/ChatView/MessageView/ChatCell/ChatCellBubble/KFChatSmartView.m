@@ -395,11 +395,12 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
         height = height + model.cellHeight;
     }
     
-    if (height > 200) {
-        return height;
+    // 这个198 是 cell内容的高度 44是 知识库 发送等功能的高度
+    if (height > 198) {
+        return height + 44;
     }
     
-    return 215;
+    return 242;
 }
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -16,6 +16,7 @@ typedef void(^ClickAtricleModorItemBlock)(KFMSGTypeModel *model,id cell);
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 @property (weak, nonatomic) IBOutlet UILabel *detailLabel;
 @property (weak, nonatomic) IBOutlet UILabel *readFullArticle;
+@property (weak, nonatomic) IBOutlet HDVideoVerticalAlignmentLabel *fTitleLabel;
 @property(nonatomic,copy) ClickAtricleModorItemBlock clickAtricleModorItemBlock;
 
 - (void)setModel:(KFMSGTypeModel *)model;

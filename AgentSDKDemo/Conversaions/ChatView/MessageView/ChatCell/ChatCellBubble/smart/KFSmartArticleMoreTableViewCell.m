@@ -32,6 +32,8 @@
     _answerLabel.textAlignment=NSTextAlignmentLeft;
     _answerLabel.numberOfLines = 0;
     _answerLabel.lineBreakMode =NSLineBreakByTruncatingTail;
+    
+    self.fTitleLabel.hidden = NO;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -57,7 +59,7 @@
     [self.image sd_setImageWithURL:[NSURL URLWithString:model.picurl] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big@2x.png"]];
     
     self.detailLabel.text = model.digest;
-    
+    self.fTitleLabel.text = model.date;
     
 }
 @end

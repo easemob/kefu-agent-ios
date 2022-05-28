@@ -463,7 +463,7 @@
     //请求灰度
     [[HDClient sharedClient].setManager kf_getInitGrayCompletion:^(id responseObject, HDError *error) {
         
-        NSLog(@"======%@",responseObject);
+//        NSLog(@"======%@",responseObject);
         
         
     }];

@@ -20,8 +20,11 @@
     // 计算文字的高度
     CGFloat textH = [self.title boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:19]} context:nil].size.height;
     CGFloat text1H = [self.digest boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:19]} context:nil].size.height;
+    
+    CGFloat text2H = [self.date boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:19]} context:nil].size.height;
+    
     // c文字部分的高度
-    _cellHeight = 44 + textH + 20 + text1H + 21 + 85;
+    _cellHeight = textH + 20 + text1H + text2H +  21 + 85 +10;
     return _cellHeight;
     
 }

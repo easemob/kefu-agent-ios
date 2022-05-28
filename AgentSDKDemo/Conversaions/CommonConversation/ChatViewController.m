@@ -716,17 +716,46 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //
 //    [self kf_smartAutoSendMessageReloadDataUI];
     
-    if ( [HDClient sharedClient].currentAgentUser.sendPattern) {
-        //自动发送
-        for (HDMessage *msg in aMessages) {
-            if (![_conversationModel.sessionId isEqualToString:msg.sessionId]) {
-                return;
+//    if ( [HDClient sharedClient].currentAgentUser.sendPattern) {
+//        //自动发送
+//        for (HDMessage *msg in aMessages) {
+//            if (![_conversationModel.sessionId isEqualToString:msg.sessionId]) {
+//                return;
+//            }
+//            [self markAsRead];
+//            [self addMessage:msg];
+//        }
+//    }
+//    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page
+//                                                                  limit:0
+//                                                             completion:^(NSArray *conversations, HDError *error)
+//    {
+//
+//                for (HDConversation *conversation in conversations) {
+//                    if (![_conversationModel.sessionId isEqualToString:conversation.sessionId]) {
+//                        return;
+//                    }
+//                    [self markAsRead];
+//                    [self addMessage:conversation.lastMessage];
+//                }
+//
+//
+//    }];
+    __weak typeof(self) weakSelf = self;
+    [_conversation loadMessageNewCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
+       
+        NSLog(@"%@",messages);
+        if (error == nil) {
+            for (HDMessage *msg in messages) {
+                //计算text高度
+                [weakSelf addMessage:msg];
+                [weakSelf downloadVoice:msg]; // 这步是不是应该获取的时候，sdk自动做？
             }
-            [self markAsRead];
-            [self addMessage:msg];
+        } else {
+            [weakSelf showHint:error.errorDescription];
         }
-    }
-  
+    }];
+    
 }
 
 

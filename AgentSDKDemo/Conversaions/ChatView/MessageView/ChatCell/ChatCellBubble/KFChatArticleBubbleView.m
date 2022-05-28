@@ -108,13 +108,13 @@ NSString *const kRouterEventArticleBubbleTapEventName = @"kRouterEventArticleBub
         height = height + model.cellHeight;
     }
     
-    height = height - self.itemArray.count * 44;
    
-    if (height > 156) {
+   
+    if (height > 198) {
         return height;
     }
     
-    return 156;
+    return 198;
 }
 -(void)setModel:(HDMessage *)model{
     
@@ -140,28 +140,7 @@ NSString *const kRouterEventArticleBubbleTapEventName = @"kRouterEventArticleBub
 //view 本身大小
 - (CGSize)sizeThatFits:(CGSize)size
 {
-    CGSize retSize;
-    if (self.model.ext) {
-        retSize = CGSizeMake(0, 0);
-    } else {
-        retSize = CGSizeMake(0, 0);
-    }
-    if (retSize.width == 0 || retSize.height == 0) {
-        retSize.width = MAX_SIZE;
-        retSize.height = MAX_SIZE;
-    }
-    if (retSize.width > retSize.height) {
-        CGFloat height =  MAX_SIZE / retSize.width  *  retSize.height;
-        retSize.height = height;
-        retSize.width = MAX_SIZE;
-    }else {
-        CGFloat width = MAX_SIZE / retSize.height * retSize.width;
-        retSize.width = width;
-        retSize.height = MAX_SIZE;
-    }
-  
-    
-    return CGSizeMake(retSize.width + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH,[self kf_smartArticleTableViewCellHeight]);
+    return CGSizeMake(MAX_WIDTH + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH ,[self kf_smartArticleTableViewCellHeight]);
    
 }
 #pragma mark - public
@@ -177,13 +156,11 @@ NSString *const kRouterEventArticleBubbleTapEventName = @"kRouterEventArticleBub
         height = height + model.cellHeight;
     }
     
-    height = height - articles.count * 44;
-   
-    if (height > 156) {
+    if (height > 198) {
         return height;
     }
     
-    return 156;
+    return 198;
     
     
 //    return 2 * BUBBLE_VIEW_PADDING + ANIMATION_IMAGEVIEW_SIZE;
