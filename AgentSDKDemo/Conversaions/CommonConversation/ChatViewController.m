@@ -714,8 +714,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //    [self markAsRead];
 //    [self addMessage:msg];
 //
-//    [self kf_smartAutoSendMessageReloadDataUI];
+    [self kf_smartAutoSendMessageReloadDataUI];
     
+    //这个也行 就是需要后端给格式
 //    if ( [HDClient sharedClient].currentAgentUser.sendPattern) {
 //        //自动发送
 //        for (HDMessage *msg in aMessages) {
@@ -726,6 +727,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //            [self addMessage:msg];
 //        }
 //    }
+    // 这个方案也可以 但是 就是 加载会话太多 效率低一点
 //    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page
 //                                                                  limit:0
 //                                                             completion:^(NSArray *conversations, HDError *error)
@@ -741,20 +743,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //
 //
 //    }];
-    __weak typeof(self) weakSelf = self;
-    [_conversation loadMessageNewCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
-       
-        NSLog(@"%@",messages);
-        if (error == nil) {
-            for (HDMessage *msg in messages) {
-                //计算text高度
-                [weakSelf addMessage:msg];
-                [weakSelf downloadVoice:msg]; // 这步是不是应该获取的时候，sdk自动做？
-            }
-        } else {
-            [weakSelf showHint:error.errorDescription];
-        }
-    }];
+   
     
 }
 
@@ -1296,24 +1285,26 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 // 自动发送 接收到通知上屏 逻辑
 -  (void)kf_smartAutoSendMessageReloadDataUI{
     
-    [_conversation loadMessageCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
-        [self hideHud];
-        if (error == nil) {
-            for (HDMessage *msg in messages) {
-                
-                NSString *msgType = [msg.nBody.msgExt objectForKey:@"messageType"];
-                 
-                if ([msgType isEqualToString:@"cooperationAnswer"]) {
-                    NSLog(@"===%@",msgType);
-                    [self markAsRead];
-                    [self addMessage:msg];
-                }
-            }
-        } else {
-
-        }
-    }];
     
+    if ( [HDClient sharedClient].currentAgentUser.sendPattern) {
+        //自动发送
+        __weak typeof(self) weakSelf = self;
+        [_conversation loadMessageNewCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
+           
+            NSLog(@"%@",messages);
+            if (error == nil) {
+                for (HDMessage *msg in messages) {
+                    //计算text高度
+                    [weakSelf addMessage:msg];
+                    [weakSelf downloadVoice:msg]; // 这步是不是应该获取的时候，sdk自动做？
+                }
+            } else {
+                [weakSelf showHint:error.errorDescription];
+            }
+        }];
+    }
+    
+   
     
     
 }

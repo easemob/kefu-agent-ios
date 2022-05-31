@@ -644,6 +644,7 @@
                 NSDictionary * dic = responseObject;
                 if ([[dic allKeys] containsObject:@"entity"]) {
                     
+                    [weakSelf.dataArray removeAllObjects];
                     NSDictionary * entity = [dic objectForKey:@"entity"];
                     
                     int open  =  [[entity valueForKey:@"open"] intValue];
