@@ -150,7 +150,7 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
     self.searchBar.text = _body.text;
     [self endEditing:YES];
     //调用搜索接口
-    [self kf_searchQuestion:_body.text];
+    [self kf_cacheQuestion:_body.text];
 
 }
 - (void)kf_searchQuestion:(NSString *)question{
@@ -219,7 +219,72 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
     
     
 }
-
+- (void)kf_cacheQuestion:(NSString *)question{
+    
+    
+    MBProgressHUD *hud = [MBProgressHUD showMessag:@"加载中..." toView:self];
+    __weak MBProgressHUD *weakHud = hud;
+    
+    [[HDClient sharedClient].setManager kf_cacheAnswerWithQuestion:question withSessionId:[NSString stringWithFormat:@"%ld",(long)_model.conversationId] withMsgId:_model.messageId completion:^(id responseObject, HDError *error) {
+        [weakHud hide:YES];
+//        {"status":"OK","entities":[],"first":false,"last":true,"size":2,"number":1,"numberOfElements":0,"totalPages":0,"totalElements":0}
+        NSLog(@"======%@",responseObject);
+        WEAK_SELF
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+            
+            NSDictionary * dic = responseObject;
+            
+            if ([[dic allKeys] containsObject:@"status"] && [[dic valueForKey:@"status"]isEqualToString:@"OK"]) {
+                if ([[dic allKeys] containsObject:@"entities"]) {
+                    NSArray * array = [dic valueForKey:@"entities"];
+                    
+                    if (array.count > 0) {
+                        [weakSelf.dataArray removeAllObjects];
+                        self.notDataView.hidden = YES;
+                        
+                        //加载数据
+                        NSArray * resArray = [NSArray yy_modelArrayWithClass:[KFSmartModel class] json:[dic valueForKey:@"entities"]];
+                        
+                        for (KFSmartModel * model in resArray) {
+                           
+                            NSLog(@"==%@",model.ext);
+                            
+                            if ([KFSmartUtils isGroupMessageStr:model.type]) {
+                                
+                                if (model.answerDataGroup) {
+                                    
+                                    NSArray * groupArray = [NSArray yy_modelArrayWithClass:[KFSmartModel class] json:model.answerDataGroup];
+                                    [weakSelf.dataArray addObjectsFromArray:groupArray];
+                                    
+                                }
+                                
+                            }else{
+                           
+                                [weakSelf.dataArray addObject:model];
+                            }
+                        
+                        }
+        
+                    }else{
+                        
+                        //没有数据
+                        self.notDataView.hidden = NO;
+                        
+                
+                    }
+                    
+                }
+                
+            }
+            
+            [self.tableView reloadData];
+            [self endEditing:YES];
+        }
+        
+    }];
+    
+    
+}
 #pragma mark -tableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
@@ -337,7 +402,6 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
     [self kf_searchQuestion:searchBar.text];
     
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    

@@ -74,9 +74,18 @@
     model.answer = [NSString stringWithFormat:@"%@%@",headStr,title];
     
     self.answerLabel.text = model.answer;
+
+    NSInteger  sendFrequencyNum = [[NSString stringWithFormat:@"%ld",model.sendFrequencyStr] integerValue];
+      
+      if (sendFrequencyNum > 0) {
+          self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
+      }else{
+          
+          self.labelSendNum.text = @"" ;
+      }
     
-    self.labelCopyNum.text =  [NSString stringWithFormat:@"%ld",model.quoteFrequencyStr] ;
-    self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
+    
+    
     if ([model.cooperationSource isEqualToString:@"knowledge"]) {
         self.knowledgeLabel.text = @"知识库";
     }else{

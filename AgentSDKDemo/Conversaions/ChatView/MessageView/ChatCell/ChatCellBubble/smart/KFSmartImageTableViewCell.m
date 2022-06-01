@@ -54,8 +54,15 @@
     NSString *kefuAddress = HDClient.sharedClient.option.kefuRestAddress;
     NSString *url = [NSString stringWithFormat:@"%@%@",kefuAddress,model.mediaFileUrl];
     [self.image sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"visitor_icon_imagebroken_big@2x.png"]];
-    self.labelCopyNum.text =  [NSString stringWithFormat:@"%ld",model.quoteFrequencyStr] ;
-    self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
+   
+    NSInteger  sendFrequencyNum = [[NSString stringWithFormat:@"%ld",model.sendFrequencyStr] integerValue];
+      
+      if (sendFrequencyNum > 0) {
+          self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
+      }else{
+          
+          self.labelSendNum.text = @"" ;
+      }
     
     if ([model.cooperationSource isEqualToString:@"knowledge"]) {
         self.knowledgeLabel.text = @"知识库";
