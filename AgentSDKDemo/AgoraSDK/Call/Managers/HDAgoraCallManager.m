@@ -10,7 +10,6 @@
 #import <ReplayKit/ReplayKit.h>
 #import <CoreMedia/CoreMedia.h>
 #import "ConvertToCommonEmoticonsHelper.h"
-#import "HDKeyCenter.h"
 #import "HDSSKeychain.h"
 #import "HDAgoraTicketModel.h"
 #import "KFVideoDetailModel.h"
@@ -48,7 +47,6 @@ static uint32_t SCREEN_SHARE_UID_MAX  = 1000;
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
 @property (nonatomic, strong) AgoraRtcEngineKit *agoraKitScreenShare;
 @property (nonatomic, copy) void (^Completion)(id, HDError *)  ;
-@property (nonatomic, strong) HDConversation * conversationModel;
 
 
 @end
@@ -318,9 +316,8 @@ static HDAgoraCallManager *shareCall = nil;
 }
 - (void)endRecord{
     // 结束录制
-    [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:[HDAgoraCallManager shareInstance].sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:_message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         if (responseObject && [responseObject isKindOfClass:[NSArray class]]) {
-            
             //详情数据返回
             NSLog(@"responseObject = %@",responseObject);
             [_delegates onCallEndReason:1 desc:@"reason-conference-dismissed"  withRecordData:responseObject];
@@ -416,8 +413,11 @@ static HDAgoraCallManager *shareCall = nil;
     [self hd_joinChannelByToken:_keyCenter.agoraToken channelId:_keyCenter.agoraChannel info:nil uid:[_keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
 //        [HDLog logI:@"joinSuccess channel=%@  uid=%lu",channel,(unsigned long)uid];
         //加入成功以后 开始 录制
-        [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: [HDAgoraCallManager shareInstance].sessionId];
+        [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: _message.sessionId];
         self.Completion(nil, nil);
+        
+        //
+        
     }];
 
 }

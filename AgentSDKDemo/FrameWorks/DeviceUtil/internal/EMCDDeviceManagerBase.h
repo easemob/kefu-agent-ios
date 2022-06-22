@@ -26,7 +26,8 @@
 }
 
 @property (nonatomic, assign) id <EMCDDeviceManagerDelegate> delegate;
-
+@property(nonatomic,strong)NSTimer * voice_timer;
+@property(nonatomic,strong)NSTimer * vibrate_timer;
 +(EMCDDeviceManager *)sharedInstance;
 
 

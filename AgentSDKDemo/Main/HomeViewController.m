@@ -26,7 +26,10 @@
 #import "KFMonitorViewController.h"
 
 #import "HLeaveMessageViewController.h"
-
+#import "HDAgoraCallViewController.h"
+#import "HDAgoraCallManager.h"
+#import "KFAnswerView.h"
+#import "KFManager.h"
 @implementation UIImage (tabBarImage)
 
 - (UIImage *)tabBarImage
@@ -46,7 +49,7 @@ static NSString *kConversationChatter = @"ConversationChatter";
 static NSString *kGroupName = @"GroupName";
 
 #define kLeftMenuTag 12903
-@interface HomeViewController ()<EMChatManagerDelegate,LeftMenuViewDelegate>
+@interface HomeViewController ()<EMChatManagerDelegate,LeftMenuViewDelegate,HDChatManagerDelegate>
 {
     UITapGestureRecognizer *_tap;
     BOOL _isEnterChat;
@@ -80,7 +83,8 @@ static NSString *kGroupName = @"GroupName";
 @property (nonatomic, strong) NSDate *lastPlaySoundDate;
 
 @property (nonatomic, strong) UIView *tapView;
-
+@property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
+@property (nonatomic, strong)  KFAnswerView *kfAnswerView;
 @end
 
 static HomeViewController *homeViewController;
@@ -157,6 +161,7 @@ static HomeViewController *homeViewController;
     
     [self _setupChildrenVC];
     [self registerNotifications];
+    [[HDClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -537,6 +542,10 @@ static HomeViewController *homeViewController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"showLeftView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"historyBackAction" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"settingBackAction" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createAgoraRoom:) name:HDCALL_liveStreamInvitation_CreateAgoraRoom object:nil];
+    
+    
 }
 
 
@@ -669,5 +678,99 @@ static HomeViewController *homeViewController;
     //    [[EMCDDeviceManager sharedInstance] playVibration];
 }
 
+-(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
+    
+    for (HDMessage *msg in aMessages) {
+    
+        // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
+        // 访客邀请坐席
+        // 获取sessionid
+        
+        HDExtMsgType type = [HDUtils getMessageExtType:msg];
+        
+        if (type == HDExtMsgTypeGeneral) {
+            
+            return;
+            
+        }
+    
+        if (type == HDExtMsgTypeLiveStreamInvitation) {
+           
+            [self  onAgoraCallReceivedNickName:msg];
+            
+        }else if(type == HDExtMsgTypeVisitorCancelInvitation) {
+            //访客取消邀请
+            
+            // 来电铃
+            [self.kfAnswerView stopSoundCustom];
+            
+            [self.kfAnswerView removeFromSuperview];
+            self.kfAnswerView = nil;
+           
+        }
+    
+    }
+    
+    
+}
+
+- (void)onAgoraCallReceivedNickName:(HDMessage *)message{
+    
+    [self.kfAnswerView setMesage:message];
+    
+    // 创建接听界面
+    [[UIApplication sharedApplication].keyWindow addSubview:self.kfAnswerView];
+    
+    [self.kfAnswerView playSoundCustom];
+   
+}
+- (KFAnswerView *)kfAnswerView{
+    
+    if (!_kfAnswerView) {
+       _kfAnswerView =   [[KFAnswerView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+       _kfAnswerView.backgroundColor = [UIColor blackColor];
+    }
+
+    return _kfAnswerView;
+}
+- (void)createAgoraRoom:(NSNotification *)notification{
+    
+    HDMessage *model = notification.object;
+//    HDMessage *message = notification.userInfo;
+    if (model) {
+      
+    [self.kfAnswerView removeFromSuperview];
+    self.kfAnswerView = nil;
+        self.hdCallVC.message = model;
+    if ([HDAgoraCallManager shareInstance].hdVC) {
+        [[HDAgoraCallManager shareInstance].hdVC showView];
+    }else{
+        [self.hdCallVC showView];
+    }
+    [HDAgoraCallManager shareInstance].hdVC.hangUpCallback = ^(HDAgoraCallViewController * _Nonnull callVC, NSString * _Nonnull timeStr, id  _Nonnull result) {
+        NSLog(@"------%@",timeStr);
+//        HDMessage *message =    [[HDAgoraCallManager shareInstance] hangUpVideoInviteMessageWithSessionId:[HDAgoraCallManager shareInstance].sessionId to:[HDAgoraCallManager shareInstance].chatter.agentId WithText:@"视频通话已结束"];
+//        [self addVideoMessage:message];
+//        [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+//            [self updateMessageWithMessage:aMessage];
+//        }];
+    };
+
+    }
+    
+}
+
+- (HDAgoraCallViewController *)hdCallVC{
+    
+    if (!_hdCallVC) {
+        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
+                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
+                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
+        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
+    }
+    
+    return _hdCallVC;
+    
+}
 @end
 

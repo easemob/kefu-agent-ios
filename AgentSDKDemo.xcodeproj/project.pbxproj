@@ -124,6 +124,10 @@
 		93119A4327F58FC100F749F3 /* KFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A3F27F58FC100F749F3 /* KFDocument.m */; };
 		93119A4427F58FC100F749F3 /* KFICloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A4027F58FC100F749F3 /* KFICloudManager.m */; };
 		93119A4527F58FC100F749F3 /* KFICloudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93119A4027F58FC100F749F3 /* KFICloudManager.m */; };
+		933DD5702863261900A3523A /* btn__icon_video@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 933DD56F2863261900A3523A /* btn__icon_video@3x.png */; };
+		933DD5712863261900A3523A /* btn__icon_video@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 933DD56F2863261900A3523A /* btn__icon_video@3x.png */; };
+		933DD5732863262F00A3523A /* btn__icon_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 933DD5722863262F00A3523A /* btn__icon_video@2x.png */; };
+		933DD5742863262F00A3523A /* btn__icon_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 933DD5722863262F00A3523A /* btn__icon_video@2x.png */; };
 		935CFB5427C4E5D60093B9DF /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
 		935CFBE827C6185A0093B9DF /* KFPlayerVideoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */; };
@@ -291,8 +295,6 @@
 		93EFFC7D27BA3FC60043DE06 /* HDAgoraCallMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC7327BA3FC40043DE06 /* HDAgoraCallMember.m */; };
 		93EFFC7E27BA3FC60043DE06 /* HDAgoraCallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC7427BA3FC50043DE06 /* HDAgoraCallManager.m */; };
 		93EFFC7F27BA3FC60043DE06 /* HDAgoraCallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC7427BA3FC50043DE06 /* HDAgoraCallManager.m */; };
-		93EFFC8027BA3FC60043DE06 /* HDKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC7527BA3FC50043DE06 /* HDKeyCenter.m */; };
-		93EFFC8127BA3FC60043DE06 /* HDKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC7527BA3FC50043DE06 /* HDKeyCenter.m */; };
 		93EFFC8327BA411F0043DE06 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 93EFFC8227BA411F0043DE06 /* Podfile */; };
 		93EFFC8427BA411F0043DE06 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 93EFFC8227BA411F0043DE06 /* Podfile */; };
 		93EFFC9127BA6FD80043DE06 /* HDAgoraCallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93EFFC8F27BA6FD70043DE06 /* HDAgoraCallViewController.xib */; };
@@ -369,6 +371,16 @@
 		93EFFCFE27BA70160043DE06 /* HDCallViewCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFCFA27BA70150043DE06 /* HDCallViewCollectionViewCell.m */; };
 		93EFFCFF27BA70160043DE06 /* HDCallViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93EFFCFB27BA70150043DE06 /* HDCallViewCollectionViewCell.xib */; };
 		93EFFD0027BA70160043DE06 /* HDCallViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 93EFFCFB27BA70150043DE06 /* HDCallViewCollectionViewCell.xib */; };
+		93FA0F6528600D5200C1188E /* KFAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6428600D5200C1188E /* KFAnswerView.m */; };
+		93FA0F6628600D5200C1188E /* KFAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6428600D5200C1188E /* KFAnswerView.m */; };
+		93FA0F6928600ED400C1188E /* HDAppSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6728600ED300C1188E /* HDAppSkin.m */; };
+		93FA0F6A28600ED400C1188E /* HDAppSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6728600ED300C1188E /* HDAppSkin.m */; };
+		93FA0F6E286027AE00C1188E /* UIColor+HLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */; };
+		93FA0F6F286027AE00C1188E /* UIColor+HLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */; };
+		93FA0F782860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
+		93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
+		93FA0F7B28607A2400C1188E /* call.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93FA0F7A28607A2300C1188E /* call.mp3 */; };
+		93FA0F7C28607A2400C1188E /* call.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 93FA0F7A28607A2300C1188E /* call.mp3 */; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CEA1FD684F30091E048 /* HDTipLabel.m */; };
@@ -732,10 +744,6 @@
 		D3B0E9B41FA9E53400014E74 /* ReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D3B0E9B31FA9E53400014E74 /* ReminderView.m */; };
 		D3DFB3521FD6CA3100A9358A /* HDGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3511FD6CA3100A9358A /* HDGroupModel.m */; };
 		D3DFB3531FD6CA3100A9358A /* HDGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3511FD6CA3100A9358A /* HDGroupModel.m */; };
-		D3DFB35A1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3561FD78F6B00A9358A /* NSObject+YYModel.m */; };
-		D3DFB35B1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3561FD78F6B00A9358A /* NSObject+YYModel.m */; };
-		D3DFB35C1FD78F6B00A9358A /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3581FD78F6B00A9358A /* YYClassInfo.m */; };
-		D3DFB35D1FD78F6B00A9358A /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3581FD78F6B00A9358A /* YYClassInfo.m */; };
 		D3DFB3641FD7999F00A9358A /* KFStatuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3631FD7999F00A9358A /* KFStatuLabel.m */; };
 		D3DFB3651FD7999F00A9358A /* KFStatuLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3631FD7999F00A9358A /* KFStatuLabel.m */; };
 		D3DFB3681FD7A3DF00A9358A /* UIColor+KFColor.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DFB3671FD7A3DF00A9358A /* UIColor+KFColor.m */; };
@@ -1792,6 +1800,8 @@
 		93119A4127F58FC100F749F3 /* KFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFDocument.h; sourceTree = "<group>"; };
 		93119A4627F5937F00F749F3 /* AgentSDKDemoRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemoRelease.entitlements; sourceTree = "<group>"; };
 		93119A4727F593AA00F749F3 /* AgentSDKDemoDebug.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemoDebug.entitlements; sourceTree = "<group>"; };
+		933DD56F2863261900A3523A /* btn__icon_video@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn__icon_video@3x.png"; sourceTree = "<group>"; };
+		933DD5722863262F00A3523A /* btn__icon_video@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn__icon_video@2x.png"; sourceTree = "<group>"; };
 		935CFB5227C4E5D60093B9DF /* KFVideoDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailModel.h; sourceTree = "<group>"; };
 		935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoDetailModel.m; sourceTree = "<group>"; };
 		935CFBE327C617F70093B9DF /* KFVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailViewController.h; sourceTree = "<group>"; };
@@ -1932,13 +1942,11 @@
 		93EFFC6A27BA3FC10043DE06 /* HDAgoraCallEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallEnum.h; sourceTree = "<group>"; };
 		93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDSSKeychain.m; sourceTree = "<group>"; };
 		93EFFC6C27BA3FC20043DE06 /* HDAgoraCallOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraCallOptions.m; sourceTree = "<group>"; };
-		93EFFC6E27BA3FC30043DE06 /* HDKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDKeyCenter.h; sourceTree = "<group>"; };
 		93EFFC6F27BA3FC30043DE06 /* HDAgoraCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManagerDelegate.h; sourceTree = "<group>"; };
 		93EFFC7027BA3FC30043DE06 /* HDAgoraCallOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallOptions.h; sourceTree = "<group>"; };
 		93EFFC7127BA3FC30043DE06 /* HDSSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDSSKeychain.h; sourceTree = "<group>"; };
 		93EFFC7327BA3FC40043DE06 /* HDAgoraCallMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraCallMember.m; sourceTree = "<group>"; };
 		93EFFC7427BA3FC50043DE06 /* HDAgoraCallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraCallManager.m; sourceTree = "<group>"; };
-		93EFFC7527BA3FC50043DE06 /* HDKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDKeyCenter.m; sourceTree = "<group>"; };
 		93EFFC8227BA411F0043DE06 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		93EFFC8E27BA6FD70043DE06 /* HDAgoraCallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallViewController.h; sourceTree = "<group>"; };
 		93EFFC8F27BA6FD70043DE06 /* HDAgoraCallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDAgoraCallViewController.xib; sourceTree = "<group>"; };
@@ -1980,6 +1988,15 @@
 		93EFFCFA27BA70150043DE06 /* HDCallViewCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDCallViewCollectionViewCell.m; sourceTree = "<group>"; };
 		93EFFCFB27BA70150043DE06 /* HDCallViewCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDCallViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		93EFFCFC27BA70150043DE06 /* HDCallViewCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDCallViewCollectionViewCell.h; sourceTree = "<group>"; };
+		93FA0F6328600D5200C1188E /* KFAnswerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFAnswerView.h; sourceTree = "<group>"; };
+		93FA0F6428600D5200C1188E /* KFAnswerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFAnswerView.m; sourceTree = "<group>"; };
+		93FA0F6728600ED300C1188E /* HDAppSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAppSkin.m; sourceTree = "<group>"; };
+		93FA0F6828600ED300C1188E /* HDAppSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAppSkin.h; sourceTree = "<group>"; };
+		93FA0F6C286027AE00C1188E /* UIColor+HLKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HLKit.h"; sourceTree = "<group>"; };
+		93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HLKit.m"; sourceTree = "<group>"; };
+		93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GestureRecognizer.m"; sourceTree = "<group>"; };
+		93FA0F772860551600C1188E /* UIView+GestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GestureRecognizer.h"; sourceTree = "<group>"; };
+		93FA0F7A28607A2300C1188E /* call.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = call.mp3; sourceTree = "<group>"; };
 		9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDSuperviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSuperviseCell.h; sourceTree = "<group>"; };
@@ -2614,11 +2631,6 @@
 		D3D081FF1EA4B349003FF1C3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D3DFB3501FD6CA3100A9358A /* HDGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDGroupModel.h; sourceTree = "<group>"; };
 		D3DFB3511FD6CA3100A9358A /* HDGroupModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDGroupModel.m; sourceTree = "<group>"; };
-		D3DFB3551FD78F6B00A9358A /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
-		D3DFB3561FD78F6B00A9358A /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
-		D3DFB3571FD78F6B00A9358A /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
-		D3DFB3581FD78F6B00A9358A /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
-		D3DFB3591FD78F6B00A9358A /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		D3DFB3621FD7999F00A9358A /* KFStatuLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFStatuLabel.h; sourceTree = "<group>"; };
 		D3DFB3631FD7999F00A9358A /* KFStatuLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFStatuLabel.m; sourceTree = "<group>"; };
 		D3DFB3661FD7A3DF00A9358A /* UIColor+KFColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+KFColor.h"; sourceTree = "<group>"; };
@@ -3409,6 +3421,8 @@
 		93EFFBF027BA3F270043DE06 /* Call */ = {
 			isa = PBXGroup;
 			children = (
+				93FA0F6B28600EE900C1188E /* Utils */,
+				93FA0F6228600CE900C1188E /* Views */,
 				93EFFC6727BA3F970043DE06 /* Managers */,
 				93EFFBF127BA3F5E0043DE06 /* ViewController */,
 			);
@@ -3441,8 +3455,6 @@
 				93EFFC7327BA3FC40043DE06 /* HDAgoraCallMember.m */,
 				93EFFC7027BA3FC30043DE06 /* HDAgoraCallOptions.h */,
 				93EFFC6C27BA3FC20043DE06 /* HDAgoraCallOptions.m */,
-				93EFFC6E27BA3FC30043DE06 /* HDKeyCenter.h */,
-				93EFFC7527BA3FC50043DE06 /* HDKeyCenter.m */,
 				93EFFC7127BA3FC30043DE06 /* HDSSKeychain.h */,
 				93EFFC6B27BA3FC20043DE06 /* HDSSKeychain.m */,
 				93D9D07327BF7E0500BD037D /* HDAgoraTicketModel.h */,
@@ -3492,6 +3504,28 @@
 				93EFFCB527BA6FEB0043DE06 /* macOff@2x.png */,
 			);
 			path = HCallResources;
+			sourceTree = "<group>";
+		};
+		93FA0F6228600CE900C1188E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				93FA0F6328600D5200C1188E /* KFAnswerView.h */,
+				93FA0F6428600D5200C1188E /* KFAnswerView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		93FA0F6B28600EE900C1188E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				93FA0F772860551600C1188E /* UIView+GestureRecognizer.h */,
+				93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */,
+				93FA0F6C286027AE00C1188E /* UIColor+HLKit.h */,
+				93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */,
+				93FA0F6828600ED300C1188E /* HDAppSkin.h */,
+				93FA0F6728600ED300C1188E /* HDAppSkin.m */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		A84D80CC0398B25C70FD7235 /* Pods */ = {
@@ -4370,7 +4404,6 @@
 		D33E84C71FB4812400BD622D /* YYKit */ = {
 			isa = PBXGroup;
 			children = (
-				D3DFB3541FD78F6B00A9358A /* YYModel */,
 				D33E84C81FB4812400BD622D /* YYText */,
 			);
 			path = YYKit;
@@ -4849,18 +4882,6 @@
 			path = Monitor;
 			sourceTree = "<group>";
 		};
-		D3DFB3541FD78F6B00A9358A /* YYModel */ = {
-			isa = PBXGroup;
-			children = (
-				D3DFB3551FD78F6B00A9358A /* NSObject+YYModel.h */,
-				D3DFB3561FD78F6B00A9358A /* NSObject+YYModel.m */,
-				D3DFB3571FD78F6B00A9358A /* YYClassInfo.h */,
-				D3DFB3581FD78F6B00A9358A /* YYClassInfo.m */,
-				D3DFB3591FD78F6B00A9358A /* YYModel.h */,
-			);
-			path = YYModel;
-			sourceTree = "<group>";
-		};
 		D3FDC4581EA07D7500C25BB0 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -4936,6 +4957,7 @@
 		D3FDC6061EA0A5C500C25BB0 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				93FA0F7A28607A2300C1188E /* call.mp3 */,
 				D3058CED1FD6AD920091E048 /* Monitor */,
 				D3FDC6071EA0A5C500C25BB0 /* audio */,
 				D3FDC6491EA0A5C500C25BB0 /* iconfont */,
@@ -5273,6 +5295,7 @@
 				D3FDC70D1EA0A5C600C25BB0 /* tips_popup_right_EllipseCopy_3@2x.png */,
 				D3FDC70E1EA0A5C600C25BB0 /* visitor_icon_imagebroken_big@2x.png */,
 				D3FDC70F1EA0A5C600C25BB0 /* visitor_icon_setting_Text2@2x.png */,
+				933DD5722863262F00A3523A /* btn__icon_video@2x.png */,
 			);
 			path = "UI2.0_images@2x";
 			sourceTree = "<group>";
@@ -5288,6 +5311,7 @@
 				D3FDC7111EA0A5C600C25BB0 /* agents_icon_shai_Text2@3x.png */,
 				D3FDC7121EA0A5C600C25BB0 /* bar_icon_search_Text3@3x.png */,
 				D3FDC7131EA0A5C600C25BB0 /* btn__icon_qubz@3x.png */,
+				933DD56F2863261900A3523A /* btn__icon_video@3x.png */,
 				908691DC21D5D41B00C95C22 /* ic_video_library@3x.png */,
 				90E0EF4B206CD57B00E8546B /* list_status_radio_droplist_3@3x.png */,
 				D3FDC7141EA0A5C600C25BB0 /* btn_icon_camera@3x.png */,
@@ -5500,6 +5524,7 @@
 				D3FDC7841EA0A5C600C25BB0 /* VoiceSearchFeedback018@2x.png in Resources */,
 				D3FDC8271EA0A5C600C25BB0 /* info_expand_icon_pull@2x.png in Resources */,
 				D3FDC8561EA0A5C600C25BB0 /* agents_icon_shai_Text2@3x.png in Resources */,
+				93FA0F7B28607A2400C1188E /* call.mp3 in Resources */,
 				93EFFCDC27BA6FEB0043DE06 /* share desktop on.png in Resources */,
 				D33CE69A1F7CA98D00236720 /* chat_location_detail_disclosure@2x.png in Resources */,
 				D3FDC7BA1EA0A5C600C25BB0 /* icon_over_select@2x.png in Resources */,
@@ -5573,6 +5598,7 @@
 				D3FDC7D41EA0A5C600C25BB0 /* ee_15.png in Resources */,
 				D3FDC7B41EA0A5C600C25BB0 /* icon_department_normal@2x.png in Resources */,
 				D3FDC8841EA0A5C600C25BB0 /* main_tab_icon_histroy_1@3x.png in Resources */,
+				933DD5732863262F00A3523A /* btn__icon_video@2x.png in Resources */,
 				D33CE6A01F7CA98D00236720 /* chat_close@3x.png in Resources */,
 				D3FDC8121EA0A5C600C25BB0 /* btn_icon_iframe@2x.png in Resources */,
 				D3FDC7A71EA0A5C600C25BB0 /* button_conclusion_select@2x.png in Resources */,
@@ -5687,6 +5713,7 @@
 				D3FDC87E1EA0A5C600C25BB0 /* list_status_radio_droplist_big_3@3x.png in Resources */,
 				D3FDC7BF1EA0A5C600C25BB0 /* pop_blue_select@2x.png in Resources */,
 				936F2E6128266065001FB60A /* expand_icon_session_on@3x.png in Resources */,
+				933DD5702863261900A3523A /* btn__icon_video@3x.png in Resources */,
 				D3FDC7991EA0A5C600C25BB0 /* demo.css in Resources */,
 				D34DFABE1FA858900018116D /* shai@3x.png in Resources */,
 				D3FDC8411EA0A5C600C25BB0 /* message_agent_1_chatpop_agent@2x.png in Resources */,
@@ -5958,6 +5985,7 @@
 				D3E9CDF21FBED182005E3677 /* visitor_icon_imagebroken_big@3x.png in Resources */,
 				D3E9CDF31FBED182005E3677 /* file_btn_icon_file@2x.png in Resources */,
 				D3E9CDF61FBED182005E3677 /* chat_close@2x.png in Resources */,
+				933DD5712863261900A3523A /* btn__icon_video@3x.png in Resources */,
 				D3E9CDF71FBED182005E3677 /* channel_wechat_icon@2x.png in Resources */,
 				93EFFCE327BA6FEB0043DE06 /* video on.png in Resources */,
 				D3E9CDF81FBED182005E3677 /* tips_popup_right_EllipseCopy_2@3x.png in Resources */,
@@ -6147,6 +6175,7 @@
 				D3E9CE921FBED182005E3677 /* ee_24.png in Resources */,
 				D3E9CE931FBED182005E3677 /* list_icon_file_image@3x.png in Resources */,
 				D3E9CE941FBED182005E3677 /* state_green@2x.png in Resources */,
+				933DD5742863262F00A3523A /* btn__icon_video@2x.png in Resources */,
 				D3E9CE951FBED182005E3677 /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				D3E9CE961FBED182005E3677 /* expand_icon_vote@3x.png in Resources */,
 				D3E9CE971FBED182005E3677 /* input_tab_icon_file2@3x.png in Resources */,
@@ -6262,6 +6291,7 @@
 				D3E9CEF11FBED182005E3677 /* icon_contact@2x.png in Resources */,
 				938AEA5A27F3F8FC00B461C4 /* KJPlayerFont.ttf in Resources */,
 				D3E9CEF21FBED182005E3677 /* chatFire_audioPlaying0.png in Resources */,
+				93FA0F7C28607A2400C1188E /* call.mp3 in Resources */,
 				D3E9CEF31FBED182005E3677 /* ee_8.png in Resources */,
 				D3E9CEF41FBED182005E3677 /* main_tab_icon_friend@2x.png in Resources */,
 				D3E9CEF51FBED182005E3677 /* ee_19.png in Resources */,
@@ -6587,11 +6617,11 @@
 				938AEA1D27F3F8FB00B461C4 /* KJCacheManager.m in Sources */,
 				D33CE7721F7CAEB800236720 /* UITextField+KFAdd.m in Sources */,
 				D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */,
-				D3DFB35C1FD78F6B00A9358A /* YYClassInfo.m in Sources */,
 				D33CE6BF1F7CA98D00236720 /* EMChatViewBaseCell.m in Sources */,
 				9061557620620861006113FF /* KFSwitchTypeButton.m in Sources */,
 				D33CE6B11F7CA98D00236720 /* DXMessageToolBar.m in Sources */,
 				D33CE79F1F7CAF6700236720 /* KFUserModel.m in Sources */,
+				93FA0F6928600ED400C1188E /* HDAppSkin.m in Sources */,
 				938AEA2127F3F8FB00B461C4 /* KJDownloader.m in Sources */,
 				90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */,
 				90FC924E2486323B00014CCC /* View+MASAdditions.m in Sources */,
@@ -6623,6 +6653,7 @@
 				938AEA2B27F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m in Sources */,
 				D33CE6961F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				D33CE6CC1F7CA98D00236720 /* CustomerController.m in Sources */,
+				93FA0F6E286027AE00C1188E /* UIColor+HLKit.m in Sources */,
 				D33CE6C91F7CA98D00236720 /* KFDatePicker.m in Sources */,
 				90D911F020EB8480008B38AA /* UILabel+Category.m in Sources */,
 				D33CE8A81F7CD3D400236720 /* SBDoubleSidedLayer.m in Sources */,
@@ -6696,13 +6727,13 @@
 				D33CE8C41F7CE31B00236720 /* AdminInforViewController.m in Sources */,
 				D3A95E391EA0F47100ADD394 /* EmotionEscape.m in Sources */,
 				D33CE6FB1F7CAC7D00236720 /* Appdelegate.m in Sources */,
-				93EFFC8027BA3FC60043DE06 /* HDKeyCenter.m in Sources */,
 				D33CE6941F7CA98D00236720 /* EMClientInfoTagView.m in Sources */,
 				938AEA2F27F3F8FB00B461C4 /* KJBasePlayer+KJBackgroundMonitoring.m in Sources */,
 				938AEA6127F3F8FC00B461C4 /* KJPlayerHintLayer.m in Sources */,
 				D3A6BB701FB1617400066410 /* HDWebViewController.m in Sources */,
 				D3A95E811EA0F47100ADD394 /* EMVoiceConverter.mm in Sources */,
 				D33CE7DC1F7CB42E00236720 /* DXLoadingView.m in Sources */,
+				93FA0F6528600D5200C1188E /* KFAnswerView.m in Sources */,
 				D33CE6BC1F7CA98D00236720 /* EMChatTextBubbleView.m in Sources */,
 				D3A95E341EA0F47100ADD394 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */,
@@ -6809,6 +6840,7 @@
 				935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */,
 				D3A95E4A1EA0F47100ADD394 /* MBProgressHUD.m in Sources */,
 				90FC92502486323B00014CCC /* MASConstraint.m in Sources */,
+				93FA0F782860551600C1188E /* UIView+GestureRecognizer.m in Sources */,
 				D33CE6BB1F7CA98D00236720 /* EMChatLocationBubbleView.m in Sources */,
 				930EF9B12834BCF800A3C205 /* KFChatSmartView.m in Sources */,
 				D33CE8581F7CD0F800236720 /* EMSDWebImagePrefetcher.m in Sources */,
@@ -6840,7 +6872,6 @@
 				D33CE8101F7CB52500236720 /* DDLog.m in Sources */,
 				D33CE6901F7CA98D00236720 /* SelectTagViewController.m in Sources */,
 				90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */,
-				D3DFB35A1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */,
 				D33CE6D31F7CA98D00236720 /* DXDatePickerView.m in Sources */,
 				938AEA3927F3F8FC00B461C4 /* KJPlayerBridge.m in Sources */,
 				93D9D07427BF7E0500BD037D /* HDAgoraTicketModel.m in Sources */,
@@ -6969,11 +7000,11 @@
 				D3E9CCEA1FBED182005E3677 /* NotiDetailViewController.m in Sources */,
 				D3E9CCEB1FBED182005E3677 /* DXRecordView.m in Sources */,
 				D3E9CCEC1FBED182005E3677 /* AdminStatisticsViewController.m in Sources */,
+				93FA0F6F286027AE00C1188E /* UIColor+HLKit.m in Sources */,
 				D3E9CCED1FBED182005E3677 /* PSTCollectionViewCell.m in Sources */,
 				D3E9CCEF1FBED182005E3677 /* UITextField+KFAdd.m in Sources */,
 				D3058CEC1FD684F30091E048 /* HDTipLabel.m in Sources */,
 				938AEA2227F3F8FB00B461C4 /* KJDownloader.m in Sources */,
-				D3DFB35D1FD78F6B00A9358A /* YYClassInfo.m in Sources */,
 				D3E9CCF01FBED182005E3677 /* EMChatViewBaseCell.m in Sources */,
 				9061557720620EF9006113FF /* KFSwitchTypeButton.m in Sources */,
 				D3E9CCF11FBED182005E3677 /* DXMessageToolBar.m in Sources */,
@@ -6983,7 +7014,6 @@
 				D3E9CCF41FBED182005E3677 /* KFInputEmailViewController.m in Sources */,
 				90FC924F2486323B00014CCC /* View+MASAdditions.m in Sources */,
 				D3E9CCF51FBED182005E3677 /* AdminHistoryViewController.m in Sources */,
-				93EFFC8127BA3FC60043DE06 /* HDKeyCenter.m in Sources */,
 				938AEA3E27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */,
 				D3E9CCF61FBED182005E3677 /* MBProgressHUD+Add.m in Sources */,
 				D3E9CCF81FBED182005E3677 /* EMSDWebImageDownloaderOperation.m in Sources */,
@@ -6995,6 +7025,7 @@
 				90FC924D2486323B00014CCC /* NSArray+MASAdditions.m in Sources */,
 				D3E9CCFF1FBED182005E3677 /* AdminInforEditViewController.m in Sources */,
 				90591C332068ADC4007367BD /* KFMonitorInfoLabelCell.m in Sources */,
+				93FA0F6628600D5200C1188E /* KFAnswerView.m in Sources */,
 				D3E9CD001FBED182005E3677 /* CommentEditViewController.m in Sources */,
 				D3E9CD011FBED182005E3677 /* SWTableViewCell.m in Sources */,
 				D3E9CD021FBED182005E3677 /* DXTipView.m in Sources */,
@@ -7143,6 +7174,7 @@
 				D3E9CD721FBED182005E3677 /* MWPhotoBrowser.m in Sources */,
 				D3E9CD731FBED182005E3677 /* ClientInforCompileController.m in Sources */,
 				93D0CF4E283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */,
+				93FA0F6A28600ED400C1188E /* HDAppSkin.m in Sources */,
 				D3E9CD741FBED182005E3677 /* SBTickerView.m in Sources */,
 				D3E9CD751FBED182005E3677 /* MMDrawerController.m in Sources */,
 				D3E9CD761FBED182005E3677 /* DDAbstractDatabaseLogger.m in Sources */,
@@ -7166,6 +7198,7 @@
 				D3E9CD871FBED182005E3677 /* EMChatBaseBubbleView.m in Sources */,
 				93074B162840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */,
 				D3E9CD881FBED182005E3677 /* DXTableViewCellTypeConversation.m in Sources */,
+				93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */,
 				D3E9CD891FBED182005E3677 /* UIViewController+MMDrawerController.m in Sources */,
 				D3E9CD8A1FBED182005E3677 /* AFHTTPRequestOperationManager.m in Sources */,
 				D3E9CD8B1FBED182005E3677 /* EMChatAudioBubbleView.m in Sources */,
@@ -7218,7 +7251,6 @@
 				D3E9CDAC1FBED182005E3677 /* DDLog.m in Sources */,
 				D3E9CDAD1FBED182005E3677 /* SelectTagViewController.m in Sources */,
 				90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */,
-				D3DFB35B1FD78F6B00A9358A /* NSObject+YYModel.m in Sources */,
 				D3E9CDAE1FBED182005E3677 /* DXDatePickerView.m in Sources */,
 				D3E9CDAF1FBED182005E3677 /* LeaveMsgInputView.m in Sources */,
 				938AEA3A27F3F8FC00B461C4 /* KJPlayerBridge.m in Sources */,

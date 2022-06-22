@@ -30,6 +30,7 @@ typedef enum{
 @property (nonatomic, strong) UIButton *customButton;
 @property (nonatomic, strong) UIButton *locationButton;
 @property (nonatomic, strong) UIButton *videoButton;
+@property (nonatomic, strong) UIButton *fileButton;
 @property (nonatomic, strong) UIButton *audioCallButton;
 
 - (instancetype)initWithFrame:(CGRect)frame typw:(KFChatMoreType)type;

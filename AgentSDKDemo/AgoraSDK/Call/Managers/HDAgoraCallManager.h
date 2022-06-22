@@ -14,6 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 @interface HDAgoraCallManager : NSObject
 @property (nonatomic, strong) HDAgoraCallViewController *hdVC;
+@property (nonatomic, strong) HDMessage * message;
 @property (nonatomic, strong) NSString *sessionId;
 @property (nonatomic, strong) UserModel *chatter;
 

@@ -13,9 +13,12 @@
 #import "EMCDDeviceManager.h"
 #import <AudioToolbox/AudioToolbox.h>
 @interface EMCDDeviceManager (Remind)
+
 // 播放接收到新消息时的声音
 - (SystemSoundID)playNewMessageSound;
-
+// 播放接收到新消息时的声音
+- (SystemSoundID)playNewMessageSoundCustom;
 // 震动
 - (void)playVibration;
+- (void)stopSystemSoundID;
 @end

@@ -88,6 +88,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    
+    [HDAgoraCallManager shareInstance].message = self.message;
+    
     [[HDAgoraCallManager shareInstance] createTicketDidReceiveAgoraInit];
     
     _localUid= 12344;
@@ -111,17 +114,36 @@
     [self collectionView:self.collectionView didSelectItemAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
     [self startTimer];
     
-    
     //加入房间等待访客进入
     [[HDAgoraCallManager shareInstance] hd_joinCallWithNickname:@"123" completion:^(id obj, HDError *  error) {
         if (error == nil) {
         
             //加入成功  发消息 给 访客 进行视频邀请
+//            msgtype
+//            _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
+        
+            [[HDClient sharedClient].hlCallManager kf_sendCmdMessage:[[HDClient sharedClient].hlCallManager getSendVisitorTicket] withSessionId:_message.sessionId withToUser:_message.from completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
+                
+                NSLog(@"=======%@",message);
+                
+                
+            }];
+            
+            
         }
+        
         
     }];
     
 }
+
+- (void)sendMessage{
+    
+//    _conversation = [[HDConversationManager alloc] initWithSessionId:_conversationModel.sessionId chatGroupId:_conversationModel.chatGroupId];
+    
+}
+
+
 - (void)viewDidDisappear:(BOOL)animated{
     
     [super viewDidDisappear:animated];

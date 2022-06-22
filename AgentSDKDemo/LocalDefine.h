@@ -52,6 +52,11 @@
 #define USERDEFAULTS_SAVEPASSWORD @"easemob_kefu_save_password"
 
 
+//Notification 名字
+// 访客发起视频邀请 参数都准备好后 加入房间的通知
+#define HDCALL_liveStreamInvitation_CreateAgoraRoom @"HDCALL_liveStreamInvitation_CreateAgoraRoom"
+
+
 #define hd_dispatch_main_sync_safe(block)\
     if ([NSThread isMainThread]) {\
         block();\

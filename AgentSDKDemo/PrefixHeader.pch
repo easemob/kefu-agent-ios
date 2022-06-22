@@ -96,4 +96,6 @@
 #import "NSDictionary+SafeValue.h"
 #import "KFSmartModel.h"
 #import "KFMSGTypeModel.h"
+//call
+#import "HDAppSkin.h" 
 #endif /* PrefixHeader_pch */
