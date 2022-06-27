@@ -55,6 +55,9 @@
 //Notification 名字
 // 访客发起视频邀请 参数都准备好后 加入房间的通知
 #define HDCALL_liveStreamInvitation_CreateAgoraRoom @"HDCALL_liveStreamInvitation_CreateAgoraRoom"
+// 视频结束 发送通知 更新界面
+#define HDCALL_videoPlayback_end @"HDCALL_videoPlayback_end"
+
 
 
 #define hd_dispatch_main_sync_safe(block)\

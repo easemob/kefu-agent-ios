@@ -137,6 +137,12 @@
 		9363604427F4668E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9363604627F4669E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; };
 		9363604727F4669E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9363F96728695BD7008522EC /* KFWebBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96628695BD7008522EC /* KFWebBubbleView.m */; };
+		9363F96828695BD7008522EC /* KFWebBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96628695BD7008522EC /* KFWebBubbleView.m */; };
+		9363F96B28695E16008522EC /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96928695E16008522EC /* UIView+GestureRecognizer.m */; };
+		9363F96C28695E16008522EC /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96928695E16008522EC /* UIView+GestureRecognizer.m */; };
+		9363F97028697B36008522EC /* KFVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96F28697B36008522EC /* KFVideoObjModel.m */; };
+		9363F97128697B36008522EC /* KFVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96F28697B36008522EC /* KFVideoObjModel.m */; };
 		9365448F2838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9365448D2838A283009854AF /* KFSmartArticleMoreTableViewCell.m */; };
 		936544902838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9365448D2838A283009854AF /* KFSmartArticleMoreTableViewCell.m */; };
 		936544912838A283009854AF /* KFSmartArticleMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9365448E2838A283009854AF /* KFSmartArticleMoreTableViewCell.xib */; };
@@ -1814,6 +1820,12 @@
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
 		9363604227F4668E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9363604527F4669E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9363F96528695BD7008522EC /* KFWebBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebBubbleView.h; sourceTree = "<group>"; };
+		9363F96628695BD7008522EC /* KFWebBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebBubbleView.m; sourceTree = "<group>"; };
+		9363F96928695E16008522EC /* UIView+GestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GestureRecognizer.m"; sourceTree = "<group>"; };
+		9363F96A28695E16008522EC /* UIView+GestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GestureRecognizer.h"; sourceTree = "<group>"; };
+		9363F96E28697B36008522EC /* KFVideoObjModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoObjModel.h; sourceTree = "<group>"; };
+		9363F96F28697B36008522EC /* KFVideoObjModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoObjModel.m; sourceTree = "<group>"; };
 		9365448C2838A283009854AF /* KFSmartArticleMoreTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartArticleMoreTableViewCell.h; sourceTree = "<group>"; };
 		9365448D2838A283009854AF /* KFSmartArticleMoreTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartArticleMoreTableViewCell.m; sourceTree = "<group>"; };
 		9365448E2838A283009854AF /* KFSmartArticleMoreTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartArticleMoreTableViewCell.xib; sourceTree = "<group>"; };
@@ -3141,6 +3153,15 @@
 			path = Player;
 			sourceTree = "<group>";
 		};
+		9363F96D28697B13008522EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9363F96E28697B36008522EC /* KFVideoObjModel.h */,
+				9363F96F28697B36008522EC /* KFVideoObjModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		938AE9AE27F3F8FB00B461C4 /* KJPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -3421,6 +3442,7 @@
 		93EFFBF027BA3F270043DE06 /* Call */ = {
 			isa = PBXGroup;
 			children = (
+				9363F96D28697B13008522EC /* Model */,
 				93FA0F6B28600EE900C1188E /* Utils */,
 				93FA0F6228600CE900C1188E /* Views */,
 				93EFFC6727BA3F970043DE06 /* Managers */,
@@ -3859,6 +3881,8 @@
 				D33CE6511F7CA98D00236720 /* EMChatTextBubbleView.m */,
 				908691D821D5D1A700C95C22 /* HDChatVideoBubbleView.h */,
 				908691D921D5D1A700C95C22 /* HDChatVideoBubbleView.m */,
+				9363F96528695BD7008522EC /* KFWebBubbleView.h */,
+				9363F96628695BD7008522EC /* KFWebBubbleView.m */,
 				935F639227C78F24003CE6FE /* HDChatVideoDetailBubbleView.h */,
 				935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */,
 				930EF9AF2834BCF800A3C205 /* KFChatSmartView.h */,
@@ -4048,6 +4072,8 @@
 				D33CE7631F7CAEB800236720 /* UIViewController+DismissKeyboard.m */,
 				D33CE7641F7CAEB800236720 /* UIViewController+HUD.h */,
 				D33CE7651F7CAEB800236720 /* UIViewController+HUD.m */,
+				9363F96A28695E16008522EC /* UIView+GestureRecognizer.h */,
+				9363F96928695E16008522EC /* UIView+GestureRecognizer.m */,
 				D350FD101FBD8238004A94D8 /* UIAlertView+KFAdd.h */,
 				D350FD111FBD8238004A94D8 /* UIAlertView+KFAdd.m */,
 				D3DFB3661FD7A3DF00A9358A /* UIColor+KFColor.h */,
@@ -6612,6 +6638,7 @@
 				D33CE6B51F7CA98D00236720 /* DXRecordView.m in Sources */,
 				938AEA2727F3F8FB00B461C4 /* KJPlayerSharedInstance.m in Sources */,
 				938AEA4B27F3F8FC00B461C4 /* KJPlayerStatusLayer.m in Sources */,
+				9363F96728695BD7008522EC /* KFWebBubbleView.m in Sources */,
 				D34DF9DE1FA818EF0018116D /* AdminStatisticsViewController.m in Sources */,
 				D3A95E661EA0F47100ADD394 /* PSTCollectionViewCell.m in Sources */,
 				938AEA1D27F3F8FB00B461C4 /* KJCacheManager.m in Sources */,
@@ -6708,6 +6735,7 @@
 				D33CE7391F7CAD2C00236720 /* KFBaseNavigationController.m in Sources */,
 				90591C402068ADC4007367BD /* KFMonitorInstrumentModel.m in Sources */,
 				D33CE7DD1F7CB42E00236720 /* XHMessageTextView.m in Sources */,
+				9363F97028697B36008522EC /* KFVideoObjModel.m in Sources */,
 				D3A95E681EA0F47100ADD394 /* PSTCollectionViewData.m in Sources */,
 				D33CE79C1F7CAF6700236720 /* KFResetPswViewController.m in Sources */,
 				90FC92422486323B00014CCC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -6881,6 +6909,7 @@
 				D33CE7EA1F7CB48400236720 /* KFVisitorInfoItem.m in Sources */,
 				90591CDA2068B15B007367BD /* KFMonitorViewController.m in Sources */,
 				D3A95E691EA0F47100ADD394 /* PSTCollectionViewFlowLayout.m in Sources */,
+				9363F96B28695E16008522EC /* UIView+GestureRecognizer.m in Sources */,
 				D3A95E371EA0F47100ADD394 /* Emoji.m in Sources */,
 				D3A95E801EA0F47100ADD394 /* wav.mm in Sources */,
 				D33CE6951F7CA98D00236720 /* ChatSendHelper.m in Sources */,
@@ -6925,6 +6954,7 @@
 				D3E9CC981FBED182005E3677 /* YYTextAsyncLayer.m in Sources */,
 				90A2B535206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */,
 				D3E9CC991FBED182005E3677 /* YYTextTransaction.m in Sources */,
+				9363F97128697B36008522EC /* KFVideoObjModel.m in Sources */,
 				D3E9CC9A1FBED182005E3677 /* UIAlertView+KFAdd.m in Sources */,
 				D3E9CC9B1FBED182005E3677 /* YYTextUtilities.m in Sources */,
 				D3E9CC9C1FBED182005E3677 /* YYTextWeakProxy.m in Sources */,
@@ -6969,6 +6999,7 @@
 				D3E9CCD51FBED182005E3677 /* DXTableViewController.m in Sources */,
 				D3E9CCD61FBED182005E3677 /* MMDrawerBarButtonItem.m in Sources */,
 				936544902838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */,
+				9363F96828695BD7008522EC /* KFWebBubbleView.m in Sources */,
 				D3E9CCD71FBED182005E3677 /* KFPromptView.m in Sources */,
 				938AEA5E27F3F8FC00B461C4 /* KJPlayerButton.m in Sources */,
 				D3E9CCD81FBED182005E3677 /* PSTCollectionView.m in Sources */,
@@ -7219,6 +7250,7 @@
 				D3E9CD951FBED182005E3677 /* MWZoomingScrollView.m in Sources */,
 				D3E9CD961FBED182005E3677 /* DXFaceView.m in Sources */,
 				D3E9CD981FBED182005E3677 /* UIView+RNAdditions.m in Sources */,
+				9363F96C28695E16008522EC /* UIView+GestureRecognizer.m in Sources */,
 				938AEA2627F3F8FB00B461C4 /* KJFileHandleManager.m in Sources */,
 				938AEA1A27F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m in Sources */,
 				90615573206205C7006113FF /* KFLeftViewItem.m in Sources */,

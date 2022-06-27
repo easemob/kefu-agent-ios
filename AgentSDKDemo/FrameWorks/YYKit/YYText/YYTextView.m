@@ -2952,7 +2952,7 @@ typedef NS_ENUM(NSUInteger, YYTextMoveDirection) {
                     NSNumber *frameCount = [img valueForKey:@"animatedImageFrameCount"];
                     if (frameCount.integerValue > 1) {
                         Class viewCls = NSClassFromString(@"YYAnimatedImageView");
-                        UIImageView *imgView = [(id)viewCls new];
+                        UIImageView *imgView = (id)[viewCls new];
                         imgView.image = img;
                         imgView.frame = CGRectMake(0, 0, img.size.width, img.size.height);
                         if (imgView) {

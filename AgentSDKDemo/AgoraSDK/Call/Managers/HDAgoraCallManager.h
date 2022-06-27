@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) HDAgoraCallViewController *hdVC;
 @property (nonatomic, strong) HDMessage * message;
 @property (nonatomic, strong) NSString *sessionId;
+@property (nonatomic, strong) NSArray *recordDetails;
 @property (nonatomic, strong) UserModel *chatter;
 
 + (instancetype _Nullable )shareInstance;

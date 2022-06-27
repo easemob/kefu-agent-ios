@@ -214,6 +214,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
                 return [[HDChatFormBubbleView alloc] init];
             }else if (type == HDExtMsgTypeArticle) {
                 return [[KFChatArticleBubbleView alloc] init];
+            }else if (type == HDExtMsgTypevideoPlayback) {
+                return [[HDChatVideoDetailBubbleView  alloc] init];
+            }else if(type == HDExtMsgTypeHtml){
+                
+                return [[KFWebBubbleView  alloc] init];
             }
             return [[EMChatTextBubbleView alloc] init];
         }
@@ -246,8 +251,6 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             break;
         case HDMessageBodyTypeVideo:
         {
-//            return [[HDChatVideoDetailBubbleView alloc] init];
-            //todo 
             return [[HDChatVideoBubbleView alloc] init];
         }
             break;
@@ -276,6 +279,14 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             }else if(type == HDExtMsgTypeArticle){
            
                 return [KFChatArticleBubbleView heightForBubbleWithObject:messageModel];
+            }
+            else if(type == HDExtMsgTypevideoPlayback){
+           
+                return [HDChatVideoDetailBubbleView heightForBubbleWithObject:messageModel];
+            }
+            else if(type == HDExtMsgTypeHtml){
+           
+                return [KFWebBubbleView heightForBubbleWithObject:messageModel];
             }
             return [EMChatTextBubbleView heightForBubbleWithObject:messageModel];
         }

@@ -545,7 +545,6 @@ static HomeViewController *homeViewController;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createAgoraRoom:) name:HDCALL_liveStreamInvitation_CreateAgoraRoom object:nil];
     
-    
 }
 
 
@@ -685,7 +684,7 @@ static HomeViewController *homeViewController;
         // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
         // 访客邀请坐席
         // 获取sessionid
-        
+
         HDExtMsgType type = [HDUtils getMessageExtType:msg];
         
         if (type == HDExtMsgTypeGeneral) {
@@ -693,7 +692,6 @@ static HomeViewController *homeViewController;
             return;
             
         }
-    
         if (type == HDExtMsgTypeLiveStreamInvitation) {
            
             [self  onAgoraCallReceivedNickName:msg];

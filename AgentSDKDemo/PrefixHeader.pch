@@ -97,5 +97,8 @@
 #import "KFSmartModel.h"
 #import "KFMSGTypeModel.h"
 //call
-#import "HDAppSkin.h" 
+#import "HDAppSkin.h"
+#import "UIView+GestureRecognizer.h"
+#import "KFVideoObjModel.h"
+#import "KFWebBubbleView.h" 
 #endif /* PrefixHeader_pch */

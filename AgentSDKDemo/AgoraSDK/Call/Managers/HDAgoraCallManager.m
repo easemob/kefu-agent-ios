@@ -317,9 +317,55 @@ static HDAgoraCallManager *shareCall = nil;
 - (void)endRecord{
     // 结束录制
     [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:_message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-        if (responseObject && [responseObject isKindOfClass:[NSArray class]]) {
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
             //详情数据返回
             NSLog(@"responseObject = %@",responseObject);
+            NSDictionary *dic = responseObject;
+            NSString *status = [dic objectForKey:@"status"];
+            if ([status isEqualToString:@"OK"] && [[dic allKeys] containsObject:@"entity"]) {
+                
+                NSDictionary * entity = [dic objectForKey:@"entity"];
+                
+                if ([[entity allKeys] containsObject:@"recordDetails"]) {
+                    
+                    //  解析数据
+                    self.recordDetails = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:[entity objectForKey:@"recordDetails"]];
+        
+                    if (self.recordDetails.count > 0) {
+                        [self.recordDetails enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                            
+                            KFVideoDetailModel * model = obj;
+                            if ([model.callId isEqualToString:_keyCenter.callid]) {
+                                
+                            HDMessage * message  =   [[HLCallManager sharedInstance] kf_sendMessageVideoPlaybackSessionId:_message.sessionId withToUser:_message.to withVisitorName:_message.fromUser.nicename withVideoStartTime: [self timestrToTimeSecond:model.recordStart] withVideoEndTime: [self timestrToTimeSecond:model.recordEnd] withCallId:model.callId];
+                                [[HDClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
+                                        
+                                   
+                                } completion:^(HDMessage *aMessage, HDError *aError) {
+                                        
+                                    if (aError == nil) {
+                                        // 发个通知 界面更新 视频录制
+                                        [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_videoPlayback_end object:aMessage];
+                                        
+                                    }
+                                   
+                                }];
+                                *stop = YES;
+                            }
+                            
+                            
+                        }];
+                    }
+                    
+                    
+                 
+                    
+        
+                }
+                
+                
+            }
+            
             [_delegates onCallEndReason:1 desc:@"reason-conference-dismissed"  withRecordData:responseObject];
         }else{
             [_delegates onCallEndReason:1 desc:@"reason-conference-dismissed"  withRecordData:nil];
@@ -327,7 +373,15 @@ static HDAgoraCallManager *shareCall = nil;
         }
     }];
 }
-
+- (NSString *)timestrToTimeSecond:(NSString *)timeStr {//timestr 豪秒
+    NSTimeInterval interval = [timeStr doubleValue]/1000.0;
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:interval];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateString = [formatter stringFromDate: date];
+    return dateString;
+}
 - (int)startPreview{
     return [self.agoraKit startPreview];
 }

@@ -9,10 +9,14 @@
 #import "KFVideoDetailViewController.h"
 #import "KFVideoDetailModel.h"
 @interface KFVideoDetailViewController ()<KJPlayerDelegate>
+{
+    
+    NSArray *_allVideoDetails;
+    
+}
 @property(nonatomic,strong)UIImageView *imageView;
 @property (nonatomic, strong) UIButton *downBtn;
 @property (nonatomic, strong) UIButton *upBtn;
-@property (nonatomic, strong) KFVideoDetailModel *currentModel;
 
 
 @end
@@ -48,7 +52,12 @@
 //    [self btnStateChange];
 //    [self changeVideoUrl];
     
-    self.player.videoURL = [NSURL URLWithString:@"https://mp4.vjshi.com/2020-09-27/542926a8c2a99808fc981d46c1dc6aef.mp4"];
+//    self.player.videoURL = [NSURL URLWithString:@"https://mp4.vjshi.com/2020-09-27/542926a8c2a99808fc981d46c1dc6aef.mp4"];
+    
+    self.player.videoURL = [NSURL URLWithString: self.currentModel.playbackUrl];
+    
+    [self getSessioningAllRecordVideos];
+    
 }
 - (void)initArraySort{
     self.currentModel = [self getCallidModel:self.callId];
@@ -57,6 +66,32 @@
     self.currentVideoIdx = idx;
     
 }
+//获取会话当中的全部视频记录
+- (void)getSessioningAllRecordVideos{
+    
+    [[HLCallManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        if (error == nil) {
+            
+            NSArray*  tmp = [[HLCallManager sharedInstance] getVideoPlayBackVideoDetailsAll];
+           _allVideoDetails = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:tmp];
+            [_allVideoDetails enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                KFVideoDetailModel * model = obj;
+                
+                if ([model.callId isEqualToString:self.currentModel.callId]) {
+                    // 获取到当前的以后 在取出 数组里边的下一个 放到当前播放
+                    NSInteger lastIdx = _allVideoDetails.count - 1;
+                   
+                    self.currentVideoIdx = idx;
+                    *stop= YES;
+                }
+            }];
+            [self btnStateChange];
+        }
+    }];
+}
+
 - (KFVideoDetailModel *)getCallidModel:(NSString *)callid{
 
     NSMutableArray * tmp = [NSMutableArray new];
@@ -94,7 +129,7 @@
 }
 - (void)btnStateChange{
     
-    NSInteger idx = self.recordVideos.count - 1;
+    NSInteger idx = _allVideoDetails.count - 1;
 
     if (self.currentVideoIdx <= 0) {
         //不可触发
@@ -119,30 +154,103 @@
 }
 
 - (void)upButtonAction:(UIButton*)sender{
+    
+    if (_allVideoDetails.count > 0) {
     --self.currentVideoIdx;
     [self changeVideoUrl];
     NSLog(@"kf-upButtonAction=%@ ",[self.currentModel yy_modelToJSONString]);
+    }else{
+        
+        [[HLCallManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+            
+            if (error == nil) {
+                
+                NSArray*  tmp = [[HLCallManager sharedInstance] getVideoPlayBackVideoDetailsAll];
+               _allVideoDetails = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:tmp];
+              
+                [_allVideoDetails enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    
+                    KFVideoDetailModel * model = obj;
+                    
+                    if ([model.callId isEqualToString:self.currentModel.callId]) {
+                        // 获取到当前的以后 在取出 数组里边的下一个 放到当前播放
+                        NSInteger lastIdx = _allVideoDetails.count - 1;
+                       
+                        if (lastIdx != idx) {
+                            self.currentVideoIdx = idx - 1;
+                        }else{
+                            self.currentVideoIdx = idx;
+                        }
+                        *stop= YES;
+                    }
+                }];
+                [self changeVideoUrl];
+                NSLog(@"kf-upButtonAction=%@ ",[self.currentModel yy_modelToJSONString]);
+            }
+        }];
+    }
 }
+
+//点击下一条
 - (void)dowonButtonAction:(UIButton*)sender{
+    // 判断当前有没有第二条 记录 如果有展示 第二条 如果没有 取出全部里边的视频记录 显示
+    if (_allVideoDetails.count > 0) {
     ++self.currentVideoIdx;
     [self changeVideoUrl];
-    NSLog(@"kf-dowonButtonAction=%@ ",[self.currentModel yy_modelToJSONString]);
+    NSLog(@"kf-upButtonAction=%@ ",[self.currentModel yy_modelToJSONString]);
+    }else{
+    [[HLCallManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        if (error == nil) {
+            
+            NSArray*  tmp = [[HLCallManager sharedInstance] getVideoPlayBackVideoDetailsAll];
+           _allVideoDetails = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:tmp];
+          
+            [_allVideoDetails enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                
+                KFVideoDetailModel * model = obj;
+                
+                if ([model.callId isEqualToString:self.currentModel.callId]) {
+                    // 获取到当前的以后 在取出 数组里边的下一个 放到当前播放
+                    NSInteger lastIdx = _allVideoDetails.count - 1;
+                   
+                    if (lastIdx != idx) {
+                        self.currentVideoIdx = idx +1;
+//                        [self changeVideoUrl];
+                    }else{
+                        self.currentVideoIdx = idx;
+                    }
+                    
+                    *stop= YES;
+                }
+            }];
+            
+            [self changeVideoUrl];
+            NSLog(@"kf-dowonButtonAction=%@ ",[self.currentModel yy_modelToJSONString]);
+        }
+    }];
+    }
+ 
 }
 
 /// 获取数组里边的url
 - (void)changeVideoUrl{
-    NSInteger idx = self.recordVideos.count - 1;
+    NSInteger idx = _allVideoDetails.count - 1;
     [self btnStateChange];
     if (self.currentVideoIdx > idx || self.currentVideoIdx < 0) {
+        
         return;
     }
     
-    self.currentModel = [self.recordVideos objectAtIndex:self.currentVideoIdx];
+  
+    self.currentModel = [_allVideoDetails objectAtIndex:self.currentVideoIdx];
     NSString * videoUrl = self.currentModel.playbackUrl;
     NSLog(@"kf-changeVideoUrl=%@ ",[self.currentModel yy_modelToJSONString]);
     self.player.videoURL  =  [NSURL URLWithString:videoUrl];
     
 }
+
+
 
 #pragma mark - KJPlayerDelegate
 /* 当前播放器状态 */
@@ -152,7 +260,7 @@
     }else if (state == KJPlayerStatePreparePlay || state == KJPlayerStatePlaying) {
         [self.basePlayerView.loadingLayer kj_stopAnimation];
     }else if (state == KJPlayerStatePlayFinished) {
-        [player kj_replay];
+//        [player kj_replay];
     }
 }
 /* 播放进度 */

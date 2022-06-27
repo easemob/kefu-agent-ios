@@ -202,6 +202,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [[HDClient sharedClient].chatManager addDelegate:self];
     [[HDClient sharedClient] removeDelegate:self];
     [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
+   
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:HDCALL_videoPlayback_end object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayback:) name:HDCALL_videoPlayback_end object:nil];
 }
 
 - (void)viewDidLoad {
@@ -310,7 +313,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                                                       object:[NSString stringWithFormat:@"%d",homeVC.conversationVCUnreadCount]
                                                     userInfo:nil];
 }
-
+- (void)videoPlayback:(NSNotification *)aNoti {
+   
+    HDMessage *msg = aNoti.object;
+    
+    [self addMessage:msg];
+    
+}
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -1036,48 +1045,68 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)moreViewVideoAction:(DXChatBarMoreView *)moreView
 {
     //创建 声网房间入口
-//    [self sendVideoTextMessage:@"邀请访客进行视频"];
+    [self sendVideoTextMessage:@"邀请访客进行视频"];
+//    [self moreViewVideoDetailAction:moreView];
 
-    [self moreViewVideoDetailAction:moreView];
-    return;
 
 }
 - (void)sendVideoTextMessage:(NSString *)text{
    
-    HDMessage *message =  [[HDAgoraCallManager shareInstance]  creteVideoInviteMessageWithSessionId:_conversationModel.sessionId to:_conversationModel.chatter.agentId WithText:text];
+    HDMessage *message = [[HLCallManager sharedInstance] kf_CreatAgentSendMessageLiveStreamInvitationSessionId:_conversationModel.sessionId withToUser:_conversationModel.chatter.agentId];
+    
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
        // 如果通知回来 在这个地方处理。现在后台没有做移动的 所以还不知道如何回来
-//        if ([aMessage.messageType isEqualToString:@"AgoraRtcMediaForInitiative"]) {
-//            [self onAgoraCallReceivedNickName:@"nickName"];
-//        }
-    
-        [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:@"344" withSessionId:_conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-            if (error == nil) {
-                
-                [self onAgoraCallReceivedNickName:@"nickName"];
-            }
-        }] ;
-        
         [self updateMessageWithMessage:aMessage];
     }];
 }
-- (void)onAgoraCallReceivedNickName:(NSString *)nickName{
-    [HDAgoraCallManager shareInstance].sessionId = _conversationModel.sessionId;
-    [HDAgoraCallManager shareInstance].chatter = _conversationModel.chatter;
-    if ([HDAgoraCallManager shareInstance].hdVC) {
-        [[HDAgoraCallManager shareInstance].hdVC showView];
-    }else{
-        [self.hdCallVC showView];
+
+- (void)messagesLiveStreamInvitationDidReceive:(HDMessage *)aMessage{
+    
+    // 调用通行证接口
+    if (![HLCallManager sharedInstance].agentCallId) {
+        
+        return;
     }
-    [HDAgoraCallManager shareInstance].hdVC.hangUpCallback = ^(HDAgoraCallViewController * _Nonnull callVC, NSString * _Nonnull timeStr, id  _Nonnull result) {
-        NSLog(@"------%@",timeStr);
-        HDMessage *message =    [[HDAgoraCallManager shareInstance] hangUpVideoInviteMessageWithSessionId:[HDAgoraCallManager shareInstance].sessionId to:[HDAgoraCallManager shareInstance].chatter.agentId WithText:@"视频通话已结束"];
-        [self addVideoMessage:message];
-        [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
-            [self updateMessageWithMessage:aMessage];
-        }];
-    };
+    // 调用通行证接口
+    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:[HLCallManager sharedInstance].agentCallId withSessionId: aMessage.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        if (error ==nil) {
+        
+            NSLog(@"====%@",responseObject);
+            
+         
+            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:aMessage];
+
+        }
+        
+        
+        
+    }];
+    
+}
+
+- (void)onAgoraCallReceivedNickName:(NSString *)nickName{
+   
+    // 调用通行证接口
+    if (![HLCallManager sharedInstance].agentCallId) {
+        
+        return;
+    }
+    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:[HLCallManager sharedInstance].agentCallId withSessionId: _conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        if (error ==nil) {
+        
+            NSLog(@"====%@",responseObject);
+            
+         
+            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:_conversationModel.lastMessage];
+
+        }
+        
+        
+        
+    }];
     
    
 }
@@ -1231,7 +1260,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     } else if ([eventName isEqualToString:kRouterEventImageTextBubbleTapEventName]) {
         [self chatImageTextCellBubblePressed:model];
     }else if ([eventName isEqualToString:kRouterEventArticleBubbleTapEventName]) {
-        [self chatArticleCellBubblePressed:model];
+        [self chatArticleCellBubblePressed:(KFMSGTypeModel *)model];
     } else if ([eventName isEqualToString:kRouterEventAudioBubbleTapEventName]) {
         [self chatAudioCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
@@ -1239,7 +1268,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
         HDFormItem *item = [userInfo objectForKey:KMESSAGEKEY];
         [self chatFormCcellBubblePressed:item];
-    }else if ([eventName isEqualToString:kRouterEventVideoBubbleTapEventName]) {
+    }else if ([eventName isEqualToString:kRouterEventVideoDetailBubbleTapEventName]) {
+        KFVideoObjModel *obj = [userInfo objectForKey:KMESSAGEKEY];
+        [self chatVideoPlayBack:obj];
+    }
+    else if ([eventName isEqualToString:kRouterEventVideoBubbleTapEventName]) {
         HDVideoMessageBody *body = (HDVideoMessageBody *)model.nBody;
         [self showHintNotHide:@"正在下载文件"];
         WEAK_SELF
@@ -1266,6 +1299,38 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             }
         }];
     }
+}
+
+// 视频通话结束后 看录像用的
+- (void)chatVideoPlayBack:(KFVideoObjModel *)model {
+    
+    // 调用接口
+    [[HLCallManager sharedInstance] getCurrentCallDetailsCallId:model.callId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+           
+        
+        //responseObject
+        if (error == nil) {
+            
+//            NSMutableArray * tmp= [NSMutableArray new];
+            
+         NSArray * dataArray =  [[HLCallManager sharedInstance] getVideoPlayBackVideoDetails];
+            
+            NSArray*  tmp = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:dataArray];
+            
+            
+            NSLog(@"=====%@",responseObject);
+            
+            KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
+            vc.currentModel = [tmp firstObject];
+//            vc.recordVideos = tmp;
+            vc.callId = vc.currentModel.callId;
+            vc.conversationModel = _conversationModel;
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+      
+
+    }];
 }
 
 - (void)chatFormCcellBubblePressed:(HDFormItem *)form {
@@ -1303,10 +1368,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             }
         }];
     }
-    
-   
-    
-    
 }
 
 // 文本的小书被点击

@@ -16,6 +16,7 @@ NSString *const kRouterEventVideoDetailBubbleTapEventName = @"kRouterEventVideoD
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *sizeLabel;
 @property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) KFVideoObjModel *videoObj;
 @end
 @implementation HDChatVideoDetailBubbleView
 
@@ -84,7 +85,7 @@ NSString *const kRouterEventVideoDetailBubbleTapEventName = @"kRouterEventVideoD
         //        }
     }
     
-    return CGSizeMake(retSize.width + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH, retSize.height);
+    return CGSizeMake(retSize.width + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH + 40, retSize.height);
 }
 
 #pragma mark - setter
@@ -93,18 +94,62 @@ NSString *const kRouterEventVideoDetailBubbleTapEventName = @"kRouterEventVideoD
 {
     [super setModel:model];
     
-    NSString * str =  [KFManager sharedInstance].curChatViewConvtroller.conversationModel.chatNicename;
-    
-    self.sizeLabel.text = [NSString stringWithFormat:@"访客(%@)与(%@)的视频通话记录",str,[HDClient sharedClient].currentAgentUser.nicename];
-    self.nameLabel.text = [NSString stringWithFormat:@"访客(%@)与(%@)的视频通话记录",str,[HDClient sharedClient].currentAgentUser.nicename];
+   
+    [self getVideoPlayback:model];
 }
+
+- (void)getVideoPlayback:(HDMessage *)message{
+    
+    if ([self isVideoPlaybackMessage:message.nBody.msgExt]) {
+        
+        NSDictionary *msgtype = [message.nBody.msgExt valueForKey:@"msgtype"];
+        
+        NSDictionary *videoPlayback =  [msgtype valueForKey:@"videoPlayback"];
+        NSDictionary *videoObj =  [videoPlayback valueForKey:@"videoObj"];
+        
+        KFVideoObjModel *model = [KFVideoObjModel yy_modelWithDictionary:videoObj];
+        
+        NSLog(@"=======%@",model.yy_modelToJSONString);
+        if (model) {
+            self.sizeLabel.text = [NSString stringWithFormat:@"访客(%@)与(%@)的视频通话记录",model.visitorName,[HDClient sharedClient].currentAgentUser.nicename];
+            self.nameLabel.text = [NSString stringWithFormat:@"%@-%@",model.videoStartTime,model.videoEndTime];
+            self.videoObj = model;
+        }
+       
+    }
+    
+}
+
+
+- (BOOL)isVideoPlaybackMessage:(NSDictionary *)ext {
+    if (![self canObjectForKey:ext]) {
+        return NO;
+    }
+    
+    NSDictionary *msgtype = [ext valueForKey:@"msgtype"];
+    
+    if ([self canObjectForKey:msgtype])  {
+        if ([self canObjectForKey:[msgtype valueForKey:@"videoPlayback"]]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+- (BOOL)canObjectForKey:(id)obj
+{
+    if (obj && obj != [NSNull null]) {
+        return  YES;
+    }
+    return NO;
+}
+
 
 #pragma mark - public
 
 -(void)bubbleViewPressed:(id)sender
 {
     [self routerEventWithName:kRouterEventVideoDetailBubbleTapEventName
-                     userInfo:@{KMESSAGEKEY:self.model}];
+                     userInfo:@{KMESSAGEKEY:self.videoObj}];
 }
 
 +(CGFloat)heightForBubbleWithObject:(HDMessage *)object

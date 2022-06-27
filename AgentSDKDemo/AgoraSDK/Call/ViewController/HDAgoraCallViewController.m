@@ -492,6 +492,11 @@
 // 坐席主动 挂断 结束回调
 - (void)onCallEndReason:(int)reason desc:(NSString *)desc withRecordData:(id)result {
     [self stopTimer];
+    
+    // 发消息 挂断
+    
+   
+    
     if (self.hangUpCallback) {
         self.hangUpCallback(self, self.timeLabel.text,result);
     }

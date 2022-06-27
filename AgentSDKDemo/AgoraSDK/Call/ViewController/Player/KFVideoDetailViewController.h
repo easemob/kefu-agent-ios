@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "KFPlayerVideoBaseViewController.h"
-
+#import "KFVideoDetailModel.h"
 NS_ASSUME_NONNULL_BEGIN
 
 @interface KFVideoDetailViewController : KFPlayerVideoBaseViewController
@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray *recordVideos;
 @property (nonatomic, assign) NSInteger  currentVideoIdx;
 @property (nonatomic, strong) NSString * callId;
+@property (nonatomic, strong) KFVideoDetailModel * currentModel;
+@property (nonatomic, strong) HDConversation * conversationModel;
+
 
 @end
 
