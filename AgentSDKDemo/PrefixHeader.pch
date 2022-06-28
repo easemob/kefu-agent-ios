@@ -46,14 +46,14 @@
 #define kend   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow]);
 
 #define WEAK_SELF typeof(self) __weak weakSelf = self;
-
+#define kWeakSelf __weak __typeof__(self) weakSelf = self;
 #import "EmotionEscape.h"
 #import "Helper.h"
 #import "KFManager.h"
 #import "SRRefreshView.h"
 #import "MWPhotoBrowser.h"
 #import "UIImageView+EMWebCache.h"
-#import "UIViewController+HUD.h"
+#import "UIViewController+HDHUD.h"
 #import "UIView+RNAdditions.h"
 #import "NSString+Escape.h"
 #import "NSObject+KFAdd.h"
@@ -102,5 +102,9 @@
 #import "KFVideoObjModel.h"
 #import "KFWebBubbleView.h"
 #import "KFVideoDetailAllModel.h"
-#import "KJPlayerHeader.h" 
+#import "KJPlayerHeader.h"
+#import "HDMasonry.h"
+#import "UIView+Kit.h"
+#import "MBProgressHUD.h"
+#import "KFVideoDetailModel.h" 
 #endif /* PrefixHeader_pch */

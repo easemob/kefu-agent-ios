@@ -351,7 +351,7 @@
 {
     //agent指的是agent; admin,agent  指的是admin 【roles】;
     if (!_user.allowAgentChangeMaxSessions && ![_user.roles containsString:@"admin"]) {
-        [MBProgressHUD show:@"管理员不允许设置最大接入数" view:nil];
+        [MBProgressHUD showMessag:@"管理员不允许设置最大接入数" toView:nil];
         return;
     }
     

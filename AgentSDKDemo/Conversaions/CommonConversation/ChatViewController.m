@@ -36,7 +36,6 @@
 #import "KFFileCache.h"
 #import <AVKit/AVKit.h>
 #import "KFWebViewController.h"
-#import "HDAgoraCallViewController.h"
 #import "HDAgoraCallManager.h"
 #import "KFVideoDetailViewController.h"
 #import "KFVideoDetailModel.h"
@@ -44,6 +43,7 @@
 #import "HDSanBoxFileManager.h"
 #import "KFChatSmartView.h"
 #import "KFSmartModel.h"
+#import "HDCallViewController.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -119,7 +119,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 @property (nonatomic, strong) UIButton *satisfactionBtn;
 @property (nonatomic, strong) UIButton *sessionAssistantBtn;
-@property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
+//@property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
 
 @property (nonatomic, strong) NSArray  *recordVideoDetailAll;
 @property (nonatomic, strong) KFChatSmartView  *smartView;
@@ -999,13 +999,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void) clickVideoDatail{
     
     
-//    KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
-////    vc.recordVideos = detailArray;
-//    vc.callId = @"344";
-//    [self.navigationController pushViewController:vc animated:YES];
-//
-//    return;
-    
     [[HDAgoraCallManager shareInstance] getAllVideoDetailsSession:_conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         if (error == nil) {
             NSArray * detailArray = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:responseObject];
@@ -1135,18 +1128,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     });
     
 }
-- (HDAgoraCallViewController *)hdCallVC{
-    
-    if (!_hdCallVC) {
-        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
-                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
-                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
-        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
-    }
-    
-    return _hdCallVC;
-    
-}
+//- (HDAgoraCallViewController *)hdCallVC{
+//
+//    if (!_hdCallVC) {
+//        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
+//                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
+//                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
+//        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
+//    }
+//
+//    return _hdCallVC;
+//
+//}
 - (void)moreViewQuickReplyAction:(DXChatBarMoreView *)moreView
 {
     QuickReplyViewController *quickView = [[QuickReplyViewController alloc] init];

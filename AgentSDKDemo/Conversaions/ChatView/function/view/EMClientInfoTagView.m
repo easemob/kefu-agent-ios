@@ -149,11 +149,13 @@
         if (error == nil) {
             weakSelf.tagButton.selected = !weakSelf.tagButton.selected;
             [weakSelf setNeedsDisplay];
-            [weakHud setLabelText:@"修改用户标签成功"];
-            [weakHud hide:YES afterDelay:0.5];
+//            [weakHud setLabelText:@"修改用户标签成功"];
+            weakHud.label.text =@"修改用户标签成功";
+            [weakHud hideAnimated:YES afterDelay:0.5];
         } else {
             NSLog(@"error:%@",error);
-            [weakHud setLabelText:@"修改用户标签失败"];
+            weakHud.label.text =@"修改用户标签失败";
+//            [weakHud setLabelText:@"修改用户标签失败"];
         }
     }];
 

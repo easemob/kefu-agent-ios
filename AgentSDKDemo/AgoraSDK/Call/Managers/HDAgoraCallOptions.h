@@ -44,10 +44,6 @@
  */
 @property (nonatomic, assign) NSUInteger shareUid;
 /**
- 用户 ID，32 位无符号整数。建议设置范围：1到 (232-1)，并保证唯一性。 如果不填或设为 0，SDK 会自动分配一个
- */
-@property (nonatomic, assign) NSUInteger uid;
-/**
  是否关闭摄像头
  */
 @property (nonatomic, assign) BOOL videoOff;

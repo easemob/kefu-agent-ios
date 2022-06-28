@@ -164,7 +164,8 @@
 }
 
 - (void)userAccountDidLoginFromOtherDevice {
-    [MBProgressHUD show:@"其他设备登录" view:self.window];
+//    [MBProgressHUD show:@"其他设备登录" view:self.window];
+    [MBProgressHUD showMessag:@"其他设备登录" toView:self.window];
     [[KFManager sharedInstance] showMainViewController];
 }
 

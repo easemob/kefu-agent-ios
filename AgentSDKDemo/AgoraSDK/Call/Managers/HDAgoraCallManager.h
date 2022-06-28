@@ -10,46 +10,31 @@
 #import <AgoraRtcKit/AgoraRtcEngineKit.h>
 #import "HDAgoraCallOptions.h"
 #import "HDAgoraCallManagerDelegate.h"
-@class HDAgoraCallViewController;
 NS_ASSUME_NONNULL_BEGIN
+static NSString * _Nonnull kUserDefaultState = @"KEY_BXL_DEFAULT_STATE"; // 接收屏幕共享(开始/结束 状态)监听的Key
+
+static NSString * _Nonnull kAppGroup = @"group.com.easemob.enterprise.demo.customer";
+static void *KVOContext = &KVOContext;
 @interface HDAgoraCallManager : NSObject
-@property (nonatomic, strong) HDAgoraCallViewController *hdVC;
+@property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
+@property (nonatomic, weak) id <HDAgoraCallManagerDelegate> roomDelegate;
+@property (nonatomic, strong) HDKeyCenter *keyCenter;
+@property (nonatomic, strong) NSString *conversationId;
+@property (nonatomic, strong) NSUserDefaults *userDefaults;
+
 @property (nonatomic, strong) HDMessage * message;
 @property (nonatomic, strong) NSString *sessionId;
 @property (nonatomic, strong) NSArray *recordDetails;
 @property (nonatomic, strong) UserModel *chatter;
 
 + (instancetype _Nullable )shareInstance;
-
 /*!
  *  \~chinese
- *   初始化 agora init 
+ *   初始化 agora init
  *
  */
 - (void)createTicketDidReceiveAgoraInit;
 
-/*!
- *  \~chinese
- *  坐席主动 发起视频邀请
- *  @param sessionId   sessionId
- *  @param toUser   agentId
- *  @param text   文本内容
- *
- */
-- (HDMessage *)creteVideoInviteMessageWithSessionId:(NSString *)sessionId
-                                                 to:(NSString *)toUser
-                                           WithText:(NSString *)text;
-/*!
- *  \~chinese
- *  坐席挂断视频邀请
- *  @param sessionId   sessionId
- *  @param toUser   agentId
- *  @param text   文本内容
- *
- */
-- (HDMessage *)hangUpVideoInviteMessageWithSessionId:(NSString *)sessionId
-                                                 to:(NSString *)toUser
-                                           WithText:(NSString *)text;
 /*!
  *  \~chinese
  *  获取坐席创建房间的设置项
@@ -88,6 +73,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*!
  *  \~chinese
+ *  获取通话状态  YES 通话中。NO 未通话
+ */
+- (BOOL)getCallState;
+/*!
+ *  \~chinese
  *  获取设置项
  *
  *  @result 设置项
@@ -99,17 +89,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (HDAgoraCallOptions *_Nullable)getCallOptions;
 
-/// 获取会话全部视频通话详情
-- (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion;
 /*!
  *  \~chinese
- *    加入 视频会话
+ *   接受视频会话
  *
  *   @param nickname 传递自己的昵称到对方
  *   @param completion 完成回调
  *
  */
-- (void)hd_joinCallWithNickname:(NSString *)nickname completion:(void (^_Nullable)(id, HDError *))completion;
+- (void)acceptCallWithNickname:(NSString *)nickname completion:(void (^_Nullable)(id, HDError *))completion;
 
 /*!
  *  \~chinese
@@ -163,6 +151,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*!
  *  \~chinese
+ *  开启/关闭视频模块
+ *
+ *  \~english
+ *  Resume video data transmission
+ */
+- (void)enableLocalVideo:(BOOL )enabled;
+
+/*!
+ *  \~chinese
  *  恢复视频图像数据传输
  *
  *  \~english
@@ -189,6 +186,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*!
  *  \~chinese
+ *  离开房间
+ */
+- (void)leaveChannel;
+/*!
+ *  \~chinese
+ *  加入房间
+ */
+- (void)joinChannel;
+/*!
+ *  \~chinese
  *  结束视频会话。
 
  *  \~english
@@ -196,6 +203,39 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)endCall;
 
+/*!
+ *  \~chinese
+ *  结束视频会话。 vec 独立访客端
+
+ *  \~english
+ *  Ending a Video Session
+ */
+- (void)endVecCall;
+/*!
+ *  \~chinese
+ *  结束视频会话  通话中结束。 vec 独立访客端
+
+ *  \~english
+ *  Ending a Video Session
+ */
+- (void)closeVecCall;
+
+/*!
+ *  \~chinese
+ *  拒绝视频会话。
+
+ *  \~english
+ *  Ending a Video Session
+ */
+- (void)refusedCall;
+/*!
+ *  \~chinese
+ *  拒绝视频会话。 vec独立访客端
+
+ *  \~english
+ *  Ending a Video Session
+ */
+- (void)refusedVecCall;
 /*!
  *  \~chinese
  *  销毁对象
@@ -213,91 +253,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param remoteView  远端试图
 /// @param uid  远端的uid
 - (void)setupRemoteVideoView:(UIView *)remoteView withRemoteUid:(NSInteger )uid;
-#pragma mark - Delegate
-/*!
- *  \~chinese
- *  添加回调代理
- *
- *  @param aDelegate  要添加的代理
- *  @param aQueue     执行代理方法的队列
- *
- *  \~english
- *  Add delegate
- *
- */
-- (void)addDelegate:(id<HDAgoraCallManagerDelegate>_Nullable)aDelegate
-      delegateQueue:(dispatch_queue_t _Nullable )aQueue;
+- (void)initSettingWithCompletion:(void(^)(id  responseObject, HDError *error))aCompletion ;
 
-/*!
- *  \~chinese
- *  移除回调代理
- *
- *  @param aDelegate  要移除的代理
- *
- *  \~english
- *  Remove delegate
- *
- */
-- (void)removeDelegate:(id<HDAgoraCallManagerDelegate>_Nullable)aDelegate;
+/// 保存屏幕共享需要的数据
+- (void)hd_saveShareDeskData:(HDKeyCenter*)keyCenter;
 
-/*!
- *  \~chinese
- *  开始屏幕录制
- *
- *  @param sampleBuffer  视频流
- *
- *  \~english
- *  Start screen recording
- *
- */
-- (void)startBroadcast;
-
-/*!
- *  \~chinese
- *  发送视频流
- *  @param sampleBuffer  视频流
- *
- *  \~english
- *  Send a video stream
- *
- */
-- (void)sendVideoBuffer:(CMSampleBufferRef _Nullable )sampleBuffer;
-
-/*!
- *  \~chinese
- *  停止录屏
- *
- *  \~english
- *  stop a video stream
- *
- */
-- (void)stopBroadcast;
-/*!
- *  \~chinese
- *   获取录屏状态
- *
- */
-- (BOOL)getBroadcastState;
-
-/*!
- *  \~chinese
- *  获取屏幕分享实例
- *
- *  \~english
- *  Get the screen sharing instance
- *
- */
-- (AgoraRtcEngineKit * _Nullable )getBroadcastRtcEngine;
-
-/*!
- *  \~chinese
- *  获取屏幕分享必要通信参数 主要用于判断进程通信是否 正常
- *
- *  \~english
- *  Obtaining screen sharing communication parameters is used to determine whether processes are communicating properly
- *
- */
-- ( NSArray* _Nullable )getBroadcastParameter;
+/// 获取会话全部视频通话详情
+- (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion;
 
 @end
 

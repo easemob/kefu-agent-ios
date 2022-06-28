@@ -376,7 +376,8 @@
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
 //    [self.progressView setProgress:0.0f animated:NO];
     NSLog(@"didFailNavigation");
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 // 当内容开始返回时调用
@@ -388,7 +389,8 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self getCookie];
     NSLog(@"didFinishNavigation");
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 //提交发生错误时调用

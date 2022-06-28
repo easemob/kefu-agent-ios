@@ -16,14 +16,4 @@
     }
     return self;
 }
-- (NSUInteger)uid{
-    
-    if (_uid> 0) {
-        
-        return  _uid;
-    }
-    
-    return 0;
-    
-}
 @end

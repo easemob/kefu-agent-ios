@@ -26,10 +26,10 @@
 #import "KFMonitorViewController.h"
 
 #import "HLeaveMessageViewController.h"
-#import "HDAgoraCallViewController.h"
 #import "HDAgoraCallManager.h"
 #import "KFAnswerView.h"
 #import "KFManager.h"
+#import "HDCallViewController.h"
 @implementation UIImage (tabBarImage)
 
 - (UIImage *)tabBarImage
@@ -83,7 +83,6 @@ static NSString *kGroupName = @"GroupName";
 @property (nonatomic, strong) NSDate *lastPlaySoundDate;
 
 @property (nonatomic, strong) UIView *tapView;
-@property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
 @property (nonatomic, strong)  KFAnswerView *kfAnswerView;
 @end
 
@@ -529,10 +528,11 @@ static HomeViewController *homeViewController;
             DXUpdateView *updateView = [[DXUpdateView alloc] initWithFrame:CGRectMake(0, 0, KScreenWidth, KScreenHeight) updateInfo:dic];
             [[UIApplication sharedApplication].keyWindow addSubview:updateView];
         } else {
-            [MBProgressHUD show:@"已经是最新版本" view:[UIApplication sharedApplication].keyWindow];
+            [MBProgressHUD showMessag:@"已经是最新版本" toView:[UIApplication sharedApplication].keyWindow];
         }
     } else {
-        [MBProgressHUD show:@"已经是最新版本" view:[UIApplication sharedApplication].keyWindow];
+//        [MBProgressHUD show:@"已经是最新版本" view:[UIApplication sharedApplication].keyWindow];
+        [MBProgressHUD showMessag:@"已经是最新版本" toView:[UIApplication sharedApplication].keyWindow];
     }
 }
 //================appstore end=================
@@ -734,41 +734,53 @@ static HomeViewController *homeViewController;
 - (void)createAgoraRoom:(NSNotification *)notification{
     
     HDMessage *model = notification.object;
-//    HDMessage *message = notification.userInfo;
     if (model) {
       
     [self.kfAnswerView removeFromSuperview];
     self.kfAnswerView = nil;
-        self.hdCallVC.message = model;
-    if ([HDAgoraCallManager shareInstance].hdVC) {
-        [[HDAgoraCallManager shareInstance].hdVC showView];
-    }else{
-        [self.hdCallVC showView];
-    }
-    [HDAgoraCallManager shareInstance].hdVC.hangUpCallback = ^(HDAgoraCallViewController * _Nonnull callVC, NSString * _Nonnull timeStr, id  _Nonnull result) {
-        NSLog(@"------%@",timeStr);
-//        HDMessage *message =    [[HDAgoraCallManager shareInstance] hangUpVideoInviteMessageWithSessionId:[HDAgoraCallManager shareInstance].sessionId to:[HDAgoraCallManager shareInstance].chatter.agentId WithText:@"视频通话已结束"];
-//        [self addVideoMessage:message];
-//        [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
-//            [self updateMessageWithMessage:aMessage];
-//        }];
-    };
+       
+       [[HDCallViewController sharedManager] showViewWithKeyCenter:model withType:HDVideoCallDirectionReceive];
+        [HDCallViewController sharedManager].hangUpCallback = ^(HDCallViewController * _Nonnull callVC, NSString * _Nonnull timeStr) {
+        
+            [[HDCallViewController sharedManager]  removeView];
+            [[HDCallViewController sharedManager] removeSharedManager];
+       
+           };
 
+        
+        
+        
+        
+//        self.hdCallVC.message = model;
+//    if ([HDAgoraCallManager shareInstance].hdVC) {
+//        [[HDAgoraCallManager shareInstance].hdVC showView];
+//    }else{
+//        [self.hdCallVC showView];
+//    }
+//    [HDAgoraCallManager shareInstance].hdVC.hangUpCallback = ^(HDAgoraCallViewController * _Nonnull callVC, NSString * _Nonnull timeStr, id  _Nonnull result) {
+//        NSLog(@"------%@",timeStr);
+////        HDMessage *message =    [[HDAgoraCallManager shareInstance] hangUpVideoInviteMessageWithSessionId:[HDAgoraCallManager shareInstance].sessionId to:[HDAgoraCallManager shareInstance].chatter.agentId WithText:@"视频通话已结束"];
+////        [self addVideoMessage:message];
+////        [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+////            [self updateMessageWithMessage:aMessage];
+////        }];
+//    };
+//
     }
     
 }
 
-- (HDAgoraCallViewController *)hdCallVC{
-    
-    if (!_hdCallVC) {
-        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
-                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
-                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
-        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
-    }
-    
-    return _hdCallVC;
-    
-}
+//- (HDAgoraCallViewController *)hdCallVC{
+//
+//    if (!_hdCallVC) {
+//        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
+//                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
+//                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
+//        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
+//    }
+//
+//    return _hdCallVC;
+//
+//}
 @end
 

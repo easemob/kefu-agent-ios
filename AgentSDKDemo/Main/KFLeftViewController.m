@@ -264,16 +264,18 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusChanged" object:nil];
             if (status == HDOnlineStatusOnline) {
                 [_headerView.onlineButton setTitle:@"空闲" forState:UIControlStateNormal];
-                [weakHud hide:YES];
+                [weakHud hideAnimated:YES];
             } else {
                 [_headerView.onlineButton setTitle:value forState:UIControlStateNormal];
                 [hud setMode:MBProgressHUDModeCustomView];
-                [weakHud setLabelText:@"系统将不再为您分配新会话"];
-                [weakHud hide:YES afterDelay:3.0];
+                weakHud.label.text =@"系统将不再为您分配新会话";
+//                [weakHud setLabelText:@"系统将不再为您分配新会话"];
+                [weakHud hideAnimated:YES afterDelay:3.0];
             }
         } else {
-            [weakHud setLabelText:@"修改失败"];
-            [weakHud hide:YES afterDelay:0.5];
+//            [weakHud setLabelText:@"修改失败"];
+            weakHud.label.text =@"修改失败";
+            [weakHud hideAnimated:YES afterDelay:0.5];
         }
     }];
 }

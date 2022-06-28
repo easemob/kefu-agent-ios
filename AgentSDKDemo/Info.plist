@@ -46,6 +46,10 @@
 	<string>需要访问你的麦克风</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>需要访问你的相册</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>iconfontcall.ttf</string>
+	</array>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
