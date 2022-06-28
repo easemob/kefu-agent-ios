@@ -130,7 +130,6 @@
 		933DD5742863262F00A3523A /* btn__icon_video@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 933DD5722863262F00A3523A /* btn__icon_video@2x.png */; };
 		935CFB5427C4E5D60093B9DF /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
-		935CFBE827C6185A0093B9DF /* KFPlayerVideoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */; };
 		935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */; };
 		935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
 		9363604327F4668E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; };
@@ -163,6 +162,7 @@
 		936544AE2838C3EC009854AF /* samrt_media@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544AB2838C3EB009854AF /* samrt_media@2x.png */; };
 		936544AF2838C3EC009854AF /* samrt_media@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544AC2838C3EC009854AF /* samrt_media@3x.png */; };
 		936544B02838C3EC009854AF /* samrt_media@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936544AC2838C3EC009854AF /* samrt_media@3x.png */; };
+		936A5E26286A9507004BC632 /* KFVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */; };
 		936F2E4928261CA9001FB60A /* HDSanBoxFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */; };
 		936F2E4A28261CA9001FB60A /* HDSanBoxFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */; };
 		936F2E4D2826426F001FB60A /* expand_icon_session_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */; };
@@ -194,7 +194,6 @@
 		938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */; };
 		938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */; };
 		938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
-		938AE9A827F3F7D300B461C4 /* KFPlayerVideoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */; };
 		938AE9A927F3F82C00B461C4 /* HDAgoraCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93EFFC9027BA6FD70043DE06 /* HDAgoraCallViewController.m */; };
 		938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
 		938AE9AB27F3F87B00B461C4 /* HDChatVideoDetailBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */; };
@@ -1812,8 +1811,6 @@
 		935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoDetailModel.m; sourceTree = "<group>"; };
 		935CFBE327C617F70093B9DF /* KFVideoDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailViewController.h; sourceTree = "<group>"; };
 		935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoDetailViewController.m; sourceTree = "<group>"; };
-		935CFBE627C6185A0093B9DF /* KFPlayerVideoBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFPlayerVideoBaseViewController.h; sourceTree = "<group>"; };
-		935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFPlayerVideoBaseViewController.m; sourceTree = "<group>"; };
 		935F639227C78F24003CE6FE /* HDChatVideoDetailBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDChatVideoDetailBubbleView.h; sourceTree = "<group>"; };
 		935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDChatVideoDetailBubbleView.m; sourceTree = "<group>"; };
 		935FF7FC277451320034ED6F /* KFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebViewController.h; sourceTree = "<group>"; };
@@ -1837,6 +1834,8 @@
 		9365449A2838C1CB009854AF /* smart_menu@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smart_menu@3x.png"; sourceTree = "<group>"; };
 		936544AB2838C3EB009854AF /* samrt_media@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "samrt_media@2x.png"; sourceTree = "<group>"; };
 		936544AC2838C3EC009854AF /* samrt_media@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "samrt_media@3x.png"; sourceTree = "<group>"; };
+		936A5E24286A9506004BC632 /* KFVideoDetailAllModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVideoDetailAllModel.h; sourceTree = "<group>"; };
+		936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVideoDetailAllModel.m; sourceTree = "<group>"; };
 		936F2E4728261CA8001FB60A /* HDSanBoxFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDSanBoxFileManager.m; sourceTree = "<group>"; };
 		936F2E4828261CA9001FB60A /* HDSanBoxFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDSanBoxFileManager.h; sourceTree = "<group>"; };
 		936F2E4B2826426E001FB60A /* expand_icon_session_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expand_icon_session_off@2x.png"; sourceTree = "<group>"; };
@@ -3147,8 +3146,6 @@
 			children = (
 				935CFBE327C617F70093B9DF /* KFVideoDetailViewController.h */,
 				935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */,
-				935CFBE627C6185A0093B9DF /* KFPlayerVideoBaseViewController.h */,
-				935CFBE727C6185A0093B9DF /* KFPlayerVideoBaseViewController.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -3158,6 +3155,8 @@
 			children = (
 				9363F96E28697B36008522EC /* KFVideoObjModel.h */,
 				9363F96F28697B36008522EC /* KFVideoObjModel.m */,
+				936A5E24286A9506004BC632 /* KFVideoDetailAllModel.h */,
+				936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6665,6 +6664,7 @@
 				938AEA3D27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */,
 				90FC924C2486323B00014CCC /* NSArray+MASAdditions.m in Sources */,
 				D33CE76D1F7CAEB800236720 /* UIBarButtonItem+KFAdd.m in Sources */,
+				936A5E26286A9507004BC632 /* KFVideoDetailAllModel.m in Sources */,
 				935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */,
 				938A4DC0283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */,
 				D33CE8741F7CD25800236720 /* SWUtilityButtonView.m in Sources */,
@@ -6895,7 +6895,6 @@
 				D33CE7A21F7CAF6700236720 /* KFTestParameters.m in Sources */,
 				D3A95E351EA0F47100ADD394 /* EMCDDeviceManager+Remind.m in Sources */,
 				93D0CF4D283792D4004D93E3 /* KFSmartDefaultTableViewCell.m in Sources */,
-				935CFBE827C6185A0093B9DF /* KFPlayerVideoBaseViewController.m in Sources */,
 				D3A95E4B1EA0F47100ADD394 /* MWCaptionView.m in Sources */,
 				D33CE8101F7CB52500236720 /* DDLog.m in Sources */,
 				D33CE6901F7CA98D00236720 /* SelectTagViewController.m in Sources */,
@@ -6925,7 +6924,6 @@
 				938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */,
 				938AE9A927F3F82C00B461C4 /* HDAgoraCallViewController.m in Sources */,
 				938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */,
-				938AE9A827F3F7D300B461C4 /* KFPlayerVideoBaseViewController.m in Sources */,
 				938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */,
 				938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */,
 				D3E9CC861FBED182005E3677 /* YYTextContainerView.m in Sources */,

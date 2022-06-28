@@ -100,5 +100,7 @@
 #import "HDAppSkin.h"
 #import "UIView+GestureRecognizer.h"
 #import "KFVideoObjModel.h"
-#import "KFWebBubbleView.h" 
+#import "KFWebBubbleView.h"
+#import "KFVideoDetailAllModel.h"
+#import "KJPlayerHeader.h" 
 #endif /* PrefixHeader_pch */
