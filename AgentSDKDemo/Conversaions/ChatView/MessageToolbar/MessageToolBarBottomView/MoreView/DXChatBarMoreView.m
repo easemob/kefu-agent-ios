@@ -71,26 +71,43 @@
     _fileButton.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_fileButton];
     
-    _videoButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    [_videoButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE *2, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
-    [_videoButton setImage:[UIImage imageNamed:@"btn__icon_video"] forState:UIControlStateNormal];
-    [_videoButton setImage:[UIImage imageNamed:@"btn__icon_video"] forState:UIControlStateHighlighted];
-    [_videoButton setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
-    [_videoButton addTarget:self action:@selector(takeVideoAction) forControlEvents:UIControlEventTouchUpInside];
-    [_videoButton setTitle:@"视频通话" forState:UIControlStateNormal];
-    [_videoButton setTitleEdgeInsets:CHAT_BUTTON_TITLE_EDGEINSETS];
-    [_videoButton setTitleColor:CHAT_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
-    [_videoButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    _videoButton.titleLabel.font = [UIFont systemFontOfSize:CHAT_BUTTON_TEXT_FONT];
-    _videoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:_videoButton];
+    if ( [HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
+        
+        _videoButton =[UIButton buttonWithType:UIButtonTypeCustom];
+        [_videoButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE *2, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+        [_videoButton setImage:[UIImage imageNamed:@"btn__icon_video"] forState:UIControlStateNormal];
+        [_videoButton setImage:[UIImage imageNamed:@"btn__icon_video"] forState:UIControlStateHighlighted];
+        [_videoButton setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
+        [_videoButton addTarget:self action:@selector(takeVideoAction) forControlEvents:UIControlEventTouchUpInside];
+        [_videoButton setTitle:@"视频通话" forState:UIControlStateNormal];
+        [_videoButton setTitleEdgeInsets:CHAT_BUTTON_TITLE_EDGEINSETS];
+        [_videoButton setTitleColor:CHAT_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
+        [_videoButton setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        _videoButton.titleLabel.font = [UIFont systemFontOfSize:CHAT_BUTTON_TEXT_FONT];
+        _videoButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_videoButton];
+        
+    }else{
+        
+        
+    }
+   
     
     
     CGRect frame = self.frame;
     if (type == KFChatMoreTypeChat) {
-        frame.size.height = 216;
         _quickReplyButton =[UIButton buttonWithType:UIButtonTypeCustom];
-        [_quickReplyButton setFrame:CGRectMake(insets * 4 + CHAT_BUTTON_SIZE * 3, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+        if ( [HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
+            
+            [_quickReplyButton setFrame:CGRectMake(insets * 4 + CHAT_BUTTON_SIZE * 3, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+            
+        }else{
+           
+            [_quickReplyButton setFrame:CGRectMake(insets * 3 + CHAT_BUTTON_SIZE * 2, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+        }
+
+       
+      
         [_quickReplyButton setImage:[UIImage imageNamed:@"btn_icon_phrase"] forState:UIControlStateNormal];
         [_quickReplyButton setImage:[UIImage imageNamed:@"btn_icon_phrase"] forState:UIControlStateHighlighted];
         [_quickReplyButton setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
@@ -120,7 +137,15 @@
         
         if ([[HDClient sharedClient].currentAgentUser.customUrl length] > 0) {
             _customButton =[UIButton buttonWithType:UIButtonTypeCustom];
-            [_customButton setFrame:CGRectMake(insets, 216/2, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+            if ( [HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
+                
+                [_customButton setFrame:CGRectMake(insets, 216/2, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+                
+            }else{
+               
+                [_customButton setFrame:CGRectMake(insets * 4 + CHAT_BUTTON_SIZE * 3, 10, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)];
+            }
+           
             [_customButton setImage:[UIImage imageNamed:@"btn_icon_iframe"] forState:UIControlStateNormal];
             [_customButton setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
             [_customButton addTarget:self action:@selector(customeAction) forControlEvents:UIControlEventTouchUpInside];
@@ -131,14 +156,25 @@
             _customButton.titleLabel.font = [UIFont systemFontOfSize:CHAT_BUTTON_TEXT_FONT];
             _customButton.titleLabel.textAlignment = NSTextAlignmentCenter;
             [self addSubview:_customButton];
+            frame.size.height = 216;
         }
-        //CGRectMake(insets, 20 + CHAT_BUTTON_HEIGHT, CHAT_BUTTON_SIZE , CHAT_BUTTON_HEIGHT)
+        else{
+            frame.size.height = 108;
+        }
     }
     else if (type == KFChatMoreTypeGroupChat)
     {
         frame.size.height = 80;
     } else if (type == KFChatMoreTypeCustomerChat) {
-        frame.size.height = 216;
+        if ( [HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
+            
+            frame.size.height = 216;
+            
+        }else{
+           
+            frame.size.height = 108;
+        }
+        
     }
     self.frame = frame;
 }
