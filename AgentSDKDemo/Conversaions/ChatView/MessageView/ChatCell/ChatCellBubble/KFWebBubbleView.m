@@ -7,22 +7,27 @@
 //
 
 #import "KFWebBubbleView.h"
-
+#define MAX_WIDTH 240
 NSString *const kRouterEventWebBubbleTapEventName = @"kRouterEventWebBubbleTapEventName";
 
 @interface KFWebBubbleView()<WKUIDelegate,WKNavigationDelegate,WKScriptMessageHandler>
 {
     HDTextMessageBody *_body;
     HDMessage *_model;
+    
+    float _webHeight;
 }
 @property (strong, nonatomic) NSArray *itemArray;
 @end
 
 @implementation KFWebBubbleView
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+}
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor blackColor];
         
         [self createUI];
       
@@ -79,24 +84,59 @@ NSString *const kRouterEventWebBubbleTapEventName = @"kRouterEventWebBubbleTapEv
     _body = (HDTextMessageBody *)model.nBody;
     
 //    {"msg":"[\"type\":\"richtext\",\"content\": \"https://laiye-im-saas.oss-cn-beijing.aliyuncs.com/richText/29d2f3eb-6206-4ad9-8f3c-88c7360c9cac.html\"}
-    NSDictionary * msg = [NSDictionary yy_modelWithJSON:_body.text];
+    NSDictionary * msg = [HDUtils dictionaryWithString:_body.text];
+//    NSDictionary * msg = [NSDictionary yy_modelWithJSON:_body.text];
     
-    if ([[msg allKeys] containsObject:@"content"]) {
-        
-        NSString * content = [msg objectForKey:@"content"];
-        
-        [self setWebUrl:content];
+    KFWebModel * webModel = [KFWebModel yy_modelWithJSON:_body.text];
     
+    if (webModel.content && webModel.content.length>0) {
+        [self setWebUrl:webModel.content];
     }
+    
+//    if ([[msg allKeys] containsObject:@"content"]) {
+//
+//        NSString * content = [msg objectForKey:@"content"];
+//
+//        [self setWebUrl:content];
+//
+//    }
 }
 
+//聊天界面的高度
 +(CGFloat)heightForBubbleWithObject:(HDMessage *)object
 {
-    return 4 * BUBBLE_VIEW_PADDING + 45.f;
+    
+    return 4 * BUBBLE_VIEW_PADDING + 75.f *3;
 }
+- (CGFloat )getWebHeight{
+    
+    return _webHeight;;
+    
+}
+//自身view的高度
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    CGSize retSize = CGSizeMake(MAX_WIDTH, 4 * BUBBLE_VIEW_PADDING + 75.f *3);
+    if (self.model.ext) {
+//        retSize.height = 95;
+//        if (self.model.ext.msgtype.orderTitle && self.model.ext.msgtype.orderTitle.length > 0) {
+//            NSString *string = [NSString stringWithFormat:@"%@ %@",self.model.ext.msgtype.title,self.model.ext.msgtype.desc];
+//            NSDictionary *attributes = @{NSFontAttributeName :[UIFont systemFontOfSize:kLabelFont]};
+//            CGRect rect = [string boundingRectWithSize:CGSizeMake(kNameLabelWidth, MAXFLOAT)
+//                                               options:NSStringDrawingUsesLineFragmentOrigin
+//                                            attributes:attributes
+//                                               context:nil];
+//            CGFloat height = CGRectGetHeight(rect);
+//            if (height > 30) {
+//                retSize.height += kLabelHeight + kViewSpace;
+//            }
+//        }
+    }
+    
+    return CGSizeMake(retSize.width + BUBBLE_VIEW_PADDING * 2 + BUBBLE_ARROW_WIDTH, retSize.height);
+    
 
-
-
+}
 - (void)hd_OnClose{
     
     
@@ -200,6 +240,17 @@ NSString *const kRouterEventWebBubbleTapEventName = @"kRouterEventWebBubbleTapEv
 //    [self addCustomAction];
     NSLog(@"didFinishNavigation");
     [MBProgressHUD hideHUDForView:self animated:YES];
+    
+//    [webView evaluateJavaScript:@"document.body.scrollHeight"
+//                completionHandler:^(id result, NSError *_Nullable error) {
+//
+//        NSLog(@"====%f",[result floatValue]);
+//        _webHeight =[result floatValue];
+//
+////        [[NSNotificationCenter defaultCenter] postNotificationName:HDSmart_HTML_Height object:result];
+//
+//      }];
+    
 }
 
 //提交发生错误时调用

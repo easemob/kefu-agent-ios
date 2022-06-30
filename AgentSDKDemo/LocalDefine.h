@@ -58,6 +58,8 @@
 // 视频结束 发送通知 更新界面
 #define HDCALL_videoPlayback_end @"HDCALL_videoPlayback_end"
 
+// 智能辅助html 高度通知
+#define HDSmart_HTML_Height @"HDSmart_HTML_Height"
 
 
 #define hd_dispatch_main_sync_safe(block)\

@@ -227,6 +227,7 @@ static HDAgoraCallManager *shareCall = nil;
     [_members removeAllObjects];
     //结束录制
     [self endRecord];
+    [HLCallManager sharedInstance].isCalling = NO;
 }
 - (void)joinChannel{
     [self hd_joinChannelByToken:[HDAgoraCallManager shareInstance].keyCenter.agoraToken channelId:[HDAgoraCallManager shareInstance].keyCenter.agoraChannel info:nil uid:[[HDAgoraCallManager shareInstance].keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
@@ -437,6 +438,7 @@ static HDAgoraCallManager *shareCall = nil;
     
 }
 - (void)endRecord{
+    [HDAgoraCallManager shareInstance].isSender = NO;
     // 结束录制
     [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:_message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
@@ -460,6 +462,7 @@ static HDAgoraCallManager *shareCall = nil;
                             if ([model.callId isEqualToString:_keyCenter.callid]) {
                                 
                             HDMessage * message  =   [[HLCallManager sharedInstance] kf_sendMessageVideoPlaybackSessionId:_message.sessionId withToUser:_message.from withVisitorName:_message.fromUser.nicename withVideoStartTime: [self timestrToTimeSecond:model.recordStart] withVideoEndTime: [self timestrToTimeSecond:model.recordEnd] withCallId:model.callId];
+//
                                 [[HDClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
                                         
                                 } completion:^(HDMessage *aMessage, HDError *aError) {
@@ -467,7 +470,7 @@ static HDAgoraCallManager *shareCall = nil;
                                     if (aError == nil) {
                                         // 发个通知 界面更新 视频录制
                                         [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_videoPlayback_end object:aMessage];
-                                        
+                                        _message = nil;
                                     }
                                    
                                 }];

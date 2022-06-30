@@ -217,7 +217,6 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             }else if (type == HDExtMsgTypevideoPlayback) {
                 return [[HDChatVideoDetailBubbleView  alloc] init];
             }else if(type == HDExtMsgTypeHtml){
-                
                 return [[KFWebBubbleView  alloc] init];
             }
             return [[EMChatTextBubbleView alloc] init];

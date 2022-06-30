@@ -20,6 +20,7 @@ typedef void(^ClickDefaultSendItemBlock)(KFSmartModel *model,id cell);
 @property (weak, nonatomic) IBOutlet UILabel *labelSend;
 @property(nonatomic,copy) ClickDefaultCopyItemBlock clickDefaultCopyItemBlock;
 @property(nonatomic,copy) ClickDefaultSendItemBlock clickDefaultSendItemBlock;
+@property (weak, nonatomic) IBOutlet UIView *htmlView;
 - (void) setModel:(KFSmartModel *)model;
 @end
 

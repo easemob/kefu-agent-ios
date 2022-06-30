@@ -115,6 +115,10 @@
 		90FC92552486323B00014CCC /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92412486323B00014CCC /* MASViewAttribute.m */; };
 		90FC92582486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
 		90FC92592486363D00014CCC /* EMRealtimeSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = 90FC92572486363D00014CCC /* EMRealtimeSearch.m */; };
+		9306AD76286C3AEC00E1F726 /* KFRingingCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9306AD75286C3AEC00E1F726 /* KFRingingCallModel.m */; };
+		9306AD77286C3AEC00E1F726 /* KFRingingCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9306AD75286C3AEC00E1F726 /* KFRingingCallModel.m */; };
+		9306AD86286D560100E1F726 /* KFWebModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9306AD85286D560100E1F726 /* KFWebModel.m */; };
+		9306AD87286D560100E1F726 /* KFWebModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9306AD85286D560100E1F726 /* KFWebModel.m */; };
 		93074B152840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93074B142840A35600B41B8C /* KFChatArticleBubbleView.m */; };
 		93074B162840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93074B142840A35600B41B8C /* KFChatArticleBubbleView.m */; };
 		930EF9B12834BCF800A3C205 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
@@ -1864,6 +1868,10 @@
 		90FC92412486323B00014CCC /* MASViewAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASViewAttribute.m; sourceTree = "<group>"; };
 		90FC92562486363C00014CCC /* EMRealtimeSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRealtimeSearch.h; sourceTree = "<group>"; };
 		90FC92572486363D00014CCC /* EMRealtimeSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRealtimeSearch.m; sourceTree = "<group>"; };
+		9306AD74286C3AEC00E1F726 /* KFRingingCallModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFRingingCallModel.h; sourceTree = "<group>"; };
+		9306AD75286C3AEC00E1F726 /* KFRingingCallModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFRingingCallModel.m; sourceTree = "<group>"; };
+		9306AD84286D560100E1F726 /* KFWebModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebModel.h; sourceTree = "<group>"; };
+		9306AD85286D560100E1F726 /* KFWebModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebModel.m; sourceTree = "<group>"; };
 		93074B132840A35600B41B8C /* KFChatArticleBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatArticleBubbleView.h; sourceTree = "<group>"; };
 		93074B142840A35600B41B8C /* KFChatArticleBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatArticleBubbleView.m; sourceTree = "<group>"; };
 		930EF9AF2834BCF800A3C205 /* KFChatSmartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatSmartView.h; sourceTree = "<group>"; };
@@ -3261,6 +3269,15 @@
 			path = Masonry;
 			sourceTree = "<group>";
 		};
+		9306AD83286D55E500E1F726 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9306AD84286D560100E1F726 /* KFWebModel.h */,
+				9306AD85286D560100E1F726 /* KFWebModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		93119A3D27F58FC100F749F3 /* Document */ = {
 			isa = PBXGroup;
 			children = (
@@ -3290,6 +3307,8 @@
 				9363F96F28697B36008522EC /* KFVideoObjModel.m */,
 				936A5E24286A9506004BC632 /* KFVideoDetailAllModel.h */,
 				936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */,
+				9306AD74286C3AEC00E1F726 /* KFRingingCallModel.h */,
+				9306AD75286C3AEC00E1F726 /* KFRingingCallModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3381,20 +3400,20 @@
 		936A5EDA286AD4FB004BC632 /* Fastboard */ = {
 			isa = PBXGroup;
 			children = (
-				936A5EDB286AD4FB004BC632 /* HDWhiteRoomManager.h */,
-				936A5EDC286AD4FB004BC632 /* HDWhiteBoardView.m */,
-				936A5EDD286AD4FB004BC632 /* HDStorageItem.h */,
-				936A5EDE286AD4FB004BC632 /* HDWhiteConverterManager.m */,
 				936A5EDF286AD4FB004BC632 /* CloudDisk */,
-				936A5EEF286AD4FB004BC632 /* Utility.m */,
 				936A5EF0286AD4FB004BC632 /* CustomFastboardOverlay.h */,
-				936A5EF1286AD4FB004BC632 /* HDStorageItem.m */,
-				936A5EF2286AD4FB004BC632 /* HDWhiteBoardView.h */,
-				936A5EF3286AD4FB004BC632 /* HDWhiteRoomManager.m */,
-				936A5EF4286AD4FB004BC632 /* HDWhiteConverterManager.h */,
-				936A5EF5286AD4FB004BC632 /* HDWhiteBoardDelegete.h */,
-				936A5EF6286AD4FB004BC632 /* Utility.h */,
 				936A5EF7286AD4FB004BC632 /* CustomFastboardOverlay.m */,
+				936A5EDD286AD4FB004BC632 /* HDStorageItem.h */,
+				936A5EF1286AD4FB004BC632 /* HDStorageItem.m */,
+				936A5EF5286AD4FB004BC632 /* HDWhiteBoardDelegete.h */,
+				936A5EF2286AD4FB004BC632 /* HDWhiteBoardView.h */,
+				936A5EDC286AD4FB004BC632 /* HDWhiteBoardView.m */,
+				936A5EF4286AD4FB004BC632 /* HDWhiteConverterManager.h */,
+				936A5EDE286AD4FB004BC632 /* HDWhiteConverterManager.m */,
+				936A5EDB286AD4FB004BC632 /* HDWhiteRoomManager.h */,
+				936A5EF3286AD4FB004BC632 /* HDWhiteRoomManager.m */,
+				936A5EF6286AD4FB004BC632 /* Utility.h */,
+				936A5EEF286AD4FB004BC632 /* Utility.m */,
 			);
 			path = Fastboard;
 			sourceTree = "<group>";
@@ -4100,6 +4119,7 @@
 		D33CE6421F7CA98D00236720 /* ChatCell */ = {
 			isa = PBXGroup;
 			children = (
+				9306AD83286D55E500E1F726 /* Model */,
 				D33CE6431F7CA98D00236720 /* ChatCellBubble */,
 				D33CE6541F7CA98D00236720 /* EMChatTimeCell.h */,
 				D33CE6551F7CA98D00236720 /* EMChatTimeCell.m */,
@@ -7145,6 +7165,7 @@
 				D33F466A1E9F71A000FE6DCE /* main.m in Sources */,
 				D33CE79B1F7CAF6700236720 /* KFPhoneVerifyViewController.m in Sources */,
 				D3A95E671EA0F47100ADD394 /* PSTCollectionViewController.m in Sources */,
+				9306AD76286C3AEC00E1F726 /* KFRingingCallModel.m in Sources */,
 				90FC92542486323B00014CCC /* MASViewAttribute.m in Sources */,
 				D3A95E701EA0F47100ADD394 /* PSTGridLayoutSection.m in Sources */,
 				936A5EFE286AD4FB004BC632 /* HDCloudDiskModel.m in Sources */,
@@ -7225,6 +7246,7 @@
 				9046FCDE20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */,
 				D33CE89E1F7CD34000236720 /* LeaveMsgInputView.m in Sources */,
 				936A5EC4286ACF3D004BC632 /* HDCallCollectionViewCellItem.m in Sources */,
+				9306AD86286D560100E1F726 /* KFWebModel.m in Sources */,
 				D33CE7A11F7CAF6700236720 /* Helper.m in Sources */,
 				D33CE7EA1F7CB48400236720 /* KFVisitorInfoItem.m in Sources */,
 				90591CDA2068B15B007367BD /* KFMonitorViewController.m in Sources */,
@@ -7404,6 +7426,7 @@
 				D3E9CD0D1FBED182005E3677 /* MWTapDetectingImageView.m in Sources */,
 				D3E9CD101FBED182005E3677 /* AdminCurSessionViewController.m in Sources */,
 				D3E9CD111FBED182005E3677 /* DDContextFilterLogFormatter.m in Sources */,
+				9306AD77286C3AEC00E1F726 /* KFRingingCallModel.m in Sources */,
 				D3E9CD121FBED182005E3677 /* SBGradientOverlayLayer.m in Sources */,
 				D3E9CD131FBED182005E3677 /* KFBaseViewController.m in Sources */,
 				D3E9CD141FBED182005E3677 /* FacialView.m in Sources */,
@@ -7566,6 +7589,7 @@
 				936A5F11286AD4FB004BC632 /* HDWhiteRoomManager.m in Sources */,
 				90FC92552486323B00014CCC /* MASViewAttribute.m in Sources */,
 				D3E9CD851FBED182005E3677 /* EMAudioPlayerUtil.m in Sources */,
+				9306AD87286D560100E1F726 /* KFWebModel.m in Sources */,
 				D3E9CD861FBED182005E3677 /* HSearchResultsViewController.m in Sources */,
 				D3E9CD871FBED182005E3677 /* EMChatBaseBubbleView.m in Sources */,
 				93074B162840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */,
@@ -7802,7 +7826,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 3.1.4;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -7853,7 +7877,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.1;
+				MARKETING_VERSION = 3.1.4;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -7904,7 +7928,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.0;
+				MARKETING_VERSION = 3.1.4;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -7951,7 +7975,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.0;
+				MARKETING_VERSION = 3.1.4;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",

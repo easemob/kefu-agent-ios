@@ -128,7 +128,7 @@
     {
         UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
 //        button.frame = CGRectMake(30, self.view.frame.size.height/2-25, 100, 50);
-        button.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.5];
+//        button.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.5];
         [button setTitleColor:UIColor.blueColor forState:(UIControlStateNormal)];
         [button setTitle:@"上一条" forState:(UIControlStateNormal)];
         self.upBtn = button;
@@ -144,7 +144,7 @@
     }{
         UIButton *button = [UIButton buttonWithType:(UIButtonTypeCustom)];
 //        button.frame = CGRectMake(self.view.frame.size.width-30-100, self.view.frame.size.height/2-25, 100, 50);
-        button.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.5];
+//        button.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:0.5];
         [button setTitleColor:UIColor.blueColor forState:(UIControlStateNormal)];
         [button setTitleColor:UIColor.blueColor forState:(UIControlStateSelected)];
         [button setTitle:@"下一条" forState:(UIControlStateNormal)];

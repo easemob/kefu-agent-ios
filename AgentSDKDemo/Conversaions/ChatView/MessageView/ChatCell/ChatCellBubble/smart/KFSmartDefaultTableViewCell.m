@@ -7,12 +7,15 @@
 //
 
 #import "KFSmartDefaultTableViewCell.h"
+#import "KFSmartUtils.h"
+#import "KFWebBubbleView.h"
 @interface KFSmartDefaultTableViewCell ()
 {
     
     KFSmartModel *_model;
     
 }
+@property (strong, nonatomic) KFWebBubbleView *webView;
 @end
 @implementation KFSmartDefaultTableViewCell
 
@@ -44,6 +47,9 @@
     [self.labelSend addGestureRecognizer:labelTapGestureRecognizer1];
 
     self.labelSend.userInteractionEnabled = YES; // 可以理解
+    
+    
+  
 }
 -(void)labelCopyClick{
     
@@ -73,6 +79,27 @@
     _model = model;
     self.answerLabel.text = model.answer;
     
+    if ([KFSmartUtils isJsonString:model.answer]) {
+        
+        self.htmlView.hidden = NO;
+        self.answerLabel.hidden = YES;
+        KFWebModel * webModel = [KFWebModel yy_modelWithJSON:model.answer];
+       
+        [self.htmlView addSubview:self.webView];
+        [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(0);
+            make.bottom.offset(0);
+            make.leading.offset(0);
+            make.trailing.offset(0);
+            
+        }];
+        [self.webView setWebUrl:webModel.content];
+    }else{
+        self.htmlView.hidden = YES;
+        self.answerLabel.hidden = NO;
+    }
+    
+    
 //    self.labelCopyNum.text =  [NSString stringWithFormat:@"%ld",model.quoteFrequencyStr] ;
 //    self.labelSendNum.text = [NSString stringWithFormat:@"%ld",model.sendFrequencyStr] ;
 //
@@ -100,5 +127,14 @@
 //        self.knowledgeLabel.text =@"";
 //    }
     
+}
+
+- (KFWebBubbleView *)webView{
+    
+    if (!_webView) {
+        _webView = [[KFWebBubbleView alloc] init];
+    }
+    
+    return _webView;
 }
 @end

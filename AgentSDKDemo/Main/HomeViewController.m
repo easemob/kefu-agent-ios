@@ -705,11 +705,14 @@ static HomeViewController *homeViewController;
             [self.kfAnswerView removeFromSuperview];
             self.kfAnswerView = nil;
            
+        }else if(type == HDExtMsgTypeVisitorRejectInvitation) {
+            //访客拒绝邀请  关闭当前页面 离开房间
+            [[HDAgoraCallManager shareInstance] leaveChannel];
+            [[HDCallViewController sharedManager]  removeView];
+            [[HDCallViewController sharedManager] removeSharedManager];
+           
         }
-    
     }
-    
-    
 }
 
 - (void)onAgoraCallReceivedNickName:(HDMessage *)message{
@@ -747,40 +750,10 @@ static HomeViewController *homeViewController;
        
            };
 
-        
-        
-        
-        
-//        self.hdCallVC.message = model;
-//    if ([HDAgoraCallManager shareInstance].hdVC) {
-//        [[HDAgoraCallManager shareInstance].hdVC showView];
-//    }else{
-//        [self.hdCallVC showView];
-//    }
-//    [HDAgoraCallManager shareInstance].hdVC.hangUpCallback = ^(HDAgoraCallViewController * _Nonnull callVC, NSString * _Nonnull timeStr, id  _Nonnull result) {
-//        NSLog(@"------%@",timeStr);
-////        HDMessage *message =    [[HDAgoraCallManager shareInstance] hangUpVideoInviteMessageWithSessionId:[HDAgoraCallManager shareInstance].sessionId to:[HDAgoraCallManager shareInstance].chatter.agentId WithText:@"视频通话已结束"];
-////        [self addVideoMessage:message];
-////        [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
-////            [self updateMessageWithMessage:aMessage];
-////        }];
-//    };
-//
     }
     
 }
 
-//- (HDAgoraCallViewController *)hdCallVC{
-//
-//    if (!_hdCallVC) {
-//        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
-//                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
-//                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
-//        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
-//    }
-//
-//    return _hdCallVC;
-//
-//}
+
 @end
 

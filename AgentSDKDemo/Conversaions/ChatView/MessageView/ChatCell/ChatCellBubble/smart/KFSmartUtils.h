@@ -35,7 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 //是图片 消息
 + (BOOL)isImgMessageStr:(NSString *)ext;
 
-
+//是html消息
++ (BOOL)isHtmlMessage:(HDMessage *)message;
++ (NSDictionary *)dictionaryWithString:(NSString *)string;
++ (BOOL)isJsonString:(NSString *)jsonString;
 @end
 
 NS_ASSUME_NONNULL_END

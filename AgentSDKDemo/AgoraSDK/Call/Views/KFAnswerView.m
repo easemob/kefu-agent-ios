@@ -46,8 +46,8 @@
     [self.bgView addSubview: self.onBtn];
     [self.bgView addSubview: self.onLabel];
     //拒绝
-    [self.bgView addSubview:self.offBtn];
-    [self.bgView addSubview:self.offLabel];
+//    [self.bgView addSubview:self.offBtn];
+//    [self.bgView addSubview:self.offLabel];
  
     
     [self hd_fullViewLayout];
@@ -100,8 +100,8 @@
     [self.zoomBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(44);
         make.leading.offset(20);
-        make.width.offset(44);
-        make.height.offset(44);
+        make.width.offset(32);
+        make.height.offset(32);
     }];
     
     //访客头像
@@ -110,7 +110,8 @@
         make.centerY.mas_equalTo(self.mas_centerY).multipliedBy(0.6);
         make.width.height.offset(128);
     }];
-    
+    [self.icon layoutIfNeeded];
+    self.icon.layer.cornerRadius = 128/2;
     //昵称
     [self.nickNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.icon.mas_centerX).offset(0);
@@ -131,7 +132,7 @@
     //接听
     [self.onBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(-120);
-        make.leading.offset(60);
+        make.centerX.mas_equalTo(self.mas_centerX).offset(0);
         make.width.height.offset(72);
     }];
     [self.onLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -141,16 +142,16 @@
     }];
     
     //拒绝
-    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.offset(-120);
-        make.width.height.offset(72);
-        make.trailing.offset(-60);
-    }];
-    [self.offLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.offBtn.mas_centerX).offset(0);
-        make.top.mas_equalTo(self.offBtn.mas_bottom).offset(10);
-
-    }];
+//    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.offset(-120);
+//        make.width.height.offset(72);
+//        make.trailing.offset(-60);
+//    }];
+//    [self.offLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.mas_equalTo(self.offBtn.mas_centerX).offset(0);
+//        make.top.mas_equalTo(self.offBtn.mas_bottom).offset(10);
+//
+//    }];
     
 }
 - (void)hd_smallViewLayout{
@@ -167,31 +168,32 @@
         make.leading.offset(20);
         make.width.height.offset(84/1.2);
     }];
-    
+    [self.icon layoutIfNeeded];
+    self.icon.layer.cornerRadius = 84/1.2/2;
     //接听
     [self.onBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.icon.mas_centerY).offset(0);
-        make.trailing.offset(-10);
+        make.trailing.offset(-20);
         make.width.height.offset(84/1.6);
     }];
     //拒绝
-    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.onBtn.mas_centerY).offset(0);
-        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
-        make.width.height.offset(84/1.6);
-    }];
+//    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(self.onBtn.mas_centerY).offset(0);
+//        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
+//        make.width.height.offset(84/1.6);
+//    }];
 
     //昵称
     [self.nickNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(10);
-        make.trailing.mas_equalTo(self.offBtn.mas_leading).offset(-10);
+        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
         make.leading.mas_equalTo(self.icon.mas_trailing).offset(-10);
     }];
 
     //标题
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(-10);
-        make.trailing.mas_equalTo(self.offBtn.mas_leading).offset(-10);
+        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
         make.leading.mas_equalTo(self.icon.mas_trailing).offset(-10);
     }];
     
@@ -206,6 +208,9 @@
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment=NSTextAlignmentCenter;
 //        _titleLabel.font =  [[HDAppSkin mainSkin] systemFont19pt];
+        _nickNameLabel.numberOfLines = 2;
+        _nickNameLabel.lineBreakMode =NSLineBreakByTruncatingTail;
+        _nickNameLabel.font =  [[HDAppSkin mainSkin] systemFont17pt];
     }
     
     return _titleLabel;
@@ -221,8 +226,8 @@
         _nickNameLabel.textAlignment=NSTextAlignmentCenter;
         _nickNameLabel.numberOfLines = 2;
         _nickNameLabel.lineBreakMode =NSLineBreakByTruncatingTail;
-//        _nickNameLabel.adjustsFontSizeToFitWidth = YES;
-//        _nickNameLabel.font =  [[HDAppSkin mainSkin] systemFont16pt];
+        _nickNameLabel.adjustsFontSizeToFitWidth = YES;
+        _nickNameLabel.font =  [[HDAppSkin mainSkin] systemFont17pt];
     }
     return _nickNameLabel;
 }
@@ -231,11 +236,8 @@
     
     if (!_icon) {
         _icon=[[UIImageView alloc] init];
-        _icon.layer.cornerRadius = 10;
         _icon.layer.masksToBounds = YES;
-//        NSString * imgStr = [NSString stringWithFormat:@"HelpDeskUIResource.bundle/easemob@2x.png"];
-//        _icon.image = [UIImage imageNamed:imgStr];
-        _icon.image = [UIImage imageNamed:@"on.png"];
+        _icon.image = [UIImage imageNamed:@"icon_180@2x.png"];
         
     }
     return _icon;
@@ -246,7 +248,6 @@
     if (!_bgImageView) {
         _bgImageView=[[UIImageView alloc] init];
         _bgImageView.backgroundColor = [UIColor blackColor];
-//        _bgImageView.image = [UIImage imageNamed:@"111111"];
     }
     return _bgImageView;
 }
@@ -295,8 +296,9 @@
         _zoomBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_zoomBtn addTarget:self action:@selector(zoomClick:) forControlEvents:UIControlEventTouchUpInside];
         //为button赋值
-        [_zoomBtn setImage:[UIImage imageNamed:@"on.png"] forState:UIControlStateNormal];
-        _zoomBtn.backgroundColor = [UIColor whiteColor];
+       
+        UIImage * img = [UIImage imageWithIcon:kzoom  inFont:kfontName size:44 color:[UIColor whiteColor]];
+        [_zoomBtn setImage:img forState:UIControlStateNormal];
     }
     return _zoomBtn;
     
@@ -335,8 +337,6 @@
         if (error ==nil) {
         
             NSLog(@"====%@",responseObject);
-            
-         
             [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:_message];
 
         }
@@ -361,7 +361,9 @@
     
     // 点击这个修改 接通方式
     
-    self.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 84);
+    self.frame = CGRectMake(0, 22, [UIScreen mainScreen].bounds.size.width, 84);
+    self.layer.cornerRadius = 10;
+    self.layer.masksToBounds = YES;
     self.bgView.hidden = YES;
     
     // 添加小窗 接听view

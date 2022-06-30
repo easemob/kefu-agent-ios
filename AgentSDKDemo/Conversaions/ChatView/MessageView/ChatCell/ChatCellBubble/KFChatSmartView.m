@@ -159,7 +159,7 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
     MBProgressHUD *hud = [MBProgressHUD showMessag:@"加载中..." toView:self];
     __weak MBProgressHUD *weakHud = hud;
     
-    [[HDClient sharedClient].setManager kf_searchAnswerWithQuestion:question withSessionId:[NSString stringWithFormat:@"%ld",(long)_model.conversationId] withMsgId:_model.messageId completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].setManager kf_searchAnswerWithQuestion:question withSessionId:_model.sessionId withMsgId:_model.messageId completion:^(id responseObject, HDError *error) {
         [weakHud hideAnimated:YES];
 //        {"status":"OK","entities":[],"first":false,"last":true,"size":2,"number":1,"numberOfElements":0,"totalPages":0,"totalElements":0}
         NSLog(@"======%@",responseObject);
@@ -225,7 +225,7 @@ NSString *const kSmartRemoveViewTapEventName = @"kSmartRemoveViewTapEventName";
     MBProgressHUD *hud = [MBProgressHUD showMessag:@"加载中..." toView:self];
     __weak MBProgressHUD *weakHud = hud;
     
-    [[HDClient sharedClient].setManager kf_cacheAnswerWithQuestion:question withSessionId:[NSString stringWithFormat:@"%ld",(long)_model.conversationId] withMsgId:_model.messageId completion:^(id responseObject, HDError *error) {
+    [[HDClient sharedClient].setManager kf_cacheAnswerWithQuestion:question withSessionId:_model.sessionId withMsgId:_model.messageId completion:^(id responseObject, HDError *error) {
         [weakHud hideAnimated:YES];
 //        {"status":"OK","entities":[],"first":false,"last":true,"size":2,"number":1,"numberOfElements":0,"totalPages":0,"totalElements":0}
         NSLog(@"======%@",responseObject);

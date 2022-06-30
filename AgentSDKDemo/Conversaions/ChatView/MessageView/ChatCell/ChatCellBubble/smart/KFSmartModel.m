@@ -40,11 +40,15 @@ CGFloat const YMTopicCellTextY = 44;
         // 答案组
         _msgtype = HDSmartExtMsgTypeGroup;
     }
-    
 }
 
 -(CGFloat)cellHeight{
 
+    if ([KFSmartUtils isJsonString:self.answer]) {
+        
+        return 198;
+        
+    }else{
     // 文字的最大尺寸
     CGSize maxSize = CGSizeMake([UIScreen mainScreen].bounds.size.width - 2*YMTopicCellMargin, MAXFLOAT);
     // 计算文字的高度
@@ -53,7 +57,7 @@ CGFloat const YMTopicCellTextY = 44;
     _cellHeight = YMTopicCellTextY + textH + YMTopicCellMargin;
     
     return _cellHeight;
-    
+    }
 }
 
 @end

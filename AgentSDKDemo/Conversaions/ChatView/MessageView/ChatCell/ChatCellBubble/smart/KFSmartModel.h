@@ -15,7 +15,8 @@ typedef NS_ENUM(NSUInteger, HDSmartExtMsgType) {
     HDSmartExtMsgTypeImamge, //图片
     HDSmartExtMsgTypeText,   //文本
     HDSmartExtMsgTypearticle, //图文
-    HDSmartExtMsgTypeGroup // 答案组
+    HDSmartExtMsgTypeGroup, // 答案组
+    HDSmartExtMsgTypeHtml // html
 };
 @interface KFSmartModel : NSObject
 

@@ -136,6 +136,10 @@ NSString *const kRouterEventChatHeadImageTapEventName = @"kRouterEventChatHeadIm
                     
                     identifier = [identifier stringByAppendingString:@"videoPlayback"];
                 }
+                else if(type == HDExtMsgTypeHtml){
+                    
+                    identifier = [identifier stringByAppendingString:@"richtext"];
+                }
             }
                 break;
             case HDMessageBodyTypeImage:

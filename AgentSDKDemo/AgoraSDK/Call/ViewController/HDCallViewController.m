@@ -139,6 +139,7 @@ static HDCallViewController *_manger = nil;
     _manger=nil;
 
     [self cancelWindow];
+    [HLCallManager sharedInstance].isCalling = NO;
 }
 - (void)removeAllSubviews {
     while (_manger.alertWindow.subviews.count) {
@@ -175,6 +176,11 @@ static HDCallViewController *_manger = nil;
 //    NSLog(@"====%@",[VECClient sharedClient].sdkVersion);
   
     if (!isCalling) {
+         
+//        if (![message.sessionId isEqualToString:[HLCallManager sharedInstance].channel] ||![message.sessionId isEqualToString:[HLCallManager sharedInstance].agentCallId] ) {
+//            
+//            return;
+//        }
         self.nickname = [HDClient sharedClient].currentAgentUser.nicename;
         [HDAgoraCallManager shareInstance].message = message;
         //初始化 坐席加入房间参数
@@ -585,13 +591,17 @@ static HDCallViewController *_manger = nil;
 /// @param idx  当前点击cell 的index
 - (void)changeCallViewItem:(HDCallCollectionViewCellItem *)item withIndex:(NSInteger)idx{
     
-     //更新小窗口
-    [self updateSmallVideoView:item withIndex:idx];
-
-    //更新中间视频大窗口
-    [self updateBigVideoView];
-    
-   
+    if (_videoViews.count >0) {
+        //更新小窗口
+        [self updateSmallVideoView:item withIndex:idx];
+        //更新中间视频大窗口
+        [self updateBigVideoView];
+        
+    }else{
+        
+        [MBProgressHUD  dismissInfo:NSLocalizedString(@"访客加入进来才可切换窗口哦!", "访客加入进来才可切换窗口哦!") withWindow:self.alertWindow];
+        
+    }
 }
 /// 更新小视频窗口变成大窗口。把小窗口的 item 信息 给大窗口用。然后在把大窗口的item 信息给小窗切换
 -(void)updateSmallVideoView:(HDCallCollectionViewCellItem *)item withIndex:(NSInteger )idx{
@@ -871,6 +881,7 @@ static HDCallViewController *_manger = nil;
     [self setAcceptCallView];
     [self.hdTitleView startTimer];
     isCalling = YES;
+    [HLCallManager sharedInstance].isCalling = YES;
     [[HDAgoraCallManager shareInstance] acceptCallWithNickname:self.agentName
                                                         completion:^(id obj, HDError *error)
      {
@@ -907,6 +918,7 @@ static HDCallViewController *_manger = nil;
 /// @param sender button
 - (void)offBtnClicked:(UIButton *)sender{
     isCalling = NO;
+    [HLCallManager sharedInstance].isCalling = isCalling;
     [[HDAgoraCallManager shareInstance] endCall];
     //拒接事件 拒接关闭当前页面
     //挂断和拒接 都走这个

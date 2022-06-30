@@ -106,5 +106,9 @@
 #import "HDMasonry.h"
 #import "UIView+Kit.h"
 #import "MBProgressHUD.h"
-#import "KFVideoDetailModel.h" 
+#import "KFVideoDetailModel.h"
+#import "KFRingingCallModel.h"
+#import "UIImage+HDIconFont.h"
+#import "KFWebModel.h"
+#import "KFSmartUtils.h"
 #endif /* PrefixHeader_pch */

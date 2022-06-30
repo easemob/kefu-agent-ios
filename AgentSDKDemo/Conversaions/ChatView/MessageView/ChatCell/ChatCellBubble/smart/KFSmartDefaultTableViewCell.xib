@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -86,17 +85,25 @@
                                     <constraint firstItem="obF-15-xWX" firstAttribute="leading" secondItem="288-1z-lkd" secondAttribute="trailing" constant="10" id="ypy-Vb-Tff"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o5k-My-Nq3">
+                                <rect key="frame" x="48" y="5" width="319" height="28"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="fPa-Q3-jd8" firstAttribute="leading" secondItem="4tG-HX-blT" secondAttribute="leading" constant="20" id="0dv-AH-AMF"/>
                             <constraint firstItem="6Sq-2c-PXs" firstAttribute="leading" secondItem="fPa-Q3-jd8" secondAttribute="leading" id="AQf-w8-KLs"/>
+                            <constraint firstAttribute="trailing" secondItem="o5k-My-Nq3" secondAttribute="trailing" constant="10" id="CS7-MT-4sn"/>
                             <constraint firstItem="Mss-Nv-q3Z" firstAttribute="leading" secondItem="4tG-HX-blT" secondAttribute="leading" id="FYO-Gk-xYj"/>
                             <constraint firstAttribute="bottom" secondItem="Mss-Nv-q3Z" secondAttribute="bottom" id="KNR-Ki-rHA"/>
                             <constraint firstItem="JhQ-3G-w75" firstAttribute="leading" secondItem="fPa-Q3-jd8" secondAttribute="trailing" constant="10" id="MUB-YF-Laf"/>
                             <constraint firstAttribute="trailing" secondItem="JhQ-3G-w75" secondAttribute="trailing" id="P1Z-tV-acX"/>
                             <constraint firstItem="JhQ-3G-w75" firstAttribute="top" secondItem="fPa-Q3-jd8" secondAttribute="top" constant="1" id="P32-sH-LBK"/>
+                            <constraint firstItem="o5k-My-Nq3" firstAttribute="top" secondItem="fPa-Q3-jd8" secondAttribute="top" id="UvB-yT-XSr"/>
                             <constraint firstItem="fPa-Q3-jd8" firstAttribute="top" secondItem="4tG-HX-blT" secondAttribute="top" constant="5" id="mAJ-zJ-df4"/>
+                            <constraint firstItem="Mss-Nv-q3Z" firstAttribute="top" secondItem="o5k-My-Nq3" secondAttribute="bottom" constant="10" id="uTC-Rc-VoI"/>
+                            <constraint firstItem="o5k-My-Nq3" firstAttribute="leading" secondItem="fPa-Q3-jd8" secondAttribute="trailing" constant="10" id="wl9-hf-3bo"/>
                             <constraint firstAttribute="trailing" secondItem="Mss-Nv-q3Z" secondAttribute="trailing" id="xle-uQ-PU2"/>
                         </constraints>
                     </view>
@@ -111,6 +118,7 @@
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="answerLabel" destination="JhQ-3G-w75" id="Mww-Uq-FtR"/>
+                <outlet property="htmlView" destination="o5k-My-Nq3" id="8Oi-ed-ULQ"/>
                 <outlet property="iconImage" destination="fPa-Q3-jd8" id="PvQ-Lv-G8k"/>
                 <outlet property="knowledgeLabel" destination="6Sq-2c-PXs" id="rZ1-Qn-ES3"/>
                 <outlet property="labelCopy" destination="xeu-24-Zd4" id="bGB-Mh-0pT"/>

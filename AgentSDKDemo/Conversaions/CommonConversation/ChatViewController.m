@@ -164,6 +164,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self.headview refreshHeaderView];
     
+    [self onAgoraCallRingingcalls];
     
     [[HDClient sharedClient].setManager kf_getCooperationWithPatternCompletion:^(id responseObject, HDError *error) {
         
@@ -205,6 +206,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
    
     [[NSNotificationCenter defaultCenter] removeObserver:self name:HDCALL_videoPlayback_end object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayback:) name:HDCALL_videoPlayback_end object:nil];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:HDSmart_HTML_Height object:nil];
 }
 
 - (void)viewDidLoad {
@@ -700,12 +703,22 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     return _messageReadManager;
 }
+
+//-(void)reloadTableView{
+//
+//    [self.tableView reloadData];
+//}
+
 #pragma mark - HDChatManagerDelegate
 - (void)messagesDidReceive:(NSArray *)aMessages {
     for (HDMessage *msg in aMessages) {
         if (![_conversationModel.sessionId isEqualToString:msg.sessionId]) {
             return;
         }
+        if (msg.nBody.type == HDMessageBodyTypeCommand) {
+            return;
+        }
+        
         [self markAsRead];
         [self addMessage:msg];
         [self downloadVoice:msg];
@@ -1051,9 +1064,24 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
        // 如果通知回来 在这个地方处理。现在后台没有做移动的 所以还不知道如何回来
         [self updateMessageWithMessage:aMessage];
-    }];
-}
 
+    }];
+    
+
+}
+- (HDMessage *)createVisitorCallMessage{
+    
+    HDMessage * message = [[HDMessage alloc] init];
+    message.sessionId =_conversationModel.sessionId;
+    HDChatUser *fromUser= [[HDChatUser alloc] init];
+    fromUser.nicename =_conversationModel.chatter.nicename;
+    fromUser.tenantId = [_conversationModel.chatter.tenantId integerValue];
+    message.fromUser = fromUser;
+    message.from = _conversationModel.chatter.agentId;
+    message.to = [HDClient sharedClient].currentAgentUser.agentId;
+
+    return message;
+}
 - (void)messagesLiveStreamInvitationDidReceive:(HDMessage *)aMessage{
     
     // 调用通行证接口
@@ -1069,7 +1097,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             NSLog(@"====%@",responseObject);
             
          
-            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:aMessage];
+            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:[self createVisitorCallMessage]];
 
         }
         
@@ -1078,7 +1106,53 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }];
     
 }
-
+//获取坐席未接视频通话
+- (void)onAgoraCallRingingcalls{
+    
+    
+    NSLog(@"====%@", _conversationModel.sessionId);
+    
+    [[HLCallManager sharedInstance] getCurrentringingCallsCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        NSLog(@"====%@",responseObject);
+        if (error==nil) {
+            
+            NSDictionary * dic =responseObject;
+            
+            if ([[dic allKeys] containsObject:@"entities"] && [[dic objectForKey:@"entities"] isKindOfClass:[NSArray class]]) {
+            
+                NSArray * array = [dic objectForKey:@"entities"];
+                NSArray * ringingcalls = [NSArray yy_modelArrayWithClass:[KFVideoDetailAllModel class] json:array];
+                
+                if (ringingcalls.count > 0) {
+                  
+                    [ringingcalls enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                         
+                        KFVideoDetailAllModel * model = obj;
+                        
+                        if ([model.channelName isEqualToString:_conversationModel.sessionId]) {
+                            
+                            if (model.callDetails.count > 0) {
+                                // 说明有 需要弹视频窗口
+                                NSDictionary *callDetail = [model.callDetails lastObject];
+                                KFRingingCallModel *model = [KFRingingCallModel yy_modelWithDictionary:callDetail];
+                                
+                                if (model) {
+                                  // 创建视频
+                                    [HLCallManager sharedInstance].agentCallId = model.callId;
+//                                    [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object: [self createVisitorCallMessage]];
+                                    
+                                    [self onAgoraCallReceivedNickName:model.fromUserNiceName];
+                                }  
+                            }
+                        }
+                    }];
+                }
+            }
+        }
+    }];
+    
+}
 - (void)onAgoraCallReceivedNickName:(NSString *)nickName{
    
     // 调用通行证接口
@@ -1091,9 +1165,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         if (error ==nil) {
         
             NSLog(@"====%@",responseObject);
-            
-         
-            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:_conversationModel.lastMessage];
+        
+            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:[self createVisitorCallMessage]];
 
         }
         

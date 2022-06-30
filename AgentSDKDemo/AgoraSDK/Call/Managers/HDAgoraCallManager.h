@@ -27,6 +27,8 @@ static void *KVOContext = &KVOContext;
 @property (nonatomic, strong) NSArray *recordDetails;
 @property (nonatomic, strong) UserModel *chatter;
 
+@property (nonatomic, assign) BOOL isSender;
+
 + (instancetype _Nullable )shareInstance;
 /*!
  *  \~chinese
