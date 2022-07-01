@@ -1335,8 +1335,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         HDFormItem *item = [userInfo objectForKey:KMESSAGEKEY];
         [self chatFormCcellBubblePressed:item];
     }else if ([eventName isEqualToString:kRouterEventVideoDetailBubbleTapEventName]) {
-        KFVideoObjModel *obj = [userInfo objectForKey:KMESSAGEKEY];
-        [self chatVideoPlayBack:obj];
+       
+        [self chatVideoPlayBack:model];
     }
     else if ([eventName isEqualToString:kRouterEventVideoBubbleTapEventName]) {
         HDVideoMessageBody *body = (HDVideoMessageBody *)model.nBody;
@@ -1368,35 +1368,58 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 
 // 视频通话结束后 看录像用的
-- (void)chatVideoPlayBack:(KFVideoObjModel *)model {
+- (void)chatVideoPlayBack:(HDMessage *)message {
     
-    // 调用接口
-    [[HLCallManager sharedInstance] getCurrentCallDetailsCallId:model.callId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-           
+    if ([HDUtils isVideoPlaybackMessage:message.nBody.msgExt]) {
         
-        //responseObject
-        if (error == nil) {
-            
-//            NSMutableArray * tmp= [NSMutableArray new];
-            
-         NSArray * dataArray =  [[HLCallManager sharedInstance] getVideoPlayBackVideoDetails];
-            
-            NSArray*  tmp = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:dataArray];
-            
-            
-            NSLog(@"=====%@",responseObject);
-            
-            KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
-            vc.currentModel = [tmp firstObject];
-//            vc.recordVideos = tmp;
-            vc.callId = vc.currentModel.callId;
-            vc.conversationModel = _conversationModel;
-            [self.navigationController pushViewController:vc animated:YES];
-            
-        }
-      
+        NSDictionary *msgtype = [message.nBody.msgExt valueForKey:@"msgtype"];
+        
+        NSDictionary *videoPlayback =  [msgtype valueForKey:@"videoPlayback"];
+        NSDictionary *videoObj =  [videoPlayback valueForKey:@"videoObj"];
+        
+        KFVideoObjModel *model = [KFVideoObjModel yy_modelWithDictionary:videoObj];
+        
+        NSLog(@"=======%@",model.yy_modelToJSONString);
+        if (model) {
+            // 调用接口
+            [[HLCallManager sharedInstance] getCurrentCallDetailsCallId:model.callId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+                   
+                
+                //responseObject
+                if (error == nil) {
+                    
+        //            NSMutableArray * tmp= [NSMutableArray new];
+                    
+                 NSArray * dataArray =  [[HLCallManager sharedInstance] getVideoPlayBackVideoDetails];
+                    
+                    NSArray*  tmp = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:dataArray];
+                    
+                    
+                    NSLog(@"=====%@",responseObject);
+                    
+                    KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
+                    vc.currentModel = [tmp firstObject];
+        //            vc.recordVideos = tmp;
+                    vc.callId = vc.currentModel.callId;
+                    vc.conversationModel = _conversationModel;
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    
+                    [self showHint:[NSString stringWithFormat:@"%@",error.errorDescription] duration:2];
+                }
+              
 
-    }];
+            }];
+        }
+       
+    }else{
+        
+        [self showHint:[NSString stringWithFormat:@"%@",message.yy_modelToJSONString] duration:2];
+        
+    }
+    
+  
 }
 
 - (void)chatFormCcellBubblePressed:(HDFormItem *)form {

@@ -24,8 +24,8 @@ __func__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8Strin
 @property (nonatomic, strong) KFVideoDetailModel * currentModel;
 @property (nonatomic, strong) HDConversation * conversationModel;
 
-@property (nonatomic, strong) KJAVPlayer *player;
-@property (nonatomic, strong) KJBasePlayerView *basePlayerView;
+//@property (nonatomic, strong) KJAVPlayer *player;
+//@property (nonatomic, strong) KJBasePlayerView *basePlayerView;
 @property (nonatomic, strong) UISlider *slider;
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) UILabel *label3;

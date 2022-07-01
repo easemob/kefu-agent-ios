@@ -13,6 +13,10 @@ NSString *const kRouterEventVideoDetailBubbleTapEventName = @"kRouterEventVideoD
 
 #import "HDChatVideoDetailBubbleView.h"
 @interface HDChatVideoDetailBubbleView ()
+{
+    HDMessage *_model;
+  
+}
 @property (nonatomic, strong) UILabel *nameLabel;
 @property (nonatomic, strong) UILabel *sizeLabel;
 @property (nonatomic, strong) UIImageView *imageView;
@@ -94,7 +98,7 @@ NSString *const kRouterEventVideoDetailBubbleTapEventName = @"kRouterEventVideoD
 {
     [super setModel:model];
     
-   
+    _model = model;
     [self getVideoPlayback:model];
 }
 
@@ -149,7 +153,7 @@ NSString *const kRouterEventVideoDetailBubbleTapEventName = @"kRouterEventVideoD
 -(void)bubbleViewPressed:(id)sender
 {
     [self routerEventWithName:kRouterEventVideoDetailBubbleTapEventName
-                     userInfo:@{KMESSAGEKEY:self.videoObj}];
+                     userInfo:@{KMESSAGEKEY:_model}];
 }
 
 +(CGFloat)heightForBubbleWithObject:(HDMessage *)object

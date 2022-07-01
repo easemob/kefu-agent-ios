@@ -171,12 +171,22 @@
    
     return NO;
 }
+//+ (BOOL)isJsonString:(NSString *)jsonString{
+//    if (jsonString.length < 2) return NO;
+//    if (!([jsonString hasPrefix:@"{"] || [jsonString hasPrefix:@"["])) return NO;
+//    // {:123  }:125  [: 91  ]:93
+//    return [jsonString characterAtIndex:jsonString.length-1]-[jsonString characterAtIndex:0] == 2;
+//}
+
 + (BOOL)isJsonString:(NSString *)jsonString{
-    if (jsonString.length < 2) return NO;
-    if (!([jsonString hasPrefix:@"{"] || [jsonString hasPrefix:@"["])) return NO;
-    // {:123  }:125  [: 91  ]:93
-    return [jsonString characterAtIndex:jsonString.length-1]-[jsonString characterAtIndex:0] == 2;
+   
+    if ([jsonString containsString:@"content"]) {
+        
+        return YES;
+    }
+    return NO;
 }
+
 
 + (id)jsonToObj:(NSString *)jsonString{
     if (![self isJsonString:jsonString]) return nil;
