@@ -13,6 +13,7 @@
 @interface KFAnswerView()
 {
     HDMessage * _message;
+    KFRingingCallModel * _ringingCallModel;
 }
 @end
 
@@ -54,9 +55,11 @@
   
    
 }
-- (void)setMesage:(HDMessage *)message{
+- (void)setMesage:(HDMessage *)message withRingCall:(KFRingingCallModel *)ringingCallModel{
     
+
     _message = message;
+    _ringingCallModel = ringingCallModel;
     
     // 获取 username。如果 username 没有 显示 nicename
     
@@ -68,8 +71,6 @@
         self.titleLabel.text = bd.text;
     }
    
-
-    
 }
 - (void)playSoundCustom{
     
@@ -332,7 +333,7 @@
     
     [self stopSoundCustom];
     // 调用通行证接口
-    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:[HLCallManager sharedInstance].callId withSessionId: _message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:_ringingCallModel.callId withSessionId: _message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         if (error ==nil) {
         
@@ -348,12 +349,8 @@
     
 }
 - (void)offClick:(UIButton *)sender{
-    
-    // 发通知
-    
     //停止铃声 关闭界面  发送 cmd 通知
     [self stopSoundCustom];
-    
     [self removeFromSuperview];
     
 }

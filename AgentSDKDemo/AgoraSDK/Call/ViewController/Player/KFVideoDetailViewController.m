@@ -173,7 +173,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = PLAYER_UIColorFromHEXA(0xf5f5f5, 1);
-
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionAllowBluetooth error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
   
     self.pVC = [AVPlayerViewController new];
     

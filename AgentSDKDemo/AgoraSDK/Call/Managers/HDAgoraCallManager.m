@@ -69,6 +69,8 @@ static HDAgoraCallManager *shareCall = nil;
     });
     return shareCall;
 }
+
+
 #pragma mark - base
 - (instancetype)init {
     self = [super init];
@@ -227,7 +229,7 @@ static HDAgoraCallManager *shareCall = nil;
     [_members removeAllObjects];
     //结束录制
     [self endRecord];
-    [HLCallManager sharedInstance].isCalling = NO;
+    [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
 }
 - (void)joinChannel{
     [self hd_joinChannelByToken:[HDAgoraCallManager shareInstance].keyCenter.agoraToken channelId:[HDAgoraCallManager shareInstance].keyCenter.agoraChannel info:nil uid:[[HDAgoraCallManager shareInstance].keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {

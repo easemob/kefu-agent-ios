@@ -28,7 +28,7 @@ static void *KVOContext = &KVOContext;
 @property (nonatomic, strong) UserModel *chatter;
 
 @property (nonatomic, assign) BOOL isSender;
-
+@property (nonatomic, assign) BOOL isCurrentCalling; // 当前是不是 正在呼叫
 + (instancetype _Nullable )shareInstance;
 /*!
  *  \~chinese

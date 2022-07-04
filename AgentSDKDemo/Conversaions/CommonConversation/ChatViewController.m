@@ -1050,10 +1050,14 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 /// @param moreView  moreView
 - (void)moreViewVideoAction:(DXChatBarMoreView *)moreView
 {
+    if ([HDAgoraCallManager shareInstance].isCurrentCalling) {
+        
+        [self showHint:@"当前正在通话中" duration:2];
+        
+        return;
+    }
     //创建 声网房间入口
     [self sendVideoTextMessage:@"邀请访客进行视频"];
-//    [self moreViewVideoDetailAction:moreView];
-
 
 }
 - (void)sendVideoTextMessage:(NSString *)text{

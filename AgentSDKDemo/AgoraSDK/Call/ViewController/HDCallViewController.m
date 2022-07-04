@@ -133,13 +133,11 @@ static HDCallViewController *_manger = nil;
     /**只有置成0，GCD才会认为它从未执行过。它默认为0。
      这样才能保证下次再次调用sharedManager的时候，再次创建对象。*/
     onceToken= 0;
-
     [_manger removeAllSubviews];
     _manger.alertWindow = nil;
     _manger=nil;
-
     [self cancelWindow];
-    [HLCallManager sharedInstance].isCalling = NO;
+    [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
 }
 - (void)removeAllSubviews {
     while (_manger.alertWindow.subviews.count) {
@@ -881,7 +879,7 @@ static HDCallViewController *_manger = nil;
     [self setAcceptCallView];
     [self.hdTitleView startTimer];
     isCalling = YES;
-    [HLCallManager sharedInstance].isCalling = YES;
+//    [HLCallManager sharedInstance].isCalling = YES;
     [[HDAgoraCallManager shareInstance] acceptCallWithNickname:self.agentName
                                                         completion:^(id obj, HDError *error)
      {
@@ -918,7 +916,6 @@ static HDCallViewController *_manger = nil;
 /// @param sender button
 - (void)offBtnClicked:(UIButton *)sender{
     isCalling = NO;
-    [HLCallManager sharedInstance].isCalling = isCalling;
     [[HDAgoraCallManager shareInstance] endCall];
     //拒接事件 拒接关闭当前页面
     //挂断和拒接 都走这个

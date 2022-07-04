@@ -699,17 +699,21 @@ static HomeViewController *homeViewController;
         }else if(type == HDExtMsgTypeVisitorCancelInvitation) {
             //访客取消邀请
             
-            // 来电铃
-            [self.kfAnswerView stopSoundCustom];
+            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
+                    // 来电铃
+                    [self.kfAnswerView stopSoundCustom];
+                    [self.kfAnswerView removeFromSuperview];
+                    self.kfAnswerView = nil;
+            }
             
-            [self.kfAnswerView removeFromSuperview];
-            self.kfAnswerView = nil;
-           
         }else if(type == HDExtMsgTypeVisitorRejectInvitation) {
             //访客拒绝邀请  关闭当前页面 离开房间
-            [[HDAgoraCallManager shareInstance] leaveChannel];
-            [[HDCallViewController sharedManager]  removeView];
-            [[HDCallViewController sharedManager] removeSharedManager];
+            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
+                [[HDAgoraCallManager shareInstance] leaveChannel];
+                [[HDCallViewController sharedManager]  removeView];
+                [[HDCallViewController sharedManager] removeSharedManager];
+            }
+           
            
         }
     }
@@ -717,13 +721,97 @@ static HomeViewController *homeViewController;
 
 - (void)onAgoraCallReceivedNickName:(HDMessage *)message{
     
-    [self.kfAnswerView setMesage:message];
+    // 收到消息 调用接口 从接口里边获取callid 加入房间
+    [HDLog logI:@"收到消息 调用接口 从接口里边获取callid 加入房间 =%@",message.sessionId];
+    if ([HDAgoraCallManager shareInstance].isCurrentCalling) {
+       
+        [HDLog logI:@"当前正在通话中 不进行 新的访客弹窗"];
+        return;
+    }
+    [HDAgoraCallManager shareInstance].isCurrentCalling = YES;
+    [HDLog logI:@"当前没有通话进行新的访客弹窗 =%d",[HDAgoraCallManager shareInstance].isCurrentCalling];
     
-    // 创建接听界面
-    [[UIApplication sharedApplication].keyWindow addSubview:self.kfAnswerView];
+    //创建
+//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
     
-    [self.kfAnswerView playSoundCustom];
-   
+    [[HLCallManager sharedInstance] getCurrentringingCallsCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+
+        NSLog(@"====%@",responseObject);
+        
+        if (error == nil) {
+            
+            //显示界面
+            NSDictionary * dic =responseObject;
+            
+            if ([[dic allKeys] containsObject:@"entities"] && [[dic objectForKey:@"entities"] isKindOfClass:[NSArray class]]) {
+            
+                NSArray * array = [dic objectForKey:@"entities"];
+                NSArray * ringingcalls = [NSArray yy_modelArrayWithClass:[KFVideoDetailAllModel class] json:array];
+                
+                if (ringingcalls.count > 0) {
+                  
+                    NSMutableArray *sessionIds = [[NSMutableArray alloc] init];
+                    [ringingcalls enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                         
+                        KFVideoDetailAllModel * model = obj;
+                        NSLog(@"==11111 - 22222==%@",message.sessionId);
+                        [sessionIds addObject:model.channelName];
+                        if ([model.channelName isEqualToString:message.sessionId]) {
+                            
+                            if (model.callDetails.count > 0) {
+                                // 说明有 需要弹视频窗口
+                                NSDictionary *callDetail = [model.callDetails lastObject];
+                                KFRingingCallModel *model = [KFRingingCallModel yy_modelWithDictionary:callDetail];
+                                
+                                if (model) {
+                                  // 创建视频
+                                    //成功拿到token，发送信号量:
+//                                    dispatch_semaphore_signal(semaphore);
+                                    
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                //        UI更新代码
+                                        [self.kfAnswerView setMesage:message withRingCall:model];
+                                        // 创建接听界面
+                                        [[UIApplication sharedApplication].keyWindow addSubview:self.kfAnswerView];
+                                        [self.kfAnswerView playSoundCustom];
+                                        
+                                    });
+                                }else{
+                                    
+                                    [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
+                                }
+                            }else{
+                                
+//                                [HDAgoraCallManager shareInstance].sessionId = @"";
+                                [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
+                                
+                            }
+                        }
+                    }];
+                    
+                    BOOL isbool = [sessionIds containsObject:message.sessionId];
+
+                    if (!isbool) {
+                        // 如果不包含 允许下一个 请求进来
+//                        [HDAgoraCallManager shareInstance].sessionId = @"";
+                        [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
+                    }
+                    
+                }else{
+//                    [HDAgoraCallManager shareInstance].sessionId = @"";
+                    [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
+                }
+            }
+        }else{
+            
+//            [HDAgoraCallManager shareInstance].sessionId = @"";
+            
+            [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
+            
+        }
+    }];
+//
 }
 - (KFAnswerView *)kfAnswerView{
     
