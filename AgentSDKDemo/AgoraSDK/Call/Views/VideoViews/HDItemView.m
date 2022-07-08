@@ -66,7 +66,8 @@
         //为button赋值
         _nickNameBtn.backgroundColor = [[HDAppSkin mainSkin] contentColorBlockalpha:0.65];
         _nickNameBtn.titleLabel.textAlignment=NSTextAlignmentLeft;
-        _nickNameBtn.titleLabel.numberOfLines = 0;
+        _nickNameBtn.titleLabel.numberOfLines = 1;
+        _nickNameBtn.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _nickNameBtn.layer.cornerRadius = 14;
         _nickNameBtn.layer.masksToBounds = YES;
 //        _nickNameBtn.alpha = 0.65;
@@ -80,11 +81,20 @@
     
     [self.nickNameBtn setTitle:str forState:UIControlStateNormal];
     CGFloat with = [self setTextWidth:str];
+    CGFloat  w= [UIScreen mainScreen].bounds.size.width * 0.8;
     [self.nickNameBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self);
         make.centerX.mas_equalTo(self);
-        make.width.offset(with);
+    
+        if (with > w) {
+            make.width.offset(w);
+        }else{
+            make.width.offset(with);
+        }
     }];
+    
+  
+    
 }
 
 

@@ -27,7 +27,8 @@
 #define kLocalUid 1111111 //设置真实的本地的uid
 #define kLocalWhiteBoardUid 222222 //设置虚拟白板uid
 #define kCamViewTag 100001
-#define kScreenShareExtensionBundleId @"com.easemob.enterprise.demo.customer.shareWindow"
+#define kScreenShareExtensionBundleId @"com.easemob.enterprise.demo.kefuapp.AgentSDKDemoShareExtension"
+
 #define kNotificationShareWindow kScreenShareExtensionBundleId
 #define kPointHeight [UIScreen mainScreen].bounds.size.width *0.9
 
@@ -95,6 +96,8 @@
 @property (nonatomic, assign) BOOL  isSmallWindow;//当前是不是 半屏模式
 @property (nonatomic, strong) UIWindow *customWindow;
 @property (nonatomic, strong) HDSuspendCustomView *hdSupendCustomView;
+
+
 @end
 static dispatch_once_t onceToken;
  
@@ -184,6 +187,7 @@ static HDCallViewController *_manger = nil;
         //初始化 坐席加入房间参数
         [[HDAgoraCallManager shareInstance] createTicketDidReceiveAgoraInit];
         self.agentName = message.fromUser.nicename;
+//        self.agentName = @"hfiu12ededewfewfewfewfewfcewcdcwecewcewcewcewewcewcewcewcewcewcwcwweewwwwwwww";
         [self anwersBtnClicked:nil];
         
 //
@@ -237,8 +241,7 @@ static HDCallViewController *_manger = nil;
 
     self.view.backgroundColor = [[HDAppSkin mainSkin] contentColorBlockalpha:0.6];
     [self.view hideKeyBoard];
-    //初始化灰度管理
-    [[HDCallManager shareInstance] initGray];
+   
     self.isShow = YES;
     _cameraState = YES;
     
@@ -480,8 +483,8 @@ static HDCallViewController *_manger = nil;
     [self.parentView addSubview:self.itemView];
     [self.itemView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.barView.mas_top).offset(-5);
-        make.leading.offset(0);
-        make.trailing.offset(0);
+        make.leading.offset(5);
+        make.trailing.offset(-5);
         make.height.offset(44);
         
     }];
@@ -588,6 +591,13 @@ static HDCallViewController *_manger = nil;
 /// @param item  cell 里边的model
 /// @param idx  当前点击cell 的index
 - (void)changeCallViewItem:(HDCallCollectionViewCellItem *)item withIndex:(NSInteger)idx{
+    
+    
+    if (_shareState) {
+        //当前正在共享
+        [MBProgressHUD  dismissInfo:NSLocalizedString(@"当前正在共享中", "当前正在共享中") withWindow:self.alertWindow];
+        return;
+    }
     
     if (_videoViews.count >0) {
         //更新小窗口
@@ -764,6 +774,7 @@ static HDCallViewController *_manger = nil;
 - (HDItemView *)itemView{
     if (!_itemView) {
         _itemView = [[HDItemView alloc]init];
+//        _itemView.backgroundColor = [UIColor redColor];
      }
      return _itemView;
 }
@@ -1531,6 +1542,7 @@ static HDCallViewController *_manger = nil;
    
     //通过UserDefaults建立数据通道
     [self setupUserDefaults];
+    
     for (UIView *view in _broadPickerView.subviews)
     {
         if ([view isKindOfClass:[UIButton class]])
@@ -1538,6 +1550,12 @@ static HDCallViewController *_manger = nil;
             //调起录像方法，UIControlEventTouchUpInside的方法看其他文章用的是UIControlEventTouchDown，
             //我使用时用UIControlEventTouchUpInside用好使，看个人情况决定
             [(UIButton*)view sendActionsForControlEvents:UIControlEventTouchUpInside];
+
+
+            int success=  [[HDAgoraCallManager shareInstance].agoraKit startScreenCapture:[HDAgoraCallManager shareInstance].screenCaptureParams];
+            
+            NSLog(@"=====%d",success);
+
         }
     }
     NSLog(@"点击了屏幕共享事件");
@@ -1729,8 +1747,8 @@ void NotificationCallback(CFNotificationCenterRef center,
     
     [self.itemView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(0);
-        make.leading.offset(0);
-        make.trailing.offset(0);
+        make.leading.offset(5);
+        make.trailing.offset(-5);
         make.height.offset(44);
 
     }];
@@ -1772,8 +1790,8 @@ void NotificationCallback(CFNotificationCenterRef center,
     
     [self.itemView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.barView.mas_top).offset(-5);
-        make.leading.offset(0);
-        make.trailing.offset(0);
+        make.leading.offset(5);
+        make.trailing.offset(-5);
         make.height.offset(44);
 
     }];

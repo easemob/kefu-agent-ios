@@ -70,7 +70,12 @@
         
         self.titleLabel.text = bd.text;
     }
+//    "type": "rtcmedia\/video",
+    
+
    
+    
+    
 }
 - (void)playSoundCustom{
     
@@ -155,6 +160,25 @@
 //    }];
     
 }
+
+- (void)hd_alertView:(NSString *)info{
+    
+        UIAlertController * alertController = [UIAlertController alertControllerWithTitle:@"提示" message:info preferredStyle:UIAlertControllerStyleAlert];
+    
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    
+            [self stopSoundCustom];
+            [self removeFromSuperview];
+    
+        }];
+    
+        [alertController addAction:okAction];
+    
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    
+    
+}
+
 - (void)hd_smallViewLayout{
     
     [self.zoomView mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -332,6 +356,9 @@
     }
     
     [self stopSoundCustom];
+    //初始化灰度管理
+    [[HDCallManager shareInstance] initGray];
+    
     // 调用通行证接口
     [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:_ringingCallModel.callId withSessionId: _message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
@@ -340,6 +367,12 @@
             NSLog(@"====%@",responseObject);
             [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:_message];
 
+        }else{
+            
+            // 调用通行证失败 关闭界面
+            [self  hd_alertView:error.errorDescription];
+            
+            
         }
         
         

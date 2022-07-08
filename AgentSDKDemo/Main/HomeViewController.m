@@ -678,13 +678,21 @@ static HomeViewController *homeViewController;
 }
 
 -(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
-    
+    if (![HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
+
+        return;
+    }
     for (HDMessage *msg in aMessages) {
     
         // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
         // 访客邀请坐席
         // 获取sessionid
-
+        if ([[msg.nBody.msgExt allKeys] containsObject:@"type"]) {
+            NSString * type = [msg.nBody.msgExt valueForKey:@"type"];
+            if ([type isEqualToString:@"rtcmedia/video"]) {
+                return;
+            }
+        }
         HDExtMsgType type = [HDUtils getMessageExtType:msg];
         
         if (type == HDExtMsgTypeGeneral) {
@@ -701,9 +709,12 @@ static HomeViewController *homeViewController;
             
             if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
                     // 来电铃
+                if (self.kfAnswerView) {
                     [self.kfAnswerView stopSoundCustom];
                     [self.kfAnswerView removeFromSuperview];
                     self.kfAnswerView = nil;
+                }
+                  
             }
             
         }else if(type == HDExtMsgTypeVisitorRejectInvitation) {

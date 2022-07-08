@@ -16,7 +16,7 @@
 #define kAPPid  @"74855635d3a64920b0c7ee3684f68a9f";
 #define kChannelName @"huanxin"
 
-#define kForService @"com.easemob.enterprise.demo.customer.ScreenShare"
+#define kForService @"com.easemob.enterprise.demo.kefuapp.AgentSDKDemoShareExtension"
 #define kSaveAgoraToken @"call_agoraToken"
 #define kSaveAgoraChannel @"call_agoraChannel"
 #define kSaveAgoraAppID @"call_agoraAppid"
@@ -764,5 +764,21 @@ static HDAgoraCallManager *shareCall = nil;
     
     [[HLCallManager sharedInstance] getAllVideoDetailsSession:sessionId completion:aCompletion];
     
+}
+- (AgoraScreenCaptureParameters2 *)screenCaptureParams{
+    
+    if (!_screenCaptureParams) {
+        _screenCaptureParams = [[AgoraScreenCaptureParameters2 alloc] init];
+        _screenCaptureParams.captureAudio = YES;
+        _screenCaptureParams.captureVideo = YES;
+       
+       AgoraScreenVideoParameters *videoParams = [[AgoraScreenVideoParameters alloc] init];
+       videoParams.dimensions = CGSizeMake(1920, 1080);
+        videoParams.frameRate = 30;
+      _screenCaptureParams.videoParams = videoParams;
+    
+    }
+    
+    return _screenCaptureParams;
 }
 @end
