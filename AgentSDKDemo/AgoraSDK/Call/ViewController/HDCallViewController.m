@@ -331,12 +331,12 @@ static HDCallViewController *_manger = nil;
     
     HDGrayModel * grayModelWhiteBoard =  [[HDCallManager shareInstance] getGrayName:@"whiteBoard"];
     HDGrayModel * grayModelShare =  [[HDCallManager shareInstance] getGrayName:@"shareDesktop"];
-    if (grayModelShare.enable) {
-        [selImageArr addObject:barModel3];
-    }
-    if (grayModelWhiteBoard.enable) {
-        [selImageArr addObject:barModel4];
-    }
+//    if (grayModelShare.enable) {
+//        [selImageArr addObject:barModel3];
+//    }
+//    if (grayModelWhiteBoard.enable) {
+//        [selImageArr addObject:barModel4];
+//    }
 
    [self.barView hd_buttonFromArrBarModels:selImageArr view:self.barView withButtonType:HDControlBarButtonStyleVideo] ;
     

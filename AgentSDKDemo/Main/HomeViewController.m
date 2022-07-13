@@ -706,7 +706,6 @@ static HomeViewController *homeViewController;
             
         }else if(type == HDExtMsgTypeVisitorCancelInvitation) {
             //访客取消邀请
-            
             if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
                     // 来电铃
                 if (self.kfAnswerView) {
