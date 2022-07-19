@@ -26,8 +26,9 @@
 }
 
 @property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) EMSearchDisplayController *searchController;
+//@property (nonatomic, strong) EMSearchDisplayController *searchController;
 @property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
+@property (nonatomic, strong) NSMutableDictionary *searchDataSourceDic;
 
 @property (nonatomic, strong) SRRefreshView *slimeView;
 
@@ -35,7 +36,8 @@
 @property (nonatomic, strong) UIView *selectView;
 @property (nonatomic, strong) UIButton *infoButton;
 @property (nonatomic, strong) UIButton *tagButton;
-
+@property (nonatomic,strong) UIView * searchView;
+//@property (nonatomic, strong) UISearchBar *searchBar;
 @property (nonatomic, strong) JNGroupViewController *jn;
 
 @end
@@ -70,6 +72,7 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self.tableView addSubview:self.slimeView];
+
     
     [self loadData];
     self.title = @"选择转接客服";
@@ -82,7 +85,9 @@
     _jn = [[JNGroupViewController alloc] init];
     _jn.serviceSessionId = _conversation.sessionId;
     _jn.tableView.top = self.headerButtonView.height;
-    _jn.tableView.height -= self.headerButtonView.height - 20;
+//    _jn.tableView.height -= self.headerButtonView.height - 20;
+    _jn.tableView.height = self.tableView.frame.size.height;
+    _jn.tableView.width = KScreenWidth;
     _jn.view.left = KScreenWidth;
     _jn.delegate = self;
     [self.view addSubview:_jn.view];
@@ -182,6 +187,61 @@
 }
 */
 
+// called when keyboard search button pressed
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+//
+//    NSLog(@"====%@",searchBar.text);
+//
+//    [self kf_searchQuestion:searchBar.text];
+//
+//}
+- (void)kf_searchQuestion:(NSString *)question{
+    
+    // 从 缓存数组里获取
+    
+   
+    
+    
+    
+}
+- (UIView *)searchView{
+    if (!_searchView) {
+        _searchView = [[UIView alloc ]init];
+//        _searchView.backgroundColor = [UIColor redColor];
+        [_searchView addSubview:self.searchBar];
+        [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(0);
+            make.leading.offset(20);
+            make.trailing.offset(-20);
+            make.bottom.offset(-0);
+        }];
+    }
+    return _searchView;
+}
+
+- (UISearchBar *)searchBar{
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] init];
+        _searchBar.backgroundColor = [UIColor grayColor];
+        _searchBar.delegate = self;
+        [_searchBar setSearchBarStyle:UISearchBarStyleMinimal];
+        _searchBar.placeholder = @"搜索";
+        UITextField *searTextField;
+        if (@available(iOS 13.0, *)) {
+            searTextField =_searchBar.searchTextField;
+        } else {
+            // Fallback on earlier versions
+            searTextField =[_searchBar valueForKey:@"_searchField"];
+        }
+        searTextField.font = [UIFont systemFontOfSize:16];
+        _searchBar.layer.cornerRadius = 8;
+        _searchBar.layer.masksToBounds = YES;
+        searTextField.textColor = [UIColor lightGrayColor];
+       
+    }
+    
+    return _searchBar;
+}
 #pragma mark - private
 
 #pragma mark - action
@@ -254,6 +314,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.dataSource count];
 }
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    
+//    
+//    return 44;
+//    
+//    
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    
+//    
+//    return self.searchView;
+//    
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DXTableViewCellType1 *cell = [tableView dequeueReusableCellWithIdentifier:@"CellType1"];
@@ -365,33 +439,34 @@
 
 #pragma mark - UISearchBarDelegate
 
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    [searchBar setShowsCancelButton:YES animated:YES];
-    
-    return YES;
-}
+//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+//{
+//    [searchBar setShowsCancelButton:YES animated:YES];
+//
+//    return YES;
+//}
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-  
-}
+//- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+//{
+//
+//}
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    //    searchBar.userInteractionEnabled = NO;
-    //    [self performSelector:@selector(searchBarEnabled) withObject:nil afterDelay:2.0];
-    return YES;
-}
+//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+//{
+//    //    searchBar.userInteractionEnabled = NO;
+//    //    [self performSelector:@selector(searchBarEnabled) withObject:nil afterDelay:2.0];
+//    return YES;
+//}
 
-- (void)searchBarEnabled
-{
-    _searchBar.userInteractionEnabled = YES;
-}
+//- (void)searchBarEnabled
+//{
+//    _searchBar.userInteractionEnabled = YES;
+//}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+    
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
