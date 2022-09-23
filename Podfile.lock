@@ -1,0 +1,118 @@
+PODS:
+  - AAChartKit (6.0.0)
+  - AgoraRtcEngine_iOS (3.7.0.3):
+    - AgoraRtcEngine_iOS/AINS (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/AV1Dec (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/ContentInspect (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/FullAudioFormat (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/ReplayKit (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/ROIEnc (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/RtcBasic (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/SpatialAudio (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/SuperResolution (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/VideoPreprocess (= 3.7.0.3)
+    - AgoraRtcEngine_iOS/VirtualBackground (= 3.7.0.3)
+  - AgoraRtcEngine_iOS/AINS (3.7.0.3)
+  - AgoraRtcEngine_iOS/AV1Dec (3.7.0.3)
+  - AgoraRtcEngine_iOS/ContentInspect (3.7.0.3)
+  - AgoraRtcEngine_iOS/FullAudioFormat (3.7.0.3)
+  - AgoraRtcEngine_iOS/ReplayKit (3.7.0.3)
+  - AgoraRtcEngine_iOS/ROIEnc (3.7.0.3)
+  - AgoraRtcEngine_iOS/RtcBasic (3.7.0.3)
+  - AgoraRtcEngine_iOS/SpatialAudio (3.7.0.3)
+  - AgoraRtcEngine_iOS/SuperResolution (3.7.0.3)
+  - AgoraRtcEngine_iOS/VideoPreprocess (3.7.0.3)
+  - AgoraRtcEngine_iOS/VirtualBackground (3.7.0.3)
+  - Fastboard (1.0.8):
+    - Fastboard/core (= 1.0.8)
+  - Fastboard/core (1.0.8):
+    - Whiteboard (~> 2.16.24)
+  - LMJDropdownMenu (3.0.4)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.2.0)
+  - NTLBridge (3.1.4)
+  - SDWebImage (5.12.6):
+    - SDWebImage/Core (= 5.12.6)
+  - SDWebImage/Core (5.12.6)
+  - TZImagePickerController (3.8.3):
+    - TZImagePickerController/Basic (= 3.8.3)
+    - TZImagePickerController/Location (= 3.8.3)
+  - TZImagePickerController/Basic (3.8.3)
+  - TZImagePickerController/Location (3.8.3)
+  - WebViewJavascriptBridge (6.0.3)
+  - Whiteboard (2.16.32):
+    - Whiteboard/Whiteboard-YYModel (= 2.16.32)
+  - Whiteboard/Base (2.16.32):
+    - NTLBridge (~> 3.1.4)
+    - Whiteboard/Object
+  - Whiteboard/Converter (2.16.32):
+    - Whiteboard/Object
+  - Whiteboard/Model (2.16.32):
+    - YYModel
+  - Whiteboard/NativeReplayer (2.16.32):
+    - Whiteboard/Replayer
+  - Whiteboard/Object (2.16.32):
+    - Whiteboard/Model
+  - Whiteboard/Replayer (2.16.32):
+    - Whiteboard/Base
+  - Whiteboard/Resource (2.16.32)
+  - Whiteboard/Room (2.16.32):
+    - Whiteboard/Base
+  - Whiteboard/Whiteboard-YYModel (2.16.32):
+    - Whiteboard/Converter
+    - Whiteboard/NativeReplayer
+    - Whiteboard/Resource
+    - Whiteboard/Room
+  - YYModel (1.0.4)
+
+DEPENDENCIES:
+  - AAChartKit (from `https://github.com/AAChartModel/AAChartKit.git`)
+  - AgoraRtcEngine_iOS (~> 3.7.0.3)
+  - Fastboard (~> 1.0.8)
+  - LMJDropdownMenu
+  - Masonry (~> 1.1.0)
+  - MBProgressHUD (~> 1.2.0)
+  - SDWebImage (~> 5.12.3)
+  - TZImagePickerController
+  - WebViewJavascriptBridge (~> 6.0)
+
+SPEC REPOS:
+  trunk:
+    - AgoraRtcEngine_iOS
+    - Fastboard
+    - LMJDropdownMenu
+    - Masonry
+    - MBProgressHUD
+    - NTLBridge
+    - SDWebImage
+    - TZImagePickerController
+    - WebViewJavascriptBridge
+    - Whiteboard
+    - YYModel
+
+EXTERNAL SOURCES:
+  AAChartKit:
+    :git: https://github.com/AAChartModel/AAChartKit.git
+
+CHECKOUT OPTIONS:
+  AAChartKit:
+    :commit: cd64fa989af3177b46f559e8919b67e114e8061b
+    :git: https://github.com/AAChartModel/AAChartKit.git
+
+SPEC CHECKSUMS:
+  AAChartKit: dffacac3b641f2d2dc2fbf5f227350d22faee784
+  AgoraRtcEngine_iOS: 549bb3853d5afb18fabca4197786f39f31141da8
+  Fastboard: 06013d1514b3974e51d9126253df420e1a8a7a3b
+  LMJDropdownMenu: 50c74e9d50a480c290fec47eb575826861d0823b
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  NTLBridge: 49780dc966976d3221a0eb03c7368617c1987cb6
+  SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
+  TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
+  Whiteboard: fe863e23b9ec895503f05053a23abc4aa4c0116f
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
+
+PODFILE CHECKSUM: 73e5eb451451fef290167585d32626c5c93e9e48
+
+COCOAPODS: 1.11.3

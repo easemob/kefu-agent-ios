@@ -471,6 +471,8 @@
 		93FA0F6F286027AE00C1188E /* UIColor+HLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */; };
 		93FA0F782860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
 		93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
+		D2C3352728DD5FD800421022 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
+		D2C3352828DD60B900421022 /* KFVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CEA1FD684F30091E048 /* HDTipLabel.m */; };
@@ -2180,7 +2182,7 @@
 		93D0CF4C283792D4004D93E3 /* KFSmartDefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartDefaultTableViewCell.xib; sourceTree = "<group>"; };
 		93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraTicketModel.m; sourceTree = "<group>"; };
 		93D9D07327BF7E0500BD037D /* HDAgoraTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraTicketModel.h; sourceTree = "<group>"; };
-		93EFFC8227BA411F0043DE06 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		93EFFC8227BA411F0043DE06 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93FA0F6328600D5200C1188E /* KFAnswerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFAnswerView.h; sourceTree = "<group>"; };
 		93FA0F6428600D5200C1188E /* KFAnswerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFAnswerView.m; sourceTree = "<group>"; };
 		93FA0F6728600ED300C1188E /* HDAppSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAppSkin.m; sourceTree = "<group>"; };
@@ -7397,6 +7399,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2C3352828DD60B900421022 /* KFVideoDetailAllModel.m in Sources */,
+				D2C3352728DD5FD800421022 /* KFChatSmartView.m in Sources */,
 				938AE9AB27F3F87B00B461C4 /* HDChatVideoDetailBubbleView.m in Sources */,
 				93D0CF3B283736DA004D93E3 /* KFSmartUtils.m in Sources */,
 				938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */,
