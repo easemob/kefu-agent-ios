@@ -349,8 +349,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
+    HDConversation *model;
+    if (_isEdit) {
+        model  =  [self.searchDataSources objectAtIndex:indexPath.row];
+    }else{
+        
+        model  =  [self.dataSource objectAtIndex:indexPath.row];
+    }
+//    HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定将该会话转接给%@吗？",model.chatter.nicename] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.tag = 1000;
     [alert show];
