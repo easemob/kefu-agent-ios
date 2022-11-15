@@ -26,6 +26,7 @@
 #import "AddTagViewController.h"
 #import "EMChatHeaderTagView.h"
 #import "EMUIWebViewController.h"
+#import "KFWKWebViewController.h"
 #import "EMFileViewController.h"
 #import "EMPromptBoxView.h"
 #import "DXRecordView.h"
@@ -65,7 +66,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     HChatMenuTypeEndSession
 };
 
-@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,QuickReplyViewControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,EMUIWebViewControllerDelegate,HDChatManagerDelegate,HDClientDelegate,UIActionSheetDelegate,AddTagViewDelegate,EMPromptBoxViewDelegate,TransferViewControllerDelegate,UIGestureRecognizerDelegate>
+@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,QuickReplyViewControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,EMUIWebViewControllerDelegate,HDChatManagerDelegate,HDClientDelegate,UIActionSheetDelegate,AddTagViewDelegate,EMPromptBoxViewDelegate,TransferViewControllerDelegate,UIGestureRecognizerDelegate,KFWKWebViewControllerDelegate>
 {
     dispatch_queue_t _messageQueue;
     NSMutableArray *_messages;
@@ -1174,8 +1175,6 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
         }
         
-        
-        
     }];
     
    
@@ -1243,6 +1242,22 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)moreViewCustomAction:(DXChatBarMoreView *)moreView
 {
     EMUIWebViewController *webView = [[EMUIWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"http:%@",[HDClient sharedClient].currentAgentUser.customUrl]];
+    webView.delegate = self;
+    [self.navigationController pushViewController:webView animated:YES];
+    [self keyBoardHidden:nil];
+}
+
+- (void)moreViewIframeRobotAction:(DXChatBarMoreView *)moreView
+{
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",[HDClient sharedClient].currentAgentUser.iframeModel.url]];
+    webView.delegate = self;
+    [self.navigationController pushViewController:webView animated:YES];
+    [self keyBoardHidden:nil];
+}
+
+- (void)moreViewIframeBaseAction:(DXChatBarMoreView *)moreView
+{
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",[HDClient sharedClient].currentAgentUser.iframeModel.roboturl]];
     webView.delegate = self;
     [self.navigationController pushViewController:webView animated:YES];
     [self keyBoardHidden:nil];
@@ -1674,8 +1689,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
     clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;
-    
+    clientView.vistor = _conversationModel.vistor;
     clientView.serviceSessionId = _conversation.sessionId;
+    clientView.conversation = _conversationModel;
     [self keyBoardHidden:nil];
     [self.navigationController pushViewController:clientView animated:YES];
 }

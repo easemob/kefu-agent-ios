@@ -471,6 +471,10 @@
 		93FA0F6F286027AE00C1188E /* UIColor+HLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */; };
 		93FA0F782860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
 		93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
+		D2B9517729222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
+		D2B9517829222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
+		D2B9517B292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
+		D2B9517C292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
 		D2C3352728DD5FD800421022 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
 		D2C3352828DD60B900421022 /* KFVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
@@ -2193,6 +2197,10 @@
 		93FA0F772860551600C1188E /* UIView+GestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GestureRecognizer.h"; sourceTree = "<group>"; };
 		9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		D2B9517529222A000043B07F /* KFWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWKWebViewController.h; sourceTree = "<group>"; };
+		D2B9517629222A000043B07F /* KFWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWKWebViewController.m; sourceTree = "<group>"; };
+		D2B95179292372940043B07F /* KFChatBarMoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatBarMoreModel.h; sourceTree = "<group>"; };
+		D2B9517A292372940043B07F /* KFChatBarMoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatBarMoreModel.m; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDSuperviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSuperviseCell.h; sourceTree = "<group>"; };
 		D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSuperviseCell.m; sourceTree = "<group>"; };
 		D3058CE91FD684F30091E048 /* HDTipLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDTipLabel.h; sourceTree = "<group>"; };
@@ -4151,6 +4159,8 @@
 			children = (
 				D33CE63C1F7CA98D00236720 /* DXChatBarMoreView.h */,
 				D33CE63D1F7CA98D00236720 /* DXChatBarMoreView.m */,
+				D2B95179292372940043B07F /* KFChatBarMoreModel.h */,
+				D2B9517A292372940043B07F /* KFChatBarMoreModel.m */,
 			);
 			path = MoreView;
 			sourceTree = "<group>";
@@ -4756,6 +4766,8 @@
 			children = (
 				D33CE8AD1F7CD84A00236720 /* EMUIWebViewController.h */,
 				D33CE8AE1F7CD84A00236720 /* EMUIWebViewController.m */,
+				D2B9517529222A000043B07F /* KFWKWebViewController.h */,
+				D2B9517629222A000043B07F /* KFWKWebViewController.m */,
 			);
 			path = WebViewJavascriptBridge;
 			sourceTree = "<group>";
@@ -7027,6 +7039,7 @@
 				936A5F0C286AD4FB004BC632 /* Utility.m in Sources */,
 				D33CE7C31F7CB08A00236720 /* KFHttpManager.m in Sources */,
 				D324D0AE1EA46ED30009FE68 /* HDBaseViewController.m in Sources */,
+				D2B9517B292372940043B07F /* KFChatBarMoreModel.m in Sources */,
 				D33CE6B41F7CA98D00236720 /* DXChatBarMoreView.m in Sources */,
 				D33CE68D1F7CA98D00236720 /* QuickReplyAddViewController.m in Sources */,
 				D3A95E311EA0F47100ADD394 /* EMAudioRecorderUtil.m in Sources */,
@@ -7357,6 +7370,7 @@
 				938AEA3327F3F8FC00B461C4 /* KJPlayerConst.m in Sources */,
 				D33CE8731F7CD25800236720 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				D33CE7BA1F7CB01000236720 /* AFNetworkReachabilityManager.m in Sources */,
+				D2B9517729222A000043B07F /* KFWKWebViewController.m in Sources */,
 				D3A95E7F1EA0F47100ADD394 /* amrFileCodec.mm in Sources */,
 				936A5EFC286AD4FB004BC632 /* HDUploadFileViewController.m in Sources */,
 				938AEA1B27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */,
@@ -7436,6 +7450,7 @@
 				90A2B535206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */,
 				D3E9CC991FBED182005E3677 /* YYTextTransaction.m in Sources */,
 				9363F97128697B36008522EC /* KFVideoObjModel.m in Sources */,
+				D2B9517C292372940043B07F /* KFChatBarMoreModel.m in Sources */,
 				D3E9CC9A1FBED182005E3677 /* UIAlertView+KFAdd.m in Sources */,
 				936A5ECF286ACF3D004BC632 /* HDMiddleVideoView.m in Sources */,
 				D3E9CC9B1FBED182005E3677 /* YYTextUtilities.m in Sources */,
@@ -7766,6 +7781,7 @@
 				D3E9CD9C1FBED182005E3677 /* EMSDWebImagePrefetcher.m in Sources */,
 				90FC92512486323B00014CCC /* MASConstraint.m in Sources */,
 				D3E9CD9D1FBED182005E3677 /* EMTagView.m in Sources */,
+				D2B9517829222A000043B07F /* KFWKWebViewController.m in Sources */,
 				938AEA2A27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */,
 				D3E9CD9E1FBED182005E3677 /* EMHeaderImageView.m in Sources */,
 				938AEA3427F3F8FC00B461C4 /* KJPlayerConst.m in Sources */,
@@ -8056,7 +8072,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.7;
+				MARKETING_VERSION = 3.1.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -8107,7 +8123,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.7;
+				MARKETING_VERSION = 3.1.8;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -8158,7 +8174,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.7;
+				MARKETING_VERSION = 3.1.8;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -8205,7 +8221,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.7;
+				MARKETING_VERSION = 3.1.8;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",

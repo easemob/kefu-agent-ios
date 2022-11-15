@@ -73,6 +73,8 @@
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:self.blackListBtn.bounds];
     [self.tableView.tableFooterView addSubview:self.blackListBtn];
+    
+    self.user = [[HDUserManager sharedInstance] getAgentUserModel];
 }
 
 - (void)addBlackList:(UIButton *)btn {
@@ -287,6 +289,7 @@
         if (model) {
             weakSelf.iframeView.kefuIm = _kefuIm;
             weakSelf.iframeView.visitorInfo = _visitorInfo;
+            weakSelf.iframeView.conversation= weakSelf.conversation;
             [weakSelf.iframeView reloadWebViewFromModel:model user:weakSelf.user];
         }
     }};

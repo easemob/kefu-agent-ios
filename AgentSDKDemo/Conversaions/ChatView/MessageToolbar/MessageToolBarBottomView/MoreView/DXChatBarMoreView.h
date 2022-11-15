@@ -32,6 +32,7 @@ typedef enum{
 @property (nonatomic, strong) UIButton *videoButton;
 @property (nonatomic, strong) UIButton *fileButton;
 @property (nonatomic, strong) UIButton *audioCallButton;
+@property (nonatomic, strong) NSMutableArray *btnMarray;
 
 - (instancetype)initWithFrame:(CGRect)frame typw:(KFChatMoreType)type;
 
@@ -57,6 +58,8 @@ typedef enum{
 - (void)moreViewCustomAction:(DXChatBarMoreView *)moreView;
 - (void)moreViewVideoAction:(DXChatBarMoreView *)moreView;
 - (void)moreViewFileAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewIframeBaseAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewIframeRobotAction:(DXChatBarMoreView *)moreView;
 @end
 
 
