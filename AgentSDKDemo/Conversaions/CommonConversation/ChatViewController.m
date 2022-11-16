@@ -1251,6 +1251,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",[HDClient sharedClient].currentAgentUser.iframeModel.url]];
     webView.delegate = self;
+    KFChatBarMoreModel * model = [[KFChatBarMoreModel alloc] init];
+    model.btnType= KFChatMoreBtnIframeRobot;
+    webView.chatBarModel = model;
+    webView.conversation = _conversationModel;
     [self.navigationController pushViewController:webView animated:YES];
     [self keyBoardHidden:nil];
 }
@@ -1259,6 +1263,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",[HDClient sharedClient].currentAgentUser.iframeModel.roboturl]];
     webView.delegate = self;
+    KFChatBarMoreModel * model = [[KFChatBarMoreModel alloc] init];
+    model.btnType= KFChatMoreBtnIframeBase;
+    webView.chatBarModel = model;
+    webView.conversation = _conversationModel;
+    
     [self.navigationController pushViewController:webView animated:YES];
     [self keyBoardHidden:nil];
 }

@@ -37,7 +37,20 @@
     [super viewDidLoad];
     if (_bridge) { return; }
     
-    self.title = @"iframe";
+    if (self.chatBarModel.btnType == KFChatMoreBtnIframeBase) {
+        
+        self.title = [HDClient sharedClient].currentAgentUser.iframeModel.iframeName;
+    }else if(self.chatBarModel.btnType == KFChatMoreBtnIframeRobot){
+        
+        self.title = [HDClient sharedClient].currentAgentUser.iframeModel.iframeRobotName;
+        
+    }else{
+        
+        self.title = @"iframe";
+        
+    }
+    
+    
     self.navigationItem.leftBarButtonItem = self.backItem;
     
 //    _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
@@ -68,7 +81,7 @@
     
     if (!_kefuIm || !_visitorInfo) {
         [self showHudInView:self.view hint:@"获取中..."];
-        [HDClient.sharedClient.notiManager asyncFetchVisitorChatInfoWithId:_visitorId
+        [HDClient.sharedClient.notiManager asyncFetchVisitorChatInfoWithId:_conversation.chatter.agentId
                                                                 completion:^(id info, HDError *error)
         {
             [weakSelf hideHud];

@@ -47,4 +47,16 @@
     return html;
 }
 
+
+#pragma mark - url 编码
+- (NSString *)URLEncodedString {
+    NSString *encodedString = [self stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;='\"`<>()[]{}\\| "] invertedSet]];
+    return encodedString;
+}
+#pragma mark - url 解码
+-(NSString *)URLDecodedString
+{
+NSString *result = [(NSString *)self stringByReplacingOccurrencesOfString:@"+" withString:@" "];
+return [result stringByRemovingPercentEncoding];
+}
 @end

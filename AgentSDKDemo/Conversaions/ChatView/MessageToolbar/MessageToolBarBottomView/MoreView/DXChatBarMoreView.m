@@ -302,7 +302,6 @@
                 
         }
         
-       
         [btn setTitle:model.btnName forState:UIControlStateNormal];
         [btn setTitleEdgeInsets:CHAT_BUTTON_TITLE_EDGEINSETS];
         [btn setTitleColor:CHAT_BUTTON_TEXT_COLOR forState:UIControlStateNormal];
@@ -310,8 +309,6 @@
         btn.titleLabel.font = [UIFont systemFontOfSize:CHAT_BUTTON_TEXT_FONT];
         btn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:btn];
-    
-        
     
     }];
     

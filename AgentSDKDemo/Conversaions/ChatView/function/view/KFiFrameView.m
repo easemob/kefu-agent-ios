@@ -89,7 +89,20 @@ const NSString *visitorImId = @"visitorImId";
         par =  [self getParOther:NO];
     }
     
-    urlStr = [NSString stringWithFormat:@"%@?easemobId=%@&visitorImId=%@%@", urlStr, _kefuIm, _visitorInfo,par];
+    // 先判断urlStr 内部包含？ 这个字符不 如果包含 我们拼接的时候就不加 如果不包含我们需要添加一下
+    
+    if ([urlStr containsString:@"?"]) {
+        
+        urlStr = [NSString stringWithFormat:@"%@&easemobId=%@&visitorImId=%@%@", urlStr, _kefuIm, _visitorInfo,par];
+    }else{
+        urlStr = [NSString stringWithFormat:@"%@?easemobId=%@&visitorImId=%@&%@", urlStr, _kefuIm, _visitorInfo,par];
+        
+    }
+    
+    
+    
+    NSLog(@"===拼接后的===%@",urlStr);
+  
     
     NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -98,7 +111,7 @@ const NSString *visitorImId = @"visitorImId";
 
 - (NSString *)encryptUseDES:(NSString *)value{
     
-    return [HDEncryptUtil encryptUseDES:value key:_model.encryptKey];
+    return [HDEncryptUtil encryptUseDESData:value key:_model.encryptKey];
     
 }
 -(NSString *)getParOther:(BOOL)isEncryptKey{
@@ -132,7 +145,6 @@ const NSString *visitorImId = @"visitorImId";
 
     //    to=kefuchannelimid_248171&
     NSString*to = _conversation.serviceNumber;
-    
 //    nickname=w8du3q187nisgsx&
     NSString*nickname=visitorModel.userNickname;
 //    ssid=07938730-2b4b-4f0d-b4ac-45077425898b&
@@ -175,22 +187,15 @@ const NSString *visitorImId = @"visitorImId";
         trueName = [self encryptUseDES:trueName];
     }else{
 
-//        nickname =  [];
-        ssid = [self encryptUseDES:ssid];
-        userId = [self encryptUseDES:userId];
-        email = [self encryptUseDES:email];
-        tenantId = [self encryptUseDES:tenantId];
-        agentId = [self encryptUseDES:agentId];
-        agentName = [self encryptUseDES:agentName];
-        originType = [self encryptUseDES:originType];
-        techChannelName = [self encryptUseDES:techChannelName];
-        serviceNumber = [self encryptUseDES:serviceNumber];
-        desc = [self encryptUseDES:desc];
+        //需要对value 做一个url 编码
+        email =  [email URLEncodedString];
+        agentName = [agentName URLEncodedString];
+        techChannelName = [techChannelName URLEncodedString];
+        desc = [desc URLEncodedString];
         
     }
     
-    
-    urlStr = [NSString stringWithFormat:@"&to=%@&nickname=%@&ssid=%@&userId=%@&email=%@&tenantId=%@&agentId=f%@&agentName=%@&originType=%@&techChannelName=%@&serviceNumber=%@&desc=%@&trueName=%@", to,nickname,ssid,userId,email,tenantId,agentId,agentName,originType,techChannelName,serviceNumber,desc,trueName];
+    urlStr = [NSString stringWithFormat:@"to=%@&nickname=%@&ssid=%@&userId=%@&email=%@&tenantId=%@&agentId=f%@&agentName=%@&originType=%@&techChannelName=%@&serviceNumber=%@&desc=%@&trueName=%@", to,nickname,ssid,userId,email,tenantId,agentId,agentName,originType,techChannelName,serviceNumber,desc,trueName];
     
     return urlStr;
     
@@ -201,11 +206,5 @@ const NSString *visitorImId = @"visitorImId";
     [webView evaluateJavaScript:@"var WVJBIframe = document.createElement('iframe');WVJBIframe.style.display = 'none';WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';document.documentElement.appendChild(WVJBIframe);setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)" completionHandler:nil];
    
 }
-
-
-
-//- (void)loadExamplePage:(WKWebView*)webView {
-//    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_model.url]]];
-//}
 
 @end

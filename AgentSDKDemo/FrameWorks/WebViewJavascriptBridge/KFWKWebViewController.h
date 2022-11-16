@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DXBaseViewController.h"
+#import "KFChatBarMoreModel.h"
 #import <WebKit/WebKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<KFWKWebViewControllerDelegate> delegate;
 @property (nonatomic, strong) HDConversation *conversation;
 @property (nonatomic, copy) NSString *visitorId;
+@property (nonatomic, strong) KFChatBarMoreModel *chatBarModel;
 - (instancetype)initWithUrl:(NSString *)url;
 
 @end
