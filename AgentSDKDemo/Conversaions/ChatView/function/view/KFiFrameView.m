@@ -8,6 +8,7 @@
 
 #import "KFiFrameView.h"
 #import "WKWebViewJavascriptBridge.h"
+#define kDefaultEncryptKey @"11111111"
 const NSString *easemobId = @"easemobId";
 const NSString *visitorImId = @"visitorImId";
 
@@ -78,6 +79,12 @@ const NSString *visitorImId = @"visitorImId";
     }
     NSString * par;
     if (_model.encryptAll && _model.encryptKey) {
+        
+        if ([_model.encryptKey isEqualToString:@""]) {
+        
+            _model.encryptKey = kDefaultEncryptKey;
+        }
+        
         _kefuIm = [HDEncryptUtil encryptUseDES:_kefuIm key:_model.encryptKey];
         _visitorInfo = [HDEncryptUtil encryptUseDES:_visitorInfo key:_model.encryptKey];
         
