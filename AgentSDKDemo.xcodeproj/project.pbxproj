@@ -24,10 +24,6 @@
 		9046FCE520E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */; };
 		9046FD1220E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
 		9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9046FD1020E252F8009B6376 /* HTimePickerView.m */; };
-		904C34BC23D4587700EA2521 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BB23D4587700EA2521 /* AgentSDK.framework */; };
-		904C34BD23D4587700EA2521 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BB23D4587700EA2521 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		904C34BF23D4587D00EA2521 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BE23D4587D00EA2521 /* AgentSDK.framework */; };
-		904C34C023D4587D00EA2521 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 904C34BE23D4587D00EA2521 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9050CB5E2213C972003A9359 /* KFiFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9050CB5D2213C972003A9359 /* KFiFrameView.m */; };
 		9050CB5F2213C972003A9359 /* KFiFrameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9050CB5D2213C972003A9359 /* KFiFrameView.m */; };
 		90591C2E2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90591C192068ADC3007367BD /* KFMonitorInfoCell.m */; };
@@ -137,10 +133,6 @@
 		935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935CFBE427C617F70093B9DF /* KFVideoDetailViewController.m */; };
 		935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */; };
 		935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 935FF7FD277451320034ED6F /* KFWebViewController.m */; };
-		9363604327F4668E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; };
-		9363604427F4668E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604227F4668E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9363604627F4669E003D4667 /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; };
-		9363604727F4669E003D4667 /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9363604527F4669E003D4667 /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9363F96728695BD7008522EC /* KFWebBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96628695BD7008522EC /* KFWebBubbleView.m */; };
 		9363F96828695BD7008522EC /* KFWebBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96628695BD7008522EC /* KFWebBubbleView.m */; };
 		9363F96B28695E16008522EC /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9363F96928695E16008522EC /* UIView+GestureRecognizer.m */; };
@@ -1775,7 +1767,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
-				904C34BD23D4587700EA2521 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1787,9 +1778,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */,
-				904C34C023D4587D00EA2521 /* AgentSDK.framework in Embed Frameworks */,
-				9363604427F4668E003D4667 /* AgentSDK.framework in Embed Frameworks */,
-				9363604727F4669E003D4667 /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1814,8 +1802,6 @@
 		9046FCE320E22450009B6376 /* HLeaveMessageRetrievalStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HLeaveMessageRetrievalStoryboard.storyboard; sourceTree = "<group>"; };
 		9046FD1020E252F8009B6376 /* HTimePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTimePickerView.m; sourceTree = "<group>"; };
 		9046FD1120E252F8009B6376 /* HTimePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTimePickerView.h; sourceTree = "<group>"; };
-		904C34BB23D4587700EA2521 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		904C34BE23D4587D00EA2521 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9050CB5C2213C972003A9359 /* KFiFrameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFiFrameView.h; sourceTree = "<group>"; };
 		9050CB5D2213C972003A9359 /* KFiFrameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFiFrameView.m; sourceTree = "<group>"; };
 		90591C182068ADC3007367BD /* KFMonitorInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFMonitorInfoCell.h; sourceTree = "<group>"; };
@@ -1859,7 +1845,6 @@
 		90AFCBDA20CFA1D0007D0ADB /* HLeaveMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLeaveMessageCell.h; sourceTree = "<group>"; };
 		90AFCBDB20CFA1D0007D0ADB /* HLeaveMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLeaveMessageCell.m; sourceTree = "<group>"; };
 		90AFCBDC20CFA1D0007D0ADB /* HLeaveMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HLeaveMessageCell.xib; sourceTree = "<group>"; };
-		90C3048E233DC3A100AE1DEB /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D04C732047A17C005B45FC /* HDSelectButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSelectButton.h; sourceTree = "<group>"; };
 		90D04C742047A17C005B45FC /* HDSelectButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSelectButton.m; sourceTree = "<group>"; };
 		90D3CBA5201B13FD005FD40F /* icon_manager_supervise@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_manager_supervise@2x.png"; sourceTree = "<group>"; };
@@ -1928,8 +1913,6 @@
 		935F639327C78F24003CE6FE /* HDChatVideoDetailBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDChatVideoDetailBubbleView.m; sourceTree = "<group>"; };
 		935FF7FC277451320034ED6F /* KFWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebViewController.h; sourceTree = "<group>"; };
 		935FF7FD277451320034ED6F /* KFWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebViewController.m; sourceTree = "<group>"; };
-		9363604227F4668E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9363604527F4669E003D4667 /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9363F96528695BD7008522EC /* KFWebBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWebBubbleView.h; sourceTree = "<group>"; };
 		9363F96628695BD7008522EC /* KFWebBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWebBubbleView.m; sourceTree = "<group>"; };
 		9363F96928695E16008522EC /* UIView+GestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GestureRecognizer.m"; sourceTree = "<group>"; };
@@ -3165,7 +3148,6 @@
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
 				D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */,
-				904C34BC23D4587700EA2521 /* AgentSDK.framework in Frameworks */,
 				3B7495EA4DD336BD5509DD18 /* Pods_AgentSDKDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3177,15 +3159,12 @@
 				D3E9CDB71FBED182005E3677 /* SystemConfiguration.framework in Frameworks */,
 				D3E9CDB81FBED182005E3677 /* HyphenateLite.framework in Frameworks */,
 				D3E9CDB91FBED182005E3677 /* Bugly.framework in Frameworks */,
-				9363604627F4669E003D4667 /* AgentSDK.framework in Frameworks */,
 				D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */,
-				904C34BF23D4587D00EA2521 /* AgentSDK.framework in Frameworks */,
 				D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */,
 				D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
-				9363604327F4668E003D4667 /* AgentSDK.framework in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
 				673C1B1209F420D67D2BAD4F /* Pods_AgentSDKDemoAppStore.framework in Frameworks */,
 			);
@@ -5273,11 +5252,6 @@
 		D3FDC5121EA08C0900C25BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9363604527F4669E003D4667 /* AgentSDK.framework */,
-				9363604227F4668E003D4667 /* AgentSDK.framework */,
-				904C34BE23D4587D00EA2521 /* AgentSDK.framework */,
-				904C34BB23D4587700EA2521 /* AgentSDK.framework */,
-				90C3048E233DC3A100AE1DEB /* AgentSDK.framework */,
 				D331C2E21FBAF463005CB0D5 /* UIKit.framework */,
 				D331C2E01FBAF43A005CB0D5 /* Accelerate.framework */,
 				D331C2DE1FBAF405005CB0D5 /* QuartzCore.framework */,
