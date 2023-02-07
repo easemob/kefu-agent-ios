@@ -12,6 +12,7 @@
 #import "HDSSKeychain.h"
 #import "HDAgoraCallMember.h"
 #import "HDAgoraTicketModel.h"
+#import "HDSanBoxFileManager.h"
 #define kToken @"00674855635d3a64920b0c7ee3684f68a9fIACA8a3yaqUdWNcyB5POBY85dP6+vnuMp8fVlCcFYHwStBo6pkUAAAAAEAD45Mp2OAPyYQEAAQA4A/Jh";
 #define kAPPid  @"74855635d3a64920b0c7ee3684f68a9f";
 #define kChannelName @"huanxin"
@@ -46,8 +47,6 @@
 @property (nonatomic, strong) NSMutableArray *members;
 
 @property (nonatomic, strong) AgoraRtcEngineKit *agoraKitScreenShare;
-
-
 @property (nonatomic, copy) void (^Completion)(id, HDError *)  ;
 
 
@@ -531,6 +530,17 @@ static HDAgoraCallManager *shareCall = nil;
     member.agentNickName = _message.fromUser.nicename;
     return member;
 }
+
+- (void)getVisitorScreenshotCompletion:(void (^)(NSString * _Nonnull, HDError * _Nonnull))aCompletion{
+    
+    self.Completion = aCompletion;
+   
+    NSString * cachesPath = [NSString stringWithFormat:@"%@/filename.png",[HDSanBoxFileManager cachesDir]] ;
+   
+    [self.agoraKit takeSnapshot:[HDAgoraCallManager shareInstance].keyCenter.agoraChannel uid:[[HDAgoraCallManager shareInstance].keyCenter.agoraUid  intValue] filePath:cachesPath];
+    
+}
+
 #pragma mark - <AgoraRtcEngineDelegate>
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
     
@@ -641,6 +651,27 @@ static HDAgoraCallManager *shareCall = nil;
     }
     
 }
+
+- (void)rtcEngine:(AgoraRtcEngineKit *)engine snapshotTaken:(NSString *)channel uid:(NSUInteger)uid filePath:(NSString *)filePath width:(NSInteger)width height:(NSInteger)height errCode:(NSInteger)errCode{
+    
+    
+    NSLog(@"====%@",filePath);
+    
+    // 图片上传
+    
+    
+    NSData * imageData = [NSData  dataWithContentsOfFile:filePath];
+    
+    
+    [[HLCallManager sharedInstance] asyncUploadScreenshotImageWithFile:imageData completion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
+        
+        NSLog(@"======%@",url);
+        !self.Completion?:self.Completion(url,error);
+        
+    }];
+}
+
+
 #pragma mark - AgoraRtcEngineKit 屏幕分享 相关
 /// 保持动态数据 给其他app 进程通信
 /// @param keyCenter 对象参数

@@ -264,6 +264,10 @@ static void *KVOContext = &KVOContext;
 /// 获取会话全部视频通话详情
 - (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion;
 
+
+/// 获取对端访客视频截图
+- (void)getVisitorScreenshotCompletion:(void(^)(NSString * url,HDError *error))aCompletion;
+
 @end
 
 NS_ASSUME_NONNULL_END
