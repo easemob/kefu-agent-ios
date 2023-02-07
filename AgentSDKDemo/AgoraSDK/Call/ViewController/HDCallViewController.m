@@ -289,6 +289,11 @@ static HDCallViewController *_manger = nil;
     
     [self.view hideKeyBoard];
     
+//    [[HDAgoraCallManager shareInstance] getVisitorScreenshotCompletion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
+//        
+//        NSLog(@"=======%@",url);
+//    }];
+    
 }
 
 /// 初始化屏幕分享
@@ -342,6 +347,8 @@ static HDCallViewController *_manger = nil;
     
     [self initSmallWindowData];
 }
+
+
 
 - (void)initSmallWindowData{
     

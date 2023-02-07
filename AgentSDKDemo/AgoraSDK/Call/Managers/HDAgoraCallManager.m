@@ -42,6 +42,9 @@
 
     
     BOOL _isSetupLocalVideo; //判断是否已经设置过了；
+    
+    
+    NSInteger _visitorUid;
 }
 
 @property (nonatomic, strong) NSMutableArray *members;
@@ -514,6 +517,7 @@ static HDAgoraCallManager *shareCall = nil;
     return  _onCalling;
     
 }
+
 - (void)hd_joinChannelByToken:(NSString *)token channelId:(NSString *)channelId info:(NSString *)info uid:(NSUInteger)uid joinSuccess:(void (^)(NSString * _Nullable, NSUInteger, NSInteger))joinSuccessBlock{
     
     [self.agoraKit joinChannelByToken: token channelId: channelId info:info uid: uid  joinSuccess:joinSuccessBlock];
@@ -536,14 +540,15 @@ static HDAgoraCallManager *shareCall = nil;
     self.Completion = aCompletion;
    
     NSString * cachesPath = [NSString stringWithFormat:@"%@/filename.png",[HDSanBoxFileManager cachesDir]] ;
-   
-    [self.agoraKit takeSnapshot:[HDAgoraCallManager shareInstance].keyCenter.agoraChannel uid:[[HDAgoraCallManager shareInstance].keyCenter.agoraUid  intValue] filePath:cachesPath];
+
+    [self.agoraKit takeSnapshot:[HDAgoraCallManager shareInstance].keyCenter.agoraChannel uid:_visitorUid filePath:cachesPath];
     
 }
 
 #pragma mark - <AgoraRtcEngineDelegate>
 - (void)rtcEngine:(AgoraRtcEngineKit *)engine didJoinedOfUid:(NSUInteger)uid elapsed:(NSInteger)elapsed {
     
+    _visitorUid = uid;
     NSLog(@"join Member  uid---- %lu ",(unsigned long)uid);
     HDAgoraCallMember *mem = [self getHDAgoraCallMember:uid];
     @synchronized(self.members){
@@ -658,15 +663,31 @@ static HDAgoraCallManager *shareCall = nil;
     NSLog(@"====%@",filePath);
     
     // 图片上传
+        
+    NSData * imageData = [NSData dataWithContentsOfFile:filePath];
     
-    
-    NSData * imageData = [NSData  dataWithContentsOfFile:filePath];
-    
+//    UIImage * img1 = [UIImage imageWithData:data];
+//
+//
+//    UIImage * img = [UIImage imageWithContentsOfFile:filePath];
+//
+//    NSData  * imageData = UIImagePNGRepresentation(img);
     
     [[HLCallManager sharedInstance] asyncUploadScreenshotImageWithFile:imageData completion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
         
+        if (error==nil) {
+            
+        
+            
+            !self.Completion?:self.Completion(url,error);
+            
+        }else{
+            
+            
+            
+        }
         NSLog(@"======%@",url);
-        !self.Completion?:self.Completion(url,error);
+       
         
     }];
 }
