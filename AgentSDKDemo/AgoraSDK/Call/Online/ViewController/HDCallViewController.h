@@ -27,7 +27,6 @@ typedef void (^HangUpCallback)(HDCallViewController *callVC, NSString *timeStr);
  
 /** 单利销毁 - Method
 */
- 
 - (void)removeSharedManager;
 
 

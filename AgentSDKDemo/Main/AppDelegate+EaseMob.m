@@ -27,6 +27,7 @@
     #if DEBUG
         apnsCertName = @"push-cert-ios-dev";
     #else
+        // 证书对应的是 企业账号299 下的push 证书（kefu_pro.p12）
         apnsCertName = @"push-cert-ios-20160229";
     #endif
     

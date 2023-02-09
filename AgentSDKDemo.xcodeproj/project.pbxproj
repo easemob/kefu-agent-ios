@@ -463,6 +463,50 @@
 		93FA0F6F286027AE00C1188E /* UIColor+HLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */; };
 		93FA0F782860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
 		93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
+		D2239E8E2994959A0087D054 /* HDVECAgoraCallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */; };
+		D2239E8F2994959A0087D054 /* HDVECAgoraCallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */; };
+		D2239E902994959A0087D054 /* HDVECAgoraCallOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */; };
+		D2239E912994959A0087D054 /* HDVECAgoraCallOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */; };
+		D2239E922994959A0087D054 /* HDVECAgoraCallMember.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5D299495990087D054 /* HDVECAgoraCallMember.m */; };
+		D2239E932994959A0087D054 /* HDVECAgoraCallMember.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5D299495990087D054 /* HDVECAgoraCallMember.m */; };
+		D2239E942994959A0087D054 /* HDVECAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */; };
+		D2239E952994959A0087D054 /* HDVECAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */; };
+		D2239E962994959A0087D054 /* HDVECVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E65299495990087D054 /* HDVECVideoDetailModel.m */; };
+		D2239E972994959A0087D054 /* HDVECVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E65299495990087D054 /* HDVECVideoDetailModel.m */; };
+		D2239E982994959A0087D054 /* HDVECAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6B2994959A0087D054 /* HDVECAnswerView.m */; };
+		D2239E992994959A0087D054 /* HDVECAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6B2994959A0087D054 /* HDVECAnswerView.m */; };
+		D2239E9A2994959A0087D054 /* HDVECCallCollectionViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6D2994959A0087D054 /* HDVECCallCollectionViewCellItem.m */; };
+		D2239E9B2994959A0087D054 /* HDVECCallCollectionViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6D2994959A0087D054 /* HDVECCallCollectionViewCellItem.m */; };
+		D2239E9C2994959A0087D054 /* HDVECCallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6F2994959A0087D054 /* HDVECCallCollectionViewCell.m */; };
+		D2239E9D2994959A0087D054 /* HDVECCallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6F2994959A0087D054 /* HDVECCallCollectionViewCell.m */; };
+		D2239E9E2994959A0087D054 /* HDVECTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E732994959A0087D054 /* HDVECTitleView.m */; };
+		D2239E9F2994959A0087D054 /* HDVECTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E732994959A0087D054 /* HDVECTitleView.m */; };
+		D2239EA02994959A0087D054 /* HDVECPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E742994959A0087D054 /* HDVECPopoverViewController.m */; };
+		D2239EA12994959A0087D054 /* HDVECPopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E742994959A0087D054 /* HDVECPopoverViewController.m */; };
+		D2239EA22994959A0087D054 /* HDVECItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E762994959A0087D054 /* HDVECItemView.m */; };
+		D2239EA32994959A0087D054 /* HDVECItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E762994959A0087D054 /* HDVECItemView.m */; };
+		D2239EA42994959A0087D054 /* HDVECSmallWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E772994959A0087D054 /* HDVECSmallWindowView.m */; };
+		D2239EA52994959A0087D054 /* HDVECSmallWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E772994959A0087D054 /* HDVECSmallWindowView.m */; };
+		D2239EA62994959A0087D054 /* HDVECSuspendCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E782994959A0087D054 /* HDVECSuspendCustomView.m */; };
+		D2239EA72994959A0087D054 /* HDVECSuspendCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E782994959A0087D054 /* HDVECSuspendCustomView.m */; };
+		D2239EA82994959A0087D054 /* HDVECHiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E7A2994959A0087D054 /* HDVECHiddenView.m */; };
+		D2239EA92994959A0087D054 /* HDVECHiddenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E7A2994959A0087D054 /* HDVECHiddenView.m */; };
+		D2239EAA2994959A0087D054 /* HDVECMiddleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E7C2994959A0087D054 /* HDVECMiddleVideoView.m */; };
+		D2239EAB2994959A0087D054 /* HDVECMiddleVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E7C2994959A0087D054 /* HDVECMiddleVideoView.m */; };
+		D2239EAC2994959A0087D054 /* HDVECControlBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E7E2994959A0087D054 /* HDVECControlBarView.m */; };
+		D2239EAD2994959A0087D054 /* HDVECControlBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E7E2994959A0087D054 /* HDVECControlBarView.m */; };
+		D2239EAE2994959A0087D054 /* KFVECAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E802994959A0087D054 /* KFVECAnswerView.m */; };
+		D2239EAF2994959A0087D054 /* KFVECAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E802994959A0087D054 /* KFVECAnswerView.m */; };
+		D2239EB02994959A0087D054 /* HDVECViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E832994959A0087D054 /* HDVECViewController.m */; };
+		D2239EB12994959A0087D054 /* HDVECViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E832994959A0087D054 /* HDVECViewController.m */; };
+		D2239EB22994959A0087D054 /* KFVECVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E852994959A0087D054 /* KFVECVideoDetailViewController.m */; };
+		D2239EB32994959A0087D054 /* KFVECVideoDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E852994959A0087D054 /* KFVECVideoDetailViewController.m */; };
+		D2239EB42994959A0087D054 /* HDVECRingingCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E882994959A0087D054 /* HDVECRingingCallModel.m */; };
+		D2239EB52994959A0087D054 /* HDVECRingingCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E882994959A0087D054 /* HDVECRingingCallModel.m */; };
+		D2239EB62994959A0087D054 /* HDVECVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E892994959A0087D054 /* HDVECVideoDetailAllModel.m */; };
+		D2239EB72994959A0087D054 /* HDVECVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E892994959A0087D054 /* HDVECVideoDetailAllModel.m */; };
+		D2239EB82994959A0087D054 /* HDVECVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */; };
+		D2239EB92994959A0087D054 /* HDVECVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */; };
 		D2B9517729222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
 		D2B9517829222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
 		D2B9517B292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
@@ -2186,6 +2230,52 @@
 		93FA0F772860551600C1188E /* UIView+GestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GestureRecognizer.h"; sourceTree = "<group>"; };
 		9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallManager.m; sourceTree = "<group>"; };
+		D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallOptions.m; sourceTree = "<group>"; };
+		D2239E5D299495990087D054 /* HDVECAgoraCallMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallMember.m; sourceTree = "<group>"; };
+		D2239E5E299495990087D054 /* HDVECVideoDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECVideoDetailModel.h; sourceTree = "<group>"; };
+		D2239E5F299495990087D054 /* HDVECAgoraTicketModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraTicketModel.h; sourceTree = "<group>"; };
+		D2239E60299495990087D054 /* HDVECAgoraCallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraCallManager.h; sourceTree = "<group>"; };
+		D2239E61299495990087D054 /* HDVECAgoraCallOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraCallOptions.h; sourceTree = "<group>"; };
+		D2239E62299495990087D054 /* HDVECAgoraCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraCallManagerDelegate.h; sourceTree = "<group>"; };
+		D2239E63299495990087D054 /* HDVECAgoraCallMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraCallMember.h; sourceTree = "<group>"; };
+		D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraTicketModel.m; sourceTree = "<group>"; };
+		D2239E65299495990087D054 /* HDVECVideoDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECVideoDetailModel.m; sourceTree = "<group>"; };
+		D2239E66299495990087D054 /* HDVECAgoraCallEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraCallEnum.h; sourceTree = "<group>"; };
+		D2239E682994959A0087D054 /* KFVECAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFVECAnswerView.h; sourceTree = "<group>"; };
+		D2239E6A2994959A0087D054 /* HDVECItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECItemView.h; sourceTree = "<group>"; };
+		D2239E6B2994959A0087D054 /* HDVECAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAnswerView.m; sourceTree = "<group>"; };
+		D2239E6C2994959A0087D054 /* HDVECMiddleVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECMiddleVideoView.h; sourceTree = "<group>"; };
+		D2239E6D2994959A0087D054 /* HDVECCallCollectionViewCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECCallCollectionViewCellItem.m; sourceTree = "<group>"; };
+		D2239E6E2994959A0087D054 /* HDVECHiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECHiddenView.h; sourceTree = "<group>"; };
+		D2239E6F2994959A0087D054 /* HDVECCallCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECCallCollectionViewCell.m; sourceTree = "<group>"; };
+		D2239E702994959A0087D054 /* HDVECSuspendCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECSuspendCustomView.h; sourceTree = "<group>"; };
+		D2239E712994959A0087D054 /* HDVECSmallWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECSmallWindowView.h; sourceTree = "<group>"; };
+		D2239E722994959A0087D054 /* HDVECControlBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECControlBarView.h; sourceTree = "<group>"; };
+		D2239E732994959A0087D054 /* HDVECTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECTitleView.m; sourceTree = "<group>"; };
+		D2239E742994959A0087D054 /* HDVECPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECPopoverViewController.m; sourceTree = "<group>"; };
+		D2239E752994959A0087D054 /* HDVECAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAnswerView.h; sourceTree = "<group>"; };
+		D2239E762994959A0087D054 /* HDVECItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECItemView.m; sourceTree = "<group>"; };
+		D2239E772994959A0087D054 /* HDVECSmallWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECSmallWindowView.m; sourceTree = "<group>"; };
+		D2239E782994959A0087D054 /* HDVECSuspendCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECSuspendCustomView.m; sourceTree = "<group>"; };
+		D2239E792994959A0087D054 /* HDVECCallCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECCallCollectionViewCell.h; sourceTree = "<group>"; };
+		D2239E7A2994959A0087D054 /* HDVECHiddenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECHiddenView.m; sourceTree = "<group>"; };
+		D2239E7B2994959A0087D054 /* HDVECCallCollectionViewCellItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECCallCollectionViewCellItem.h; sourceTree = "<group>"; };
+		D2239E7C2994959A0087D054 /* HDVECMiddleVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECMiddleVideoView.m; sourceTree = "<group>"; };
+		D2239E7D2994959A0087D054 /* HDVECTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECTitleView.h; sourceTree = "<group>"; };
+		D2239E7E2994959A0087D054 /* HDVECControlBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECControlBarView.m; sourceTree = "<group>"; };
+		D2239E7F2994959A0087D054 /* HDVECPopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECPopoverViewController.h; sourceTree = "<group>"; };
+		D2239E802994959A0087D054 /* KFVECAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFVECAnswerView.m; sourceTree = "<group>"; };
+		D2239E822994959A0087D054 /* HDVECViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECViewController.h; sourceTree = "<group>"; };
+		D2239E832994959A0087D054 /* HDVECViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECViewController.m; sourceTree = "<group>"; };
+		D2239E852994959A0087D054 /* KFVECVideoDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KFVECVideoDetailViewController.m; sourceTree = "<group>"; };
+		D2239E862994959A0087D054 /* KFVECVideoDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFVECVideoDetailViewController.h; sourceTree = "<group>"; };
+		D2239E882994959A0087D054 /* HDVECRingingCallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECRingingCallModel.m; sourceTree = "<group>"; };
+		D2239E892994959A0087D054 /* HDVECVideoDetailAllModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECVideoDetailAllModel.m; sourceTree = "<group>"; };
+		D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECVideoObjModel.m; sourceTree = "<group>"; };
+		D2239E8B2994959A0087D054 /* HDVECRingingCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECRingingCallModel.h; sourceTree = "<group>"; };
+		D2239E8C2994959A0087D054 /* HDVECVideoDetailAllModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECVideoDetailAllModel.h; sourceTree = "<group>"; };
+		D2239E8D2994959A0087D054 /* HDVECVideoObjModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECVideoObjModel.h; sourceTree = "<group>"; };
 		D2B9517529222A000043B07F /* KFWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWKWebViewController.h; sourceTree = "<group>"; };
 		D2B9517629222A000043B07F /* KFWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWKWebViewController.m; sourceTree = "<group>"; };
 		D2B95179292372940043B07F /* KFChatBarMoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatBarMoreModel.h; sourceTree = "<group>"; };
@@ -3803,13 +3893,9 @@
 		93EFFBF027BA3F270043DE06 /* Call */ = {
 			isa = PBXGroup;
 			children = (
-				936A5E27286ACEA9004BC632 /* HCallResources */,
-				936A5EDA286AD4FB004BC632 /* Fastboard */,
-				9363F96D28697B13008522EC /* Model */,
-				93FA0F6B28600EE900C1188E /* Utils */,
-				93FA0F6228600CE900C1188E /* Views */,
-				93EFFC6727BA3F970043DE06 /* Managers */,
-				93EFFBF127BA3F5E0043DE06 /* ViewController */,
+				D2239DDB2993A2A40087D054 /* General */,
+				D2239DDA2993A20D0087D054 /* Online */,
+				D2239DD529938E650087D054 /* VEC */,
 			);
 			path = Call;
 			sourceTree = "<group>";
@@ -3887,6 +3973,128 @@
 				91B2560DF8C105563A83206A /* Pods-AgentSDKDemoShareExtension.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D2239DD529938E650087D054 /* VEC */ = {
+			isa = PBXGroup;
+			children = (
+				D2239E5A299495990087D054 /* Managers */,
+				D2239E872994959A0087D054 /* Model */,
+				D2239E812994959A0087D054 /* ViewController */,
+				D2239E672994959A0087D054 /* Views */,
+			);
+			path = VEC;
+			sourceTree = "<group>";
+		};
+		D2239DDA2993A20D0087D054 /* Online */ = {
+			isa = PBXGroup;
+			children = (
+				93EFFBF127BA3F5E0043DE06 /* ViewController */,
+				93EFFC6727BA3F970043DE06 /* Managers */,
+				93FA0F6228600CE900C1188E /* Views */,
+				9363F96D28697B13008522EC /* Model */,
+				936A5EDA286AD4FB004BC632 /* Fastboard */,
+			);
+			path = Online;
+			sourceTree = "<group>";
+		};
+		D2239DDB2993A2A40087D054 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				93FA0F6B28600EE900C1188E /* Utils */,
+				936A5E27286ACEA9004BC632 /* HCallResources */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		D2239E5A299495990087D054 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */,
+				D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */,
+				D2239E5D299495990087D054 /* HDVECAgoraCallMember.m */,
+				D2239E5E299495990087D054 /* HDVECVideoDetailModel.h */,
+				D2239E5F299495990087D054 /* HDVECAgoraTicketModel.h */,
+				D2239E60299495990087D054 /* HDVECAgoraCallManager.h */,
+				D2239E61299495990087D054 /* HDVECAgoraCallOptions.h */,
+				D2239E62299495990087D054 /* HDVECAgoraCallManagerDelegate.h */,
+				D2239E63299495990087D054 /* HDVECAgoraCallMember.h */,
+				D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */,
+				D2239E65299495990087D054 /* HDVECVideoDetailModel.m */,
+				D2239E66299495990087D054 /* HDVECAgoraCallEnum.h */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D2239E672994959A0087D054 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D2239E682994959A0087D054 /* KFVECAnswerView.h */,
+				D2239E802994959A0087D054 /* KFVECAnswerView.m */,
+				D2239E692994959A0087D054 /* VideoViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D2239E692994959A0087D054 /* VideoViews */ = {
+			isa = PBXGroup;
+			children = (
+				D2239E722994959A0087D054 /* HDVECControlBarView.h */,
+				D2239E7E2994959A0087D054 /* HDVECControlBarView.m */,
+				D2239E752994959A0087D054 /* HDVECAnswerView.h */,
+				D2239E6B2994959A0087D054 /* HDVECAnswerView.m */,
+				D2239E792994959A0087D054 /* HDVECCallCollectionViewCell.h */,
+				D2239E6F2994959A0087D054 /* HDVECCallCollectionViewCell.m */,
+				D2239E7B2994959A0087D054 /* HDVECCallCollectionViewCellItem.h */,
+				D2239E6D2994959A0087D054 /* HDVECCallCollectionViewCellItem.m */,
+				D2239E6E2994959A0087D054 /* HDVECHiddenView.h */,
+				D2239E7A2994959A0087D054 /* HDVECHiddenView.m */,
+				D2239E6A2994959A0087D054 /* HDVECItemView.h */,
+				D2239E762994959A0087D054 /* HDVECItemView.m */,
+				D2239E6C2994959A0087D054 /* HDVECMiddleVideoView.h */,
+				D2239E7C2994959A0087D054 /* HDVECMiddleVideoView.m */,
+				D2239E7F2994959A0087D054 /* HDVECPopoverViewController.h */,
+				D2239E742994959A0087D054 /* HDVECPopoverViewController.m */,
+				D2239E712994959A0087D054 /* HDVECSmallWindowView.h */,
+				D2239E772994959A0087D054 /* HDVECSmallWindowView.m */,
+				D2239E702994959A0087D054 /* HDVECSuspendCustomView.h */,
+				D2239E782994959A0087D054 /* HDVECSuspendCustomView.m */,
+				D2239E7D2994959A0087D054 /* HDVECTitleView.h */,
+				D2239E732994959A0087D054 /* HDVECTitleView.m */,
+			);
+			path = VideoViews;
+			sourceTree = "<group>";
+		};
+		D2239E812994959A0087D054 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D2239E822994959A0087D054 /* HDVECViewController.h */,
+				D2239E832994959A0087D054 /* HDVECViewController.m */,
+				D2239E842994959A0087D054 /* Player */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		D2239E842994959A0087D054 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				D2239E852994959A0087D054 /* KFVECVideoDetailViewController.m */,
+				D2239E862994959A0087D054 /* KFVECVideoDetailViewController.h */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
+		D2239E872994959A0087D054 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2239E8B2994959A0087D054 /* HDVECRingingCallModel.h */,
+				D2239E882994959A0087D054 /* HDVECRingingCallModel.m */,
+				D2239E8C2994959A0087D054 /* HDVECVideoDetailAllModel.h */,
+				D2239E892994959A0087D054 /* HDVECVideoDetailAllModel.m */,
+				D2239E8D2994959A0087D054 /* HDVECVideoObjModel.h */,
+				D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		D3058CE21FD675810091E048 /* Controller */ = {
@@ -7007,6 +7215,7 @@
 				9374F9C628379F77007924C9 /* KFSmartArticleTableViewCell.m in Sources */,
 				D3A761491FB55ABE000E1652 /* NSAttributedString+YYText.m in Sources */,
 				D3A7614A1FB55ABE000E1652 /* NSParagraphStyle+YYText.m in Sources */,
+				D2239EA82994959A0087D054 /* HDVECHiddenView.m in Sources */,
 				D3A7614B1FB55ABE000E1652 /* UIPasteboard+YYText.m in Sources */,
 				D3A7614C1FB55ABE000E1652 /* UIView+YYText.m in Sources */,
 				D3A7614D1FB55ABE000E1652 /* YYTextAsyncLayer.m in Sources */,
@@ -7019,6 +7228,7 @@
 				D3A761501FB55ABE000E1652 /* YYTextWeakProxy.m in Sources */,
 				D3A761511FB55ABE000E1652 /* YYLabel.m in Sources */,
 				D3A761521FB55ABE000E1652 /* YYTextView.m in Sources */,
+				D2239EAA2994959A0087D054 /* HDVECMiddleVideoView.m in Sources */,
 				D3DFB36C1FD7A45F00A9358A /* KFLineChart.m in Sources */,
 				936A5F0C286AD4FB004BC632 /* Utility.m in Sources */,
 				D33CE7C31F7CB08A00236720 /* KFHttpManager.m in Sources */,
@@ -7050,6 +7260,7 @@
 				D39838CF1FDA3CE500D5F853 /* KFWarningViewController.m in Sources */,
 				D33CE76B1F7CAEB800236720 /* RealtimeSearchUtil.m in Sources */,
 				938AEA5727F3F8FC00B461C4 /* KJPlayerFastLayer.m in Sources */,
+				D2239EB82994959A0087D054 /* HDVECVideoObjModel.m in Sources */,
 				D33CE80C1F7CB52500236720 /* DDASLLogger.m in Sources */,
 				938AEA3F27F3F8FC00B461C4 /* KJIJKPlayer.m in Sources */,
 				D33CE68A1F7CA98D00236720 /* ClientInforViewController.m in Sources */,
@@ -7063,6 +7274,7 @@
 				D3A95E651EA0F47100ADD394 /* PSTCollectionView.m in Sources */,
 				938AEA5F27F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */,
 				D33CE7BC1F7CB01000236720 /* AFURLConnectionOperation.m in Sources */,
+				D2239EB42994959A0087D054 /* HDVECRingingCallModel.m in Sources */,
 				936F2E4928261CA9001FB60A /* HDSanBoxFileManager.m in Sources */,
 				937032C3286AD98200B71298 /* UIViewController+HDHUD.m in Sources */,
 				90591C442068ADC4007367BD /* KFMonitorInfoView.m in Sources */,
@@ -7102,6 +7314,8 @@
 				D33CE6BF1F7CA98D00236720 /* EMChatViewBaseCell.m in Sources */,
 				9061557620620861006113FF /* KFSwitchTypeButton.m in Sources */,
 				D33CE6B11F7CA98D00236720 /* DXMessageToolBar.m in Sources */,
+				D2239E902994959A0087D054 /* HDVECAgoraCallOptions.m in Sources */,
+				D2239EB02994959A0087D054 /* HDVECViewController.m in Sources */,
 				D33CE79F1F7CAF6700236720 /* KFUserModel.m in Sources */,
 				93FA0F6928600ED400C1188E /* HDAppSkin.m in Sources */,
 				938AEA2127F3F8FB00B461C4 /* KJDownloader.m in Sources */,
@@ -7123,6 +7337,7 @@
 				935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */,
 				938A4DC0283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */,
 				D33CE8741F7CD25800236720 /* SWUtilityButtonView.m in Sources */,
+				D2239E9A2994959A0087D054 /* HDVECCallCollectionViewCellItem.m in Sources */,
 				D33CE7EC1F7CB48400236720 /* StatisticsModel.m in Sources */,
 				D33CE8C31F7CE31B00236720 /* AdminInforEditViewController.m in Sources */,
 				90591C322068ADC4007367BD /* KFMonitorInfoLabelCell.m in Sources */,
@@ -7135,6 +7350,7 @@
 				938AEA2B27F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m in Sources */,
 				D33CE6961F7CA98D00236720 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				D33CE6CC1F7CA98D00236720 /* CustomerController.m in Sources */,
+				D2239EB62994959A0087D054 /* HDVECVideoDetailAllModel.m in Sources */,
 				93FA0F6E286027AE00C1188E /* UIColor+HLKit.m in Sources */,
 				D33CE6C91F7CA98D00236720 /* KFDatePicker.m in Sources */,
 				90D911F020EB8480008B38AA /* UILabel+Category.m in Sources */,
@@ -7160,8 +7376,10 @@
 				D33CE7BF1F7CB01000236720 /* AFURLSessionManager.m in Sources */,
 				90591C2E2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */,
 				D3A95E4D1EA0F47100ADD394 /* MWGridViewController.m in Sources */,
+				D2239EA22994959A0087D054 /* HDVECItemView.m in Sources */,
 				D33CE85F1F7CD0F800236720 /* UIImageView+EMHighlightedWebCache.m in Sources */,
 				90FC9222248627AC00014CCC /* KFSearchController.m in Sources */,
+				D2239EAE2994959A0087D054 /* KFVECAnswerView.m in Sources */,
 				D3A95E751EA0F47100ADD394 /* SRSlimeView.m in Sources */,
 				D33CE8141F7CB52500236720 /* DDDispatchQueueLogFormatter.m in Sources */,
 				D33CE76A1F7CAEB800236720 /* NSString+Escape.m in Sources */,
@@ -7196,12 +7414,16 @@
 				90591C402068ADC4007367BD /* KFMonitorInstrumentModel.m in Sources */,
 				D33CE7DD1F7CB42E00236720 /* XHMessageTextView.m in Sources */,
 				9363F97028697B36008522EC /* KFVideoObjModel.m in Sources */,
+				D2239E942994959A0087D054 /* HDVECAgoraTicketModel.m in Sources */,
+				D2239E9C2994959A0087D054 /* HDVECCallCollectionViewCell.m in Sources */,
 				D3A95E681EA0F47100ADD394 /* PSTCollectionViewData.m in Sources */,
 				936A5EC2286ACF3D004BC632 /* HDPopoverViewController.m in Sources */,
 				D33CE79C1F7CAF6700236720 /* KFResetPswViewController.m in Sources */,
 				90FC92422486323B00014CCC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D33CE6C71F7CA98D00236720 /* EMPromptBoxView.m in Sources */,
 				936A5EFA286AD4FB004BC632 /* HDWhiteConverterManager.m in Sources */,
+				D2239E8E2994959A0087D054 /* HDVECAgoraCallManager.m in Sources */,
+				D2239EA62994959A0087D054 /* HDVECSuspendCustomView.m in Sources */,
 				9365448F2838A283009854AF /* KFSmartArticleMoreTableViewCell.m in Sources */,
 				D33CE85D1F7CD0F800236720 /* UIImage+EMMultiFormat.m in Sources */,
 				D33CE8541F7CD0F800236720 /* EMSDWebImageDecoder.m in Sources */,
@@ -7226,6 +7448,7 @@
 				93FA0F6528600D5200C1188E /* KFAnswerView.m in Sources */,
 				D33CE6BC1F7CA98D00236720 /* EMChatTextBubbleView.m in Sources */,
 				D3A95E341EA0F47100ADD394 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
+				D2239E9E2994959A0087D054 /* HDVECTitleView.m in Sources */,
 				D33F46E41E9F9C3E00FE6DCE /* HDBaseNavigationController.m in Sources */,
 				D34DF9E01FA818F60018116D /* KFScreenViewController.m in Sources */,
 				D3A95E331EA0F47100ADD394 /* EMCDDeviceManager+Microphone.m in Sources */,
@@ -7282,6 +7505,7 @@
 				D33CE85A1F7CD0F800236720 /* NSData+EMImageContentType.m in Sources */,
 				936A5ECA286ACF3D004BC632 /* HDSmallWindowView.m in Sources */,
 				D33CE6921F7CA98D00236720 /* ClientInforHeaderView.m in Sources */,
+				D2239E982994959A0087D054 /* HDVECAnswerView.m in Sources */,
 				938AEA1F27F3F8FB00B461C4 /* KJBasePlayer+KJCache.m in Sources */,
 				D3A95E4F1EA0F47100ADD394 /* MWPhotoBrowser.m in Sources */,
 				D33CE6891F7CA98D00236720 /* ClientInforCompileController.m in Sources */,
@@ -7301,6 +7525,7 @@
 				D3A95E671EA0F47100ADD394 /* PSTCollectionViewController.m in Sources */,
 				9306AD76286C3AEC00E1F726 /* KFRingingCallModel.m in Sources */,
 				90FC92542486323B00014CCC /* MASViewAttribute.m in Sources */,
+				D2239EB22994959A0087D054 /* KFVECVideoDetailViewController.m in Sources */,
 				D3A95E701EA0F47100ADD394 /* PSTGridLayoutSection.m in Sources */,
 				936A5EFE286AD4FB004BC632 /* HDCloudDiskModel.m in Sources */,
 				D3DFB3641FD7999F00A9358A /* KFStatuLabel.m in Sources */,
@@ -7309,6 +7534,7 @@
 				D33CE6B71F7CA98D00236720 /* EMChatBaseBubbleView.m in Sources */,
 				D33CE7D81F7CB42E00236720 /* DXTableViewCellTypeConversation.m in Sources */,
 				936A5EF8286AD4FB004BC632 /* HDWhiteBoardView.m in Sources */,
+				D2239E922994959A0087D054 /* HDVECAgoraCallMember.m in Sources */,
 				D33CE70A1F7CACAC00236720 /* UIViewController+MMDrawerController.m in Sources */,
 				D33CE7B81F7CB01000236720 /* AFHTTPRequestOperationManager.m in Sources */,
 				D33CE6B61F7CA98D00236720 /* EMChatAudioBubbleView.m in Sources */,
@@ -7331,10 +7557,12 @@
 				D33CE7731F7CAEB800236720 /* UIView+RNAdditions.m in Sources */,
 				938AEA3127F3F8FC00B461C4 /* KJBasePlayer+KJRecordTime.m in Sources */,
 				90FC92442486323B00014CCC /* ViewController+MASAdditions.m in Sources */,
+				D2239E962994959A0087D054 /* HDVECVideoDetailModel.m in Sources */,
 				936A5ECC286ACF3D004BC632 /* HDCallCollectionViewCell.m in Sources */,
 				936A5F10286AD4FB004BC632 /* HDWhiteRoomManager.m in Sources */,
 				907090EB2060BB530062FED6 /* KFLeftViewItem.m in Sources */,
 				93D0CF3A283736DA004D93E3 /* KFSmartUtils.m in Sources */,
+				D2239EA42994959A0087D054 /* HDVECSmallWindowView.m in Sources */,
 				D3A95E761EA0F47100ADD394 /* THProgressView.m in Sources */,
 				936A5EC6286ACF3D004BC632 /* HDHiddenView.m in Sources */,
 				93D0CF3228372B35004D93E3 /* KFSmartModel.m in Sources */,
@@ -7350,6 +7578,7 @@
 				D33CE6C51F7CA98D00236720 /* EMHeaderImageView.m in Sources */,
 				935CFB5427C4E5D60093B9DF /* KFVideoDetailModel.m in Sources */,
 				938AEA2927F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */,
+				D2239EAC2994959A0087D054 /* HDVECControlBarView.m in Sources */,
 				D33CE7991F7CAF6700236720 /* KFCompanyRegisterViewController.m in Sources */,
 				938AEA3327F3F8FC00B461C4 /* KJPlayerConst.m in Sources */,
 				D33CE8731F7CD25800236720 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
@@ -7386,6 +7615,7 @@
 				D33CE7EA1F7CB48400236720 /* KFVisitorInfoItem.m in Sources */,
 				90591CDA2068B15B007367BD /* KFMonitorViewController.m in Sources */,
 				D3A95E691EA0F47100ADD394 /* PSTCollectionViewFlowLayout.m in Sources */,
+				D2239EA02994959A0087D054 /* HDVECPopoverViewController.m in Sources */,
 				9363F96B28695E16008522EC /* UIView+GestureRecognizer.m in Sources */,
 				D3A95E371EA0F47100ADD394 /* Emoji.m in Sources */,
 				D3A95E801EA0F47100ADD394 /* wav.mm in Sources */,
@@ -7418,6 +7648,7 @@
 				D3E9CC8E1FBED182005E3677 /* YYTextSelectionView.m in Sources */,
 				D3E9CC8F1FBED182005E3677 /* YYTextArchiver.m in Sources */,
 				937032D4286AE0C600B71298 /* HDSSKeychain.m in Sources */,
+				D2239EA92994959A0087D054 /* HDVECHiddenView.m in Sources */,
 				D3E9CC901FBED182005E3677 /* YYTextAttribute.m in Sources */,
 				D3DFB3531FD6CA3100A9358A /* HDGroupModel.m in Sources */,
 				D3E9CC911FBED182005E3677 /* YYTextParser.m in Sources */,
@@ -7430,6 +7661,7 @@
 				938AEA3827F3F8FC00B461C4 /* KJPlayerView.m in Sources */,
 				D3E9CC961FBED182005E3677 /* UIPasteboard+YYText.m in Sources */,
 				D3E9CC971FBED182005E3677 /* UIView+YYText.m in Sources */,
+				D2239EAB2994959A0087D054 /* HDVECMiddleVideoView.m in Sources */,
 				D3E9CC981FBED182005E3677 /* YYTextAsyncLayer.m in Sources */,
 				90A2B535206907D600EC2A80 /* KFMonitorInfoInstrumentCell.m in Sources */,
 				D3E9CC991FBED182005E3677 /* YYTextTransaction.m in Sources */,
@@ -7461,6 +7693,7 @@
 				90615572206205C5006113FF /* KFLeftItemCell.m in Sources */,
 				938AEA3627F3F8FC00B461C4 /* KJPlayerLog.m in Sources */,
 				938AEA4827F3F8FC00B461C4 /* KJAVPlayer+KJCache.m in Sources */,
+				D2239EB92994959A0087D054 /* HDVECVideoObjModel.m in Sources */,
 				D3E9CCC91FBED182005E3677 /* AFURLRequestSerialization.m in Sources */,
 				D3E9CCCA1FBED182005E3677 /* AFHTTPSessionManager.m in Sources */,
 				D3E9CCCB1FBED182005E3677 /* AFURLResponseSerialization.m in Sources */,
@@ -7474,6 +7707,7 @@
 				D3E9CCCF1FBED182005E3677 /* RealtimeSearchUtil.m in Sources */,
 				93D0CF37283730F1004D93E3 /* KFMSGTypeModel.m in Sources */,
 				D3E9CCD01FBED182005E3677 /* DDASLLogger.m in Sources */,
+				D2239EB52994959A0087D054 /* HDVECRingingCallModel.m in Sources */,
 				D3E9CCD11FBED182005E3677 /* ClientInforViewController.m in Sources */,
 				D3E9CCD21FBED182005E3677 /* HConversationViewController.m in Sources */,
 				D3E9CCD31FBED182005E3677 /* AdminWorkloadViewController.m in Sources */,
@@ -7513,6 +7747,8 @@
 				D3E9CCE81FBED182005E3677 /* HistoryConversationsController.m in Sources */,
 				938AEA1E27F3F8FB00B461C4 /* KJCacheManager.m in Sources */,
 				D3E9CCE91FBED182005E3677 /* NSDate+Formatter.m in Sources */,
+				D2239E912994959A0087D054 /* HDVECAgoraCallOptions.m in Sources */,
+				D2239EB12994959A0087D054 /* HDVECViewController.m in Sources */,
 				D3E9CCEA1FBED182005E3677 /* NotiDetailViewController.m in Sources */,
 				936A5F0F286AD4FB004BC632 /* HDStorageItem.m in Sources */,
 				D3E9CCEB1FBED182005E3677 /* DXRecordView.m in Sources */,
@@ -7534,6 +7770,7 @@
 				90FC924F2486323B00014CCC /* View+MASAdditions.m in Sources */,
 				D3E9CCF51FBED182005E3677 /* AdminHistoryViewController.m in Sources */,
 				938AEA3E27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */,
+				D2239E9B2994959A0087D054 /* HDVECCallCollectionViewCellItem.m in Sources */,
 				D3E9CCF81FBED182005E3677 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				D3E9CCFB1FBED182005E3677 /* EMPickerView.m in Sources */,
 				D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */,
@@ -7546,6 +7783,7 @@
 				90591C332068ADC4007367BD /* KFMonitorInfoLabelCell.m in Sources */,
 				93FA0F6628600D5200C1188E /* KFAnswerView.m in Sources */,
 				D3E9CD001FBED182005E3677 /* CommentEditViewController.m in Sources */,
+				D2239EB72994959A0087D054 /* HDVECVideoDetailAllModel.m in Sources */,
 				D3E9CD011FBED182005E3677 /* SWTableViewCell.m in Sources */,
 				D3E9CD021FBED182005E3677 /* DXTipView.m in Sources */,
 				938AEA2C27F3F8FB00B461C4 /* KJBasePlayer+KJDynamicSource.m in Sources */,
@@ -7571,8 +7809,10 @@
 				D3E9CD151FBED182005E3677 /* AdminQualityofWorkViewController.m in Sources */,
 				D3E9CD171FBED182005E3677 /* EMFileViewController.m in Sources */,
 				9374F9C728379F77007924C9 /* KFSmartArticleTableViewCell.m in Sources */,
+				D2239EA32994959A0087D054 /* HDVECItemView.m in Sources */,
 				90A2B53D2069126800EC2A80 /* KFMonitorInstrumentView.m in Sources */,
 				D3E9CD181FBED182005E3677 /* DDMultiFormatter.m in Sources */,
+				D2239EAF2994959A0087D054 /* KFVECAnswerView.m in Sources */,
 				D3E9CD191FBED182005E3677 /* DDFileLogger.m in Sources */,
 				D3E9CD1A1FBED182005E3677 /* PSTGridLayoutInfo.m in Sources */,
 				9094C5A920ECB0A600E9A057 /* HDMessage+Category.m in Sources */,
@@ -7607,12 +7847,16 @@
 				D3DFB37D1FD8130000A9358A /* KFSuperviseDetailViewController.m in Sources */,
 				90FC922724862C6600014CCC /* UIViewController+KFSearch.m in Sources */,
 				D3E9CD301FBED182005E3677 /* UIImageView+EMWebCache.m in Sources */,
+				D2239E952994959A0087D054 /* HDVECAgoraTicketModel.m in Sources */,
+				D2239E9D2994959A0087D054 /* HDVECCallCollectionViewCell.m in Sources */,
 				D3E9CD311FBED182005E3677 /* UIButton+KFAdd.m in Sources */,
 				D3E9CD321FBED182005E3677 /* EMUIWebViewController.m in Sources */,
 				D3E9CD341FBED182005E3677 /* EmojiEmoticons.m in Sources */,
 				D3E9CD351FBED182005E3677 /* LoginViewController.m in Sources */,
 				90A2B5392069125100EC2A80 /* KFMonitorInfoViewItem.m in Sources */,
 				9029423620E37A1C003D0381 /* NSCalendar+Category.m in Sources */,
+				D2239E8F2994959A0087D054 /* HDVECAgoraCallManager.m in Sources */,
+				D2239EA72994959A0087D054 /* HDVECSuspendCustomView.m in Sources */,
 				D3E9CD361FBED182005E3677 /* KFBaseNavigationController.m in Sources */,
 				90591C412068ADC4007367BD /* KFMonitorInstrumentModel.m in Sources */,
 				D3E9CD371FBED182005E3677 /* XHMessageTextView.m in Sources */,
@@ -7637,6 +7881,7 @@
 				9046FCDF20E2240A009B6376 /* HLeaveMessageRetrievalViewController.m in Sources */,
 				936A5ED9286AD437004BC632 /* UIView+HDMASAdditions.m in Sources */,
 				D3E9CD451FBED182005E3677 /* AdminInforViewController.m in Sources */,
+				D2239E9F2994959A0087D054 /* HDVECTitleView.m in Sources */,
 				D3E9CD461FBED182005E3677 /* EmotionEscape.m in Sources */,
 				936A5ECD286ACF3D004BC632 /* HDCallCollectionViewCell.m in Sources */,
 				D3E9CD471FBED182005E3677 /* Appdelegate.m in Sources */,
@@ -7693,6 +7938,7 @@
 				90FC92532486323B00014CCC /* MASViewConstraint.m in Sources */,
 				D3E9CD6B1FBED182005E3677 /* QuickReplyViewController.m in Sources */,
 				D3DFB3811FD814BE00A9358A /* KFSuperviseBaseViewController.m in Sources */,
+				D2239E992994959A0087D054 /* HDVECAnswerView.m in Sources */,
 				D3E9CD6C1FBED182005E3677 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D3E9CD6E1FBED182005E3677 /* TransferViewController.m in Sources */,
 				90FC92472486323B00014CCC /* MASCompositeConstraint.m in Sources */,
@@ -7712,6 +7958,7 @@
 				D3E9CD771FBED182005E3677 /* EMSearchDisplayController.m in Sources */,
 				D3E9CD781FBED182005E3677 /* CustomerViewController.m in Sources */,
 				908691DB21D5D1A700C95C22 /* HDChatVideoBubbleView.m in Sources */,
+				D2239EB32994959A0087D054 /* KFVECVideoDetailViewController.m in Sources */,
 				D3E9CD791FBED182005E3677 /* EMSDWebImageManager.m in Sources */,
 				936A5E9A286ACED3004BC632 /* HDCallViewController.m in Sources */,
 				D3E9CD7A1FBED182005E3677 /* DXUpdateView.m in Sources */,
@@ -7720,6 +7967,7 @@
 				D3E9CD7E1FBED182005E3677 /* ChineseToPinyin.m in Sources */,
 				936A5EF9286AD4FB004BC632 /* HDWhiteBoardView.m in Sources */,
 				D3E9CD7F1FBED182005E3677 /* main.m in Sources */,
+				D2239E932994959A0087D054 /* HDVECAgoraCallMember.m in Sources */,
 				D3E9CD811FBED182005E3677 /* KFPhoneVerifyViewController.m in Sources */,
 				D3E9CD821FBED182005E3677 /* PSTCollectionViewController.m in Sources */,
 				D3E9CD841FBED182005E3677 /* PSTGridLayoutSection.m in Sources */,
@@ -7742,10 +7990,12 @@
 				D3E9CD8F1FBED182005E3677 /* UIImage+EMGIF.m in Sources */,
 				D3E9CD901FBED182005E3677 /* UIView+SBExtras.m in Sources */,
 				938A4DC1283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */,
+				D2239E972994959A0087D054 /* HDVECVideoDetailModel.m in Sources */,
 				D3E9CD911FBED182005E3677 /* HDChatFormBubbleView.m in Sources */,
 				936A5EFB286AD4FB004BC632 /* HDWhiteConverterManager.m in Sources */,
 				D396E6821FDFEC7F009C0CF7 /* KFPredictView.m in Sources */,
 				936A5EC9286ACF3D004BC632 /* HDControlBarView.m in Sources */,
+				D2239EA52994959A0087D054 /* HDVECSmallWindowView.m in Sources */,
 				D3DFB3851FD8EA2400A9358A /* KFDetailModel.m in Sources */,
 				D3E9CD921FBED182005E3677 /* PSTGridLayoutItem.m in Sources */,
 				D3E9CD931FBED182005E3677 /* WaitQueueViewController.m in Sources */,
@@ -7761,6 +8011,7 @@
 				D3E9CD991FBED182005E3677 /* THProgressView.m in Sources */,
 				90FC92452486323B00014CCC /* ViewController+MASAdditions.m in Sources */,
 				90D911F120EB8480008B38AA /* UILabel+Category.m in Sources */,
+				D2239EAD2994959A0087D054 /* HDVECControlBarView.m in Sources */,
 				D3E9CD9B1FBED182005E3677 /* EMChatLocationBubbleView.m in Sources */,
 				D3E9CD9C1FBED182005E3677 /* EMSDWebImagePrefetcher.m in Sources */,
 				90FC92512486323B00014CCC /* MASConstraint.m in Sources */,
@@ -7797,6 +8048,7 @@
 				90091DE120D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */,
 				D3E9CDB11FBED182005E3677 /* KFVisitorInfoItem.m in Sources */,
 				90591CDB2068B15B007367BD /* KFMonitorViewController.m in Sources */,
+				D2239EA12994959A0087D054 /* HDVECPopoverViewController.m in Sources */,
 				D3E9CDB21FBED182005E3677 /* PSTCollectionViewFlowLayout.m in Sources */,
 				D3E9CDB31FBED182005E3677 /* Emoji.m in Sources */,
 				D3E9CDB41FBED182005E3677 /* wav.mm in Sources */,
