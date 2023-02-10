@@ -35,8 +35,6 @@
 
 @interface HDVECViewController ()<HDVECAgoraCallManagerDelegate,HDCallManagerDelegate,HDWhiteboardManagerDelegate,UIPopoverPresentationControllerDelegate,HDVECSuspendCustomViewDelegate>{
     
-//    BOOL _isShow; //是否已经调用过show方法
-    
     UIView *_changeView;
     NSMutableArray * _videoItemViews;
     NSMutableArray * _videoViews;
@@ -173,7 +171,7 @@ static HDVECViewController *_manger = nil;
     return [HDVECViewController alertWithView:view AlertType:HDVECNewCallAlertTypeVideo];
     
 }
-- (void)showViewWithKeyCenter:(HDMessage *)message withType:(HDVideoCallType)type{
+- (void)showViewWithKeyCenter:(HDMessage *)message withType:(HDVECVideoCallType)type{
 //    NSLog(@"====%@",[VECClient sharedClient].sdkVersion);
   
     if (!isCalling) {
@@ -790,13 +788,13 @@ static HDVECViewController *_manger = nil;
        _hdAnswerView = [[HDVECAnswerView alloc]init];
        _hdAnswerView.backgroundColor = [UIColor blackColor];
        __weak __typeof__(self) weakSelf = self;
-       _hdAnswerView.clickOnBlock = ^(UIButton * _Nonnull btn) {
+       _hdAnswerView.vecclickOnBlock = ^(UIButton * _Nonnull btn) {
            [weakSelf anwersBtnClicked:btn];
        };
-       _hdAnswerView.clickOffBlock = ^(UIButton * _Nonnull btn) {
+       _hdAnswerView.vecclickOffBlock = ^(UIButton * _Nonnull btn) {
            [weakSelf offBtnClicked:btn];
        };
-       _hdAnswerView.clickHangUpBlock = ^(UIButton * _Nonnull btn) {
+       _hdAnswerView.vecclickHangUpBlock = ^(UIButton * _Nonnull btn) {
            [weakSelf hangUpCallBtn:btn];
        };
     }
@@ -1574,13 +1572,13 @@ static HDVECViewController *_manger = nil;
 - (void)setupUserDefaults{
     // 通过UserDefaults建立数据通道，接收Extension传递来的视频帧
   
-    [[HDVECAgoraCallManager shareInstance].userDefaults setObject:@{@"state":@"x"} forKey:kUserDefaultState];//给状态一个默认值
-    [[HDVECAgoraCallManager shareInstance].userDefaults addObserver:self forKeyPath:kUserDefaultState options:NSKeyValueObservingOptionNew context:KVOContext];
+    [[HDVECAgoraCallManager shareInstance].userDefaults setObject:@{@"state":@"x"} forKey:kVECUserDefaultState];//给状态一个默认值
+    [[HDVECAgoraCallManager shareInstance].userDefaults addObserver:self forKeyPath:kVECUserDefaultState options:NSKeyValueObservingOptionNew context:VECKVOContext];
 //    [self.userDefaults addObserver:self forKeyPath:kUserDefaultFrame options:NSKeyValueObservingOptionNew context:KVOContext];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:kUserDefaultState]) {
+    if ([keyPath isEqualToString:kVECUserDefaultState]) {
         NSDictionary *string = change[NSKeyValueChangeNewKey];
         if ([string[@"state"] isEqual:@"初始化"]) {
             //开启 RTC：外部视频输入通道，开始推送屏幕流（configLocalScreenPublish）
@@ -1714,26 +1712,26 @@ static HDVECViewController *_manger = nil;
 }
 #pragma mark - Picture in picture 中 隐藏效果
 - (void)createBaseUI{
-    if (_suspendType==BUTTON) {
+    if (_suspendType==VEC_BUTTON) {
         viewWidth=80;
         viewHeight=80;
-    }else if (_suspendType==IMAGEVIEW){
+    }else if (_suspendType==VEC_IMAGEVIEW){
         viewWidth=100;
         viewHeight=100;
-    }else if (_suspendType==GIF){
+    }else if (_suspendType==VEC_GIF){
         viewWidth=100;
         viewHeight=100;
         
-    }else if (_suspendType==MUSIC){
+    }else if (_suspendType==VEC_MUSIC){
         viewWidth=150;
         viewHeight=100;
-    }else if (_suspendType==VIDEO){
+    }else if (_suspendType==VEC_VIDEO){
         viewWidth=200;
         viewHeight=150;
-    }else if (_suspendType==SCROLLVIEW){
+    }else if (_suspendType==VEC_SCROLLVIEW){
         viewWidth=200;
         viewHeight=200;
-    }else if (_suspendType==OTHERVIEW){
+    }else if (_suspendType==VEC_OTHERVIEW){
         viewWidth=88;
         viewHeight=88;
     }
@@ -1844,7 +1842,7 @@ static HDVECViewController *_manger = nil;
     self.alertWindow.hidden = YES;
     self.view.hidden = YES;
 
-    self.suspendType = OTHERVIEW;
+    self.suspendType = VEC_OTHERVIEW;
     [self createBaseUI];
     
     _hdSupendCustomView.hidden = !self.view.hidden;

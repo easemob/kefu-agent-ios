@@ -37,7 +37,7 @@ typedef void (^VECHangUpCallback)(HDVECViewController *callVC, NSString *timeStr
 /**
  *  界面展示
  */
-- (void)showViewWithKeyCenter:(HDMessage *)message withType:(HDVideoCallType)type;
+- (void)showViewWithKeyCenter:(HDMessage *)message withType:(HDVECVideoCallType)type;
 /**
  *  界面隐藏
  */

@@ -365,7 +365,7 @@
         if (error ==nil) {
         
             NSLog(@"====%@",responseObject);
-            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:_message];
+            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:_message];
 
         }else{
             

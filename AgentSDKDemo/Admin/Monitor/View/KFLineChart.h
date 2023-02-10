@@ -12,6 +12,7 @@
 @interface KFLineChartModel :NSObject
 
 @property (nonatomic, assign) HDAgentLoginStatus status;
+@property (nonatomic, assign) HDVECAgentLoginStatus vecstatus;
 
 @property (nonatomic, assign) NSInteger count;
 

@@ -71,7 +71,6 @@ static HDVECAgoraCallManager *shareCall = nil;
     return shareCall;
 }
 
-
 #pragma mark - base
 - (instancetype)init {
     self = [super init];
@@ -86,6 +85,25 @@ static HDVECAgoraCallManager *shareCall = nil;
         
     }
     return self;
+}
+
+- (void)vec_SetVECAgentStatus:(HDAgentServiceType)type completion:(void (^)(id responseObject, HDError * _Nonnull))completion{
+    
+    switch (type) {
+        case HDAgentServiceType_VEC:
+            
+            [[HDVECCallManager sharedInstance] vec_updateAgentStatus:HDVECAgentLoginStatusIdle completion:completion];
+            
+            break;
+            
+        default:
+            break;
+    }
+}
+- (void)vec_GetVECAgentStatusCompletion:(void (^)(id _Nonnull, HDError * _Nonnull))completion{
+    
+    [[HDVECCallManager sharedInstance] vec_getAgentStatusCompletion:completion];
+    
 }
 
 - (void)setCallOptions:(HDVECAgoraCallOptions *)aOptions{
@@ -697,7 +715,7 @@ static HDVECAgoraCallManager *shareCall = nil;
 /// @param keyCenter 对象参数
 - (void)saveAppKeyCenter:(HDKeyCenter *)keyCenter{
 
-    self.userDefaults =[[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
+    self.userDefaults =[[NSUserDefaults alloc] initWithSuiteName:kVECAppGroup];
    
     
     [self.userDefaults setObject:keyCenter.agoraAppid forKey:kSaveAgoraAppID];

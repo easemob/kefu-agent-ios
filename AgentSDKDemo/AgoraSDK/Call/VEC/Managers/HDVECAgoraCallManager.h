@@ -11,10 +11,10 @@
 #import "HDVECAgoraCallOptions.h"
 #import "HDVECAgoraCallManagerDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
-static NSString * _Nonnull kUserDefaultState = @"VEC_KEY_BXL_DEFAULT_STATE_agent"; // 接收屏幕共享(开始/结束 状态)监听的Key
+static NSString * _Nonnull kVECUserDefaultState = @"VEC_KEY_BXL_DEFAULT_STATE_agent"; // 接收屏幕共享(开始/结束 状态)监听的Key
 
-static NSString * _Nonnull kAppGroup = @"group.com.easemob.enterprise.demo.kefuapp";
-static void *KVOContext = &KVOContext;
+static NSString * _Nonnull kVECAppGroup = @"group.com.easemob.enterprise.demo.kefuapp";
+static void *VECKVOContext = &VECKVOContext;
 @interface HDVECAgoraCallManager : NSObject
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
 @property (strong, nonatomic) AgoraScreenCaptureParameters2 * screenCaptureParams;
@@ -30,7 +30,24 @@ static void *KVOContext = &KVOContext;
 
 @property (nonatomic, assign) BOOL isSender;
 @property (nonatomic, assign) BOOL isCurrentCalling; // 当前是不是 正在呼叫
+@property (nonatomic, assign) HDAgentServiceType currentAgentServiceType; // 当前坐席类型
+
+
 + (instancetype _Nullable )shareInstance;
+
+/*!
+ *  \~chinese
+ *   VEC-  设置坐席状态
+ */
+- (void)vec_SetVECAgentStatus:(HDAgentServiceType )type completion:(void (^_Nullable)(id responseObject, HDError * error))completion;
+
+/*!
+ *  \~chinese
+ *   VEC-  获取坐席状态
+ */
+- (void)vec_GetVECAgentStatusCompletion:(void (^_Nullable)(id responseObject, HDError * error))completion;
+
+
 /*!
  *  \~chinese
  *   初始化 agora init

@@ -11,13 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 #define WINDOWS [UIScreen mainScreen].bounds.size
 typedef NS_ENUM(NSInteger, HDVECSuspendType){
-    BUTTON    =0,//按钮
-    IMAGEVIEW =1,//图片
-    GIF       =2,//gif图
-    MUSIC     =3,//音乐界面
-    VIDEO     =4,//视频界面
-    SCROLLVIEW =5,//滚动多图
-    OTHERVIEW =6//自定义view
+    VEC_BUTTON    =0,//按钮
+    VEC_IMAGEVIEW =1,//图片
+    VEC_GIF       =2,//gif图
+    VEC_MUSIC     =3,//音乐界面
+    VEC_VIDEO     =4,//视频界面
+    VEC_SCROLLVIEW =5,//滚动多图
+    VEC_OTHERVIEW =6//自定义view
 };
 @protocol HDVECSuspendCustomViewDelegate <NSObject>
 @optional

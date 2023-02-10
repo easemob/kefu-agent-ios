@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "KFManager.h"
 #import "HDVECAgoraCallManager.h"
+#import "HDVECRingingCallModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 typedef void(^VECClickVideoOnBlock)(UIButton *btn);
@@ -32,7 +33,7 @@ typedef void(^VECClickVideoZoomBlock)(UIButton *btn);
 - (void)playSoundCustom;
 - (void)stopSoundCustom;
 
-- (void)setMesage:(HDMessage *)message withRingCall:(KFRingingCallModel *)ringingCallModel;
+- (void)setMesage:(HDMessage *)message withRingCall:(HDVECRingingCallModel *)ringingCallModel;
 @end
 
 NS_ASSUME_NONNULL_END

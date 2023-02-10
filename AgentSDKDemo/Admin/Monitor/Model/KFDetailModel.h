@@ -36,4 +36,5 @@
 @property (nonatomic, copy) NSString *username;
 
 @property (nonatomic, assign) HDAgentLoginStatus kfState;
+@property (nonatomic, assign) HDVECAgentLoginStatus vecState;
 @end

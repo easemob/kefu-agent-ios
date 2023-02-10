@@ -24,12 +24,23 @@
 #import "HDSuperviseManagerViewController.h"
 #import "KFWarningViewController.h"
 #import "KFMonitorViewController.h"
+#import "KFManager.h"
 
+//在线中的视频
 #import "HLeaveMessageViewController.h"
 #import "HDAgoraCallManager.h"
 #import "KFAnswerView.h"
-#import "KFManager.h"
 #import "HDCallViewController.h"
+
+// vec 相关
+#import "HDVECAgoraCallManager.h"
+#import "KFVECAnswerView.h"
+#import "HDVECViewController.h"
+#import "HDVECVideoDetailAllModel.h"
+#import "HDVECRingingCallModel.h"
+
+
+
 @implementation UIImage (tabBarImage)
 
 - (UIImage *)tabBarImage
@@ -84,6 +95,10 @@ static NSString *kGroupName = @"GroupName";
 
 @property (nonatomic, strong) UIView *tapView;
 @property (nonatomic, strong)  KFAnswerView *kfAnswerView;
+
+#pragma mark  -------- VEC 相关 ------------
+@property (nonatomic, strong)  KFVECAnswerView *kfVecAnswerView;
+
 @end
 
 static HomeViewController *homeViewController;
@@ -161,6 +176,27 @@ static HomeViewController *homeViewController;
     [self _setupChildrenVC];
     [self registerNotifications];
     [[HDClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
+    
+    
+    
+    // 更改VEC 坐席空闲 才能接视频
+    
+    [[HDVECAgoraCallManager shareInstance] vec_SetVECAgentStatus:HDAgentServiceType_VEC completion:^(id responseObject, HDError * error) {
+
+
+        NSLog(@"===%@",responseObject);
+
+
+    }];
+    
+//    [[HDVECAgoraCallManager shareInstance] vec_GetVECAgentStatusCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+//
+//
+//        NSLog(@"===%@",responseObject);
+//
+//    }];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -544,6 +580,7 @@ static HomeViewController *homeViewController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"settingBackAction" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createAgoraRoom:) name:HDCALL_liveStreamInvitation_CreateAgoraRoom object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createAgoraRoom:) name:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:nil];
     
 }
 
@@ -677,7 +714,72 @@ static HomeViewController *homeViewController;
     //    [[EMCDDeviceManager sharedInstance] playVibration];
 }
 
+// 在线中的视频
+//-(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
+//
+//    if (![HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
+//
+//        return;
+//    }
+//    for (HDMessage *msg in aMessages) {
+//
+//        // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
+//        // 访客邀请坐席
+//        // 获取sessionid
+//        if ([[msg.nBody.msgExt allKeys] containsObject:@"type"]) {
+//            NSString * type = [msg.nBody.msgExt valueForKey:@"type"];
+//            if ([type isEqualToString:@"rtcmedia/video"]) {
+//                return;
+//            }
+//        }
+//        HDExtMsgType type = [HDUtils getMessageExtType:msg];
+//
+//        if (type == HDExtMsgTypeGeneral) {
+//
+//            return;
+//
+//        }
+//        if (type == HDExtMsgTypeLiveStreamInvitation) {
+//
+//            [self  onAgoraCallReceivedNickName:msg];
+//
+//        }else if(type == HDExtMsgTypeVisitorCancelInvitation) {
+//            //访客取消邀请
+//            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
+//                    // 来电铃
+//                if (self.kfAnswerView) {
+//                    [self.kfAnswerView stopSoundCustom];
+//                    [self.kfAnswerView removeFromSuperview];
+//                    self.kfAnswerView = nil;
+//                }
+//
+//            }
+//
+//        }else if(type == HDExtMsgTypeVisitorRejectInvitation) {
+//            //访客拒绝邀请  关闭当前页面 离开房间
+//            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
+//                [[HDAgoraCallManager shareInstance] leaveChannel];
+//                [[HDCallViewController sharedManager]  removeView];
+//                [[HDCallViewController sharedManager] removeSharedManager];
+//            }
+//
+//
+//        }
+//    }
+//}
+
+
+-(void)vec_KefuRtcCallRingingDidReceive:(NSArray *)aMessages{
+    
+    // 收到振铃消息 先解析需要的数据 开始弹视频界面
+    //1、解析数据
+    //2、调用接口获取声网数据 弹窗
+}
+
+
+// VEC 相关的视频
 -(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
+   
     if (![HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
 
         return;
@@ -702,33 +804,126 @@ static HomeViewController *homeViewController;
         }
         if (type == HDExtMsgTypeLiveStreamInvitation) {
            
-            [self  onAgoraCallReceivedNickName:msg];
+            [self  vec_onAgoraCallReceivedNickName:msg];
             
         }else if(type == HDExtMsgTypeVisitorCancelInvitation) {
             //访客取消邀请
-            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
+            if ( [HDVECAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDVECAgoraCallManager shareInstance].message.sessionId]) {
                     // 来电铃
-                if (self.kfAnswerView) {
-                    [self.kfAnswerView stopSoundCustom];
-                    [self.kfAnswerView removeFromSuperview];
-                    self.kfAnswerView = nil;
+                if (self.kfVecAnswerView) {
+                    [self.kfVecAnswerView stopSoundCustom];
+                    [self.kfVecAnswerView removeFromSuperview];
+                    self.kfVecAnswerView = nil;
                 }
                   
             }
             
         }else if(type == HDExtMsgTypeVisitorRejectInvitation) {
             //访客拒绝邀请  关闭当前页面 离开房间
-            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
-                [[HDAgoraCallManager shareInstance] leaveChannel];
-                [[HDCallViewController sharedManager]  removeView];
-                [[HDCallViewController sharedManager] removeSharedManager];
+            if ( [HDVECAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDVECAgoraCallManager shareInstance].message.sessionId]) {
+                [[HDVECAgoraCallManager shareInstance] leaveChannel];
+                [[HDVECViewController sharedManager]  removeView];
+                [[HDVECViewController sharedManager] removeSharedManager];
             }
            
            
         }
     }
 }
+- (void)vec_onAgoraCallReceivedNickName:(HDMessage *)message{
+    
+    // 收到消息 调用接口 从接口里边获取callid 加入房间
+    [HDLog logI:@"收到消息 调用接口 从接口里边获取callid 加入房间 =%@",message.sessionId];
+    if ([HDVECAgoraCallManager shareInstance].isCurrentCalling) {
+       
+        [HDLog logI:@"当前正在通话中 不进行 新的访客弹窗"];
+        return;
+    }
+    [HDVECAgoraCallManager shareInstance].isCurrentCalling = YES;
+    [HDLog logI:@"当前没有通话进行新的访客弹窗 =%d",[HDVECAgoraCallManager shareInstance].isCurrentCalling];
+    
+    //创建
+//    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+    
+    [[HLCallManager sharedInstance] getCurrentringingCallsCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+//        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 
+        NSLog(@"====%@",responseObject);
+        
+        if (error == nil) {
+            
+            //显示界面
+            NSDictionary * dic =responseObject;
+            
+            if ([[dic allKeys] containsObject:@"entities"] && [[dic objectForKey:@"entities"] isKindOfClass:[NSArray class]]) {
+            
+                NSArray * array = [dic objectForKey:@"entities"];
+                NSArray * ringingcalls = [NSArray yy_modelArrayWithClass:[HDVECVideoDetailAllModel class] json:array];
+                
+                if (ringingcalls.count > 0) {
+                  
+                    NSMutableArray *sessionIds = [[NSMutableArray alloc] init];
+                    [ringingcalls enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                         
+                        HDVECVideoDetailAllModel * model = obj;
+                        NSLog(@"==11111 - 22222==%@",message.sessionId);
+                        [sessionIds addObject:model.channelName];
+                        if ([model.channelName isEqualToString:message.sessionId]) {
+                            
+                            if (model.callDetails.count > 0) {
+                                // 说明有 需要弹视频窗口
+                                NSDictionary *callDetail = [model.callDetails lastObject];
+                                HDVECRingingCallModel *model = [HDVECRingingCallModel yy_modelWithDictionary:callDetail];
+                                
+                                if (model) {
+                                  // 创建视频
+                                    //成功拿到token，发送信号量:
+//                                    dispatch_semaphore_signal(semaphore);
+                                    
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                //        UI更新代码
+                                        [self.kfVecAnswerView setMesage:message withRingCall:model];
+                                        // 创建接听界面
+                                        [[UIApplication sharedApplication].keyWindow addSubview:self.kfVecAnswerView];
+                                        [self.kfVecAnswerView playSoundCustom];
+                                        
+                                    });
+                                }else{
+                                    
+                                    [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+                                }
+                            }else{
+                                
+//                                [HDAgoraCallManager shareInstance].sessionId = @"";
+                                [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+                                
+                            }
+                        }
+                    }];
+                    
+                    BOOL isbool = [sessionIds containsObject:message.sessionId];
+
+                    if (!isbool) {
+                        // 如果不包含 允许下一个 请求进来
+//                        [HDAgoraCallManager shareInstance].sessionId = @"";
+                        [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+                    }
+                    
+                }else{
+//                    [HDAgoraCallManager shareInstance].sessionId = @"";
+                    [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+                }
+            }
+        }else{
+            
+//            [HDAgoraCallManager shareInstance].sessionId = @"";
+            
+            [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+            
+        }
+    }];
+//
+}
 - (void)onAgoraCallReceivedNickName:(HDMessage *)message{
     
     // 收到消息 调用接口 从接口里边获取callid 加入房间
@@ -832,6 +1027,18 @@ static HomeViewController *homeViewController;
 
     return _kfAnswerView;
 }
+
+-(KFVECAnswerView *)kfVecAnswerView{
+    
+    if (!_kfVecAnswerView) {
+        _kfVecAnswerView =   [[KFVECAnswerView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        _kfVecAnswerView.backgroundColor = [UIColor blackColor];
+    }
+
+    return _kfVecAnswerView;
+    
+}
+
 - (void)createAgoraRoom:(NSNotification *)notification{
     
     HDMessage *model = notification.object;
@@ -845,6 +1052,25 @@ static HomeViewController *homeViewController;
         
             [[HDCallViewController sharedManager]  removeView];
             [[HDCallViewController sharedManager] removeSharedManager];
+       
+           };
+
+    }
+    
+}
+- (void)vec_createAgoraRoom:(NSNotification *)notification{
+    
+    HDMessage *model = notification.object;
+    if (model) {
+      
+    [self.kfVecAnswerView removeFromSuperview];
+    self.kfVecAnswerView = nil;
+       
+       [[HDVECViewController sharedManager] showViewWithKeyCenter:model withType:HDVECVideoCallDirectionReceive];
+        [HDVECViewController sharedManager].vechangUpCallback  = ^(HDVECViewController * _Nonnull callVC, NSString * _Nonnull timeStr) {
+        
+            [[HDVECViewController sharedManager]  removeView];
+            [[HDVECViewController sharedManager] removeSharedManager];
        
            };
 

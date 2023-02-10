@@ -40,10 +40,10 @@
     [self.bgView addSubview:self.hangUpBtn];
 
 }
-- (void)setCallType:(HDVideoCallType)callType{
+- (void)setCallType:(HDVECVideoCallType)callType{
 
     switch (callType) {
-        case HDVideoCallDirectionSend:
+        case HDVECVideoCallDirectionSend:
             self.onBtn.hidden =YES;
             self.offBtn.hidden =YES;
             self.hangUpBtn.hidden=NO;
@@ -51,7 +51,7 @@
             _answerLabel.text = NSLocalizedString(@"video.answer.send", @"您正在邀请客服进行视频通话");;
 
             break;
-        case HDVideoCallDirectionReceive:
+        case HDVECVideoCallDirectionReceive:
             [self startTimer];
             self.titleLabel.hidden = NO;
             self.hangUpBtn.hidden=YES;
@@ -238,22 +238,22 @@
 - (void)onClick:(UIButton *)sender{
     
     [self stopTimer];
-    if (self.clickOnBlock) {
-        self.clickOnBlock(sender);
+    if (self.vecclickOnBlock) {
+        self.vecclickOnBlock(sender);
     }
     
 }
 - (void)offClick:(UIButton *)sender{
     [self stopTimer];
-    if (self.clickOffBlock) {
-        self.clickOffBlock(sender);
+    if (self.vecclickOffBlock) {
+        self.vecclickOffBlock(sender);
     }
     
 }
 - (void)hangUpCallClick:(UIButton *)sender{
     [self stopTimer];
-    if (self.clickHangUpBlock) {
-        self.clickHangUpBlock(sender);
+    if (self.vecclickHangUpBlock) {
+        self.vecclickHangUpBlock(sender);
     }
     
 }
