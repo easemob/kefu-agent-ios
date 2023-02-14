@@ -33,7 +33,7 @@
 #define kPointHeight [UIScreen mainScreen].bounds.size.width *0.9
 
 
-@interface HDCallViewController ()<HDAgoraCallManagerDelegate,HDCallManagerDelegate,HDWhiteboardManagerDelegate,UIPopoverPresentationControllerDelegate,SuspendCustomViewDelegate>{
+@interface HDCallViewController ()<HDAgoraCallManagerDelegate,HDCallManagerDelegate,HDOnlineWhiteboardManagerDelegate,UIPopoverPresentationControllerDelegate,SuspendCustomViewDelegate>{
     
 //    BOOL _isShow; //是否已经调用过show方法
     
@@ -141,6 +141,7 @@ static HDCallViewController *_manger = nil;
     _manger=nil;
     [self cancelWindow];
     [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
+    [HDAppManager shareInstance].isAnswerView = NO;
 }
 - (void)removeAllSubviews {
     while (_manger.alertWindow.subviews.count) {

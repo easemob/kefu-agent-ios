@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "HDVECAnswerView.h"
 #import "HDVECSuspendCustomView.h"
+#import "HDVECRingingCallModel.h"
 NS_ASSUME_NONNULL_BEGIN
 typedef NS_ENUM(NSInteger, HDVECNewCallAlertType) {
     HDVECNewCallAlertTypeVideo, //  视频界面
@@ -37,7 +38,7 @@ typedef void (^VECHangUpCallback)(HDVECViewController *callVC, NSString *timeStr
 /**
  *  界面展示
  */
-- (void)showViewWithKeyCenter:(HDMessage *)message withType:(HDVECVideoCallType)type;
+- (void)vec_showViewWithKeyCenter:(HDVECRingingCallModel *)model;
 /**
  *  界面隐藏
  */

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HDAppManager : NSObject
-@property (nonatomic, assign) BOOL isAnswer; // 当前是不是弹应答界面
+@property (nonatomic, assign) BOOL isAnswerView; // 当前是不是弹应答界面
 + (instancetype _Nullable )shareInstance;
 @end
 

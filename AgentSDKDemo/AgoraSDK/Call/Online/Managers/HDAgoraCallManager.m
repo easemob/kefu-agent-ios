@@ -232,6 +232,7 @@ static HDAgoraCallManager *shareCall = nil;
     //结束录制
     [self endRecord];
     [HDAgoraCallManager shareInstance].isCurrentCalling = NO;
+    [HDAppManager shareInstance].isAnswerView = NO;
 }
 - (void)joinChannel{
     [self hd_joinChannelByToken:[HDAgoraCallManager shareInstance].keyCenter.agoraToken channelId:[HDAgoraCallManager shareInstance].keyCenter.agoraChannel info:nil uid:[[HDAgoraCallManager shareInstance].keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
@@ -394,12 +395,12 @@ static HDAgoraCallManager *shareCall = nil;
 }
 - (NSDictionary *)getAgentCallOptions{
     
-    return [[HLCallManager sharedInstance] getAgentTicketCallOptions];
+    return [[HDOnlineManager sharedInstance] getAgentTicketCallOptions];
     
 }
 - (NSDictionary *)getVisitorCallOptions{
     
-    return [[HLCallManager sharedInstance] getVisitorTicketCallOptions];
+    return [[HDOnlineManager sharedInstance] getVisitorTicketCallOptions];
 }
 /**
  接受视频会话
@@ -423,7 +424,7 @@ static HDAgoraCallManager *shareCall = nil;
                 
                 NSLog(@"=======%@",message);
                 //加入成功以后 开始 录制
-                [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: _message.sessionId];
+                [[HDOnlineManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: _message.sessionId];
             }];
 
 //        });
@@ -444,7 +445,7 @@ static HDAgoraCallManager *shareCall = nil;
 - (void)endRecord{
     [HDAgoraCallManager shareInstance].isSender = NO;
     // 结束录制
-    [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:_message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:_message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
             //详情数据返回
             NSLog(@"responseObject = %@",responseObject);
@@ -465,7 +466,7 @@ static HDAgoraCallManager *shareCall = nil;
                             KFVideoDetailModel * model = obj;
                             if ([model.callId isEqualToString:_keyCenter.callid]) {
                                 
-                            HDMessage * message  =   [[HLCallManager sharedInstance] kf_sendMessageVideoPlaybackSessionId:_message.sessionId withToUser:_message.from withVisitorName:_message.fromUser.nicename withVideoStartTime: [self timestrToTimeSecond:model.recordStart] withVideoEndTime: [self timestrToTimeSecond:model.recordEnd] withCallId:model.callId];
+                            HDMessage * message  =   [[HDOnlineManager sharedInstance] kf_sendMessageVideoPlaybackSessionId:_message.sessionId withToUser:_message.from withVisitorName:_message.fromUser.nicename withVideoStartTime: [self timestrToTimeSecond:model.recordStart] withVideoEndTime: [self timestrToTimeSecond:model.recordEnd] withCallId:model.callId];
 //
                                 [[HDClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
                                         
@@ -673,7 +674,7 @@ static HDAgoraCallManager *shareCall = nil;
 //
 //    NSData  * imageData = UIImagePNGRepresentation(img);
     
-    [[HLCallManager sharedInstance] asyncUploadScreenshotImageWithFile:imageData completion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
+    [[HDOnlineManager sharedInstance] asyncUploadScreenshotImageWithFile:imageData completion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
         
         if (error==nil) {
             
@@ -814,7 +815,7 @@ static HDAgoraCallManager *shareCall = nil;
 /// 获取会话全部视频通话详情
 - (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion{
     
-    [[HLCallManager sharedInstance] getAllVideoDetailsSession:sessionId completion:aCompletion];
+    [[HDOnlineManager sharedInstance] getAllVideoDetailsSession:sessionId completion:aCompletion];
     
 }
 - (AgoraScreenCaptureParameters2 *)screenCaptureParams{

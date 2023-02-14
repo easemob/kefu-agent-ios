@@ -55,28 +55,28 @@
   
    
 }
-- (void)setMesage:(HDMessage *)message withRingCall:(HDVECRingingCallModel *)ringingCallModel{
+- (void)vec_setKefuRtcCallRingingModel:(HDVECRingingCallModel *)ringingCallModel{
     
-
-    _message = message;
     _ringingCallModel = ringingCallModel;
-    
-    // 获取 username。如果 username 没有 显示 nicename
-    
-    self.nickNameLabel.text = message.fromUser.nicename;
-    
-    if (message.type == HDMessageBodyTypeText) {
-        HDTextMessageBody *bd = (HDTextMessageBody *)message.nBody;
-        
-        self.titleLabel.text = bd.text;
-    }
-//    "type": "rtcmedia\/video",
-    
-
-   
-    
-    
 }
+//- (void)setMesage:(HDMessage *)message withRingCall:(HDVECRingingCallModel *)ringingCallModel{
+//
+//
+//    _message = message;
+//    _ringingCallModel = ringingCallModel;
+//
+//    // 获取 username。如果 username 没有 显示 nicename
+//
+//    self.nickNameLabel.text = message.fromUser.nicename;
+//
+//    if (message.type == HDMessageBodyTypeText) {
+//        HDTextMessageBody *bd = (HDTextMessageBody *)message.nBody;
+//
+//        self.titleLabel.text = bd.text;
+//    }
+////    "type": "rtcmedia\/video",
+//
+//}
 - (void)playSoundCustom{
     
     // 来电铃声
@@ -360,26 +360,23 @@
     [[HDCallManager shareInstance] initGray];
     
     // 调用通行证接口
-    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:_ringingCallModel.callId withSessionId: _message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-        
-        if (error ==nil) {
-        
-            NSLog(@"====%@",responseObject);
-            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:_message];
+    [[HDVECManager sharedInstance] vec_getAgoraTicketWithRtcSessionId:_ringingCallModel.rtcSessionId withAgentId:_ringingCallModel.agentUserId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        if (error ==nil && [responseObject isKindOfClass:[NSDictionary class]]) {
 
+            NSDictionary * dic = responseObject;
+            NSLog(@"====%@",responseObject);
+            //解析基础数据
+          BOOL success=  [[HDVECAgoraCallManager shareInstance] vec_setAgoraTicketModel:dic ] ;
+            if (success) {
+                //发通知加入房间
+                [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:_ringingCallModel];
+            }
         }else{
-            
+
             // 调用通行证失败 关闭界面
             [self  hd_alertView:error.errorDescription];
-            
-            
         }
-        
-        
-        
     }];
-    
-    
 }
 - (void)offClick:(UIButton *)sender{
     //停止铃声 关闭界面  发送 cmd 通知

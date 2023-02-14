@@ -33,7 +33,7 @@
 #define kPointHeight [UIScreen mainScreen].bounds.size.width *0.9
 
 
-@interface HDVECViewController ()<HDVECAgoraCallManagerDelegate,HDCallManagerDelegate,HDWhiteboardManagerDelegate,UIPopoverPresentationControllerDelegate,HDVECSuspendCustomViewDelegate>{
+@interface HDVECViewController ()<HDVECAgoraCallManagerDelegate,HDCallManagerDelegate,HDOnlineWhiteboardManagerDelegate,UIPopoverPresentationControllerDelegate,HDVECSuspendCustomViewDelegate>{
     
     UIView *_changeView;
     NSMutableArray * _videoItemViews;
@@ -139,6 +139,7 @@ static HDVECViewController *_manger = nil;
     _manger=nil;
     [self cancelWindow];
     [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+    [HDAppManager shareInstance].isAnswerView = NO;
 }
 - (void)removeAllSubviews {
     while (_manger.alertWindow.subviews.count) {
@@ -171,51 +172,21 @@ static HDVECViewController *_manger = nil;
     return [HDVECViewController alertWithView:view AlertType:HDVECNewCallAlertTypeVideo];
     
 }
-- (void)showViewWithKeyCenter:(HDMessage *)message withType:(HDVECVideoCallType)type{
-//    NSLog(@"====%@",[VECClient sharedClient].sdkVersion);
-  
+- (void)vec_showViewWithKeyCenter:(HDVECRingingCallModel *)model
+{
+    
     if (!isCalling) {
          
-//        if (![message.sessionId isEqualToString:[HLCallManager sharedInstance].channel] ||![message.sessionId isEqualToString:[HLCallManager sharedInstance].agentCallId] ) {
-//            
-//            return;
-//        }
-        self.nickname = [HDClient sharedClient].currentAgentUser.nicename;
-        [HDVECAgoraCallManager shareInstance].message = message;
+//        self.nickname = [HDClient sharedClient].currentAgentUser.nicename;
+        [HDVECAgoraCallManager shareInstance].ringingCallModel = model;
         //初始化 坐席加入房间参数
-        [[HDVECAgoraCallManager shareInstance] createTicketDidReceiveAgoraInit];
-        self.agentName = message.fromUser.nicename;
-//        self.agentName = @"hfiu12ededewfewfewfewfewfcewcdcwecewcewcewcewewcewcewcewcewcewcwcwweewwwwwwww";
+        [[HDVECAgoraCallManager shareInstance] vec_createTicketDidReceiveAgoraInit];
+        //访客昵称
+        self.nickname = model.visitorUserName;
+        //坐席昵称
+        self.agentName = model.agentUserNiceName;
+        //点击应答
         [self anwersBtnClicked:nil];
-        
-//
-//        return;
-//
-        
-//        if (type == HDVideoCallDirectionSend) {
-//            // 发送 界面
-//            self.isVisitorSend = YES;
-//            self.hdAnswerView.callType = HDVideoCallDirectionSend;
-//
-//        }else{
-//            // 接受 界面
-//            //需要必要创建房间的参数
-//            self.nickname = keyCenter.visitorNickName;
-//            self.agentName = keyCenter.agentNickName;
-//
-//            if (self.isVisitorSend) {
-//                //访客发起后 坐席回拨过来了
-//                [self anwersBtnClicked:nil];
-//
-//            }else{
-//
-//
-//                self.hdAnswerView.callType = HDVideoCallDirectionReceive;
-//
-//                // 其他情况下都是 坐席回拨过来的
-//                self.isVisitorSend = NO;
-//            }
-//        }
     }
 }
 
@@ -896,21 +867,13 @@ static HDVECViewController *_manger = nil;
     [self.hdTitleView startTimer];
     isCalling = YES;
 //    [HLCallManager sharedInstance].isCalling = YES;
-    [[HDVECAgoraCallManager shareInstance] acceptCallWithNickname:self.agentName
+    [[HDVECAgoraCallManager shareInstance] vec_acceptCallWithNickname:self.agentName
                                                         completion:^(id obj, HDError *error)
      {
         NSLog(@"===anwersBtnClicked=Occur error%d",error.code);
         if (error == nil){
             
             NSLog(@"===anwersBtnClicked=isCalling%d",error.code);
-            
-//            [[HDClient sharedClient].hlCallManager kf_sendCmdMessage:[[HDClient sharedClient].hlCallManager getSendVisitorTicket] withSessionId:_message.sessionId withToUser:_message.from completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
-//                
-//                NSLog(@"=======%@",message);
-//                
-//                
-//            }];
-            
             
             
         }else{

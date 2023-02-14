@@ -60,6 +60,11 @@
     NSMutableArray *_waitingQueue;  //正在加入会话
     NSString * _pubViewId;
     dispatch_queue_t _callQueue;
+    
+    HDVECTicketModel *_agentTicketModel;
+    HDVECTicketModel *_visitorTicketModel;
+    HDVECTicketModel *_shareScreenTicketModel;
+    
 }
 static HDVECAgoraCallManager *shareCall = nil;
 + (instancetype)shareInstance {
@@ -92,7 +97,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     switch (type) {
         case HDAgentServiceType_VEC:
             
-            [[HDVECCallManager sharedInstance] vec_updateAgentStatus:HDVECAgentLoginStatusIdle completion:completion];
+            [[HDVECManager sharedInstance] vec_updateAgentStatus:HDVECAgentLoginStatusIdle completion:completion];
             
             break;
             
@@ -102,7 +107,7 @@ static HDVECAgoraCallManager *shareCall = nil;
 }
 - (void)vec_GetVECAgentStatusCompletion:(void (^)(id _Nonnull, HDError * _Nonnull))completion{
     
-    [[HDVECCallManager sharedInstance] vec_getAgentStatusCompletion:completion];
+    [[HDVECManager sharedInstance] vec_getAgentStatusCompletion:completion];
     
 }
 
@@ -249,6 +254,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     //结束录制
     [self endRecord];
     [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+    [HDAppManager shareInstance].isAnswerView = NO;
 }
 - (void)joinChannel{
     [self hd_joinChannelByToken:[HDVECAgoraCallManager shareInstance].keyCenter.agoraToken channelId:[HDVECAgoraCallManager shareInstance].keyCenter.agoraChannel info:nil uid:[[HDVECAgoraCallManager shareInstance].keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
@@ -372,7 +378,7 @@ static HDVECAgoraCallManager *shareCall = nil;
 /*
   这个地方是 创建 坐席加入房间 必要参数
  */
-- (void)createTicketDidReceiveAgoraInit {
+- (void)vec_createTicketDidReceiveAgoraInit {
         //1、发消息获取callid
         //2、拿到callid 调用获取视频通行证信息接口
         //3、封装拿到的参数给访客端 使用 并发送消息 以及 本身使用参数存储
@@ -387,7 +393,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     channel = kChannelName;
     //初始化 声网参数
     HDKeyCenter *key = [[HDKeyCenter alloc] init];
-    HDVECAgoraTicketModel * model = [HDVECAgoraTicketModel yy_modelWithDictionary:[self getAgentCallOptions]];
+    HDVECTicketModel * model =[self vec_getAgentTicketCallOptions];
     if (model) {
         key.agoraToken = model.token;
         key.agoraAppid = model.appId;
@@ -409,14 +415,177 @@ static HDVECAgoraCallManager *shareCall = nil;
     //存储参数等待 其他app 使用
     [self saveAppKeyCenter:key];
 }
-- (NSDictionary *)getAgentCallOptions{
+
+//解析获取的通行证接口的数据
+- (BOOL)vec_setAgoraTicketModel:(NSDictionary *)dic{
     
-    return [[HLCallManager sharedInstance] getAgentTicketCallOptions];
+    if (dic&&[dic isKindOfClass:[NSDictionary class]] &&dic.count >0) {
+        
+        if ([[dic allKeys] containsObject:@"entity"]) {
+
+            NSDictionary * entity = [dic objectForKey:@"entity"];
+            
+            if ([[entity allKeys] containsObject:@"agentTicket"]) {
+               
+                _agentTicketModel = [HDVECTicketModel yy_modelWithDictionary:[entity objectForKey:@"agentTicket"]];
+                
+            }
+            if ([[entity allKeys] containsObject:@"shareScreenTicket"]) {
+                
+                _shareScreenTicketModel = [HDVECTicketModel yy_modelWithDictionary:[entity objectForKey:@"shareScreenTicket"]];
+            }
+            if ([[entity allKeys] containsObject:@"visitorTicket"]) {
+                
+                _visitorTicketModel = [HDVECTicketModel yy_modelWithDictionary:[entity objectForKey:@"visitorTicket"]];
+            }
+        }
+    }
+    if (_agentTicketModel) {
+        return YES;
+    
+    }else{
+        return NO;
+    }
+}
+
+- (HDVECTicketModel *)vec_getAgentTicketCallOptions{
+    
+    if (_agentTicketModel) {
+        
+        return _agentTicketModel;
+    }
+    
+    return nil;
+
+}
+- (HDVECTicketModel *)vec_getVisitorTicketCallOptions{
+    
+    
+    if (_visitorTicketModel) {
+        
+        return _visitorTicketModel;
+    }
+    
+    return nil;
     
 }
-- (NSDictionary *)getVisitorCallOptions{
+
+- (HDVECTicketModel *)vec_getShareScreenTicketCallOptions{
     
-    return [[HLCallManager sharedInstance] getVisitorTicketCallOptions];
+    
+    if (_shareScreenTicketModel) {
+        
+        return _shareScreenTicketModel;
+    }
+    
+    return nil;
+    
+}
+
+- (NSDictionary *)vec_getSendVisitorTicketWithVisitorNickname:(NSString *)nickName withVisitorTrueName:(NSString *)trueName{
+    
+//    {
+//        "msg": "邀请你进行实时视频",
+//        "type": "cmd",
+//        "ext": {
+//            "msgtype": {
+//                "sendVisitorTicket": {
+//                    "msg": "邀请你进行实时视频",
+//                    "nickname": "Admin",
+//                    "ticket": {
+//                        "callId": 16396,
+//                        "uid": 5313,
+//                        "token": "0060e400b86d6ac439db7533aceace13cadIACOL8c/nGfl8RT5gkff6Ue7qPgnBP3xPYBaJ/UhuikUBmtSgiri6hG5IgAjGRDCj6qyYgQAAQCPqrJiAgCPqrJiAwCPqrJiBACPqrJi",
+//                        "appId": "0e400b86d6ac439db7533aceace13cad",
+//                        "channel": "a51135b6-5196-48c2-ba1e-0f7f2fc99d19",
+//                        "niceName": "webim-visitor-GQTRVB44KR6KHWHGR2QT123",
+//                        "trueName": null,
+//                        "agentTicket": {
+//                            "callId": 16396,
+//                            "uid": 55,
+//                            "token": "0060e400b86d6ac439db7533aceace13cadIAAGqIcyMItnRWmwj0ZQrNw02tt0esDou7SfTAM7ovdmcWtSgipqFFu1IgBzH5fAj6qyYgQAAQCPqrJiAgCPqrJiAwCPqrJiBACPqrJi",
+//                            "appId": "0e400b86d6ac439db7533aceace13cad",
+//                            "channel": "a51135b6-5196-48c2-ba1e-0f7f2fc99d19",
+//                            "niceName": "Admin",
+//                            "trueName": "admin"
+//                        },
+//    "shareTicket": {
+    //                            "callId": 16396,
+    //                            "uid": 55,
+    //                            "token": "0060e400b86d6ac439db7533aceace13cadIAAGqIcyMItnRWmwj0ZQrNw02tt0esDou7SfTAM7ovdmcWtSgipqFFu1IgBzH5fAj6qyYgQAAQCPqrJiAgCPqrJiAwCPqrJiBACPqrJi",
+    //                            "appId": "0e400b86d6ac439db7533aceace13cad",
+    //                            "channel": "a51135b6-5196-48c2-ba1e-0f7f2fc99d19",
+    //                            "niceName": "Admin",
+    //                            "trueName": "admin"
+    //                        },
+//                        "isThirdAgent": false
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    if (!_visitorTicketModel) {
+        
+        return nil;
+    }
+
+    NSDictionary *agentTicketDic = [self dictionaryWithJsonString:_agentTicketModel.yy_modelToJSONString];
+    
+    NSDictionary *_visitorTicketDic = [self dictionaryWithJsonString:_visitorTicketModel.yy_modelToJSONString];
+    
+    
+    NSMutableDictionary * ticket =[NSMutableDictionary dictionaryWithDictionary:_visitorTicketDic];;
+    [ticket hd_setValue:_visitorTicketModel.niceName forKey:@"niceName"];
+    [ticket hd_setValue:_visitorTicketModel.trueName forKey:@"trueName"];
+    [ticket hd_setValue:agentTicketDic forKey:@"agentTicket"];
+    [ticket hd_setValue:false forKey:@"isThirdAgent"];
+                        
+    NSMutableDictionary * sendVisitorTicket = [[NSMutableDictionary alloc] init];
+    [sendVisitorTicket  hd_setValue:@"邀请你进行实时视频" forKey:@"msg"];
+    [sendVisitorTicket  hd_setValue:  [[HDUserManager sharedInstance] getAgentUserModel].username forKey:@"nickname"];
+    [sendVisitorTicket  hd_setValue:ticket forKey:@"ticket"];
+
+    NSMutableDictionary * msgtypeDic = [[NSMutableDictionary alloc] init];
+
+    [msgtypeDic hd_setValue:sendVisitorTicket forKey:@"sendVisitorTicket"];
+    
+    return msgtypeDic;
+    
+}
+- (NSDictionary *)dictionaryWithJsonString:(NSString *)jsonString
+{
+    if (jsonString == nil) {
+        return nil;
+    }
+    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&err];
+    if(err)
+    {
+        NSLog(@"json解析失败：%@",err);
+        return nil;
+    }
+    return dic;
+}
+- (void)vec_sendCmdMessage:(NSDictionary *)msgtypeDic withSessionId:(NSString *)sessionId withToUser:(NSString *)toUser completion:(void (^)(HDMessage * _Nonnull, HDError * _Nonnull))aCompletionBlock{
+    
+    NSString *willSendText = @"邀请你进行实时视频";
+    
+    HDCMDMessageBody  *body = [[HDCMDMessageBody alloc] initWithMsg:willSendText];
+    
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters hd_setValue: msgtypeDic forKey:@"msgtype"];
+   
+    message.nBody.msgExt = parameters;
+    
+    
+    [[HDClient sharedClient].vecCallManager vec_asyncSendMessageWithMessageModel:message completion:aCompletionBlock];
+
 }
 /**
  接受视频会话
@@ -424,7 +593,7 @@ static HDVECAgoraCallManager *shareCall = nil;
  @param nickname 传递自己的昵称到对方
  @param completion 完成回调
  */
-- (void)acceptCallWithNickname:(NSString *)nickname completion:(void (^)(id, HDError *))completion{
+- (void)vec_acceptCallWithNickname:(NSString *)nickname completion:(void (^)(id, HDError *))completion{
     self.Completion = completion;
     [HDLog logI:@"================vec1.2=====收到坐席回呼cmd消息 acceptCallWithNickname "];
     [self hd_joinChannelByToken:[HDVECAgoraCallManager shareInstance].keyCenter.agoraToken channelId:[HDVECAgoraCallManager shareInstance].keyCenter.agoraChannel info:nil uid:[[HDVECAgoraCallManager shareInstance].keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
@@ -436,16 +605,28 @@ static HDVECAgoraCallManager *shareCall = nil;
         // 加入房间成功以后  给访客发消息
 //        dispatch_async(dispatch_get_main_queue(), ^{
           
-            [[HDClient sharedClient].hlCallManager kf_sendCmdMessage:[[HDClient sharedClient].hlCallManager getSendVisitorTicketWithVisitorNickname:_message.fromUser.nicename withVisitorTrueName:_message.fromUser.username] withSessionId:_message.sessionId withToUser:_message.from completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
-                
-                NSLog(@"=======%@",message);
-                //加入成功以后 开始 录制
-                [[HLCallManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: _message.sessionId];
-            }];
-
-//        });
-       
+//            [[HDClient sharedClient].hlCallManager kf_sendCmdMessage:[[HDClient sharedClient].hlCallManager getSendVisitorTicketWithVisitorNickname:_message.fromUser.nicename withVisitorTrueName:_message.fromUser.username] withSessionId:_message.sessionId withToUser:_message.from completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
+//
+//                NSLog(@"=======%@",message);
+//                //加入成功以后 开始 录制
+//                [[HDOnlineManager sharedInstance] startAgoraRtcRecodCallId:_keyCenter.callid withSessionId: _message.sessionId];
+//            }];
+      
+        [self vec_sendCmdMessage:[self vec_getSendVisitorTicketWithVisitorNickname:_visitorTicketModel.niceName withVisitorTrueName:_visitorTicketModel.trueName] withSessionId:[HDVECAgoraCallManager shareInstance].ringingCallModel.rtcSessionId withToUser:[HDVECAgoraCallManager shareInstance].ringingCallModel.visitorUserId completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
         
+            if (error==nil) {
+                
+                //加入成功以后 开始 录制
+                [[HDVECManager sharedInstance] vec_startAgoraRtcRecodWithRtcSessionId:_ringingCallModel.rtcSessionId withAgentId:_ringingCallModel.agentUserId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+                   
+                    if (error == nil) {
+                        NSLog(@"=======开始录制接口返回成功");
+                    }
+                    
+                    
+                }];
+            }
+        }];
         
     }];
 
@@ -461,7 +642,7 @@ static HDVECAgoraCallManager *shareCall = nil;
 - (void)endRecord{
     [HDVECAgoraCallManager shareInstance].isSender = NO;
     // 结束录制
-    [[HLCallManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:_message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager sharedInstance] stopAgoraRtcRecodCallId:_keyCenter.callid withSessionId:_message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
             //详情数据返回
             NSLog(@"responseObject = %@",responseObject);
@@ -482,7 +663,7 @@ static HDVECAgoraCallManager *shareCall = nil;
                             KFVideoDetailModel * model = obj;
                             if ([model.callId isEqualToString:_keyCenter.callid]) {
                                 
-                            HDMessage * message  =   [[HLCallManager sharedInstance] kf_sendMessageVideoPlaybackSessionId:_message.sessionId withToUser:_message.from withVisitorName:_message.fromUser.nicename withVideoStartTime: [self timestrToTimeSecond:model.recordStart] withVideoEndTime: [self timestrToTimeSecond:model.recordEnd] withCallId:model.callId];
+                            HDMessage * message  =   [[HDOnlineManager sharedInstance] kf_sendMessageVideoPlaybackSessionId:_message.sessionId withToUser:_message.from withVisitorName:_message.fromUser.nicename withVideoStartTime: [self timestrToTimeSecond:model.recordStart] withVideoEndTime: [self timestrToTimeSecond:model.recordEnd] withCallId:model.callId];
 //
                                 [[HDClient sharedClient].chatManager sendMessage:message progress:^(int progress) {
                                         
@@ -690,7 +871,7 @@ static HDVECAgoraCallManager *shareCall = nil;
 //
 //    NSData  * imageData = UIImagePNGRepresentation(img);
     
-    [[HLCallManager sharedInstance] asyncUploadScreenshotImageWithFile:imageData completion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
+    [[HDOnlineManager sharedInstance] asyncUploadScreenshotImageWithFile:imageData completion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
         
         if (error==nil) {
             
@@ -823,7 +1004,7 @@ static HDVECAgoraCallManager *shareCall = nil;
 /// 获取会话全部视频通话详情
 - (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion{
     
-    [[HLCallManager sharedInstance] getAllVideoDetailsSession:sessionId completion:aCompletion];
+    [[HDOnlineManager sharedInstance] getAllVideoDetailsSession:sessionId completion:aCompletion];
     
 }
 - (AgoraScreenCaptureParameters2 *)screenCaptureParams{

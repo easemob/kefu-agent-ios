@@ -152,7 +152,7 @@
 + (void)checkProgressWithTaskUUID:(NSString *)taskUUID token:(NSString *)token region:(WhiteRegionKey)region taskType:(WhiteConvertTypeV5)type result:(void (^)(WhiteConversionInfoV5 *  _Nullable info, NSError * _Nullable  error ))result{
     
     //查询文档进度
-    [[HDWhiteboardManager shareInstance] hd_wordConverterPptPageProgress:@"" type:type callId:nil taskId:taskUUID completion:^(id _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineWhiteboardManager shareInstance] hd_wordConverterPptPageProgress:@"" type:type callId:nil taskId:taskUUID completion:^(id _Nonnull responseObject, HDError * _Nonnull error) {
         if (!error && [responseObject isKindOfClass:[NSDictionary class]]) {
         NSLog(@"=== %@",responseObject);
             NSDictionary * dic = responseObject;

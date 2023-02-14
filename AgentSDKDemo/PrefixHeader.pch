@@ -111,4 +111,8 @@
 #import "UIImage+HDIconFont.h"
 #import "KFWebModel.h"
 #import "KFSmartUtils.h"
+
+#import "HDAppManager.h"
+
+
 #endif /* PrefixHeader_pch */

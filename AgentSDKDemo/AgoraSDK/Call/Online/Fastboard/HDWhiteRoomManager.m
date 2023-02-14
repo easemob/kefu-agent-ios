@@ -51,12 +51,12 @@ static HDWhiteRoomManager *shareWhiteboard = nil;
 
 - (void)hd_joinRoom{
     
-    [[HDWhiteboardManager shareInstance] hd_joinWiteBoardRoom];
+    [[HDOnlineWhiteboardManager shareInstance] hd_joinWiteBoardRoom];
     
 }
 - (void)hd_joinVECRoom{
     
-    [[HDWhiteboardManager shareInstance] hd_joinVecWiteBoardRoom];
+    [[HDOnlineWhiteboardManager shareInstance] hd_joinVecWiteBoardRoom];
     
 }
 - (void)reloadFastboardOverlayWithView:(UIView *)view{
@@ -154,7 +154,7 @@ static HDWhiteRoomManager *shareWhiteboard = nil;
                             convertType =WhiteConvertTypeStatic;
                         }
                         
-                        [[HDWhiteboardManager shareInstance] hd_wordConverterPptPage:url type:convertType completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+                        [[HDOnlineWhiteboardManager shareInstance] hd_wordConverterPptPage:url type:convertType completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
                             if (!error && [responseObject isKindOfClass:[NSDictionary class]]) {
                             NSLog(@"=== %@",responseObject);
                             if ([[dic allKeys] containsObject:@"status"] && [[dic valueForKey:@"status"] isEqualToString:@"OK"]) {

@@ -33,7 +33,7 @@ typedef void(^VECClickVideoZoomBlock)(UIButton *btn);
 - (void)playSoundCustom;
 - (void)stopSoundCustom;
 
-- (void)setMesage:(HDMessage *)message withRingCall:(HDVECRingingCallModel *)ringingCallModel;
+- (void)vec_setKefuRtcCallRingingModel:(HDVECRingingCallModel *)ringingCallModel;
 @end
 
 NS_ASSUME_NONNULL_END

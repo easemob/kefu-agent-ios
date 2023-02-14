@@ -1063,7 +1063,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 - (void)sendVideoTextMessage:(NSString *)text{
    
-    HDMessage *message = [[HLCallManager sharedInstance] kf_CreatAgentSendMessageLiveStreamInvitationSessionId:_conversationModel.sessionId withToUser:_conversationModel.chatter.agentId];
+    HDMessage *message = [[HDOnlineManager sharedInstance] kf_CreatAgentSendMessageLiveStreamInvitationSessionId:_conversationModel.sessionId withToUser:_conversationModel.chatter.agentId];
     
     [self addMessage:message];
     [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
@@ -1090,12 +1090,12 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)messagesLiveStreamInvitationDidReceive:(HDMessage *)aMessage{
     
     // 调用通行证接口
-    if (![HLCallManager sharedInstance].agentCallId) {
+    if (![HDOnlineManager sharedInstance].agentCallId) {
         
         return;
     }
     // 调用通行证接口
-    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:[HLCallManager sharedInstance].agentCallId withSessionId: aMessage.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager  sharedInstance] getAgoraTicketWithCallId:[HDOnlineManager sharedInstance].agentCallId withSessionId: aMessage.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         if (error ==nil) {
         
@@ -1117,7 +1117,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     NSLog(@"====%@", _conversationModel.sessionId);
     
-    [[HLCallManager sharedInstance] getCurrentringingCallsCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager sharedInstance] getCurrentringingCallsCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         NSLog(@"====%@",responseObject);
         if (error==nil) {
@@ -1144,7 +1144,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                                 
                                 if (model) {
                                   // 创建视频
-                                    [HLCallManager sharedInstance].agentCallId = model.callId;
+                                    [HDOnlineManager sharedInstance].agentCallId = model.callId;
 //                                    [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object: [self createVisitorCallMessage]];
                                     
                                     [self onAgoraCallReceivedNickName:model.fromUserNiceName];
@@ -1161,11 +1161,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)onAgoraCallReceivedNickName:(NSString *)nickName{
    
     // 调用通行证接口
-    if (![HLCallManager sharedInstance].agentCallId) {
+    if (![HDOnlineManager sharedInstance].agentCallId) {
         
         return;
     }
-    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:[HLCallManager sharedInstance].agentCallId withSessionId: _conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager  sharedInstance] getAgoraTicketWithCallId:[HDOnlineManager sharedInstance].agentCallId withSessionId: _conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         if (error ==nil) {
         
@@ -1410,7 +1410,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         NSLog(@"=======%@",model.yy_modelToJSONString);
         if (model) {
             // 调用接口
-            [[HLCallManager sharedInstance] getCurrentCallDetailsCallId:model.callId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+            [[HDOnlineManager sharedInstance] getCurrentCallDetailsCallId:model.callId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
                    
                 
                 //responseObject
@@ -1418,7 +1418,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                     
         //            NSMutableArray * tmp= [NSMutableArray new];
                     
-                 NSArray * dataArray =  [[HLCallManager sharedInstance] getVideoPlayBackVideoDetails];
+                 NSArray * dataArray =  [[HDOnlineManager sharedInstance] getVideoPlayBackVideoDetails];
                     
                     NSArray*  tmp = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:dataArray];
                     

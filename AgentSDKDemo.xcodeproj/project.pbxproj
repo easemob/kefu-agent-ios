@@ -507,6 +507,8 @@
 		D2239EB72994959A0087D054 /* HDVECVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E892994959A0087D054 /* HDVECVideoDetailAllModel.m */; };
 		D2239EB82994959A0087D054 /* HDVECVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */; };
 		D2239EB92994959A0087D054 /* HDVECVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */; };
+		D2A9927E299B3566009B58E8 /* HDVECTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A9927D299B3566009B58E8 /* HDVECTicketModel.m */; };
+		D2A9927F299B3566009B58E8 /* HDVECTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A9927D299B3566009B58E8 /* HDVECTicketModel.m */; };
 		D2B3E3B6299643AC00C171F0 /* HDAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3E3B5299643AC00C171F0 /* HDAppManager.m */; };
 		D2B3E3B7299643AC00C171F0 /* HDAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3E3B5299643AC00C171F0 /* HDAppManager.m */; };
 		D2B9517729222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
@@ -2278,6 +2280,8 @@
 		D2239E8B2994959A0087D054 /* HDVECRingingCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECRingingCallModel.h; sourceTree = "<group>"; };
 		D2239E8C2994959A0087D054 /* HDVECVideoDetailAllModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECVideoDetailAllModel.h; sourceTree = "<group>"; };
 		D2239E8D2994959A0087D054 /* HDVECVideoObjModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECVideoObjModel.h; sourceTree = "<group>"; };
+		D2A9927C299B3566009B58E8 /* HDVECTicketModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDVECTicketModel.h; sourceTree = "<group>"; };
+		D2A9927D299B3566009B58E8 /* HDVECTicketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDVECTicketModel.m; sourceTree = "<group>"; };
 		D2B3E3B4299643AC00C171F0 /* HDAppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDAppManager.h; sourceTree = "<group>"; };
 		D2B3E3B5299643AC00C171F0 /* HDAppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDAppManager.m; sourceTree = "<group>"; };
 		D2B9517529222A000043B07F /* KFWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWKWebViewController.h; sourceTree = "<group>"; };
@@ -4099,6 +4103,8 @@
 				D2239E892994959A0087D054 /* HDVECVideoDetailAllModel.m */,
 				D2239E8D2994959A0087D054 /* HDVECVideoObjModel.h */,
 				D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */,
+				D2A9927C299B3566009B58E8 /* HDVECTicketModel.h */,
+				D2A9927D299B3566009B58E8 /* HDVECTicketModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7204,6 +7210,7 @@
 				D3A7613C1FB55ABE000E1652 /* YYTextDebugOption.m in Sources */,
 				D3A7613D1FB55ABE000E1652 /* YYTextEffectWindow.m in Sources */,
 				D3A7613E1FB55ABE000E1652 /* YYTextInput.m in Sources */,
+				D2A9927E299B3566009B58E8 /* HDVECTicketModel.m in Sources */,
 				D3A7613F1FB55ABE000E1652 /* YYTextKeyboardManager.m in Sources */,
 				D3A761401FB55ABE000E1652 /* YYTextLayout.m in Sources */,
 				D3A761411FB55ABE000E1652 /* YYTextLine.m in Sources */,
@@ -7638,6 +7645,7 @@
 				D2C3352728DD5FD800421022 /* KFChatSmartView.m in Sources */,
 				938AE9AB27F3F87B00B461C4 /* HDChatVideoDetailBubbleView.m in Sources */,
 				93D0CF3B283736DA004D93E3 /* KFSmartUtils.m in Sources */,
+				D2A9927F299B3566009B58E8 /* HDVECTicketModel.m in Sources */,
 				938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */,
 				938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */,
 				938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */,

@@ -10,6 +10,9 @@
 #import <AgoraRtcKit/AgoraRtcEngineKit.h>
 #import "HDVECAgoraCallOptions.h"
 #import "HDVECAgoraCallManagerDelegate.h"
+#import "HDVECTicketModel.h"
+#import "HDVECRingingCallModel.h"
+
 NS_ASSUME_NONNULL_BEGIN
 static NSString * _Nonnull kVECUserDefaultState = @"VEC_KEY_BXL_DEFAULT_STATE_agent"; // 接收屏幕共享(开始/结束 状态)监听的Key
 
@@ -31,10 +34,18 @@ static void *VECKVOContext = &VECKVOContext;
 @property (nonatomic, assign) BOOL isSender;
 @property (nonatomic, assign) BOOL isCurrentCalling; // 当前是不是 正在呼叫
 @property (nonatomic, assign) HDAgentServiceType currentAgentServiceType; // 当前坐席类型
-
+@property (nonatomic, strong) HDVECRingingCallModel * ringingCallModel;
 
 + (instancetype _Nullable )shareInstance;
-
+/// 解析获取的通行证接口的数据
+/// @param dic  获取通行证接口返回的源数据
+- (BOOL)vec_setAgoraTicketModel:(NSDictionary *)dic;
+//获取坐席加入房间的数据
+- (HDVECTicketModel *)vec_getAgentTicketCallOptions;
+//获取访客加入房间的数据
+- (HDVECTicketModel *)vec_getVisitorTicketCallOptions;
+//获取屏幕分享加入房间的数据
+- (HDVECTicketModel *)vec_getShareScreenTicketCallOptions;
 /*!
  *  \~chinese
  *   VEC-  设置坐席状态
@@ -47,38 +58,14 @@ static void *VECKVOContext = &VECKVOContext;
  */
 - (void)vec_GetVECAgentStatusCompletion:(void (^_Nullable)(id responseObject, HDError * error))completion;
 
-
 /*!
  *  \~chinese
  *   初始化 agora init
  *
  */
-- (void)createTicketDidReceiveAgoraInit;
+- (void)vec_createTicketDidReceiveAgoraInit;
 
-/*!
- *  \~chinese
- *  获取坐席创建房间的设置项
- *
- *  @result 设置项
- *
- *  \~english
- *  Get setting options
- *
- *  @result Setting options
- */
-- (NSDictionary * )getAgentCallOptions;
-/*!
- *  \~chinese
- *  获取访客创建房间的设置项
- *
- *  @result 设置项
- *
- *  \~english
- *  Get setting options
- *
- *  @result Setting options
- */
-- (NSDictionary * )getVisitorCallOptions;
+
 #pragma mark - Options
 /*!
  *  \~chinese
@@ -117,7 +104,7 @@ static void *VECKVOContext = &VECKVOContext;
  *   @param completion 完成回调
  *
  */
-- (void)acceptCallWithNickname:(NSString *)nickname completion:(void (^_Nullable)(id, HDError *))completion;
+- (void)vec_acceptCallWithNickname:(NSString *)nickname completion:(void (^_Nullable)(id, HDError *))completion;
 
 /*!
  *  \~chinese
@@ -280,8 +267,10 @@ static void *VECKVOContext = &VECKVOContext;
 
 /// 获取会话全部视频通话详情
 - (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion;
-
-
+/// 构造给访客端加入房间的参数
+- (NSDictionary *)vec_getSendVisitorTicketWithVisitorNickname:(NSString *)nickName withVisitorTrueName:(NSString *)trueName;
+//发送 cmd 消息 把访客端需要加入房间的数据带过去
+- (void)vec_sendCmdMessage:(NSDictionary *)msgtypeDic withSessionId:(NSString *)sessionId withToUser:(NSString *)toUser completion:(void (^)(HDMessage * message, HDError *error))aCompletionBlock;
 /// 获取对端访客视频截图
 - (void)getVisitorScreenshotCompletion:(void(^)(NSString * url,HDError *error))aCompletion;
 

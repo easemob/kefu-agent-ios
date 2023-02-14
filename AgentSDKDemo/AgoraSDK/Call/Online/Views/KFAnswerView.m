@@ -360,7 +360,7 @@
     [[HDCallManager shareInstance] initGray];
     
     // 调用通行证接口
-    [[HLCallManager  sharedInstance] getAgoraTicketWithCallId:_ringingCallModel.callId withSessionId: _message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager  sharedInstance] getAgoraTicketWithCallId:_ringingCallModel.callId withSessionId: _message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         if (error ==nil) {
         

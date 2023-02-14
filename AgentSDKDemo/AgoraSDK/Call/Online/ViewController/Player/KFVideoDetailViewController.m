@@ -241,11 +241,11 @@
 //获取会话当中的全部视频记录
 - (void)getSessioningAllRecordVideos{
     
-    [[HLCallManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         if (error == nil) {
             
-            NSArray*  tmp = [[HLCallManager sharedInstance] getVideoPlayBackVideoDetailsAll];
+            NSArray*  tmp = [[HDOnlineManager sharedInstance] getVideoPlayBackVideoDetailsAll];
            _allVideoDetails = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:tmp];
             [_allVideoDetails enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 
@@ -333,11 +333,11 @@
     NSLog(@"kf-upButtonAction=%@ ",[self.currentModel yy_modelToJSONString]);
     }else{
         
-        [[HLCallManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        [[HDOnlineManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
             
             if (error == nil) {
                 
-                NSArray*  tmp = [[HLCallManager sharedInstance] getVideoPlayBackVideoDetailsAll];
+                NSArray*  tmp = [[HDOnlineManager sharedInstance] getVideoPlayBackVideoDetailsAll];
                _allVideoDetails = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:tmp];
               
                 [_allVideoDetails enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -371,11 +371,11 @@
     [self changeVideoUrl];
     NSLog(@"kf-upButtonAction=%@ ",[self.currentModel yy_modelToJSONString]);
     }else{
-    [[HLCallManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+    [[HDOnlineManager sharedInstance] getAllVideoDetailsSession:self.conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         if (error == nil) {
             
-            NSArray*  tmp = [[HLCallManager sharedInstance] getVideoPlayBackVideoDetailsAll];
+            NSArray*  tmp = [[HDOnlineManager sharedInstance] getVideoPlayBackVideoDetailsAll];
            _allVideoDetails = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:tmp];
           
             [_allVideoDetails enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
