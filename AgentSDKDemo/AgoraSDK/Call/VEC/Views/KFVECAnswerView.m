@@ -58,25 +58,8 @@
 - (void)vec_setKefuRtcCallRingingModel:(HDVECRingingCallModel *)ringingCallModel{
     
     _ringingCallModel = ringingCallModel;
+    self.nickNameLabel.text = _ringingCallModel.visitorUserNickName;
 }
-//- (void)setMesage:(HDMessage *)message withRingCall:(HDVECRingingCallModel *)ringingCallModel{
-//
-//
-//    _message = message;
-//    _ringingCallModel = ringingCallModel;
-//
-//    // 获取 username。如果 username 没有 显示 nicename
-//
-//    self.nickNameLabel.text = message.fromUser.nicename;
-//
-//    if (message.type == HDMessageBodyTypeText) {
-//        HDTextMessageBody *bd = (HDTextMessageBody *)message.nBody;
-//
-//        self.titleLabel.text = bd.text;
-//    }
-////    "type": "rtcmedia\/video",
-//
-//}
 - (void)playSoundCustom{
     
     // 来电铃声
@@ -84,7 +67,6 @@
         [[EMCDDeviceManager sharedInstance] playNewMessageSoundCustom];
     // 收到消息时，震动
         [[EMCDDeviceManager sharedInstance] playVibration];
-    
 }
 - (void)stopSoundCustom{
     

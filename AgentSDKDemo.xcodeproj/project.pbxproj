@@ -2245,7 +2245,6 @@
 		D2239E63299495990087D054 /* HDVECAgoraCallMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraCallMember.h; sourceTree = "<group>"; };
 		D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraTicketModel.m; sourceTree = "<group>"; };
 		D2239E65299495990087D054 /* HDVECVideoDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECVideoDetailModel.m; sourceTree = "<group>"; };
-		D2239E66299495990087D054 /* HDVECAgoraCallEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAgoraCallEnum.h; sourceTree = "<group>"; };
 		D2239E682994959A0087D054 /* KFVECAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFVECAnswerView.h; sourceTree = "<group>"; };
 		D2239E6A2994959A0087D054 /* HDVECItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECItemView.h; sourceTree = "<group>"; };
 		D2239E6B2994959A0087D054 /* HDVECAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAnswerView.m; sourceTree = "<group>"; };
@@ -4020,7 +4019,6 @@
 		D2239E5A299495990087D054 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				D2239E66299495990087D054 /* HDVECAgoraCallEnum.h */,
 				D2239E60299495990087D054 /* HDVECAgoraCallManager.h */,
 				D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */,
 				D2239E62299495990087D054 /* HDVECAgoraCallManagerDelegate.h */,

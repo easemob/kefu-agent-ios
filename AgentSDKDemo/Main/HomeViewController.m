@@ -197,6 +197,12 @@ static HomeViewController *homeViewController;
 //    }];
     
     
+  
+    
+    sleep(2);
+    
+    [self vec_KefuRtcCallRingingDidReceive:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -715,87 +721,18 @@ static HomeViewController *homeViewController;
 }
 
 // 在线中的视频
-//-(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
-//
-//    if ([HDAppManager shareInstance].isAnswerView) {
-//                // 如果YEAS 说明已经有视频弹窗界面了 不能在接通其他视频了
-//        return;
-//    }
-//    if (![HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
-//
-//        return;
-//    }
-//    for (HDMessage *msg in aMessages) {
-//
-//        // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
-//        // 访客邀请坐席
-//        // 获取sessionid
-//        if ([[msg.nBody.msgExt allKeys] containsObject:@"type"]) {
-//            NSString * type = [msg.nBody.msgExt valueForKey:@"type"];
-//            if ([type isEqualToString:@"rtcmedia/video"]) {
-//                return;
-//            }
-//        }
-//        HDExtMsgType type = [HDUtils getMessageExtType:msg];
-//
-//        if (type == HDExtMsgTypeGeneral) {
-//
-//            return;
-//
-//        }
-//        if (type == HDExtMsgTypeLiveStreamInvitation) {
-//
-//            [self  onAgoraCallReceivedNickName:msg];
-//
-//        }else if(type == HDExtMsgTypeVisitorCancelInvitation) {
-//            //访客取消邀请
-//            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
-//                    // 来电铃
-//                if (self.kfAnswerView) {
-//                    [self.kfAnswerView stopSoundCustom];
-//                    [self.kfAnswerView removeFromSuperview];
-//                    self.kfAnswerView = nil;
-//                }
-//
-//            }
-//
-//        }else if(type == HDExtMsgTypeVisitorRejectInvitation) {
-//            //访客拒绝邀请  关闭当前页面 离开房间
-//            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
-//                [[HDAgoraCallManager shareInstance] leaveChannel];
-//                [[HDCallViewController sharedManager]  removeView];
-//                [[HDCallViewController sharedManager] removeSharedManager];
-//            }
-//
-//
-//        }
-//    }
-//}
+-(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
 
-
--(void)vec_KefuRtcCallRingingDidReceive:(NSArray *)aMessages{
-    
     if ([HDAppManager shareInstance].isAnswerView) {
-        // 如果YEAS 说明已经有视频弹窗界面了 不能在接通其他视频了
+                // 如果YEAS 说明已经有视频弹窗界面了 不能在接通其他视频了
         return;
     }
-    
-    [HDAppManager shareInstance].isAnswerView = YES;
-    // 收到振铃消息 先解析需要的数据 开始弹视频界面
-    //1、解析数据
-    //2、调用接口获取声网数据 弹窗
-}
-
-
-// VEC 相关的视频
--(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
-   
     if (![HDClient sharedClient].currentAgentUser.agoraVideoEnable) {
 
         return;
     }
     for (HDMessage *msg in aMessages) {
-    
+
         // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
         // 访客邀请坐席
         // 获取sessionid
@@ -806,50 +743,79 @@ static HomeViewController *homeViewController;
             }
         }
         HDExtMsgType type = [HDUtils getMessageExtType:msg];
-        
+
         if (type == HDExtMsgTypeGeneral) {
-            
+
             return;
-            
+
         }
         if (type == HDExtMsgTypeLiveStreamInvitation) {
-           
-            HDVECRingingCallModel * model = [HDVECRingingCallModel new];
 
-            model.rtcSessionId = @"062ca87e-4e32-4693-879e-8b886c914a0d";
-            model.agentUserId = @"9843170d-2818-44dd-a36b-e325b1fd170b";
-            model.tenantId =@"101554";
-            model.visitorUserName = @"webim-visitor-";
-            model.agentUserNiceName = @"hl";
+            [self  onAgoraCallReceivedNickName:msg];
 
-            [self  vec_onAgoraCallReceivedNickName:model];
-            
-//            [self  onAgoraCallReceivedNickName:msg];
-            
         }else if(type == HDExtMsgTypeVisitorCancelInvitation) {
             //访客取消邀请
-            if ( [HDVECAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDVECAgoraCallManager shareInstance].message.sessionId]) {
+            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
                     // 来电铃
-                if (self.kfVecAnswerView) {
-                    [self.kfVecAnswerView stopSoundCustom];
-                    [self.kfVecAnswerView removeFromSuperview];
-                    self.kfVecAnswerView = nil;
+                if (self.kfAnswerView) {
+                    [self.kfAnswerView stopSoundCustom];
+                    [self.kfAnswerView removeFromSuperview];
+                    self.kfAnswerView = nil;
                 }
-                  
+
             }
-            
+
         }else if(type == HDExtMsgTypeVisitorRejectInvitation) {
             //访客拒绝邀请  关闭当前页面 离开房间
-            if ( [HDVECAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDVECAgoraCallManager shareInstance].message.sessionId]) {
-                [[HDVECAgoraCallManager shareInstance] leaveChannel];
-                [[HDVECViewController sharedManager]  removeView];
-                [[HDVECViewController sharedManager] removeSharedManager];
+            if ( [HDAgoraCallManager shareInstance].isCurrentCalling && [msg.sessionId isEqualToString:[HDAgoraCallManager shareInstance].message.sessionId]) {
+                [[HDAgoraCallManager shareInstance] leaveChannel];
+                [[HDCallViewController sharedManager]  removeView];
+                [[HDCallViewController sharedManager] removeSharedManager];
             }
-           
-           
+
+
         }
     }
 }
+
+
+-(void)vec_KefuRtcCallRingingDidReceive:(NSDictionary *)dic{
+    
+    if ([HDAppManager shareInstance].isAnswerView) {
+        // 如果YEAS 说明已经有视频弹窗界面了 不能在接通其他视频了
+        return;
+    }
+    
+    [HDAppManager shareInstance].isAnswerView = YES;
+    // 收到振铃消息 先解析需要的数据 开始弹视频界面
+    //1、解析数据
+    
+    //2、调用接口获取声网数据 弹窗
+    
+//    HDVECRingingCallModel * model = [HDVECRingingCallModel new];
+//    model.rtcSessionId = @"800758c5-e48b-4b98-95f0-81628cd0cdc8";
+//    model.agentUserId = @"9843170d-2818-44dd-a36b-e325b1fd170b";
+//    model.tenantId =@"101554";
+//    model.visitorUserName = @"webim-visitor-";
+//    model.agentUserNiceName = @"hl";
+//    model.visitorUserId = @"37459477-b3ef-4582-8622-89fb25026b88";
+
+    
+    NSString * json = @"{\"messageType\":\"KefuRtcCallRinging\",\"body\":{\"rtcSession\":{\"rtcSessionId\":\"062ca87e-4e32-4693-879e-8b886c914a0d\",\"tenantId\":101554,\"techChannelId\":152908,\"visitorUserId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"visitorUserNickName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"visitorUserName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"queueId\":262,\"state\":\"Wait\",\"agentUserId\":\"9843170d-2818-44dd-a36b-e325b1fd170b\",\"startDatetime\":null,\"stopDatetime\":null,\"createDatetime\":\"2023-02-14 10:56:25\",\"agentUserNiceName\":\"hl\",\"techChannelType\":\"easemob\",\"techChannelName\":\"hl网页测试\",\"originType\":\"webim\",\"callType\":0,\"multiCall\":false,\"extra\":null,\"sourceType\":\"NORMAL\",\"hangUpUserType\":null,\"hangUpReason\":null,\"visitorUser\":{\"tenantId\":101554,\"userId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"userType\":\"Visitor\",\"userScope\":\"Tenant\",\"nicename\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"username\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"techChannelType\":\"easemob\",\"techChannelId\":152908,\"techChannelInfo\":\"1417220317092523#kefuchannelapp101554#kefuchannelimid_821215\",\"chatGroupId\":281253554,\"sex\":0,\"createDateTime\":1676339739000,\"lastUpdateDateTime\":1676339739000,\"sendMessageCount\":0,\"roles\":\"visitor\",\"scope\":\"Tenant\",\"bizId\":\"101554\",\"status\":\"Disable\"},\"queueName\":null,\"serviceSessionId\":\"062ca87e-4e32-4693-879e-8b886c914a0d\",\"agentQueue\":null,\"agentUserData\":null}},\"noticeId\":\"2fbee124-64e6-45b8-a43e-b656a138dfe8\"}";
+    
+    NSDictionary * dict = [[HDVECAgoraCallManager shareInstance] dictionaryWithJsonString:json];
+    
+    
+    HDVECRingingCallModel * model = [[HDVECAgoraCallManager shareInstance] vec_parseKefuRtcCallRingingData:dict];
+    
+    
+    
+    [self  vec_onAgoraCallReceivedNickName:model];
+    
+}
+
+
+
 - (void)vec_onAgoraCallReceivedNickName:(HDVECRingingCallModel *)model{
     
     // 收到消息 调用接口 从接口里边获取callid 加入房间
