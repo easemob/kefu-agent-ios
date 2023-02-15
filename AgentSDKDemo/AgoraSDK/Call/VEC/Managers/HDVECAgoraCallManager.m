@@ -894,6 +894,214 @@ static HDVECAgoraCallManager *shareCall = nil;
     }];
 }
 
+#pragma mark -------------------------VEC 视频排队 相关 ----------------------------------
+
+/**
+   获取视频记录
+ Integer pageNum 页码(默认0)
+ Integer pageSize 页大小（默认10）
+ Integer tenantId 租户ID
+ String agentUserId 客服ID
+ String visitorUserId 访客ID
+ Date createDateFrom 通话创建时间（开始范围条件）2022-05-12 16:30:00
+ Date createDateTo 通话创建时间（结束范围条件）2022-05-12 16:30:00
+ Date startDateFrom 首次通话接起时间（开始范围条件）2022-05-12 16:30:00
+ Date startDateTo 首次通话接起时间（结束范围条件）2022-05-12 16:30:00
+ Date stopDateFrom 结束时间（开始范围条件）2022-05-12 16:30:00
+ Date stopDateTo 通话结束时间（结束范围条件）2022-05-12 16:30:00
+ List<TechChannel> techChannels 关联（TechChannel对象参数，String techChannelType 关联类型，String techChannelId 关联ID）
+ List<String> originType 渠道类型
+ boolean isAgent 是否使用客服角色进行查询（坐席/管理员）
+ String sortField  排序字段（默认createDatetime）
+ String sortOrder 正序倒序标识（默认desc）
+ String rtcSessionId 视频ID，如果指定了这个，别的条件就不生效了
+ List<Integer> queueIds 技能组Ids
+ List<String> hangUpReason 挂断类型
+ List<String> hangUpUserType 挂断方
+ String customerName 客户名
+ String visitorName 访客名
+ List<String> state 通话状态（结束为"Terminal","Abort"）
+ @param data   请求参数体  是一个json串 里边设置筛选条件参数 参数请参考以上字段
+ */
+- (void)vec_getRtcSessionhistoryParameteData:(NSDictionary*)data
+                                  completion:(void (^)(id responseObject, HDError *error))completion{
+    
+    
+    [[HDClient sharedClient].vecCallManager vec_getRtcSessionhistoryParameteData:data completion:completion];
+    
+}
+
+/*  正常通话场景 如果查全部hangUpReason 数组为空 即可
+ NORMAL  正常结束（接通后结束）
+ RING_GIVE_UP   振铃放弃（指定振铃时间内，访客挂断/离开）
+ AGENT_REJECT  客服拒接（振铃过程中客服主动挂断）
+ VISITOR_REJECT   访客拒接（振铃过程中访客主动挂断）
+ */
+- (NSDictionary *)vec_getSessionhistoryParameteData{
+    NSString * agentId = [HDClient sharedClient].currentAgentUser.agentId;
+    NSString *startTime =  [self dateWithTimeInterval: [self getTime:0 andMinute:0 andSecond:0]];
+    NSString *endTime =   [self dateWithTimeInterval:[self getTime:23 andMinute:59 andSecond:59]];
+    
+    NSArray * state = @[@"Processing",@"Terminal",@"Abort"];
+    NSArray * hangUpUserType = @[];
+    NSArray * hangUpReason = @[];
+    NSArray * queueIds = @[];
+    NSArray * originType = @[];
+    NSArray * techChannels = @[];
+    NSDictionary * dic = @{
+        @"pageNum": @0,
+        @"pageSize": @10000,
+        @"tenantId": [HDClient sharedClient].currentAgentUser.tenantId,
+        @"agentUserId": agentId,
+        @"visitorUserId": @"",
+        @"createDateFrom": [NSString stringWithFormat:@"%@00:00:00",startTime],
+        @"createDateTo": [NSString stringWithFormat:@"%@24:00:00",endTime],
+        @"startDateFrom": @"",
+        @"startDateTo": @"",
+        @"stopDateFrom": @"",
+        @"stopDateTo": @"",
+        @"isAgent": @"false",
+        @"sortField": @"createDatetime",// 要么不传这个字段 要么就传上值 否则会有问题
+        @"sortOrder": @"",
+        @"rtcSessionId": @"",
+        @"customerName": @"",
+        @"visitorName": @"",
+        @"originType": originType,
+        @"queueIds": queueIds,
+        @"hangUpReason": hangUpReason,
+        @"hangUpUserType": hangUpUserType,
+        @"techChannels":techChannels,
+        @"state":state
+        
+        
+    };
+    
+    return dic;
+    
+}
+- (NSString *)getTime: (NSInteger)hour andMinute:(NSInteger)minute andSecond:(NSInteger)second {
+    NSCalendar *greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+
+    NSTimeZone *timeZone = [[NSTimeZone alloc] initWithName:@"Asia/Shanghai"];
+    [greCalendar setTimeZone: timeZone];
+
+    NSDateComponents *dateComponents = [greCalendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay  fromDate:[NSDate date]];
+    //  定义一个NSDateComponents对象，设置一个时间点
+    NSDateComponents *dateComponentsForDate = [[NSDateComponents alloc] init];
+    [dateComponentsForDate setDay:dateComponents.day];
+    [dateComponentsForDate setMonth:dateComponents.month];
+    [dateComponentsForDate setYear:dateComponents.year];
+    [dateComponentsForDate setHour:hour];
+    [dateComponentsForDate setMinute:minute];
+    [dateComponentsForDate setSecond:second];
+
+    NSDate *dateFromDateComponentsForDate = [greCalendar dateFromComponents:dateComponentsForDate];
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[dateFromDateComponentsForDate timeIntervalSince1970]*1000];
+    
+    return timeSp;
+}
+// 时间戳转时间,时间戳为13位是精确到毫秒的，10位精确到秒
+-(NSString*)dateWithTimeInterval:(NSString*)timeStr{
+    // 传入的时间戳timeStr如果是精确到秒的记得要/1000
+    NSTimeInterval timeInterval=[timeStr doubleValue]/1000;
+    NSDate*detailDate=[NSDate dateWithTimeIntervalSince1970:timeInterval];
+    NSDateFormatter*dateFormatter=[[NSDateFormatter alloc]init];
+    // 实例化一个NSDateFormatter对象，设定时间格式，这里可以设置成自己需要的格式
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd "];
+    NSString*dateStr=[dateFormatter stringFromDate:detailDate];
+    return dateStr;
+    
+}
+
+
+// 字符串转时间戳 如：2017-4-10 17:15:10
+-(NSString*)getTimeStrWithString:(NSString*)str{
+    NSDateFormatter*dateFormatter=[[NSDateFormatter alloc]init];
+    // 创建一个时间格式化对象
+    [dateFormatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    //设定时间的格式
+    NSDate*tempDate=[dateFormatter dateFromString:str];
+    //将字符串转换为时间对象
+    NSString*timeStr=[NSString stringWithFormat:@"%ld",(long)[tempDate timeIntervalSince1970]*1000];//字符串转成时间戳,精确到毫秒*1000
+    return timeStr;
+    
+}
+
+
+/*
+ * 获取视频详情
+ */
+
+- (void)vec_getCallVideoDetailWithRtcSessionId:(NSString *)rtcSessionId Completion:(void(^)(id responseObject, HDError *error))completion{
+    
+    
+    [[HDClient sharedClient].vecCallManager vec_getCallVideoDetailWithRtcSessionId:rtcSessionId Completion:completion];
+    
+}
+
+
+/*
+ * 待接入数量 这个接口需要需要轮训获取排队数量
+ */
+- (void)vec_getSessionsCallWaitWithAgentId:(NSString *)agentId Completion:(void(^)(id responseObject, HDError *error))completion{
+    
+    [[HDClient sharedClient].vecCallManager vec_getSessionsCallWaitWithAgentId:agentId Completion:completion];
+    
+    
+}
+/*
+ * 待接入列表 这个接口需要需要轮训获取排队列表
+ {
+   "page": 0,
+   "size": 20,
+   "mode": "agent", //  如果要获取管理员下所有的列表 传admin
+   "beginDate": "2022-05-05T00:00:00",
+   "endDate": "2022-05-06T00:00:00",
+   "techChannelId": 27230,
+   "originType": "app",
+   "visitorUserId": "id"
+ }
+ */
+- (void)vec_postSessionsCallWaitListParameteData:(NSDictionary*)data Completion:(void(^)(id responseObject, HDError *error))completion{
+    
+    
+    [[HDClient sharedClient].vecCallManager vec_postSessionsCallWaitListParameteData:data Completion:completion];
+    
+}
+- (NSDictionary *)vec_getSessionCallWaitListParameteData{
+    
+    NSDictionary * dic = @{
+        @"page": @0,
+        @"size": @20,
+        @"mode": @"agent", //  如果要获取管理员下所有的列表 传admin
+        @"beginDate": @"",
+        @"endDate": @"",
+        @"techChannelId": @"",
+        @"originType": @"app",
+        @"visitorUserId": @""
+    };
+    return dic;
+}
+/*
+ * 待接入 获取接听 音视频ticket 通行证
+ */
+- (void)vec_getSessionsCallWaitTicketWithAgentId:(NSString *)agentId withRtcSessionId:(NSString *)rtcSessionId Completion:(void(^)(id responseObject, HDError *error))completion{
+    
+    [[HDClient sharedClient].vecCallManager vec_getSessionsCallWaitTicketWithAgentId:agentId withRtcSessionId:rtcSessionId Completion:completion];
+}
+
+/*
+ * 拒接待接入通话
+ */
+- (void)vec_postSessionsCallWaitRejectWithAgentId:(NSString *)agentId withRtcSessionId:(NSString *)rtcSessionId Completion:(void(^)(id responseObject, HDError *error))completion{
+    
+    
+    [[HDClient sharedClient].vecCallManager  vec_postSessionsCallWaitRejectWithAgentId:agentId withRtcSessionId:agentId Completion:completion];
+    
+}
+
+#pragma mark -------------------------VEC 视频排队 相关 end ----------------------------------
 
 #pragma mark - AgoraRtcEngineKit 屏幕分享 相关
 /// 保持动态数据 给其他app 进程通信

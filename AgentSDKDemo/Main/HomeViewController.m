@@ -801,7 +801,7 @@ static HomeViewController *homeViewController;
 //    model.visitorUserId = @"37459477-b3ef-4582-8622-89fb25026b88";
 
     
-    NSString * json = @"{\"messageType\":\"KefuRtcCallRinging\",\"body\":{\"rtcSession\":{\"rtcSessionId\":\"062ca87e-4e32-4693-879e-8b886c914a0d\",\"tenantId\":101554,\"techChannelId\":152908,\"visitorUserId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"visitorUserNickName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"visitorUserName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"queueId\":262,\"state\":\"Wait\",\"agentUserId\":\"9843170d-2818-44dd-a36b-e325b1fd170b\",\"startDatetime\":null,\"stopDatetime\":null,\"createDatetime\":\"2023-02-14 10:56:25\",\"agentUserNiceName\":\"hl\",\"techChannelType\":\"easemob\",\"techChannelName\":\"hl网页测试\",\"originType\":\"webim\",\"callType\":0,\"multiCall\":false,\"extra\":null,\"sourceType\":\"NORMAL\",\"hangUpUserType\":null,\"hangUpReason\":null,\"visitorUser\":{\"tenantId\":101554,\"userId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"userType\":\"Visitor\",\"userScope\":\"Tenant\",\"nicename\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"username\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"techChannelType\":\"easemob\",\"techChannelId\":152908,\"techChannelInfo\":\"1417220317092523#kefuchannelapp101554#kefuchannelimid_821215\",\"chatGroupId\":281253554,\"sex\":0,\"createDateTime\":1676339739000,\"lastUpdateDateTime\":1676339739000,\"sendMessageCount\":0,\"roles\":\"visitor\",\"scope\":\"Tenant\",\"bizId\":\"101554\",\"status\":\"Disable\"},\"queueName\":null,\"serviceSessionId\":\"062ca87e-4e32-4693-879e-8b886c914a0d\",\"agentQueue\":null,\"agentUserData\":null}},\"noticeId\":\"2fbee124-64e6-45b8-a43e-b656a138dfe8\"}";
+    NSString * json = @"{\"messageType\":\"KefuRtcCallRinging\",\"body\":{\"rtcSession\":{\"rtcSessionId\":\"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6\",\"tenantId\":101554,\"techChannelId\":152908,\"visitorUserId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"visitorUserNickName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"visitorUserName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"queueId\":262,\"state\":\"Wait\",\"agentUserId\":\"9843170d-2818-44dd-a36b-e325b1fd170b\",\"startDatetime\":null,\"stopDatetime\":null,\"createDatetime\":\"2023-02-15 16:04:58\",\"agentUserNiceName\":\"hl\",\"techChannelType\":\"easemob\",\"techChannelName\":\"hl网页测试\",\"originType\":\"webim\",\"callType\":0,\"multiCall\":false,\"extra\":null,\"sourceType\":\"NORMAL\",\"hangUpUserType\":null,\"hangUpReason\":null,\"visitorUser\":{\"tenantId\":101554,\"userId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"userType\":\"Visitor\",\"userScope\":\"Tenant\",\"nicename\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"username\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"techChannelType\":\"easemob\",\"techChannelId\":152908,\"techChannelInfo\":\"1417220317092523#kefuchannelapp101554#kefuchannelimid_821215\",\"chatGroupId\":281253554,\"sex\":0,\"createDateTime\":1676339739000,\"lastUpdateDateTime\":1676339739000,\"sendMessageCount\":0,\"roles\":\"visitor\",\"scope\":\"Tenant\",\"bizId\":\"101554\",\"status\":\"Disable\"},\"queueName\":null,\"serviceSessionId\":\"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6\",\"agentQueue\":null,\"agentUserData\":null}},\"noticeId\":\"5d734150-27a9-4092-ab57-f3b2c6fced75\"}";
     
     NSDictionary * dict = [[HDVECAgoraCallManager shareInstance] dictionaryWithJsonString:json];
     
@@ -812,9 +812,77 @@ static HomeViewController *homeViewController;
     
     [self  vec_onAgoraCallReceivedNickName:model];
     
+    
+    // 获取接口 数据 测试
+    [self vec_testApi];
+    
 }
 
+- (void)vec_testApi{
+    
+    // 获取视频记录
+    NSDictionary *dicHistory = [[HDVECAgoraCallManager shareInstance] vec_getSessionhistoryParameteData];
+    [[HDVECAgoraCallManager shareInstance] vec_getRtcSessionhistoryParameteData:dicHistory completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
 
+        NSLog(@"=======%@",responseObject);
+        
+    }];
+
+    /*
+     * 获取视频详情
+     */
+    [[HDVECAgoraCallManager shareInstance] vec_getCallVideoDetailWithRtcSessionId:@"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+
+
+        NSLog(@"=======%@",responseObject);
+        
+    }];
+    //待接入 相关接口
+    /*
+     * 待接入数量 这个接口需要需要轮训获取排队数量
+     */
+    NSString * agentId = [HDClient sharedClient].currentAgentUser.agentId;
+    [[HDVECAgoraCallManager shareInstance] vec_getSessionsCallWaitWithAgentId:agentId Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+       
+        NSLog(@"=======%@",responseObject);
+        
+    }];
+
+    /*
+     * 待接入列表 这个接口需要需要轮训获取排队列表
+     {
+       "page": 0,
+       "size": 20,
+       "mode": "agent", //  如果要获取管理员下所有的列表 传admin
+       "beginDate": "2022-05-05T00:00:00",
+       "endDate": "2022-05-06T00:00:00",
+       "techChannelId": 27230,
+       "originType": "app",
+       "visitorUserId": "id"
+     }'
+     */
+    
+    NSDictionary *dic = [[HDVECAgoraCallManager shareInstance] vec_getSessionCallWaitListParameteData];
+    [[HDVECAgoraCallManager shareInstance] vec_postSessionsCallWaitListParameteData:dic Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        NSLog(@"=====================%@",responseObject);
+    }];
+    /*
+     * 待接入 获取接听 音视频ticket 通行证
+     */
+    [[HDVECAgoraCallManager shareInstance] vec_getSessionsCallWaitTicketWithAgentId:agentId withRtcSessionId:@"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        NSLog(@"=====================%@",responseObject);
+    }];
+    /*
+     * 拒接待接入通话
+     */
+    [[HDVECAgoraCallManager shareInstance] vec_postSessionsCallWaitRejectWithAgentId:agentId withRtcSessionId:@"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        NSLog(@"=====================%@",responseObject);
+        
+    }];
+   
+}
 
 - (void)vec_onAgoraCallReceivedNickName:(HDVECRingingCallModel *)model{
     
