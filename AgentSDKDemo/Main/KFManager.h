@@ -69,6 +69,7 @@ singleton_interface(KFManager);
 
 - (void)clearInfo;
 
-
++ (void)vec_PushView:(UIView *)pushView inView:(UIView *)inView;
++ (void)vec_PopView:(UIView *)popView;
 
 @end

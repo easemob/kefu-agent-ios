@@ -323,5 +323,33 @@ singleton_implementation(KFManager)
     _headImageView = nil;
 }
 
-
++ (void)vec_PushView:(UIView *)pushView inView:(UIView *)inView
+{
+    
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.2f;
+    animation.timingFunction = [CAMediaTimingFunction
+                                functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.fillMode = kCAFillModeForwards;
+    animation.type = kCATransitionPush;
+//    animation.subtype = kCATransitionFromRight;
+    animation.subtype = kCATransitionReveal;
+    [inView.layer addAnimation:animation forKey:nil];
+    [inView addSubview:pushView];
+    [pushView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(inView);
+    }];
+}
++ (void)vec_PopView:(UIView *)popView
+{
+    CATransition *animation = [CATransition animation];
+    animation.duration = 0.2f;
+    animation.timingFunction = [CAMediaTimingFunction
+                                functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.fillMode = kCAFillModeForwards;
+    animation.type = kCATransitionPush;
+    animation.subtype = kCATransitionReveal;
+    [popView.superview.layer addAnimation:animation forKey:nil];
+    [popView removeFromSuperview];
+}
 @end

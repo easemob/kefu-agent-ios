@@ -24,6 +24,7 @@
 #import "HDWhiteRoomManager.h"
 #import "MBProgressHUD+Add.h"
 #import "UIViewController+AlertController.h"
+#import "UIImageView+EMWebCache.h"
 #define kLocalUid 1111111 //设置真实的本地的uid
 #define kLocalWhiteBoardUid 222222 //设置虚拟白板uid
 #define kCamViewTag 100001
@@ -94,6 +95,10 @@
 @property (nonatomic, assign) BOOL  isSmallWindow;//当前是不是 半屏模式
 @property (nonatomic, strong) UIWindow *customWindow;
 @property (nonatomic, strong) HDVECSuspendCustomView *hdSupendCustomView;
+
+//vec 测试截图
+@property (nonatomic, strong) UIButton *vec_screenBtn;
+@property (nonatomic, strong) UIImageView *vec_screenImageView;
 
 
 @end
@@ -875,7 +880,12 @@ static HDVECViewController *_manger = nil;
             
             NSLog(@"===anwersBtnClicked=isCalling%d",error.code);
             
-            
+            dispatch_async(dispatch_get_main_queue(), ^{
+               // UI更新代码
+                [self.view addSubview:self.vec_screenBtn];
+                [self.view addSubview:self.vec_screenImageView];
+                
+            });
         }else{
             NSLog(@"===anwersBtnClicked=dispatch_async%d",error.code);
             // 加入失败 或者视频网络断开
@@ -1418,33 +1428,12 @@ static HDVECViewController *_manger = nil;
                 make.height.offset(kPointHeight);
             }];
             [whiteView layoutIfNeeded];
-//            [self.parentView bringSubviewToFront:whiteView];
-            
-            
         }
     }
     
-//    [self.whiteBoardView reloadFastboardOverlayWithScle:YES];
-    
-    
-    
 }
 - (void)uploadFile{
-//    HDUploadFileViewController * vc = [[HDUploadFileViewController alloc] init];
-//    vc.hdUploadFileDismissBlock = ^(UIViewController * _Nonnull vc) {
-//
-//
-//        [vc.view removeFromSuperview];
-//        [vc removeFromParentViewController];
-//
-//    };
-//    [self addChildViewController:vc];
-//    [self.parentView addSubview:vc.view];
-//    [self.parentView bringSubviewToFront:vc.view];
-    
     [HDUploadFileViewController sharedManager];
-    
-   
 }
 - (void)disconnectRoomAlert{
     
@@ -1462,10 +1451,7 @@ static HDVECViewController *_manger = nil;
     if (self.isSmallWindow) {
         
         [self __cancelPictureInPicture];
-        
     }
-    
-    
     for (HDVECCallCollectionViewCellItem * tmpItem in self.smallWindowView.items) {
         
         NSLog(@"======%@",tmpItem.nickName);
@@ -1743,46 +1729,6 @@ static HDVECViewController *_manger = nil;
     self.view.hidden = NO;
     _hdSupendCustomView.hidden = !self.view.hidden;
     [self.hdTitleView.timeLabel removeObserver:self forKeyPath:@"text"];
-    //以下是根据不同类型 做不同的操作
-//    NSLog(@"此处判断点击 还可以通过suspenType类型判断");
-//    HDSuspendCustomView *suspendCustomView=(HDSuspendCustomView *)sender;
-//    for (UIView *subView in suspendCustomView.subviews) {
-//        if ([subView isKindOfClass:[UIButton class]]) {
-//            NSLog(@"点击了按钮");
-//            suspendCustomView.customButton.selected=!suspendCustomView.customButton.selected;
-//            if (suspendCustomView.customButton.selected==YES) {
-//             [suspendCustomView.customButton setBackgroundImage:[UIImage imageNamed:@"button_on"] forState:UIControlStateNormal];
-//            }else{
-//            [suspendCustomView.customButton setBackgroundImage:[UIImage imageNamed:@"button_out"] forState:UIControlStateNormal];
-//            }
-//            self.view.hidden = NO;
-//            _customView.hidden = !self.view.hidden;
-//        }else if([subView isKindOfClass:[UIImageView class]]){
-//
-//            NSLog(@"点击了图片");
-//        }else if([subView isKindOfClass:[UIWebView class]]){
-//
-//            NSLog(@"点击了Gif");
-//        }else if([subView isKindOfClass:[UIScrollView class]]){
-//            suspendCustomView.customScrollView.scrollEnabled=!suspendCustomView.customScrollView.scrollEnabled;
-//            if (suspendCustomView.customScrollView.scrollEnabled) {
-//                suspendCustomView.customScrollView.backgroundColor=[UIColor greenColor];
-//            }else{
-//                suspendCustomView.customScrollView.backgroundColor=[UIColor grayColor];
-//            }
-//
-//            NSLog(@"点击了scrollView,通过点击,决定是否滚动");
-//        }else if([subView isKindOfClass:[UIView class]]){
-//            NSLog(@"点击了自定义view");
-//            self.view.hidden = NO;
-//            _customView.hidden = !self.view.hidden;
-//        }
-//
-//
-//    }
-    
-    
-    
 }
 - (void)dragToTheLeft{
     NSLog(@"左划到左边框了");
@@ -1813,6 +1759,43 @@ static HDVECViewController *_manger = nil;
     [self.hdTitleView.timeLabel addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
   
 }
+#pragma mark - ----------------VEC截图测试 相关
+-(UIButton *)vec_screenBtn{
+    
+    if (!_vec_screenBtn) {
+        _vec_screenBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+        _vec_screenBtn.frame = CGRectMake(20, self.view.frame.size.height/3, 88, 44);
+        [_vec_screenBtn setBackgroundColor:[UIColor whiteColor]];
+        [_vec_screenBtn setTitle:@"截访客屏幕" forState:UIControlStateNormal];
+        [_vec_screenBtn addTarget:self action:@selector(doScreen:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    
+    return _vec_screenBtn;
+    
+}
+-(UIImageView *)vec_screenImageView{
+    
+    if (!_vec_screenImageView) {
+        _vec_screenImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, self.view.frame.size.height/2, 220, 220)];
+        
+    }
+    
+    return _vec_screenImageView;
+    
+}
+-(void)doScreen:(UIButton *)sender{
 
-
+    [[HDVECAgoraCallManager shareInstance] vec_getVisitorScreenshotCompletion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
+    
+        // 获取到url 显示到 界面上
+        if (url.length > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+           // UI更新代码
+            [self.vec_screenImageView sd_setImageWithURL:[NSURL URLWithString:url] placeholderImage:nil ];
+        
+        });
+        
+        }
+    }];
+}
 @end

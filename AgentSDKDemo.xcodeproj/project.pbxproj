@@ -511,6 +511,18 @@
 		D2A9927F299B3566009B58E8 /* HDVECTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A9927D299B3566009B58E8 /* HDVECTicketModel.m */; };
 		D2B3E3B6299643AC00C171F0 /* HDAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3E3B5299643AC00C171F0 /* HDAppManager.m */; };
 		D2B3E3B7299643AC00C171F0 /* HDAppManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B3E3B5299643AC00C171F0 /* HDAppManager.m */; };
+		D2B4EE34299CE54C00705D36 /* HDVECScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE33299CE54C00705D36 /* HDVECScreenView.m */; };
+		D2B4EE35299CE54D00705D36 /* HDVECScreenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE33299CE54C00705D36 /* HDVECScreenView.m */; };
+		D2B4EE39299DC1DB00705D36 /* HDVECSessionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE38299DC1DB00705D36 /* HDVECSessionHistoryViewController.m */; };
+		D2B4EE3A299DC1DB00705D36 /* HDVECSessionHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE38299DC1DB00705D36 /* HDVECSessionHistoryViewController.m */; };
+		D2B4EE3E299DC3F600705D36 /* HDVECSessionHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE3C299DC3F600705D36 /* HDVECSessionHistoryCell.m */; };
+		D2B4EE3F299DC3F600705D36 /* HDVECSessionHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE3C299DC3F600705D36 /* HDVECSessionHistoryCell.m */; };
+		D2B4EE40299DC3F600705D36 /* HDVECSessionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B4EE3D299DC3F600705D36 /* HDVECSessionHistoryCell.xib */; };
+		D2B4EE41299DC3F600705D36 /* HDVECSessionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2B4EE3D299DC3F600705D36 /* HDVECSessionHistoryCell.xib */; };
+		D2B4EE44299DC82300705D36 /* HDVECSessionHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE43299DC82300705D36 /* HDVECSessionHistoryModel.m */; };
+		D2B4EE45299DC82300705D36 /* HDVECSessionHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE43299DC82300705D36 /* HDVECSessionHistoryModel.m */; };
+		D2B4EE48299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE47299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m */; };
+		D2B4EE49299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B4EE47299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m */; };
 		D2B9517729222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
 		D2B9517829222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
 		D2B9517B292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
@@ -2283,6 +2295,17 @@
 		D2A9927D299B3566009B58E8 /* HDVECTicketModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDVECTicketModel.m; sourceTree = "<group>"; };
 		D2B3E3B4299643AC00C171F0 /* HDAppManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDAppManager.h; sourceTree = "<group>"; };
 		D2B3E3B5299643AC00C171F0 /* HDAppManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDAppManager.m; sourceTree = "<group>"; };
+		D2B4EE32299CE54C00705D36 /* HDVECScreenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDVECScreenView.h; sourceTree = "<group>"; };
+		D2B4EE33299CE54C00705D36 /* HDVECScreenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDVECScreenView.m; sourceTree = "<group>"; };
+		D2B4EE37299DC1DB00705D36 /* HDVECSessionHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDVECSessionHistoryViewController.h; sourceTree = "<group>"; };
+		D2B4EE38299DC1DB00705D36 /* HDVECSessionHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDVECSessionHistoryViewController.m; sourceTree = "<group>"; };
+		D2B4EE3B299DC3F600705D36 /* HDVECSessionHistoryCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDVECSessionHistoryCell.h; sourceTree = "<group>"; };
+		D2B4EE3C299DC3F600705D36 /* HDVECSessionHistoryCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDVECSessionHistoryCell.m; sourceTree = "<group>"; };
+		D2B4EE3D299DC3F600705D36 /* HDVECSessionHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HDVECSessionHistoryCell.xib; sourceTree = "<group>"; };
+		D2B4EE42299DC82300705D36 /* HDVECSessionHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDVECSessionHistoryModel.h; sourceTree = "<group>"; };
+		D2B4EE43299DC82300705D36 /* HDVECSessionHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDVECSessionHistoryModel.m; sourceTree = "<group>"; };
+		D2B4EE46299E090B00705D36 /* HDVECSessionHistoryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDVECSessionHistoryDetailViewController.h; sourceTree = "<group>"; };
+		D2B4EE47299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDVECSessionHistoryDetailViewController.m; sourceTree = "<group>"; };
 		D2B9517529222A000043B07F /* KFWKWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFWKWebViewController.h; sourceTree = "<group>"; };
 		D2B9517629222A000043B07F /* KFWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWKWebViewController.m; sourceTree = "<group>"; };
 		D2B95179292372940043B07F /* KFChatBarMoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatBarMoreModel.h; sourceTree = "<group>"; };
@@ -3576,11 +3599,11 @@
 		936A5EE6286AD4FB004BC632 /* list */ = {
 			isa = PBXGroup;
 			children = (
+				936A5EEA286AD4FB004BC632 /* HDListViewCell.h */,
 				936A5EE7286AD4FB004BC632 /* HDListViewCell.m */,
 				936A5EE8286AD4FB004BC632 /* HDListViewCell.xib */,
-				936A5EE9286AD4FB004BC632 /* HDUploadListViewController.m */,
-				936A5EEA286AD4FB004BC632 /* HDListViewCell.h */,
 				936A5EEB286AD4FB004BC632 /* HDUploadListViewController.h */,
+				936A5EE9286AD4FB004BC632 /* HDUploadListViewController.m */,
 			);
 			path = list;
 			sourceTree = "<group>";
@@ -4069,6 +4092,8 @@
 				D2239E782994959A0087D054 /* HDVECSuspendCustomView.m */,
 				D2239E7D2994959A0087D054 /* HDVECTitleView.h */,
 				D2239E732994959A0087D054 /* HDVECTitleView.m */,
+				D2B4EE32299CE54C00705D36 /* HDVECScreenView.h */,
+				D2B4EE33299CE54C00705D36 /* HDVECScreenView.m */,
 			);
 			path = VideoViews;
 			sourceTree = "<group>";
@@ -4105,6 +4130,22 @@
 				D2A9927D299B3566009B58E8 /* HDVECTicketModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D2B4EE36299DC1A400705D36 /* VECTest */ = {
+			isa = PBXGroup;
+			children = (
+				D2B4EE37299DC1DB00705D36 /* HDVECSessionHistoryViewController.h */,
+				D2B4EE38299DC1DB00705D36 /* HDVECSessionHistoryViewController.m */,
+				D2B4EE3B299DC3F600705D36 /* HDVECSessionHistoryCell.h */,
+				D2B4EE3C299DC3F600705D36 /* HDVECSessionHistoryCell.m */,
+				D2B4EE3D299DC3F600705D36 /* HDVECSessionHistoryCell.xib */,
+				D2B4EE42299DC82300705D36 /* HDVECSessionHistoryModel.h */,
+				D2B4EE43299DC82300705D36 /* HDVECSessionHistoryModel.m */,
+				D2B4EE46299E090B00705D36 /* HDVECSessionHistoryDetailViewController.h */,
+				D2B4EE47299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m */,
+			);
+			path = VECTest;
 			sourceTree = "<group>";
 		};
 		D3058CE21FD675810091E048 /* Controller */ = {
@@ -5129,6 +5170,7 @@
 				D33CE82F1F7CD03600236720 /* SingletonDefine.h */,
 				D35C8C681EA4EEF3009A9968 /* LocalDefine.h */,
 				D33F46B71E9F75E900FE6DCE /* PrefixHeader.pch */,
+				D2B4EE36299DC1A400705D36 /* VECTest */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -5136,17 +5178,17 @@
 		D33F46C21E9F7EFF00FE6DCE /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				D33CE7401F7CAD4E00236720 /* ViewControllers */,
-				D33CE70B1F7CAD2C00236720 /* History */,
-				D33CE71E1F7CAD2C00236720 /* HomeViewController.h */,
-				D33CE71F1F7CAD2C00236720 /* HomeViewController.m */,
 				D33CE6F71F7CAC7D00236720 /* AppDelegate.h */,
 				D33CE6F81F7CAC7D00236720 /* Appdelegate.m */,
 				D33CE6F91F7CAC7D00236720 /* AppDelegate+EaseMob.h */,
 				D33CE6FA1F7CAC7D00236720 /* AppDelegate+EaseMob.m */,
+				D33CE70B1F7CAD2C00236720 /* History */,
+				D33CE71E1F7CAD2C00236720 /* HomeViewController.h */,
+				D33CE71F1F7CAD2C00236720 /* HomeViewController.m */,
 				D39BD81F1EA8D13A008F428C /* KFManager.h */,
-				D33CE72B1F7CAD2C00236720 /* view */,
 				D39BD8201EA8D13A008F428C /* KFManager.m */,
+				D33CE72B1F7CAD2C00236720 /* view */,
+				D33CE7401F7CAD4E00236720 /* ViewControllers */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -6092,6 +6134,7 @@
 				936A5E65286ACEA9004BC632 /* hide@2x.png in Resources */,
 				D3FDC8451EA0A5C600C25BB0 /* shai_icon_backCopy@2x.png in Resources */,
 				937032E6286AFC3800B71298 /* demo_index_call.html in Resources */,
+				D2B4EE40299DC3F600705D36 /* HDVECSessionHistoryCell.xib in Resources */,
 				D39839291FDE6BA000D5F853 /* icon_manager_realtime@2x.png in Resources */,
 				D346A8191FAB12CE00DD0281 /* state_red@2x.png in Resources */,
 				936544AD2838C3EC009854AF /* samrt_media@2x.png in Resources */,
@@ -6546,6 +6589,7 @@
 				D3E9CDCE1FBED182005E3677 /* state_red@2x.png in Resources */,
 				9374F9BB28379EF4007924C9 /* KFSmartImageTableViewCell.xib in Resources */,
 				937032E7286AFC3800B71298 /* demo_index_call.html in Resources */,
+				D2B4EE41299DC3F600705D36 /* HDVECSessionHistoryCell.xib in Resources */,
 				936A5E84286ACEA9004BC632 /* share desktop on@2x.png in Resources */,
 				D3E9CDCF1FBED182005E3677 /* ease_chat_item_file@2x.png in Resources */,
 				D3E9CDD01FBED182005E3677 /* phrase_delete_Ellipse@3x.png in Resources */,
@@ -7370,6 +7414,7 @@
 				D33CE68E1F7CA98D00236720 /* QuickReplySubViewController.m in Sources */,
 				938AEA4927F3F8FC00B461C4 /* KJResourceLoaderManager.m in Sources */,
 				D3A95E501EA0F47100ADD394 /* MWTapDetectingImageView.m in Sources */,
+				D2B4EE34299CE54C00705D36 /* HDVECScreenView.m in Sources */,
 				936A5F08286AD4FB004BC632 /* HDCloudDiskTableViewCell.m in Sources */,
 				D34DF9DB1FA818E40018116D /* AdminCurSessionViewController.m in Sources */,
 				D33CE8131F7CB52500236720 /* DDContextFilterLogFormatter.m in Sources */,
@@ -7396,6 +7441,7 @@
 				D33CE8141F7CB52500236720 /* DDDispatchQueueLogFormatter.m in Sources */,
 				D33CE76A1F7CAEB800236720 /* NSString+Escape.m in Sources */,
 				D33CE6CB1F7CA98D00236720 /* CustomerChatViewController.m in Sources */,
+				D2B4EE39299DC1DB00705D36 /* HDVECSessionHistoryViewController.m in Sources */,
 				D33CE7711F7CAEB800236720 /* UIResponder+Router.m in Sources */,
 				90DC764C20BD344B00C86D92 /* HDMessage+Category.m in Sources */,
 				90591C422068ADC4007367BD /* KFMonitorLabelModel.m in Sources */,
@@ -7498,6 +7544,7 @@
 				D33CE6931F7CA98D00236720 /* CompileTableViewCell.m in Sources */,
 				936A5F12286AD4FB004BC632 /* CustomFastboardOverlay.m in Sources */,
 				936A5F0E286AD4FB004BC632 /* HDStorageItem.m in Sources */,
+				D2B4EE48299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m in Sources */,
 				D33CE89C1F7CD34000236720 /* LeaveMsgAttatchmentView.m in Sources */,
 				90091DDB20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */,
 				936A5EB6286ACF3D004BC632 /* HDTitleView.m in Sources */,
@@ -7537,6 +7584,7 @@
 				D3A95E671EA0F47100ADD394 /* PSTCollectionViewController.m in Sources */,
 				9306AD76286C3AEC00E1F726 /* KFRingingCallModel.m in Sources */,
 				90FC92542486323B00014CCC /* MASViewAttribute.m in Sources */,
+				D2B4EE3E299DC3F600705D36 /* HDVECSessionHistoryCell.m in Sources */,
 				D2239EB22994959A0087D054 /* KFVECVideoDetailViewController.m in Sources */,
 				D3A95E701EA0F47100ADD394 /* PSTGridLayoutSection.m in Sources */,
 				936A5EFE286AD4FB004BC632 /* HDCloudDiskModel.m in Sources */,
@@ -7591,6 +7639,7 @@
 				935CFB5427C4E5D60093B9DF /* KFVideoDetailModel.m in Sources */,
 				938AEA2927F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */,
 				D2239EAC2994959A0087D054 /* HDVECControlBarView.m in Sources */,
+				D2B4EE44299DC82300705D36 /* HDVECSessionHistoryModel.m in Sources */,
 				D33CE7991F7CAF6700236720 /* KFCompanyRegisterViewController.m in Sources */,
 				938AEA3327F3F8FC00B461C4 /* KJPlayerConst.m in Sources */,
 				D33CE8731F7CD25800236720 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
@@ -7805,6 +7854,7 @@
 				D3E9CD031FBED182005E3677 /* DXTagView.m in Sources */,
 				936A5ECB286ACF3D004BC632 /* HDSmallWindowView.m in Sources */,
 				D3E9CD051FBED182005E3677 /* KFFileCache.m in Sources */,
+				D2B4EE35299CE54D00705D36 /* HDVECScreenView.m in Sources */,
 				D3E9CD061FBED182005E3677 /* EMTimePickerViewController.m in Sources */,
 				D3E9CD071FBED182005E3677 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				D3E9CD081FBED182005E3677 /* CustomerController.m in Sources */,
@@ -7831,6 +7881,7 @@
 				D3E9CD1A1FBED182005E3677 /* PSTGridLayoutInfo.m in Sources */,
 				9094C5A920ECB0A600E9A057 /* HDMessage+Category.m in Sources */,
 				D3E9CD1B1FBED182005E3677 /* PSTCollectionViewLayout.m in Sources */,
+				D2B4EE3A299DC1DB00705D36 /* HDVECSessionHistoryViewController.m in Sources */,
 				D3E9CD1C1FBED182005E3677 /* EMHistoryTimeView.m in Sources */,
 				D3E9CD1D1FBED182005E3677 /* AFURLSessionManager.m in Sources */,
 				90591C2F2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */,
@@ -7933,6 +7984,7 @@
 				D3E9CD5F1FBED182005E3677 /* UIImage+EMWebP.m in Sources */,
 				D3E9CD601FBED182005E3677 /* PSTGridLayoutRow.m in Sources */,
 				D3DFB3751FD7E2A000A9358A /* KFArrowButtonView.m in Sources */,
+				D2B4EE49299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m in Sources */,
 				936A5F01286AD4FB004BC632 /* HDCloudDiskViewController.m in Sources */,
 				D3E9CD611FBED182005E3677 /* AFSecurityPolicy.m in Sources */,
 				D3E9CD621FBED182005E3677 /* AdminBaseViewController.m in Sources */,
@@ -7972,6 +8024,7 @@
 				D3E9CD771FBED182005E3677 /* EMSearchDisplayController.m in Sources */,
 				D3E9CD781FBED182005E3677 /* CustomerViewController.m in Sources */,
 				908691DB21D5D1A700C95C22 /* HDChatVideoBubbleView.m in Sources */,
+				D2B4EE3F299DC3F600705D36 /* HDVECSessionHistoryCell.m in Sources */,
 				D2239EB32994959A0087D054 /* KFVECVideoDetailViewController.m in Sources */,
 				D3E9CD791FBED182005E3677 /* EMSDWebImageManager.m in Sources */,
 				936A5E9A286ACED3004BC632 /* HDCallViewController.m in Sources */,
@@ -8026,6 +8079,7 @@
 				90FC92452486323B00014CCC /* ViewController+MASAdditions.m in Sources */,
 				90D911F120EB8480008B38AA /* UILabel+Category.m in Sources */,
 				D2239EAD2994959A0087D054 /* HDVECControlBarView.m in Sources */,
+				D2B4EE45299DC82300705D36 /* HDVECSessionHistoryModel.m in Sources */,
 				D3E9CD9B1FBED182005E3677 /* EMChatLocationBubbleView.m in Sources */,
 				D3E9CD9C1FBED182005E3677 /* EMSDWebImagePrefetcher.m in Sources */,
 				90FC92512486323B00014CCC /* MASConstraint.m in Sources */,

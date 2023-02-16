@@ -21,6 +21,9 @@ typedef void (^VECHangUpCallback)(HDVECViewController *callVC, NSString *timeStr
 @property (nonatomic, assign) BOOL isVisitorSend;
 @property (nonatomic, assign) HDVECSuspendType suspendType;
 
+// 测试截图
+
+
 /** 单利创建 - Method
 */
  

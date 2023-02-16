@@ -59,6 +59,10 @@
 #define HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom @"HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom"
 // 视频结束 发送通知 更新界面
 #define HDCALL_videoPlayback_end @"HDCALL_videoPlayback_end"
+// 视频结束 发送通知 显示测试界面
+#define HDCALL_KefuRtcCallRinging_VEC_sessionhistory @"HDCALL_KefuRtcCallRinging_VEC_sessionhistory"
+
+
 
 // 智能辅助html 高度通知
 #define HDSmart_HTML_Height @"HDSmart_HTML_Height"

@@ -683,6 +683,10 @@ static HDVECAgoraCallManager *shareCall = nil;
             NSLog(@"======发送消息成功");
         }
     }];
+    
+    // 发送测试 通知显示 视频记录列表
+    //发通知加入房间
+    [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
 }
 - (HDVECRingingCallModel *)vec_parseKefuRtcCallRingingData:(NSDictionary *)dic{
     
@@ -737,7 +741,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     return member;
 }
 
-- (void)getVisitorScreenshotCompletion:(void (^)(NSString * _Nonnull, HDError * _Nonnull))aCompletion{
+- (void)vec_getVisitorScreenshotCompletion:(void (^)(NSString * _Nonnull, HDError * _Nonnull))aCompletion{
     
     self.Completion = aCompletion;
    

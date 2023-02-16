@@ -277,7 +277,7 @@ static void *VECKVOContext = &VECKVOContext;
 //发送 cmd 消息 把访客端需要加入房间的数据带过去
 - (void)vec_sendCmdMessage:(NSDictionary *)msgtypeDic withSessionId:(NSString *)sessionId withToUser:(NSString *)toUser completion:(void (^)(HDMessage * _Nonnull, HDError * _Nonnull))aCompletionBlock;
 /// 获取对端访客视频截图
-- (void)getVisitorScreenshotCompletion:(void(^)(NSString * url,HDError *error))aCompletion;
+- (void)vec_getVisitorScreenshotCompletion:(void(^)(NSString * url,HDError *error))aCompletion;
 
 /// json 转字典
 /// @param jsonString

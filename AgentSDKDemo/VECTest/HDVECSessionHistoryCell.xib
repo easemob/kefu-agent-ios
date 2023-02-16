@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="79" id="KGk-i7-Jjw" customClass="HDVECSessionHistoryCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1a-GM-5QV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zE3-gh-47c">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="访客昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtb-PR-eMP">
+                                        <rect key="frame" x="5" y="10" width="315" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RTCSession" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEX-dF-8Qc">
+                                        <rect key="frame" x="5" y="37" width="77.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="WEX-dF-8Qc" firstAttribute="top" secondItem="dtb-PR-eMP" secondAttribute="bottom" constant="10" id="9bj-Jd-lbQ"/>
+                                    <constraint firstItem="dtb-PR-eMP" firstAttribute="leading" secondItem="zE3-gh-47c" secondAttribute="leading" constant="5" id="CtN-Ra-Uot"/>
+                                    <constraint firstItem="dtb-PR-eMP" firstAttribute="top" secondItem="zE3-gh-47c" secondAttribute="top" constant="10" id="HSR-cJ-ayc"/>
+                                    <constraint firstAttribute="trailing" secondItem="dtb-PR-eMP" secondAttribute="trailing" id="TZj-dN-DeF"/>
+                                    <constraint firstItem="WEX-dF-8Qc" firstAttribute="leading" secondItem="dtb-PR-eMP" secondAttribute="leading" id="pD4-Qk-pmt"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zE3-gh-47c" secondAttribute="trailing" id="9KE-3x-guD"/>
+                            <constraint firstItem="zE3-gh-47c" firstAttribute="top" secondItem="C1a-GM-5QV" secondAttribute="top" id="FbB-cy-osG"/>
+                            <constraint firstItem="zE3-gh-47c" firstAttribute="leading" secondItem="C1a-GM-5QV" secondAttribute="leading" id="LzZ-Ew-kXu"/>
+                            <constraint firstAttribute="bottom" secondItem="zE3-gh-47c" secondAttribute="bottom" id="xDy-kq-ana"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="C1a-GM-5QV" secondAttribute="bottom" id="45f-6h-9JT"/>
+                    <constraint firstItem="C1a-GM-5QV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="KHw-0M-cbm"/>
+                    <constraint firstItem="C1a-GM-5QV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pTq-JU-zkl"/>
+                    <constraint firstAttribute="trailing" secondItem="C1a-GM-5QV" secondAttribute="trailing" id="s17-iB-xLx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="rtcSessionId" destination="WEX-dF-8Qc" id="rc8-5Q-Km1"/>
+                <outlet property="visitorName" destination="dtb-PR-eMP" id="31f-j0-niL"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="78.683035714285708"/>
+        </tableViewCell>
+    </objects>
+</document>

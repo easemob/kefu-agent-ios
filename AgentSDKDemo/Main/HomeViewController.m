@@ -39,6 +39,9 @@
 #import "HDVECVideoDetailAllModel.h"
 #import "HDVECRingingCallModel.h"
 
+//测试相关
+#import "HDVECSessionHistoryViewController.h"
+
 
 
 @implementation UIImage (tabBarImage)
@@ -98,6 +101,7 @@ static NSString *kGroupName = @"GroupName";
 
 #pragma mark  -------- VEC 相关 ------------
 @property (nonatomic, strong)  KFVECAnswerView *kfVecAnswerView;
+@property (nonatomic, strong)  UIWindow *alertWindow;
 
 @end
 
@@ -587,6 +591,8 @@ static HomeViewController *homeViewController;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createAgoraRoom:) name:HDCALL_liveStreamInvitation_CreateAgoraRoom object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createAgoraRoom:) name:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:nil];
+    //测试通知方法 测试通过以后 请及时删除
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createSessionHistory:) name:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
     
 }
 
@@ -801,7 +807,7 @@ static HomeViewController *homeViewController;
 //    model.visitorUserId = @"37459477-b3ef-4582-8622-89fb25026b88";
 
     
-    NSString * json = @"{\"messageType\":\"KefuRtcCallRinging\",\"body\":{\"rtcSession\":{\"rtcSessionId\":\"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6\",\"tenantId\":101554,\"techChannelId\":152908,\"visitorUserId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"visitorUserNickName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"visitorUserName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"queueId\":262,\"state\":\"Wait\",\"agentUserId\":\"9843170d-2818-44dd-a36b-e325b1fd170b\",\"startDatetime\":null,\"stopDatetime\":null,\"createDatetime\":\"2023-02-15 16:04:58\",\"agentUserNiceName\":\"hl\",\"techChannelType\":\"easemob\",\"techChannelName\":\"hl网页测试\",\"originType\":\"webim\",\"callType\":0,\"multiCall\":false,\"extra\":null,\"sourceType\":\"NORMAL\",\"hangUpUserType\":null,\"hangUpReason\":null,\"visitorUser\":{\"tenantId\":101554,\"userId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"userType\":\"Visitor\",\"userScope\":\"Tenant\",\"nicename\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"username\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"techChannelType\":\"easemob\",\"techChannelId\":152908,\"techChannelInfo\":\"1417220317092523#kefuchannelapp101554#kefuchannelimid_821215\",\"chatGroupId\":281253554,\"sex\":0,\"createDateTime\":1676339739000,\"lastUpdateDateTime\":1676339739000,\"sendMessageCount\":0,\"roles\":\"visitor\",\"scope\":\"Tenant\",\"bizId\":\"101554\",\"status\":\"Disable\"},\"queueName\":null,\"serviceSessionId\":\"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6\",\"agentQueue\":null,\"agentUserData\":null}},\"noticeId\":\"5d734150-27a9-4092-ab57-f3b2c6fced75\"}";
+    NSString * json = @"{\"messageType\":\"KefuRtcCallRinging\",\"body\":{\"rtcSession\":{\"rtcSessionId\":\"9c87edd8-e7bf-45dc-b29a-26218600edd7\",\"tenantId\":101554,\"techChannelId\":152908,\"visitorUserId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"visitorUserNickName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"visitorUserName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"queueId\":262,\"state\":\"Wait\",\"agentUserId\":\"9843170d-2818-44dd-a36b-e325b1fd170b\",\"startDatetime\":null,\"stopDatetime\":null,\"createDatetime\":\"2023-02-16 16:16:57\",\"agentUserNiceName\":\"hl\",\"techChannelType\":\"easemob\",\"techChannelName\":\"hl网页测试\",\"originType\":\"webim\",\"callType\":0,\"multiCall\":false,\"extra\":null,\"sourceType\":\"NORMAL\",\"hangUpUserType\":null,\"hangUpReason\":null,\"visitorUser\":{\"tenantId\":101554,\"userId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"userType\":\"Visitor\",\"userScope\":\"Tenant\",\"nicename\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"username\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"techChannelType\":\"easemob\",\"techChannelId\":152908,\"techChannelInfo\":\"1417220317092523#kefuchannelapp101554#kefuchannelimid_821215\",\"chatGroupId\":281253554,\"sex\":0,\"createDateTime\":1676339739000,\"lastUpdateDateTime\":1676339739000,\"sendMessageCount\":0,\"roles\":\"visitor\",\"scope\":\"Tenant\",\"bizId\":\"101554\",\"status\":\"Disable\"},\"queueName\":null,\"serviceSessionId\":\"9c87edd8-e7bf-45dc-b29a-26218600edd7\",\"agentQueue\":null,\"agentUserData\":null}},\"noticeId\":\"421cb31d-0edd-4303-bd0e-b170afe7ed28\"}";
     
     NSDictionary * dict = [[HDVECAgoraCallManager shareInstance] dictionaryWithJsonString:json];
     
@@ -814,7 +820,7 @@ static HomeViewController *homeViewController;
     
     
     // 获取接口 数据 测试
-    [self vec_testApi];
+//    [self vec_testApi];
     
 }
 
@@ -1055,22 +1061,39 @@ static HomeViewController *homeViewController;
     
     HDVECRingingCallModel *model = notification.object;
     if (model) {
-      
     [self.kfVecAnswerView removeFromSuperview];
     self.kfVecAnswerView = nil;
-       
-       [[HDVECViewController sharedManager] vec_showViewWithKeyCenter:model];
-        [HDVECViewController sharedManager].vechangUpCallback  = ^(HDVECViewController * _Nonnull callVC, NSString * _Nonnull timeStr) {
-        
-            [[HDVECViewController sharedManager]  removeView];
-            [[HDVECViewController sharedManager] removeSharedManager];
-       
-           };
-
+    [[HDVECViewController sharedManager] vec_showViewWithKeyCenter:model];
+    [HDVECViewController sharedManager].vechangUpCallback  = ^(HDVECViewController * _Nonnull callVC, NSString * _Nonnull timeStr) {
+        [[HDVECViewController sharedManager]  removeView];
+        [[HDVECViewController sharedManager] removeSharedManager];
+    };
     }
+}
+- (void)vec_createSessionHistory:(NSNotification *)notification{
+   
+    
+    
+    HDVECSessionHistoryViewController * vec = [[HDVECSessionHistoryViewController alloc]init];
+    UINavigationController * nav= [[UINavigationController alloc] initWithRootViewController:vec];
+    self.alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.alertWindow.windowLevel = 0.0;
+    self.alertWindow.backgroundColor = [UIColor clearColor];
+    self.alertWindow.rootViewController = nav;
+    self.alertWindow.accessibilityViewIsModal = YES;
+    [self.alertWindow makeKeyAndVisible];
+    self.view.frame = [UIScreen mainScreen].bounds;
+    [self.alertWindow  addSubview:vec.view];
+    vec.window = self.alertWindow;
+    
+    vec.vectestHangUpCallback = ^{
+        
+        [self.alertWindow removeAllSubviews];
+        self.alertWindow = nil;
+        
+    };
     
 }
-
 
 @end
 
