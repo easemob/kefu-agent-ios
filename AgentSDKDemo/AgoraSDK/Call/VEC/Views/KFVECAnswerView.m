@@ -47,8 +47,8 @@
     [self.bgView addSubview: self.onBtn];
     [self.bgView addSubview: self.onLabel];
     //拒绝
-//    [self.bgView addSubview:self.offBtn];
-//    [self.bgView addSubview:self.offLabel];
+    [self.bgView addSubview:self.offBtn];
+    [self.bgView addSubview:self.offLabel];
  
     
     [self hd_fullViewLayout];
@@ -120,7 +120,8 @@
     //接听
     [self.onBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(-120);
-        make.centerX.mas_equalTo(self.mas_centerX).offset(0);
+//        make.centerX.mas_equalTo(self.mas_centerX).offset(0);
+        make.trailing.offset(-65);
         make.width.height.offset(72);
     }];
     [self.onLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -130,16 +131,16 @@
     }];
     
     //拒绝
-//    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.offset(-120);
-//        make.width.height.offset(72);
-//        make.trailing.offset(-60);
-//    }];
-//    [self.offLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.mas_equalTo(self.offBtn.mas_centerX).offset(0);
-//        make.top.mas_equalTo(self.offBtn.mas_bottom).offset(10);
-//
-//    }];
+    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.offset(-120);
+        make.width.height.offset(72);
+        make.leading.offset(65);
+    }];
+    [self.offLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.offBtn.mas_centerX).offset(0);
+        make.top.mas_equalTo(self.offBtn.mas_bottom).offset(10);
+
+    }];
     
 }
 
@@ -184,24 +185,24 @@
         make.width.height.offset(84/1.6);
     }];
     //拒绝
-//    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
-//        make.centerY.mas_equalTo(self.onBtn.mas_centerY).offset(0);
-//        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
-//        make.width.height.offset(84/1.6);
-//    }];
+    [self.offBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.mas_equalTo(self.onBtn.mas_centerY).offset(0);
+        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
+        make.width.height.offset(84/1.6);
+    }];
 
     //昵称
     [self.nickNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(10);
-        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
-        make.leading.mas_equalTo(self.icon.mas_trailing).offset(-10);
+        make.trailing.mas_equalTo(self.offBtn.mas_leading).offset(-10);
+        make.leading.mas_equalTo(self.icon.mas_trailing).offset(10);
     }];
-
+    
     //标题
     [self.titleLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.bottom.offset(-10);
-        make.trailing.mas_equalTo(self.onBtn.mas_leading).offset(-10);
-        make.leading.mas_equalTo(self.icon.mas_trailing).offset(-10);
+        make.trailing.mas_equalTo(self.offBtn.mas_leading).offset(-10);
+        make.leading.mas_equalTo(self.icon.mas_trailing).offset(10);
     }];
     
     
@@ -211,13 +212,12 @@
     
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
-        _titleLabel.text = NSLocalizedString(@"video.answer.title", @"视频通话");;
+        _titleLabel.text = NSLocalizedString(@"video.answer.title", @"请求视频通话");;
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment=NSTextAlignmentCenter;
-//        _titleLabel.font =  [[HDAppSkin mainSkin] systemFont19pt];
-        _nickNameLabel.numberOfLines = 2;
-        _nickNameLabel.lineBreakMode =NSLineBreakByTruncatingTail;
-        _nickNameLabel.font =  [[HDAppSkin mainSkin] systemFont17pt];
+        _titleLabel.numberOfLines = 2;
+        _titleLabel.lineBreakMode =NSLineBreakByTruncatingTail;
+        _titleLabel.font =  [[HDAppSkin mainSkin] systemFont17pt];
     }
     
     return _titleLabel;
@@ -229,7 +229,6 @@
         _nickNameLabel = [[UILabel alloc] init];
         _nickNameLabel.text = NSLocalizedString(@"访客昵称访客昵称", @"");;
         _nickNameLabel.textColor = [UIColor whiteColor];
-//        _nickNameLabel.backgroundColor = [ UIColor redColor];
         _nickNameLabel.textAlignment=NSTextAlignmentCenter;
         _nickNameLabel.numberOfLines = 2;
         _nickNameLabel.lineBreakMode =NSLineBreakByTruncatingTail;
@@ -364,12 +363,19 @@
     //停止铃声 关闭界面  发送 cmd 通知
     [self stopSoundCustom];
     [self removeFromSuperview];
+    //调用拒接 接口
+    NSString * agentId = [HDClient sharedClient].currentAgentUser.agentId;
+    [[HDClient sharedClient].vecCallManager vec_agentRejectWithRtcSessionId:_ringingCallModel.rtcSessionId withAgentId:agentId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+
+        NSLog(@"=====================%@",responseObject);
+
+
+    }];
     
 }
 - (void)zoomClick:(UIButton *)sender{
     
     // 点击这个修改 接通方式
-    
     self.frame = CGRectMake(0, 22, [UIScreen mainScreen].bounds.size.width, 84);
     self.layer.cornerRadius = 10;
     self.layer.masksToBounds = YES;
@@ -388,8 +394,6 @@
     __weak __typeof(self)weakSelf = self;
     [self.zoomView setTapActionWithBlock:^{
        
-        NSLog(@"=======");
-     
         //调用 全屏布局    self.zoomView.hidden = YES;
         weakSelf.bgView.hidden = NO;
         [weakSelf.zoomView removeFromSuperview];

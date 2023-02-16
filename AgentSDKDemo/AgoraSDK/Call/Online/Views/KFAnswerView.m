@@ -233,9 +233,9 @@
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment=NSTextAlignmentCenter;
 //        _titleLabel.font =  [[HDAppSkin mainSkin] systemFont19pt];
-        _nickNameLabel.numberOfLines = 2;
-        _nickNameLabel.lineBreakMode =NSLineBreakByTruncatingTail;
-        _nickNameLabel.font =  [[HDAppSkin mainSkin] systemFont17pt];
+        _titleLabel.numberOfLines = 2;
+        _titleLabel.lineBreakMode =NSLineBreakByTruncatingTail;
+        _titleLabel.font =  [[HDAppSkin mainSkin] systemFont17pt];
     }
     
     return _titleLabel;
