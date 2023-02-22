@@ -131,6 +131,18 @@ static HomeViewController *homeViewController;
 {
     [super viewDidAppear:animated];
     [self printViewHierarchy:self.tabBarController.view];
+    
+#pragma mark  -------- VEC 相关 只有坐席空闲状态才能接入 视频 所以 登录成功以后需要设置一下坐席状态 ------------
+    // 更改VEC 坐席空闲 才能接视频
+    [self performSelector:@selector(delayDo) withObject:nil afterDelay:2.0f];
+    
+#pragma mark  -------- VEC 相关 只有坐席空闲状态才能接入 视频 所以 登录成功以后需要设置一下坐席状态 end------------
+}
+
+- (void)delayDo{
+    [[HDVECAgoraCallManager shareInstance] vec_SetVECAgentStatus:HDAgentServiceType_VEC completion:^(id responseObject, HDError * error) {
+        NSLog(@"==1=%@",responseObject);
+    }];
 }
 
 - (void)printViewHierarchy:(UIView *)superView
@@ -181,31 +193,6 @@ static HomeViewController *homeViewController;
     [self registerNotifications];
     [[HDClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
     
-    
-    
-    // 更改VEC 坐席空闲 才能接视频
-    
-    [[HDVECAgoraCallManager shareInstance] vec_SetVECAgentStatus:HDAgentServiceType_VEC completion:^(id responseObject, HDError * error) {
-
-
-        NSLog(@"===%@",responseObject);
-
-
-    }];
-    
-//    [[HDVECAgoraCallManager shareInstance] vec_GetVECAgentStatusCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-//
-//
-//        NSLog(@"===%@",responseObject);
-//
-//    }];
-    
-    
-  
-    
-    sleep(2);
-    
-    [self vec_KefuRtcCallRingingDidReceive:nil];
     
 }
 
@@ -590,57 +577,14 @@ static HomeViewController *homeViewController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"settingBackAction" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createAgoraRoom:) name:HDCALL_liveStreamInvitation_CreateAgoraRoom object:nil];
+    
+#pragma mark  -------- VEC 相关通知 注册加入房间的通知 ------------
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createAgoraRoom:) name:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:nil];
     //测试通知方法 测试通过以后 请及时删除
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createSessionHistory:) name:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
+#pragma mark  -------- VEC 相关通知 注册加入房间的通知 edn------------
     
 }
-
-
-//- (void)showNotificationWithMessage:(NSString *)message dic:(NSDictionary *)dic;
-//{
-//    //发送本地推送
-//    UILocalNotification *notification = [[UILocalNotification alloc] init];
-//    notification.fireDate = [NSDate date]; //触发通知的时间
-//    notification.alertBody = message;
-//    notification.alertAction = NSLocalizedString(@"open", @"Open");
-//    notification.timeZone = [NSTimeZone defaultTimeZone];
-//    NSTimeInterval timeInterval = [[NSDate date] timeIntervalSinceDate:self.lastPlaySoundDate];
-//    if (timeInterval < kDefaultPlaySoundInterval) {
-//        NSLog(@"skip ringing & vibration %@, %@", [NSDate date], self.lastPlaySoundDate);
-//    } else {
-//        notification.soundName = UILocalNotificationDefaultSoundName;
-//        self.lastPlaySoundDate = [NSDate date];
-//    }
-//    
-//    if (dic) {
-//        @try {
-//            NSMutableDictionary *userInfo = [self _getSafeDictionary:dic];
-//            notification.userInfo = userInfo;
-//        } @catch (NSException *exception) {
-//            NSLog(@"exception : %@",exception);
-//        } @finally {
-//            
-//        }
-//    }
-//    
-//    if ([notification.userInfo objectForKey:@"body"]) {
-//        HDConversation *model = [[HDConversation alloc] initWithDictionary:[notification.userInfo objectForKey:@"body"]];
-//        if (_serviceSessionId.length > 0) {
-//            if ([_serviceSessionId isEqualToString:model.sessionId]) {
-//                _isEnterChat = YES;
-//            } else {
-//                _isEnterChat = NO;
-//            }
-//        } else {
-//            _isEnterChat = YES;
-//            _serviceSessionId = model.sessionId;
-//        }
-//    }
-//    
-//    //发送通知
-//    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-//}
 
 - (NSMutableDictionary*)_getSafeDictionary:(NSDictionary *)dic
 {
@@ -658,49 +602,6 @@ static HomeViewController *homeViewController;
     }
     return userInfo;
 }
-
-
-//- (void)didReceiveLocalNotification:(UILocalNotification *)notification
-//{
-//    if (![HDClient sharedClient].isLoggedInBefore) {
-//        return;
-//    }
-//    NSDictionary *userInfo = notification.userInfo;
-//    if (userInfo) {
-//        //新回话就到会话界面
-//        NSDictionary *body = [userInfo valueForKey:@"body"];
-//        if ([body.allKeys containsObject:@"newSession"]) {
-//            if( [[body valueForKey:@"newSession"] boolValue] ) { //是新回话
-//                [self.navigationController popToRootViewControllerAnimated:NO];
-//                [self setSelectedViewController:_conversationsController];
-//                [self tabBar:self.tabBar didSelectItem:_conversationsController.tabBarItem];
-//                return;
-//            }
-//        }
-//        NSString *type = [userInfo objectForKey:MESSAGE_TYPE];
-//        if ([type isEqualToString:MESSAGE_TYPE_NEWCHARMESSAGE]) {
-//            [self.navigationController popToRootViewControllerAnimated:NO];
-//            [self setSelectedViewController:_conversationsController];
-//            [self tabBar:self.tabBar didSelectItem:_conversationsController.tabBarItem];
-//            if (_isEnterChat) {
-//                if ([userInfo objectForKey:@"body"]) {
-//                    HDConversation *model = [[HDConversation alloc] initWithDictionary:[userInfo objectForKey:@"body"]];
-//                    ChatViewController *chatView = [[ChatViewController alloc] init];
-//                    chatView.conversationModel = model;
-//                    model.chatter = model.vistor;
-//                    [[DXMessageManager shareManager] setCurSessionId:model.sessionId];
-////                    [[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_CONVERSATION_REFRESH object:nil];
-//                    [self.navigationController pushViewController:chatView animated:NO];
-//                }
-//            }
-//            _serviceSessionId = nil;
-//            _isEnterChat = YES;
-//        } else if ([type isEqualToString:MESSAGE_TYPE_ACTIVITY_CREATE]) {
-//            [self setSelectedViewController:_notifyController];
-//            [self tabBar:self.tabBar didSelectItem:_notifyController.tabBarItem];
-//        }
-//    }
-//}
 
 - (void)dealloc {
     
@@ -726,7 +627,7 @@ static HomeViewController *homeViewController;
     //    [[EMCDDeviceManager sharedInstance] playVibration];
 }
 
-// 在线中的视频
+#pragma mark  -------- 在线视频  收到视频邀请的通知消息  ------------
 -(void)messagesDidReceive:(NSArray<HDMessage *> *)aMessages{
 
     if ([HDAppManager shareInstance].isAnswerView) {
@@ -782,143 +683,6 @@ static HomeViewController *homeViewController;
 
         }
     }
-}
-
-
--(void)vec_KefuRtcCallRingingDidReceive:(NSDictionary *)dic{
-    
-    if ([HDAppManager shareInstance].isAnswerView) {
-        // 如果YEAS 说明已经有视频弹窗界面了 不能在接通其他视频了
-        return;
-    }
-    
-    [HDAppManager shareInstance].isAnswerView = YES;
-    // 收到振铃消息 先解析需要的数据 开始弹视频界面
-    //1、解析数据
-    
-    //2、调用接口获取声网数据 弹窗
-    
-//    HDVECRingingCallModel * model = [HDVECRingingCallModel new];
-//    model.rtcSessionId = @"800758c5-e48b-4b98-95f0-81628cd0cdc8";
-//    model.agentUserId = @"9843170d-2818-44dd-a36b-e325b1fd170b";
-//    model.tenantId =@"101554";
-//    model.visitorUserName = @"webim-visitor-";
-//    model.agentUserNiceName = @"hl";
-//    model.visitorUserId = @"37459477-b3ef-4582-8622-89fb25026b88";
-
-    
-    NSString * json = @"{\"messageType\":\"KefuRtcCallRinging\",\"body\":{\"rtcSession\":{\"rtcSessionId\":\"3746ccc0-0de5-46d7-bb48-1467eaafe02d\",\"tenantId\":101554,\"techChannelId\":152908,\"visitorUserId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"visitorUserNickName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"visitorUserName\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"queueId\":262,\"state\":\"Wait\",\"agentUserId\":\"9843170d-2818-44dd-a36b-e325b1fd170b\",\"startDatetime\":null,\"stopDatetime\":null,\"createDatetime\":\"2023-02-16 17:43:34\",\"agentUserNiceName\":\"hl\",\"techChannelType\":\"easemob\",\"techChannelName\":\"hl网页测试\",\"originType\":\"webim\",\"callType\":0,\"multiCall\":false,\"extra\":null,\"sourceType\":\"NORMAL\",\"hangUpUserType\":null,\"hangUpReason\":null,\"visitorUser\":{\"tenantId\":101554,\"userId\":\"37459477-b3ef-4582-8622-89fb25026b88\",\"userType\":\"Visitor\",\"userScope\":\"Tenant\",\"nicename\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"username\":\"webim-visitor-KMW27W7P7XFGKYPTR9M8\",\"techChannelType\":\"easemob\",\"techChannelId\":152908,\"techChannelInfo\":\"1417220317092523#kefuchannelapp101554#kefuchannelimid_821215\",\"chatGroupId\":281253554,\"sex\":0,\"createDateTime\":1676339739000,\"lastUpdateDateTime\":1676339739000,\"sendMessageCount\":0,\"roles\":\"visitor\",\"scope\":\"Tenant\",\"bizId\":\"101554\",\"status\":\"Disable\"},\"queueName\":null,\"serviceSessionId\":\"3746ccc0-0de5-46d7-bb48-1467eaafe02d\",\"agentQueue\":null,\"agentUserData\":null}},\"noticeId\":\"2f17f837-865c-4afc-8dd6-e6f887898865\"}";
-    
-    NSDictionary * dict = [[HDVECAgoraCallManager shareInstance] dictionaryWithJsonString:json];
-    
-    
-    HDVECRingingCallModel * model = [[HDVECAgoraCallManager shareInstance] vec_parseKefuRtcCallRingingData:dict];
-    
-    
-    
-    [self  vec_onAgoraCallReceivedNickName:model];
-    
-    
-    // 获取接口 数据 测试
-//    [self vec_testApi];
-    
-}
-
-- (void)vec_testApi{
-    
-//    // 获取视频记录
-//    NSDictionary *dicHistory = [[HDVECAgoraCallManager shareInstance] vec_getSessionhistoryParameteData];
-//    [[HDVECAgoraCallManager shareInstance] vec_getRtcSessionhistoryParameteData:dicHistory completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-//
-//        NSLog(@"=======%@",responseObject);
-//
-//    }];
-//
-//    /*
-//     * 获取视频详情
-//     */
-//    [[HDVECAgoraCallManager shareInstance] vec_getCallVideoDetailWithRtcSessionId:@"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-//
-//
-//        NSLog(@"=======%@",responseObject);
-//
-//    }];
-//    //待接入 相关接口
-//    /*
-//     * 待接入数量 这个接口需要需要轮训获取排队数量
-//     */
-    NSString * agentId = [HDClient sharedClient].currentAgentUser.agentId;
-//    [[HDVECAgoraCallManager shareInstance] vec_getSessionsCallWaitWithAgentId:agentId Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-//
-//        NSLog(@"=======%@",responseObject);
-//
-//    }];
-//
-//    /*
-//     * 待接入列表 这个接口需要需要轮训获取排队列表
-//     {
-//       "page": 0,
-//       "size": 20,
-//       "mode": "agent", //  如果要获取管理员下所有的列表 传admin
-//       "beginDate": "2022-05-05T00:00:00",
-//       "endDate": "2022-05-06T00:00:00",
-//       "techChannelId": 27230,
-//       "originType": "app",
-//       "visitorUserId": "id"
-//     }'
-//     */
-//
-//    NSDictionary *dic = [[HDVECAgoraCallManager shareInstance] vec_getSessionCallWaitListParameteData];
-//    [[HDVECAgoraCallManager shareInstance] vec_postSessionsCallWaitListParameteData:dic Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-//        NSLog(@"=====================%@",responseObject);
-//    }];
-//    /*
-//     * 待接入 获取接听 音视频ticket 通行证
-//     */
-//    [[HDVECAgoraCallManager shareInstance] vec_getSessionsCallWaitTicketWithAgentId:agentId withRtcSessionId:@"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-//
-//        NSLog(@"=====================%@",responseObject);
-//    }];
-//    /*
-//     * 拒接待接入通话
-//     */
-//    [[HDVECAgoraCallManager shareInstance] vec_postSessionsCallWaitRejectWithAgentId:agentId withRtcSessionId:@"e973c39e-9d44-4eaf-a489-91c7467d00f4" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-//
-//        NSLog(@"=====================%@",responseObject);
-//
-//    }];
-    
-  
-   
-}
-
-- (void)vec_onAgoraCallReceivedNickName:(HDVECRingingCallModel *)model{
-    
-    // 收到消息 调用接口 从接口里边获取callid 加入房间
-    [HDLog logI:@"收到消息 调用接口 从接口里边获取callid 加入房间 =%@",model.rtcSessionId];
-    if ([HDVECAgoraCallManager shareInstance].isCurrentCalling) {
-       
-        [HDLog logI:@"当前正在通话中 不进行 新的访客弹窗"];
-        return;
-    }
-    
-    [HDVECAgoraCallManager shareInstance].isCurrentCalling = YES;
-    [HDLog logI:@"当前没有通话进行新的访客弹窗 =%d",[HDVECAgoraCallManager shareInstance].isCurrentCalling];
-    
-    
-  
-    dispatch_async(dispatch_get_main_queue(), ^{
-//        UI更新代码
-        [self.kfVecAnswerView vec_setKefuRtcCallRingingModel:model];
-        // 创建接听界面
-        [[UIApplication sharedApplication].keyWindow addSubview:self.kfVecAnswerView];
-        [self.kfVecAnswerView playSoundCustom];
-        
-    });
-    
-    
-
-
 }
 - (void)onAgoraCallReceivedNickName:(HDMessage *)message{
     
@@ -1022,27 +786,6 @@ static HomeViewController *homeViewController;
     }];
 //
 }
-- (KFAnswerView *)kfAnswerView{
-    
-    if (!_kfAnswerView) {
-       _kfAnswerView =   [[KFAnswerView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-       _kfAnswerView.backgroundColor = [UIColor blackColor];
-    }
-
-    return _kfAnswerView;
-}
-
--(KFVECAnswerView *)kfVecAnswerView{
-    
-    if (!_kfVecAnswerView) {
-        _kfVecAnswerView =   [[KFVECAnswerView alloc] initWithFrame:UIScreen.mainScreen.bounds];
-        _kfVecAnswerView.backgroundColor = [UIColor blackColor];
-    }
-
-    return _kfVecAnswerView;
-    
-}
-
 - (void)createAgoraRoom:(NSNotification *)notification{
     
     HDMessage *model = notification.object;
@@ -1062,6 +805,20 @@ static HomeViewController *homeViewController;
     }
     
 }
+- (KFAnswerView *)kfAnswerView{
+    
+    if (!_kfAnswerView) {
+       _kfAnswerView =   [[KFAnswerView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+       _kfAnswerView.backgroundColor = [UIColor blackColor];
+    }
+
+    return _kfAnswerView;
+}
+#pragma mark  -------- 在线视频  收到视频邀请的通知消息 end ------------
+
+#pragma mark ----------------------------VEC 视频相关 入口-------------------------------
+
+//vec 加入房间的通知
 - (void)vec_createAgoraRoom:(NSNotification *)notification{
     
     HDVECRingingCallModel *model = notification.object;
@@ -1075,10 +832,137 @@ static HomeViewController *homeViewController;
     };
     }
 }
+// 收到VEC的新消息的通知
+- (void)vec_KefuRtcNewMessageDidReceive:(NSDictionary *)dic{
+    NSLog(@"================收到rtc新消息通知==========%@",dic);
+    if ([[HDVECAgoraCallManager shareInstance] vec_isVisitorCancelInvitationMessage:dic]) {
+        
+        if (self.kfVecAnswerView) {
+            [self.kfVecAnswerView vec_cancelKefuRtcCallRinging];
+        }
+    }
+    
+}
+// 收到视频邀请的通知
+-(void)vec_KefuRtcCallRingingDidReceive:(NSDictionary *)dic{
+    
+    if ([HDAppManager shareInstance].isAnswerView) {
+        // 如果YEAS 说明已经有视频弹窗界面了 不能在接通其他视频了
+        return;
+    }
+    
+    [HDAppManager shareInstance].isAnswerView = YES;
+    // 收到振铃消息 先解析需要的数据 开始弹视频界面
+    //1、解析数据
+    //2、调用接口获取声网数据 弹窗
+    HDVECRingingCallModel * model = [[HDVECAgoraCallManager shareInstance] vec_parseKefuRtcCallRingingData:dic];
+    [self  vec_onAgoraCallReceivedNickName:model];
+    // 获取接口 数据 测试
+//    [self vec_testApi];
+}
+
+- (void)vec_testApi{
+    
+    // 获取视频记录
+    NSDictionary *dicHistory = [[HDVECAgoraCallManager shareInstance] vec_getSessionhistoryParameteData];
+    [[HDVECAgoraCallManager shareInstance] vec_getRtcSessionhistoryParameteData:dicHistory completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+
+        NSLog(@"=======%@",responseObject);
+
+    }];
+
+    /*
+     * 获取视频详情
+     */
+    [[HDVECAgoraCallManager shareInstance] vec_getCallVideoDetailWithRtcSessionId:@"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+
+
+        NSLog(@"=======%@",responseObject);
+
+    }];
+    //待接入 相关接口
+    /*
+     * 待接入数量 这个接口需要需要轮训获取排队数量
+     */
+    NSString * agentId = [HDClient sharedClient].currentAgentUser.agentId;
+    [[HDVECAgoraCallManager shareInstance] vec_getSessionsCallWaitWithAgentId:agentId Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+
+        NSLog(@"=======%@",responseObject);
+
+    }];
+
+    /*
+     * 待接入列表 这个接口需要需要轮训获取排队列表
+     {
+       "page": 0,
+       "size": 20,
+       "mode": "agent", //  如果要获取管理员下所有的列表 传admin
+       "beginDate": "2022-05-05T00:00:00",
+       "endDate": "2022-05-06T00:00:00",
+       "techChannelId": 27230,
+       "originType": "app",
+       "visitorUserId": "id"
+     }'
+     */
+
+    NSDictionary *dic = [[HDVECAgoraCallManager shareInstance] vec_getSessionCallWaitListParameteData];
+    [[HDVECAgoraCallManager shareInstance] vec_postSessionsCallWaitListParameteData:dic Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        NSLog(@"=====================%@",responseObject);
+    }];
+    /*
+     * 待接入 获取接听 音视频ticket 通行证
+     */
+    [[HDVECAgoraCallManager shareInstance] vec_getSessionsCallWaitTicketWithAgentId:agentId withRtcSessionId:@"00edd4cd-57db-414c-8a6b-a5fd4d9ddab6" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+
+        NSLog(@"=====================%@",responseObject);
+    }];
+    /*
+     * 拒接待接入通话
+     */
+    [[HDVECAgoraCallManager shareInstance] vec_postSessionsCallWaitRejectWithAgentId:agentId withRtcSessionId:@"e973c39e-9d44-4eaf-a489-91c7467d00f4" Completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+
+        NSLog(@"=====================%@",responseObject);
+
+    }];
+    
+}
+
+// 创建vec 视频界面
+- (void)vec_onAgoraCallReceivedNickName:(HDVECRingingCallModel *)model{
+    dispatch_async(dispatch_get_main_queue(), ^{
+//        UI更新代码
+        [self.kfVecAnswerView vec_setKefuRtcCallRingingModel:model];
+        // 创建接听界面
+        [[UIApplication sharedApplication].keyWindow addSubview:self.kfVecAnswerView];
+        [self.kfVecAnswerView playSoundCustom];
+        
+    });
+    
+}
+// 收到坐席状态改变的通知
+- (void)vec_KefuRtcAgentStateChangeDidReceive:(NSDictionary *)dic{
+
+    NSLog(@"================收到坐席状态改变消息通知==========%@",dic);
+}
+//  vec 历史消息通知
+- (void)vec_RtcSessionHistoryClosedDidReceive:(NSDictionary *)dic{
+    
+    NSLog(@"================收到历史消息通知==========%@",dic);
+    
+}
+-(KFVECAnswerView *)kfVecAnswerView{
+    
+    if (!_kfVecAnswerView) {
+        _kfVecAnswerView =   [[KFVECAnswerView alloc] initWithFrame:UIScreen.mainScreen.bounds];
+        _kfVecAnswerView.backgroundColor = [UIColor blackColor];
+    }
+
+    return _kfVecAnswerView;
+    
+}
+
+// 测试接口api 代码
 - (void)vec_createSessionHistory:(NSNotification *)notification{
-   
-    
-    
     HDVECSessionHistoryViewController * vec = [[HDVECSessionHistoryViewController alloc]init];
     UINavigationController * nav= [[UINavigationController alloc] initWithRootViewController:vec];
     self.alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -1090,15 +974,13 @@ static HomeViewController *homeViewController;
     self.view.frame = [UIScreen mainScreen].bounds;
     [self.alertWindow  addSubview:vec.view];
     vec.window = self.alertWindow;
-    
     vec.vectestHangUpCallback = ^{
         
         [self.alertWindow removeAllSubviews];
         self.alertWindow = nil;
-        
     };
-    
 }
+#pragma mark ----------------------------VEC 视频相关 入口 end-------------------------------
 
 @end
 

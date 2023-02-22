@@ -253,7 +253,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     [_members removeAllObjects];
     //结束录制
     [self endRecord];
-    [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
+   
     [HDAppManager shareInstance].isAnswerView = NO;
 }
 - (void)joinChannel{
@@ -897,7 +897,32 @@ static HDVECAgoraCallManager *shareCall = nil;
         
     }];
 }
-
+- (BOOL)vec_isVisitorCancelInvitationMessage:(NSDictionary *)dic{
+    
+    if (dic&& [dic isKindOfClass:[NSDictionary class]] && dic.count > 0) {
+        
+        if ([[dic allKeys] containsObject:@"body"] && [[dic objectForKey:@"body"] isKindOfClass:[NSDictionary class]]) {
+            NSDictionary * body = [dic objectForKey:@"body"];
+            if ([[body allKeys]containsObject:@"rtcMessage"]&& [[body objectForKey:@"rtcMessage"] isKindOfClass:[NSDictionary class]]) {
+                NSDictionary * rtcMessage = [body objectForKey:@"rtcMessage"];
+               
+                if ([[rtcMessage allKeys] containsObject:@"body"]&& [[rtcMessage objectForKey:@"body"] isKindOfClass:[NSDictionary class]]) {
+                    
+                    NSDictionary *rtcMessageBody =[rtcMessage objectForKey:@"body"];
+                    
+                    if ([[rtcMessageBody allKeys] containsObject:@"ext"]&& [[rtcMessageBody objectForKey:@"ext"] isKindOfClass:[NSDictionary class]]) {
+                        NSDictionary *rtcMessageExt =[rtcMessageBody objectForKey:@"ext"];
+                        
+                        return [HDUtils isVisitorCancelInvitationMessage:rtcMessageExt];
+                    }
+                }
+            }
+        }
+    }
+    
+    return NO;
+    
+}
 #pragma mark -------------------------VEC 视频排队 相关 ----------------------------------
 
 /**

@@ -143,7 +143,6 @@ static HDVECViewController *_manger = nil;
     _manger.alertWindow = nil;
     _manger=nil;
     [self cancelWindow];
-    [HDVECAgoraCallManager shareInstance].isCurrentCalling = NO;
     [HDAppManager shareInstance].isAnswerView = NO;
 }
 - (void)removeAllSubviews {

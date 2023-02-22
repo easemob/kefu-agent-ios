@@ -361,16 +361,20 @@
 }
 - (void)offClick:(UIButton *)sender{
     //停止铃声 关闭界面  发送 cmd 通知
-    [self stopSoundCustom];
-    [self removeFromSuperview];
+    [self vec_cancelKefuRtcCallRinging];
     //调用拒接 接口
     NSString * agentId = [HDClient sharedClient].currentAgentUser.agentId;
     [[HDClient sharedClient].vecCallManager vec_agentRejectWithRtcSessionId:_ringingCallModel.rtcSessionId withAgentId:agentId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
 
         NSLog(@"=====================%@",responseObject);
 
-
     }];
+}
+-(void)vec_cancelKefuRtcCallRinging{
+    
+    [self stopSoundCustom];
+    [self removeFromSuperview];
+    [HDAppManager shareInstance].isAnswerView = NO;
     
 }
 - (void)zoomClick:(UIButton *)sender{

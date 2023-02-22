@@ -32,7 +32,6 @@ static void *VECKVOContext = &VECKVOContext;
 @property (nonatomic, strong) UserModel *chatter;
 
 @property (nonatomic, assign) BOOL isSender;
-@property (nonatomic, assign) BOOL isCurrentCalling; // 当前是不是 正在呼叫
 @property (nonatomic, assign) HDAgentServiceType currentAgentServiceType; // 当前坐席类型
 @property (nonatomic, strong) HDVECRingingCallModel * ringingCallModel;
 
@@ -359,7 +358,10 @@ static void *VECKVOContext = &VECKVOContext;
  */
 - (void)vec_postSessionsCallWaitRejectWithAgentId:(NSString *)agentId withRtcSessionId:(NSString *)rtcSessionId Completion:(void(^)(id responseObject, HDError *error))completion;
 
-
+/*
+ *  坐席未接通时 访客点击拒绝 关掉 接通界面 数据解析 返回是不是 取消通知 其他收到的消息过滤掉
+ */
+- (BOOL)vec_isVisitorCancelInvitationMessage:(NSDictionary *)dic;
 
 
 

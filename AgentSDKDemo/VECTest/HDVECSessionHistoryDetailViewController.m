@@ -14,7 +14,7 @@
 #import <KJPlayer/KJBasePlayer+KJBackgroundMonitoring.h>
 #endif
 @interface HDVECSessionHistoryDetailViewController ()
-@property(nonatomic,strong)UIImageView *imageView;
+@property(nonatomic,strong)UITextView *textView;
 @property (nonatomic, strong) UIButton *downBtn;
 @property (nonatomic, strong) UIButton *upBtn;
 @property (nonatomic, strong) AVPlayerViewController *pVC;
@@ -43,6 +43,8 @@
     
 //    [self.view addSubview:self.headView];
 
+    
+    [self.view addSubview:self.textView];
 }
 
 //获取视频详情
@@ -56,7 +58,13 @@
             if (responseObject&& [responseObject isKindOfClass:[NSDictionary class]]) {
                 
                 NSDictionary *dic = responseObject;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                   // UI更新代码
+                    
+                    self.textView.text =  [NSString stringWithFormat:@"%@",dic];
+                    
                 
+                });
                 if ([[dic allKeys] containsObject:@"entities"]) {
                     
                     NSArray * array =  [dic objectForKey:@"entities"];
@@ -86,6 +94,8 @@
                                 dispatch_async(dispatch_get_main_queue(), ^{
                                    // UI更新代码
                                     [self vec_play:playbackUrl];
+                                    
+                                
                                 });
                             }else{
                                 // 弹窗
@@ -152,5 +162,14 @@
     self.view = nil;
     
 
+}
+- (UITextView *)textView{
+    if (!_textView) {
+        _textView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-300, self.view.frame.size.width,290)];
+        
+        
+    }
+    
+    return  _textView;
 }
 @end

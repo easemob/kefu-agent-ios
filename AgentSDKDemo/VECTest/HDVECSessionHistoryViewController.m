@@ -24,7 +24,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view addSubview:self.headView];
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.size.width, self.view.size.height)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.size.width, self.view.size.height-64)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass(HDVECSessionHistoryCell.class) bundle:nil] forCellReuseIdentifier:NSStringFromClass(HDVECSessionHistoryCell.class)];
 //    self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -64,9 +64,9 @@
             if (responseObject&& [responseObject isKindOfClass:[NSDictionary class]]) {
                 
                 NSDictionary *dic = responseObject;
-                
+                [self.dataArray removeAllObjects];
                 if ([[dic allKeys] containsObject:@"entities"]) {
-                    [self.dataArray removeAllObjects];
+                   
                    NSArray * array = [NSArray yy_modelArrayWithClass:[HDVECSessionHistoryModel class] json:[dic objectForKey:@"entities"] ];
                     
                     [self.dataArray  addObjectsFromArray:array];
