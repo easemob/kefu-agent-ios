@@ -185,10 +185,10 @@ static HDVECViewController *_manger = nil;
         [HDVECAgoraCallManager shareInstance].ringingCallModel = model;
         //初始化 坐席加入房间参数
         [[HDVECAgoraCallManager shareInstance] vec_createTicketDidReceiveAgoraInit];
-        //访客昵称
-        self.nickname = model.visitorUserName;
         //坐席昵称
-        self.agentName = model.agentUserNiceName;
+        self.nickname = model.agentUserNiceName;
+        //访客昵称
+        self.agentName = model.visitorUserName;
         //点击应答
         [self anwersBtnClicked:nil];
     }
@@ -262,11 +262,6 @@ static HDVECViewController *_manger = nil;
     
     [self.view hideKeyBoard];
     
-//    [[HDAgoraCallManager shareInstance] getVisitorScreenshotCompletion:^(NSString * _Nonnull url, HDError * _Nonnull error) {
-//
-//        NSLog(@"=======%@",url);
-//    }];
-    
 }
 
 /// 初始化屏幕分享
@@ -309,12 +304,12 @@ static HDVECViewController *_manger = nil;
     
     HDGrayModel * grayModelWhiteBoard =  [[HDCallManager shareInstance] getGrayName:@"whiteBoard"];
     HDGrayModel * grayModelShare =  [[HDCallManager shareInstance] getGrayName:@"shareDesktop"];
-//    if (grayModelShare.enable) {
-//        [selImageArr addObject:barModel3];
-//    }
-//    if (grayModelWhiteBoard.enable) {
-//        [selImageArr addObject:barModel4];
-//    }
+    if (grayModelShare.enable) {
+        [selImageArr addObject:barModel3];
+    }
+    if (grayModelWhiteBoard.enable) {
+        [selImageArr addObject:barModel4];
+    }
 
    [self.barView hd_buttonFromArrBarModels:selImageArr view:self.barView withButtonType:HDControlBarButtonStyleVideo] ;
     

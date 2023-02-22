@@ -398,8 +398,8 @@ static HDVECAgoraCallManager *shareCall = nil;
         key.agoraToken = model.token;
         key.agoraAppid = model.appId;
         key.agoraChannel = model.channel;
-        key.agoraUid = model.uid;
-        key.callid = model.callId;
+        key.agoraUid = [NSString stringWithFormat:@"%lu",(unsigned long)model.uid];
+        key.callid =   [NSString stringWithFormat:@"%lu",(unsigned long)model.callId] ;
         _keyCenter = key;
     }else{
         //初始化 声网参数
@@ -533,7 +533,6 @@ static HDVECAgoraCallManager *shareCall = nil;
     NSDictionary *agentTicketDic = [self dictionaryWithJsonString:_agentTicketModel.yy_modelToJSONString];
     
     NSDictionary *_visitorTicketDic = [self dictionaryWithJsonString:_visitorTicketModel.yy_modelToJSONString];
-    
     
     NSMutableDictionary * ticket =[NSMutableDictionary dictionaryWithDictionary:_visitorTicketDic];;
     [ticket hd_setValue:_visitorTicketModel.niceName forKey:@"niceName"];
@@ -674,7 +673,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     
     // 发送挂断消息
     
-   HDMessage * message  =  [self vec_sendMessageVideoPlaybackSessionId:_ringingCallModel.rtcSessionId withToUser:_ringingCallModel.visitorUserId withVisitorName:_ringingCallModel.visitorUserName withVideoStartTime:@"111111" withVideoEndTime:@"1111111" withCallId:_visitorTicketModel.callId];
+   HDMessage * message  =  [self vec_sendMessageVideoPlaybackSessionId:_ringingCallModel.rtcSessionId withToUser:_ringingCallModel.visitorUserId withVisitorName:_ringingCallModel.visitorUserName withVideoStartTime:@"111111" withVideoEndTime:@"1111111" withCallId:[NSString stringWithFormat:@""]];
 
     [[HDClient sharedClient].vecCallManager vec_asyncSendMessageWithMessageModel:message completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
         
@@ -737,7 +736,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     HDVECAgoraCallMember *member = [[HDVECAgoraCallMember alloc] init];
     [member setValue:[NSString stringWithFormat:@"%lu",(unsigned long)uid] forKeyPath:@"memberName"];
     [member setValue:extensionDic forKeyPath:@"extension"];
-    member.agentNickName = _message.fromUser.nicename;
+    member.agentNickName = _ringingCallModel.visitorUserNickName;
     return member;
 }
 
@@ -786,9 +785,6 @@ static HDVECAgoraCallManager *shareCall = nil;
     NSLog(@"remoteVideoStateChangedOfUid");
     
 }
-
-
-
 /// Reports an error during SDK runtime.
 /// @param engine - RTC engine instance
 /// @param errorCode - see complete list on this page
