@@ -27,15 +27,14 @@ const NSString *visitorImId = @"visitorImId";
         [WKWebViewJavascriptBridge enableLogging];
 
         _bridge = [WKWebViewJavascriptBridge bridgeForWebView:self];
-
-        WEAK_SELF
-        [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-            NSLog(@"testObjcCallback called: %@", data);
-//            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(clickCustomWebView:)]) {
-//                [weakSelf.delegate clickCustomWebView:data];
-//            }
-            responseCallback(@"Response from testObjcCallback");
-        }];
+        
+//        [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
+//            NSLog(@"testObjcCallback called: %@", data);
+////            if (weakSelf.delegate && [weakSelf.delegate respondsToSelector:@selector(clickCustomWebView:)]) {
+////                [weakSelf.delegate clickCustomWebView:data];
+////            }
+//            responseCallback(@"Response from testObjcCallback");
+//        }];
 
         [_bridge setWebViewDelegate:self];
 
@@ -106,12 +105,15 @@ const NSString *visitorImId = @"visitorImId";
         
     }
     
-    
-    
     NSLog(@"===拼接后的===%@",urlStr);
-  
-    
     NSURL *url = [NSURL URLWithString:urlStr];
+    
+    if (url == nil) {
+        
+        [MBProgressHUD showError:@"解析回来的url为nil" toView:self];
+        
+    }
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self loadRequest:request];
 }
@@ -204,14 +206,31 @@ const NSString *visitorImId = @"visitorImId";
     
     urlStr = [NSString stringWithFormat:@"to=%@&nickname=%@&ssid=%@&userId=%@&email=%@&tenantId=%@&agentId=f%@&agentName=%@&originType=%@&techChannelName=%@&serviceNumber=%@&desc=%@&trueName=%@", to,nickname,ssid,userId,email,tenantId,agentId,agentName,originType,techChannelName,serviceNumber,desc,trueName];
     
-    return urlStr;
+    return [urlStr URLEncodedString];
     
 }
+
 // 页面加载完成之后调用
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
-
+    
+    [MBProgressHUD hideHUDForView:self animated:YES];
     [webView evaluateJavaScript:@"var WVJBIframe = document.createElement('iframe');WVJBIframe.style.display = 'none';WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';document.documentElement.appendChild(WVJBIframe);setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)" completionHandler:nil];
    
+}
+// 页面开始加载时调用
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"didStartProvisionalNavigation");
+    [MBProgressHUD showHUDAddedTo:self animated:YES];
+}
+
+// 页面加载失败时调用
+- (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
+//    [self.progressView setProgress:0.0f animated:NO];
+    NSLog(@"didFailNavigation");
+    
+    [MBProgressHUD hideHUDForView:self animated:YES];
+    
+
 }
 
 @end

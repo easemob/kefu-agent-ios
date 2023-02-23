@@ -17,7 +17,6 @@
     NSString *_visitorInfo;
 }
 @property WKWebViewJavascriptBridge* bridge;
-@property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) KFiFrameView *iframeView;
 @end
 
@@ -53,18 +52,11 @@
     
     self.navigationItem.leftBarButtonItem = self.backItem;
     
-//    _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
-//
-//    [self.view addSubview:_webView];
     
     [self iframeButtonAction];
     [self.view addSubview:self.iframeView];
    
 }
-
-
-
-
 
 - (void)iframeButtonAction {
     

@@ -246,7 +246,7 @@
     if (!_iframeView) {
         _iframeView = [[KFiFrameView alloc] initWithFrame:self.tableView.bounds iframe:nil];
         _iframeView.left = KScreenWidth * 2;
-        _iframeView.backgroundColor = UIColor.redColor;
+//        _iframeView.backgroundColor = UIColor.redColor;
     }
     return _iframeView;
 }

@@ -8351,7 +8351,7 @@
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemoDebug.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development: LI HOU (UGP7ZG964L)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))";
@@ -8376,7 +8376,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.8;
+				MARKETING_VERSION = 3.1.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -8402,7 +8402,7 @@
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemoRelease.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: EaseMob Inc.";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 499WYUV8Q2;
 				ENABLE_BITCODE = NO;
 				EXCLUDED_ARCHS = "EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_simulator__NATIVE_ARCH_64_BIT_x86_64=arm64 arm64e armv7 armv7s armv6 armv8 EXCLUDED_ARCHS=$(inherited) $(EXCLUDED_ARCHS__EFFECTIVE_PLATFORM_SUFFIX_$(EFFECTIVE_PLATFORM_SUFFIX)__NATIVE_ARCH_64_BIT_$(NATIVE_ARCH_64_BIT))";
@@ -8427,7 +8427,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.8;
+				MARKETING_VERSION = 3.1.9;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
@@ -8451,7 +8451,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_ENTITLEMENTS = AgentSDKDemo/AgentSDKDemo.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JC854K845H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -8479,7 +8479,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.8;
+				MARKETING_VERSION = 3.1.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -8505,7 +8505,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JC854K845H;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -8529,7 +8529,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.1.8;
+				MARKETING_VERSION = 3.1.9;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",
