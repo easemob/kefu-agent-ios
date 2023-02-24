@@ -219,22 +219,48 @@
         customMessageModel.btnName =@"自定义消息";
         [self.btnMarray addObject:customMessageModel];
     }
-    if([[HDClient sharedClient].currentAgentUser.iframeModel.url length] > 0){
-
-        KFChatBarMoreModel *iframeMessageModel = [[KFChatBarMoreModel alloc] init];
-        iframeMessageModel.btnType = KFChatMoreBtnIframeBase;
-        iframeMessageModel.btnName =[HDClient sharedClient].currentAgentUser.iframeModel.iframeName;
-        [self.btnMarray addObject:iframeMessageModel];
-
-
+    
+    if ([KFManager sharedInstance].iframes.count > 0) {
+        
+        for (int i = 0; i<[KFManager sharedInstance].iframes.count; i++) {
+    
+            KFIframeModel * model =[KFManager sharedInstance].iframes[i];
+            KFChatBarMoreModel *customMessageModel = [[KFChatBarMoreModel alloc] init];
+            if (i==0) {
+                customMessageModel.btnType = KFChatMoreBtnIframeBase;
+                customMessageModel.btnName = model.iframeTabTitle;
+                customMessageModel.iframeModel = model;
+                [self.btnMarray addObject:customMessageModel];
+            }
+            if (i==1) {
+                customMessageModel.btnType = KFChatMoreBtnIframeRobot;
+                customMessageModel.btnName = model.iframeTabTitle;
+                customMessageModel.iframeModel = model;
+                [self.btnMarray addObject:customMessageModel];
+            }
+           
+          
+        }
+        
+       
     }
-    if([[HDClient sharedClient].currentAgentUser.iframeModel.roboturl length] > 0){
-
-        KFChatBarMoreModel *iframeRobotMessageModel = [[KFChatBarMoreModel alloc] init];
-        iframeRobotMessageModel.btnType = KFChatMoreBtnIframeRobot;
-        iframeRobotMessageModel.btnName =[HDClient sharedClient].currentAgentUser.iframeModel.iframeRobotName;
-        [self.btnMarray addObject:iframeRobotMessageModel];
-    }
+    
+//    if([[HDClient sharedClient].currentAgentUser.iframeModel.url length] > 0){
+//
+//        KFChatBarMoreModel *iframeMessageModel = [[KFChatBarMoreModel alloc] init];
+//        iframeMessageModel.btnType = KFChatMoreBtnIframeBase;
+//        iframeMessageModel.btnName =[HDClient sharedClient].currentAgentUser.iframeModel.iframeName;
+//        [self.btnMarray addObject:iframeMessageModel];
+//
+//
+//    }
+//    if([[HDClient sharedClient].currentAgentUser.iframeModel.roboturl length] > 0){
+//
+//        KFChatBarMoreModel *iframeRobotMessageModel = [[KFChatBarMoreModel alloc] init];
+//        iframeRobotMessageModel.btnType = KFChatMoreBtnIframeRobot;
+//        iframeRobotMessageModel.btnName =[HDClient sharedClient].currentAgentUser.iframeModel.iframeRobotName;
+//        [self.btnMarray addObject:iframeRobotMessageModel];
+//    }
    
 }
 #pragma mark - 生产按钮

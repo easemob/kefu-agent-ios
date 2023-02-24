@@ -113,7 +113,7 @@
 #import "KFSmartUtils.h"
 
 #import "HDAppManager.h"
-
+#import "KFIframeModel.h"
 
 
 #endif /* PrefixHeader_pch */

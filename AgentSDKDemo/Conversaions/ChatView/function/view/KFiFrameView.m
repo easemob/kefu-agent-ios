@@ -50,7 +50,7 @@ const NSString *visitorImId = @"visitorImId";
 
 - (void)reloadWebViewFromModel:(KFIframeModel *)aModel
                           user:(UserModel *)aUser {
-    if ([_model.url isEqual:aModel.url]) {
+    if ([_model.iframeUrl isEqual:aModel.iframeUrl]) {
         return;
     }
     
@@ -65,27 +65,27 @@ const NSString *visitorImId = @"visitorImId";
 
 - (void)loadWebView {
 
-    if (!_model.url) {
+    if (!_model.iframeUrl) {
         return;
     }
     NSString *urlStr = nil;
-    if ([_model.url hasPrefix:@"http"]) {
-        urlStr = _model.url;
+    if ([_model.iframeUrl hasPrefix:@"http"]) {
+        urlStr = _model.iframeUrl;
     }else {
         NSString * baseURL = HDClient.sharedClient.option.kefuRestAddress;
         NSString *preStr = [baseURL hasPrefix:@"https"] ? @"https:" : @"http:";
-        urlStr = [NSString stringWithFormat:@"%@%@",preStr, _model.url];
+        urlStr = [NSString stringWithFormat:@"%@%@",preStr, _model.iframeUrl];
     }
     NSString * par;
-    if (_model.encryptAll && _model.encryptKey) {
+    if (_model.iframeEcryptAll && _model.iframeEncryptKey) {
         
-        if ([_model.encryptKey isEqualToString:@""]) {
+        if ([_model.iframeEncryptKey isEqualToString:@""]) {
         
-            _model.encryptKey = kDefaultEncryptKey;
+            _model.iframeEncryptKey = kDefaultEncryptKey;
         }
         
-        _kefuIm = [HDEncryptUtil encryptUseDES:_kefuIm key:_model.encryptKey];
-        _visitorInfo = [HDEncryptUtil encryptUseDES:_visitorInfo key:_model.encryptKey];
+        _kefuIm = [HDEncryptUtil encryptUseDES:_kefuIm key:_model.iframeEncryptKey];
+        _visitorInfo = [HDEncryptUtil encryptUseDES:_visitorInfo key:_model.iframeEncryptKey];
         
         // 需要加密的其他参数
         par =  [self getParOther:YES];
@@ -120,7 +120,7 @@ const NSString *visitorImId = @"visitorImId";
 
 - (NSString *)encryptUseDES:(NSString *)value{
     
-    return [HDEncryptUtil encryptUseDESData:value key:_model.encryptKey];
+    return [HDEncryptUtil encryptUseDESData:value key:_model.iframeEncryptKey];
     
 }
 -(NSString *)getParOther:(BOOL)isEncryptKey{

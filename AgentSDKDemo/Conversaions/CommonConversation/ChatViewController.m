@@ -172,6 +172,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         
         
     }];
+    
+    
 }
 
 - (NSDictionary *)lastMsgExt {
@@ -1249,11 +1251,20 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)moreViewIframeRobotAction:(DXChatBarMoreView *)moreView
 {
-    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",[HDClient sharedClient].currentAgentUser.iframeModel.url]];
+    KFChatBarMoreModel * barModel ;
+    for (KFChatBarMoreModel * model in moreView.btnMarray) {
+        
+        if (model.btnType == KFChatMoreBtnIframeRobot) {
+            
+            barModel = model;
+            
+            break;
+        }
+    }
+
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
     webView.delegate = self;
-    KFChatBarMoreModel * model = [[KFChatBarMoreModel alloc] init];
-    model.btnType= KFChatMoreBtnIframeRobot;
-    webView.chatBarModel = model;
+    webView.chatBarModel = barModel;
     webView.conversation = _conversationModel;
     [self.navigationController pushViewController:webView animated:YES];
     [self keyBoardHidden:nil];
@@ -1261,11 +1272,21 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
 - (void)moreViewIframeBaseAction:(DXChatBarMoreView *)moreView
 {
-    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",[HDClient sharedClient].currentAgentUser.iframeModel.roboturl]];
+    KFChatBarMoreModel * barModel ;
+    for (KFChatBarMoreModel * model in moreView.btnMarray) {
+        
+        if (model.btnType == KFChatMoreBtnIframeBase) {
+            
+            barModel = model;
+            
+            break;
+        }
+    }
+
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
     webView.delegate = self;
-    KFChatBarMoreModel * model = [[KFChatBarMoreModel alloc] init];
-    model.btnType= KFChatMoreBtnIframeBase;
-    webView.chatBarModel = model;
+   
+    webView.chatBarModel = barModel;
     webView.conversation = _conversationModel;
     
     [self.navigationController pushViewController:webView animated:YES];

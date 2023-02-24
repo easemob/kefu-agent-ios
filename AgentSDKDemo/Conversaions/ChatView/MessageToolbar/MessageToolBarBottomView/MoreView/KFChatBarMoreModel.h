@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *btnName;
 @property (nonatomic, copy) UIButton *btn;
 @property (nonatomic, assign) KFChatMoreBtnType btnType;
+@property (nonatomic, copy) KFIframeModel *iframeModel;
 @end
 
 NS_ASSUME_NONNULL_END

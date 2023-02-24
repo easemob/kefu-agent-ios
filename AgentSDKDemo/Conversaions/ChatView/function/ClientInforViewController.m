@@ -285,13 +285,17 @@
     
     __weak typeof(self)weakSelf = self;
     dispatch_block_t block = ^{ @autoreleasepool {
-        KFIframeModel *model = [[HDUserManager sharedInstance] getAgentUserModel].iframeModel;
-        if (model) {
-            weakSelf.iframeView.kefuIm = _kefuIm;
-            weakSelf.iframeView.visitorInfo = _visitorInfo;
-            weakSelf.iframeView.conversation= weakSelf.conversation;
-            [weakSelf.iframeView reloadWebViewFromModel:model user:weakSelf.user];
+//        KFIframeModel *model = [[HDUserManager sharedInstance] getAgentUserModel].iframeModel;
+        if ([KFManager sharedInstance].iframes.count > 0) {
+            KFIframeModel *model  = [KFManager sharedInstance].iframes[0];
+            if (model) {
+                weakSelf.iframeView.kefuIm = _kefuIm;
+                weakSelf.iframeView.visitorInfo = _visitorInfo;
+                weakSelf.iframeView.conversation= weakSelf.conversation;
+                [weakSelf.iframeView reloadWebViewFromModel:model user:weakSelf.user];
+            }
         }
+        
     }};
     
     [self.mainScrollView setContentOffset:CGPointMake(KScreenWidth * 2, 0) animated:YES];

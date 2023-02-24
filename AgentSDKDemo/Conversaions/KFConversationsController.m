@@ -84,8 +84,43 @@
 {
     [super viewDidAppear:animated];
     [_conversationController clearSeesion];
+   
+    [self getIframeWidows];
 }
 
+- (void)getIframeWidows{
+    
+    // 获取iframe 窗口值
+    [[HDClient sharedClient].setManager _initiframeOptionsCompletion:^(id responseObject, HDError *error) {
+        
+        if (error == nil) {
+           
+            if (responseObject &&[responseObject isKindOfClass:[NSDictionary class]]) {
+                NSDictionary * dic = responseObject;
+                
+                if ([[dic allKeys] containsObject:@"entities"]) {
+                    NSArray * array = [dic objectForKey:@"entities"];
+                    
+                    if (array && [array isKindOfClass:[NSArray class]]) {
+                        
+                        NSArray * iframes = [KFIframeModel arrayOfModelsFromDictionaries:array error:nil];
+                        
+                        if (iframes&&iframes.count> 0) {
+                        
+                            [KFManager sharedInstance].iframes = [NSArray arrayWithArray:iframes];
+                        }
+                        
+                        
+                    }
+                    
+                }
+            }
+            NSLog(@"=======%@",responseObject);
+        }
+    }];
+    
+    
+}
 
 #pragma mark - HDClientDelegate
 

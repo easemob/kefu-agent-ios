@@ -425,6 +425,9 @@ static HomeViewController *homeViewController;
     
     UIApplication *application = [UIApplication sharedApplication];
     application.applicationIconBadgeNumber = totalBadge;
+    
+
+    
 }
 
 #pragma mark - LeftMenuViewDelegate

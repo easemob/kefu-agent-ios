@@ -36,23 +36,22 @@
     [super viewDidLoad];
     if (_bridge) { return; }
     
-    if (self.chatBarModel.btnType == KFChatMoreBtnIframeBase) {
-        
-        self.title = [HDClient sharedClient].currentAgentUser.iframeModel.iframeName;
-    }else if(self.chatBarModel.btnType == KFChatMoreBtnIframeRobot){
-        
-        self.title = [HDClient sharedClient].currentAgentUser.iframeModel.iframeRobotName;
-        
-    }else{
-        
-        self.title = @"iframe";
-        
-    }
-    
+//    if (self.chatBarModel.btnType == KFChatMoreBtnIframeBase) {
+//
+//        self.title = self.chatBarModel.btnName;
+//    }else if(self.chatBarModel.btnType == KFChatMoreBtnIframeRobot){
+//
+//        self.title = self.chatBarModel.btnName;
+//
+//    }else{
+//
+//        self.title = @"iframe";
+//
+//    }
+    self.title = self.chatBarModel.btnName;
     
     self.navigationItem.leftBarButtonItem = self.backItem;
-    
-    
+
     [self iframeButtonAction];
     [self.view addSubview:self.iframeView];
    
@@ -62,7 +61,9 @@
     
     __weak typeof(self)weakSelf = self;
     dispatch_block_t block = ^{ @autoreleasepool {
-        KFIframeModel *model = [[HDUserManager sharedInstance] getAgentUserModel].iframeModel;
+//        KFIframeModel *model = [[HDUserManager sharedInstance] getAgentUserModel].iframeModel;
+        
+        KFIframeModel *model = self.chatBarModel.iframeModel;
         if (model) {
             weakSelf.iframeView.kefuIm = _kefuIm;
             weakSelf.iframeView.visitorInfo = _visitorInfo;
