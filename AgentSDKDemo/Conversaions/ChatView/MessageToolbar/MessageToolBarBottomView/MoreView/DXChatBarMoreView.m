@@ -230,13 +230,22 @@
                 customMessageModel.btnType = KFChatMoreBtnIframeBase;
                 customMessageModel.btnName = model.iframeTabTitle;
                 customMessageModel.iframeModel = model;
-                [self.btnMarray addObject:customMessageModel];
+                if (![model.iframeUrl isKindOfClass:[NSNull class]] && model.iframeUrl.length > 0) {
+                
+                    [self.btnMarray addObject:customMessageModel];
+                
+                    
+                }
+               
             }
             if (i==1) {
                 customMessageModel.btnType = KFChatMoreBtnIframeRobot;
                 customMessageModel.btnName = model.iframeTabTitle;
                 customMessageModel.iframeModel = model;
-                [self.btnMarray addObject:customMessageModel];
+                if (![model.iframeUrl isKindOfClass:[NSNull class]] && model.iframeUrl.length > 0) {
+                
+                    [self.btnMarray addObject:customMessageModel];
+                }
             }
            
           

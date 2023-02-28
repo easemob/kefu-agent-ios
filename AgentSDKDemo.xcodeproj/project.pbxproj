@@ -3950,22 +3950,14 @@
 			path = smart;
 			sourceTree = "<group>";
 		};
-		93EFFBEF27BA3E1E0043DE06 /* AgoraSDK */ = {
-			isa = PBXGroup;
-			children = (
-				93EFFBF027BA3F270043DE06 /* Call */,
-			);
-			path = AgoraSDK;
-			sourceTree = "<group>";
-		};
-		93EFFBF027BA3F270043DE06 /* Call */ = {
+		93EFFBF027BA3F270043DE06 /* HDAgentCallKit */ = {
 			isa = PBXGroup;
 			children = (
 				D2239DDB2993A2A40087D054 /* General */,
 				D2239DDA2993A20D0087D054 /* Online */,
 				D2239DD529938E650087D054 /* VEC */,
 			);
-			path = Call;
+			path = HDAgentCallKit;
 			sourceTree = "<group>";
 		};
 		93EFFBF127BA3F5E0043DE06 /* ViewController */ = {
@@ -5223,7 +5215,7 @@
 			children = (
 				93119A4727F593AA00F749F3 /* AgentSDKDemoDebug.entitlements */,
 				93119A4627F5937F00F749F3 /* AgentSDKDemoRelease.entitlements */,
-				93EFFBEF27BA3E1E0043DE06 /* AgoraSDK */,
+				93EFFBF027BA3F270043DE06 /* HDAgentCallKit */,
 				90591CD72068B14F007367BD /* KFMonitorViewController */,
 				90591C152068ADC3007367BD /* Custom */,
 				D381EFCD1EA4B64F0092BD3C /* AgentSDKDemo.entitlements */,
