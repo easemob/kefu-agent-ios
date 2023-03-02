@@ -45,6 +45,7 @@
 #import "KFChatSmartView.h"
 #import "KFSmartModel.h"
 #import "HDCallViewController.h"
+#import "KFIframeMoreViewController.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -1264,7 +1265,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 
     KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
     webView.delegate = self;
-    webView.chatBarModel = barModel;
+    webView.iframeModel = barModel.iframeModel;
     webView.conversation = _conversationModel;
     [self.navigationController pushViewController:webView animated:YES];
     [self keyBoardHidden:nil];
@@ -1286,11 +1287,46 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
     webView.delegate = self;
    
-    webView.chatBarModel = barModel;
+//    webView.chatBarModel = barModel;
+    webView.iframeModel = barModel.iframeModel;
     webView.conversation = _conversationModel;
     
     [self.navigationController pushViewController:webView animated:YES];
     [self keyBoardHidden:nil];
+}
+- (void)moreViewIframeDefaultAction:(DXChatBarMoreView *)moreView{
+    
+    
+    KFChatBarMoreModel * barModel ;
+    for (KFChatBarMoreModel * model in moreView.btnMarray) {
+        
+        if (model.btnType == KFChatMoreBtnIframeDefault) {
+            
+            barModel = model;
+            
+            break;
+        }
+    }
+
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
+    webView.delegate = self;
+   
+//    webView.chatBarModel = barModel;
+    webView.iframeModel = barModel.iframeModel;
+    webView.conversation = _conversationModel;
+    
+    [self.navigationController pushViewController:webView animated:YES];
+    [self keyBoardHidden:nil];
+    
+}
+- (void)moreViewIframeMoreAction:(DXChatBarMoreView *)moreView{
+
+    KFIframeMoreViewController *vc = [[KFIframeMoreViewController alloc] init];
+    vc.conversation = _conversationModel;
+    vc.dataArray = [KFManager sharedInstance].iframes;
+    [self.navigationController pushViewController:vc animated:YES];
+    [self keyBoardHidden:nil];
+    
 }
 
 #pragma mark - EMUIWebViewControllerDelegate

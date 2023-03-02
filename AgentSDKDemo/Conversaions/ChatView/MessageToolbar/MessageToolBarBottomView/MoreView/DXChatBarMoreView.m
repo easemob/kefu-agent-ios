@@ -222,37 +222,61 @@
     
     if ([KFManager sharedInstance].iframes.count > 0) {
         
-        for (int i = 0; i<[KFManager sharedInstance].iframes.count; i++) {
-    
-            KFIframeModel * model =[KFManager sharedInstance].iframes[i];
+        if ([KFManager sharedInstance].iframes.count >1 ) {
+            // 显示更多按钮
             KFChatBarMoreModel *customMessageModel = [[KFChatBarMoreModel alloc] init];
-            if (i==0) {
-                customMessageModel.btnType = KFChatMoreBtnIframeBase;
-                customMessageModel.btnName = model.iframeTabTitle;
-                customMessageModel.iframeModel = model;
-                if (![model.iframeUrl isKindOfClass:[NSNull class]] && model.iframeUrl.length > 0) {
+            customMessageModel.btnType = KFChatMoreBtnIframeMore;
+            customMessageModel.btnName = @"更多";
+            [self.btnMarray addObject:customMessageModel];
+            
+        }else{
+            
+            //显示一个iframe
+            KFIframeModel * model =[[KFManager sharedInstance].iframes firstObject];
+            KFChatBarMoreModel *customMessageModel = [[KFChatBarMoreModel alloc] init];
+            customMessageModel.btnType = KFChatMoreBtnIframeDefault;
+            customMessageModel.btnName = model.iframeTabTitle;
+            customMessageModel.iframeModel = model;
+            if (![model.iframeUrl isKindOfClass:[NSNull class]] && model.iframeUrl.length > 0) {
                 
-                    [self.btnMarray addObject:customMessageModel];
-                
-                    
-                }
-               
+                [self.btnMarray addObject:customMessageModel];
+            
             }
-            if (i==1) {
-                customMessageModel.btnType = KFChatMoreBtnIframeRobot;
-                customMessageModel.btnName = model.iframeTabTitle;
-                customMessageModel.iframeModel = model;
-                if (![model.iframeUrl isKindOfClass:[NSNull class]] && model.iframeUrl.length > 0) {
-                
-                    [self.btnMarray addObject:customMessageModel];
-                }
-            }
-           
-          
         }
+  
+    }
+        
+//        for (int i = 0; i<[KFManager sharedInstance].iframes.count; i++) {
+//
+//            KFIframeModel * model =[KFManager sharedInstance].iframes[i];
+//            KFChatBarMoreModel *customMessageModel = [[KFChatBarMoreModel alloc] init];
+//            if (i==0) {
+//                customMessageModel.btnType = KFChatMoreBtnIframeBase;
+//                customMessageModel.btnName = model.iframeTabTitle;
+//                customMessageModel.iframeModel = model;
+//                if (![model.iframeUrl isKindOfClass:[NSNull class]] && model.iframeUrl.length > 0) {
+//
+//                    [self.btnMarray addObject:customMessageModel];
+//
+//
+//                }
+//
+//            }
+//            if (i==1) {
+//                customMessageModel.btnType = KFChatMoreBtnIframeRobot;
+//                customMessageModel.btnName = model.iframeTabTitle;
+//                customMessageModel.iframeModel = model;
+//                if (![model.iframeUrl isKindOfClass:[NSNull class]] && model.iframeUrl.length > 0) {
+//
+//                    [self.btnMarray addObject:customMessageModel];
+//                }
+//            }
+//
+//
+//        }
         
        
-    }
+//    }
     
 //    if([[HDClient sharedClient].currentAgentUser.iframeModel.url length] > 0){
 //
@@ -329,6 +353,18 @@
                 [btn setImage:[UIImage imageNamed:@"btn_icon_iframe"] forState:UIControlStateNormal];
                 [btn setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
                 [btn addTarget:self action:@selector(iframeRobotAction) forControlEvents:UIControlEventTouchUpInside];
+                
+                break;
+            case KFChatMoreBtnIframeMore:
+                [btn setImage:[UIImage imageNamed:@"btn_icon_iframe"] forState:UIControlStateNormal];
+                [btn setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
+                [btn addTarget:self action:@selector(iframeMoreAction) forControlEvents:UIControlEventTouchUpInside];
+                
+                break;
+            case KFChatMoreBtnIframeDefault:
+                [btn setImage:[UIImage imageNamed:@"btn_icon_iframe"] forState:UIControlStateNormal];
+                [btn setImageEdgeInsets:CHAT_BUTTON_IMAGE_EDGEINSETS];
+                [btn addTarget:self action:@selector(iframeDefaultAction) forControlEvents:UIControlEventTouchUpInside];
                 
                 break;
                 
@@ -430,6 +466,18 @@
 {
     if (_delegate && [_delegate respondsToSelector:@selector(moreViewIframeRobotAction:)]) {
         [_delegate moreViewIframeRobotAction:self];
+    }
+}
+- (void)iframeMoreAction
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(moreViewIframeMoreAction:)]) {
+        [_delegate moreViewIframeMoreAction:self];
+    }
+}
+- (void)iframeDefaultAction
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(moreViewIframeDefaultAction:)]) {
+        [_delegate moreViewIframeDefaultAction:self];
     }
 }
 

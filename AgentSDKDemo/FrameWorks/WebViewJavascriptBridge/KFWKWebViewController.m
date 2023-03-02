@@ -48,7 +48,7 @@
 //        self.title = @"iframe";
 //
 //    }
-    self.title = self.chatBarModel.btnName;
+    self.title = self.iframeModel.iframeTabTitle;
     
     self.navigationItem.leftBarButtonItem = self.backItem;
 
@@ -63,7 +63,7 @@
     dispatch_block_t block = ^{ @autoreleasepool {
 //        KFIframeModel *model = [[HDUserManager sharedInstance] getAgentUserModel].iframeModel;
         
-        KFIframeModel *model = self.chatBarModel.iframeModel;
+        KFIframeModel *model = self.iframeModel;
         if (model) {
             weakSelf.iframeView.kefuIm = _kefuIm;
             weakSelf.iframeView.visitorInfo = _visitorInfo;

@@ -22,7 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<KFWKWebViewControllerDelegate> delegate;
 @property (nonatomic, strong) HDConversation *conversation;
 @property (nonatomic, copy) NSString *visitorId;
-@property (nonatomic, strong) KFChatBarMoreModel *chatBarModel;
+//@property (nonatomic, strong) KFChatBarMoreModel *chatBarModel;
+@property (nonatomic, copy) KFIframeModel *iframeModel;
 - (instancetype)initWithUrl:(NSString *)url;
 
 @end

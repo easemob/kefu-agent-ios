@@ -12,6 +12,8 @@ typedef enum{
     KFChatMoreBtnCustomMessage, //自定义消息
     KFChatMoreBtnIframeBase, //iframe base
     KFChatMoreBtnIframeRobot, // robot iframe
+    KFChatMoreBtnIframeDefault, // 默认一个iframe窗口时显示的类型
+    KFChatMoreBtnIframeMore, // 多个iframe窗口时显示的类型
 }KFChatMoreBtnType;
 NS_ASSUME_NONNULL_BEGIN
 

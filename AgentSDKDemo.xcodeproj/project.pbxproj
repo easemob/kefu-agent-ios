@@ -551,6 +551,8 @@
 		D2DE0FD1295D3E6400EE8C8D /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2DE0FD2295D3EA800EE8C8D /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; };
 		D2DE0FD3295D3EA800EE8C8D /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D2EFA81E29B0A52000C330BD /* KFIframeMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EFA81D29B0A52000C330BD /* KFIframeMoreViewController.m */; };
+		D2EFA81F29B0A52000C330BD /* KFIframeMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2EFA81D29B0A52000C330BD /* KFIframeMoreViewController.m */; };
 		D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CE81FD67BAE0091E048 /* HDSuperviseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */; };
 		D3058CEB1FD684F30091E048 /* HDTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D3058CEA1FD684F30091E048 /* HDTipLabel.m */; };
@@ -2349,6 +2351,8 @@
 		D2B95179292372940043B07F /* KFChatBarMoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatBarMoreModel.h; sourceTree = "<group>"; };
 		D2B9517A292372940043B07F /* KFChatBarMoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatBarMoreModel.m; sourceTree = "<group>"; };
 		D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2EFA81C29B0A52000C330BD /* KFIframeMoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFIframeMoreViewController.h; sourceTree = "<group>"; };
+		D2EFA81D29B0A52000C330BD /* KFIframeMoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFIframeMoreViewController.m; sourceTree = "<group>"; };
 		D3058CE51FD67BAE0091E048 /* HDSuperviseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDSuperviseCell.h; sourceTree = "<group>"; };
 		D3058CE61FD67BAE0091E048 /* HDSuperviseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDSuperviseCell.m; sourceTree = "<group>"; };
 		D3058CE91FD684F30091E048 /* HDTipLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDTipLabel.h; sourceTree = "<group>"; };
@@ -4227,6 +4231,15 @@
 			path = VECTest;
 			sourceTree = "<group>";
 		};
+		D2EFA81B29B0A4E500C330BD /* Iframe */ = {
+			isa = PBXGroup;
+			children = (
+				D2EFA81C29B0A52000C330BD /* KFIframeMoreViewController.h */,
+				D2EFA81D29B0A52000C330BD /* KFIframeMoreViewController.m */,
+			);
+			path = Iframe;
+			sourceTree = "<group>";
+		};
 		D3058CE21FD675810091E048 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -5277,6 +5290,7 @@
 		D33F46C91E9F7F5A00FE6DCE /* Conversaions */ = {
 			isa = PBXGroup;
 			children = (
+				D2EFA81B29B0A4E500C330BD /* Iframe */,
 				D33CE7E11F7CB48400236720 /* Model */,
 				D33CE5EC1F7CA98D00236720 /* ChatView */,
 				D33CE66F1F7CA98D00236720 /* ColleagueConversation */,
@@ -7741,6 +7755,7 @@
 				938AEA1B27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */,
 				938AEA5327F3F8FC00B461C4 /* KJBasePlayerView.m in Sources */,
 				9374F9B828379EF4007924C9 /* KFSmartImageTableViewCell.m in Sources */,
+				D2EFA81E29B0A52000C330BD /* KFIframeMoreViewController.m in Sources */,
 				D33CE7D71F7CB42E00236720 /* DXTableViewCellType1.m in Sources */,
 				935FF7FE277451330034ED6F /* KFWebViewController.m in Sources */,
 				D3A95E4E1EA0F47100ADD394 /* MWPhoto.m in Sources */,
@@ -8190,6 +8205,7 @@
 				938AEA3427F3F8FC00B461C4 /* KJPlayerConst.m in Sources */,
 				936A5F1B286AD5A1004BC632 /* UIView+Kit.m in Sources */,
 				D3E9CD9F1FBED182005E3677 /* KFCompanyRegisterViewController.m in Sources */,
+				D2EFA81F29B0A52000C330BD /* KFIframeMoreViewController.m in Sources */,
 				9094C5A820ECAD5800E9A057 /* KFChatViewRecallCell.m in Sources */,
 				9046FD1320E252F8009B6376 /* HTimePickerView.m in Sources */,
 				D3E9CDA01FBED182005E3677 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,

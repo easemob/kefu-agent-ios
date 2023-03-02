@@ -60,6 +60,8 @@ typedef enum{
 - (void)moreViewFileAction:(DXChatBarMoreView *)moreView;
 - (void)moreViewIframeBaseAction:(DXChatBarMoreView *)moreView;
 - (void)moreViewIframeRobotAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewIframeMoreAction:(DXChatBarMoreView *)moreView;
+- (void)moreViewIframeDefaultAction:(DXChatBarMoreView *)moreView;
 @end
 
 
