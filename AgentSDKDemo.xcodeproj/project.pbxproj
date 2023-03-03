@@ -473,8 +473,6 @@
 		D2239E952994959A0087D054 /* HDVECAgoraTicketModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */; };
 		D2239E962994959A0087D054 /* HDVECVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E65299495990087D054 /* HDVECVideoDetailModel.m */; };
 		D2239E972994959A0087D054 /* HDVECVideoDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E65299495990087D054 /* HDVECVideoDetailModel.m */; };
-		D2239E982994959A0087D054 /* HDVECAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6B2994959A0087D054 /* HDVECAnswerView.m */; };
-		D2239E992994959A0087D054 /* HDVECAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6B2994959A0087D054 /* HDVECAnswerView.m */; };
 		D2239E9A2994959A0087D054 /* HDVECCallCollectionViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6D2994959A0087D054 /* HDVECCallCollectionViewCellItem.m */; };
 		D2239E9B2994959A0087D054 /* HDVECCallCollectionViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6D2994959A0087D054 /* HDVECCallCollectionViewCellItem.m */; };
 		D2239E9C2994959A0087D054 /* HDVECCallCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E6F2994959A0087D054 /* HDVECCallCollectionViewCell.m */; };
@@ -2133,7 +2131,6 @@
 		937032C8286AE0C100B71298 /* HDAgoraCallOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallOptions.h; sourceTree = "<group>"; };
 		937032C9286AE0C200B71298 /* HDSSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDSSKeychain.m; sourceTree = "<group>"; };
 		937032CA286AE0C200B71298 /* HDAgoraCallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManager.h; sourceTree = "<group>"; };
-		937032CB286AE0C300B71298 /* HDAgoraCallEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallEnum.h; sourceTree = "<group>"; };
 		937032CC286AE0C400B71298 /* HDAgoraCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManagerDelegate.h; sourceTree = "<group>"; };
 		937032CD286AE0C400B71298 /* HDAgoraCallOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraCallOptions.m; sourceTree = "<group>"; };
 		937032CE286AE0C500B71298 /* HDAgoraCallMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallMember.h; sourceTree = "<group>"; };
@@ -2279,7 +2276,6 @@
 		D2239E65299495990087D054 /* HDVECVideoDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECVideoDetailModel.m; sourceTree = "<group>"; };
 		D2239E682994959A0087D054 /* KFVECAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KFVECAnswerView.h; sourceTree = "<group>"; };
 		D2239E6A2994959A0087D054 /* HDVECItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECItemView.h; sourceTree = "<group>"; };
-		D2239E6B2994959A0087D054 /* HDVECAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAnswerView.m; sourceTree = "<group>"; };
 		D2239E6C2994959A0087D054 /* HDVECMiddleVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECMiddleVideoView.h; sourceTree = "<group>"; };
 		D2239E6D2994959A0087D054 /* HDVECCallCollectionViewCellItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECCallCollectionViewCellItem.m; sourceTree = "<group>"; };
 		D2239E6E2994959A0087D054 /* HDVECHiddenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECHiddenView.h; sourceTree = "<group>"; };
@@ -2289,7 +2285,6 @@
 		D2239E722994959A0087D054 /* HDVECControlBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECControlBarView.h; sourceTree = "<group>"; };
 		D2239E732994959A0087D054 /* HDVECTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECTitleView.m; sourceTree = "<group>"; };
 		D2239E742994959A0087D054 /* HDVECPopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECPopoverViewController.m; sourceTree = "<group>"; };
-		D2239E752994959A0087D054 /* HDVECAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAnswerView.h; sourceTree = "<group>"; };
 		D2239E762994959A0087D054 /* HDVECItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECItemView.m; sourceTree = "<group>"; };
 		D2239E772994959A0087D054 /* HDVECSmallWindowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECSmallWindowView.m; sourceTree = "<group>"; };
 		D2239E782994959A0087D054 /* HDVECSuspendCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECSuspendCustomView.m; sourceTree = "<group>"; };
@@ -3977,7 +3972,6 @@
 		93EFFC6727BA3F970043DE06 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				937032CB286AE0C300B71298 /* HDAgoraCallEnum.h */,
 				937032CA286AE0C200B71298 /* HDAgoraCallManager.h */,
 				937032C5286AE0C100B71298 /* HDAgoraCallManager.m */,
 				937032CC286AE0C400B71298 /* HDAgoraCallManagerDelegate.h */,
@@ -4106,8 +4100,6 @@
 			children = (
 				D2239E722994959A0087D054 /* HDVECControlBarView.h */,
 				D2239E7E2994959A0087D054 /* HDVECControlBarView.m */,
-				D2239E752994959A0087D054 /* HDVECAnswerView.h */,
-				D2239E6B2994959A0087D054 /* HDVECAnswerView.m */,
 				D2239E792994959A0087D054 /* HDVECCallCollectionViewCell.h */,
 				D2239E6F2994959A0087D054 /* HDVECCallCollectionViewCell.m */,
 				D2239E7B2994959A0087D054 /* HDVECCallCollectionViewCellItem.h */,
@@ -7664,7 +7656,6 @@
 				D33CE85A1F7CD0F800236720 /* NSData+EMImageContentType.m in Sources */,
 				936A5ECA286ACF3D004BC632 /* HDSmallWindowView.m in Sources */,
 				D33CE6921F7CA98D00236720 /* ClientInforHeaderView.m in Sources */,
-				D2239E982994959A0087D054 /* HDVECAnswerView.m in Sources */,
 				938AEA1F27F3F8FB00B461C4 /* KJBasePlayer+KJCache.m in Sources */,
 				D3A95E4F1EA0F47100ADD394 /* MWPhotoBrowser.m in Sources */,
 				D33CE6891F7CA98D00236720 /* ClientInforCompileController.m in Sources */,
@@ -8114,7 +8105,6 @@
 				90FC92532486323B00014CCC /* MASViewConstraint.m in Sources */,
 				D3E9CD6B1FBED182005E3677 /* QuickReplyViewController.m in Sources */,
 				D3DFB3811FD814BE00A9358A /* KFSuperviseBaseViewController.m in Sources */,
-				D2239E992994959A0087D054 /* HDVECAnswerView.m in Sources */,
 				D3E9CD6C1FBED182005E3677 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D3E9CD6E1FBED182005E3677 /* TransferViewController.m in Sources */,
 				90FC92472486323B00014CCC /* MASCompositeConstraint.m in Sources */,

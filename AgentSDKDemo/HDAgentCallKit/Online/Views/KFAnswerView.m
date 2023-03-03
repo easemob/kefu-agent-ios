@@ -363,7 +363,6 @@
     [[HDOnlineManager  sharedInstance] getAgoraTicketWithCallId:_ringingCallModel.callId withSessionId: _message.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         
         if (error ==nil) {
-        
             NSLog(@"====%@",responseObject);
             [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:_message];
 
@@ -371,7 +370,6 @@
             
             // 调用通行证失败 关闭界面
             [self  hd_alertView:error.errorDescription];
-            
             
         }
         

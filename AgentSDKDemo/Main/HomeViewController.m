@@ -682,8 +682,6 @@ static HomeViewController *homeViewController;
                 [[HDCallViewController sharedManager]  removeView];
                 [[HDCallViewController sharedManager] removeSharedManager];
             }
-
-
         }
     }
 }
@@ -804,7 +802,6 @@ static HomeViewController *homeViewController;
             [[HDCallViewController sharedManager] removeSharedManager];
        
            };
-
     }
     
 }

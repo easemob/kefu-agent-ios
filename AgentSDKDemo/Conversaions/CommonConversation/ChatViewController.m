@@ -1060,7 +1060,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         
         return;
     }
-    //创建 声网房间入口
+    //申请视频通话 并创建声网房间入口
     [self sendVideoTextMessage:@"邀请访客进行视频"];
 
 }
@@ -1092,31 +1092,21 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 }
 - (void)messagesLiveStreamInvitationDidReceive:(HDMessage *)aMessage{
     
-    // 调用通行证接口
+    // 判断是不是 正在通话
     if (![HDOnlineManager sharedInstance].agentCallId) {
         
         return;
     }
     // 调用通行证接口
     [[HDOnlineManager  sharedInstance] getAgoraTicketWithCallId:[HDOnlineManager sharedInstance].agentCallId withSessionId: aMessage.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-        
         if (error ==nil) {
-        
-            NSLog(@"====%@",responseObject);
-            
-         
             [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:[self createVisitorCallMessage]];
-
         }
-        
-        
-        
     }];
     
 }
 //获取坐席未接视频通话
 - (void)onAgoraCallRingingcalls{
-    
     
     NSLog(@"====%@", _conversationModel.sessionId);
     

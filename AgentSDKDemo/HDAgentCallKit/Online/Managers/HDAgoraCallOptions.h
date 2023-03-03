@@ -7,35 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HDAgoraCallEnum.h"
-//typedef NS_ENUM(NSUInteger, HDAgoraVideoDimensionType) {
-//    HDAgoraVideoDimension160x120,
-//    HDAgoraVideoDimension320x240,
-//    HDAgoraVideoDimension640x360,
-//    HDAgoraVideoDimension640x480,
-//    HDAgoraVideoDimension960x720
-//
-//};
-//typedef NS_ENUM(NSUInteger, HDAgoraVideoFrameRateFpsType) {
-//    HDAgoraVideoFrameRateFps1,
-//    HDAgoraVideoFrameRateFps7,
-//    HDAgoraVideoFrameRateFps10,
-//    HDAgoraVideoFrameRateFps15,
-//    HDAgoraVideoFrameRateFps24,
-//    HDAgoraVideoFrameRateFps30
-//};
-//
-//typedef NS_ENUM(NSUInteger, HDAgoraVideoBitrateType) {
-//    HDAgoraVideoBitrateStandard,
-//    HDAgoraVideoBitrateCompatible,
-//    HDAgoraVideoBitrateDefaultMin
-//};
-//typedef NS_ENUM(NSUInteger, HDAgoraVideoOutputOrientationModeType) {
-//    HDAgoraVideoOutputOrientationMode,
-//    HDAgoraVideoOutputOrientationModeAdaptative,
-//    HDAgoraVideoOutputOrientationModeFixedLandscape,
-//    HDAgoraVideoOutputOrientationModeFixedPortrait
-//};
 
 @interface HDAgoraCallOptions : NSObject
 
@@ -52,7 +23,6 @@
  是否静音
  */
 @property (nonatomic, assign) BOOL mute;
-
 /**
   本地视频
  */
@@ -67,20 +37,9 @@
  */
 @property (nonatomic, assign) CGSize dimension;
 /**
- 设置帧速率
- */
-@property (nonatomic, assign) HDAgoraVideoFrameRate frameRate;
-
-/**
  视频比特率。
  */
 @property (assign, nonatomic) NSInteger bitrate;
-
-/**
- */
-@property (assign, nonatomic) HDAgoraVideoOutputOrientationMode orientationMode;
-
-
 /**
  默认使用后置摄像头
  */

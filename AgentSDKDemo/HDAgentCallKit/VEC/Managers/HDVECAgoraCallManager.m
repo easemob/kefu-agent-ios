@@ -30,25 +30,17 @@
 //static uint32_t SCREEN_SHARE_UID_MIN  = 501;
 //static uint32_t SCREEN_SHARE_UID_MAX  = 1000;
 
-@interface HDVECAgoraCallManager () <AgoraRtcEngineDelegate,HDChatManagerDelegate>
+@interface HDVECAgoraCallManager () <AgoraRtcEngineDelegate>
 {
     HDVECAgoraCallOptions *_options;
     AgoraRtcVideoCanvas *_canvas;
     NSString *_nickName;
     NSDictionary *_ext;
     NSString *_ticket;
-
-
-    
     BOOL _isSetupLocalVideo; //判断是否已经设置过了；
-    
-    
     NSInteger _visitorUid;
 }
-
 @property (nonatomic, strong) NSMutableArray *members;
-
-@property (nonatomic, strong) AgoraRtcEngineKit *agoraKitScreenShare;
 @property (nonatomic, copy) void (^Completion)(id, HDError *)  ;
 
 
@@ -84,10 +76,6 @@ static HDVECAgoraCallManager *shareCall = nil;
         _waitingQueue = [NSMutableArray arrayWithCapacity:0];
         _onCalling = NO;
         _callQueue = dispatch_queue_create("com.easemob.kefuapp.vec.queue", NULL);
-        //添加消息监听
-        [[HDClient sharedClient].chatManager addDelegate:self delegateQueue:nil];
-        
-        
     }
     return self;
 }
@@ -119,39 +107,6 @@ static HDVECAgoraCallManager *shareCall = nil;
     return _options;
 }
 
-#pragma mark - 收到消息代理
-- (void)messagesDidReceive:(NSArray *)aMessages{
-     //收到普通消息,格式:<HDMessage *>
-    if (aMessages.count == 0) {
-        return;
-    }
-    for (EMMessage *msg in aMessages) {
-        if (msg.ext) {
-            NSDictionary *dic = [msg.ext objectForKey:@"msgtype"];
-            if (dic) {
-                if ([[dic allKeys] containsObject: @"videoPlayback"]) {
-                    
-                   NSDictionary  *videoPlaybackDic = [dic valueForKey:@"videoPlayback"];
-                    
-                    NSString *  msg  = (NSString *) [videoPlaybackDic valueForKey:@"msg"];
-                
-                    if([msg isEqualToString:@"playback"]){
-                        
-                        NSDictionary *  videoObjDic  = [videoPlaybackDic valueForKey:@"videoObj"];
-                        NSString *  callId ;
-                        if([[videoObjDic allKeys] containsObject: @"callId"]){
-                            
-                            callId  = (NSString *) [videoPlaybackDic valueForKey:@"callId"];
-                        }
-                        //调用挂掉视频操作
-//                        [self agentHangUpCall:callId];
-                        return;
-                    }
-                }
-            }
-        }
-    }
-}
 #pragma mark - 懒加载
 - (AgoraRtcEngineKit *)agoraKit {
     if (!_agoraKit) {
@@ -162,7 +117,6 @@ static HDVECAgoraCallManager *shareCall = nil;
         [_agoraKit setClientRole:AgoraClientRoleBroadcaster];
         //启用视频模块
         [_agoraKit enableVideo];
-    
         //开启虚拟背景
 //        AgoraVirtualBackgroundSource *backgroundSource = [[AgoraVirtualBackgroundSource alloc] init];
 //        backgroundSource.backgroundSourceType = AgoraVirtualBackgroundColor;
@@ -171,17 +125,10 @@ static HDVECAgoraCallManager *shareCall = nil;
         [_agoraKit enableDeepLearningDenoise:YES];
         // set video configuration
         float size = _options.dimension.width;
-        
-         
-//        _options.dimension = CGSizeMake( [UIScreen mainScreen].bounds.size, [UIScreen mainScreen].bounds.h)
-        
-        
-        AgoraVideoEncoderConfiguration *configuration = [[AgoraVideoEncoderConfiguration alloc] initWithSize:  (size>0 ? _options.dimension : AgoraVideoDimension480x480) frameRate:_options.frameRate ? AgoraVideoFrameRateFps24 : (AgoraVideoFrameRate)_options.frameRate bitrate:_options.bitrate ? _options.bitrate :AgoraVideoBitrateStandard  orientationMode:_options.orientationMode ? (AgoraVideoOutputOrientationMode)_options.orientationMode :AgoraVideoOutputOrientationModeAdaptative];
+        AgoraVideoEncoderConfiguration *configuration = [[AgoraVideoEncoderConfiguration alloc] initWithSize:  (size>0 ? _options.dimension : AgoraVideoDimension480x480) frameRate: AgoraVideoFrameRateFps24 bitrate:_options.bitrate ? _options.bitrate :AgoraVideoBitrateStandard  orientationMode:AgoraVideoOutputOrientationModeAdaptative];
         
         [_agoraKit setVideoEncoderConfiguration:configuration];
-        
-
-        [[HDClient sharedClient].chatManager addDelegate:self delegateQueue:_callQueue];
+    
     }
     return _agoraKit;
 }
@@ -252,98 +199,64 @@ static HDVECAgoraCallManager *shareCall = nil;
     [self.agoraKit leaveChannel:nil];
     [_members removeAllObjects];
     //结束录制
-    [self endRecord];
-   
+    [self vec_endRecord];
     [HDAppManager shareInstance].isAnswerView = NO;
 }
-- (void)joinChannel{
-    [self hd_joinChannelByToken:[HDVECAgoraCallManager shareInstance].keyCenter.agoraToken channelId:[HDVECAgoraCallManager shareInstance].keyCenter.agoraChannel info:nil uid:[[HDVECAgoraCallManager shareInstance].keyCenter.agoraUid integerValue] joinSuccess:^(NSString * _Nullable channel, NSUInteger uid, NSInteger elapsed) {
-        _onCalling = YES;
-        NSLog(@"joinSuccess joinChannelByToken channel=%@  uid=%lu",channel,(unsigned long)uid);
+
+- (void)vec_endCall{
+    //1、停止录制
+    [self vec_endRecord];
+    //2、发送挂断消息
+    [self vec_endSendMessage];
+    //3、声网 离开房间
+    [self.agoraKit leaveChannel:nil];
+    //4、清理设置的状态
+    [self vec_endClearState];
+    //5、销毁引擎
+    [self destroy];
+
+//    // 发送测试 通知显示 视频记录列表
+//    //发通知加入房间
+//    [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
+}
+
+///  结束录制接口
+- (void)vec_endRecord{
+    
+    [[HDClient sharedClient].vecCallManager vec_stoptAgoraRtcRecodWithRtcSessionId:_ringingCallModel.rtcSessionId withAgentId:_ringingCallModel.agentUserId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        NSLog(@"======%@",responseObject);
     }];
-    
 }
-//- (void)endCall{
-//
-//    //发送透传消息cmd。
-//    EMCmdMessageBody *body = [[EMCmdMessageBody alloc] initWithAction:@"Agorartcmedia"];
-//    NSString *from = [[HDClient sharedClient] currentUsername];
-//    HDMessage *message = [[HDMessage alloc] initWithConversationID:[[HDCallManager shareInstance] conversationId] from:from to:[[HDCallManager shareInstance] conversationId] body:body];
-//    NSDictionary *dic = @{
-//                          @"type":@"agorartcmedia/video",
-//                          @"msgtype":@{
-//                                  @"visitorCancelInvitation":@{
-//                                      @"callId":[HDAgoraCallManager shareInstance].keyCenter.callid>0 ?[HDAgoraCallManager shareInstance].keyCenter.callid : [NSString stringWithFormat:@"null"]
-//                                          }
-//                                  }
-//                          };
-//    message.ext = dic;
-//
-//
-//
-//    [[HDClient sharedClient].chatManager sendMessage:message progress:nil completion:^(HDMessage *aMessage, HDError *aError) {
-//
-//        NSLog(@"===%@",aError);
-//
-//    }];
-//
-//    [self leaveChannel];
-//
-//    //该方法为同步调用，需要等待 AgoraRtcEngineKit 实例资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议 在 SDK 的回调中调用 destroy，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
-//    [self destroy];
-//}
-- (void)endCall{
-  
-    [self leaveChannel];
-    //该方法为同步调用，需要等待 AgoraRtcEngineKit 实例资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议 在 SDK 的回调中调用 destroy，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
-    [self destroy];
+/// 发送挂断视频消息
+- (void)vec_endSendMessage{
+    
+   HDMessage * message  =  [self vec_sendMessageVideoPlaybackSessionId:_ringingCallModel.rtcSessionId withToUser:_ringingCallModel.visitorUserId withVisitorName:_ringingCallModel.visitorUserName];
+    [[HDClient sharedClient].vecCallManager vec_asyncSendMessageWithMessageModel:message completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
+        
+        if (error==nil) {
+            
+            NSLog(@"======发送消息成功");
+        }
+    }];
 }
 
+/// 清理通话中设置的状态
+-(void)vec_endClearState{
+    [_members removeAllObjects];
+    _isSetupLocalVideo = NO;
+    _onCalling = NO;
+    [HDAppManager shareInstance].isAnswerView = NO;
+    
+}
+- (void)destroy{
+    _onCalling = NO;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //该方法为同步调用，需要等待 AgoraRtcEngineKit 实例资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议 在 SDK 的回调中调用 destroy，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
+        [AgoraRtcEngineKit destroy];
+        self.agoraKit = nil;
+    });
+}
 
-- (void)refusedCall{
-    
-    //发送透传消息cmd
-//    EMCmdMessageBody *body = [[EMCmdMessageBody alloc] initWithAction:@"Agorartcmedia"];
-//    NSString *from = [[HDClient sharedClient] currentUsername];
-//    HDMessage *message = [[HDMessage alloc] initWithConversationID:[[HDCallManager shareInstance] conversationId] from:from to:[[HDCallManager shareInstance] conversationId] body:body];
-//    NSDictionary *dic = @{
-//                          @"type":@"agorartcmedia/video",
-//                          @"msgtype":@{
-//                                  @"visitorRejectInvitation":@{
-//                                          @"callId":[HDAgoraCallManager shareInstance].keyCenter.callid>0 ?[HDAgoraCallManager shareInstance].keyCenter.callid : [NSString stringWithFormat:@"null"]
-//                                          }
-//                                  }
-//                          };
-//    message.ext = dic;
-//
-//    [[HDClient sharedClient].chatManager sendMessage:message progress:nil completion:^(HDMessage *aMessage, HDError *aError) {
-//
-//        NSLog(@"===%@",aError);
-//
-//    }];
-    [self leaveChannel];
-    
-    //该方法为同步调用，需要等待 AgoraRtcEngineKit 实例资源释放后才能执行其他操作，所以我们建议在子线程中调用该方法，避免主线程阻塞。此外，我们不建议 在 SDK 的回调中调用 destroy，否则由于 SDK 要等待回调返回才能回收相关的对象资源，会造成死锁。
-    [self destroy];
-}
-/// 坐席主动挂断视频
-/// @param callid  呼叫id
-- (void)agentHangUpCall:(NSString *)callid{
-    
-    if (self.members.count != 0 ) {
-        
-        return;
-    }
-    
-    if([self.roomDelegate respondsToSelector:@selector(onCallEndReason:desc:withRecordData:)]){
-        
-        [self.roomDelegate onCallEndReason:1 desc:@"reason-conference-dismissed"  withRecordData:nil];
-    }
-    //移除消息监控
-    [[HDClient sharedClient].chatManager removeDelegate:self];
-    [self leaveChannel];
-    [self destroy];
-}
 - (int)startPreview{
     return [self.agoraKit startPreview];
 }
@@ -351,14 +264,7 @@ static HDVECAgoraCallManager *shareCall = nil;
     
     return [self.agoraKit stopPreview];
 }
-- (void)destroy{
-    _onCalling = NO;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [AgoraRtcEngineKit destroy];
-        self.agoraKit = nil;
-        self.agoraKitScreenShare = nil;
-    });
-}
+
 - (void)setEnableSpeakerphone:(BOOL)enableSpeaker{
     
     [self.agoraKit setEnableSpeakerphone:enableSpeaker];
@@ -587,28 +493,17 @@ static HDVECAgoraCallManager *shareCall = nil;
     [[HDClient sharedClient].vecCallManager vec_asyncSendMessageWithMessageModel:message completion:aCompletionBlock];
 
 }
-- (HDMessage *)vec_sendMessageVideoPlaybackSessionId:(NSString *)sessionId withToUser:(NSString *)toUser withVisitorName:(NSString *)visitorName withVideoStartTime:(NSString *)videoStartTime withVideoEndTime:(NSString *)videoEndTime withCallId:(NSString *)callid{
+- (HDMessage *)vec_sendMessageVideoPlaybackSessionId:(NSString *)sessionId withToUser:(NSString *)toUser withVisitorName:(NSString *)visitorName {
     
     NSString *willSendText = @"视频通话已结束";
     HDTextMessageBody *body = [[HDTextMessageBody alloc] initWithText:willSendText];
     HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
-    
-//    NSMutableDictionary *  videoObj = [[NSMutableDictionary alloc] init];
-//    [videoObj hd_setValue:sessionId forKey:@"ssId"];
-//    [videoObj hd_setValue:toUser forKey:@"visitorUserId"];
-//    [videoObj hd_setValue:visitorName forKey:@"visitorName"];
-//    [videoObj hd_setValue:videoStartTime forKey:@"videoStartTime"];
-//    [videoObj hd_setValue:videoEndTime forKey:@"videoEndTime"];
-//    [videoObj hd_setValue:callid forKey:@"callId"];
-//    [videoObj hd_setValue:@"agora" forKey:@"videoType"];
     
     NSDictionary *dic = @{
                           @"type":@"agorartcmedia/video",
                           @"msgtype":@{
                                   @"videoPlayback":@{
                                           @"msg": @"playback",
-//                                          @"videoObj":videoObj,
-//                                          @"agentName":[HDClient sharedClient].currentAgentUser.nicename
                                           },
                                   @"targetSystem":@"kefurtc"
                                  
@@ -660,33 +555,10 @@ static HDVECAgoraCallManager *shareCall = nil;
     }
     
 }
-- (void)endRecord{
-    [HDVECAgoraCallManager shareInstance].isSender = NO;
-    // 结束录制
-    [[HDClient sharedClient].vecCallManager vec_stoptAgoraRtcRecodWithRtcSessionId:_ringingCallModel.rtcSessionId withAgentId:_ringingCallModel.agentUserId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
-        
-        
-        NSLog(@"======%@",responseObject);
-        
-        
-    }];
-    
-    // 发送挂断消息
-    
-   HDMessage * message  =  [self vec_sendMessageVideoPlaybackSessionId:_ringingCallModel.rtcSessionId withToUser:_ringingCallModel.visitorUserId withVisitorName:_ringingCallModel.visitorUserName withVideoStartTime:@"111111" withVideoEndTime:@"1111111" withCallId:[NSString stringWithFormat:@""]];
 
-    [[HDClient sharedClient].vecCallManager vec_asyncSendMessageWithMessageModel:message completion:^(HDMessage * _Nonnull message, HDError * _Nonnull error) {
-        
-        if (error==nil) {
-            
-            NSLog(@"======发送消息成功");
-        }
-    }];
-    
-    // 发送测试 通知显示 视频记录列表
-    //发通知加入房间
-    [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
-}
+
+
+
 - (HDVECRingingCallModel *)vec_parseKefuRtcCallRingingData:(NSDictionary *)dic{
     
     
@@ -818,8 +690,6 @@ static HDVECAgoraCallManager *shareCall = nil;
     
     [HDLog logI:@"================vec1.2=====didOfflineOfUid _thirdAgentUid= %lu",(unsigned long)uid];
     //如果房间里边人 都么有了 就发送通知 关闭。如果有人 就不关闭
-//  [self agentHangUpCall:[HDAgoraCallManager shareInstance].keyCenter.callid];
-   
     //通知代理
     if([self.roomDelegate respondsToSelector:@selector(onMemberExit:)]){
         [self.roomDelegate onMemberExit:mem];

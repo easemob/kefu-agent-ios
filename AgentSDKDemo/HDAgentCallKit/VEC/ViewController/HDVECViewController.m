@@ -151,21 +151,7 @@ static HDVECViewController *_manger = nil;
         [child removeFromSuperview];
     }
 }
-+ (HDVECViewController *)hasReceivedCallWithKeyCenter:(HDKeyCenter *)keyCenter  avatarStr:(NSString *)aAvatarStr nickName:(NSString *)aNickname hangUpCallBack:(VECHangUpCallback)callback{
-    
-    HDVECViewController *callVC = [[HDVECViewController alloc] init];
-    callVC.nickname = aNickname;
-    callVC.avatarStr = aAvatarStr;
-    callVC.agentName = keyCenter.agentNickName;
-    callVC.vechangUpCallback = callback;
-    
-    //初始化灰度管理
-    [[HDCallManager shareInstance] initGray];
-        
-    //需要必要创建房间的参数
-    [HDVECAgoraCallManager shareInstance].keyCenter =keyCenter;
-    return callVC;
-}
+
 +(id)alertWithView:(UIView *)view AlertType:(HDVECNewCallAlertType)type
 {
     HDVECViewController *callVC = [[HDVECViewController alloc] init];
@@ -181,7 +167,6 @@ static HDVECViewController *_manger = nil;
     
     if (!isCalling) {
          
-//        self.nickname = [HDClient sharedClient].currentAgentUser.nicename;
         [HDVECAgoraCallManager shareInstance].ringingCallModel = model;
         //初始化 坐席加入房间参数
         [[HDVECAgoraCallManager shareInstance] vec_createTicketDidReceiveAgoraInit];
@@ -202,7 +187,6 @@ static HDVECViewController *_manger = nil;
 }
 - (void)removeView{
    
-    self.isShow = NO;
     [self.view removeFromSuperview];
     self.view = nil;
     
@@ -214,24 +198,12 @@ static HDVECViewController *_manger = nil;
 
     self.view.backgroundColor = [[HDAppSkin mainSkin] contentColorBlockalpha:0.6];
     [self.view hideKeyBoard];
-   
-    self.isShow = YES;
     _cameraState = YES;
     
     // 用于添加语音呼入的监听 onCallReceivedNickName:
     [HDClient.sharedClient.callManager addDelegate:self delegateQueue:nil];
     [HDClient.sharedClient.whiteboardManager addDelegate:self delegateQueue:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tableDidSelected:) name:@"click" object:nil];
-    
-    [self.view addSubview:self.hdAnswerView];
-    [self.hdAnswerView mas_makeConstraints:^(MASConstraintMaker *make) {
-
-        make.top.offset(0);
-        make.bottom.offset(0);
-        make.leading.offset(0);
-        make.trailing.offset(0);
-    }];
-
     self.isLandscape = NO;
     _videoViews = [NSMutableArray new];
     _videoItemViews = [NSMutableArray new];
@@ -256,12 +228,10 @@ static HDVECViewController *_manger = nil;
     self.smallWindowView=nil;
     self.whiteBoardView =nil;
     self.view.backgroundColor = [[HDAppSkin mainSkin] contentColorBlockalpha:0.6];
-    self.isVisitorSend = NO;
 }
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
     [self.view hideKeyBoard];
-    
 }
 
 /// 初始化屏幕分享
@@ -315,8 +285,6 @@ static HDVECViewController *_manger = nil;
     
     [self initSmallWindowData];
 }
-
-
 
 - (void)initSmallWindowData{
     
@@ -382,7 +350,6 @@ static HDVECViewController *_manger = nil;
     [self.hdTitleView stopTimer];
     isCalling = NO;
     [[HDWhiteRoomManager shareInstance] hd_OnLogout];
-    [[HDVECAgoraCallManager shareInstance] endCall];
     dispatch_async(dispatch_get_main_queue(), ^{
 //        UI更新代码
         if (self.vechangUpCallback) {
@@ -753,23 +720,6 @@ static HDVECViewController *_manger = nil;
      }
      return _itemView;
 }
-- (HDVECAnswerView *)hdAnswerView{
-   if (!_hdAnswerView) {
-       _hdAnswerView = [[HDVECAnswerView alloc]init];
-       _hdAnswerView.backgroundColor = [UIColor blackColor];
-       __weak __typeof__(self) weakSelf = self;
-       _hdAnswerView.vecclickOnBlock = ^(UIButton * _Nonnull btn) {
-           [weakSelf anwersBtnClicked:btn];
-       };
-       _hdAnswerView.vecclickOffBlock = ^(UIButton * _Nonnull btn) {
-           [weakSelf offBtnClicked:btn];
-       };
-       _hdAnswerView.vecclickHangUpBlock = ^(UIButton * _Nonnull btn) {
-           [weakSelf hangUpCallBtn:btn];
-       };
-    }
-    return _hdAnswerView;
-}
 
 - (HDVECTitleView *)hdTitleView {
     if (!_hdTitleView) {
@@ -855,7 +805,6 @@ static HDVECViewController *_manger = nil;
 /// @param sender  button
 - (void)anwersBtnClicked:(UIButton *)sender{
     self.view.backgroundColor = [[HDAppSkin mainSkin] contentColorWhitealpha:1];
-    self.hdAnswerView.hidden = YES;
     //应答的时候 在创建view
     //添加 页面布局
     [self addSubView];
@@ -865,7 +814,6 @@ static HDVECViewController *_manger = nil;
     [self setAcceptCallView];
     [self.hdTitleView startTimer];
     isCalling = YES;
-//    [HLCallManager sharedInstance].isCalling = YES;
     [[HDVECAgoraCallManager shareInstance] vec_acceptCallWithNickname:self.agentName
                                                         completion:^(id obj, HDError *error)
      {
@@ -899,23 +847,8 @@ static HDVECViewController *_manger = nil;
 /// @param sender button
 - (void)offBtnClicked:(UIButton *)sender{
     isCalling = NO;
-    [[HDVECAgoraCallManager shareInstance] endCall];
-    //拒接事件 拒接关闭当前页面
-    //挂断和拒接 都走这个
-    [[HDWhiteRoomManager shareInstance] hd_OnLogout];
     
-    [self.hdTitleView stopTimer];
-    
-    if (self.vechangUpCallback) {
-        self.vechangUpCallback(self, self.hdTitleView.timeLabel.text);
-    }
-}
-
-/// 拒接事件
-/// @param sender button
-- (void)hangUpCallBtn:(UIButton *)sender{
-    isCalling = NO;
-    [[HDVECAgoraCallManager shareInstance] refusedCall];
+    [[HDVECAgoraCallManager shareInstance] vec_endCall];
     //拒接事件 拒接关闭当前页面
     //挂断和拒接 都走这个
     [[HDWhiteRoomManager shareInstance] hd_OnLogout];
@@ -936,7 +869,6 @@ static HDVECViewController *_manger = nil;
     return _parentView;
     
 }
-
 
 /// 初始化屏幕分享view
 - (void)initBroadPickerView{

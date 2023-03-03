@@ -9,7 +9,7 @@
 #import "KFIframeMoreViewController.h"
 #import "KFWKWebViewController.h"
 
-@interface KFIframeMoreViewController ()<UITableViewDelegate,UITableViewDataSource,KFWKWebViewControllerDelegate>
+@interface KFIframeMoreViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @end
 
