@@ -141,16 +141,10 @@ static HDAgoraCallManager *shareCall = nil;
         //启用视频模块
         [_agoraKit enableVideo];
     
-        //开启虚拟背景
-//        AgoraVirtualBackgroundSource *backgroundSource = [[AgoraVirtualBackgroundSource alloc] init];
-//        backgroundSource.backgroundSourceType = AgoraVirtualBackgroundColor;
-//        [_agoraKit enableVirtualBackground:NO backData:backgroundSource];
-        //开启enableDeepLearningDenoiseSDK 默认开启传统降噪，以消除大部分平稳噪声。AI 降噪是指在传统降噪的基础上消除非平稳噪声。集成 AI 降噪插件后，你可以调用 enableDeepLearningDenoise 开启 AI 降噪
-        [_agoraKit enableDeepLearningDenoise:YES];
         // set video configuration
         float size = _options.dimension.width;
-        AgoraVideoEncoderConfiguration *configuration = [[AgoraVideoEncoderConfiguration alloc] initWithSize:  (size>0 ? _options.dimension : AgoraVideoDimension480x480) frameRate: AgoraVideoFrameRateFps24 bitrate:_options.bitrate ? _options.bitrate :AgoraVideoBitrateStandard  orientationMode:AgoraVideoOutputOrientationModeAdaptative];
-        
+        AgoraVideoEncoderConfiguration *configuration =[[AgoraVideoEncoderConfiguration alloc] initWithSize: (size>0 ? _options.dimension :AgoraVideoDimension480x480 ) frameRate:AgoraVideoFrameRateFps24 bitrate:_options.bitrate ? _options.bitrate :AgoraVideoBitrateStandard orientationMode:AgoraVideoOutputOrientationModeAdaptative mirrorMode:AgoraVideoMirrorModeDisabled];
+    
         [_agoraKit setVideoEncoderConfiguration:configuration];
         
 
@@ -163,7 +157,10 @@ static HDAgoraCallManager *shareCall = nil;
     
     AgoraVirtualBackgroundSource *backgroundSource = [[AgoraVirtualBackgroundSource alloc] init];
     backgroundSource.backgroundSourceType = AgoraVirtualBackgroundColor;
-    [self.agoraKit enableVirtualBackground:enable backData:backgroundSource];
+
+    AgoraSegmentationProperty  * seg = [[AgoraSegmentationProperty alloc] init];
+    seg.modelType = SegModelAgoraAi;
+    [self.agoraKit enableVirtualBackground:enable backData:backgroundSource segData:seg];
 }
 - (void)setupLocalVideoView:(UIView *)localView{
     
@@ -537,7 +534,7 @@ static HDAgoraCallManager *shareCall = nil;
    
     NSString * cachesPath = [NSString stringWithFormat:@"%@/filename.png",[HDSanBoxFileManager cachesDir]] ;
 
-    [self.agoraKit takeSnapshot:[HDAgoraCallManager shareInstance].keyCenter.agoraChannel uid:_visitorUid filePath:cachesPath];
+    [self.agoraKit takeSnapshot:_visitorUid filePath:cachesPath];
     
 }
 
@@ -567,10 +564,7 @@ static HDAgoraCallManager *shareCall = nil;
 
 }
 
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine remoteVideoStateChangedOfUid:(NSUInteger)uid state:(AgoraVideoRemoteState)state reason:(AgoraVideoRemoteStateReason)reason elapsed:(NSInteger)elapsed
-{
-    NSLog(@"remoteVideoStateChangedOfUid %@ %@ %@", @(uid), @(state), @(reason));
-}
+
 - (void)rtcEngine:(AgoraRtcEngineKit *_Nonnull)engine firstLocalVideoFrameWithSize:(CGSize)size elapsed:(NSInteger)elapsed{
     
     NSLog(@"remoteVideoStateChangedOfUid");
@@ -619,11 +613,6 @@ static HDAgoraCallManager *shareCall = nil;
         [self.roomDelegate onMemberExit:mem];
     }
   
-    
-}
-- (void)rtcEngine:(AgoraRtcEngineKit *)engine virtualBackgroundSourceEnabled:(BOOL)enabled reason:(AgoraVirtualBackgroundSourceStateReason)reason{
-    
-    NSLog(@"virtualBackgroundSourceEnabled = %d  &#xe650; = reason=%luu",enabled,(unsigned long)reason);
     
 }
 

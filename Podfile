@@ -12,11 +12,13 @@ target 'AgentSDKDemo' do
  pod 'MBProgressHUD', '~> 1.2.0'
  pod 'SDWebImage', '~> 5.12.3'
  pod 'Masonry', '~> 1.1.0'
- pod 'JSONModel'
+# pod 'JSONModel'
  
- #pod 'AgoraRtcEngine_iOS','3.6.1'
- pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
- pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
+ pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
+# pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
+# pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
+ pod 'Fastboard', '~> 1.0.8'
+#pod 'Fastboard', '~> 1.1.2'
  pod 'TZImagePickerController'
  
  
@@ -34,13 +36,18 @@ target 'AgentSDKDemoAppStore' do
   pod 'MBProgressHUD', '~> 1.2.0'
   pod 'SDWebImage', '~> 5.12.3'
   pod 'Masonry', '~> 1.1.0'
-  #pod 'AgoraRtcEngine_iOS','3.6.1'
-     pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
-  pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
+  
+  
+#     pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
+pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
+#  pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
+#pod 'Fastboard', '~> 1.1.2'
+pod 'Fastboard', '~> 1.0.8'
   pod 'TZImagePickerController'
 end
 target 'AgentSDKDemoShareExtension' do
 
   use_frameworks!
-     pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
+#     pod 'AgoraRtcEngine_iOS', '~> 3.7.0.pod 'AgoraRtcEngine_iOS', '~> 4.1.1'3'
+     pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
 end
