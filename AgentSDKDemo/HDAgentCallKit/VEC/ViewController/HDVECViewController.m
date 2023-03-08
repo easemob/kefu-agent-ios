@@ -1449,7 +1449,7 @@ static HDVECViewController *_manger = nil;
   
     [[HDVECAgoraCallManager shareInstance].userDefaults setObject:@{@"state":@"x"} forKey:kVECUserDefaultState];//给状态一个默认值
     [[HDVECAgoraCallManager shareInstance].userDefaults addObserver:self forKeyPath:kVECUserDefaultState options:NSKeyValueObservingOptionNew context:VECKVOContext];
-//    [self.userDefaults addObserver:self forKeyPath:kUserDefaultFrame options:NSKeyValueObservingOptionNew context:KVOContext];
+
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{

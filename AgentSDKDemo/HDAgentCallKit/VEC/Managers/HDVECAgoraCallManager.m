@@ -119,8 +119,6 @@ static HDVECAgoraCallManager *shareCall = nil;
         [_agoraKit enableVideo];
         // set video configuration
         float size = _options.dimension.width;
-        
-
         AgoraVideoEncoderConfiguration *configuration =[[AgoraVideoEncoderConfiguration alloc] initWithSize: (size>0 ? _options.dimension :AgoraVideoDimension480x480 ) frameRate:AgoraVideoFrameRateFps24 bitrate:_options.bitrate ? _options.bitrate :AgoraVideoBitrateStandard orientationMode:AgoraVideoOutputOrientationModeAdaptative mirrorMode:AgoraVideoMirrorModeDisabled];
     
         [_agoraKit setVideoEncoderConfiguration:configuration];
@@ -1015,9 +1013,10 @@ static HDVECAgoraCallManager *shareCall = nil;
 - (HDKeyCenter *)getAppKeyCenter{
     HDKeyCenter * keycenter= [[HDKeyCenter  alloc] init];
     keycenter.agoraAppid = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraAppid = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraAppid = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraAppid = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
+    keycenter.agoraToken = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraToken];
+    keycenter.agoraChannel = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraChannel];
+    keycenter.shareUid = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraShareUID];
+
     return  keycenter;
 }
 

@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		08700CE28DADB3DBA7204282 /* Pods_AgentDemoAppstoreExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF91675C929CF23B172F06F6 /* Pods_AgentDemoAppstoreExtension.framework */; };
 		3B7495EA4DD336BD5509DD18 /* Pods_AgentSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */; };
 		673C1B1209F420D67D2BAD4F /* Pods_AgentSDKDemoAppStore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58B3F889C5490843FB29BFE /* Pods_AgentSDKDemoAppStore.framework */; };
-		89FE2AA6128434FD25F86B88 /* Pods_AgentSDKDemoShareExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 668D5139801AC13B6FFC54D1 /* Pods_AgentSDKDemoShareExtension.framework */; };
 		90091DDB20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DDC20D0CF88002AA808 /* HLeaveMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDA20D0CF88002AA808 /* HLeaveMessageListViewController.m */; };
 		90091DE020D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 90091DDE20D0CF9F002AA808 /* HLeaveMessageListCell.m */; };
@@ -316,8 +316,6 @@
 		937032D0286AE0C600B71298 /* HDAgoraCallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 937032C5286AE0C100B71298 /* HDAgoraCallManager.m */; };
 		937032D1286AE0C600B71298 /* HDAgoraCallMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 937032C6286AE0C100B71298 /* HDAgoraCallMember.m */; };
 		937032D2286AE0C600B71298 /* HDAgoraCallMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 937032C6286AE0C100B71298 /* HDAgoraCallMember.m */; };
-		937032D3286AE0C600B71298 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 937032C9286AE0C200B71298 /* HDSSKeychain.m */; };
-		937032D4286AE0C600B71298 /* HDSSKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 937032C9286AE0C200B71298 /* HDSSKeychain.m */; };
 		937032D5286AE0C600B71298 /* HDAgoraCallOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 937032CD286AE0C400B71298 /* HDAgoraCallOptions.m */; };
 		937032D6286AE0C600B71298 /* HDAgoraCallOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 937032CD286AE0C400B71298 /* HDAgoraCallOptions.m */; };
 		937032E0286AFC3800B71298 /* iconfontcall.woff2 in Resources */ = {isa = PBXBuildFile; fileRef = 937032D8286AFC3700B71298 /* iconfontcall.woff2 */; };
@@ -336,9 +334,6 @@
 		937032ED286AFC3800B71298 /* iconfontcall.json in Resources */ = {isa = PBXBuildFile; fileRef = 937032DE286AFC3700B71298 /* iconfontcall.json */; };
 		937032EE286AFC3800B71298 /* iconfontcall.css in Resources */ = {isa = PBXBuildFile; fileRef = 937032DF286AFC3700B71298 /* iconfontcall.css */; };
 		937032EF286AFC3800B71298 /* iconfontcall.css in Resources */ = {isa = PBXBuildFile; fileRef = 937032DF286AFC3700B71298 /* iconfontcall.css */; };
-		9371DB382872DA0B00C09230 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
-		9371DB3C2872DA0B00C09230 /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 9371DB3B2872DA0B00C09230 /* SampleHandler.m */; };
-		9371DB402872DA0B00C09230 /* AgentSDKDemoShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9371DB372872DA0B00C09230 /* AgentSDKDemoShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9374F9B828379EF4007924C9 /* KFSmartImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9B628379EF4007924C9 /* KFSmartImageTableViewCell.m */; };
 		9374F9B928379EF4007924C9 /* KFSmartImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9374F9B628379EF4007924C9 /* KFSmartImageTableViewCell.m */; };
 		9374F9BA28379EF4007924C9 /* KFSmartImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9374F9B728379EF4007924C9 /* KFSmartImageTableViewCell.xib */; };
@@ -545,6 +540,11 @@
 		D2B9517C292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
 		D2C3352728DD5FD800421022 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
 		D2C3352828DD60B900421022 /* KFVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */; };
+		D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
+		D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DAD11329B747F600733A8E /* SampleHandler.m */; };
+		D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D2DAD11C29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */; };
+		D2DAD11D29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2DE0FD0295D3E6400EE8C8D /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; };
 		D2DE0FD1295D3E6400EE8C8D /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2DE0FD2295D3EA800EE8C8D /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; };
@@ -1821,12 +1821,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		9371DB3E2872DA0B00C09230 /* PBXContainerItemProxy */ = {
+		D2DAD11629B747F600733A8E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D33F465D1E9F71A000FE6DCE /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 9371DB362872DA0B00C09230;
-			remoteInfo = AgentSDKDemoShareExtension;
+			remoteGlobalIDString = D2DAD10E29B747F600733A8E;
+			remoteInfo = AgentDemoAppstoreExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1837,9 +1837,30 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				9371DB402872DA0B00C09230 /* AgentSDKDemoShareExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2DAD0E329B72D0F00733A8E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2DAD11E29B7488E00733A8E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D2DAD11D29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D33CE5E41F7C96BB00236720 /* Embed Frameworks */ = {
@@ -1869,8 +1890,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00621FDAFFE8019E8D3E507D /* Pods-AgentDemoAppstoreExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentDemoAppstoreExtension.debug.xcconfig"; path = "Target Support Files/Pods-AgentDemoAppstoreExtension/Pods-AgentDemoAppstoreExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		1259FDCC5C06794FF06C9C17 /* Pods-AgentSDKDemoAppStore.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemoAppStore.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemoAppStore/Pods-AgentSDKDemoAppStore.debug.xcconfig"; sourceTree = "<group>"; };
 		2305E1EA567E984467A090D6 /* Pods-AgentSDKDemoShareExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemoShareExtension.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemoShareExtension/Pods-AgentSDKDemoShareExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		4C735C4671841DC64119836D /* Pods_AgentSDKDemoAppstoreExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemoAppstoreExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DCE0C8CE387589DDE1A1198 /* Pods-AgentSDKDemoAppstoreExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemoAppstoreExtension.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemoAppstoreExtension/Pods-AgentSDKDemoAppstoreExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		4F80B8A92767022815FC32E8 /* Pods-AgentSDKDemoAppstoreExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemoAppstoreExtension.release.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemoAppstoreExtension/Pods-AgentSDKDemoAppstoreExtension.release.xcconfig"; sourceTree = "<group>"; };
 		57CF2A204D71AD6B384A387C /* Pods-AgentSDKDemoAppStore.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemoAppStore.release.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemoAppStore/Pods-AgentSDKDemoAppStore.release.xcconfig"; sourceTree = "<group>"; };
 		65DAEE22A1A7E276F44363CC /* Pods-AgentSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.release.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
 		668D5139801AC13B6FFC54D1 /* Pods_AgentSDKDemoShareExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemoShareExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2127,9 +2152,7 @@
 		937032C2286AD98200B71298 /* UIViewController+HDHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+HDHUD.h"; sourceTree = "<group>"; };
 		937032C5286AE0C100B71298 /* HDAgoraCallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraCallManager.m; sourceTree = "<group>"; };
 		937032C6286AE0C100B71298 /* HDAgoraCallMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraCallMember.m; sourceTree = "<group>"; };
-		937032C7286AE0C100B71298 /* HDSSKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDSSKeychain.h; sourceTree = "<group>"; };
 		937032C8286AE0C100B71298 /* HDAgoraCallOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallOptions.h; sourceTree = "<group>"; };
-		937032C9286AE0C200B71298 /* HDSSKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDSSKeychain.m; sourceTree = "<group>"; };
 		937032CA286AE0C200B71298 /* HDAgoraCallManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManager.h; sourceTree = "<group>"; };
 		937032CC286AE0C400B71298 /* HDAgoraCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDAgoraCallManagerDelegate.h; sourceTree = "<group>"; };
 		937032CD286AE0C400B71298 /* HDAgoraCallOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDAgoraCallOptions.m; sourceTree = "<group>"; };
@@ -2143,11 +2166,6 @@
 		937032DE286AFC3700B71298 /* iconfontcall.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = iconfontcall.json; sourceTree = "<group>"; };
 		937032DF286AFC3700B71298 /* iconfontcall.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = iconfontcall.css; sourceTree = "<group>"; };
 		9371DAF42872CBC500C09230 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
-		9371DB372872DA0B00C09230 /* AgentSDKDemoShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentSDKDemoShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		9371DB3A2872DA0B00C09230 /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
-		9371DB3B2872DA0B00C09230 /* SampleHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
-		9371DB3D2872DA0B00C09230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9371DB442872DAFF00C09230 /* AgentSDKDemoShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentSDKDemoShareExtension.entitlements; sourceTree = "<group>"; };
 		9374F9B528379EF4007924C9 /* KFSmartImageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFSmartImageTableViewCell.h; sourceTree = "<group>"; };
 		9374F9B628379EF4007924C9 /* KFSmartImageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFSmartImageTableViewCell.m; sourceTree = "<group>"; };
 		9374F9B728379EF4007924C9 /* KFSmartImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KFSmartImageTableViewCell.xib; sourceTree = "<group>"; };
@@ -2263,6 +2281,7 @@
 		93FA0F772860551600C1188E /* UIView+GestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GestureRecognizer.h"; sourceTree = "<group>"; };
 		9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		BF89F02A82FADBA2C332F98D /* Pods-AgentDemoAppstoreExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentDemoAppstoreExtension.release.xcconfig"; path = "Target Support Files/Pods-AgentDemoAppstoreExtension/Pods-AgentDemoAppstoreExtension.release.xcconfig"; sourceTree = "<group>"; };
 		D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallManager.m; sourceTree = "<group>"; };
 		D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallOptions.m; sourceTree = "<group>"; };
 		D2239E5D299495990087D054 /* HDVECAgoraCallMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallMember.m; sourceTree = "<group>"; };
@@ -2345,6 +2364,11 @@
 		D2B9517629222A000043B07F /* KFWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWKWebViewController.m; sourceTree = "<group>"; };
 		D2B95179292372940043B07F /* KFChatBarMoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatBarMoreModel.h; sourceTree = "<group>"; };
 		D2B9517A292372940043B07F /* KFChatBarMoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatBarMoreModel.m; sourceTree = "<group>"; };
+		D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraReplayKitExtension.xcframework; path = Pods/AgoraRtcEngine_iOS/AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
+		D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentDemoAppstoreExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2DAD11229B747F600733A8E /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
+		D2DAD11329B747F600733A8E /* SampleHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SampleHandler.m; sourceTree = "<group>"; };
+		D2DAD11529B747F600733A8E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AgentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2EFA81C29B0A52000C330BD /* KFIframeMoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFIframeMoreViewController.h; sourceTree = "<group>"; };
 		D2EFA81D29B0A52000C330BD /* KFIframeMoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFIframeMoreViewController.m; sourceTree = "<group>"; };
@@ -3287,15 +3311,17 @@
 		D3FDC7571EA0A5C600C25BB0 /* visitor_icon_imagebroken_big@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visitor_icon_imagebroken_big@3x.png"; sourceTree = "<group>"; };
 		D3FDC7581EA0A5C600C25BB0 /* visitor_icon_setting_Text2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visitor_icon_setting_Text2@3x.png"; sourceTree = "<group>"; };
 		F58B3F889C5490843FB29BFE /* Pods_AgentSDKDemoAppStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemoAppStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF91675C929CF23B172F06F6 /* Pods_AgentDemoAppstoreExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentDemoAppstoreExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9371DB342872DA0B00C09230 /* Frameworks */ = {
+		D2DAD10C29B747F600733A8E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9371DB382872DA0B00C09230 /* ReplayKit.framework in Frameworks */,
-				89FE2AA6128434FD25F86B88 /* Pods_AgentSDKDemoShareExtension.framework in Frameworks */,
+				D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */,
+				08700CE28DADB3DBA7204282 /* Pods_AgentDemoAppstoreExtension.framework in Frameworks */,
+				D2DAD11C29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3669,17 +3695,6 @@
 			path = font_3264411_odssbli5k7n_0628;
 			sourceTree = "<group>";
 		};
-		9371DB392872DA0B00C09230 /* AgentSDKDemoShareExtension */ = {
-			isa = PBXGroup;
-			children = (
-				9371DB442872DAFF00C09230 /* AgentSDKDemoShareExtension.entitlements */,
-				9371DB3A2872DA0B00C09230 /* SampleHandler.h */,
-				9371DB3B2872DA0B00C09230 /* SampleHandler.m */,
-				9371DB3D2872DA0B00C09230 /* Info.plist */,
-			);
-			path = AgentSDKDemoShareExtension;
-			sourceTree = "<group>";
-		};
 		938AE9AE27F3F8FB00B461C4 /* KJPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -3979,8 +3994,6 @@
 				937032C6286AE0C100B71298 /* HDAgoraCallMember.m */,
 				937032C8286AE0C100B71298 /* HDAgoraCallOptions.h */,
 				937032CD286AE0C400B71298 /* HDAgoraCallOptions.m */,
-				937032C7286AE0C100B71298 /* HDSSKeychain.h */,
-				937032C9286AE0C200B71298 /* HDSSKeychain.m */,
 				93D9D07327BF7E0500BD037D /* HDAgoraTicketModel.h */,
 				93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */,
 				935CFB5227C4E5D60093B9DF /* KFVideoDetailModel.h */,
@@ -4031,6 +4044,10 @@
 				57CF2A204D71AD6B384A387C /* Pods-AgentSDKDemoAppStore.release.xcconfig */,
 				2305E1EA567E984467A090D6 /* Pods-AgentSDKDemoShareExtension.debug.xcconfig */,
 				91B2560DF8C105563A83206A /* Pods-AgentSDKDemoShareExtension.release.xcconfig */,
+				4DCE0C8CE387589DDE1A1198 /* Pods-AgentSDKDemoAppstoreExtension.debug.xcconfig */,
+				4F80B8A92767022815FC32E8 /* Pods-AgentSDKDemoAppstoreExtension.release.xcconfig */,
+				00621FDAFFE8019E8D3E507D /* Pods-AgentDemoAppstoreExtension.debug.xcconfig */,
+				BF89F02A82FADBA2C332F98D /* Pods-AgentDemoAppstoreExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -4221,6 +4238,16 @@
 				D2B4EE47299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m */,
 			);
 			path = VECTest;
+			sourceTree = "<group>";
+		};
+		D2DAD11129B747F600733A8E /* AgentDemoAppstoreExtension */ = {
+			isa = PBXGroup;
+			children = (
+				D2DAD11229B747F600733A8E /* SampleHandler.h */,
+				D2DAD11329B747F600733A8E /* SampleHandler.m */,
+				D2DAD11529B747F600733A8E /* Info.plist */,
+			);
+			path = AgentDemoAppstoreExtension;
 			sourceTree = "<group>";
 		};
 		D2EFA81B29B0A4E500C330BD /* Iframe */ = {
@@ -5198,7 +5225,7 @@
 			children = (
 				93EFFC8227BA411F0043DE06 /* Podfile */,
 				D33F46671E9F71A000FE6DCE /* AgentSDKDemo */,
-				9371DB392872DA0B00C09230 /* AgentSDKDemoShareExtension */,
+				D2DAD11129B747F600733A8E /* AgentDemoAppstoreExtension */,
 				D33F46661E9F71A000FE6DCE /* Products */,
 				D3FDC5121EA08C0900C25BB0 /* Frameworks */,
 				A84D80CC0398B25C70FD7235 /* Pods */,
@@ -5210,7 +5237,7 @@
 			children = (
 				D33F46651E9F71A000FE6DCE /* AgentSDKDemo.app */,
 				D3E9CF321FBED182005E3677 /* AgentSDKDemoAppStore.app */,
-				9371DB372872DA0B00C09230 /* AgentSDKDemoShareExtension.appex */,
+				D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5609,6 +5636,7 @@
 		D3FDC5121EA08C0900C25BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */,
 				D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */,
 				D331C2E21FBAF463005CB0D5 /* UIKit.framework */,
 				D331C2E01FBAF43A005CB0D5 /* Accelerate.framework */,
@@ -5634,6 +5662,8 @@
 				F58B3F889C5490843FB29BFE /* Pods_AgentSDKDemoAppStore.framework */,
 				9371DAF42872CBC500C09230 /* ReplayKit.framework */,
 				668D5139801AC13B6FFC54D1 /* Pods_AgentSDKDemoShareExtension.framework */,
+				4C735C4671841DC64119836D /* Pods_AgentSDKDemoAppstoreExtension.framework */,
+				FF91675C929CF23B172F06F6 /* Pods_AgentDemoAppstoreExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -6083,22 +6113,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9371DB362872DA0B00C09230 /* AgentSDKDemoShareExtension */ = {
+		D2DAD10E29B747F600733A8E /* AgentDemoAppstoreExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9371DB412872DA0B00C09230 /* Build configuration list for PBXNativeTarget "AgentSDKDemoShareExtension" */;
+			buildConfigurationList = D2DAD11929B747F600733A8E /* Build configuration list for PBXNativeTarget "AgentDemoAppstoreExtension" */;
 			buildPhases = (
-				46141FE17C5DD48242016657 /* [CP] Check Pods Manifest.lock */,
-				9371DB332872DA0B00C09230 /* Sources */,
-				9371DB342872DA0B00C09230 /* Frameworks */,
-				9371DB352872DA0B00C09230 /* Resources */,
+				916FBF32E2468F7638C8CD5F /* [CP] Check Pods Manifest.lock */,
+				D2DAD10B29B747F600733A8E /* Sources */,
+				D2DAD10C29B747F600733A8E /* Frameworks */,
+				D2DAD10D29B747F600733A8E /* Resources */,
+				D2DAD11E29B7488E00733A8E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = AgentSDKDemoShareExtension;
-			productName = AgentSDKDemoShareExtension;
-			productReference = 9371DB372872DA0B00C09230 /* AgentSDKDemoShareExtension.appex */;
+			name = AgentDemoAppstoreExtension;
+			productName = AgentDemoAppstoreExtension;
+			productReference = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 		D33F46641E9F71A000FE6DCE /* AgentSDKDemo */ = {
@@ -6116,7 +6147,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				9371DB3F2872DA0B00C09230 /* PBXTargetDependency */,
 			);
 			name = AgentSDKDemo;
 			productName = AgentSDKDemo;
@@ -6133,10 +6163,12 @@
 				D3E9CDC61FBED182005E3677 /* Resources */,
 				D3E9CF2C1FBED182005E3677 /* Embed Frameworks */,
 				B8844BD20B7404CE0854D781 /* [CP] Embed Pods Frameworks */,
+				D2DAD0E329B72D0F00733A8E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D2DAD11729B747F600733A8E /* PBXTargetDependency */,
 			);
 			name = AgentSDKDemoAppStore;
 			productName = AgentSDKDemo;
@@ -6153,10 +6185,10 @@
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "环信";
 				TargetAttributes = {
-					9371DB362872DA0B00C09230 = {
+					D2DAD10E29B747F600733A8E = {
 						CreatedOnToolsVersion = 13.2;
-						DevelopmentTeam = 499WYUV8Q2;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = JC854K845H;
+						ProvisioningStyle = Automatic;
 					};
 					D33F46641E9F71A000FE6DCE = {
 						CreatedOnToolsVersion = 8.1;
@@ -6193,13 +6225,13 @@
 			targets = (
 				D33F46641E9F71A000FE6DCE /* AgentSDKDemo */,
 				D3E9CC841FBED182005E3677 /* AgentSDKDemoAppStore */,
-				9371DB362872DA0B00C09230 /* AgentSDKDemoShareExtension */,
+				D2DAD10E29B747F600733A8E /* AgentDemoAppstoreExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		9371DB352872DA0B00C09230 /* Resources */ = {
+		D2DAD10D29B747F600733A8E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -7159,22 +7191,12 @@
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/Whiteboard/Whiteboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AIAEC/AgoraAiEchoCancellationExtension.framework/AgoraAiEchoCancellationExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AINS/AgoraAiNoiseSuppressionExtension.framework/AgoraAiNoiseSuppressionExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AudioBeauty/AgoraAudioBeautyExtension.framework/AgoraAudioBeautyExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ClearVision/AgoraClearVisionExtension.framework/AgoraClearVisionExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ContentInspect/AgoraContentInspectExtension.framework/AgoraContentInspectExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/DRM/AgoraDrmLoaderExtension.framework/AgoraDrmLoaderExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/FaceDetection/AgoraFaceDetectionExtension.framework/AgoraFaceDetectionExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ReplayKit/AgoraReplayKitExtension.framework/AgoraReplayKitExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraRtcKit.framework/AgoraRtcKit",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraDav1d.framework/AgoraDav1d",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agorafdkaac.framework/Agorafdkaac",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agoraffmpeg.framework/Agoraffmpeg",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraSoundTouch.framework/AgoraSoundTouch",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/SpatialAudio/AgoraSpatialAudioExtension.framework/AgoraSpatialAudioExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VQA/AgoraVideoQualityAnalyzerExtension.framework/AgoraVideoQualityAnalyzerExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VirtualBackground/AgoraVideoSegmentationExtension.framework/AgoraVideoSegmentationExtension",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -7189,48 +7211,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whiteboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiEchoCancellationExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiNoiseSuppressionExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAudioBeautyExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraClearVisionExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraContentInspectExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDrmLoaderExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraFaceDetectionExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraReplayKitExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDav1d.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSpatialAudioExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoQualityAnalyzerExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		46141FE17C5DD48242016657 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-AgentSDKDemoShareExtension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		50274A09567FC250D27BA17D /* [CP] Check Pods Manifest.lock */ = {
@@ -7255,6 +7245,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		916FBF32E2468F7638C8CD5F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AgentDemoAppstoreExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B8844BD20B7404CE0854D781 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -7273,22 +7285,12 @@
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/Whiteboard/Whiteboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AIAEC/AgoraAiEchoCancellationExtension.framework/AgoraAiEchoCancellationExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AINS/AgoraAiNoiseSuppressionExtension.framework/AgoraAiNoiseSuppressionExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AudioBeauty/AgoraAudioBeautyExtension.framework/AgoraAudioBeautyExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ClearVision/AgoraClearVisionExtension.framework/AgoraClearVisionExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ContentInspect/AgoraContentInspectExtension.framework/AgoraContentInspectExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/DRM/AgoraDrmLoaderExtension.framework/AgoraDrmLoaderExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/FaceDetection/AgoraFaceDetectionExtension.framework/AgoraFaceDetectionExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ReplayKit/AgoraReplayKitExtension.framework/AgoraReplayKitExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraRtcKit.framework/AgoraRtcKit",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraDav1d.framework/AgoraDav1d",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agorafdkaac.framework/Agorafdkaac",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agoraffmpeg.framework/Agoraffmpeg",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraSoundTouch.framework/AgoraSoundTouch",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/SpatialAudio/AgoraSpatialAudioExtension.framework/AgoraSpatialAudioExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VQA/AgoraVideoQualityAnalyzerExtension.framework/AgoraVideoQualityAnalyzerExtension",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VirtualBackground/AgoraVideoSegmentationExtension.framework/AgoraVideoSegmentationExtension",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -7303,22 +7305,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whiteboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiEchoCancellationExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiNoiseSuppressionExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAudioBeautyExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraClearVisionExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraContentInspectExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDrmLoaderExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraFaceDetectionExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraReplayKitExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDav1d.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSpatialAudioExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoQualityAnalyzerExtension.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7328,11 +7320,11 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9371DB332872DA0B00C09230 /* Sources */ = {
+		D2DAD10B29B747F600733A8E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9371DB3C2872DA0B00C09230 /* SampleHandler.m in Sources */,
+				D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7442,7 +7434,6 @@
 				D33CE8521F7CD0F800236720 /* EMSDImageCache.m in Sources */,
 				D33CE8711F7CD25800236720 /* SWLongPressGestureRecognizer.m in Sources */,
 				938AEA5527F3F8FC00B461C4 /* KJPlayerLoadingLayer.m in Sources */,
-				937032D3286AE0C600B71298 /* HDSSKeychain.m in Sources */,
 				D33CE8951F7CD34000236720 /* KFLeaveMsgDetailViewController.m in Sources */,
 				D33CE77C1F7CAF1200236720 /* NotifyViewController.m in Sources */,
 				D33CE7321F7CAD2C00236720 /* HistoryConversationsController.m in Sources */,
@@ -7810,7 +7801,6 @@
 				938AEA1827F3F8FB00B461C4 /* DBPlayer.xcdatamodeld in Sources */,
 				D3E9CC8E1FBED182005E3677 /* YYTextSelectionView.m in Sources */,
 				D3E9CC8F1FBED182005E3677 /* YYTextArchiver.m in Sources */,
-				937032D4286AE0C600B71298 /* HDSSKeychain.m in Sources */,
 				D2239EA92994959A0087D054 /* HDVECHiddenView.m in Sources */,
 				D3E9CC901FBED182005E3677 /* YYTextAttribute.m in Sources */,
 				D3DFB3531FD6CA3100A9358A /* HDGroupModel.m in Sources */,
@@ -8237,10 +8227,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		9371DB3F2872DA0B00C09230 /* PBXTargetDependency */ = {
+		D2DAD11729B747F600733A8E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9371DB362872DA0B00C09230 /* AgentSDKDemoShareExtension */;
-			targetProxy = 9371DB3E2872DA0B00C09230 /* PBXContainerItemProxy */;
+			target = D2DAD10E29B747F600733A8E /* AgentDemoAppstoreExtension */;
+			targetProxy = D2DAD11629B747F600733A8E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -8275,9 +8265,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		9371DB422872DA0B00C09230 /* Debug */ = {
+		D2DAD11A29B747F600733A8E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2305E1EA567E984467A090D6 /* Pods-AgentSDKDemoShareExtension.debug.xcconfig */;
+			baseConfigurationReference = 00621FDAFFE8019E8D3E507D /* Pods-AgentDemoAppstoreExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -8293,33 +8283,35 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = AgentSDKDemoShareExtension/AgentSDKDemoShareExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 499WYUV8Q2;
+				DEVELOPMENT_TEAM = JC854K845H;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AgentSDKDemoShareExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AgentSDKDemoShareExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 环信. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				INFOPLIST_FILE = AgentDemoAppstoreExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AgentDemoAppstoreExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 环信. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp.AgentSDKDemoShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.kefuapp.AgentDemoAppstoreExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = kefuapp_shareWidow_dev;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		9371DB432872DA0B00C09230 /* Release */ = {
+		D2DAD11B29B747F600733A8E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 91B2560DF8C105563A83206A /* Pods-AgentSDKDemoShareExtension.release.xcconfig */;
+			baseConfigurationReference = BF89F02A82FADBA2C332F98D /* Pods-AgentDemoAppstoreExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
@@ -8335,23 +8327,27 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = AgentSDKDemoShareExtension/AgentSDKDemoShareExtension.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: EaseMob Inc.";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 499WYUV8Q2;
+				DEVELOPMENT_TEAM = JC854K845H;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AgentSDKDemoShareExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AgentSDKDemoShareExtension;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2022 环信. All rights reserved.";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				INFOPLIST_FILE = AgentDemoAppstoreExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = AgentDemoAppstoreExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 环信. All rights reserved.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp.AgentSDKDemoShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.kefuapp.AgentDemoAppstoreExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = kefuapp_shareWindow_inhouse;
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8477,7 +8473,10 @@
 				INFOPLIST_FILE = AgentSDKDemo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrnb",
@@ -8495,7 +8494,7 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.easemob.enterprise.demo.kefuapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = kefuapp_qy_dev;
+				PROVISIONING_PROFILE_SPECIFIER = kefuApp_inhouse;
 				SKIP_INSTALL = NO;
 				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
@@ -8528,7 +8527,10 @@
 				INFOPLIST_FILE = AgentSDKDemo/Info.plist;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrnb",
@@ -8580,7 +8582,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/AgentSDKDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrnb",
@@ -8630,7 +8635,10 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/AgentSDKDemo/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrnb",
@@ -8656,11 +8664,11 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9371DB412872DA0B00C09230 /* Build configuration list for PBXNativeTarget "AgentSDKDemoShareExtension" */ = {
+		D2DAD11929B747F600733A8E /* Build configuration list for PBXNativeTarget "AgentDemoAppstoreExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9371DB422872DA0B00C09230 /* Debug */,
-				9371DB432872DA0B00C09230 /* Release */,
+				D2DAD11A29B747F600733A8E /* Debug */,
+				D2DAD11B29B747F600733A8E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

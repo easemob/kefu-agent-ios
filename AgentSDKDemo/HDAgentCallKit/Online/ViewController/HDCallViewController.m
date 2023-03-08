@@ -27,7 +27,7 @@
 #define kLocalUid 1111111 //设置真实的本地的uid
 #define kLocalWhiteBoardUid 222222 //设置虚拟白板uid
 #define kCamViewTag 100001
-#define kScreenShareExtensionBundleId @"com.easemob.enterprise.demo.kefuapp.AgentSDKDemoShareExtension"
+#define kScreenShareExtensionBundleId @"com.easemob.kefuapp.AgentSDKDemoAppstoreExtension"
 
 #define kNotificationShareWindow kScreenShareExtensionBundleId
 #define kPointHeight [UIScreen mainScreen].bounds.size.width *0.9
@@ -157,9 +157,8 @@ static HDCallViewController *_manger = nil;
     callVC.agentName = keyCenter.agentNickName;
     callVC.hangUpCallback = callback;
     
-    //初始化灰度管理
-    [[HDCallManager shareInstance] initGray];
-        
+   
+    
     //需要必要创建房间的参数
     [HDAgoraCallManager shareInstance].keyCenter =keyCenter;
     return callVC;
@@ -175,50 +174,15 @@ static HDCallViewController *_manger = nil;
     
 }
 - (void)showViewWithKeyCenter:(HDMessage *)message withType:(HDVideoCallType)type{
-//    NSLog(@"====%@",[VECClient sharedClient].sdkVersion);
-  
     if (!isCalling) {
-         
-//        if (![message.sessionId isEqualToString:[HLCallManager sharedInstance].channel] ||![message.sessionId isEqualToString:[HLCallManager sharedInstance].agentCallId] ) {
-//            
-//            return;
-//        }
         self.nickname = [HDClient sharedClient].currentAgentUser.nicename;
         [HDAgoraCallManager shareInstance].message = message;
         //初始化 坐席加入房间参数
         [[HDAgoraCallManager shareInstance] createTicketDidReceiveAgoraInit];
         self.agentName = message.fromUser.nicename;
-//        self.agentName = @"hfiu12ededewfewfewfewfewfcewcdcwecewcewcewcewewcewcewcewcewcewcwcwweewwwwwwww";
         [self anwersBtnClicked:nil];
         
-//
-//        return;
-//
-        
-//        if (type == HDVideoCallDirectionSend) {
-//            // 发送 界面
-//            self.isVisitorSend = YES;
-//            self.hdAnswerView.callType = HDVideoCallDirectionSend;
-//
-//        }else{
-//            // 接受 界面
-//            //需要必要创建房间的参数
-//            self.nickname = keyCenter.visitorNickName;
-//            self.agentName = keyCenter.agentNickName;
-//
-//            if (self.isVisitorSend) {
-//                //访客发起后 坐席回拨过来了
-//                [self anwersBtnClicked:nil];
-//
-//            }else{
-//
-//
-//                self.hdAnswerView.callType = HDVideoCallDirectionReceive;
-//
-//                // 其他情况下都是 坐席回拨过来的
-//                self.isVisitorSend = NO;
-//            }
-//        }
+
     }
 }
 
@@ -337,12 +301,12 @@ static HDCallViewController *_manger = nil;
     
     HDGrayModel * grayModelWhiteBoard =  [[HDCallManager shareInstance] getGrayName:@"whiteBoard"];
     HDGrayModel * grayModelShare =  [[HDCallManager shareInstance] getGrayName:@"shareDesktop"];
-//    if (grayModelShare.enable) {
-//        [selImageArr addObject:barModel3];
-//    }
-//    if (grayModelWhiteBoard.enable) {
-//        [selImageArr addObject:barModel4];
-//    }
+    if (grayModelShare.enable) {
+        [selImageArr addObject:barModel3];
+    }
+    if (grayModelWhiteBoard.enable) {
+        [selImageArr addObject:barModel4];
+    }
 
    [self.barView hd_buttonFromArrBarModels:selImageArr view:self.barView withButtonType:HDControlBarButtonStyleVideo] ;
     
@@ -1560,8 +1524,14 @@ static HDCallViewController *_manger = nil;
             [(UIButton*)view sendActionsForControlEvents:UIControlEventTouchUpInside];
 
 
-            int success=  [[HDAgoraCallManager shareInstance].agoraKit startScreenCapture:[HDAgoraCallManager shareInstance].screenCaptureParams];
-            
+//            int success=  [[HDAgoraCallManager shareInstance].agoraKit startScreenCapture:[HDAgoraCallManager shareInstance].screenCaptureParams];
+//
+            AgoraRtcChannelMediaOptions * option = [AgoraRtcChannelMediaOptions new];
+            option.publishScreenCaptureVideo = YES;
+            option.clientRoleType = AgoraClientRoleBroadcaster;
+           
+            int success=  [[HDAgoraCallManager shareInstance].agoraKit updateChannelWithMediaOptions:option];
+
             NSLog(@"=====%d",success);
 
         }

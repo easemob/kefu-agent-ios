@@ -11,9 +11,9 @@
 #import "HDAgoraCallOptions.h"
 #import "HDAgoraCallManagerDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
-static NSString * _Nonnull kUserDefaultState = @"KEY_BXL_DEFAULT_STATE_agent"; // 接收屏幕共享(开始/结束 状态)监听的Key
+static NSString * _Nonnull kUserDefaultState = @"KEFU_AGENT_KEY_BXL_DEFAULT_STATE"; // 接收屏幕共享(开始/结束 状态)监听的Key
 
-static NSString * _Nonnull kAppGroup = @"group.com.easemob.enterprise.demo.kefuapp";
+static NSString * _Nonnull kAppGroup = @"group.com.easemob.kefuapp";
 static void *KVOContext = &KVOContext;
 @interface HDAgoraCallManager : NSObject
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;

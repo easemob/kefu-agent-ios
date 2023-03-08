@@ -13,8 +13,8 @@ target 'AgentSDKDemo' do
  pod 'SDWebImage', '~> 5.12.3'
  pod 'Masonry', '~> 1.1.0'
 # pod 'JSONModel'
- 
- pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
+pod 'AgoraRtcEngine_iOS', '4.1.1', :subspecs => ['RtcBasic', 'ReplayKit']
+# pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
 # pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
 # pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
  pod 'Fastboard', '~> 1.0.8'
@@ -39,15 +39,16 @@ target 'AgentSDKDemoAppStore' do
   
   
 #     pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
-pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
+#pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
+pod 'AgoraRtcEngine_iOS', '4.1.1', :subspecs => ['RtcBasic', 'ReplayKit']
 #  pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
 #pod 'Fastboard', '~> 1.1.2'
 pod 'Fastboard', '~> 1.0.8'
   pod 'TZImagePickerController'
 end
-target 'AgentSDKDemoShareExtension' do
+
+target 'AgentDemoAppstoreExtension' do
 
   use_frameworks!
-#     pod 'AgoraRtcEngine_iOS', '~> 3.7.0.pod 'AgoraRtcEngine_iOS', '~> 4.1.1'3'
-     pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
+     pod 'AgoraRtcEngine_iOS', '4.1.1', :subspecs => ['RtcBasic', 'ReplayKit']
 end

@@ -9,7 +9,6 @@
 #import "HDAgoraCallManager.h"
 #import <ReplayKit/ReplayKit.h>
 #import <CoreMedia/CoreMedia.h>
-#import "HDSSKeychain.h"
 #import "HDAgoraCallMember.h"
 #import "HDAgoraTicketModel.h"
 #import "HDSanBoxFileManager.h"
@@ -702,16 +701,11 @@ static HDAgoraCallManager *shareCall = nil;
 
 - (HDKeyCenter *)getAppKeyCenter{
     HDKeyCenter * keycenter= [[HDKeyCenter  alloc] init];
-//    keycenter.agoraAppid =  [HDSSKeychain passwordForService:kForService account:kSaveAgoraAppID];
-//    keycenter.agoraToken =  [HDSSKeychain passwordForService:kForService account:kSaveAgoraToken];
-//    keycenter.agoraChannel =  [HDSSKeychain passwordForService:kForService account:kSaveAgoraChannel];
-//    keycenter.shareUid =  [HDSSKeychain passwordForService:kForService account:kSaveAgoraShareUID];
-//    keycenter.callid =  [HDSSKeychain passwordForService:kForService account:kSaveAgoraCallId];
-    
+
     keycenter.agoraAppid = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraAppid = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraAppid = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraAppid = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
+    keycenter.agoraToken = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraToken];
+    keycenter.agoraChannel = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraChannel];
+    keycenter.shareUid = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraShareUID];
     
     
     return  keycenter;
@@ -808,14 +802,33 @@ static HDAgoraCallManager *shareCall = nil;
         _screenCaptureParams = [[AgoraScreenCaptureParameters2 alloc] init];
         _screenCaptureParams.captureAudio = YES;
         _screenCaptureParams.captureVideo = YES;
-       
+        
+        AgoraScreenAudioParameters *audioParams = [[AgoraScreenAudioParameters alloc] init];
+        audioParams.captureSignalVolume = 50;
+            
        AgoraScreenVideoParameters *videoParams = [[AgoraScreenVideoParameters alloc] init];
-       videoParams.dimensions = CGSizeMake(1920, 1080);
-        videoParams.frameRate = 30;
+       videoParams.dimensions = [self screenShareVideoDimension];
+        videoParams.frameRate = AgoraVideoFrameRateFps30;
       _screenCaptureParams.videoParams = videoParams;
+        _screenCaptureParams.audioParams = audioParams;
     
     }
     
     return _screenCaptureParams;
 }
+
+-(CGSize)screenShareVideoDimension{
+    
+    CGRect screenSize = [UIScreen mainScreen].bounds  ;
+    CGSize boundingSize = CGSizeMake(540, 960);
+    CGFloat mW = boundingSize.width / screenSize.size.width;
+    CGFloat mH = boundingSize.height / screenSize.size.height;
+          if (mH < mW) {
+              boundingSize.width = boundingSize.height / screenSize.size.height * screenSize.size.width;
+          } else if (mW < mH) {
+              boundingSize.height = boundingSize.width / screenSize.size.width * screenSize.size.height;
+          }
+    return boundingSize;
+}
+
 @end
