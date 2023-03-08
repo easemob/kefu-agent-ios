@@ -25,12 +25,11 @@
 #import "MBProgressHUD+Add.h"
 #import "UIViewController+AlertController.h"
 #import "UIImageView+EMWebCache.h"
+#import "HDVECScreeShareManager.h"
 #define kLocalUid 1111111 //设置真实的本地的uid
 #define kLocalWhiteBoardUid 222222 //设置虚拟白板uid
 #define kCamViewTag 100001
-#define kScreenShareExtensionBundleId @"com.easemob.enterprise.demo.kefuapp.AgentSDKDemoShareExtension"
 
-#define kNotificationShareWindow kScreenShareExtensionBundleId
 #define kPointHeight [UIScreen mainScreen].bounds.size.width *0.9
 
 
@@ -90,7 +89,6 @@
 @property (nonatomic, strong) HDVECHiddenView *hidView;
 @property (nonatomic, assign) BOOL  isLandscape;//当前屏幕 是横屏还是竖屏
 @property (strong, nonatomic) HDVECPopoverViewController *buttonPopVC;
-@property (nonatomic, strong) RPSystemBroadcastPickerView *broadPickerView API_AVAILABLE(ios(12.0));
 @property (nonatomic, strong) HDWhiteBoardView *whiteBoardView;
 @property (nonatomic, assign) BOOL  isSmallWindow;//当前是不是 半屏模式
 @property (nonatomic, strong) UIWindow *customWindow;
@@ -115,10 +113,6 @@ static HDVECViewController *_manger = nil;
 {
     dispatch_once(&onceToken, ^{
         _manger = [[HDVECViewController alloc] init];
-//        UIWindow *window = [UIApplication sharedApplication].keyWindow ;
-//        window.windowLevel = UIWindowLevelAlert+1;
-//        _manger.view.frame = [UIScreen mainScreen].bounds;
-//        [window  addSubview:_manger.view];
         _manger.alertWindow = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _manger.alertWindow.windowLevel = 0.0;
         _manger.alertWindow.backgroundColor = [UIColor clearColor];
@@ -193,13 +187,9 @@ static HDVECViewController *_manger = nil;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    self.view.backgroundColor = [[HDAppSkin mainSkin] contentColorGray];
-
     self.view.backgroundColor = [[HDAppSkin mainSkin] contentColorBlockalpha:0.6];
     [self.view hideKeyBoard];
     _cameraState = YES;
-    
     // 用于添加语音呼入的监听 onCallReceivedNickName:
     [HDClient.sharedClient.callManager addDelegate:self delegateQueue:nil];
     [HDClient.sharedClient.whiteboardManager addDelegate:self delegateQueue:nil];
@@ -210,8 +200,8 @@ static HDVECViewController *_manger = nil;
     _members = [NSMutableArray new];
     _midelleMembers = [NSMutableArray new];
     allMembersDic = [NSMutableDictionary new];
-    [self initScreenShare];
-    
+    //注册屏幕共享通知
+    [self registScreenShare];
 }
 //
 -(void)clearViewData{
@@ -234,10 +224,6 @@ static HDVECViewController *_manger = nil;
     [self.view hideKeyBoard];
 }
 
-/// 初始化屏幕分享
-- (void)initScreenShare{
-    [self initBroadPickerView];
-}
 -(void)initData{
     HDVECControlBarModel * barModel = [HDVECControlBarModel new];
     barModel.itemType = HDControlBarItemTypeMute;
@@ -274,18 +260,24 @@ static HDVECViewController *_manger = nil;
     
     HDGrayModel * grayModelWhiteBoard =  [[HDCallManager shareInstance] getGrayName:@"whiteBoard"];
     HDGrayModel * grayModelShare =  [[HDCallManager shareInstance] getGrayName:@"shareDesktop"];
-//    if (grayModelShare.enable) {
-//        [selImageArr addObject:barModel3];
-//    }
-//    if (grayModelWhiteBoard.enable) {
-//        [selImageArr addObject:barModel4];
-//    }
+    if (grayModelShare.enable) {
+        
+        if (@available(iOS 12.0, *)) {
+        
+            [selImageArr addObject:barModel3];
+            
+        }
+        
+        
+    }
+    if (grayModelWhiteBoard.enable) {
+        [selImageArr addObject:barModel4];
+    }
 
    [self.barView hd_buttonFromArrBarModels:selImageArr view:self.barView withButtonType:HDControlBarButtonStyleVideo] ;
     
     [self initSmallWindowData];
 }
-
 - (void)initSmallWindowData{
     
     //初始化本地view
@@ -651,21 +643,8 @@ static HDVECViewController *_manger = nil;
         
     }
     
-  
-    
-    
 }
 
-    
-//- (void)createVideoCall{
-//    //这个地方是真正发消息邀请视频的代码
-//    CSDemoAccountManager *lgM = [CSDemoAccountManager shareLoginManager];
-//    HDMessage *message = [HDClient.sharedClient.callManager creteVideoInviteMessageWithImId:lgM.cname content: NSLocalizedString(@"em_chat_invite_video_call", @"em_chat_invite_video_call")];
-//    [message addContent:lgM.visitorInfo];
-//
-//    [self _sendMessage:message];
-//
-//}
 
 - (void)_sendMessage:(HDMessage *)aMessage
 {
@@ -870,21 +849,6 @@ static HDVECViewController *_manger = nil;
     
 }
 
-/// 初始化屏幕分享view
-- (void)initBroadPickerView{
-    if (@available(iOS 12.0, *)) {
-        _broadPickerView = [[RPSystemBroadcastPickerView alloc] init];
-        _broadPickerView.preferredExtension = kScreenShareExtensionBundleId;
-        _broadPickerView.showsMicrophoneButton = NO;
-        _broadPickerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin;
-        
-    } else {
-        // Fallback on earlier versions
-        [MBProgressHUD  dismissInfo:NSLocalizedString(@"屏幕共享不能使用", "leaveMessage.leavemsg.uploadattachment.failed")  withWindow:[UIApplication sharedApplication].keyWindow];
-        
-        
-    }
-}
 // 切换摄像头事件
 - (void)camBtnClicked:(UIButton *)btn {
     btn.selected = !btn.selected;
@@ -1403,77 +1367,49 @@ static HDVECViewController *_manger = nil;
     _whiteBoardBtn.selected = [HDWhiteRoomManager shareInstance].roomState;
     
 }
-#pragma mark - 屏幕共享相关
+#pragma mark ---------------------屏幕共享 相关 start----------------------
+/// 注册屏幕共享通知
+- (void)registScreenShare{
+    // 注册屏幕分享的监听
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startScreenShare:) name:HDVEC_SCREENSHARE_STATRT object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopScreenShare:) name:HDVEC_SCREENSHARE_STOP object:nil];
+}
 // 屏幕共享事件
 - (void)shareDesktopBtnClicked:(UIButton *)btn {
-
     _shareBtn = btn;
-
     _shareBtn.selected = _shareState;
-   
-
     if ([HDWhiteRoomManager shareInstance].roomState == YES) {
         //当前正在白板房间
         [MBProgressHUD  dismissInfo:NSLocalizedString(@"video_call_shareScreen", "当前正在白板中不能进行屏幕共享")  withWindow:self.alertWindow];
         return;
     }
-    //点击的时候先要 保存屏幕共享的数据
-    [[HDVECAgoraCallManager shareInstance] hd_saveShareDeskData:[HDVECAgoraCallManager shareInstance].keyCenter];
-   
-    //通过UserDefaults建立数据通道
-    [self setupUserDefaults];
-    
-    for (UIView *view in _broadPickerView.subviews)
-    {
-        if ([view isKindOfClass:[UIButton class]])
-        {
-            //调起录像方法，UIControlEventTouchUpInside的方法看其他文章用的是UIControlEventTouchDown，
-            //我使用时用UIControlEventTouchUpInside用好使，看个人情况决定
-            [(UIButton*)view sendActionsForControlEvents:UIControlEventTouchUpInside];
 
-
-            int success=  [[HDVECAgoraCallManager shareInstance].agoraKit startScreenCapture:[HDVECAgoraCallManager shareInstance].screenCaptureParams];
-            
-            NSLog(@"=====%d",success);
-
-        }
-    }
+    // 创建 屏幕分享
+    [[HDVECScreeShareManager shareInstance] vec_initBroadPickerView];
     NSLog(@"点击了屏幕共享事件");
 }
 
-
-#pragma mark - 进程间通信-CFNotificationCenterGetDarwinNotifyCenter 使用之前，需要为container app与extension app设置 App Group，这样才能接收到彼此发送的进程间通知。
-// 录屏直播 主App和宿主App数据共享，通信功能实现 如果我们要将开始、暂停、结束这些事件以消息的形式发送到宿主App中，需要使用CFNotificationCenterGetDarwinNotifyCenter。
-- (void)setupUserDefaults{
-    // 通过UserDefaults建立数据通道，接收Extension传递来的视频帧
-  
-    [[HDVECAgoraCallManager shareInstance].userDefaults setObject:@{@"state":@"x"} forKey:kVECUserDefaultState];//给状态一个默认值
-    [[HDVECAgoraCallManager shareInstance].userDefaults addObserver:self forKeyPath:kVECUserDefaultState options:NSKeyValueObservingOptionNew context:VECKVOContext];
-
+/// 开启屏幕分享 修改状态
+/// @param noti
+- (void)startScreenShare:(NSNotification *) noti{
+    _shareState= YES;
+    _shareBtn.selected = _shareState;
+    
 }
+/// 关闭屏幕分享 修改状态
+/// @param noti
+- (void)stopScreenShare:(NSNotification *) noti{
+    _shareState= NO;
+    //更改按钮的状态
+    _shareBtn.selected = _shareState;
+}
+#pragma mark ---------------------屏幕共享 相关 end----------------------
+
+
+
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-    if ([keyPath isEqualToString:kVECUserDefaultState]) {
-        NSDictionary *string = change[NSKeyValueChangeNewKey];
-        if ([string[@"state"] isEqual:@"初始化"]) {
-            //开启 RTC：外部视频输入通道，开始推送屏幕流（configLocalScreenPublish）
-//            [self screenShareStart];
-            
-            NSLog(@"== 屏幕分享开始=====%@",string);
-            _shareState= YES;
-            _shareBtn.selected = _shareState;
-            
-        }
-        if ([string[@"state"] isEqual:@"停止"]) {
-            //关闭 RTC：外部视频输入通道，停止推送屏幕流
-//            [self screenShareStop];
-            NSLog(@"== 屏幕分享停止=====%@",string);
-            _shareState= NO;
-            //更改按钮的状态
-            _shareBtn.selected = _shareState;
-        }
-        return;
-    }else if ([keyPath isEqualToString:@"text"]) {
+     if ([keyPath isEqualToString:@"text"]) {
         NSString *string = change[NSKeyValueChangeNewKey];
         if (self.hdSupendCustomView) {
             [self.hdSupendCustomView  updateTimeText:string];

@@ -14,9 +14,9 @@
 #import "HDVECRingingCallModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
-static NSString * _Nonnull kVECUserDefaultState = @"VEC_KEY_BXL_DEFAULT_STATE_agent"; // 接收屏幕共享(开始/结束 状态)监听的Key
+static NSString * _Nonnull kVECUserDefaultState = @"KEFU_AGENT_KEY_BXL_DEFAULT_STATE"; // 接收屏幕共享(开始/结束 状态)监听的Key
 
-static NSString * _Nonnull kVECAppGroup = @"group.com.easemob.enterprise.demo.kefuapp";
+static NSString * _Nonnull kVECAppGroup = @"group.com.easemob.kefuapp";
 static void *VECKVOContext = &VECKVOContext;
 @interface HDVECAgoraCallManager : NSObject
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
@@ -228,7 +228,11 @@ static void *VECKVOContext = &VECKVOContext;
  */
 - (BOOL)vec_isVisitorCancelInvitationMessage:(NSDictionary *)dic;
 
+/// 开启屏幕共享
+- (void)vec_startScreenCapture;
 
+/// 关闭屏幕共享
+- (void)vec_stopScreenCapture;
 
 @end
 

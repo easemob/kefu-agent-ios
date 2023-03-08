@@ -381,8 +381,6 @@ static HDAgoraCallManager *shareCall = nil;
         _keyCenter = key;
         
     }
-    //存储参数等待 其他app 使用
-    [self saveAppKeyCenter:key];
 }
 - (NSDictionary *)getAgentCallOptions{
     
@@ -425,14 +423,7 @@ static HDAgoraCallManager *shareCall = nil;
     }];
 
 }
-- (void)hd_saveShareDeskData:(HDKeyCenter *)keyCenter{
-    
-    if (keyCenter) {
-        
-        [self saveAppKeyCenter:[HDAgoraCallManager shareInstance].keyCenter];
-    }
-    
-}
+
 - (void)endRecord{
     [HDAgoraCallManager shareInstance].isSender = NO;
     // 结束录制
@@ -674,53 +665,6 @@ static HDAgoraCallManager *shareCall = nil;
        
         
     }];
-}
-
-
-#pragma mark - AgoraRtcEngineKit 屏幕分享 相关
-/// 保持动态数据 给其他app 进程通信
-/// @param keyCenter 对象参数
-- (void)saveAppKeyCenter:(HDKeyCenter *)keyCenter{
-
-    self.userDefaults =[[NSUserDefaults alloc] initWithSuiteName:kAppGroup];
-   
-    
-    [self.userDefaults setObject:keyCenter.agoraAppid forKey:kSaveAgoraAppID];
-    
-    [self.userDefaults setObject:keyCenter.agoraToken forKey:kSaveAgoraToken];
-    
-    [self.userDefaults setObject:keyCenter.agoraChannel forKey:kSaveAgoraChannel];
-    
-    [self.userDefaults setObject:[NSString stringWithFormat:@"%@",keyCenter.callid] forKey:kSaveAgoraCallId];
-    
-    [self.userDefaults setObject:[NSString stringWithFormat:@"%@",keyCenter.agoraUid] forKey:kSaveAgoraShareUID];
-    
-//
-   
-}
-
-- (HDKeyCenter *)getAppKeyCenter{
-    HDKeyCenter * keycenter= [[HDKeyCenter  alloc] init];
-
-    keycenter.agoraAppid = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraToken = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraToken];
-    keycenter.agoraChannel = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraChannel];
-    keycenter.shareUid = [[HDAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraShareUID];
-    
-    
-    return  keycenter;
-}
-
-- (BOOL)isScreenShareUid:(NSUInteger)uid{
-    HDKeyCenter * shareKey = [self getAppKeyCenter];
-    if (shareKey.shareUid.length > 0) {
-        if (uid == [shareKey.shareUid integerValue]) {
-            return  YES;
-        }
-        return  NO;
-    }
-//    return uid >= SCREEN_SHARE_UID_MIN && uid <= SCREEN_SHARE_UID_MAX;
-    return YES;
 }
 
 - (void)initSettingWithCompletion:(void(^)(id  responseObject, HDError *error))aCompletion {

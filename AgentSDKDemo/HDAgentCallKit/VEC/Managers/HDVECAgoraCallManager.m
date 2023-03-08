@@ -1010,26 +1010,36 @@ static HDVECAgoraCallManager *shareCall = nil;
    
 }
 
-- (HDKeyCenter *)getAppKeyCenter{
-    HDKeyCenter * keycenter= [[HDKeyCenter  alloc] init];
-    keycenter.agoraAppid = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraAppID];
-    keycenter.agoraToken = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraToken];
-    keycenter.agoraChannel = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraChannel];
-    keycenter.shareUid = [[HDVECAgoraCallManager shareInstance].userDefaults valueForKey:kSaveAgoraShareUID];
-
-    return  keycenter;
+/// 开启屏幕共享
+- (void)vec_startScreenCapture{
+    //在加入频道后调用 startScreenCapture，然后调用 updateChannelWithMediaOptions 更新频道媒体选项并设置 publishScreenCaptureVideo 为 true，即可开始屏幕共享。
+    int success=  [self.agoraKit startScreenCapture:[HDVECAgoraCallManager shareInstance].screenCaptureParams];
+    
+    NSLog(@"====success=%d",success);
+    AgoraRtcChannelMediaOptions * option = [AgoraRtcChannelMediaOptions new];
+    option.publishScreenCaptureVideo = YES;
+    //这个属性必须设置 要不 屏幕共享的流推不出去
+    option.publishCameraTrack = NO;
+   
+    int updateSuccess=  [self.agoraKit updateChannelWithMediaOptions:option];
+    NSLog(@"====updateSuccess=%d",updateSuccess);
+    
+    
 }
 
-- (BOOL)isScreenShareUid:(NSUInteger)uid{
-    HDKeyCenter * shareKey = [self getAppKeyCenter];
-    if (shareKey.shareUid.length > 0) {
-        if (uid == [shareKey.shareUid integerValue]) {
-            return  YES;
-        }
-        return  NO;
-    }
-//    return uid >= SCREEN_SHARE_UID_MIN && uid <= SCREEN_SHARE_UID_MAX;
-    return YES;
+/// 关闭屏幕共享
+- (void)vec_stopScreenCapture{
+    int success=  [self.agoraKit stopScreenCapture];
+    NSLog(@"====success=%d",success);
+    AgoraRtcChannelMediaOptions * option = [AgoraRtcChannelMediaOptions new];
+    option.publishScreenCaptureVideo = NO;
+    //这个属性必须设置 要不 屏幕共享的流推不出去
+    option.publishCameraTrack = YES;
+
+    int updateSuccess=  [[HDVECAgoraCallManager shareInstance].agoraKit updateChannelWithMediaOptions:option];
+
+    NSLog(@"====updateSuccess=%d",updateSuccess);
+    
 }
 
 - (void)initSettingWithCompletion:(void(^)(id  responseObject, HDError *error))aCompletion {

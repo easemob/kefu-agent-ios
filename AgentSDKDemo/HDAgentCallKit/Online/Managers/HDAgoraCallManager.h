@@ -11,17 +11,14 @@
 #import "HDAgoraCallOptions.h"
 #import "HDAgoraCallManagerDelegate.h"
 NS_ASSUME_NONNULL_BEGIN
-static NSString * _Nonnull kUserDefaultState = @"KEFU_AGENT_KEY_BXL_DEFAULT_STATE"; // 接收屏幕共享(开始/结束 状态)监听的Key
 
-static NSString * _Nonnull kAppGroup = @"group.com.easemob.kefuapp";
-static void *KVOContext = &KVOContext;
 @interface HDAgoraCallManager : NSObject
 @property (strong, nonatomic) AgoraRtcEngineKit *agoraKit;
 @property (strong, nonatomic) AgoraScreenCaptureParameters2 * screenCaptureParams;
 @property (nonatomic, weak) id <HDAgoraCallManagerDelegate> roomDelegate;
 @property (nonatomic, strong) HDKeyCenter *keyCenter;
 @property (nonatomic, strong) NSString *conversationId;
-@property (nonatomic, strong) NSUserDefaults *userDefaults;
+
 
 @property (nonatomic, strong) HDMessage * message;
 @property (nonatomic, strong) NSString *sessionId;
@@ -258,15 +255,13 @@ static void *KVOContext = &KVOContext;
 - (void)setupRemoteVideoView:(UIView *)remoteView withRemoteUid:(NSInteger )uid;
 - (void)initSettingWithCompletion:(void(^)(id  responseObject, HDError *error))aCompletion ;
 
-/// 保存屏幕共享需要的数据
-- (void)hd_saveShareDeskData:(HDKeyCenter*)keyCenter;
-
 /// 获取会话全部视频通话详情
 - (void)getAllVideoDetailsSession:(NSString *)sessionId completion:(void(^)(id responseObject,HDError *error))aCompletion;
 
 
 /// 获取对端访客视频截图
 - (void)getVisitorScreenshotCompletion:(void(^)(NSString * url,HDError *error))aCompletion;
+
 
 @end
 

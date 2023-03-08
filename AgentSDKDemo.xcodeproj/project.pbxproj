@@ -540,6 +540,10 @@
 		D2B9517C292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
 		D2C3352728DD5FD800421022 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
 		D2C3352828DD60B900421022 /* KFVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */; };
+		D2D105DF29B8709D00212381 /* HDCECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105DE29B8709D00212381 /* HDCECScreeShareManager.m */; };
+		D2D105E029B8709D00212381 /* HDCECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105DE29B8709D00212381 /* HDCECScreeShareManager.m */; };
+		D2D105E629B87C0700212381 /* HDVECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105E529B87C0700212381 /* HDVECScreeShareManager.m */; };
+		D2D105E729B87C0700212381 /* HDVECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105E529B87C0700212381 /* HDVECScreeShareManager.m */; };
 		D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
 		D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DAD11329B747F600733A8E /* SampleHandler.m */; };
 		D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2364,6 +2368,11 @@
 		D2B9517629222A000043B07F /* KFWKWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFWKWebViewController.m; sourceTree = "<group>"; };
 		D2B95179292372940043B07F /* KFChatBarMoreModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFChatBarMoreModel.h; sourceTree = "<group>"; };
 		D2B9517A292372940043B07F /* KFChatBarMoreModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFChatBarMoreModel.m; sourceTree = "<group>"; };
+		D2D105D929B8599700212381 /* AgentDemoAppstoreExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AgentDemoAppstoreExtension.entitlements; sourceTree = "<group>"; };
+		D2D105DD29B8709D00212381 /* HDCECScreeShareManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HDCECScreeShareManager.h; sourceTree = "<group>"; };
+		D2D105DE29B8709D00212381 /* HDCECScreeShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDCECScreeShareManager.m; sourceTree = "<group>"; };
+		D2D105E429B87C0700212381 /* HDVECScreeShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECScreeShareManager.h; sourceTree = "<group>"; };
+		D2D105E529B87C0700212381 /* HDVECScreeShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECScreeShareManager.m; sourceTree = "<group>"; };
 		D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraReplayKitExtension.xcframework; path = Pods/AgoraRtcEngine_iOS/AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
 		D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentDemoAppstoreExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DAD11229B747F600733A8E /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
@@ -3998,6 +4007,8 @@
 				93D9D07227BF7E0500BD037D /* HDAgoraTicketModel.m */,
 				935CFB5227C4E5D60093B9DF /* KFVideoDetailModel.h */,
 				935CFB5327C4E5D60093B9DF /* KFVideoDetailModel.m */,
+				D2D105DD29B8709D00212381 /* HDCECScreeShareManager.h */,
+				D2D105DE29B8709D00212381 /* HDCECScreeShareManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -4087,6 +4098,8 @@
 		D2239E5A299495990087D054 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				D2D105E429B87C0700212381 /* HDVECScreeShareManager.h */,
+				D2D105E529B87C0700212381 /* HDVECScreeShareManager.m */,
 				D2239E60299495990087D054 /* HDVECAgoraCallManager.h */,
 				D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */,
 				D2239E62299495990087D054 /* HDVECAgoraCallManagerDelegate.h */,
@@ -4243,6 +4256,7 @@
 		D2DAD11129B747F600733A8E /* AgentDemoAppstoreExtension */ = {
 			isa = PBXGroup;
 			children = (
+				D2D105D929B8599700212381 /* AgentDemoAppstoreExtension.entitlements */,
 				D2DAD11229B747F600733A8E /* SampleHandler.h */,
 				D2DAD11329B747F600733A8E /* SampleHandler.m */,
 				D2DAD11529B747F600733A8E /* Info.plist */,
@@ -7191,12 +7205,22 @@
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/Whiteboard/Whiteboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AIAEC/AgoraAiEchoCancellationExtension.framework/AgoraAiEchoCancellationExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AINS/AgoraAiNoiseSuppressionExtension.framework/AgoraAiNoiseSuppressionExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AudioBeauty/AgoraAudioBeautyExtension.framework/AgoraAudioBeautyExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ClearVision/AgoraClearVisionExtension.framework/AgoraClearVisionExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ContentInspect/AgoraContentInspectExtension.framework/AgoraContentInspectExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/DRM/AgoraDrmLoaderExtension.framework/AgoraDrmLoaderExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/FaceDetection/AgoraFaceDetectionExtension.framework/AgoraFaceDetectionExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ReplayKit/AgoraReplayKitExtension.framework/AgoraReplayKitExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraRtcKit.framework/AgoraRtcKit",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraDav1d.framework/AgoraDav1d",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agorafdkaac.framework/Agorafdkaac",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agoraffmpeg.framework/Agoraffmpeg",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraSoundTouch.framework/AgoraSoundTouch",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/SpatialAudio/AgoraSpatialAudioExtension.framework/AgoraSpatialAudioExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VQA/AgoraVideoQualityAnalyzerExtension.framework/AgoraVideoQualityAnalyzerExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VirtualBackground/AgoraVideoSegmentationExtension.framework/AgoraVideoSegmentationExtension",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -7211,12 +7235,22 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whiteboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiEchoCancellationExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiNoiseSuppressionExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAudioBeautyExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraClearVisionExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraContentInspectExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDrmLoaderExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraFaceDetectionExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraReplayKitExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDav1d.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSpatialAudioExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoQualityAnalyzerExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7285,12 +7319,22 @@
 				"${BUILT_PRODUCTS_DIR}/WebViewJavascriptBridge/WebViewJavascriptBridge.framework",
 				"${BUILT_PRODUCTS_DIR}/Whiteboard/Whiteboard.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AIAEC/AgoraAiEchoCancellationExtension.framework/AgoraAiEchoCancellationExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AINS/AgoraAiNoiseSuppressionExtension.framework/AgoraAiNoiseSuppressionExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/AudioBeauty/AgoraAudioBeautyExtension.framework/AgoraAudioBeautyExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ClearVision/AgoraClearVisionExtension.framework/AgoraClearVisionExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ContentInspect/AgoraContentInspectExtension.framework/AgoraContentInspectExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/DRM/AgoraDrmLoaderExtension.framework/AgoraDrmLoaderExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/FaceDetection/AgoraFaceDetectionExtension.framework/AgoraFaceDetectionExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/ReplayKit/AgoraReplayKitExtension.framework/AgoraReplayKitExtension",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraRtcKit.framework/AgoraRtcKit",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraDav1d.framework/AgoraDav1d",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agorafdkaac.framework/Agorafdkaac",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/Agoraffmpeg.framework/Agoraffmpeg",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/RtcBasic/AgoraSoundTouch.framework/AgoraSoundTouch",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/SpatialAudio/AgoraSpatialAudioExtension.framework/AgoraSpatialAudioExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VQA/AgoraVideoQualityAnalyzerExtension.framework/AgoraVideoQualityAnalyzerExtension",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/AgoraRtcEngine_iOS/VirtualBackground/AgoraVideoSegmentationExtension.framework/AgoraVideoSegmentationExtension",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -7305,12 +7349,22 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebViewJavascriptBridge.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Whiteboard.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiEchoCancellationExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAiNoiseSuppressionExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraAudioBeautyExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraClearVisionExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraContentInspectExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDrmLoaderExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraFaceDetectionExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraReplayKitExtension.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraRtcKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraDav1d.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agorafdkaac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Agoraffmpeg.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSoundTouch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraSpatialAudioExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoQualityAnalyzerExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AgoraVideoSegmentationExtension.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7532,6 +7586,7 @@
 				D2A2409F29A857F70066C78C /* JSONModelClassProperty.m in Sources */,
 				90DC764C20BD344B00C86D92 /* HDMessage+Category.m in Sources */,
 				90591C422068ADC4007367BD /* KFMonitorLabelModel.m in Sources */,
+				D2D105E629B87C0700212381 /* HDVECScreeShareManager.m in Sources */,
 				90591C3C2068ADC4007367BD /* RadioButton.m in Sources */,
 				D34DF9E11FA818F80018116D /* KFTrendDataModel.m in Sources */,
 				D33CE86F1F7CD25800236720 /* NSMutableArray+SWUtilityButtons.m in Sources */,
@@ -7630,6 +7685,7 @@
 				D3A95E741EA0F47100ADD394 /* SRRefreshView.m in Sources */,
 				D33CE6931F7CA98D00236720 /* CompileTableViewCell.m in Sources */,
 				936A5F12286AD4FB004BC632 /* CustomFastboardOverlay.m in Sources */,
+				D2D105DF29B8709D00212381 /* HDCECScreeShareManager.m in Sources */,
 				936A5F0E286AD4FB004BC632 /* HDStorageItem.m in Sources */,
 				D2B4EE48299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m in Sources */,
 				D33CE89C1F7CD34000236720 /* LeaveMsgAttatchmentView.m in Sources */,
@@ -7980,6 +8036,7 @@
 				D2A240A029A857F70066C78C /* JSONModelClassProperty.m in Sources */,
 				D3E9CD1D1FBED182005E3677 /* AFURLSessionManager.m in Sources */,
 				90591C2F2068ADC4007367BD /* KFMonitorInfoCell.m in Sources */,
+				D2D105E729B87C0700212381 /* HDVECScreeShareManager.m in Sources */,
 				D3E9CD1E1FBED182005E3677 /* MWGridViewController.m in Sources */,
 				90AFCBD220CF9FB6007D0ADB /* HLeaveMessageViewController.m in Sources */,
 				D3E9CD201FBED182005E3677 /* UIImageView+EMHighlightedWebCache.m in Sources */,
@@ -8078,6 +8135,7 @@
 				D3E9CD5E1FBED182005E3677 /* HistoryOptionViewController.m in Sources */,
 				D3E9CD5F1FBED182005E3677 /* UIImage+EMWebP.m in Sources */,
 				D3E9CD601FBED182005E3677 /* PSTGridLayoutRow.m in Sources */,
+				D2D105E029B8709D00212381 /* HDCECScreeShareManager.m in Sources */,
 				D3DFB3751FD7E2A000A9358A /* KFArrowButtonView.m in Sources */,
 				D2B4EE49299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m in Sources */,
 				936A5F01286AD4FB004BC632 /* HDCloudDiskViewController.m in Sources */,
@@ -8283,6 +8341,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = AgentDemoAppstoreExtension/AgentDemoAppstoreExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JC854K845H;
@@ -8327,6 +8386,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = AgentDemoAppstoreExtension/AgentDemoAppstoreExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
