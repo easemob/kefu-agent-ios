@@ -10,7 +10,7 @@
 #import "HDVECControlBarView.h"
 #import "KFICloudManager.h"
 #import "TZImagePickerController.h"
-#import "HDAppSkin.h"
+#import "HDVECAppSkin.h"
 #import "HDSanBoxFileManager.h"
 #import "HDVECWhiteRoomManager.h"
 
@@ -62,32 +62,32 @@ static HDVECUploadFileViewController *_manger = nil;
 }
 -(void)initData{
     HDVECControlBarModel * barModel = [HDVECControlBarModel new];
-    barModel.itemType = HDVECControlBarItemTypeImage;
+    barModel.itemType = HDControlBarItemTypeImage;
     barModel.name= NSLocalizedString(@"video.call.whiteBoard.upload.image", @"上传图片");
     barModel.imageStr= @"tupian";
     barModel.selImageStr= @"tupian";
 
     HDVECControlBarModel * barModel1 = [HDVECControlBarModel new];
-    barModel1.itemType = HDVECControlBarItemTypeVideo;
+    barModel1.itemType = HDControlBarItemTypeVideo;
     barModel1.name= NSLocalizedString(@"video.call.whiteBoard.upload.video", @"上传视频");
     barModel1.imageStr= @"shipin";
     barModel1.selImageStr= @"shipin";
     
     HDVECControlBarModel * barModel2 = [HDVECControlBarModel new];
-    barModel2.itemType = HDVECControlBarItemTypeMute;
+    barModel2.itemType = HDControlBarItemTypeMute;
     barModel2.name= NSLocalizedString(@"video.call.whiteBoard.upload.audio", @"上传音频");
     barModel2.imageStr=@"yinpin";
     barModel2.selImageStr=@"yinpin";
     
     HDVECControlBarModel * barModel3 = [HDVECControlBarModel new];
-    barModel3.itemType = HDVECControlBarItemTypeFile;
+    barModel3.itemType = HDControlBarItemTypeFile;
     barModel3.name= NSLocalizedString(@"video.call.whiteBoard.upload.file", @"上传文件");
     barModel3.imageStr=@"wendangzhongxin";
     barModel3.selImageStr=@"wendangzhongxin";
     
     NSArray * selImageArr = @[barModel,barModel1,barModel2,barModel3];
     
-    [self.barView hd_buttonFromArrBarModels:selImageArr view:self.barView withButtonType:HDVECControlBarButtonStyleUploadFile];
+    [self.barView hd_buttonFromArrBarModels:selImageArr view:self.barView withButtonType:HDControlBarButtonStyleUploadFile];
     
 }
 
@@ -398,16 +398,16 @@ static HDVECUploadFileViewController *_manger = nil;
         _barView.clickControlBarItemBlock = ^(HDVECControlBarModel * _Nonnull barModel, UIButton * _Nonnull btn) {
             
             switch (barModel.itemType) {
-                case HDVECControlBarItemTypeMute:
+                case HDControlBarItemTypeMute:
                     [weakSelf muteBtnClicked:btn];
                     break;
-                case HDVECControlBarItemTypeVideo:
+                case HDControlBarItemTypeVideo:
                     [weakSelf videoBtnClicked:btn];
                     break;
-                case HDVECControlBarItemTypeImage:
+                case HDControlBarItemTypeImage:
                     [weakSelf imgBtnClicked:btn];
                     break;
-                case HDVECControlBarItemTypeFile:
+                case HDControlBarItemTypeFile:
                     [weakSelf uploadFileBtnClicked:btn];
                     break;
                

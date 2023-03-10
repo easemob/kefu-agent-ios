@@ -8,7 +8,7 @@
 
 #import "HDVECCloudDiskTableViewCell.h"
 #import "UIImage+HDIconFont.h"
-#import "HDAppSkin.h"
+#import "HDVECAppSkin.h"
 @implementation HDVECCloudDiskTableViewCell
 
 - (void)awakeFromNib {

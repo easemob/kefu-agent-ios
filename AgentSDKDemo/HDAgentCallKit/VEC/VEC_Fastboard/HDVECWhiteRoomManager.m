@@ -169,7 +169,7 @@ static HDVECWhiteRoomManager *shareWhiteboard = nil;
                             convertType =WhiteConvertTypeStatic;
                         }
                         
-                        [HDClient sharedClient].vecwhiteboardManager hd_wordConverterPptPage:url type:convertType completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+                        [[HDClient sharedClient].vecwhiteboardManager vec_wordConverterPptPage:url type:convertType completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
                             if (!error && [responseObject isKindOfClass:[NSDictionary class]]) {
                             NSLog(@"=== %@",responseObject);
                                 [HDLog logD:@"HD===%s ==responseObject==%@",__func__,responseObject];
