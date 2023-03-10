@@ -2543,6 +2543,19 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     BOOL success = [HDSanBoxFileManager createFileAtPath:fileDir content:data overwrite:NO error:&error];
     if (success) {
         [self sendFileMessagePath:fileDir withDisplayName:fileName];
+        
+        // 测试白板文档上传
+        
+//        [[HDClient sharedClient].vecwhiteboardManager  vec_whiteBoardUploadFileWithFilePath:fileDir fileData:data fileName:fileName mimeType:@"application/octet-stream" progress:^(int64_t total, int64_t now) {
+//
+//
+//        } completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+//
+//
+//
+//        }];
+        
+        
     }
     
 }

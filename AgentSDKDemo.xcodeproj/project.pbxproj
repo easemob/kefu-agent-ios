@@ -544,6 +544,30 @@
 		D2D105E029B8709D00212381 /* HDCECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105DE29B8709D00212381 /* HDCECScreeShareManager.m */; };
 		D2D105E629B87C0700212381 /* HDVECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105E529B87C0700212381 /* HDVECScreeShareManager.m */; };
 		D2D105E729B87C0700212381 /* HDVECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105E529B87C0700212381 /* HDVECScreeShareManager.m */; };
+		D2D1060D29B9EBEA00212381 /* HDVECWhiteBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105F729B9EBEA00212381 /* HDVECWhiteBoardView.m */; };
+		D2D1060E29B9EBEA00212381 /* HDVECWhiteBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105F729B9EBEA00212381 /* HDVECWhiteBoardView.m */; };
+		D2D1060F29B9EBEA00212381 /* HDVECCustomFastboardOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105F829B9EBEA00212381 /* HDVECCustomFastboardOverlay.m */; };
+		D2D1061029B9EBEA00212381 /* HDVECCustomFastboardOverlay.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105F829B9EBEA00212381 /* HDVECCustomFastboardOverlay.m */; };
+		D2D1061129B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D105FC29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib */; };
+		D2D1061229B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2D105FC29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib */; };
+		D2D1061329B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105FE29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m */; };
+		D2D1061429B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105FE29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m */; };
+		D2D1061529B9EBEA00212381 /* HDVECCloudDiskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105FF29B9EBEA00212381 /* HDVECCloudDiskModel.m */; };
+		D2D1061629B9EBEA00212381 /* HDVECCloudDiskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105FF29B9EBEA00212381 /* HDVECCloudDiskModel.m */; };
+		D2D1061729B9EBEA00212381 /* HDVECCloudDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060029B9EBEA00212381 /* HDVECCloudDiskViewController.m */; };
+		D2D1061829B9EBEA00212381 /* HDVECCloudDiskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060029B9EBEA00212381 /* HDVECCloudDiskViewController.m */; };
+		D2D1061929B9EBEA00212381 /* HDVECUploadFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060129B9EBEA00212381 /* HDVECUploadFileViewController.m */; };
+		D2D1061A29B9EBEA00212381 /* HDVECUploadFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060129B9EBEA00212381 /* HDVECUploadFileViewController.m */; };
+		D2D1061B29B9EBEA00212381 /* HDVECWhiteRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060529B9EBEA00212381 /* HDVECWhiteRoomManager.m */; };
+		D2D1061C29B9EBEA00212381 /* HDVECWhiteRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060529B9EBEA00212381 /* HDVECWhiteRoomManager.m */; };
+		D2D1061D29B9EBEA00212381 /* HDVECWhiteBoardUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060729B9EBEA00212381 /* HDVECWhiteBoardUtility.m */; };
+		D2D1061E29B9EBEA00212381 /* HDVECWhiteBoardUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060729B9EBEA00212381 /* HDVECWhiteBoardUtility.m */; };
+		D2D1061F29B9EBEA00212381 /* HDVECStorageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060A29B9EBEA00212381 /* HDVECStorageItem.m */; };
+		D2D1062029B9EBEA00212381 /* HDVECStorageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060A29B9EBEA00212381 /* HDVECStorageItem.m */; };
+		D2D1062129B9EBEA00212381 /* HDVECWhiteConverterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060B29B9EBEA00212381 /* HDVECWhiteConverterManager.m */; };
+		D2D1062229B9EBEA00212381 /* HDVECWhiteConverterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060B29B9EBEA00212381 /* HDVECWhiteConverterManager.m */; };
+		D2D1062529BAD2CA00212381 /* HDVECAppSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1062329BAD2CA00212381 /* HDVECAppSkin.m */; };
+		D2D1062629BAD2CA00212381 /* HDVECAppSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1062329BAD2CA00212381 /* HDVECAppSkin.m */; };
 		D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
 		D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DAD11329B747F600733A8E /* SampleHandler.m */; };
 		D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2373,6 +2397,30 @@
 		D2D105DE29B8709D00212381 /* HDCECScreeShareManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HDCECScreeShareManager.m; sourceTree = "<group>"; };
 		D2D105E429B87C0700212381 /* HDVECScreeShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECScreeShareManager.h; sourceTree = "<group>"; };
 		D2D105E529B87C0700212381 /* HDVECScreeShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECScreeShareManager.m; sourceTree = "<group>"; };
+		D2D105F629B9EBEA00212381 /* HDVECWhiteBoardUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECWhiteBoardUtility.h; sourceTree = "<group>"; };
+		D2D105F729B9EBEA00212381 /* HDVECWhiteBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECWhiteBoardView.m; sourceTree = "<group>"; };
+		D2D105F829B9EBEA00212381 /* HDVECCustomFastboardOverlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECCustomFastboardOverlay.m; sourceTree = "<group>"; };
+		D2D105FA29B9EBEA00212381 /* HDVECCloudDiskViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECCloudDiskViewController.h; sourceTree = "<group>"; };
+		D2D105FB29B9EBEA00212381 /* HDVECCloudDiskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECCloudDiskModel.h; sourceTree = "<group>"; };
+		D2D105FC29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HDVECCloudDiskTableViewCell.xib; sourceTree = "<group>"; };
+		D2D105FD29B9EBEA00212381 /* HDVECUploadFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECUploadFileViewController.h; sourceTree = "<group>"; };
+		D2D105FE29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECCloudDiskTableViewCell.m; sourceTree = "<group>"; };
+		D2D105FF29B9EBEA00212381 /* HDVECCloudDiskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECCloudDiskModel.m; sourceTree = "<group>"; };
+		D2D1060029B9EBEA00212381 /* HDVECCloudDiskViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECCloudDiskViewController.m; sourceTree = "<group>"; };
+		D2D1060129B9EBEA00212381 /* HDVECUploadFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECUploadFileViewController.m; sourceTree = "<group>"; };
+		D2D1060229B9EBEA00212381 /* HDVECCloudDiskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECCloudDiskTableViewCell.h; sourceTree = "<group>"; };
+		D2D1060329B9EBEA00212381 /* HDVECWhiteConverterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECWhiteConverterManager.h; sourceTree = "<group>"; };
+		D2D1060429B9EBEA00212381 /* HDVECStorageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECStorageItem.h; sourceTree = "<group>"; };
+		D2D1060529B9EBEA00212381 /* HDVECWhiteRoomManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECWhiteRoomManager.m; sourceTree = "<group>"; };
+		D2D1060629B9EBEA00212381 /* HDVECWhiteBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECWhiteBoardView.h; sourceTree = "<group>"; };
+		D2D1060729B9EBEA00212381 /* HDVECWhiteBoardUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECWhiteBoardUtility.m; sourceTree = "<group>"; };
+		D2D1060829B9EBEA00212381 /* HDVECCustomFastboardOverlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECCustomFastboardOverlay.h; sourceTree = "<group>"; };
+		D2D1060929B9EBEA00212381 /* HDVECWhiteBoardDelegete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECWhiteBoardDelegete.h; sourceTree = "<group>"; };
+		D2D1060A29B9EBEA00212381 /* HDVECStorageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECStorageItem.m; sourceTree = "<group>"; };
+		D2D1060B29B9EBEA00212381 /* HDVECWhiteConverterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECWhiteConverterManager.m; sourceTree = "<group>"; };
+		D2D1060C29B9EBEA00212381 /* HDVECWhiteRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECWhiteRoomManager.h; sourceTree = "<group>"; };
+		D2D1062329BAD2CA00212381 /* HDVECAppSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAppSkin.m; sourceTree = "<group>"; };
+		D2D1062429BAD2CA00212381 /* HDVECAppSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAppSkin.h; sourceTree = "<group>"; };
 		D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraReplayKitExtension.xcframework; path = Pods/AgoraRtcEngine_iOS/AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
 		D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentDemoAppstoreExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DAD11229B747F600733A8E /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
@@ -4026,6 +4074,8 @@
 		93FA0F6B28600EE900C1188E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D2D1062429BAD2CA00212381 /* HDVECAppSkin.h */,
+				D2D1062329BAD2CA00212381 /* HDVECAppSkin.m */,
 				936A5F1C286AD691004BC632 /* MBProgressHUD */,
 				936A5F18286AD5A1004BC632 /* UIView+Kit.h */,
 				936A5F19286AD5A1004BC632 /* UIView+Kit.m */,
@@ -4066,6 +4116,7 @@
 		D2239DD529938E650087D054 /* VEC */ = {
 			isa = PBXGroup;
 			children = (
+				D2D105F529B9EBEA00212381 /* VEC_Fastboard */,
 				D2239E5A299495990087D054 /* Managers */,
 				D2239E872994959A0087D054 /* Model */,
 				D2239E812994959A0087D054 /* ViewController */,
@@ -4251,6 +4302,43 @@
 				D2B4EE47299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m */,
 			);
 			path = VECTest;
+			sourceTree = "<group>";
+		};
+		D2D105F529B9EBEA00212381 /* VEC_Fastboard */ = {
+			isa = PBXGroup;
+			children = (
+				D2D105F629B9EBEA00212381 /* HDVECWhiteBoardUtility.h */,
+				D2D105F729B9EBEA00212381 /* HDVECWhiteBoardView.m */,
+				D2D105F829B9EBEA00212381 /* HDVECCustomFastboardOverlay.m */,
+				D2D105F929B9EBEA00212381 /* CloudDisk */,
+				D2D1060329B9EBEA00212381 /* HDVECWhiteConverterManager.h */,
+				D2D1060429B9EBEA00212381 /* HDVECStorageItem.h */,
+				D2D1060529B9EBEA00212381 /* HDVECWhiteRoomManager.m */,
+				D2D1060629B9EBEA00212381 /* HDVECWhiteBoardView.h */,
+				D2D1060729B9EBEA00212381 /* HDVECWhiteBoardUtility.m */,
+				D2D1060829B9EBEA00212381 /* HDVECCustomFastboardOverlay.h */,
+				D2D1060929B9EBEA00212381 /* HDVECWhiteBoardDelegete.h */,
+				D2D1060A29B9EBEA00212381 /* HDVECStorageItem.m */,
+				D2D1060B29B9EBEA00212381 /* HDVECWhiteConverterManager.m */,
+				D2D1060C29B9EBEA00212381 /* HDVECWhiteRoomManager.h */,
+			);
+			path = VEC_Fastboard;
+			sourceTree = "<group>";
+		};
+		D2D105F929B9EBEA00212381 /* CloudDisk */ = {
+			isa = PBXGroup;
+			children = (
+				D2D105FA29B9EBEA00212381 /* HDVECCloudDiskViewController.h */,
+				D2D105FB29B9EBEA00212381 /* HDVECCloudDiskModel.h */,
+				D2D105FC29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib */,
+				D2D105FD29B9EBEA00212381 /* HDVECUploadFileViewController.h */,
+				D2D105FE29B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m */,
+				D2D105FF29B9EBEA00212381 /* HDVECCloudDiskModel.m */,
+				D2D1060029B9EBEA00212381 /* HDVECCloudDiskViewController.m */,
+				D2D1060129B9EBEA00212381 /* HDVECUploadFileViewController.m */,
+				D2D1060229B9EBEA00212381 /* HDVECCloudDiskTableViewCell.h */,
+			);
+			path = CloudDisk;
 			sourceTree = "<group>";
 		};
 		D2DAD11129B747F600733A8E /* AgentDemoAppstoreExtension */ = {
@@ -6408,6 +6496,7 @@
 				D3FDC79D1EA0A5C600C25BB0 /* iconfont.svg in Resources */,
 				D3FDC82E1EA0A5C600C25BB0 /* interactive_list_icon_vote_full@2x.png in Resources */,
 				D3FDC84F1EA0A5C600C25BB0 /* tabbar_icon_visitorhighlight_Text6@2x.png in Resources */,
+				D2D1061129B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib in Resources */,
 				D33F46781E9F71A000FE6DCE /* LaunchScreen.storyboard in Resources */,
 				D3FDC7F21EA0A5C600C25BB0 /* icon_back_select@2x.png in Resources */,
 				D3FDC7B91EA0A5C600C25BB0 /* icon_over@2x.png in Resources */,
@@ -6863,6 +6952,7 @@
 				D3E9CE3F1FBED182005E3677 /* iconfont.svg in Resources */,
 				D3E9CE401FBED182005E3677 /* interactive_list_icon_vote_full@2x.png in Resources */,
 				936A5E50286ACEA9004BC632 /* record.png in Resources */,
+				D2D1061229B9EBEA00212381 /* HDVECCloudDiskTableViewCell.xib in Resources */,
 				D3E9CE411FBED182005E3677 /* tabbar_icon_visitorhighlight_Text6@2x.png in Resources */,
 				D3E9CE421FBED182005E3677 /* LaunchScreen.storyboard in Resources */,
 				D3E9CE431FBED182005E3677 /* icon_back_select@2x.png in Resources */,
@@ -7393,6 +7483,7 @@
 				D2A9927E299B3566009B58E8 /* HDVECTicketModel.m in Sources */,
 				D3A7613F1FB55ABE000E1652 /* YYTextKeyboardManager.m in Sources */,
 				D3A761401FB55ABE000E1652 /* YYTextLayout.m in Sources */,
+				D2D1062529BAD2CA00212381 /* HDVECAppSkin.m in Sources */,
 				D3A761411FB55ABE000E1652 /* YYTextLine.m in Sources */,
 				D3A761421FB55ABE000E1652 /* YYTextMagnifier.m in Sources */,
 				90591C302068ADC4007367BD /* KFMonitorInfoChartViewCell.m in Sources */,
@@ -7520,6 +7611,7 @@
 				93074B152840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */,
 				938AEA2D27F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m in Sources */,
 				D33CE8561F7CD0F800236720 /* EMSDWebImageDownloaderOperation.m in Sources */,
+				D2D1062129B9EBEA00212381 /* HDVECWhiteConverterManager.m in Sources */,
 				9029423520E37A1C003D0381 /* NSCalendar+Category.m in Sources */,
 				D33CE6C61F7CA98D00236720 /* EMPickerView.m in Sources */,
 				D3058CE71FD67BAE0091E048 /* HDSuperviseCell.m in Sources */,
@@ -7528,6 +7620,7 @@
 				D33CE76D1F7CAEB800236720 /* UIBarButtonItem+KFAdd.m in Sources */,
 				D2A240A329A857F70066C78C /* JSONHTTPClient.m in Sources */,
 				936A5E26286A9507004BC632 /* KFVideoDetailAllModel.m in Sources */,
+				D2D1060D29B9EBEA00212381 /* HDVECWhiteBoardView.m in Sources */,
 				935CFBE527C617F70093B9DF /* KFVideoDetailViewController.m in Sources */,
 				938A4DC0283BD5CE0069CA51 /* HDVideoVerticalAlignmentLabel.m in Sources */,
 				D33CE8741F7CD25800236720 /* SWUtilityButtonView.m in Sources */,
@@ -7613,6 +7706,7 @@
 				D33CE7391F7CAD2C00236720 /* KFBaseNavigationController.m in Sources */,
 				90591C402068ADC4007367BD /* KFMonitorInstrumentModel.m in Sources */,
 				D33CE7DD1F7CB42E00236720 /* XHMessageTextView.m in Sources */,
+				D2D1061729B9EBEA00212381 /* HDVECCloudDiskViewController.m in Sources */,
 				9363F97028697B36008522EC /* KFVideoObjModel.m in Sources */,
 				D2239E942994959A0087D054 /* HDVECAgoraTicketModel.m in Sources */,
 				D2239E9C2994959A0087D054 /* HDVECCallCollectionViewCell.m in Sources */,
@@ -7632,6 +7726,7 @@
 				D33CE79D1F7CAF6700236720 /* KFSingleRegisterViewController.m in Sources */,
 				D39838D71FDA3D2000D5F853 /* KFWarningModel.m in Sources */,
 				D33CE73F1F7CAD2C00236720 /* LeftMenuHeaderView.m in Sources */,
+				D2D1061329B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m in Sources */,
 				D3A95E321EA0F47100ADD394 /* EMCDDeviceManager+Media.m in Sources */,
 				D33CE7691F7CAEB800236720 /* NSObject+KFAdd.m in Sources */,
 				D33CE82E1F7CD01100236720 /* CJSONSerializer.m in Sources */,
@@ -7665,6 +7760,7 @@
 				D331C2E61FBB0031005CB0D5 /* HDMessage+agent.m in Sources */,
 				938AEA1327F3F8FB00B461C4 /* DBPlayerData.m in Sources */,
 				D33CE7371F7CAD2C00236720 /* HistoryCompileTableViewCell.m in Sources */,
+				D2D1061D29B9EBEA00212381 /* HDVECWhiteBoardUtility.m in Sources */,
 				936A5F1F286AD691004BC632 /* MBProgressHUD+Add.m in Sources */,
 				D33CE7091F7CACAC00236720 /* MMDrawerVisualState.m in Sources */,
 				D33CE8121F7CB52500236720 /* DDTTYLogger.m in Sources */,
@@ -7740,6 +7836,7 @@
 				936A5EF8286AD4FB004BC632 /* HDWhiteBoardView.m in Sources */,
 				D2239E922994959A0087D054 /* HDVECAgoraCallMember.m in Sources */,
 				D33CE70A1F7CACAC00236720 /* UIViewController+MMDrawerController.m in Sources */,
+				D2D1060F29B9EBEA00212381 /* HDVECCustomFastboardOverlay.m in Sources */,
 				D33CE7B81F7CB01000236720 /* AFHTTPRequestOperationManager.m in Sources */,
 				D2A240A729A857F70066C78C /* JSONModel+networking.m in Sources */,
 				D33CE6B61F7CA98D00236720 /* EMChatAudioBubbleView.m in Sources */,
@@ -7755,6 +7852,7 @@
 				D396E6811FDFEC7F009C0CF7 /* KFPredictView.m in Sources */,
 				D3DFB3841FD8EA2400A9358A /* KFDetailModel.m in Sources */,
 				D3A95E6E1EA0F47100ADD394 /* PSTGridLayoutItem.m in Sources */,
+				D2D1061929B9EBEA00212381 /* HDVECUploadFileViewController.m in Sources */,
 				D33CE8781F7CD2B800236720 /* WaitQueueViewController.m in Sources */,
 				936A5F1A286AD5A1004BC632 /* UIView+Kit.m in Sources */,
 				D33CE6B81F7CA98D00236720 /* EMChatFileBubbleView.m in Sources */,
@@ -7791,6 +7889,7 @@
 				D33CE8731F7CD25800236720 /* SWUtilityButtonTapGestureRecognizer.m in Sources */,
 				D33CE7BA1F7CB01000236720 /* AFNetworkReachabilityManager.m in Sources */,
 				D2B9517729222A000043B07F /* KFWKWebViewController.m in Sources */,
+				D2D1061F29B9EBEA00212381 /* HDVECStorageItem.m in Sources */,
 				D3A95E7F1EA0F47100ADD394 /* amrFileCodec.mm in Sources */,
 				D2A240AB29A859390066C78C /* KFIframeModel.m in Sources */,
 				936A5EFC286AD4FB004BC632 /* HDUploadFileViewController.m in Sources */,
@@ -7804,6 +7903,7 @@
 				936A5ECE286ACF3D004BC632 /* HDMiddleVideoView.m in Sources */,
 				D33CE7ED1F7CB48400236720 /* UserTagModel.m in Sources */,
 				D33CE6BA1F7CA98D00236720 /* EMChatImageTextBubbleView.m in Sources */,
+				D2D1061B29B9EBEA00212381 /* HDVECWhiteRoomManager.m in Sources */,
 				D33CE7A21F7CAF6700236720 /* KFTestParameters.m in Sources */,
 				D3A95E351EA0F47100ADD394 /* EMCDDeviceManager+Remind.m in Sources */,
 				936A5F00286AD4FB004BC632 /* HDCloudDiskViewController.m in Sources */,
@@ -7823,6 +7923,7 @@
 				D33CE7A11F7CAF6700236720 /* Helper.m in Sources */,
 				D33CE7EA1F7CB48400236720 /* KFVisitorInfoItem.m in Sources */,
 				90591CDA2068B15B007367BD /* KFMonitorViewController.m in Sources */,
+				D2D1061529B9EBEA00212381 /* HDVECCloudDiskModel.m in Sources */,
 				D3A95E691EA0F47100ADD394 /* PSTCollectionViewFlowLayout.m in Sources */,
 				D2239EA02994959A0087D054 /* HDVECPopoverViewController.m in Sources */,
 				9363F96B28695E16008522EC /* UIView+GestureRecognizer.m in Sources */,
@@ -7843,6 +7944,7 @@
 				D2A9927F299B3566009B58E8 /* HDVECTicketModel.m in Sources */,
 				938AE9AA27F3F86900B461C4 /* KFWebViewController.m in Sources */,
 				938AE9A727F3F7D300B461C4 /* KFVideoDetailViewController.m in Sources */,
+				D2D1062629BAD2CA00212381 /* HDVECAppSkin.m in Sources */,
 				938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */,
 				938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */,
 				D3E9CC861FBED182005E3677 /* YYTextContainerView.m in Sources */,
@@ -7970,6 +8072,7 @@
 				D3058CEC1FD684F30091E048 /* HDTipLabel.m in Sources */,
 				938AEA2227F3F8FB00B461C4 /* KJDownloader.m in Sources */,
 				D3E9CCF01FBED182005E3677 /* EMChatViewBaseCell.m in Sources */,
+				D2D1062229B9EBEA00212381 /* HDVECWhiteConverterManager.m in Sources */,
 				9061557720620EF9006113FF /* KFSwitchTypeButton.m in Sources */,
 				D3E9CCF11FBED182005E3677 /* DXMessageToolBar.m in Sources */,
 				936A5F20286AD691004BC632 /* MBProgressHUD+Add.m in Sources */,
@@ -7978,6 +8081,7 @@
 				D3E9CCF31FBED182005E3677 /* UIAlertView+AlertBlock.m in Sources */,
 				D2A240A429A857F70066C78C /* JSONHTTPClient.m in Sources */,
 				D3E9CCF41FBED182005E3677 /* KFInputEmailViewController.m in Sources */,
+				D2D1060E29B9EBEA00212381 /* HDVECWhiteBoardView.m in Sources */,
 				90FC924F2486323B00014CCC /* View+MASAdditions.m in Sources */,
 				D3E9CCF51FBED182005E3677 /* AdminHistoryViewController.m in Sources */,
 				938AEA3E27F3F8FC00B461C4 /* KJPlayerPod.m in Sources */,
@@ -8063,6 +8167,7 @@
 				D3E9CD2F1FBED182005E3677 /* UINavigationItem+Margin.m in Sources */,
 				D3DFB37D1FD8130000A9358A /* KFSuperviseDetailViewController.m in Sources */,
 				90FC922724862C6600014CCC /* UIViewController+KFSearch.m in Sources */,
+				D2D1061829B9EBEA00212381 /* HDVECCloudDiskViewController.m in Sources */,
 				D3E9CD301FBED182005E3677 /* UIImageView+EMWebCache.m in Sources */,
 				D2239E952994959A0087D054 /* HDVECAgoraTicketModel.m in Sources */,
 				D2239E9D2994959A0087D054 /* HDVECCallCollectionViewCell.m in Sources */,
@@ -8082,6 +8187,7 @@
 				D3E9CD3A1FBED182005E3677 /* EMPromptBoxView.m in Sources */,
 				90FC92432486323B00014CCC /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				D3E9CD3B1FBED182005E3677 /* UIImage+EMMultiFormat.m in Sources */,
+				D2D1061429B9EBEA00212381 /* HDVECCloudDiskTableViewCell.m in Sources */,
 				D3E9CD3C1FBED182005E3677 /* EMSDWebImageDecoder.m in Sources */,
 				D3E9CD3D1FBED182005E3677 /* EMCDDeviceManagerBase.m in Sources */,
 				D3E9CD3E1FBED182005E3677 /* UIViewController+DismissKeyboard.m in Sources */,
@@ -8115,6 +8221,7 @@
 				D3E9CD501FBED182005E3677 /* HDBaseNavigationController.m in Sources */,
 				938AEA4E27F3F8FC00B461C4 /* KJMIDIPlayer.m in Sources */,
 				D3E9CD511FBED182005E3677 /* KFScreenViewController.m in Sources */,
+				D2D1061E29B9EBEA00212381 /* HDVECWhiteBoardUtility.m in Sources */,
 				937032D6286AE0C600B71298 /* HDAgoraCallOptions.m in Sources */,
 				938AEA3C27F3F8FC00B461C4 /* KJBasePlayer.m in Sources */,
 				936A5EC5286ACF3D004BC632 /* HDCallCollectionViewCellItem.m in Sources */,
@@ -8190,6 +8297,7 @@
 				D3E9CD7F1FBED182005E3677 /* main.m in Sources */,
 				D2239E932994959A0087D054 /* HDVECAgoraCallMember.m in Sources */,
 				D3E9CD811FBED182005E3677 /* KFPhoneVerifyViewController.m in Sources */,
+				D2D1061029B9EBEA00212381 /* HDVECCustomFastboardOverlay.m in Sources */,
 				D3E9CD821FBED182005E3677 /* PSTCollectionViewController.m in Sources */,
 				D2A240A829A857F70066C78C /* JSONModel+networking.m in Sources */,
 				D3E9CD841FBED182005E3677 /* PSTGridLayoutSection.m in Sources */,
@@ -8205,6 +8313,7 @@
 				D3E9CD881FBED182005E3677 /* DXTableViewCellTypeConversation.m in Sources */,
 				93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */,
 				D3E9CD891FBED182005E3677 /* UIViewController+MMDrawerController.m in Sources */,
+				D2D1061A29B9EBEA00212381 /* HDVECUploadFileViewController.m in Sources */,
 				D3E9CD8A1FBED182005E3677 /* AFHTTPRequestOperationManager.m in Sources */,
 				D3E9CD8B1FBED182005E3677 /* EMChatAudioBubbleView.m in Sources */,
 				938AEA2427F3F8FB00B461C4 /* KJFileHandleInfo.m in Sources */,
@@ -8241,6 +8350,7 @@
 				90FC92512486323B00014CCC /* MASConstraint.m in Sources */,
 				D3E9CD9D1FBED182005E3677 /* EMTagView.m in Sources */,
 				D2B9517829222A000043B07F /* KFWKWebViewController.m in Sources */,
+				D2D1062029B9EBEA00212381 /* HDVECStorageItem.m in Sources */,
 				938AEA2A27F3F8FB00B461C4 /* KJBasePlayer+KJPingTimer.m in Sources */,
 				D2A240AC29A859390066C78C /* KFIframeModel.m in Sources */,
 				D3E9CD9E1FBED182005E3677 /* EMHeaderImageView.m in Sources */,
@@ -8254,6 +8364,7 @@
 				938AEA1C27F3F8FB00B461C4 /* KJScreenshotsManager.m in Sources */,
 				938AEA5427F3F8FC00B461C4 /* KJBasePlayerView.m in Sources */,
 				D3E9CDA11FBED182005E3677 /* AFNetworkReachabilityManager.m in Sources */,
+				D2D1061C29B9EBEA00212381 /* HDVECWhiteRoomManager.m in Sources */,
 				D3E9CDA31FBED182005E3677 /* amrFileCodec.mm in Sources */,
 				936A5EC3286ACF3D004BC632 /* HDPopoverViewController.m in Sources */,
 				D3E9CDA41FBED182005E3677 /* DXTableViewCellType1.m in Sources */,
@@ -8273,6 +8384,7 @@
 				D3E9CDB01FBED182005E3677 /* Helper.m in Sources */,
 				90091DE120D0CF9F002AA808 /* HLeaveMessageListCell.m in Sources */,
 				D3E9CDB11FBED182005E3677 /* KFVisitorInfoItem.m in Sources */,
+				D2D1061629B9EBEA00212381 /* HDVECCloudDiskModel.m in Sources */,
 				90591CDB2068B15B007367BD /* KFMonitorViewController.m in Sources */,
 				D2239EA12994959A0087D054 /* HDVECPopoverViewController.m in Sources */,
 				D3E9CDB21FBED182005E3677 /* PSTCollectionViewFlowLayout.m in Sources */,

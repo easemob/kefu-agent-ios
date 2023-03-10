@@ -107,4 +107,105 @@ static HDCECScreeShareManager *shareManager = nil;
     }
 }
 
+// 监听系统生命周期回调，以便将需要的事件传给SDK
+- (void)setupNotifiers{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appDidEnterBackgroundNotif:)
+                                                 name:UIApplicationDidEnterBackgroundNotification
+                                               object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appWillEnterForeground:)
+                                                 name:UIApplicationWillEnterForegroundNotification
+                                               object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appDidFinishLaunching:)
+                                                 name:UIApplicationDidFinishLaunchingNotification
+                                               object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appDidBecomeActiveNotif:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appWillResignActiveNotif:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appDidReceiveMemoryWarning:)
+                                                 name:UIApplicationDidReceiveMemoryWarningNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appWillTerminateNotif:)
+                                                 name:UIApplicationWillTerminateNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appProtectedDataWillBecomeUnavailableNotif:)
+                                                 name:UIApplicationProtectedDataWillBecomeUnavailable
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(appProtectedDataDidBecomeAvailableNotif:)
+                                                 name:UIApplicationProtectedDataDidBecomeAvailable
+                                               object:nil];
+}
+
+#pragma mark - notifiers
+- (void)appDidEnterBackgroundNotif:(NSNotification*)notif{
+   
+
+    NSLog(@"=========appDidEnterBackgroundNotif==============");
+    
+}
+
+- (void)appWillEnterForeground:(NSNotification*)notif
+{
+    NSLog(@"=========appWillEnterForeground==============");
+}
+
+- (void)appDidFinishLaunching:(NSNotification*)notif
+{
+    NSLog(@"=========appDidFinishLaunching==============");
+}
+
+- (void)appDidBecomeActiveNotif:(NSNotification*)notif
+{
+    NSLog(@"=========appDidBecomeActiveNotif==============");
+}
+
+- (void)appWillResignActiveNotif:(NSNotification*)notif
+{
+    NSLog(@"=========appWillResignActiveNotif==============");
+}
+
+- (void)appDidReceiveMemoryWarning:(NSNotification*)notif
+{
+    NSLog(@"=========appDidReceiveMemoryWarning==============");
+}
+
+- (void)appWillTerminateNotif:(NSNotification*)notif
+{
+    NSLog(@"=========appWillTerminateNotif==============");
+}
+
+- (void)appProtectedDataWillBecomeUnavailableNotif:(NSNotification*)notif
+{
+    NSLog(@"=========appProtectedDataWillBecomeUnavailableNotif==============");
+}
+
+- (void)appProtectedDataDidBecomeAvailableNotif:(NSNotification*)notif
+{
+    NSLog(@"=========appProtectedDataDidBecomeAvailableNotif==============");
+
+}
+
+
 @end
