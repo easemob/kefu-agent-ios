@@ -25,14 +25,14 @@ PODS:
   - AgoraRtcEngine_iOS/SpatialAudio (4.1.1)
   - AgoraRtcEngine_iOS/VirtualBackground (4.1.1)
   - AgoraRtcEngine_iOS/VQA (4.1.1)
-  - Fastboard (1.0.8):
-    - Fastboard/core (= 1.0.8)
-  - Fastboard/core (1.0.8):
-    - Whiteboard (~> 2.16.24)
+  - Fastboard (1.1.2):
+    - Fastboard/core (= 1.1.2)
+  - Fastboard/core (1.1.2):
+    - Whiteboard (~> 2.16.36)
   - LMJDropdownMenu (3.0.4)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
-  - NTLBridge (3.1.4)
+  - NTLBridge (3.1.5)
   - SDWebImage (5.12.6):
     - SDWebImage/Core (= 5.12.6)
   - SDWebImage/Core (5.12.6)
@@ -42,25 +42,25 @@ PODS:
   - TZImagePickerController/Basic (3.8.3)
   - TZImagePickerController/Location (3.8.3)
   - WebViewJavascriptBridge (6.0.3)
-  - Whiteboard (2.16.32):
-    - Whiteboard/Whiteboard-YYModel (= 2.16.32)
-  - Whiteboard/Base (2.16.32):
+  - Whiteboard (2.16.57):
+    - Whiteboard/Whiteboard-YYModel (= 2.16.57)
+  - Whiteboard/Base (2.16.57):
     - NTLBridge (~> 3.1.4)
     - Whiteboard/Object
-  - Whiteboard/Converter (2.16.32):
+  - Whiteboard/Converter (2.16.57):
     - Whiteboard/Object
-  - Whiteboard/Model (2.16.32):
+  - Whiteboard/Model (2.16.57):
     - YYModel
-  - Whiteboard/NativeReplayer (2.16.32):
+  - Whiteboard/NativeReplayer (2.16.57):
     - Whiteboard/Replayer
-  - Whiteboard/Object (2.16.32):
+  - Whiteboard/Object (2.16.57):
     - Whiteboard/Model
-  - Whiteboard/Replayer (2.16.32):
+  - Whiteboard/Replayer (2.16.57):
     - Whiteboard/Base
-  - Whiteboard/Resource (2.16.32)
-  - Whiteboard/Room (2.16.32):
+  - Whiteboard/Resource (2.16.57)
+  - Whiteboard/Room (2.16.57):
     - Whiteboard/Base
-  - Whiteboard/Whiteboard-YYModel (2.16.32):
+  - Whiteboard/Whiteboard-YYModel (2.16.57):
     - Whiteboard/Converter
     - Whiteboard/NativeReplayer
     - Whiteboard/Resource
@@ -70,7 +70,7 @@ PODS:
 DEPENDENCIES:
   - AAChartKit (from `https://github.com/AAChartModel/AAChartKit.git`)
   - AgoraRtcEngine_iOS (~> 4.1.1)
-  - Fastboard (~> 1.0.8)
+  - Fastboard (~> 1.1.2)
   - LMJDropdownMenu
   - Masonry (~> 1.1.0)
   - MBProgressHUD (~> 1.2.0)
@@ -104,17 +104,17 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AAChartKit: dffacac3b641f2d2dc2fbf5f227350d22faee784
   AgoraRtcEngine_iOS: df216a18a01c30fba926565d889c9542319252ac
-  Fastboard: 06013d1514b3974e51d9126253df420e1a8a7a3b
+  Fastboard: 2fb2863f6f6c23d1087f597660ddc74f1f198dec
   LMJDropdownMenu: 50c74e9d50a480c290fec47eb575826861d0823b
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  NTLBridge: 49780dc966976d3221a0eb03c7368617c1987cb6
+  NTLBridge: e94dc18242476b0238c10213a5438d9b9a59fcce
   SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
-  Whiteboard: fe863e23b9ec895503f05053a23abc4aa4c0116f
+  Whiteboard: 0e6e4d1ccff8df5fff36b58de3add4d2a243c2bd
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 2c934c23fa3f2af936611849e17924a09154f701
+PODFILE CHECKSUM: 152b12cc473666f043d8b7b9108cf17d9b99f77d
 
 COCOAPODS: 1.11.3

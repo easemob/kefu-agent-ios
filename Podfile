@@ -14,8 +14,8 @@ target 'AgentSDKDemo' do
  pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
 # pod 'AgoraRtcEngine_iOS', '~> 3.7.0.3'
 # pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
- pod 'Fastboard', '~> 1.0.8'
-#pod 'Fastboard', '~> 1.1.2'
+# pod 'Fastboard', '~> 1.0.8'
+pod 'Fastboard', '~> 1.1.2'
  pod 'TZImagePickerController'
  
 
@@ -39,8 +39,8 @@ target 'AgentSDKDemoAppStore' do
 pod 'AgoraRtcEngine_iOS', '~> 4.1.1'
 #pod 'AgoraRtcEngine_iOS', '4.1.1', :subspecs => ['RtcBasic', 'ReplayKit']
 #  pod 'Fastboard', :git => 'https://github.com/netless-io/fastboard-iOS'
-#pod 'Fastboard', '~> 1.1.2'
-pod 'Fastboard', '~> 1.0.8'
+pod 'Fastboard', '~> 1.1.2'
+#pod 'Fastboard', '~> 1.0.8'
   pod 'TZImagePickerController'
 end
 
