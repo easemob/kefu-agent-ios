@@ -882,8 +882,8 @@ static HDCallViewController *_manger = nil;
 #pragma mark ---------------------屏幕共享 相关 end-----------------------------
 - (void)dealloc{
     // 移除 通知
-    [[NSNotificationCenter defaultCenter]  removeObserver:self name:HDCEC_SCREENSHARE_STATRT object:nil];
-    [[NSNotificationCenter defaultCenter]  removeObserver:self name:HDCEC_SCREENSHARE_STOP object:nil];
+//    [[NSNotificationCenter defaultCenter]  removeObserver:self name:HDCEC_SCREENSHARE_STATRT object:nil];
+//    [[NSNotificationCenter defaultCenter]  removeObserver:self name:HDCEC_SCREENSHARE_STOP object:nil];
     
 }
 #pragma mark ==========================互动白板  相关 start ==========================

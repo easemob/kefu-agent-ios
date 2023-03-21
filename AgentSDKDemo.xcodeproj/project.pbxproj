@@ -538,6 +538,7 @@
 		D2B9517829222A000043B07F /* KFWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517629222A000043B07F /* KFWKWebViewController.m */; };
 		D2B9517B292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
 		D2B9517C292372940043B07F /* KFChatBarMoreModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B9517A292372940043B07F /* KFChatBarMoreModel.m */; };
+		D2BFCEBB29C9B2C400FC00A0 /* AgoraReplayKitExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */; };
 		D2C3352728DD5FD800421022 /* KFChatSmartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EF9B02834BCF800A3C205 /* KFChatSmartView.m */; };
 		D2C3352828DD60B900421022 /* KFVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 936A5E25286A9506004BC632 /* KFVideoDetailAllModel.m */; };
 		D2D105DF29B8709D00212381 /* HDCECScreeShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D105DE29B8709D00212381 /* HDCECScreeShareManager.m */; };
@@ -571,8 +572,6 @@
 		D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
 		D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DAD11329B747F600733A8E /* SampleHandler.m */; };
 		D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D2DAD11C29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */; };
-		D2DAD11D29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2DE0FD0295D3E6400EE8C8D /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; };
 		D2DE0FD1295D3E6400EE8C8D /* AgentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2DE0FD2295D3EA800EE8C8D /* AgentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */; };
@@ -1878,17 +1877,6 @@
 				D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D2DAD11E29B7488E00733A8E /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D2DAD11D29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		D33CE5E41F7C96BB00236720 /* Embed Frameworks */ = {
@@ -3378,7 +3366,7 @@
 			files = (
 				D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */,
 				08700CE28DADB3DBA7204282 /* Pods_AgentDemoAppstoreExtension.framework in Frameworks */,
-				D2DAD11C29B7488E00733A8E /* AgoraReplayKitExtension.xcframework in Frameworks */,
+				D2BFCEBB29C9B2C400FC00A0 /* AgoraReplayKitExtension.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6223,7 +6211,6 @@
 				D2DAD10B29B747F600733A8E /* Sources */,
 				D2DAD10C29B747F600733A8E /* Frameworks */,
 				D2DAD10D29B747F600733A8E /* Resources */,
-				D2DAD11E29B7488E00733A8E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

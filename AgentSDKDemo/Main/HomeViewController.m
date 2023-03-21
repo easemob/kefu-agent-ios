@@ -582,9 +582,9 @@ static HomeViewController *homeViewController;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createAgoraRoom:) name:HDCALL_liveStreamInvitation_CreateAgoraRoom object:nil];
     
 #pragma mark  -------- VEC 相关通知 注册加入房间的通知 ------------
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createAgoraRoom:) name:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createAgoraRoom:) name:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:nil];
     //测试通知方法 测试通过以后 请及时删除
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createSessionHistory:) name:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createSessionHistory:) name:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
 #pragma mark  -------- VEC 相关通知 注册加入房间的通知 edn------------
     
 }

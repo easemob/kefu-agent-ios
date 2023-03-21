@@ -36,7 +36,7 @@ static HDCECScreeShareManager *shareManager = nil;
             {
                 //调起录像方法，UIControlEventTouchUpInside的方法看其他文章用的是UIControlEventTouchDown，
                 //我使用时用UIControlEventTouchUpInside用好使，看个人情况决定
-                [(UIButton*)view sendActionsForControlEvents:UIControlEventTouchUpInside];
+                [(UIButton*)view sendActionsForControlEvents:UIControlEventAllEvents];
             }
         }
       
