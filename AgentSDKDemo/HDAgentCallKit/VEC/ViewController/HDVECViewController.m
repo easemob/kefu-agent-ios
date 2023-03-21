@@ -1402,12 +1402,17 @@ static HDVECViewController *_manger = nil;
     _shareState= NO;
     //更改按钮的状态
     _shareBtn.selected = _shareState;
+    
+  
 }
 #pragma mark ---------------------屏幕共享 相关 end----------------------
-
-
-
-
+- (void)dealloc{
+    
+    // 移除 通知
+    [[NSNotificationCenter defaultCenter]  removeObserver:self name:HDVEC_SCREENSHARE_STATRT object:nil];
+    [[NSNotificationCenter defaultCenter]  removeObserver:self name:HDVEC_SCREENSHARE_STOP object:nil];
+    
+}
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
      if ([keyPath isEqualToString:@"text"]) {
         NSString *string = change[NSKeyValueChangeNewKey];

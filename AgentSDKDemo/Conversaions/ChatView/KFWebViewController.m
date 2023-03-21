@@ -71,7 +71,8 @@
     self = [super init];
     if (self) {
         
-        _url = [self URLEncodeString:url];
+//        _url = [self URLEncodeString:url];
+        _url = url;
     }
     return self;
 }
@@ -489,7 +490,7 @@
 }
 #pragma mark - url 编码
 - (NSString *)URLEncodeString:(NSString *)str {
-    NSString *encodedString = [str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;='\"`<>()[]{}\\| "] invertedSet]];
+    NSString *encodedString = [str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;'\"`<>()[]{}\\| "] invertedSet]];
     return encodedString;
 }
 @end

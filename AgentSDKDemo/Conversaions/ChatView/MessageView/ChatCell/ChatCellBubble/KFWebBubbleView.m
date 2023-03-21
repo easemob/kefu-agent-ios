@@ -348,7 +348,7 @@ NSString *const kRouterEventWebBubbleTapEventName = @"kRouterEventWebBubbleTapEv
 
 #pragma mark - url 编码
 - (NSString *)URLEncodeString:(NSString *)str {
-    NSString *encodedString = [str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;='\"`<>()[]{}\\| "] invertedSet]];
+    NSString *encodedString = [str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;'\"`<>()[]{}\\| "] invertedSet]];
     return encodedString;
 }
 - (WKWebView *)webView{

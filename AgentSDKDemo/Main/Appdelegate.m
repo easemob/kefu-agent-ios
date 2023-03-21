@@ -21,7 +21,6 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
 
-//#import <wax/wax.h>
 
 @interface AppDelegate () <UIAlertViewDelegate>
 

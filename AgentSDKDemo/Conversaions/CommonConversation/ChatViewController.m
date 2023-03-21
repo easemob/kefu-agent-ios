@@ -1668,6 +1668,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 {
     //ios 2020-4-30 提交appstore 必须使用 WKWebView 使用UIWebView 审核不通过 开始替换WebViewController 中的UIWebView
     KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
+//    KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:@"https://h5.heipimall.com/pages/order-detail/order-detail?orderNum=1636925817378443264"];
+//
     [self.navigationController pushViewController:webview animated:YES];
 }
 // 图文混排格式的bubble被点击
