@@ -500,6 +500,8 @@
 		D2239EB72994959A0087D054 /* HDVECVideoDetailAllModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E892994959A0087D054 /* HDVECVideoDetailAllModel.m */; };
 		D2239EB82994959A0087D054 /* HDVECVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */; };
 		D2239EB92994959A0087D054 /* HDVECVideoObjModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E8A2994959A0087D054 /* HDVECVideoObjModel.m */; };
+		D232952E29D3DC4B00C4F999 /* NSArray+KFCrashArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D232952D29D3DC4B00C4F999 /* NSArray+KFCrashArray.m */; };
+		D232952F29D3DC4B00C4F999 /* NSArray+KFCrashArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D232952D29D3DC4B00C4F999 /* NSArray+KFCrashArray.m */; };
 		D2A2409729A857F70066C78C /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A2408229A857F70066C78C /* JSONValueTransformer.m */; };
 		D2A2409829A857F70066C78C /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A2408229A857F70066C78C /* JSONValueTransformer.m */; };
 		D2A2409929A857F70066C78C /* JSONKeyMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A2408529A857F70066C78C /* JSONKeyMapper.m */; };
@@ -2341,6 +2343,8 @@
 		D2239E8B2994959A0087D054 /* HDVECRingingCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECRingingCallModel.h; sourceTree = "<group>"; };
 		D2239E8C2994959A0087D054 /* HDVECVideoDetailAllModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECVideoDetailAllModel.h; sourceTree = "<group>"; };
 		D2239E8D2994959A0087D054 /* HDVECVideoObjModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECVideoObjModel.h; sourceTree = "<group>"; };
+		D232952C29D3DC4B00C4F999 /* NSArray+KFCrashArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+KFCrashArray.h"; sourceTree = "<group>"; };
+		D232952D29D3DC4B00C4F999 /* NSArray+KFCrashArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+KFCrashArray.m"; sourceTree = "<group>"; };
 		D2A2408229A857F70066C78C /* JSONValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONValueTransformer.m; sourceTree = "<group>"; };
 		D2A2408329A857F70066C78C /* JSONKeyMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKeyMapper.h; sourceTree = "<group>"; };
 		D2A2408429A857F70066C78C /* JSONValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONValueTransformer.h; sourceTree = "<group>"; };
@@ -4875,6 +4879,8 @@
 				9029423420E37A1C003D0381 /* NSCalendar+Category.m */,
 				90D911EE20EB8480008B38AA /* UILabel+Category.h */,
 				90D911EF20EB8480008B38AA /* UILabel+Category.m */,
+				D232952C29D3DC4B00C4F999 /* NSArray+KFCrashArray.h */,
+				D232952D29D3DC4B00C4F999 /* NSArray+KFCrashArray.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -7837,6 +7843,7 @@
 				D3A6BB691FB058BF00066410 /* HDChatFormBubbleView.m in Sources */,
 				90AFCBDD20CFA1D0007D0ADB /* HLeaveMessageCell.m in Sources */,
 				D396E6811FDFEC7F009C0CF7 /* KFPredictView.m in Sources */,
+				D232952E29D3DC4B00C4F999 /* NSArray+KFCrashArray.m in Sources */,
 				D3DFB3841FD8EA2400A9358A /* KFDetailModel.m in Sources */,
 				D3A95E6E1EA0F47100ADD394 /* PSTGridLayoutItem.m in Sources */,
 				D2D1061929B9EBEA00212381 /* HDVECUploadFileViewController.m in Sources */,
@@ -8298,6 +8305,7 @@
 				D3E9CD871FBED182005E3677 /* EMChatBaseBubbleView.m in Sources */,
 				93074B162840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */,
 				D3E9CD881FBED182005E3677 /* DXTableViewCellTypeConversation.m in Sources */,
+				D232952F29D3DC4B00C4F999 /* NSArray+KFCrashArray.m in Sources */,
 				93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */,
 				D3E9CD891FBED182005E3677 /* UIViewController+MMDrawerController.m in Sources */,
 				D2D1061A29B9EBEA00212381 /* HDVECUploadFileViewController.m in Sources */,
