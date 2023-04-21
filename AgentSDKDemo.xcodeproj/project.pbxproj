@@ -458,6 +458,9 @@
 		93FA0F6F286027AE00C1188E /* UIColor+HLKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F6D286027AE00C1188E /* UIColor+HLKit.m */; };
 		93FA0F782860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
 		93FA0F792860551600C1188E /* UIView+GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FA0F762860551600C1188E /* UIView+GestureRecognizer.m */; };
+		D20EA95429F1120D00BA5971 /* HyphenateChat.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D20EA95329F1120D00BA5971 /* HyphenateChat.xcframework */; };
+		D220E87D29F23D73005EA245 /* HyphenateChat.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = D220E87C29F23D73005EA245 /* HyphenateChat.xcframework */; };
+		D220E87E29F23D73005EA245 /* HyphenateChat.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D220E87C29F23D73005EA245 /* HyphenateChat.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2239E8E2994959A0087D054 /* HDVECAgoraCallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */; };
 		D2239E8F2994959A0087D054 /* HDVECAgoraCallManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */; };
 		D2239E902994959A0087D054 /* HDVECAgoraCallOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */; };
@@ -624,8 +627,6 @@
 		D331C2E61FBB0031005CB0D5 /* HDMessage+agent.m in Sources */ = {isa = PBXBuildFile; fileRef = D331C2E51FBB0031005CB0D5 /* HDMessage+agent.m */; };
 		D332159E1F55514B0048F147 /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95E2A1EA0F47100ADD394 /* libopencore-amrnb.a */; };
 		D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95E2E1EA0F47100ADD394 /* libopencore-amrwb.a */; };
-		D33CE5E01F7C96BB00236720 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */; };
-		D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D33CE6861F7CA98D00236720 /* EMFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5EE1F7CA98D00236720 /* EMFileViewController.m */; };
 		D33CE6871F7CA98D00236720 /* EMSetMaxServiceNumberController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5F01F7CA98D00236720 /* EMSetMaxServiceNumberController.m */; };
 		D33CE6881F7CA98D00236720 /* AddTagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE5F31F7CA98D00236720 /* AddTagViewController.m */; };
@@ -1202,7 +1203,6 @@
 		D3E9CDB41FBED182005E3677 /* wav.mm in Sources */ = {isa = PBXBuildFile; fileRef = D3A95E241EA0F47100ADD394 /* wav.mm */; };
 		D3E9CDB51FBED182005E3677 /* ChatSendHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D33CE60F1F7CA98D00236720 /* ChatSendHelper.m */; };
 		D3E9CDB71FBED182005E3677 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E6111F569D8800E3AB74 /* SystemConfiguration.framework */; };
-		D3E9CDB81FBED182005E3677 /* HyphenateLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */; };
 		D3E9CDB91FBED182005E3677 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE81F1F7CB55700236720 /* Bugly.framework */; };
 		D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D3A95D4E1EA0ED5B00ADD394 /* libsqlite3.tbd */; };
 		D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D378E60B1F569CFE00E3AB74 /* libiconv.tbd */; };
@@ -1551,7 +1551,6 @@
 		D3E9CF291FBED182005E3677 /* ee_3.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC69A1EA0A5C600C25BB0 /* ee_3.png */; };
 		D3E9CF2A1FBED182005E3677 /* VoiceSearchFeedback013@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6291EA0A5C500C25BB0 /* VoiceSearchFeedback013@2x.png */; };
 		D3E9CF2B1FBED182005E3677 /* icon_audio_white_3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC6641EA0A5C500C25BB0 /* icon_audio_white_3@2x.png */; };
-		D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3FDC5FF1EA0A5BE00C25BB0 /* icon1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5F81EA0A5BE00C25BB0 /* icon1@3x.png */; };
 		D3FDC6001EA0A5BE00C25BB0 /* icon1_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5F91EA0A5BE00C25BB0 /* icon1_selected@3x.png */; };
 		D3FDC6011EA0A5BE00C25BB0 /* icon2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D3FDC5FA1EA0A5BE00C25BB0 /* icon2@2x.png */; };
@@ -1887,7 +1886,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D33CE5E11F7C96BB00236720 /* HyphenateLite.framework in Embed Frameworks */,
 				D2DE0FD3295D3EA800EE8C8D /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -1899,7 +1897,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D3E9CF2D1FBED182005E3677 /* HyphenateLite.framework in Embed Frameworks */,
+				D220E87E29F23D73005EA245 /* HyphenateChat.xcframework in Embed Frameworks */,
 				D2DE0FD1295D3E6400EE8C8D /* AgentSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -2300,6 +2298,8 @@
 		9E240DB1371F538B82EAC354 /* Pods_AgentSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AgentSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD7DA8E999969F0332AA3BE4 /* Pods-AgentSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentSDKDemo.debug.xcconfig"; path = "Target Support Files/Pods-AgentSDKDemo/Pods-AgentSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BF89F02A82FADBA2C332F98D /* Pods-AgentDemoAppstoreExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AgentDemoAppstoreExtension.release.xcconfig"; path = "Target Support Files/Pods-AgentDemoAppstoreExtension/Pods-AgentDemoAppstoreExtension.release.xcconfig"; sourceTree = "<group>"; };
+		D20EA95329F1120D00BA5971 /* HyphenateChat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = HyphenateChat.xcframework; sourceTree = "<group>"; };
+		D220E87C29F23D73005EA245 /* HyphenateChat.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = HyphenateChat.xcframework; path = "../kefu-app-ios/AgentSDK/Message/Libs/HyphenateChat.xcframework"; sourceTree = "<group>"; };
 		D2239E5B299495990087D054 /* HDVECAgoraCallManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallManager.m; sourceTree = "<group>"; };
 		D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallOptions.m; sourceTree = "<group>"; };
 		D2239E5D299495990087D054 /* HDVECAgoraCallMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAgoraCallMember.m; sourceTree = "<group>"; };
@@ -2453,7 +2453,6 @@
 		D331C2E21FBAF463005CB0D5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D331C2E41FBB0031005CB0D5 /* HDMessage+agent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HDMessage+agent.h"; sourceTree = "<group>"; };
 		D331C2E51FBB0031005CB0D5 /* HDMessage+agent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "HDMessage+agent.m"; sourceTree = "<group>"; };
-		D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HyphenateLite.framework; sourceTree = "<group>"; };
 		D33CE5ED1F7CA98D00236720 /* EMFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMFileViewController.h; sourceTree = "<group>"; };
 		D33CE5EE1F7CA98D00236720 /* EMFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMFileViewController.m; sourceTree = "<group>"; };
 		D33CE5EF1F7CA98D00236720 /* EMSetMaxServiceNumberController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSetMaxServiceNumberController.h; sourceTree = "<group>"; };
@@ -3379,11 +3378,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				D378E6121F569D8900E3AB74 /* SystemConfiguration.framework in Frameworks */,
-				D33CE5E01F7C96BB00236720 /* HyphenateLite.framework in Frameworks */,
 				D33CE8201F7CB55700236720 /* Bugly.framework in Frameworks */,
 				D378E6101F569D5100E3AB74 /* libsqlite3.tbd in Frameworks */,
 				D2DE0FD2295D3EA800EE8C8D /* AgentSDK.framework in Frameworks */,
 				D378E60C1F569CFE00E3AB74 /* libiconv.tbd in Frameworks */,
+				D20EA95429F1120D00BA5971 /* HyphenateChat.xcframework in Frameworks */,
 				D378E60F1F569D2E00E3AB74 /* libz.tbd in Frameworks */,
 				D378E60A1F569CF100E3AB74 /* Security.framework in Frameworks */,
 				D332159F1F55515A0048F147 /* libopencore-amrwb.a in Frameworks */,
@@ -3397,12 +3396,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3E9CDB71FBED182005E3677 /* SystemConfiguration.framework in Frameworks */,
-				D3E9CDB81FBED182005E3677 /* HyphenateLite.framework in Frameworks */,
 				D3E9CDB91FBED182005E3677 /* Bugly.framework in Frameworks */,
 				D3E9CDBA1FBED182005E3677 /* libsqlite3.tbd in Frameworks */,
 				D3E9CDBC1FBED182005E3677 /* libiconv.tbd in Frameworks */,
 				D3E9CDBD1FBED182005E3677 /* libz.tbd in Frameworks */,
 				D3E9CDC01FBED182005E3677 /* libc++.tbd in Frameworks */,
+				D220E87D29F23D73005EA245 /* HyphenateChat.xcframework in Frameworks */,
 				D3E9CDC21FBED182005E3677 /* Security.framework in Frameworks */,
 				D3E9CDC31FBED182005E3677 /* libopencore-amrwb.a in Frameworks */,
 				D3E9CDC41FBED182005E3677 /* libopencore-amrnb.a in Frameworks */,
@@ -5459,6 +5458,7 @@
 		D3A95D691EA0F47100ADD394 /* FrameWorks */ = {
 			isa = PBXGroup;
 			children = (
+				D20EA95329F1120D00BA5971 /* HyphenateChat.xcframework */,
 				D2A2408029A857F70066C78C /* JSONModel */,
 				938AE9AE27F3F8FB00B461C4 /* KJPlayer */,
 				90FC92282486323B00014CCC /* Masonry */,
@@ -5472,7 +5472,6 @@
 				D33CE7F11F7CB52500236720 /* CocoaLumberjack */,
 				D33CE7A31F7CB01000236720 /* AFNetworking */,
 				D33CE6FD1F7CACAC00236720 /* MMDrawerController */,
-				D33CE5DE1F7C96AE00236720 /* HyphenateLite.framework */,
 				D3A95D6B1EA0F47100ADD394 /* DeviceUtil */,
 				D3A95D801EA0F47100ADD394 /* Emoji */,
 				D3A95DB11EA0F47100ADD394 /* MWPhotoBrowser */,
@@ -5732,6 +5731,7 @@
 		D3FDC5121EA08C0900C25BB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D220E87C29F23D73005EA245 /* HyphenateChat.xcframework */,
 				D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */,
 				D2DE0FCF295D3E6400EE8C8D /* AgentSDK.framework */,
 				D331C2E21FBAF463005CB0D5 /* UIKit.framework */,
@@ -8761,7 +8761,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.2.1;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -8814,7 +8814,7 @@
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/AgentSDKDemo/FrameWorks/Umeng",
 				);
-				MARKETING_VERSION = 3.2.0;
+				MARKETING_VERSION = 3.2.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"$(inherited)",

@@ -75,7 +75,7 @@
 #import "KFHttpManager.h"
 #import "KFFileCache.h"
 
-#import <HyphenateLite/HyphenateLite.h>
+#import <HyphenateChat/HyphenateChat.h>
 #import "UIImageView+EMWebCache.h"
 #import "KFPromptView.h"
 #import "KFBaseViewController.h"
