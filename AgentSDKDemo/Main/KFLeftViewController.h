@@ -14,6 +14,7 @@
 - (void)adminMenuClickWithIndex:(NSInteger)index;
 
 - (void)onlineStatusClick:(UIView *)view;
+- (void)vecStatusClick:(UIView *)view;
 @end
 
 

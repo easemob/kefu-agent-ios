@@ -55,10 +55,21 @@
 
 
 - (void)saveStatus:(id)sender{
+    
     NSString *value =[_dataSource objectAtIndex:[_pickView selectedRowInComponent:0]];
-    if (_delegate && [_delegate respondsToSelector:@selector(savePickerWithValue:index:)]) {
-        [_delegate savePickerWithValue:value index:[_pickView selectedRowInComponent:0]];
+    
+   if(self.pickerViewType == HDEMPickerViewTypeVEC){
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(savePickerWithValue:index:)]) {
+            [_delegate saveVECPickerWithValue:value index:[_pickView selectedRowInComponent:0]];
+        }
+    }else{
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(savePickerWithValue:index:)]) {
+            [_delegate savePickerWithValue:value index:[_pickView selectedRowInComponent:0]];
+        }
     }
+   
     [self removeFromSuperview];
 }
 

@@ -14,6 +14,7 @@
 {
     HDMessage * _message;
     HDVECRingingCallModel * _ringingCallModel;
+    dispatch_source_t _timer;
 }
 @end
 
@@ -67,6 +68,8 @@
         [[EMCDDeviceManager sharedInstance] playNewMessageSoundCustom];
     // 收到消息时，震动
         [[EMCDDeviceManager sharedInstance] playVibration];
+    
+    [self performSelector:@selector(startTimer) withObject:nil afterDelay:15.0];
 }
 - (void)stopSoundCustom{
     
@@ -74,7 +77,36 @@
     
     
 }
+- (void)startTimer {
+    
+    [self stopSoundCustom];
+//    if (_timer) {
+//        dispatch_cancel(_timer);
+//    }
+//    NSTimeInterval period = 15.0; //设置时间间隔
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+//    dispatch_source_set_timer(_timer, dispatch_walltime(NULL, 0), period * NSEC_PER_SEC, 0);
+//    dispatch_source_set_event_handler(_timer, ^{
+//      
+//     
+//        [self stopTimer];
+//        
+//        [self stopSoundCustom];
+//        
+//        
+//    });
+//    
+//    dispatch_resume(_timer);
 
+}
+
+
+- (void)stopTimer {
+    if (_timer) {
+        dispatch_cancel(_timer);
+    }
+}
 // 全屏布局
 - (void)hd_fullViewLayout{
     

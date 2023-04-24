@@ -63,7 +63,7 @@ static NSString *kConversationChatter = @"ConversationChatter";
 static NSString *kGroupName = @"GroupName";
 
 #define kLeftMenuTag 12903
-@interface HomeViewController ()<EMChatManagerDelegate,LeftMenuViewDelegate,HDChatManagerDelegate>
+@interface HomeViewController ()<EMChatManagerDelegate,LeftMenuViewDelegate,HDChatManagerDelegate,HDClientDelegate>
 {
     UITapGestureRecognizer *_tap;
     BOOL _isEnterChat;
@@ -536,6 +536,10 @@ static HomeViewController *homeViewController;
 {
     [[UIApplication sharedApplication].keyWindow addSubview:view];
 }
+-(void)vecStatusClick:(UIView *)view{
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:view];
+}
 
 - (void)willAutoReconnect{
 }
@@ -575,6 +579,7 @@ static HomeViewController *homeViewController;
 
 -(void)registerNotifications
 {
+    [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"showLeftView" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"historyBackAction" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeftView) name:@"settingBackAction" object:nil];
@@ -980,7 +985,14 @@ static HomeViewController *homeViewController;
         self.alertWindow = nil;
     };
 }
-#pragma mark ----------------------------VEC 视频相关 入口 end-------------------------------
 
+#pragma mark ----------------------------VEC 视频相关 入口 end-------------------------------
+- (void)userAccountNeedRelogin:(HDAutoLogoutReason)reason{
+    
+    if (self.kfVecAnswerView) {
+        [self.kfVecAnswerView vec_cancelKefuRtcCallRinging];
+    }
+    
+}
 @end
 

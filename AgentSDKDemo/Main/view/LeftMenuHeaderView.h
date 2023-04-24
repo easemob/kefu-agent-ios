@@ -17,5 +17,6 @@
 @property (nonatomic, strong) UILabel *nickLabel;
 
 @property (nonatomic, strong) UIButton *onlineButton;
+@property (nonatomic, strong) UIButton *vecButton;
 
 @end

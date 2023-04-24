@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 >
 @property (nonatomic, strong) LeftMenuHeaderView *headerView;
 @property (nonatomic, strong) EMPickerView *pickerView;
+@property (nonatomic, strong) EMPickerView *vecPickerView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) KFSwitchTypeButton *switchBtn;
 @property (nonatomic, strong) NSArray *adminDatasrouce;
@@ -50,6 +51,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 {
     NSArray *_menuData;
     NSArray *_statusArray;
+    NSArray *_vecStatusArray; //vec 坐席状态
     BOOL _adminModel;
 }
 
@@ -73,21 +75,52 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (void)setupHeadView {
     _headerView = [[LeftMenuHeaderView alloc] initWithFrame:CGRectMake(0, 40, self.view.width, 70)];
+//    _headerView.backgroundColor = [UIColor redColor];
     self.tableView.tableHeaderView = _headerView;
     _statusArray = @[@"空闲",@"忙碌",@"离开",@"隐身"];
+    
+    
     [_headerView.onlineButton addTarget:self
                                  action:@selector(onlineButtonAction)
                        forControlEvents:UIControlEventTouchUpInside];
+    
+    if ([HDClient sharedClient].currentAgentUser.vecIndependentVideoEnable) {
+        
+        _headerView.vecButton.hidden = NO;
+        
+        _vecStatusArray = @[@"空闲",@"忙碌",@"小休",@"离开"];
+        [_headerView.vecButton addTarget:self
+                                     action:@selector(vecButtonAction)
+                           forControlEvents:UIControlEventTouchUpInside];
+    }else{
+        
+        
+        _headerView.vecButton.hidden = YES;
+    }
+   
+    
 }
 
 - (void)onlineButtonAction
 {
     if (_pickerView == nil) {
         _pickerView = [[EMPickerView alloc] initWithDataSource:_statusArray topHeight:64];
+        _vecPickerView.pickerViewType = HDEMPickerViewTypeCEC;
         _pickerView.delegate = self;
     }
     if (self.leftDelegate && [self.leftDelegate respondsToSelector:@selector(onlineStatusClick:)]) {
         [self.leftDelegate onlineStatusClick:_pickerView];
+    }
+}
+- (void)vecButtonAction
+{
+    if (_vecPickerView == nil) {
+        _vecPickerView = [[EMPickerView alloc] initWithDataSource:_vecStatusArray topHeight:64];
+        _vecPickerView.pickerViewType = HDEMPickerViewTypeVEC;
+        _vecPickerView.delegate = self;
+    }
+    if (self.leftDelegate && [self.leftDelegate respondsToSelector:@selector(vecStatusClick:)]) {
+        [self.leftDelegate vecStatusClick:_vecPickerView];
     }
 }
 
@@ -254,6 +287,36 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 }
 
 #pragma mark - EMPickerSaveDelegate
+
+- (void)saveVECPickerWithValue:(NSString *)value index:(NSInteger)index{
+    
+    MBProgressHUD *hud = [MBProgressHUD showMessag:@"修改视频客服用户在线状态..." toView:self.view];
+    HDVECAgentLoginStatus status = index;
+    __weak MBProgressHUD *weakHud = hud;
+    [[HDClient sharedClient].vecCallManager vec_updateAgentStatus:status completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        if (error == nil) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"VEC_StatusChanged" object:nil];
+            if (status == HDVECAgentLoginStatusIdle) {
+                [_headerView.vecButton setTitle:@"空闲" forState:UIControlStateNormal];
+                [weakHud hideAnimated:YES];
+            } else {
+                [_headerView.vecButton setTitle:value forState:UIControlStateNormal];
+                [hud setMode:MBProgressHUDModeCustomView];
+                weakHud.label.text =@"系统将不再为您分配新视频";
+//                [weakHud setLabelText:@"系统将不再为您分配新会话"];
+                [weakHud hideAnimated:YES afterDelay:3.0];
+            }
+        } else {
+//            [weakHud setLabelText:@"修改失败"];
+            weakHud.label.text =@"修改失败";
+            [weakHud hideAnimated:YES afterDelay:0.5];
+        }
+        
+    }];
+    
+}
+
 - (void)savePickerWithValue:(NSString *)value index:(NSInteger)index
 {
     MBProgressHUD *hud = [MBProgressHUD showMessag:@"修改用户在线状态..." toView:self.view];
@@ -263,10 +326,10 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
         if (error == nil) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusChanged" object:nil];
             if (status == HDOnlineStatusOnline) {
-                [_headerView.onlineButton setTitle:@"空闲" forState:UIControlStateNormal];
+                [_headerView.onlineButton setTitle:@"视频客服 空闲" forState:UIControlStateNormal];
                 [weakHud hideAnimated:YES];
             } else {
-                [_headerView.onlineButton setTitle:value forState:UIControlStateNormal];
+                [_headerView.onlineButton setTitle:[NSString stringWithFormat:@"视频客服 %@",value] forState:UIControlStateNormal];
                 [hud setMode:MBProgressHUDModeCustomView];
                 weakHud.label.text =@"系统将不再为您分配新会话";
 //                [weakHud setLabelText:@"系统将不再为您分配新会话"];

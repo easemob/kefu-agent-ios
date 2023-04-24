@@ -33,7 +33,7 @@
 #define kPointHeight [UIScreen mainScreen].bounds.size.width *0.9
 
 
-@interface HDVECViewController ()<HDVECAgoraCallManagerDelegate,HDCallManagerDelegate,HDOnlineWhiteboardManagerDelegate,UIPopoverPresentationControllerDelegate,HDVECSuspendCustomViewDelegate>{
+@interface HDVECViewController ()<HDVECAgoraCallManagerDelegate,HDCallManagerDelegate,HDOnlineWhiteboardManagerDelegate,UIPopoverPresentationControllerDelegate,HDVECSuspendCustomViewDelegate,HDClientDelegate>{
     
     UIView *_changeView;
     NSMutableArray * _videoItemViews;
@@ -1664,5 +1664,10 @@ static HDVECViewController *_manger = nil;
         
         }
     }];
+}
+- (void)userAccountNeedRelogin:(HDAutoLogoutReason)reason{
+    
+    [self offBtnClicked:nil];
+    
 }
 @end

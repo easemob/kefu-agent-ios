@@ -12,7 +12,17 @@
 
 - (void)savePickerWithValue:(NSString *)value index:(NSInteger)index;
 
+- (void)saveVECPickerWithValue:(NSString *)value index:(NSInteger)index;
+
+- (void)saveCECPickerWithValue:(NSString *)value index:(NSInteger)index;
+
 @end
+
+
+typedef NS_ENUM(NSInteger, HDEMPickerViewType) {
+    HDEMPickerViewTypeCEC, //  CEC
+    HDEMPickerViewTypeVEC, //  VEC
+};
 
 @interface EMPickerView : UIView
 
@@ -20,6 +30,7 @@
 
 @property (nonatomic, strong) UIView *pickerView;
 @property (nonatomic, strong) UIPickerView *pickView;
+@property (nonatomic, assign) HDEMPickerViewType pickerViewType;
 
 - (instancetype)initWithDataSource:(NSArray*)dataSource;
 

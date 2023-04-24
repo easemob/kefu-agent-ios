@@ -73,7 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     [HDClient.sharedClient addDelegate:self delegateQueue:nil];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -461,13 +461,13 @@
         [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakSelf.dataSource];
     }];
     
-    //请求灰度
-    [[HDClient sharedClient].setManager kf_getInitGrayCompletion:^(id responseObject, HDError *error) {
-        
-//        NSLog(@"======%@",responseObject);
-        
-        
-    }];
+//    //请求灰度
+//    [[HDClient sharedClient].setManager kf_getInitGrayCompletion:^(id responseObject, HDError *error) {
+//        
+////        NSLog(@"======%@",responseObject);
+//        
+//        
+//    }];
     
 }
 

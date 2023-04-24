@@ -33,6 +33,7 @@
         [kNotiCenter addObserver:self selector:@selector(setSuperviseTip:) name:KFSuperviseNoti object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(avatarChanged) name:@"AvatarChanged" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(statusChanged) name:@"StatusChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vecStatusChanged) name:@"VEC_StatusChanged" object:nil];
         [self addSubview:self.headerImageView];
         [self updateHeadImage];
         [self addSubview:self.statusImageView];
@@ -109,7 +110,18 @@
         _statusImageView.image = [UIImage imageNamed:@"state_green"];
     }
 }
-
+- (void)vecStatusChanged {
+    UserModel *user = [self user];
+    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
+        _statusImageView.image = [UIImage imageNamed:@"state_yellow"];
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]){
+        _statusImageView.image = [UIImage imageNamed:@"state_red"];
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_OFFLINE]){
+        _statusImageView.image = [UIImage imageNamed:@"state_blue"];
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]){
+        _statusImageView.image = [UIImage imageNamed:@"state_green"];
+    }
+}
 - (UserModel *)user {
     return [HDClient sharedClient].currentAgentUser;
 }
