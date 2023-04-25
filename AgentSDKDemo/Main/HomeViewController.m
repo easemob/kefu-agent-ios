@@ -42,6 +42,9 @@
 //测试相关
 #import "HDVECSessionHistoryViewController.h"
 
+#import "KFVECHistoryController.h"
+#import "KFWebViewController.h"
+
 
 
 @implementation UIImage (tabBarImage)
@@ -85,6 +88,7 @@ static NSString *kGroupName = @"GroupName";
 //非管理员
 @property (nonatomic, strong) HomeViewController *homeViewController;
 @property (nonatomic, strong) HistoryConversationsController *historyController;
+@property (nonatomic, strong) KFVECHistoryController *vecHistoryController;
 @property (nonatomic, strong) AdminInforViewController *adminController;
 
 //管理员
@@ -459,6 +463,29 @@ static HomeViewController *homeViewController;
 #if APPSTORE
     else if (index == 2)
     {
+        if ([HDClient sharedClient].currentAgentUser.vecIndependentVideoEnable) {
+          
+            //显示vec
+            self.vecHistoryController = nil;
+            self.vecHistoryController = [[KFVECHistoryController alloc] init];
+            [self.vecHistoryController initData];
+            [self.navigationController pushViewController:self.vecHistoryController animated:NO];
+            NSArray *views = [self.navigationController viewControllers];
+            BOOL needPush = YES;
+            for (UIViewController *view in views) {
+                if ([view isKindOfClass:[KFVECHistoryController class]]) {
+                    needPush = NO;
+                }
+            }
+            if (needPush) {
+                [self.vecHistoryController reloadData];
+                [self.navigationController pushViewController:self.vecHistoryController animated:NO];
+            } else {
+                [self.vecHistoryController reloadData];
+            }
+            
+            
+        }else{
         self.adminController = nil;
         self.adminController = [[AdminInforViewController alloc] init];
         NSArray *views = [self.navigationController viewControllers];
@@ -471,7 +498,31 @@ static HomeViewController *homeViewController;
         if (needPush) {
             [self.navigationController pushViewController:self.adminController animated:NO];
         }
+        }
     }
+    else if (index == 3)
+    {
+        if ([HDClient sharedClient].currentAgentUser.vecIndependentVideoEnable) {
+          
+            self.adminController = nil;
+            self.adminController = [[AdminInforViewController alloc] init];
+            NSArray *views = [self.navigationController viewControllers];
+            BOOL needPush = YES;
+            for (UIViewController *view in views) {
+                if ([view isKindOfClass:[AdminInforViewController class]]) {
+                    needPush = NO;
+                }
+            }
+            if (needPush) {
+                [self.navigationController pushViewController:self.adminController animated:NO];
+            }
+            
+            
+        }else{
+       
+        }
+    }
+    
     
 #else
     else if (index == 2)

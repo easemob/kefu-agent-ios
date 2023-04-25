@@ -35,6 +35,11 @@
     return [UIColor colorWithHexString:@"0x2189ff" alpha:1];
 }
 
+- (UIColor *)contentColorGrayF0{
+    
+    return [UIColor colorWithHexString:@"0xF0F0F0" alpha:1];
+}
+
 
 - (UIColor *)contentColorBlockalpha:(CGFloat)alpha{
     

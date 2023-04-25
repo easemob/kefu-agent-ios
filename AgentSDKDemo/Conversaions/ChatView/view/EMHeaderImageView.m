@@ -13,6 +13,7 @@
 
 @property (nonatomic, strong) UIImageView *headerImageView;
 @property (nonatomic, strong) UIImageView *statusImageView;
+@property (nonatomic, strong) UIImageView *vecStatusImageView;
 @property (nonatomic, strong) UIImageView *superviseView;
 @property (nonatomic, strong) UserModel *user;
 
@@ -37,6 +38,13 @@
         [self addSubview:self.headerImageView];
         [self updateHeadImage];
         [self addSubview:self.statusImageView];
+        
+        if ([HDClient sharedClient].currentAgentUser.vecIndependentVideoEnable) {
+            
+            [self addSubview:self.vecStatusImageView];
+        }
+        
+        
         [self addSubview:self.superviseView];
         self.superviseView.hidden = ![KFManager sharedInstance].needShowSuperviseTip;
     }
@@ -92,6 +100,43 @@
     }
     return _statusImageView;
 }
+- (UIImageView*)vecStatusImageView
+{
+    if (_vecStatusImageView == nil) {
+        _vecStatusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) - self.width/5 + self.width/4 + 3, CGRectGetMaxY(_headerImageView.frame) - self.width/5, self.width/4, self.height/4)];
+        _vecStatusImageView.clipsToBounds = YES;
+        _vecStatusImageView.layer.cornerRadius = _vecStatusImageView.width/2;
+//        _vecStatusImageView.backgroundColor = [[HDAppSkin mainSkin] contentColorGrayF0];;
+        [self vecState];
+       
+    }
+    return _vecStatusImageView;
+}
+
+-(void)vecState{
+    
+    UIImage * image;
+    UserModel *user = [self user];
+    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
+        
+        image = [UIImage imageNamed:@"vec_state_yellow"];
+        
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]){
+        
+        image = [UIImage imageNamed:@"vec_state_red"];
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_OFFLINE]){
+        
+        image = [UIImage imageNamed:@"vec_state_blue"];
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]){
+        image = [UIImage imageNamed:@"vec_state_green"];
+      
+    }
+    
+
+    _vecStatusImageView.image = image;
+}
+
+
 #pragma mark - kvo
 
 - (void)avatarChanged {
@@ -111,16 +156,21 @@
     }
 }
 - (void)vecStatusChanged {
-    UserModel *user = [self user];
-    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
-        _statusImageView.image = [UIImage imageNamed:@"state_yellow"];
-    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]){
-        _statusImageView.image = [UIImage imageNamed:@"state_red"];
-    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_OFFLINE]){
-        _statusImageView.image = [UIImage imageNamed:@"state_blue"];
-    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]){
-        _statusImageView.image = [UIImage imageNamed:@"state_green"];
-    }
+    
+    
+    [self vecState];
+    
+//    UserModel *user = [self user];
+//    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
+//
+//        _vecStatusImageView.image = [UIImage imageNamed:@"state_yellow"];
+//    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]){
+//        _vecStatusImageView.image = [UIImage imageNamed:@"state_red"];
+//    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_OFFLINE]){
+//        _vecStatusImageView.image = [UIImage imageNamed:@"state_blue"];
+//    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]){
+//        _vecStatusImageView.image = [UIImage imageNamed:@"state_green"];
+//    }
 }
 - (UserModel *)user {
     return [HDClient sharedClient].currentAgentUser;

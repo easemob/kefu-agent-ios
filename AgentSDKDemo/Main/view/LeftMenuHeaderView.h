@@ -18,5 +18,6 @@
 
 @property (nonatomic, strong) UIButton *onlineButton;
 @property (nonatomic, strong) UIButton *vecButton;
+@property (nonatomic, strong) UIImageView *vecImageView;
 
 @end

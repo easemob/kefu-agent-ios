@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (UIColor *)contentColorBlueHX;
 //项目常用颜色 灰色 背景色
 - (UIColor *)contentColorGray;
-
+- (UIColor *)contentColorGrayF0;
 - (UIColor *)contentColorRed;
 - (UIColor *)contentColorBlue;
 

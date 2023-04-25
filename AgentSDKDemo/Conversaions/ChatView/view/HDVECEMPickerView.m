@@ -1,23 +1,23 @@
 //
-//  EMPickerView.m
-//  EMCSApp
+//  HDVECEMPickerView.m
+//  AgentSDKDemo
 //
-//  Created by EaseMob on 16/3/4.
-//  Copyright © 2016年 easemob. All rights reserved.
+//  Created by easemob on 2023/4/24.
+//  Copyright © 2023 环信. All rights reserved.
 //
 
-#import "EMPickerView.h"
-
-@interface EMPickerView ()<UIPickerViewDataSource,UIPickerViewDelegate>
+#import "HDVECEMPickerView.h"
+@implementation EMPickerModel
+@end
+@interface HDVECEMPickerView ()<UIPickerViewDataSource,UIPickerViewDelegate>
 {
     CGFloat _topHeight;
 }
 
-@property (nonatomic, strong) NSArray *dataSource;
+@property (nonatomic, strong) NSArray<EMPickerModel*> *dataSource;
 
 @end
-
-@implementation EMPickerView
+@implementation HDVECEMPickerView
 
 - (instancetype)initWithDataSource:(NSArray *)dataSource
 {
@@ -40,7 +40,7 @@
     return self;
 }
 
-- (void)setDataSource:(NSArray *)dataSource
+- (void)setDataSource:(NSArray<EMPickerModel *> *)dataSource
 {
     _dataSource = dataSource;
     [self showPickerview];
@@ -55,15 +55,24 @@
 
 
 - (void)saveStatus:(id)sender{
-    
-    NSString *value =[_dataSource objectAtIndex:[_pickView selectedRowInComponent:0]];
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(savePickerWithValue:index:)]) {
-        [_delegate savePickerWithValue:value index:[_pickView selectedRowInComponent:0]];
+
+     EMPickerModel * model =[_dataSource objectAtIndex:[_pickView selectedRowInComponent:0]];
+
+   if(model.pickerViewType == HDEMPickerViewTypeVEC){
+
+        if (_delegate && [_delegate respondsToSelector:@selector(savePickerWithValue:index:)]) {
+            [_delegate saveVECPickerWithValue:model.name index:[_pickView selectedRowInComponent:0]];
+        }
+    }else{
+
+        if (_delegate && [_delegate respondsToSelector:@selector(savePickerWithValue:index:)]) {
+            [_delegate savePickerWithValue:model.name index:[_pickView selectedRowInComponent:0]];
+        }
     }
-   
+
     [self removeFromSuperview];
 }
+
 - (void)cancleSaveBtn:(id)sender{
     [self removeFromSuperview];
 }
@@ -131,12 +140,22 @@
         [pickerLabel setFont:[UIFont boldSystemFontOfSize:18.0f]];
     }
     if (component == 0) {
-        if ([[_dataSource objectAtIndex:row] isKindOfClass:[NSDictionary class]]) {
-            pickerLabel.text =  [[_dataSource objectAtIndex:row] valueForKey:@"key"];
-        } else if ([[_dataSource objectAtIndex:row] isKindOfClass:[NSString class]]){
-            pickerLabel.text =  [_dataSource objectAtIndex:row];
-        }
+//        if ([[_dataSource objectAtIndex:row] isKindOfClass:[NSDictionary class]]) {
+//            pickerLabel.text =  [[_dataSource objectAtIndex:row] valueForKey:@"key"];
+//        } else if ([[_dataSource objectAtIndex:row] isKindOfClass:[NSString class]]){
+//            pickerLabel.text =  [_dataSource objectAtIndex:row];
+//        }else{
+//
+//
+//
+//        }
+        EMPickerModel * model = [_dataSource objectAtIndex:row];
+        
+        pickerLabel.text = model.name;
+        
+        
     } else {
+        
     }
     pickerLabel.textColor = UIColor.grayColor;
     return pickerLabel;
@@ -178,5 +197,6 @@
     }
     return activityViewController;
 }
+
 
 @end

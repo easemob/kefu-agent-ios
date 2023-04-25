@@ -10,6 +10,7 @@
 #import "LeftMenuHeaderView.h"
 #import "DXTipView.h"
 #import "EMPickerView.h"
+#import "HDVECEMPickerView.h"
 #import "HomeViewController.h"
 #import "KFBaseNavigationController.h"
 #import "HistoryConversationsController.h"
@@ -17,25 +18,27 @@
 #import "KFLeftViewItem.h"
 #import "KFLeftItemCell.h"
 #import "KFSwitchTypeButton.h"
-
+#import "HDAppSkin.h"
+#import "UIImage+HDIconFont.h"
 
 #define kBottomButtonHeight 49
 
 typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     AgentMenuTagHome = 0,
     AgentMenuTagHistory,
+    AgentMenuTagVEC,
     AgentMenuTagUpdate,
     AgentMenuTagSet
 };
 
-@interface KFLeftViewController () <UITableViewDelegate,UITableViewDataSource,EMPickerSaveDelegate
+@interface KFLeftViewController () <UITableViewDelegate,UITableViewDataSource,VECEMPickerSaveDelegate,EMPickerSaveDelegate
 #if DEBUG
 , UIDocumentInteractionControllerDelegate
 #endif
 >
 @property (nonatomic, strong) LeftMenuHeaderView *headerView;
 @property (nonatomic, strong) EMPickerView *pickerView;
-@property (nonatomic, strong) EMPickerView *vecPickerView;
+@property (nonatomic, strong) HDVECEMPickerView *vecPickerView;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) KFSwitchTypeButton *switchBtn;
 @property (nonatomic, strong) NSArray *adminDatasrouce;
@@ -87,14 +90,27 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     if ([HDClient sharedClient].currentAgentUser.vecIndependentVideoEnable) {
         
         _headerView.vecButton.hidden = NO;
+        _headerView.vecImageView.hidden = NO;
+        EMPickerModel * model1 = [[EMPickerModel alloc] init];
+        model1.name = @"空闲";
+        model1.pickerViewType = HDEMPickerViewTypeVEC;
+        EMPickerModel * model2 = [[EMPickerModel alloc] init];
+        model2.name = @"忙碌";
+        model2.pickerViewType = HDEMPickerViewTypeVEC;
+        EMPickerModel * model3 = [[EMPickerModel alloc] init];
+        model3.name = @"小休";
+        model3.pickerViewType = HDEMPickerViewTypeVEC;
+        EMPickerModel * model4 = [[EMPickerModel alloc] init];
+        model4.name = @"离开";
+        model4.pickerViewType = HDEMPickerViewTypeVEC;
+        _vecStatusArray = @[model1,model2,model3,model4];
         
-        _vecStatusArray = @[@"空闲",@"忙碌",@"小休",@"离开"];
         [_headerView.vecButton addTarget:self
                                      action:@selector(vecButtonAction)
                            forControlEvents:UIControlEventTouchUpInside];
     }else{
         
-        
+        _headerView.vecImageView.hidden = YES;
         _headerView.vecButton.hidden = YES;
     }
    
@@ -105,7 +121,6 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 {
     if (_pickerView == nil) {
         _pickerView = [[EMPickerView alloc] initWithDataSource:_statusArray topHeight:64];
-        _vecPickerView.pickerViewType = HDEMPickerViewTypeCEC;
         _pickerView.delegate = self;
     }
     if (self.leftDelegate && [self.leftDelegate respondsToSelector:@selector(onlineStatusClick:)]) {
@@ -115,8 +130,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 - (void)vecButtonAction
 {
     if (_vecPickerView == nil) {
-        _vecPickerView = [[EMPickerView alloc] initWithDataSource:_vecStatusArray topHeight:64];
-        _vecPickerView.pickerViewType = HDEMPickerViewTypeVEC;
+        _vecPickerView = [[HDVECEMPickerView alloc] initWithDataSource:_vecStatusArray topHeight:64];
         _vecPickerView.delegate = self;
     }
     if (self.leftDelegate && [self.leftDelegate respondsToSelector:@selector(vecStatusClick:)]) {
@@ -210,7 +224,11 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 
 - (NSArray *)nomalDatasource {
     if (!_nomalDatasource) {
+        if ([HDClient sharedClient].currentAgentUser.vecIndependentVideoEnable) {
+            _nomalDatasource = [self isAppStoreType] ? [self appStoreAgentItemsVEC] : [self nomalAgentItems];
+        }else{
         _nomalDatasource = [self isAppStoreType] ? [self appStoreAgentItems] : [self nomalAgentItems];
+        }
     }
     return _nomalDatasource;
 }
@@ -326,10 +344,10 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
         if (error == nil) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"StatusChanged" object:nil];
             if (status == HDOnlineStatusOnline) {
-                [_headerView.onlineButton setTitle:@"视频客服 空闲" forState:UIControlStateNormal];
+                [_headerView.onlineButton setTitle:@"空闲" forState:UIControlStateNormal];
                 [weakHud hideAnimated:YES];
             } else {
-                [_headerView.onlineButton setTitle:[NSString stringWithFormat:@"视频客服 %@",value] forState:UIControlStateNormal];
+                [_headerView.onlineButton setTitle:[NSString stringWithFormat:@"%@",value] forState:UIControlStateNormal];
                 [hud setMode:MBProgressHUDModeCustomView];
                 weakHud.label.text =@"系统将不再为您分配新会话";
 //                [weakHud setLabelText:@"系统将不再为您分配新会话"];
@@ -353,6 +371,19 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     return @[
              [KFLeftViewItem name:@"主页" image:[UIImage imageNamed:@"main_tab_icon_ongoing_1"]],
              [KFLeftViewItem name:@"历史" image:[UIImage imageNamed:@"main_tab_icon_histroy"]],
+             [KFLeftViewItem name:@"设置" image:[UIImage imageNamed:@"main_tab_icon_friend"]]
+             ];
+}
+
+- (NSArray *)appStoreAgentItemsVEC {
+    
+//    UIImage * img = [UIImage imageWithIcon:kdianhuatianchong inFont:kfontName size:38 color:[[HDAppSkin mainSkin] contentColorWhitealpha:1] ];
+    
+    
+    return @[
+             [KFLeftViewItem name:@"主页" image:[UIImage imageNamed:@"main_tab_icon_ongoing_1"]],
+             [KFLeftViewItem name:@"历史" image:[UIImage imageNamed:@"main_tab_icon_histroy"]],
+             [KFLeftViewItem name:@"视频" image:[UIImage imageNamed:@"main_tab_icon_histroy"]],
              [KFLeftViewItem name:@"设置" image:[UIImage imageNamed:@"main_tab_icon_friend"]]
              ];
 }

@@ -96,6 +96,9 @@
     [self.view addSubview:self.webView];
 //    [self.view addSubview:self.progressView];
 
+    
+//    self.navigationController.navigationBarHidden = YES;
+    
     //添加监测网页加载进度的观察者
     [self.webView addObserver:self
                    forKeyPath:NSStringFromSelector(@selector(estimatedProgress))
