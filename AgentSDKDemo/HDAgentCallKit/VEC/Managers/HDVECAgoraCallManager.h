@@ -234,6 +234,11 @@ static void *VECKVOContext = &VECKVOContext;
 /// 关闭屏幕共享
 - (void)vec_stopScreenCapture;
 
+// 时间戳转时间,时间戳为13位是精确到毫秒的，10位精确到秒
+-(NSString*)dateWithTimeInterval:(NSString*)timeStr;
+// 字符串转时间戳 如：2017-4-10 17:15:10
+-(NSString*)getTimeStrWithString:(NSString*)str;
+- (NSString *)getTime: (NSInteger)hour andMinute:(NSInteger)minute andSecond:(NSInteger)second;
 @end
 
 NS_ASSUME_NONNULL_END

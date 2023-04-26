@@ -48,10 +48,11 @@
 - (void)CompileCell{
     CGFloat X = 10;
     NSInteger Height = 50;
-    _title = [[UILabel alloc]initWithFrame:CGRectMake(X, (Height-30)/2, KScreenWidth/5-10, 30)];
+//    _title = [[UILabel alloc]initWithFrame:CGRectMake(X, (Height-30)/2, KScreenWidth/5-10, 30)];
+    _title = [[UILabel alloc]initWithFrame:CGRectMake(X, (Height-30)/2, KScreenWidth/4, 30)];
     _title.backgroundColor = [UIColor clearColor];
     _title.font = [UIFont systemFontOfSize:15.f];
-    _title.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _title.lineBreakMode = NSLineBreakByTruncatingTail;
     _title.textColor = UIColor.grayColor;
     [self addSubview:_title];
     

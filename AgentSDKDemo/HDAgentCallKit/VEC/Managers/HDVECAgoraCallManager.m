@@ -835,27 +835,27 @@ static HDVECAgoraCallManager *shareCall = nil;
     NSArray * techChannels = @[];
     NSDictionary * dic = @{
         @"pageNum": @0,
-        @"pageSize": @10000,
+        @"pageSize": @1000,
         @"tenantId": [HDClient sharedClient].currentAgentUser.tenantId,
         @"agentUserId": agentId,
-        @"visitorUserId": @"",
+//        @"visitorUserId": @"",
         @"createDateFrom": [NSString stringWithFormat:@"%@00:00:00",startTime],
         @"createDateTo": [NSString stringWithFormat:@"%@24:00:00",endTime],
-        @"startDateFrom": @"",
-        @"startDateTo": @"",
-        @"stopDateFrom": @"",
-        @"stopDateTo": @"",
+//        @"startDateFrom": @"",
+//        @"startDateTo": @"",
+//        @"stopDateFrom": @"",
+//        @"stopDateTo": @"",
         @"isAgent": @"false",
-        @"sortField": @"createDatetime",// 要么不传这个字段 要么就传上值 否则会有问题
-        @"sortOrder": @"",
-        @"rtcSessionId": @"",
-        @"customerName": @"",
-        @"visitorName": @"",
-        @"originType": originType,
-        @"queueIds": queueIds,
-        @"hangUpReason": hangUpReason,
-        @"hangUpUserType": hangUpUserType,
-        @"techChannels":techChannels,
+//        @"sortField": @"createDatetime",// 要么不传这个字段 要么就传上值 否则会有问题
+//        @"sortOrder": @"desc",
+//        @"rtcSessionId": @"",
+//        @"customerName": @"",
+//        @"visitorName": @"",
+//        @"originType": originType,
+//        @"queueIds": queueIds,
+//        @"hangUpReason": hangUpReason,
+//        @"hangUpUserType": hangUpUserType,
+//        @"techChannels":techChannels,
         @"state":state
         
         

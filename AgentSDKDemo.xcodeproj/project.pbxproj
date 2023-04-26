@@ -590,6 +590,14 @@
 		D2D1062229B9EBEA00212381 /* HDVECWhiteConverterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1060B29B9EBEA00212381 /* HDVECWhiteConverterManager.m */; };
 		D2D1062529BAD2CA00212381 /* HDVECAppSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1062329BAD2CA00212381 /* HDVECAppSkin.m */; };
 		D2D1062629BAD2CA00212381 /* HDVECAppSkin.m in Sources */ = {isa = PBXBuildFile; fileRef = D2D1062329BAD2CA00212381 /* HDVECAppSkin.m */; };
+		D2DA51AE29F7737200DDEB79 /* KFVecCallHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51AD29F7737100DDEB79 /* KFVecCallHistoryModel.m */; };
+		D2DA51AF29F7737200DDEB79 /* KFVecCallHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51AD29F7737100DDEB79 /* KFVecCallHistoryModel.m */; };
+		D2DA51B229F7AA0D00DDEB79 /* KFVECCallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51B129F7AA0D00DDEB79 /* KFVECCallTableViewCell.m */; };
+		D2DA51B329F7AA0D00DDEB79 /* KFVECCallTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51B129F7AA0D00DDEB79 /* KFVECCallTableViewCell.m */; };
+		D2DA51B529F7C40A00DDEB79 /* vec_state_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA51B429F7C40A00DDEB79 /* vec_state_blue@2x.png */; };
+		D2DA51B629F7C40A00DDEB79 /* vec_state_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA51B429F7C40A00DDEB79 /* vec_state_blue@2x.png */; };
+		D2DA51BA29F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */; };
+		D2DA51BB29F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */; };
 		D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
 		D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DAD11329B747F600733A8E /* SampleHandler.m */; };
 		D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2439,6 +2447,13 @@
 		D2D1060C29B9EBEA00212381 /* HDVECWhiteRoomManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECWhiteRoomManager.h; sourceTree = "<group>"; };
 		D2D1062329BAD2CA00212381 /* HDVECAppSkin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HDVECAppSkin.m; sourceTree = "<group>"; };
 		D2D1062429BAD2CA00212381 /* HDVECAppSkin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HDVECAppSkin.h; sourceTree = "<group>"; };
+		D2DA51AC29F7737100DDEB79 /* KFVecCallHistoryModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVecCallHistoryModel.h; sourceTree = "<group>"; };
+		D2DA51AD29F7737100DDEB79 /* KFVecCallHistoryModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVecCallHistoryModel.m; sourceTree = "<group>"; };
+		D2DA51B029F7AA0D00DDEB79 /* KFVECCallTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVECCallTableViewCell.h; sourceTree = "<group>"; };
+		D2DA51B129F7AA0D00DDEB79 /* KFVECCallTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVECCallTableViewCell.m; sourceTree = "<group>"; };
+		D2DA51B429F7C40A00DDEB79 /* vec_state_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vec_state_blue@2x.png"; sourceTree = "<group>"; };
+		D2DA51B829F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVECHistoryOptionViewController.h; sourceTree = "<group>"; };
+		D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVECHistoryOptionViewController.m; sourceTree = "<group>"; };
 		D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraReplayKitExtension.xcframework; path = Pods/AgoraRtcEngine_iOS/AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
 		D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentDemoAppstoreExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DAD11229B747F600733A8E /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
@@ -4259,8 +4274,15 @@
 		D279C72129F61A37008E83C1 /* VEC */ = {
 			isa = PBXGroup;
 			children = (
+				D2DA51B729F7CCDA00DDEB79 /* model */,
 				D279C72229F61A7E008E83C1 /* KFVECHistoryController.h */,
 				D279C72329F61A7E008E83C1 /* KFVECHistoryController.m */,
+				D279C73229F65F07008E83C1 /* HDVECEMPickerView.h */,
+				D279C73329F65F07008E83C1 /* HDVECEMPickerView.m */,
+				D2DA51B029F7AA0D00DDEB79 /* KFVECCallTableViewCell.h */,
+				D2DA51B129F7AA0D00DDEB79 /* KFVECCallTableViewCell.m */,
+				D2DA51B829F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.h */,
+				D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */,
 			);
 			path = VEC;
 			sourceTree = "<group>";
@@ -4365,6 +4387,15 @@
 				D2D1060229B9EBEA00212381 /* HDVECCloudDiskTableViewCell.h */,
 			);
 			path = CloudDisk;
+			sourceTree = "<group>";
+		};
+		D2DA51B729F7CCDA00DDEB79 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				D2DA51AC29F7737100DDEB79 /* KFVecCallHistoryModel.h */,
+				D2DA51AD29F7737100DDEB79 /* KFVecCallHistoryModel.m */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		D2DAD11129B747F600733A8E /* AgentDemoAppstoreExtension */ = {
@@ -4734,8 +4765,6 @@
 				D33CE6641F7CA98D00236720 /* EMHeaderImageView.m */,
 				D33CE6651F7CA98D00236720 /* EMPickerView.h */,
 				D33CE6661F7CA98D00236720 /* EMPickerView.m */,
-				D279C73229F65F07008E83C1 /* HDVECEMPickerView.h */,
-				D279C73329F65F07008E83C1 /* HDVECEMPickerView.m */,
 				D33CE6671F7CA98D00236720 /* EMPromptBoxView.h */,
 				D33CE6681F7CA98D00236720 /* EMPromptBoxView.m */,
 				D33CE6691F7CA98D00236720 /* EMTagView.h */,
@@ -5985,6 +6014,7 @@
 				D279C72729F65773008E83C1 /* vec_state_gray@2x.png */,
 				D279C72829F65773008E83C1 /* vec_state_green@2x.png */,
 				D279C72929F65773008E83C1 /* vec_state_red@2x.png */,
+				D2DA51B429F7C40A00DDEB79 /* vec_state_blue@2x.png */,
 				D279C72629F65773008E83C1 /* vec_state_yellow@2x.png */,
 				D346A8111FAB12BD00DD0281 /* state_blue@2x.png */,
 				D346A8121FAB12BD00DD0281 /* state_gray@2x.png */,
@@ -6436,6 +6466,7 @@
 				D3FDC85E1EA0A5C600C25BB0 /* channel_web_icon@3x.png in Resources */,
 				936F2E672826611A001FB60A /* setting_arrowIcon@2x.png in Resources */,
 				936544A52838C1CB009854AF /* smart_tuwen@3x.png in Resources */,
+				D2DA51B529F7C40A00DDEB79 /* vec_state_blue@2x.png in Resources */,
 				D3FDC6001EA0A5BE00C25BB0 /* icon1_selected@3x.png in Resources */,
 				D3FDC8581EA0A5C600C25BB0 /* btn__icon_qubz@3x.png in Resources */,
 				936A5E73286ACEA9004BC632 /* record off.png in Resources */,
@@ -6898,6 +6929,7 @@
 				D3E9CDEF1FBED182005E3677 /* main_tab_icon_update_1@3x.png in Resources */,
 				D3E9CDF01FBED182005E3677 /* icon_close@2x.png in Resources */,
 				D3E9CDF11FBED182005E3677 /* gallaryCopy2_icon_camera_small@3x.png in Resources */,
+				D2DA51B629F7C40A00DDEB79 /* vec_state_blue@2x.png in Resources */,
 				936A5E70286ACEA9004BC632 /* video on@2x.png in Resources */,
 				936A5E92286ACEA9004BC632 /* mute@2x.png in Resources */,
 				D3E9CDF21FBED182005E3677 /* visitor_icon_imagebroken_big@3x.png in Resources */,
@@ -7579,6 +7611,7 @@
 				D33CE6C41F7CA98D00236720 /* EMChatHeaderTagView.m in Sources */,
 				907090E82060BB2D0062FED6 /* KFLeftItemCell.m in Sources */,
 				938AEA4527F3F8FC00B461C4 /* KJResourceLoader.m in Sources */,
+				D2DA51BA29F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m in Sources */,
 				D2A2409B29A857F70066C78C /* JSONModel.m in Sources */,
 				D33CE7BD1F7CB01000236720 /* AFURLRequestSerialization.m in Sources */,
 				936A5F16286AD538004BC632 /* UIViewController+AlertController.m in Sources */,
@@ -7658,6 +7691,7 @@
 				D33CE76C1F7CAEB800236720 /* UIAlertView+AlertBlock.m in Sources */,
 				D33CE79A1F7CAF6700236720 /* KFInputEmailViewController.m in Sources */,
 				D34DF9DC1FA818E60018116D /* AdminHistoryViewController.m in Sources */,
+				D2DA51B229F7AA0D00DDEB79 /* KFVECCallTableViewCell.m in Sources */,
 				93074B152840A35600B41B8C /* KFChatArticleBubbleView.m in Sources */,
 				938AEA2D27F3F8FB00B461C4 /* KJBasePlayer+KJSkipTime.m in Sources */,
 				D33CE8561F7CD0F800236720 /* EMSDWebImageDownloaderOperation.m in Sources */,
@@ -7925,6 +7959,7 @@
 				938AEA2527F3F8FB00B461C4 /* KJFileHandleManager.m in Sources */,
 				938AEA1927F3F8FB00B461C4 /* KJBasePlayer+KJTryTime.m in Sources */,
 				935F639427C78F24003CE6FE /* HDChatVideoDetailBubbleView.m in Sources */,
+				D2DA51AE29F7737200DDEB79 /* KFVecCallHistoryModel.m in Sources */,
 				90FC92502486323B00014CCC /* MASConstraint.m in Sources */,
 				93FA0F782860551600C1188E /* UIView+GestureRecognizer.m in Sources */,
 				D33CE6BB1F7CA98D00236720 /* EMChatLocationBubbleView.m in Sources */,
@@ -8043,6 +8078,7 @@
 				D3E9CCBE1FBED182005E3677 /* DXChatBarMoreView.m in Sources */,
 				D3E9CCBF1FBED182005E3677 /* QuickReplyAddViewController.m in Sources */,
 				D2A2409C29A857F70066C78C /* JSONModel.m in Sources */,
+				D2DA51BB29F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m in Sources */,
 				D3E9CCC01FBED182005E3677 /* EMAudioRecorderUtil.m in Sources */,
 				D3E9CCC11FBED182005E3677 /* MWGridCell.m in Sources */,
 				936A5ED3286AD179004BC632 /* UIImage+HDIconFont.m in Sources */,
@@ -8122,6 +8158,7 @@
 				D3E9CCED1FBED182005E3677 /* PSTCollectionViewCell.m in Sources */,
 				D3E9CCEF1FBED182005E3677 /* UITextField+KFAdd.m in Sources */,
 				936A5EB7286ACF3D004BC632 /* HDTitleView.m in Sources */,
+				D2DA51B329F7AA0D00DDEB79 /* KFVECCallTableViewCell.m in Sources */,
 				D3058CEC1FD684F30091E048 /* HDTipLabel.m in Sources */,
 				938AEA2227F3F8FB00B461C4 /* KJDownloader.m in Sources */,
 				D3E9CCF01FBED182005E3677 /* EMChatViewBaseCell.m in Sources */,
@@ -8389,6 +8426,7 @@
 				D3E9CD941FBED182005E3677 /* EMChatFileBubbleView.m in Sources */,
 				938AEA3227F3F8FC00B461C4 /* KJBasePlayer+KJRecordTime.m in Sources */,
 				D3E9CD951FBED182005E3677 /* MWZoomingScrollView.m in Sources */,
+				D2DA51AF29F7737200DDEB79 /* KFVecCallHistoryModel.m in Sources */,
 				D3E9CD961FBED182005E3677 /* DXFaceView.m in Sources */,
 				D3E9CD981FBED182005E3677 /* UIView+RNAdditions.m in Sources */,
 				9363F96C28695E16008522EC /* UIView+GestureRecognizer.m in Sources */,

@@ -127,6 +127,7 @@
     } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_OFFLINE]){
         
         image = [UIImage imageNamed:@"vec_state_blue"];
+        
     } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]){
         image = [UIImage imageNamed:@"vec_state_green"];
       

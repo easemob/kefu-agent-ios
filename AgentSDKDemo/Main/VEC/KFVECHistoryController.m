@@ -20,13 +20,21 @@
 #import "EMTagView.h"
 #import "EMHeaderImageView.h"
 #import "UINavigationItem+Margin.h"
+#import "HDVECAgoraCallManager.h"
+#import "KFVecCallHistoryModel.h"
+#import "KFVECCallTableViewCell.h"
+#import "HDVECAgoraCallManager.h"
+#import "KFVECHistoryOptionViewController.h"
+
+
+
 #define BUTTON_HEIGHT 44
-@interface VECDXHistoryCell : DXTableViewCellTypeConversation
+@interface VECDXHistoryCell : KFVECCallTableViewCell
 
 @property (nonatomic, strong) EMTagView *tagView;
 @property (nonatomic, strong) UILabel *tagCountLabel;
 
-- (void)setHistoryConversationModel:(HDHistoryConversation *)model;
+- (void)setHistoryConversationModel:(KFVecCallHistoryModel *)model;
 
 @end
 
@@ -50,33 +58,33 @@
     return self;
 }
 
-- (void)setHistoryConversationModel:(HDHistoryConversation *)model
+- (void)setHistoryConversationModel:(KFVecCallHistoryModel *)model
 {
-    [super setHistoryModel:model];
-    if ([model.summarys isKindOfClass:[NSArray class]] &&[model.summarys count] > 0) {
-        NSArray *firstTag = [model.summarys objectAtIndex:0];
-        if ([firstTag isKindOfClass:[NSArray class]]) {
-            if ([firstTag count] == 1) {
-                TagNode *rootNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:0]];
-                [_tagView setWithRootNode:rootNode childNode:nil];
-            } else if ([firstTag count] >= 2) {
-                TagNode *rootNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:0]];
-                TagNode *childNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:[firstTag count]-1]];
-                [_tagView setWithRootNode:rootNode childNode:childNode];
-            }
-        }
-        
-        if ([model.summarys count] >= 2) {
-            _tagCountLabel.text = [NSString stringWithFormat:@"(%@)",@((int)[model.summarys count])];
-            _tagCountLabel.hidden = NO;
-        } else {
-            _tagCountLabel.hidden = YES;
-        }
-    } else {
-        _tagCountLabel.hidden = YES;
-        [_tagView setWithRootNode:nil childNode:nil];
-    }
-    self.contentLabel.text = [NSString stringWithFormat:@"%@ - %@", @"客服" ,model.agentUserNiceName];
+    [super setVECHistoryModel:model];
+//    if ([model.summarys isKindOfClass:[NSArray class]] &&[model.summarys count] > 0) {
+//        NSArray *firstTag = [model.summarys objectAtIndex:0];
+//        if ([firstTag isKindOfClass:[NSArray class]]) {
+//            if ([firstTag count] == 1) {
+//                TagNode *rootNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:0]];
+//                [_tagView setWithRootNode:rootNode childNode:nil];
+//            } else if ([firstTag count] >= 2) {
+//                TagNode *rootNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:0]];
+//                TagNode *childNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:[firstTag count]-1]];
+//                [_tagView setWithRootNode:rootNode childNode:childNode];
+//            }
+//        }
+//
+//        if ([model.summarys count] >= 2) {
+//            _tagCountLabel.text = [NSString stringWithFormat:@"(%@)",@((int)[model.summarys count])];
+//            _tagCountLabel.hidden = NO;
+//        } else {
+//            _tagCountLabel.hidden = YES;
+//        }
+//    } else {
+//        _tagCountLabel.hidden = YES;
+//        [_tagView setWithRootNode:nil childNode:nil];
+//    }
+//    self.contentLabel.text = [NSString stringWithFormat:@"%@ - %@", @"客服" ,model.agentUserNiceName];
 }
 
 - (void)layoutSubviews
@@ -95,7 +103,7 @@
 }
 
 @end
-@interface KFVECHistoryController ()<SWTableViewCellDelegate,UISearchBarDelegate,HistoryOptionDelegate>
+@interface KFVECHistoryController ()<SWTableViewCellDelegate,UISearchBarDelegate,VECHistoryOptionDelegate>
 {
     BOOL hasMore;
     BOOL _isRefresh;
@@ -125,13 +133,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"视频记录";
-    if (self.userId.length) {
-        if (self.userId.length > 6) {
-            self.title = [NSString stringWithFormat:@"%@...历史会话",[self.userId substringToIndex:6]];
-        } else {
-            self.title = [NSString stringWithFormat:@"%@历史会话",self.userId];
-        }
-    }
+    
     [self.navigationItem setTitleView:self.titleBtn];//双击返回顶部
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.headerImageView];
     self.navigationItem.rightBarButtonItem = self.optionItem;
@@ -226,11 +228,11 @@
         
         // Configure the cell...
         if (cell == nil) {
-            cell = [[VECDXHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversation"];
+            cell = [[VECDXHistoryCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VECCellTypeConversation"];
             cell.rightUtilityButtons = [self rightButtons];
         }
         if ([self.dataSource count] == 0) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationCustom"];
+            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VECCellTypeConversationCustom"];
             cell.textLabel.text = @"没有记录";
             cell.backgroundColor = UIColor.whiteColor;
             cell.textLabel.textColor = UIColor.grayColor;
@@ -238,13 +240,13 @@
             return cell;
         }
         cell.delegate = self;
-        HDHistoryConversation *model = [self.dataSource objectAtIndex:indexPath.row];
+        KFVecCallHistoryModel *model = [self.dataSource objectAtIndex:indexPath.row];
         [cell setHistoryConversationModel:model];
         return cell;
     } else if (indexPath.section == 1) {
-        DXLoadmoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellTypeConversationLoadMore"];
+        KFVECDXLoadmoreCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VECCellTypeConversationLoadMore"];
         if (cell == nil) {
-            cell = [[DXLoadmoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellTypeConversationLoadMore"];
+            cell = [[KFVECDXLoadmoreCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"VECCellTypeConversationLoadMore"];
         }
         [cell setHasMore:hasMore];
         return cell;
@@ -276,15 +278,15 @@
             return;
         }
         if (_userId && _userId.length > 0) {
-            ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeCallBackChat];
-            HDHistoryConversation *model = [self.dataSource objectAtIndex:indexPath.row];
-            chatView.conversationModel = model;
-            [self.navigationController pushViewController:chatView animated:YES];
+//            ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeCallBackChat];
+//            HDHistoryConversation *model = [self.dataSource objectAtIndex:indexPath.row];
+//            chatView.conversationModel = model;
+//            [self.navigationController pushViewController:chatView animated:YES];
         } else {
-            ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeCallBackChat];
-            HDHistoryConversation *model = [self.dataSource objectAtIndex:indexPath.row];
-            chatView.conversationModel = model;
-            [self.navigationController pushViewController:chatView animated:YES];
+//            ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeCallBackChat];
+//            HDHistoryConversation *model = [self.dataSource objectAtIndex:indexPath.row];
+//            chatView.conversationModel = model;
+//            [self.navigationController pushViewController:chatView animated:YES];
         }
     } else {
         if (hasMore) {
@@ -338,10 +340,10 @@
 {
 }
 
-#pragma mark - HistoryOptionDelegate
-- (void)historyOptionWithParameters:(NSMutableDictionary *)parameters
+#pragma mark - VECHistoryOptionDelegate
+- (void)vecHistoryOptionWithParameters:(NSMutableDictionary *)parameters
 {
-    _page = 1;
+    _page = 0;
     [self.dataSource removeAllObjects];
     [self.tableView reloadData];
     _parameters = [NSMutableDictionary dictionaryWithDictionary:parameters];
@@ -404,9 +406,9 @@
 
 - (void)optionAction
 {
-    HistoryOptionViewController *historyOption = [[HistoryOptionViewController alloc] init];
+    KFVECHistoryOptionViewController *historyOption = [[KFVECHistoryOptionViewController alloc] init];
     historyOption.optionDelegate = self;
-    historyOption.type = EMHistoryOptionType;
+    historyOption.type = VECEMHistoryOptionType;
     [self.navigationController pushViewController:historyOption animated:YES];
 }
 
@@ -435,98 +437,86 @@
 
 - (void)initData
 {
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"yyyy-MM-dd";
-    
-    _endDate = [[DXTimeFilterView curWeek] objectForKey:@"last"];
-    _startDate = [[DXTimeFilterView curWeek] objectForKey:@"first"];
-    _page = 1;
-    _originType = @"";
-    _categoryIds = @"";
-    _categoryType = @"0";
+    _page = 0;
 }
 
 - (void)loadDataWithParameters:(NSMutableDictionary*)parameters
 {
     if (parameters == nil) {
         parameters = [NSMutableDictionary dictionary];
-        
-        if (_startDate) {
-            [parameters setObject:[self formatDate:_startDate] forKey:@"beginDate"];
-        }
-        
-        if (_endDate) {
-            [parameters setObject:[self formatDate:_endDate] forKey:@"endDate"];
-        }
-        [parameters setObject:@"Terminal" forKey:@"state"];
-        [parameters setObject:@"-1" forKey:@"subCategoryId"];
-        [parameters setObject:@"-1"  forKey:@"categoryId"];
-        if (_originType) {
-            [parameters setObject:_originType forKey:@"originType"];
-        }
-        
-        UserModel *user = [HDClient sharedClient].currentAgentUser;
-
-        BOOL isAgent = [user.userType isEqualToString:@"Agent"];
-        
-        [parameters setObject:@(isAgent) forKey:@"isAgent"];
-        if (_categoryType) {
-            [parameters setObject:_categoryType forKey:@"categoryType"];
-        }
-        if (_categoryIds) {
-            [parameters setObject:_categoryIds forKey:@"categoryIds"];
-        }
-        if (_categoryIds) {
-            [parameters setObject:_categoryIds forKey:@"summaryIds"];
-        }
+        NSString *currentDate = [self formatDate:[NSDate date]];
+        NSArray * state = @[@"Processing",@"Terminal",@"Abort"];
+        [parameters hd_setValue:[NSNumber numberWithInteger:_page] forKey:@"pageNum"];
+//        [parameters hd_setValue:@1000 forKey:@"pageSize"];
+        [parameters hd_setValue:[HDClient sharedClient].currentAgentUser.tenantId forKey:@"tenantId"];
+        [parameters hd_setValue:[HDClient sharedClient].currentAgentUser.agentId forKey:@"agentUserId"];
+        [parameters hd_setValue:state forKey:@"state"];
+        [parameters setObject:[NSString stringWithFormat:@"%@00:00:00",currentDate] forKey:@"createDateFrom"];
+        [parameters setObject:[NSString stringWithFormat:@"%@24:00:00",currentDate] forKey:@"createDateTo"];
     }
-
-    if (_userId && _userId.length > 0) {
-        [parameters setObject:_userId forKey:@"visitorName"];
-    }
-    
+    [parameters hd_setValue:[NSNumber numberWithInteger:_page] forKey:@"pageNum"];
+    [parameters hd_setValue:[NSNumber numberWithInteger:hPageSize] forKey:@"pageSize"];
     [self showHintNotHide:@"加载历史记录"];
     WEAK_SELF
-
-    [[HDClient sharedClient].chatManager asyncFetchHistoryConversationWithPage:_page limit:hPageLimit parameters:parameters completion:^(NSArray *conversations, HDError *error, NSInteger totalNum) {
+    // 获取视频记录
+    [ [HDClient sharedClient].vecCallManager vec_getRtcSessionhistoryParameteData:parameters completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
         [weakSelf hideHud];
         if (!error) {
-            if (_page == 1) {
-                [weakSelf.dataSource removeAllObjects];
-            }
-            _page++;
-            _totalCount = totalNum;
-            for (HDHistoryConversation *model in conversations) {
-                model.searchWord = [ChineseToPinyin pinyinFromChineseString:model.vistor.nicename];
-                [weakSelf.dataSource addObject:model];
-            }
-            weakSelf.headerView.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@((int)[weakSelf.dataSource count]),@(_totalCount)];
-            if (totalNum < hPageLimit) {
-                hasMore = NO;
-            } else {
-                if (_totalCount > [self.dataSource count]) {
-                    hasMore = YES;
-                } else {
-                    hasMore = NO;
+            
+            if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+                
+                NSDictionary * dic = responseObject;
+                if (_page == 0) {
+                    [weakSelf.dataSource removeAllObjects];
+                }
+                _page++;
+                NSInteger totalNum =[[dic objectForKey:@"totalElements"] integerValue];
+                _totalCount = totalNum;
+                weakSelf.headerView.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@((int)[weakSelf.dataSource count]),@(_totalCount)];
+                if ([[dic allKeys] containsObject:@"entities"] && [[dic valueForKey:@"entities"] isKindOfClass:[NSArray class]]) {
+                    
+                    NSArray * array = [dic valueForKey:@"entities"];
+                    
+                    NSArray * tmpModelArray = [KFVecCallHistoryModel arrayOfModelsFromDictionaries:array error:nil];
+                    
+                    [weakSelf.dataSource addObjectsFromArray:tmpModelArray];
+                    
+                    if (weakSelf.dataSource&&weakSelf.dataSource.count> 0) {
+                        weakSelf.headerView.text = [NSString stringWithFormat:@"   当前展示数%@ (总共 %@)",@((int)[weakSelf.dataSource count]),@(_totalCount)];
+                        if (totalNum < hPageSize) {
+                            hasMore = NO;
+                        } else {
+                            if (_totalCount > [weakSelf.dataSource count]) {
+                                hasMore = YES;
+                            } else {
+                                hasMore = NO;
+                            }
+                        }
+
+                        hd_dispatch_main_async_safe(^(){
+                            [weakSelf.tableView reloadData];
+                        });
+                        
+                    }
                 }
             }
-            
-            hd_dispatch_main_async_safe(^(){
-                [weakSelf.tableView reloadData];
-            });
+
         } else {
             hd_dispatch_main_async_safe((^(){
                 weakSelf.headerView.text = [NSString stringWithFormat:@"  当前展示数%@ (总共 %@)",@(0),@(0)];
                 [weakSelf showHint:@"加载失败"];
             }));
         }
+
     }];
+    
+
 
 }
 
 #pragma mark 点击menu执行
 - (void)reloadData {
-    _page = 1;
+    _page = 0;
     [self loadDataWithParameters:_parameters];
 }
 
@@ -539,9 +529,9 @@
 {
     if (date) {
         NSDateFormatter *format =[[NSDateFormatter alloc] init];
-        [format setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.000"];
+        [format setDateFormat:@"yyyy-MM-dd "];
         NSString *string = [format stringFromDate:date];
-        return [string stringByAppendingString:@"Z"];
+        return [string stringByAppendingString:@""];
     }
     return @"";
 }
