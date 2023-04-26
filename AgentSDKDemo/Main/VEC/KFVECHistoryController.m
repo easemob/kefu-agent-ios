@@ -25,6 +25,7 @@
 #import "KFVECCallTableViewCell.h"
 #import "HDVECAgoraCallManager.h"
 #import "KFVECHistoryOptionViewController.h"
+#import "KFVECHistoryDetailViewController.h"
 
 
 
@@ -61,30 +62,6 @@
 - (void)setHistoryConversationModel:(KFVecCallHistoryModel *)model
 {
     [super setVECHistoryModel:model];
-//    if ([model.summarys isKindOfClass:[NSArray class]] &&[model.summarys count] > 0) {
-//        NSArray *firstTag = [model.summarys objectAtIndex:0];
-//        if ([firstTag isKindOfClass:[NSArray class]]) {
-//            if ([firstTag count] == 1) {
-//                TagNode *rootNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:0]];
-//                [_tagView setWithRootNode:rootNode childNode:nil];
-//            } else if ([firstTag count] >= 2) {
-//                TagNode *rootNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:0]];
-//                TagNode *childNode = [[TagNode alloc] initWithDictionary:[firstTag objectAtIndex:[firstTag count]-1]];
-//                [_tagView setWithRootNode:rootNode childNode:childNode];
-//            }
-//        }
-//
-//        if ([model.summarys count] >= 2) {
-//            _tagCountLabel.text = [NSString stringWithFormat:@"(%@)",@((int)[model.summarys count])];
-//            _tagCountLabel.hidden = NO;
-//        } else {
-//            _tagCountLabel.hidden = YES;
-//        }
-//    } else {
-//        _tagCountLabel.hidden = YES;
-//        [_tagView setWithRootNode:nil childNode:nil];
-//    }
-//    self.contentLabel.text = [NSString stringWithFormat:@"%@ - %@", @"客服" ,model.agentUserNiceName];
 }
 
 - (void)layoutSubviews
@@ -277,17 +254,10 @@
         if ([self.dataSource count] == 0) {
             return;
         }
-        if (_userId && _userId.length > 0) {
-//            ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeCallBackChat];
-//            HDHistoryConversation *model = [self.dataSource objectAtIndex:indexPath.row];
-//            chatView.conversationModel = model;
-//            [self.navigationController pushViewController:chatView animated:YES];
-        } else {
-//            ChatViewController *chatView = [[ChatViewController alloc] initWithtype:ChatViewTypeCallBackChat];
-//            HDHistoryConversation *model = [self.dataSource objectAtIndex:indexPath.row];
-//            chatView.conversationModel = model;
-//            [self.navigationController pushViewController:chatView animated:YES];
-        }
+        KFVECHistoryDetailViewController * vecDetailVC= [[KFVECHistoryDetailViewController alloc] init];
+        vecDetailVC.callModel = [self.dataSource objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:vecDetailVC animated:YES];
+        
     } else {
         if (hasMore) {
             [self loadData];

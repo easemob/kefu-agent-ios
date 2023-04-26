@@ -17,19 +17,7 @@ __func__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8Strin
 #define NSLog(FORMAT, ...) nil
 #endif
 @interface KFVECVideoDetailViewController : UIViewController
-
-@property (nonatomic, strong) NSArray *recordVideos;
-@property (nonatomic, assign) NSInteger  currentVideoIdx;
-@property (nonatomic, strong) NSString * callId;
 @property (nonatomic, strong) HDVECVideoDetailModel * currentModel;
-@property (nonatomic, strong) HDConversation * conversationModel;
-
-//@property (nonatomic, strong) KJAVPlayer *player;
-//@property (nonatomic, strong) KJBasePlayerView *basePlayerView;
-@property (nonatomic, strong) UISlider *slider;
-@property (nonatomic, strong) UILabel *label;
-@property (nonatomic, strong) UILabel *label3;
-@property (nonatomic, strong) UIProgressView *progressView;
 @end
 
 NS_ASSUME_NONNULL_END

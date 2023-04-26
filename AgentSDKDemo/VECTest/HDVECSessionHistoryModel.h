@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HDVECSessionHistoryModel : NSObject
-@property (nonatomic, copy) NSString *agentUserId;
+@property (nonatomic, copy) NSString<Optional > *agentUserId;
 @property (nonatomic, copy) NSArray *agentUserSet;
 @property (nonatomic, copy) NSString *callId;
 @property (nonatomic, copy) NSString *callType;

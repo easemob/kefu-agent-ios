@@ -36,7 +36,6 @@
 #import "HDVECAgoraCallManager.h"
 #import "KFVECAnswerView.h"
 #import "HDVECViewController.h"
-#import "HDVECVideoDetailAllModel.h"
 #import "HDVECRingingCallModel.h"
 
 //测试相关

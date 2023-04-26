@@ -598,6 +598,10 @@
 		D2DA51B629F7C40A00DDEB79 /* vec_state_blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA51B429F7C40A00DDEB79 /* vec_state_blue@2x.png */; };
 		D2DA51BA29F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */; };
 		D2DA51BB29F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */; };
+		D2DA51BE29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51BD29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m */; };
+		D2DA51BF29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51BD29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m */; };
+		D2DA51C229F906E000DDEB79 /* KFVecHistoryDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51C129F906E000DDEB79 /* KFVecHistoryDetailModel.m */; };
+		D2DA51C329F906E000DDEB79 /* KFVecHistoryDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51C129F906E000DDEB79 /* KFVecHistoryDetailModel.m */; };
 		D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
 		D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DAD11329B747F600733A8E /* SampleHandler.m */; };
 		D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2454,6 +2458,10 @@
 		D2DA51B429F7C40A00DDEB79 /* vec_state_blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "vec_state_blue@2x.png"; sourceTree = "<group>"; };
 		D2DA51B829F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVECHistoryOptionViewController.h; sourceTree = "<group>"; };
 		D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVECHistoryOptionViewController.m; sourceTree = "<group>"; };
+		D2DA51BC29F8D47100DDEB79 /* KFVECHistoryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVECHistoryDetailViewController.h; sourceTree = "<group>"; };
+		D2DA51BD29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVECHistoryDetailViewController.m; sourceTree = "<group>"; };
+		D2DA51C029F906E000DDEB79 /* KFVecHistoryDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVecHistoryDetailModel.h; sourceTree = "<group>"; };
+		D2DA51C129F906E000DDEB79 /* KFVecHistoryDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVecHistoryDetailModel.m; sourceTree = "<group>"; };
 		D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraReplayKitExtension.xcframework; path = Pods/AgoraRtcEngine_iOS/AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
 		D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentDemoAppstoreExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DAD11229B747F600733A8E /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
@@ -4190,10 +4198,6 @@
 				D2239E5D299495990087D054 /* HDVECAgoraCallMember.m */,
 				D2239E61299495990087D054 /* HDVECAgoraCallOptions.h */,
 				D2239E5C299495990087D054 /* HDVECAgoraCallOptions.m */,
-				D2239E5F299495990087D054 /* HDVECAgoraTicketModel.h */,
-				D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */,
-				D2239E5E299495990087D054 /* HDVECVideoDetailModel.h */,
-				D2239E65299495990087D054 /* HDVECVideoDetailModel.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -4250,8 +4254,8 @@
 		D2239E842994959A0087D054 /* Player */ = {
 			isa = PBXGroup;
 			children = (
-				D2239E852994959A0087D054 /* KFVECVideoDetailViewController.m */,
 				D2239E862994959A0087D054 /* KFVECVideoDetailViewController.h */,
+				D2239E852994959A0087D054 /* KFVECVideoDetailViewController.m */,
 			);
 			path = Player;
 			sourceTree = "<group>";
@@ -4259,6 +4263,10 @@
 		D2239E872994959A0087D054 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				D2239E5F299495990087D054 /* HDVECAgoraTicketModel.h */,
+				D2239E64299495990087D054 /* HDVECAgoraTicketModel.m */,
+				D2239E5E299495990087D054 /* HDVECVideoDetailModel.h */,
+				D2239E65299495990087D054 /* HDVECVideoDetailModel.m */,
 				D2239E8B2994959A0087D054 /* HDVECRingingCallModel.h */,
 				D2239E882994959A0087D054 /* HDVECRingingCallModel.m */,
 				D2239E8C2994959A0087D054 /* HDVECVideoDetailAllModel.h */,
@@ -4283,6 +4291,8 @@
 				D2DA51B129F7AA0D00DDEB79 /* KFVECCallTableViewCell.m */,
 				D2DA51B829F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.h */,
 				D2DA51B929F7DF8B00DDEB79 /* KFVECHistoryOptionViewController.m */,
+				D2DA51BC29F8D47100DDEB79 /* KFVECHistoryDetailViewController.h */,
+				D2DA51BD29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m */,
 			);
 			path = VEC;
 			sourceTree = "<group>";
@@ -4339,13 +4349,13 @@
 		D2B4EE36299DC1A400705D36 /* VECTest */ = {
 			isa = PBXGroup;
 			children = (
+				D2B4EE42299DC82300705D36 /* HDVECSessionHistoryModel.h */,
+				D2B4EE43299DC82300705D36 /* HDVECSessionHistoryModel.m */,
 				D2B4EE37299DC1DB00705D36 /* HDVECSessionHistoryViewController.h */,
 				D2B4EE38299DC1DB00705D36 /* HDVECSessionHistoryViewController.m */,
 				D2B4EE3B299DC3F600705D36 /* HDVECSessionHistoryCell.h */,
 				D2B4EE3C299DC3F600705D36 /* HDVECSessionHistoryCell.m */,
 				D2B4EE3D299DC3F600705D36 /* HDVECSessionHistoryCell.xib */,
-				D2B4EE42299DC82300705D36 /* HDVECSessionHistoryModel.h */,
-				D2B4EE43299DC82300705D36 /* HDVECSessionHistoryModel.m */,
 				D2B4EE46299E090B00705D36 /* HDVECSessionHistoryDetailViewController.h */,
 				D2B4EE47299E090B00705D36 /* HDVECSessionHistoryDetailViewController.m */,
 			);
@@ -4394,6 +4404,8 @@
 			children = (
 				D2DA51AC29F7737100DDEB79 /* KFVecCallHistoryModel.h */,
 				D2DA51AD29F7737100DDEB79 /* KFVecCallHistoryModel.m */,
+				D2DA51C029F906E000DDEB79 /* KFVecHistoryDetailModel.h */,
+				D2DA51C129F906E000DDEB79 /* KFVecHistoryDetailModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -7567,6 +7579,7 @@
 				D2D1062529BAD2CA00212381 /* HDVECAppSkin.m in Sources */,
 				D3A761411FB55ABE000E1652 /* YYTextLine.m in Sources */,
 				D3A761421FB55ABE000E1652 /* YYTextMagnifier.m in Sources */,
+				D2DA51BE29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m in Sources */,
 				90591C302068ADC4007367BD /* KFMonitorInfoChartViewCell.m in Sources */,
 				D3A761431FB55ABE000E1652 /* YYTextSelectionView.m in Sources */,
 				936A5ED8286AD437004BC632 /* UIView+HDMASAdditions.m in Sources */,
@@ -7641,6 +7654,7 @@
 				D33CE7A01F7CAF6700236720 /* KFPromptView.m in Sources */,
 				D3A95E651EA0F47100ADD394 /* PSTCollectionView.m in Sources */,
 				938AEA5F27F3F8FC00B461C4 /* KJPlayerOperationView.m in Sources */,
+				D2DA51C229F906E000DDEB79 /* KFVecHistoryDetailModel.m in Sources */,
 				D33CE7BC1F7CB01000236720 /* AFURLConnectionOperation.m in Sources */,
 				D2239EB42994959A0087D054 /* HDVECRingingCallModel.m in Sources */,
 				936F2E4928261CA9001FB60A /* HDSanBoxFileManager.m in Sources */,
@@ -8034,6 +8048,7 @@
 				D2D1062629BAD2CA00212381 /* HDVECAppSkin.m in Sources */,
 				938AE9A527F3F7C800B461C4 /* HDAgoraTicketModel.m in Sources */,
 				938AE9A627F3F7C800B461C4 /* KFVideoDetailModel.m in Sources */,
+				D2DA51BF29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m in Sources */,
 				D3E9CC861FBED182005E3677 /* YYTextContainerView.m in Sources */,
 				D3E9CC871FBED182005E3677 /* YYTextDebugOption.m in Sources */,
 				D3E9CC881FBED182005E3677 /* YYTextEffectWindow.m in Sources */,
@@ -8108,6 +8123,7 @@
 				D3E9CCCF1FBED182005E3677 /* RealtimeSearchUtil.m in Sources */,
 				93D0CF37283730F1004D93E3 /* KFMSGTypeModel.m in Sources */,
 				D3E9CCD01FBED182005E3677 /* DDASLLogger.m in Sources */,
+				D2DA51C329F906E000DDEB79 /* KFVecHistoryDetailModel.m in Sources */,
 				D2239EB52994959A0087D054 /* HDVECRingingCallModel.m in Sources */,
 				D3E9CCD11FBED182005E3677 /* ClientInforViewController.m in Sources */,
 				D3E9CCD21FBED182005E3677 /* HConversationViewController.m in Sources */,

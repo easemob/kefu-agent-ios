@@ -140,6 +140,11 @@
         _reasonLabel.text = @"访客拒接";
         _reasonLabel.textColor = [[HDAppSkin mainSkin] contentColorRed];
         
+    }else if([model.hangUpReason isEqualToString:@"CALLBACK_CANCEL"]){
+        
+        _reasonLabel.text = @"振铃放弃";
+        _reasonLabel.textColor = [[HDAppSkin mainSkin] contentColorRed];
+        
     }
    
     if ([model.originType isEqualToString:@"app"]) {
