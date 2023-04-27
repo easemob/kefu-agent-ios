@@ -135,19 +135,7 @@ static HomeViewController *homeViewController;
     [super viewDidAppear:animated];
     [self printViewHierarchy:self.tabBarController.view];
     
-#pragma mark  -------- VEC 相关 只有坐席空闲状态才能接入 视频 所以 登录成功以后需要设置一下坐席状态 ------------
-    // 更改VEC 坐席空闲 才能接视频
-    [self performSelector:@selector(delayDo) withObject:nil afterDelay:2.0f];
-    
-#pragma mark  -------- VEC 相关 只有坐席空闲状态才能接入 视频 所以 登录成功以后需要设置一下坐席状态 end------------
 }
-
-- (void)delayDo{
-    [[HDVECAgoraCallManager shareInstance] vec_SetVECAgentStatus:HDAgentServiceType_VEC completion:^(id responseObject, HDError * error) {
-        NSLog(@"==1=%@",responseObject);
-    }];
-}
-
 - (void)printViewHierarchy:(UIView *)superView
 {
     static uint level = 0;
@@ -638,6 +626,8 @@ static HomeViewController *homeViewController;
     
 #pragma mark  -------- VEC 相关通知 注册加入房间的通知 ------------
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createAgoraRoom:) name:HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_KefuStateRtcCallRinging:) name:HDCALL_AGENT_STATE_Ringing object:nil];
+    
     //测试通知方法 测试通过以后 请及时删除
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(vec_createSessionHistory:) name:HDCALL_KefuRtcCallRinging_VEC_sessionhistory object:nil];
 #pragma mark  -------- VEC 相关通知 注册加入房间的通知 edn------------
@@ -914,6 +904,28 @@ static HomeViewController *homeViewController;
     // 获取接口 数据 测试
 //    [self vec_testApi];
 }
+
+
+// 这个场景是 移动坐席工作台 和 web坐席工作台 互踢时 正好有视频通话进来 此时 坐席的状态是 振铃中
+-(void)vec_KefuStateRtcCallRinging:(NSNotification *)notification{
+    
+    if ([HDAppManager shareInstance].isAnswerView) {
+        // 如果YEAS 说明已经有视频弹窗界面了 不能在接通其他视频了
+        return;
+    }
+    
+    [HDAppManager shareInstance].isAnswerView = YES;
+    //  先解析需要的数据 开始弹视频界面
+    //1、解析数据
+    //2、调用接口获取声网数据 弹窗
+    
+    HDVECRingingCallModel *model = notification.object;
+    if (model) {
+        [self  vec_onAgoraCallReceivedNickName:model];
+    }
+
+}
+
 
 - (void)vec_testApi{
     

@@ -369,8 +369,8 @@
     }
     
     [self stopSoundCustom];
-    //初始化灰度管理
-    [[HDCallManager shareInstance] initGray];
+//    //初始化灰度管理
+//    [[HDCallManager shareInstance] initGray];
     
     // 调用通行证接口
     [[HDVECManager sharedInstance] vec_getAgoraTicketWithRtcSessionId:_ringingCallModel.rtcSessionId withAgentId:_ringingCallModel.agentUserId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
@@ -401,12 +401,14 @@
         NSLog(@"=====================%@",responseObject);
 
     }];
+   
 }
 -(void)vec_cancelKefuRtcCallRinging{
     
     [self stopSoundCustom];
     [self removeFromSuperview];
     [HDAppManager shareInstance].isAnswerView = NO;
+   
     
 }
 - (void)zoomClick:(UIButton *)sender{

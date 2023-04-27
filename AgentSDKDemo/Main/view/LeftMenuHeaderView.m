@@ -66,19 +66,10 @@
     
     // vec 相关 坐席状态
     _vecButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    _vecButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 65 - _onlineButton.size.width, 30, 65, 40);
+    _vecButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 70 - _onlineButton.size.width, 30, 70, 40);
 
     [self vec_updateAgentUserState];
     
-//    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]) {
-//        [_vecButton setTitle:@"空闲" forState:UIControlStateNormal];
-//    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]) {
-//        [_vecButton setTitle:@"忙碌" forState:UIControlStateNormal];
-//    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
-//        [_vecButton setTitle:@"小休" forState:UIControlStateNormal];
-//    } else {
-//        [_vecButton setTitle:@"离线" forState:UIControlStateNormal];
-//    }
     [_vecButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_vecButton.width/1.2, 0, 0)];
     [_vecButton setImage:[UIImage imageNamed:@"main_icon_open"] forState:UIControlStateNormal];
     [_vecButton setImageEdgeInsets:UIEdgeInsetsMake(0, _vecButton.width/2.4 , 0,0 )];
@@ -115,7 +106,11 @@
     } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
         [_vecButton setTitle:@"小休" forState:UIControlStateNormal];
     }else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_OFFLINE]) {
-        [_vecButton setTitle:@"小休" forState:UIControlStateNormal];
+        [_vecButton setTitle:@"离开" forState:UIControlStateNormal];
+    }else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_RINGING]) {
+        [_vecButton setTitle:@"振铃中" forState:UIControlStateNormal];
+    }else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_PROCESSING]) {
+        [_vecButton setTitle:@"通话中" forState:UIControlStateNormal];
     }else {
        
     }

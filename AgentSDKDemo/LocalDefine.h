@@ -57,6 +57,7 @@
 #define HDCALL_liveStreamInvitation_CreateAgoraRoom @"HDCALL_liveStreamInvitation_CreateAgoraRoom"
 
 #define HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom @"HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom"
+#define HDCALL_AGENT_STATE_Ringing @"HDCALL_AGENT_STATE_Ringing_VEC_CreateAgoraRoom"
 // 视频结束 发送通知 更新界面
 #define HDCALL_videoPlayback_end @"HDCALL_videoPlayback_end"
 // 视频结束 发送通知 显示测试界面
