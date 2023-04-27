@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LeftMenuHeaderView.h"
 @protocol LeftMenuViewDelegate <NSObject>
 @optional
 - (void)menuClickWithIndex:(NSInteger)index;
@@ -20,7 +21,7 @@
 
 @interface KFLeftViewController : UIViewController
 @property (nonatomic, weak) id<LeftMenuViewDelegate> leftDelegate;
-
+@property (nonatomic, strong) LeftMenuHeaderView *headerView;
 - (void)refreshUnreadView:(NSInteger)badgeNumber;
 
 @end

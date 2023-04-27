@@ -891,7 +891,6 @@ static HomeViewController *homeViewController;
 - (void)vec_KefuRtcNewMessageDidReceive:(NSDictionary *)dic{
     NSLog(@"================收到rtc新消息通知==========%@",dic);
     if ([[HDVECAgoraCallManager shareInstance] vec_isVisitorCancelInvitationMessage:dic]) {
-        
         if (self.kfVecAnswerView) {
             [self.kfVecAnswerView vec_cancelKefuRtcCallRinging];
         }
@@ -998,6 +997,30 @@ static HomeViewController *homeViewController;
 - (void)vec_KefuRtcAgentStateChangeDidReceive:(NSDictionary *)dic{
 
     NSLog(@"================收到坐席状态改变消息通知==========%@",dic);
+    
+    if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+        if ([dic safeDictValueForKey:@"body"]) {
+            NSDictionary * rtcAgentStateChangeEvent =  [[dic safeDictValueForKey:@"body"] safeDictValueForKey:@"rtcAgentStateChangeEvent"];
+            if (rtcAgentStateChangeEvent && [[rtcAgentStateChangeEvent allKeys] containsObject:@"to"] && [[rtcAgentStateChangeEvent allKeys] containsObject:@"userId"]) {
+             
+                NSString * to = [rtcAgentStateChangeEvent safeStringValueForKey:@"to"];
+                NSString * userId = [rtcAgentStateChangeEvent safeStringValueForKey:@"userId"];
+                
+                if ([[HDClient sharedClient].currentAgentUser.agentId isEqualToString:userId]) {
+                    
+                    [HDClient sharedClient].currentAgentUser.vecOnLineState = to;
+                
+                    [[HDUserManager sharedInstance] saveAgentUser:[HDClient sharedClient].currentAgentUser];
+                    
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"VEC_StatusChanged" object:nil];
+                    
+                    KFLeftViewController *leftVC = (KFLeftViewController *)self.mm_drawerController.leftDrawerViewController;
+                    
+                    [leftVC.headerView vec_updateAgentUserState];
+                }
+            }
+        }
+    }
 }
 //  vec 历史消息通知
 - (void)vec_RtcSessionHistoryClosedDidReceive:(NSDictionary *)dic{

@@ -68,15 +68,17 @@
     _vecButton= [UIButton buttonWithType:UIButtonTypeCustom];
     _vecButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 65 - _onlineButton.size.width, 30, 65, 40);
 
-    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]) {
-        [_vecButton setTitle:@"空闲" forState:UIControlStateNormal];
-    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]) {
-        [_vecButton setTitle:@"忙碌" forState:UIControlStateNormal];
-    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
-        [_vecButton setTitle:@"小休" forState:UIControlStateNormal];
-    } else {
-        [_vecButton setTitle:@"离线" forState:UIControlStateNormal];
-    }
+    [self vec_updateAgentUserState];
+    
+//    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]) {
+//        [_vecButton setTitle:@"空闲" forState:UIControlStateNormal];
+//    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]) {
+//        [_vecButton setTitle:@"忙碌" forState:UIControlStateNormal];
+//    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
+//        [_vecButton setTitle:@"小休" forState:UIControlStateNormal];
+//    } else {
+//        [_vecButton setTitle:@"离线" forState:UIControlStateNormal];
+//    }
     [_vecButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_vecButton.width/1.2, 0, 0)];
     [_vecButton setImage:[UIImage imageNamed:@"main_icon_open"] forState:UIControlStateNormal];
     [_vecButton setImageEdgeInsets:UIEdgeInsetsMake(0, _vecButton.width/2.4 , 0,0 )];
@@ -104,5 +106,18 @@
 {
 
 }
-
+- (void)vec_updateAgentUserState{
+    UserModel *user = [HDClient sharedClient].currentAgentUser;
+    if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_ONLINE]) {
+        [_vecButton setTitle:@"空闲" forState:UIControlStateNormal];
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_BUSY]) {
+        [_vecButton setTitle:@"忙碌" forState:UIControlStateNormal];
+    } else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_REST]) {
+        [_vecButton setTitle:@"小休" forState:UIControlStateNormal];
+    }else if ([user.vecOnLineState isEqualToString:VEC_USER_STATE_OFFLINE]) {
+        [_vecButton setTitle:@"小休" forState:UIControlStateNormal];
+    }else {
+       
+    }
+}
 @end

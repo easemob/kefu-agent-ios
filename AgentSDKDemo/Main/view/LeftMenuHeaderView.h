@@ -20,4 +20,7 @@
 @property (nonatomic, strong) UIButton *vecButton;
 @property (nonatomic, strong) UIImageView *vecImageView;
 
+
+- (void)vec_updateAgentUserState;
+
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "KFLeftViewController.h"
-#import "LeftMenuHeaderView.h"
+
 #import "DXTipView.h"
 #import "EMPickerView.h"
 #import "HDVECEMPickerView.h"
@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
 , UIDocumentInteractionControllerDelegate
 #endif
 >
-@property (nonatomic, strong) LeftMenuHeaderView *headerView;
+
 @property (nonatomic, strong) EMPickerView *pickerView;
 @property (nonatomic, strong) HDVECEMPickerView *vecPickerView;
 @property (nonatomic, strong) UITableView *tableView;
