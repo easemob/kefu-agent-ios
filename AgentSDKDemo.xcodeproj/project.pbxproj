@@ -602,6 +602,10 @@
 		D2DA51BF29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51BD29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m */; };
 		D2DA51C229F906E000DDEB79 /* KFVecHistoryDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51C129F906E000DDEB79 /* KFVecHistoryDetailModel.m */; };
 		D2DA51C329F906E000DDEB79 /* KFVecHistoryDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DA51C129F906E000DDEB79 /* KFVecHistoryDetailModel.m */; };
+		D2DA51C529FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA51C429FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png */; };
+		D2DA51C629FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA51C429FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png */; };
+		D2DA51C829FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA51C729FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png */; };
+		D2DA51C929FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2DA51C729FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png */; };
 		D2DAD11029B747F600733A8E /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9371DAF42872CBC500C09230 /* ReplayKit.framework */; };
 		D2DAD11429B747F600733A8E /* SampleHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2DAD11329B747F600733A8E /* SampleHandler.m */; };
 		D2DAD11829B747F600733A8E /* AgentDemoAppstoreExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2462,6 +2466,8 @@
 		D2DA51BD29F8D47100DDEB79 /* KFVECHistoryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVECHistoryDetailViewController.m; sourceTree = "<group>"; };
 		D2DA51C029F906E000DDEB79 /* KFVecHistoryDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KFVecHistoryDetailModel.h; sourceTree = "<group>"; };
 		D2DA51C129F906E000DDEB79 /* KFVecHistoryDetailModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KFVecHistoryDetailModel.m; sourceTree = "<group>"; };
+		D2DA51C429FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_tab_icon_histroy_vec@2x.png"; sourceTree = "<group>"; };
+		D2DA51C729FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main_tab_icon_histroy_vec@3x.png"; sourceTree = "<group>"; };
 		D2DAD0F629B73F0400733A8E /* AgoraReplayKitExtension.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = AgoraReplayKitExtension.xcframework; path = Pods/AgoraRtcEngine_iOS/AgoraReplayKitExtension.xcframework; sourceTree = "<group>"; };
 		D2DAD10F29B747F600733A8E /* AgentDemoAppstoreExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = AgentDemoAppstoreExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DAD11229B747F600733A8E /* SampleHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SampleHandler.h; sourceTree = "<group>"; };
@@ -6173,6 +6179,7 @@
 				D3FDC6F31EA0A5C600C25BB0 /* main_tab_icon_friend@2x.png */,
 				D3FDC6F41EA0A5C600C25BB0 /* main_tab_icon_friend_1@2x.png */,
 				D3FDC6F51EA0A5C600C25BB0 /* main_tab_icon_histroy@2x.png */,
+				D2DA51C429FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png */,
 				D3FDC6F61EA0A5C600C25BB0 /* main_tab_icon_histroy_1@2x.png */,
 				D279C73F29F68FED008E83C1 /* main_tab_icon_video@2x.png */,
 				D279C73C29F68FD9008E83C1 /* main_tab_icon_video@3x.png */,
@@ -6262,6 +6269,7 @@
 				D3FDC73C1EA0A5C600C25BB0 /* main_tab_icon_friend@3x.png */,
 				D3FDC73D1EA0A5C600C25BB0 /* main_tab_icon_friend_1@3x.png */,
 				D3FDC73E1EA0A5C600C25BB0 /* main_tab_icon_histroy@3x.png */,
+				D2DA51C729FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png */,
 				D3FDC73F1EA0A5C600C25BB0 /* main_tab_icon_histroy_1@3x.png */,
 				D3FDC7401EA0A5C600C25BB0 /* main_tab_icon_ongoing@3x.png */,
 				D3FDC7411EA0A5C600C25BB0 /* main_tab_icon_ongoing_1@3x.png */,
@@ -6653,6 +6661,7 @@
 				D3058D181FD6AD920091E048 /* right@2x.png in Resources */,
 				D3FDC7F01EA0A5C600C25BB0 /* ee_9.png in Resources */,
 				D33CE8161F7CB52500236720 /* README.txt in Resources */,
+				D2DA51C829FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png in Resources */,
 				D3FDC88D1EA0A5C600C25BB0 /* shai_icon_backCopy@3x.png in Resources */,
 				936A5E69286ACEA9004BC632 /* mac on@2x.png in Resources */,
 				D3FDC80A1EA0A5C600C25BB0 /* switch_off@2x.png in Resources */,
@@ -6694,6 +6703,7 @@
 				D3FDC8041EA0A5C600C25BB0 /* icon_mono_off@2x.png in Resources */,
 				D3FDC76F1EA0A5C600C25BB0 /* VoiceSearchFeedback008.png in Resources */,
 				D3FDC8491EA0A5C600C25BB0 /* tabbar_icon_crmhighlight@2x.png in Resources */,
+				D2DA51C529FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png in Resources */,
 				D3FDC7F51EA0A5C600C25BB0 /* 4-1.png in Resources */,
 				D3FDC8951EA0A5C600C25BB0 /* tabbar_icon_ongoinghighlight@3x.png in Resources */,
 				937032EA286AFC3800B71298 /* iconfontcall.woff in Resources */,
@@ -7116,6 +7126,7 @@
 				D3E9CE7E1FBED182005E3677 /* tips_popup_right_EllipseCopy@2x.png in Resources */,
 				D3E9CE7F1FBED182005E3677 /* icon_audio_blue_1@2x.png in Resources */,
 				D3E9CE801FBED182005E3677 /* ee_31.png in Resources */,
+				D2DA51C929FA5C5400DDEB79 /* main_tab_icon_histroy_vec@3x.png in Resources */,
 				D3E9CE811FBED182005E3677 /* icon_pull@2x.png in Resources */,
 				936A5E94286ACEA9004BC632 /* hide.png in Resources */,
 				D3E9CE821FBED182005E3677 /* icon_close_select@2x.png in Resources */,
@@ -7157,6 +7168,7 @@
 				D3E9CEA11FBED182005E3677 /* select_bg@2x.png in Resources */,
 				D3E9CEA21FBED182005E3677 /* list_status_radio_droplist_2@2x.png in Resources */,
 				D3E9CEA31FBED182005E3677 /* chat_tagarrow@2x.png in Resources */,
+				D2DA51C629FA5BC300DDEB79 /* main_tab_icon_histroy_vec@2x.png in Resources */,
 				D3E9CEA41FBED182005E3677 /* gallary_icon_camera_big@2x.png in Resources */,
 				D3E9CEA51FBED182005E3677 /* tabbar_icon_crm@3x.png in Resources */,
 				937032EB286AFC3800B71298 /* iconfontcall.woff in Resources */,

@@ -36,17 +36,17 @@
     _headImageView = [[EMHeaderImageView alloc] initWithFrame:CGRectMake(10, 0, 50, 50)];
     [_headImageView updateHeadImage];
     [self addSubview:_headImageView];
-    _nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame) + 20, 30, 100, 40)];
+    _nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame) + 20, 30, 95, 40)];
     _nickLabel.text = user.nicename;
     _nickLabel.textColor = [UIColor whiteColor];
     _nickLabel.textAlignment = NSTextAlignmentLeft;
     _nickLabel.font = [UIFont boldSystemFontOfSize:18];
-//    _nickLabel.backgroundColor = [UIColor grayColor];
+    _nickLabel.backgroundColor = [UIColor grayColor];
     [self addSubview:_nickLabel];
     
     _onlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [_onlineButton setBackgroundColor:[UIColor cyanColor]];
-    _onlineButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 65, 30, 65, 40);
+    [_onlineButton setBackgroundColor:[UIColor cyanColor]];
+    _onlineButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 55, 30, 55, 40);
     if ([user.onLineState isEqualToString:USER_STATE_ONLINE]) {
         [_onlineButton setTitle:@"空闲" forState:UIControlStateNormal];
     } else if ([user.onLineState isEqualToString:USER_STATE_BUSY]) {
@@ -56,9 +56,9 @@
     } else {
         [_onlineButton setTitle:@"隐身" forState:UIControlStateNormal];
     }
-    [_onlineButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_onlineButton.width/2, 0, 0)];
+    [_onlineButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_onlineButton.width/1.2, 0, 0)];
     [_onlineButton setImage:[UIImage imageNamed:@"main_icon_open"] forState:UIControlStateNormal];
-    [_onlineButton setImageEdgeInsets:UIEdgeInsetsMake(0, _onlineButton.width/2 + 10, 0, 0)];
+    [_onlineButton setImageEdgeInsets:UIEdgeInsetsMake(0, _onlineButton.width/1.8 + 10, 0, 0)];
     _onlineButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [_onlineButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self addSubview:_onlineButton];
@@ -66,22 +66,24 @@
     
     // vec 相关 坐席状态
     _vecButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    _vecButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 70 - _onlineButton.size.width, 30, 70, 40);
-
+    _vecButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 55 - _onlineButton.size.width, 30, 55, 40);
+    _vecButton.backgroundColor = [UIColor yellowColor];
     [self vec_updateAgentUserState];
     
     [_vecButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_vecButton.width/1.2, 0, 0)];
     [_vecButton setImage:[UIImage imageNamed:@"main_icon_open"] forState:UIControlStateNormal];
-    [_vecButton setImageEdgeInsets:UIEdgeInsetsMake(0, _vecButton.width/2.4 , 0,0 )];
+    [_vecButton setImageEdgeInsets:UIEdgeInsetsMake(0, _vecButton.width/1.5 , 0,0 )];
     _vecButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [_vecButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _vecButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+    _vecButton.titleLabel.textAlignment = NSTextAlignmentRight;
     [self addSubview:_vecButton];
     
     _vecImageView = [[UIImageView alloc] init];
     
     _vecImageView.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 22 - _onlineButton.size.width - _vecButton.size.width, 40, 22, 22);
-    UIImage * img = [UIImage imageWithIcon:kdianhuatianchong inFont:kfontName size:22 color:[[HDAppSkin mainSkin] contentColorWhitealpha:1] ];
+//    UIImage * img = [UIImage imageWithIcon:kdianhuatianchong inFont:kfontName size:22 color:[[HDAppSkin mainSkin] contentColorWhitealpha:1] ];
+    
+    UIImage * img = [UIImage imageNamed:@"main_tab_icon_histroy_vec"];
     _vecImageView.image = img;
     [self addSubview:_vecImageView];
 }

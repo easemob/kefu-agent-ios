@@ -322,11 +322,9 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
                 [_headerView.vecButton setTitle:value forState:UIControlStateNormal];
                 [hud setMode:MBProgressHUDModeCustomView];
                 weakHud.label.text =@"系统将不再为您分配新视频";
-//                [weakHud setLabelText:@"系统将不再为您分配新会话"];
-                [weakHud hideAnimated:YES afterDelay:3.0];
+                [weakHud hideAnimated:YES afterDelay:2.0];
             }
         } else {
-//            [weakHud setLabelText:@"修改失败"];
             weakHud.label.text =@"修改失败";
             [weakHud hideAnimated:YES afterDelay:0.5];
         }
@@ -351,7 +349,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
                 [hud setMode:MBProgressHUDModeCustomView];
                 weakHud.label.text =@"系统将不再为您分配新会话";
 //                [weakHud setLabelText:@"系统将不再为您分配新会话"];
-                [weakHud hideAnimated:YES afterDelay:3.0];
+                [weakHud hideAnimated:YES afterDelay:2.0];
             }
         } else {
 //            [weakHud setLabelText:@"修改失败"];
@@ -383,7 +381,7 @@ typedef NS_ENUM(NSUInteger, AgentMenuTag) {
     return @[
              [KFLeftViewItem name:@"主页" image:[UIImage imageNamed:@"main_tab_icon_ongoing_1"]],
              [KFLeftViewItem name:@"历史" image:[UIImage imageNamed:@"main_tab_icon_histroy"]],
-             [KFLeftViewItem name:@"视频" image:[UIImage imageNamed:@"main_tab_icon_histroy"]],
+             [KFLeftViewItem name:@"视频" image:[UIImage imageNamed:@"main_tab_icon_histroy_vec"]],
              [KFLeftViewItem name:@"设置" image:[UIImage imageNamed:@"main_tab_icon_friend"]]
              ];
 }

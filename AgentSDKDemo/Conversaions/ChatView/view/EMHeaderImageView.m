@@ -104,8 +104,8 @@
 {
     if (_vecStatusImageView == nil) {
         _vecStatusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headerImageView.frame) - self.width/5 + self.width/4 + 3, CGRectGetMaxY(_headerImageView.frame) - self.width/5, self.width/4, self.height/4)];
-        _vecStatusImageView.clipsToBounds = YES;
-        _vecStatusImageView.layer.cornerRadius = _vecStatusImageView.width/2;
+//        _vecStatusImageView.clipsToBounds = YES;
+//        _vecStatusImageView.layer.cornerRadius = _vecStatusImageView.width/2;
 //        _vecStatusImageView.backgroundColor = [[HDAppSkin mainSkin] contentColorGrayF0];;
         [self vecState];
        
