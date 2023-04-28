@@ -36,16 +36,17 @@
     _headImageView = [[EMHeaderImageView alloc] initWithFrame:CGRectMake(10, 0, 50, 50)];
     [_headImageView updateHeadImage];
     [self addSubview:_headImageView];
-    _nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame) + 20, 30, 95, 40)];
+//    _nickLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(_headImageView.frame) + 20, 30, 95, 40)];
+    _nickLabel = [[UILabel alloc] init];
     _nickLabel.text = user.nicename;
     _nickLabel.textColor = [UIColor whiteColor];
     _nickLabel.textAlignment = NSTextAlignmentLeft;
     _nickLabel.font = [UIFont boldSystemFontOfSize:18];
-    _nickLabel.backgroundColor = [UIColor grayColor];
+//    _nickLabel.backgroundColor = [UIColor grayColor];
     [self addSubview:_nickLabel];
     
     _onlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_onlineButton setBackgroundColor:[UIColor cyanColor]];
+//    [_onlineButton setBackgroundColor:[UIColor cyanColor]];
     _onlineButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 55, 30, 55, 40);
     if ([user.onLineState isEqualToString:USER_STATE_ONLINE]) {
         [_onlineButton setTitle:@"空闲" forState:UIControlStateNormal];
@@ -67,7 +68,7 @@
     // vec 相关 坐席状态
     _vecButton= [UIButton buttonWithType:UIButtonTypeCustom];
     _vecButton.frame = CGRectMake(KScreenWidth - kHomeViewLeft - 55 - _onlineButton.size.width, 30, 55, 40);
-    _vecButton.backgroundColor = [UIColor yellowColor];
+//    _vecButton.backgroundColor = [UIColor yellowColor];
     [self vec_updateAgentUserState];
     
     [_vecButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -_vecButton.width/1.2, 0, 0)];
@@ -86,6 +87,35 @@
     UIImage * img = [UIImage imageNamed:@"main_tab_icon_histroy_vec"];
     _vecImageView.image = img;
     [self addSubview:_vecImageView];
+    
+//    _nickLabel.frame = CGRectMake(CGRectGetMaxX(_headImageView.frame) + 20, 30,KScreenWidth - kHomeViewLeft - _vecButton.size.width - _onlineButton.size.width - _vecImageView.size.width-64 , 40);
+
+    
+    if ([HDClient sharedClient].currentAgentUser.vecIndependentVideoEnable) {
+
+        [_nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+            make.leading.mas_equalTo(_headImageView.mas_trailing).offset(20);
+            make.trailing.mas_equalTo(_vecImageView.mas_leading).offset(0);
+            make.top.offset(30);
+            make.bottom.offset(0);
+
+        }];
+    }else{
+
+        [_nickLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+
+            make.leading.mas_equalTo(_headImageView.mas_trailing).offset(20);
+            make.trailing.mas_equalTo(_onlineButton.mas_leading).offset(0);
+            make.top.offset(30);
+            make.bottom.offset(0);
+
+        }];
+
+
+    }
+
+    
 }
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
