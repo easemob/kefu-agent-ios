@@ -19,5 +19,6 @@
 @property (nonatomic, strong) VisitorUserModel *vistor;
 @property (nonatomic, assign) BOOL readOnly;
 @property (nonatomic, copy) NSString *serviceSessionId;
+@property (nonatomic, strong) HDConversation *conversation;
 
 @end

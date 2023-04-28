@@ -21,3 +21,11 @@
 //leaveMsg
 "leaveMessage.leavemsg.attachmentname" = "附件名称";
 
+//vec 相关
+"video.answer.title" = "请求视频通话";
+"video.answer.send" = "邀请客服进行实时视频";
+"video.answer.receive" = "客服正在邀请您进行视频通话";
+"video.whiteboardConvertFail" = "文档转码失败";
+"video.answer.waiting" = "发起通话";
+"video.answer.hangup" = "挂断";
+"video.answer.again.waiting"= "重新发起";

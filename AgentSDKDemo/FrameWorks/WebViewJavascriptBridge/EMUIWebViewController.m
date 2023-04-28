@@ -1,5 +1,4 @@
 //
-//  ExampleUIWebViewController.m
 //  ExampleApp-iOS
 //
 //  Created by Marcus Westin on 1/13/14.
@@ -7,14 +6,15 @@
 //
 
 #import "EMUIWebViewController.h"
-#import "WebViewJavascriptBridge.h"
+#import "WKWebViewJavascriptBridge.h"
 
 @interface EMUIWebViewController ()
 {
     NSString *_url;
 }
-@property WebViewJavascriptBridge* bridge;
-@property (nonatomic, strong) UIWebView *webView;
+@property WKWebViewJavascriptBridge* bridge;
+@property (nonatomic, strong) WKWebView *webView;
+
 @end
 
 @implementation EMUIWebViewController
@@ -36,12 +36,13 @@
     self.title = @"自定义消息";
     self.navigationItem.leftBarButtonItem = self.backItem;
     
-    _webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    _webView = [[WKWebView alloc] initWithFrame:self.view.bounds];
+    
     [self.view addSubview:_webView];
     
-    [WebViewJavascriptBridge enableLogging];
+    [WKWebViewJavascriptBridge enableLogging];
     
-    _bridge = [WebViewJavascriptBridge bridgeForWebView:_webView];
+    _bridge = [WKWebViewJavascriptBridge bridgeForWebView:_webView];
     
     WEAK_SELF
     [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -59,16 +60,25 @@
     [self loadExamplePage:_webView];
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
+
+
+// 页面加载完成之后调用
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+
+    
+    [webView evaluateJavaScript:@"var WVJBIframe = document.createElement('iframe');WVJBIframe.style.display = 'none';WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';document.documentElement.appendChild(WVJBIframe);setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)" completionHandler:nil];
+   
+   
+    //执行JS方法获取导航栏标题
+        [webView evaluateJavaScript:@"document.title" completionHandler:^(id _Nullable title, NSError * _Nullable error) {
+
+            self.title = title;
+        }];
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [webView stringByEvaluatingJavaScriptFromString:@"var WVJBIframe = document.createElement('iframe');WVJBIframe.style.display = 'none';WVJBIframe.src = 'wvjbscheme://__BRIDGE_LOADED__';document.documentElement.appendChild(WVJBIframe);setTimeout(function() { document.documentElement.removeChild(WVJBIframe) }, 0)"];
-    NSString *theTitle=[webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    self.title = theTitle;
-}
 
-- (void)loadExamplePage:(UIWebView*)webView {
+
+- (void)loadExamplePage:(WKWebView*)webView {
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];
 }
 @end

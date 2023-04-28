@@ -71,7 +71,8 @@
     self = [super init];
     if (self) {
         
-        _url = [self URLEncodeString:url];
+//        _url = [self URLEncodeString:url];
+        _url = url;
     }
     return self;
 }
@@ -95,6 +96,9 @@
     [self.view addSubview:self.webView];
 //    [self.view addSubview:self.progressView];
 
+    
+//    self.navigationController.navigationBarHidden = YES;
+    
     //添加监测网页加载进度的观察者
     [self.webView addObserver:self
                    forKeyPath:NSStringFromSelector(@selector(estimatedProgress))
@@ -376,7 +380,8 @@
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error {
 //    [self.progressView setProgress:0.0f animated:NO];
     NSLog(@"didFailNavigation");
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 // 当内容开始返回时调用
@@ -388,7 +393,8 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     [self getCookie];
     NSLog(@"didFinishNavigation");
-    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+//    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 //提交发生错误时调用
@@ -487,7 +493,7 @@
 }
 #pragma mark - url 编码
 - (NSString *)URLEncodeString:(NSString *)str {
-    NSString *encodedString = [str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;='\"`<>()[]{}\\| "] invertedSet]];
+    NSString *encodedString = [str stringByAddingPercentEncodingWithAllowedCharacters:[[NSCharacterSet characterSetWithCharactersInString:@"!@$^&%*+,;'\"`<>()[]{}\\| "] invertedSet]];
     return encodedString;
 }
 @end

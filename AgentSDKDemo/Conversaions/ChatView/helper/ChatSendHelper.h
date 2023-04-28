@@ -26,6 +26,7 @@
 //语音消息
 
 + (HDMessage *)voiceMessageFormatWithPath:(NSString *)path to:(NSString *)toUser  sessionId:(NSString *)sessionId;
-
+//文件消息
++ (HDMessage *)fileMessageFormatWithPath:(NSString *)path to:(NSString *)toUser  sessionId:(NSString *)sessionId withDisplayName:(NSString *)displayName;
 
 @end

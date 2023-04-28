@@ -388,14 +388,16 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                     MBProgressHUD *hud = [MBProgressHUD showMessag:@"分配中" toView:self.view];
                     [HDClient.sharedClient.leaveMessageMananger asyncAssignLeaveMessagesWithMessageIds:@[_model.leaveMessageId] toAgentId:assignee.agentId completion:^(HDError *error) {
                         if (!error) {
-                            [hud setLabelText:@"分配成功"];
+//                            [hud setLabelText:@"分配成功"];
+                            hud.label.text =@"分配成功";
                             _currentAssginee = assignee.nickname;
-                            [hud hide:YES afterDelay:0.5];
+                            [hud hideAnimated:YES afterDelay:0.5];
                             [self reloadDetailData];
                             [self leaveMessageDetailDidChanged];
                         } else {
-                            [hud setLabelText:@"分配失败"];
-                            [hud hide:YES afterDelay:0.5];
+//                            [hud setLabelText:@"分配失败"];
+                            hud.label.text =@"分配失败";
+                            [hud hideAnimated:YES afterDelay:0.5];
                         }
                     }];
                 }
@@ -405,13 +407,15 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                     if (index == 0) {
                         [HDClient.sharedClient.leaveMessageMananger asyncUnAssignLeaveMessageId:@[_model.leaveMessageId] completion:^(HDError *error) {
                             if (error == nil) {
-                                [hud setLabelText:@"分配成功"];
-                                [hud hide:YES afterDelay:0.5];
+//                                [hud setLabelText:@"分配成功"];
+                                hud.label.text =@"分配成功";
+                                [hud hideAnimated:YES afterDelay:0.5];
                                 [self reloadDetailData];
                                 [self leaveMessageDetailDidChanged];
                             } else {
-                                [hud setLabelText:@"分配失败"];
-                                [hud hide:YES afterDelay:0.5];
+                            
+                                hud.label.text =@"分配失败";
+                                [hud hideAnimated:YES afterDelay:0.5];
                             }
                         }];
                     } else {
@@ -419,12 +423,14 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
                         
                         [HDClient.sharedClient.leaveMessageMananger asyncAssignLeaveMessagesWithMessageIds:@[_model.leaveMessageId] toAgentId:assignee.agentId completion:^(HDError *error) {
                             if (!error) {
-                                [hud setLabelText:@"分配成功"];
-                                [hud hide:YES afterDelay:0.5];
+                            
+                                hud.label.text =@"分配成功";
+                                [hud hideAnimated:YES afterDelay:0.5];
                                 [self reloadDetailData];
                             } else {
-                                [hud setLabelText:@"分配失败"];
-                                [hud hide:YES afterDelay:0.5];
+                            
+                                hud.label.text =@"分配失败";
+                                [hud hideAnimated:YES afterDelay:0.5];
                             }
                         }];
                     }
@@ -448,12 +454,13 @@ typedef NS_ENUM(NSUInteger, LeaveStateTag) {
             [HDClient.sharedClient.leaveMessageMananger asyncSetLeaveMessagesTypeWithMessageId:_model.leaveMessageId
                                                                                           type:type
                                                                                     completion:^(HDError *error) {
-                [hud hide:YES afterDelay:0.5];
+                [hud hideAnimated:YES afterDelay:0.5];
                 if (error == nil) {
                     [weakSelf reloadDetailData];
                     [self leaveMessageDetailDidChanged];
                 } else {
-                    [hud setLabelText:@"保存失败"];
+//                    [hud setLabelText:@"保存失败"];
+                    hud.label.text = @"保存失败";
                 }
             }];
             break;

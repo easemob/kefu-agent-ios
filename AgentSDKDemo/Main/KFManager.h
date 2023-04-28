@@ -25,6 +25,8 @@ singleton_interface(KFManager);
 
 @property (nonatomic, assign) AppDelegate *appDelegate;
 
+@property (nonatomic, strong) NSArray *iframes;
+
 /**
  当前聊天控制器,进入会话的时候传入
  */
@@ -69,6 +71,7 @@ singleton_interface(KFManager);
 
 - (void)clearInfo;
 
-
++ (void)vec_PushView:(UIView *)pushView inView:(UIView *)inView;
++ (void)vec_PopView:(UIView *)popView;
 
 @end

@@ -48,10 +48,12 @@
 - (void)CompileCell{
     CGFloat X = 10;
     NSInteger Height = 50;
-    _title = [[UILabel alloc]initWithFrame:CGRectMake(X, (Height-30)/2, KScreenWidth/5-10, 30)];
+//    _title = [[UILabel alloc]initWithFrame:CGRectMake(X, (Height-30)/2, KScreenWidth/5-10, 30)];
+    _title = [[UILabel alloc]initWithFrame:CGRectMake(X, (Height-30)/2, KScreenWidth/4, 30)];
     _title.backgroundColor = [UIColor clearColor];
+//    _title.backgroundColor = [UIColor redColor];
     _title.font = [UIFont systemFontOfSize:15.f];
-    _title.lineBreakMode = NSLineBreakByTruncatingMiddle;
+    _title.lineBreakMode = NSLineBreakByTruncatingTail;
     _title.textColor = UIColor.grayColor;
     [self addSubview:_title];
     
@@ -61,6 +63,7 @@
     
     _nickName = [[UILabel alloc]initWithFrame:CGRectMake(KScreenWidth/5, (Height-30)/2,kVisitorInfomationContentWidth, 30)];
     _nickName.backgroundColor = [UIColor clearColor];
+//    _nickName.backgroundColor = [UIColor yellowColor];
     _nickName.textAlignment = NSTextAlignmentLeft;
     _nickName.textColor = RGBACOLOR(26, 26, 26, 1);
     _nickName.font = [UIFont systemFontOfSize:17.f];

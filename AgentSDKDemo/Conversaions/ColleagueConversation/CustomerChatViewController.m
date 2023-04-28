@@ -641,7 +641,8 @@
 - (void)loadHistory
 {
     if (!hasMore) {
-        [MBProgressHUD show:@"没有更多历史记录" view:self.view];
+//        [MBProgressHUD show:@"没有更多历史记录" view:self.view];
+        [MBProgressHUD showMessag:@"没有更多历史记录" toView:self.view];
         return;
     }
     if (self.dataSource.count == 0) {

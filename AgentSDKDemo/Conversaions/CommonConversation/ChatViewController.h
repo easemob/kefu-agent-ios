@@ -19,11 +19,12 @@ typedef enum{
 - (void)refreshConversationList;
 @end
 
-@interface ChatViewController : EMBaseViewController
+@interface ChatViewController : EMBaseViewController <UIDocumentPickerDelegate>
 @property (nonatomic, assign) id<ChatViewControllerDelegate> delegate;
 @property (nonatomic, strong) HDConversation * conversationModel;
 @property (nonatomic, copy) NSString *notifyNumber;
 @property (nonatomic, copy) NSString *unreadBadgeValue;
+@property (nonatomic, strong) UIDocumentPickerViewController *documentPickerVC;
 - (instancetype)initWithtype:(ChatViewType)type;
 
 + (BOOL)isExistFile:(HDMessage *)model;

@@ -233,15 +233,15 @@ typedef NS_ENUM(NSUInteger, InputViewState) {
             [HDClient.sharedClient.leaveMessageMananger asyncUploadCommentAttachmentWithData:data fileName:fileName progress:^(float progress) {
                 
             } completion:^(HLeaveMessageCommentAttachment *attachment, HDError *error) {
-                [weakHud hide:YES];
+                [weakHud hideAnimated:YES];
                 if (error == nil) {
                     attachment.attachmentName = fileName;
                     [weakSelf.dataArray addObject:attachment];
                     _attachmentLabel.text = [NSString stringWithFormat:@"%@",@([self.dataArray count])];
                     [weakSelf.tableView reloadData];
                 } else {
-                    [weakHud setLabelText:@"上传失败"];
-                    [weakHud hide:YES afterDelay:0.5];
+                    weakHud.label.text = @"上传失败";
+                    [weakHud hideAnimated:YES afterDelay:0.5];
                 }
             }];
         };

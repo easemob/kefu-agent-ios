@@ -71,5 +71,16 @@
     
     return ret;
 }
-
+- (BOOL)isDictionaryContainsKey:(NSString *)key{
+    if ([self.allKeys containsObject:key]) {
+        
+        return  YES;
+    }
+    return NO;
+}
+- (instancetype)getDictionaryValue:(NSString *)key{
+    
+    return [self valueForKey:key];
+    
+}
 @end

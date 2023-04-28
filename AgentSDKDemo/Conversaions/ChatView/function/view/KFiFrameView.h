@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UserModel *user;
 @property (nonatomic, strong) NSString *kefuIm;
 @property (nonatomic, strong) NSString *visitorInfo;
+@property (nonatomic, strong) HDConversation *conversation;
 - (instancetype)initWithFrame:(CGRect)frame
                        iframe:(KFIframeModel * _Nullable)aModel;
 

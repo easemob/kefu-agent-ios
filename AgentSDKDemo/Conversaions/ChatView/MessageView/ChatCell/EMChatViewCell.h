@@ -20,12 +20,14 @@
 #import "EMChatFileBubbleView.h"
 #import "HDChatFormBubbleView.h"
 #import "HDChatVideoBubbleView.h"
-
+#import "HDChatVideoDetailBubbleView.h"
+#import "KFChatArticleBubbleView.h"
 #define SEND_STATUS_SIZE 32 // 发送状态View的Size
 #define ACTIVTIYVIEW_BUBBLE_PADDING 5 // 菊花和bubbleView之间的间距
 
 extern NSString *const kResendButtonTapEventName;
 extern NSString *const kShouldResendCell;
+extern NSString *const kSmartButtonTapEventName;
 
 @interface EMChatViewCell : EMChatViewBaseCell
 
@@ -34,5 +36,6 @@ extern NSString *const kShouldResendCell;
 @property (nonatomic, strong) UIView *activityView;
 @property (nonatomic, strong) UIButton *retryButton;
 @property (nonatomic, strong) UILabel *hasRead;
+@property (nonatomic, strong) UIButton *smartBtn;
 
 @end

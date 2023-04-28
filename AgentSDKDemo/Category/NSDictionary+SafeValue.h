@@ -16,4 +16,6 @@
 
 - (NSDictionary *)safeDictValueForKey:(NSString *)key;
 
+- (BOOL)isDictionaryContainsKey:(NSString *)key;
+- (instancetype)getDictionaryValue:(NSString *)key;
 @end

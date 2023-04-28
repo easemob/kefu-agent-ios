@@ -14,6 +14,7 @@
 #import "UIResponder+Router.h"
 
 NSString *const kResendButtonTapEventName = @"kResendButtonTapEventName";
+NSString *const kSmartButtonTapEventName = @"kSmartButtonTapEventName";
 NSString *const kShouldResendCell = @"kShouldResendCell";
 
 @implementation EMChatViewCell
@@ -105,6 +106,18 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     else{
         bubbleFrame.origin.x = HEAD_PADDING * 2 + HEAD_SIZE;
         _bubbleView.frame = bubbleFrame;
+        if (self.messageModel.type == HDMessageBodyTypeText) {
+            // 智能辅助按钮
+            if ( [HDClient sharedClient].currentAgentUser.smartEnable) {
+            [self.contentView addSubview:self.smartBtn];
+            [self.smartBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.leading.mas_equalTo(_bubbleView.mas_trailing).offset(5);
+                make.centerY.mas_equalTo(self.contentView.mas_centerY).offset(0);
+                make.width.height.offset(32);
+            }];
+            }
+        }
+      
     }
 }
 
@@ -131,7 +144,14 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     [self routerEventWithName:kResendButtonTapEventName
                      userInfo:@{kShouldResendCell:self}];
 }
-
+// 辅助按钮事件
+-(void)smartBtnAction:(UIButton *)sender
+{
+    
+    sender.selected = !sender.selected;
+    [self routerEventWithName:kSmartButtonTapEventName
+                     userInfo:@{KMESSAGEKEY:self.messageModel,@"smartButton":sender}];
+}
 #pragma mark - private
 
 - (void)setupSubviewsForMessageModel:(HDMessage *)messageModel
@@ -170,7 +190,19 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
     _bubbleView = [self bubbleViewForMessageModel:messageModel];
     [self.contentView addSubview:_bubbleView];
 }
-
+- (UIButton *)smartBtn{
+    if (!_smartBtn) {
+        _smartBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _smartBtn.backgroundColor = [UIColor.greenColor colorWithAlphaComponent:1];
+//        [_smartBtn setTitleColor:UIColor.blueColor forState:(UIControlStateNormal)];
+//        [_smartBtn setTitle:@"上条" forState:(UIControlStateNormal)];
+        [_smartBtn setImage:[UIImage imageNamed:@"smart@2x.png"] forState:UIControlStateNormal];
+        [_smartBtn setImage:[UIImage imageNamed:@"smartselect@2x.png"] forState:UIControlStateSelected];
+        [self addSubview:_smartBtn];
+        [_smartBtn addTarget:self action:@selector(smartBtnAction:) forControlEvents:(UIControlEventTouchUpInside)];
+    }
+    return _smartBtn;
+}
 - (EMChatBaseBubbleView *)bubbleViewForMessageModel:(HDMessage *)messageModel
 {
     switch (messageModel.type) {
@@ -180,6 +212,12 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             type = [HDUtils getMessageExtType:messageModel];
             if (type == HDExtMsgTypeForm) {
                 return [[HDChatFormBubbleView alloc] init];
+            }else if (type == HDExtMsgTypeArticle) {
+                return [[KFChatArticleBubbleView alloc] init];
+            }else if (type == HDExtMsgTypevideoPlayback) {
+                return [[HDChatVideoDetailBubbleView  alloc] init];
+            }else if(type == HDExtMsgTypeHtml){
+                return [[KFWebBubbleView  alloc] init];
             }
             return [[EMChatTextBubbleView alloc] init];
         }
@@ -215,6 +253,11 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             return [[HDChatVideoBubbleView alloc] init];
         }
             break;
+        case HDMessageBodyTypePlayBack:
+        {
+            return [[HDChatVideoDetailBubbleView alloc] init];
+        }
+            break;
              
         default:
             break;
@@ -232,6 +275,17 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
             type = [HDUtils getMessageExtType:messageModel];
             if (type == HDExtMsgTypeForm) {
                 return [HDChatFormBubbleView heightForBubbleWithObject:messageModel];
+            }else if(type == HDExtMsgTypeArticle){
+           
+                return [KFChatArticleBubbleView heightForBubbleWithObject:messageModel];
+            }
+            else if(type == HDExtMsgTypevideoPlayback){
+           
+                return [HDChatVideoDetailBubbleView heightForBubbleWithObject:messageModel];
+            }
+            else if(type == HDExtMsgTypeHtml){
+           
+                return [KFWebBubbleView heightForBubbleWithObject:messageModel];
             }
             return [EMChatTextBubbleView heightForBubbleWithObject:messageModel];
         }

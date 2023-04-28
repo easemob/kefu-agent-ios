@@ -19,3 +19,12 @@
 
 //leaveMsg
 "leaveMessage.leavemsg.attachmentname" = "name";
+
+//VEC
+"video.answer.title" = "Video Call";
+"video.answer.waiting" = "Initiate A Call";
+"video.answer.send" = "Invite the agent to a video call";
+"video.answer.receive" = "Customer service is inviting you to make a video call";
+"video.whiteboardConvertFail" = "Document transcoding failed";
+"video.answer.hangup" = "Hang Up";
+"video.answer.again.waiting"= "Relaunch";

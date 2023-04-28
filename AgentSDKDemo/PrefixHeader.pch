@@ -46,14 +46,14 @@
 #define kend   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow]);
 
 #define WEAK_SELF typeof(self) __weak weakSelf = self;
-
+#define kWeakSelf __weak __typeof__(self) weakSelf = self;
 #import "EmotionEscape.h"
 #import "Helper.h"
 #import "KFManager.h"
 #import "SRRefreshView.h"
 #import "MWPhotoBrowser.h"
 #import "UIImageView+EMWebCache.h"
-#import "UIViewController+HUD.h"
+#import "UIViewController+HDHUD.h"
 #import "UIView+RNAdditions.h"
 #import "NSString+Escape.h"
 #import "NSObject+KFAdd.h"
@@ -75,7 +75,7 @@
 #import "KFHttpManager.h"
 #import "KFFileCache.h"
 
-#import <HyphenateLite/HyphenateLite.h>
+#import <HyphenateChat/HyphenateChat.h>
 #import "UIImageView+EMWebCache.h"
 #import "KFPromptView.h"
 #import "KFBaseViewController.h"
@@ -92,6 +92,28 @@
 #import "MMDrawerController.h"
 #import "UIViewController+MMDrawerController.h"
 #import "UIImageView+EMWebCache.h"
+#import "Masonry.h"
+#import "NSDictionary+SafeValue.h"
+#import "KFSmartModel.h"
+#import "KFMSGTypeModel.h"
+//call
+#import "HDAppSkin.h"
+#import "UIView+GestureRecognizer.h"
+#import "KFVideoObjModel.h"
+#import "KFWebBubbleView.h"
+#import "KFVideoDetailAllModel.h"
+#import "KJPlayerHeader.h"
+#import "HDMasonry.h"
+#import "UIView+Kit.h"
+#import "MBProgressHUD.h"
+#import "KFVideoDetailModel.h"
+#import "KFRingingCallModel.h"
+#import "UIImage+HDIconFont.h"
+#import "KFWebModel.h"
+#import "KFSmartUtils.h"
+
+#import "HDAppManager.h"
+#import "KFIframeModel.h"
 
 
 #endif /* PrefixHeader_pch */

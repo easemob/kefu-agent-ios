@@ -76,7 +76,7 @@
             break;
         }
         default:
-            content = @"[其他消息]";
+            content = @"[自定义消息]";
             break;
     }
     return content;

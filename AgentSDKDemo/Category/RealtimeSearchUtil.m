@@ -91,7 +91,7 @@ static RealtimeSearchUtil *defaultUtil = nil;
         else{
             NSMutableArray *results = [NSMutableArray array];
             NSString *subStr = [string lowercaseString];
-            for (id object in weakSelf.source) {
+            for (id object in [weakSelf.source mutableCopy]) {
                 NSString *tmpString = @"";
                 if (weakSelf.selector) {
                     if([object respondsToSelector:weakSelf.selector])

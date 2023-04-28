@@ -52,6 +52,23 @@
 #define USERDEFAULTS_SAVEPASSWORD @"easemob_kefu_save_password"
 
 
+//Notification 名字
+// 访客发起视频邀请 参数都准备好后 加入房间的通知
+#define HDCALL_liveStreamInvitation_CreateAgoraRoom @"HDCALL_liveStreamInvitation_CreateAgoraRoom"
+
+#define HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom @"HDCALL_KefuRtcCallRinging_VEC_CreateAgoraRoom"
+#define HDCALL_AGENT_STATE_Ringing @"HDCALL_AGENT_STATE_Ringing_VEC_CreateAgoraRoom"
+// 视频结束 发送通知 更新界面
+#define HDCALL_videoPlayback_end @"HDCALL_videoPlayback_end"
+// 视频结束 发送通知 显示测试界面
+#define HDCALL_KefuRtcCallRinging_VEC_sessionhistory @"HDCALL_KefuRtcCallRinging_VEC_sessionhistory"
+
+
+
+// 智能辅助html 高度通知
+#define HDSmart_HTML_Height @"HDSmart_HTML_Height"
+
+
 #define hd_dispatch_main_sync_safe(block)\
     if ([NSThread isMainThread]) {\
         block();\

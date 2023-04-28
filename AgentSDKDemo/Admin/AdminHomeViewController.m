@@ -264,7 +264,8 @@ typedef NS_ENUM(NSUInteger, CardType) {
                ]
 )
     ;
-    chartModel.dataLabelEnabled = YES;
+    //TODO
+    chartModel.dataLabelsEnabled = YES;
     [_chartNewSessionToday aa_drawChartWithChartModel:chartModel];//图表视图对象调用图表模型对象,绘制最终图形
 //    [_chartNewSessionToday aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表
 }
@@ -310,7 +311,8 @@ typedef NS_ENUM(NSUInteger, CardType) {
     .categoriesSet(mr)
     .seriesSet(dataSource)
     ;
-    chartModel.dataLabelEnabled = YES;
+    //TOTDO
+    chartModel.dataLabelsEnabled = YES;
     if (type == TrendDataTypeSession) {
         [_chartSession aa_drawChartWithChartModel:chartModel];//图表视图对象调用图表模型对象,绘制最终图形
 //        [_chartSession aa_refreshChartWithChartModel:chartModel];//更新 AAChartModel 数据之后,刷新图表

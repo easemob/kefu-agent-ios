@@ -27,6 +27,7 @@
     #if DEBUG
         apnsCertName = @"push-cert-ios-dev";
     #else
+        // 证书对应的是 企业账号299 下的push 证书（kefu_pro.p12）
         apnsCertName = @"push-cert-ios-20160229";
     #endif
     
@@ -41,7 +42,8 @@
 //    options.restServer = @"a1-kefu.kyemalltest.com";
 //    options.chatServer = @"10.121.224.46";
 //    options.chatPort = 16717;
-    
+//    options.kefuRestAddress = @"https://sandbox.kefu.easemob.com";
+//    options.kefuRestAddress = @"https://helps.live";
     [[HDClient sharedClient] initializeSDKWithOptions:options];
     [self registerRemoteNotification];
     [self registerEaseMobNotification];
@@ -164,7 +166,8 @@
 }
 
 - (void)userAccountDidLoginFromOtherDevice {
-    [MBProgressHUD show:@"其他设备登录" view:self.window];
+//    [MBProgressHUD show:@"其他设备登录" view:self.window];
+    [MBProgressHUD showMessag:@"其他设备登录" toView:self.window];
     [[KFManager sharedInstance] showMainViewController];
 }
 
@@ -172,7 +175,8 @@
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-       [[HDClient sharedClient] bindDeviceToken:[self _extractTokenFromRawData:deviceToken]];
+//       [[HDClient sharedClient] bindDeviceToken:[self _extractTokenFromRawData:deviceToken]];
+        [[HDClient sharedClient] bindDeviceToken:deviceToken];
     });
 }
 

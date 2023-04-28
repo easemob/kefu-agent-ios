@@ -20,5 +20,6 @@
 - (NSString *)encodeToPercentEscapeString;
 
 + (NSString *)htmlToString:(NSString *)html;
-
+- (NSString *)URLEncodedString;
+-(NSString *)URLDecodedString;
 @end

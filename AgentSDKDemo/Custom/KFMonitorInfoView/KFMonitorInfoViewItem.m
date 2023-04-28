@@ -81,7 +81,9 @@
             ret.chartModel.xAxisLabelsEnabledSet((infoType == TitleType) ? YES : NO);
             ret.chartModel.yAxisTickInterval = @1;
             ret.chartModel.yAxisMin = 0;
-            ret.chartModel.xAxisLabelsFontSize = @9;
+            //TODO
+//            ret.chartModel.xAxisLabelsFontSize = @9;
+
             if (infoType == DetailType) {
                 ret.chartModel.xAxisTickInterval = @1;
                 ret.chartModel.legendEnabled = YES;

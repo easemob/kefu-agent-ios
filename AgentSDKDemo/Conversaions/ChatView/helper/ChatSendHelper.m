@@ -109,7 +109,14 @@
     return message;
 }
 
-
++ (HDMessage *)fileMessageFormatWithPath:(NSString *)path to:(NSString *)toUser sessionId:(NSString *)sessionId withDisplayName:(NSString *)displayName{
+    
+    HDFileMessageBody *body = [[HDFileMessageBody alloc] initWithLocalPath:path displayName:displayName];
+    HDMessage *message = [[HDMessage alloc] initWithSessionId:sessionId to:toUser messageBody:body];
+    
+    return message;
+    
+}
 
 
 @end

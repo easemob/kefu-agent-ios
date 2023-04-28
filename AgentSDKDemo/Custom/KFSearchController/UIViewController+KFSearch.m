@@ -139,7 +139,11 @@ static const void *ResultNavigationControllerKey = &ResultNavigationControllerKe
                    withObject:searchBar];
     }
 }
-
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
+    
+    
+    
+}
 #pragma mark - Action
 
 - (void)searchButtonAction

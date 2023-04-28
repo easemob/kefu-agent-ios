@@ -286,9 +286,9 @@
                 
                 for (NSDictionary *dic in json) {
                     NSDictionary *agentQueue = [dic objectForKey:@"agentQueue"];
-                    if ([agentQueue objectForKey:@"queueGroupType"] && [[agentQueue objectForKey:@"queueGroupType"] isEqualToString:@"SystemDefault"]) {
-                        continue;
-                    }
+//                    if ([agentQueue objectForKey:@"queueGroupType"] && [[agentQueue objectForKey:@"queueGroupType"] isEqualToString:@"SystemDefault"]) {
+//                        continue;
+//                    }
                     id agentUsers = [agentQueue objectForKey:@"agentUsers"];
                     NSString *detail = @"";
                     if ([agentUsers isKindOfClass:[NSArray class]]) {

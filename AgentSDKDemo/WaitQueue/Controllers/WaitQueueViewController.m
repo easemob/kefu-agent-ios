@@ -414,6 +414,7 @@
         }
     } else {
         return;
+  
     }
     [self showHintNotHide:@"加载中..."];
     WEAK_SELF

@@ -194,6 +194,7 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
+
     if ([text isEqualToString:@"\n"]) {
         if ([self.delegate respondsToSelector:@selector(didSendText:)]) {
             
@@ -205,8 +206,11 @@
              {
                  if (value) {
                      EMTextAttachment* attachment = (EMTextAttachment*)value;
-                     NSString *str = [NSString stringWithFormat:@"%@",attachment.imageName];
-                     [attStr replaceCharactersInRange:range withString:str];
+                     if ([attachment isKindOfClass:[EMTextAttachment class]]) {
+                         NSString *str = [NSString stringWithFormat:@"%@",attachment.imageName];
+                         [attStr replaceCharactersInRange:range withString:str];
+                     }
+                     
                  }
              }];
             
@@ -281,8 +285,11 @@
              {
                  if (value) {
                      EMTextAttachment* attachment = (EMTextAttachment*)value;
-                     NSString *str = [NSString stringWithFormat:@"%@",attachment.imageName];
-                     [attStr replaceCharactersInRange:range withString:str];
+                     if ([attachment isKindOfClass:[EMTextAttachment class]]) {
+                         NSString *str = [NSString stringWithFormat:@"%@",attachment.imageName];
+                         [attStr replaceCharactersInRange:range withString:str];
+                     }
+                    
                  }
              }];
             

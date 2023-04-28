@@ -73,7 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
     [HDClient.sharedClient addDelegate:self delegateQueue:nil];
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
@@ -91,6 +91,7 @@
     [self loadData];
     
     [self _setupSearchResultController];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -327,6 +328,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+   
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if ([self.dataSource count] == 0) {
         return;
@@ -458,6 +460,15 @@
         
         [[KFManager sharedInstance] setTabbarBadgeValueWithAllConversations:weakSelf.dataSource];
     }];
+    
+//    //请求灰度
+//    [[HDClient sharedClient].setManager kf_getInitGrayCompletion:^(id responseObject, HDError *error) {
+//        
+////        NSLog(@"======%@",responseObject);
+//        
+//        
+//    }];
+    
 }
 
 - (void)clearSeesion
@@ -494,10 +505,10 @@
     if ([views count] > 0) {
         UIViewController *viewController =  [views objectAtIndex:[views count] - 1];
         MBProgressHUD *hud = [MBProgressHUD showMessag:text toView:viewController.view];
-        [hud hide:YES afterDelay:2.0];
+        [hud hideAnimated:YES afterDelay:2.0];
     } else {
         MBProgressHUD *hud = [MBProgressHUD showMessag:text toView:self.view];
-        [hud hide:YES afterDelay:2.0];
+        [hud hideAnimated:YES afterDelay:2.0];
     }
     [self performSelector:@selector(loadData) withObject:nil afterDelay:2.0];
 }

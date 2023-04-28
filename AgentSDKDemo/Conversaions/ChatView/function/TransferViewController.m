@@ -15,19 +15,22 @@
 #import "ChineseToPinyin.h"
 #import "SRRefreshView.h"
 #import "JNGroupViewController.h"
-
-@interface TransferViewController ()<UISearchBarDelegate, SRRefreshDelegate,JNGroupViewDelegate>
+#import "KFSearchController.h"
+@interface TransferViewController ()<UISearchBarDelegate,SRRefreshDelegate,JNGroupViewDelegate,HDSearchControllerDelegate>
 {
     NSString *_curRemoteAgentId;
     BOOL _isRefresh;
+    BOOL _isEdit;
     int _customerUnreadcount;
     UILabel *_resultLabel;
     HDConversation *_curModel;
 }
 
 @property (nonatomic, strong) UISearchBar *searchBar;
-@property (nonatomic, strong) EMSearchDisplayController *searchController;
+@property (nonatomic,strong) UIView * searchView;
+//@property (nonatomic, strong) EMSearchDisplayController *searchController;
 @property (nonatomic, strong) NSMutableDictionary *dataSourceDic;
+@property (nonatomic, strong) NSMutableArray *searchDataSources;
 
 @property (nonatomic, strong) SRRefreshView *slimeView;
 
@@ -61,15 +64,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    _isEdit = NO;
     [self.view addSubview:self.headerButtonView];
     self.tableView.top = self.headerButtonView.height;
     self.tableView.height -= self.headerButtonView.height;
-    
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
     [self.tableView addSubview:self.slimeView];
+
     
     [self loadData];
     self.title = @"选择转接客服";
@@ -82,7 +84,9 @@
     _jn = [[JNGroupViewController alloc] init];
     _jn.serviceSessionId = _conversation.sessionId;
     _jn.tableView.top = self.headerButtonView.height;
-    _jn.tableView.height -= self.headerButtonView.height - 20;
+//    _jn.tableView.height -= self.headerButtonView.height - 20;
+    _jn.tableView.height = self.tableView.frame.size.height;
+    _jn.tableView.width = KScreenWidth;
     _jn.view.left = KScreenWidth;
     _jn.delegate = self;
     [self.view addSubview:_jn.view];
@@ -182,6 +186,46 @@
 }
 */
 
+
+
+- (UIView *)searchView{
+    if (!_searchView) {
+        _searchView = [[UIView alloc ]init];
+//        _searchView.backgroundColor = [UIColor redColor];
+        [_searchView addSubview:self.searchBar];
+        [self.searchBar mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.offset(0);
+            make.leading.offset(20);
+            make.trailing.offset(-20);
+            make.bottom.offset(-0);
+        }];
+    }
+    return _searchView;
+}
+
+- (UISearchBar *)searchBar{
+    if (!_searchBar) {
+        _searchBar = [[UISearchBar alloc] init];
+//        _searchBar.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        _searchBar.delegate = self;
+        [_searchBar setSearchBarStyle:UISearchBarStyleMinimal];
+        _searchBar.placeholder = @"搜索";
+        UITextField *searTextField;
+        if (@available(iOS 13.0, *)) {
+            searTextField =_searchBar.searchTextField;
+        } else {
+            // Fallback on earlier versions
+            searTextField =[_searchBar valueForKey:@"_searchField"];
+        }
+        searTextField.font = [UIFont systemFontOfSize:16];
+        _searchBar.layer.cornerRadius = 8;
+        _searchBar.layer.masksToBounds = YES;
+        searTextField.textColor = [UIColor lightGrayColor];
+       
+    }
+    
+    return _searchBar;
+}
 #pragma mark - private
 
 #pragma mark - action
@@ -252,7 +296,27 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+  
+    if (_isEdit) {
+        
+        return [self.searchDataSources count];
+    }
     return [self.dataSource count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    
+    return 44;
+    
+    
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    
+    return self.searchView;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -261,8 +325,15 @@
     if (cell == nil) {
         cell = [[DXTableViewCellType1 alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"CellType1"];
     }
+    HDConversation *model;
+    if (_isEdit) {
+        model  =  [self.searchDataSources objectAtIndex:indexPath.row];
+    }else{
+        
+        model  =  [self.dataSource objectAtIndex:indexPath.row];
+    }
+    
 
-    HDConversation *model =  [self.dataSource objectAtIndex:indexPath.row];
     model.unreadCount = 0;
     [cell setModel:model];
     return cell;
@@ -278,8 +349,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-
-    HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
+    HDConversation *model;
+    if (_isEdit) {
+        model  =  [self.searchDataSources objectAtIndex:indexPath.row];
+    }else{
+        
+        model  =  [self.dataSource objectAtIndex:indexPath.row];
+    }
+//    HDConversation *model = [self.dataSource objectAtIndex:indexPath.row];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定将该会话转接给%@吗？",model.chatter.nicename] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
     alert.tag = 1000;
     [alert show];
@@ -348,6 +425,7 @@
                 } else {
                     [weakSelf.dataSource addObject:customer];
                 }
+//                weakSelf.searchDataSources = [NSArray arrayWithArray:weakSelf.dataSource];
                 [weakSelf.dataSourceDic setObject:customer forKey:customer.chatter.agentId];
             }
             
@@ -367,31 +445,45 @@
 
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
+    _isEdit= YES;
     [searchBar setShowsCancelButton:YES animated:YES];
-    
+
     return YES;
+}
+- (void)searchBarCancelButtonAction:(UISearchBar *)searchBar{
+    
+    _isEdit =NO;
+    NSLog(@"=====%@",searchBar);
+    
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-  
+    
+    
+    [self kf_searchQuestion:searchText];
+    
+    
+    
+    
 }
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    //    searchBar.userInteractionEnabled = NO;
-    //    [self performSelector:@selector(searchBarEnabled) withObject:nil afterDelay:2.0];
-    return YES;
-}
+//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+//{
+//    //    searchBar.userInteractionEnabled = NO;
+//    //    [self performSelector:@selector(searchBarEnabled) withObject:nil afterDelay:2.0];
+//    return YES;
+//}
 
-- (void)searchBarEnabled
-{
-    _searchBar.userInteractionEnabled = YES;
-}
+//- (void)searchBarEnabled
+//{
+//    _searchBar.userInteractionEnabled = YES;
+//}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
+
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -400,8 +492,40 @@
     [[RealtimeSearchUtil currentUtil] realtimeSearchStop];
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
+    _isEdit = NO;
+    [self.tableView reloadData];
 }
+- (void)kf_searchQuestion:(NSString *)question{
+    
+    NSMutableArray * tmpArray = [NSMutableArray arrayWithArray:self.dataSource];
+    NSLog(@"======%@",question);
+    
+    // 从 缓存数组里获取
+    
+    if (question.length > 0) {
 
+        [self.searchDataSources removeAllObjects];
+    [tmpArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+       
+        HDConversation *model = obj;
+        // 如果 搜索的内容在 nicename 里边
+        if ([model.chatter.nicename containsString:question]) {
+            
+            [self.searchDataSources addObject:model];
+        }
+    }];
+        
+    }else{
+        
+        self.searchDataSources = tmpArray;
+         
+    }
+    
+
+    [self.tableView reloadData];
+    
+    
+}
 #pragma mark - JNGroupViewDelegate
 
 - (void)popToRoot
@@ -436,5 +560,11 @@
         }
     }
 }
-
+- (NSMutableArray *)searchDataSources{
+    
+    if (!_searchDataSources) {
+        _searchDataSources = [[NSMutableArray alloc] init];
+    }
+    return _searchDataSources;
+}
 @end

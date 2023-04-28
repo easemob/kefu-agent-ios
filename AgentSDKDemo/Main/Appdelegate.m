@@ -21,7 +21,6 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import <Bugly/Bugly.h>
 
-//#import <wax/wax.h>
 
 @interface AppDelegate () <UIAlertViewDelegate>
 
@@ -30,7 +29,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch
-    [Bugly startWithAppId:@"ba34667555"];
+//    [Bugly startWithAppId:@"ba34667555"];
+    [Bugly startWithAppId:@"a2c9bbf1dd"]; // ba34667555 使用的账号没有找到 自己账号创建了一个新的
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     [self ddlogInit];

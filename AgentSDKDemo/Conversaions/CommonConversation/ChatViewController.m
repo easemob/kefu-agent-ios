@@ -20,13 +20,13 @@
 #import "ChatSendHelper.h"
 #import "SRRefreshView.h"
 #import "LocationViewController.h"
-#import "WebViewController.h"
 #import "EMCDDeviceManager.h"
 #import "HomeViewController.h"
 #import "TransferViewController.h"
 #import "AddTagViewController.h"
 #import "EMChatHeaderTagView.h"
 #import "EMUIWebViewController.h"
+#import "KFWKWebViewController.h"
 #import "EMFileViewController.h"
 #import "EMPromptBoxView.h"
 #import "DXRecordView.h"
@@ -37,6 +37,15 @@
 #import "KFFileCache.h"
 #import <AVKit/AVKit.h>
 #import "KFWebViewController.h"
+#import "HDAgoraCallManager.h"
+#import "KFVideoDetailViewController.h"
+#import "KFVideoDetailModel.h"
+#import "KFICloudManager.h"
+#import "HDSanBoxFileManager.h"
+#import "KFChatSmartView.h"
+#import "KFSmartModel.h"
+#import "HDCallViewController.h"
+#import "KFIframeMoreViewController.h"
 #define DEGREES_TO_RADIANS(angle) ((angle)/180.0 *M_PI)
 
 #define kNavBarHeight 44.f
@@ -58,7 +67,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     HChatMenuTypeEndSession
 };
 
-@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,QuickReplyViewControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,EMUIWebViewControllerDelegate,HDChatManagerDelegate,HDClientDelegate,UIActionSheetDelegate,AddTagViewDelegate,EMPromptBoxViewDelegate,TransferViewControllerDelegate,UIGestureRecognizerDelegate>
+@interface ChatViewController ()<UITableViewDelegate,UITableViewDataSource,DXMessageToolBarDelegate,DXChatBarMoreViewDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,QuickReplyViewControllerDelegate,SRRefreshDelegate,EMCDDeviceManagerDelegate,EMUIWebViewControllerDelegate,HDChatManagerDelegate,HDClientDelegate,UIActionSheetDelegate,AddTagViewDelegate,EMPromptBoxViewDelegate,TransferViewControllerDelegate,UIGestureRecognizerDelegate,KFWKWebViewControllerDelegate>
 {
     dispatch_queue_t _messageQueue;
     NSMutableArray *_messages;
@@ -111,6 +120,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 @property (nonatomic, strong) DXRecordView *recordView;
 
 @property (nonatomic, strong) UIButton *satisfactionBtn;
+@property (nonatomic, strong) UIButton *sessionAssistantBtn;
+//@property (nonatomic, strong) HDAgoraCallViewController *hdCallVC;
+
+@property (nonatomic, strong) NSArray  *recordVideoDetailAll;
+@property (nonatomic, strong) KFChatSmartView  *smartView;
 
 @end
 
@@ -127,7 +141,15 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     return _recordView;
 }
-
+- (KFChatSmartView *)smartView{
+    
+    if (!_smartView) {
+        _smartView = [[KFChatSmartView alloc] init];
+//        _smartView.backgroundColor = [UIColor redColor];
+    }
+    
+    return _smartView;
+}
 - (instancetype)initWithtype:(ChatViewType)type
 {
     self = [super init];
@@ -143,6 +165,16 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [super viewWillAppear:animated];
 //    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     [self.headview refreshHeaderView];
+    
+    [self onAgoraCallRingingcalls];
+    
+    [[HDClient sharedClient].setManager kf_getCooperationWithPatternCompletion:^(id responseObject, HDError *error) {
+        
+        
+        
+    }];
+    
+    
 }
 
 - (NSDictionary *)lastMsgExt {
@@ -175,6 +207,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [[HDClient sharedClient].chatManager addDelegate:self];
     [[HDClient sharedClient] removeDelegate:self];
     [[HDClient sharedClient] addDelegate:self delegateQueue:nil];
+   
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:HDCALL_videoPlayback_end object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(videoPlayback:) name:HDCALL_videoPlayback_end object:nil];
+    
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:HDSmart_HTML_Height object:nil];
 }
 
 - (void)viewDidLoad {
@@ -188,7 +225,10 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     __weak typeof(self) weakSelf = self;
     [KFManager sharedInstance].curChatViewConvtroller = weakSelf;
     [KFManager sharedInstance].currentSessionId = weakSelf.conversationModel.sessionId;
-     
+    
+    NSLog(@"==currentSessionId=== %@",weakSelf.conversationModel.sessionId);
+    
+    
     [self startNoti];
      
     // Do any additional setup after loading the view.
@@ -255,10 +295,24 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [self tableViewScrollToBottom];
     
     [self setupVoiceType];
+    
+    //每次进入聊天会话 都要获取一次 获取会话全部视频通话详情 接口
+    
      
 }
+- (void)getCurrentSessionRecordVideoDetailAll{
+    
+    
 
-
+    
+    
+}
+- (NSArray *)recordVideoDetailAll {
+    if (!_recordVideoDetailAll) {
+        self.recordVideoDetailAll = [[NSArray alloc] init];
+    }
+    return _recordVideoDetailAll;
+}
 - (void)appDidBecomeActiveNotif:(NSNotification *)aNoti {
     HomeViewController *homeVC = (HomeViewController *)[HomeViewController homeViewController];
     homeVC.conversationVCUnreadCount -= self.conversationModel.unreadCount;
@@ -266,7 +320,13 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
                                                       object:[NSString stringWithFormat:@"%d",homeVC.conversationVCUnreadCount]
                                                     userInfo:nil];
 }
-
+- (void)videoPlayback:(NSNotification *)aNoti {
+   
+    HDMessage *msg = aNoti.object;
+    
+    [self addMessage:msg];
+    
+}
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
@@ -287,7 +347,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
     
     UIView *btnViews = [[UIView alloc] init];
-    btnViews.frame = CGRectMake(0, 0, 100.f, 44);
+    btnViews.frame = CGRectMake(0, 0, 100.f, 440);
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 36, 36)];
     [button setImage:[UIImage imageNamed:@"history_icon_more"] forState:UIControlStateNormal];
@@ -453,6 +513,45 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             contentView.layer.cornerRadius = 2.f;
             [_moreView addSubview:contentView];
             
+            
+//            UIButton *sessionAssistantBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//            sessionAssistantBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
+//            [sessionAssistantBtn setTitle:@"会话助手" forState:UIControlStateNormal];
+//            sessionAssistantBtn.titleLabel.font = [UIFont systemFontOfSize:17];
+//            [sessionAssistantBtn setTitleColor:RGBACOLOR(77, 77, 77, 1) forState:UIControlStateNormal];
+//            [sessionAssistantBtn setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
+//
+//            [sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_on"] forState:UIControlStateSelected ];
+//
+//            [sessionAssistantBtn setImage:[UIImage imageNamed:@"expand_icon_session_off"] forState:UIControlStateNormal];
+//
+//            //这个地方的逻辑是。如果 本地没有存状态说明是首次进入并且没有修改状态 那就走默认的移动助手开关设置 如果有状态 说明 这个会话根据自己是操作状态 进行展示
+//            NSUserDefaults *def= [NSUserDefaults standardUserDefaults];
+//
+//            if ([def valueForKey:self.conversationModel.sessionId]) {
+//                BOOL selected;
+//                NSString * state =[def valueForKey:self.conversationModel.sessionId] ;
+//                if ([state isEqualToString:@"YES" ]) {
+//                    selected = YES;
+//                }else{
+//                    selected = NO;
+//                }
+//                sessionAssistantBtn.selected = selected;
+//            }else{
+//
+//                sessionAssistantBtn.selected =[HDClient sharedClient].currentAgentUser.appAssistantEnable;
+//
+//            }
+//            [sessionAssistantBtn setImageEdgeInsets:UIEdgeInsetsMake(0, -25, 0, 0)];
+//            [sessionAssistantBtn addTarget:self action:@selector(sessionAssistantAction:) forControlEvents:UIControlEventTouchUpInside];
+//            [contentView addSubview:sessionAssistantBtn];
+//            _sessionAssistantBtn = sessionAssistantBtn;
+//            UIView *line0 = [[UIView alloc] init];
+//            line0.frame = CGRectMake(0, CGRectGetMaxY(sessionAssistantBtn.frame) - 0.5, contentView.width, 1);
+//            line0.backgroundColor = [UIColor lightGrayColor];
+//            [contentView addSubview:line0];
+//
+            
             UIButton *transferBtn = [UIButton buttonWithType:UIButtonTypeCustom];
             transferBtn.frame = CGRectMake(0, 0, CGRectGetWidth(contentView.frame), 40);
             [transferBtn setTitle:@"会话转接" forState:UIControlStateNormal];
@@ -608,17 +707,72 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     
     return _messageReadManager;
 }
+
+//-(void)reloadTableView{
+//
+//    [self.tableView reloadData];
+//}
+
 #pragma mark - HDChatManagerDelegate
 - (void)messagesDidReceive:(NSArray *)aMessages {
     for (HDMessage *msg in aMessages) {
         if (![_conversationModel.sessionId isEqualToString:msg.sessionId]) {
             return;
         }
+        if (msg.nBody.type == HDMessageBodyTypeCommand) {
+            return;
+        }
+        
         [self markAsRead];
         [self addMessage:msg];
         [self downloadVoice:msg];
+        
+        // 处理视频邀请通知 两种方式 一种这个地方处理数据 一种 sdk 内部处理数据
+        if ([msg.messageType isEqualToString:@"AgoraRtcMediaForInitiative"]) {
+            [self  onAgoraCallReceivedNickName:@"nickName"];
+        }
+    
     }
 }
+
+- (void)messagesCmdCooperationAnswerDidReceive:(NSArray<HDMessage *> *)aMessages{
+    
+//    [self markAsRead];
+//    [self addMessage:msg];
+//
+    [self kf_smartAutoSendMessageReloadDataUI];
+    
+    //这个也行 就是需要后端给格式
+//    if ( [HDClient sharedClient].currentAgentUser.sendPattern) {
+//        //自动发送
+//        for (HDMessage *msg in aMessages) {
+//            if (![_conversationModel.sessionId isEqualToString:msg.sessionId]) {
+//                return;
+//            }
+//            [self markAsRead];
+//            [self addMessage:msg];
+//        }
+//    }
+    // 这个方案也可以 但是 就是 加载会话太多 效率低一点
+//    [[HDClient sharedClient].chatManager asyncLoadConversationsWithPage:_page
+//                                                                  limit:0
+//                                                             completion:^(NSArray *conversations, HDError *error)
+//    {
+//
+//                for (HDConversation *conversation in conversations) {
+//                    if (![_conversationModel.sessionId isEqualToString:conversation.sessionId]) {
+//                        return;
+//                    }
+//                    [self markAsRead];
+//                    [self addMessage:conversation.lastMessage];
+//                }
+//
+//
+//    }];
+   
+    
+}
+
 
 - (void)downloadVoice:(HDMessage *)message {
     if (message.type == HDMessageBodyTypeVoice) {
@@ -851,6 +1005,210 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [actionSheet showInView:self.view];
 }
 
+/// 视频通话详情
+/// @param moreView  moreView
+- (void)moreViewVideoDetailAction:(DXChatBarMoreView *)moreView{
+    
+    [self clickVideoDatail];
+    
+}
+
+- (void) clickVideoDatail{
+    
+    
+    [[HDAgoraCallManager shareInstance] getAllVideoDetailsSession:_conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        if (error == nil) {
+            NSArray * detailArray = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:responseObject];
+            
+            for (KFVideoDetailModel * model in detailArray) {
+                NSLog(@"kf-callId= %@ \n recordStart= %@ \n playbackUrl = %@",model.callId,model.recordStart,model.playbackUrl);
+            }
+            self.recordVideoDetailAll =  [self sortVideoDetails:detailArray];
+            KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
+            vc.recordVideos = detailArray;
+            vc.callId = @"344";
+            [self.navigationController pushViewController:vc animated:YES];
+            
+        }
+    }];
+}
+
+- (NSArray *)sortVideoDetails:(NSArray *)modelArray{
+    
+    //降序 要是升序ascending传yes
+    NSSortDescriptor* sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"recordStart" ascending:NO];
+    NSArray* sortPackageResListArr = [modelArray sortedArrayUsingDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+    NSLog(@"%@",sortPackageResListArr);
+
+    return  sortPackageResListArr;
+}
+
+/// 获取文件
+/// @param moreView  moreView
+- (void)moreViewFileAction:(DXChatBarMoreView *)moreView
+{
+    [self presentDocumentPicker];
+}
+
+/// 视频通话
+/// @param moreView  moreView
+- (void)moreViewVideoAction:(DXChatBarMoreView *)moreView
+{
+    if ([HDAgoraCallManager shareInstance].isCurrentCalling) {
+        
+        [self showHint:@"当前正在通话中" duration:2];
+        
+        return;
+    }
+    //申请视频通话 并创建声网房间入口
+    [self sendVideoTextMessage:@"邀请访客进行视频"];
+
+}
+- (void)sendVideoTextMessage:(NSString *)text{
+   
+    HDMessage *message = [[HDOnlineManager sharedInstance] kf_CreatAgentSendMessageLiveStreamInvitationSessionId:_conversationModel.sessionId withToUser:_conversationModel.chatter.agentId];
+    
+    [self addMessage:message];
+    [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+       // 如果通知回来 在这个地方处理。现在后台没有做移动的 所以还不知道如何回来
+        [self updateMessageWithMessage:aMessage];
+
+    }];
+    
+
+}
+- (HDMessage *)createVisitorCallMessage{
+    
+    HDMessage * message = [[HDMessage alloc] init];
+    message.sessionId =_conversationModel.sessionId;
+    HDChatUser *fromUser= [[HDChatUser alloc] init];
+    fromUser.nicename =_conversationModel.chatter.nicename;
+    fromUser.tenantId = [_conversationModel.chatter.tenantId integerValue];
+    message.fromUser = fromUser;
+    message.from = _conversationModel.chatter.agentId;
+    message.to = [HDClient sharedClient].currentAgentUser.agentId;
+
+    return message;
+}
+- (void)messagesLiveStreamInvitationDidReceive:(HDMessage *)aMessage{
+    
+    // 判断是不是 正在通话
+    if (![HDOnlineManager sharedInstance].agentCallId) {
+        
+        return;
+    }
+    // 调用通行证接口
+    [[HDOnlineManager  sharedInstance] getAgoraTicketWithCallId:[HDOnlineManager sharedInstance].agentCallId withSessionId: aMessage.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        if (error ==nil) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:[self createVisitorCallMessage]];
+        }
+    }];
+    
+}
+//获取坐席未接视频通话
+- (void)onAgoraCallRingingcalls{
+    
+    NSLog(@"====%@", _conversationModel.sessionId);
+    
+    [[HDOnlineManager sharedInstance] getCurrentringingCallsCompletion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        NSLog(@"====%@",responseObject);
+        if (error==nil) {
+            
+            NSDictionary * dic =responseObject;
+            
+            if ([[dic allKeys] containsObject:@"entities"] && [[dic objectForKey:@"entities"] isKindOfClass:[NSArray class]]) {
+            
+                NSArray * array = [dic objectForKey:@"entities"];
+                NSArray * ringingcalls = [NSArray yy_modelArrayWithClass:[KFVideoDetailAllModel class] json:array];
+                
+                if (ringingcalls.count > 0) {
+                  
+                    [ringingcalls enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                         
+                        KFVideoDetailAllModel * model = obj;
+                        
+                        if ([model.channelName isEqualToString:_conversationModel.sessionId]) {
+                            
+                            if (model.callDetails.count > 0) {
+                                // 说明有 需要弹视频窗口
+                                NSDictionary *callDetail = [model.callDetails lastObject];
+                                KFRingingCallModel *model = [KFRingingCallModel yy_modelWithDictionary:callDetail];
+                                
+                                if (model) {
+                                  // 创建视频
+                                    [HDOnlineManager sharedInstance].agentCallId = model.callId;
+//                                    [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object: [self createVisitorCallMessage]];
+                                    
+                                    [self onAgoraCallReceivedNickName:model.fromUserNiceName];
+                                }  
+                            }
+                        }
+                    }];
+                }
+            }
+        }
+    }];
+    
+}
+- (void)onAgoraCallReceivedNickName:(NSString *)nickName{
+   
+    // 调用通行证接口
+    if (![HDOnlineManager sharedInstance].agentCallId) {
+        
+        return;
+    }
+    [[HDOnlineManager  sharedInstance] getAgoraTicketWithCallId:[HDOnlineManager sharedInstance].agentCallId withSessionId: _conversationModel.sessionId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+        
+        if (error ==nil) {
+        
+            NSLog(@"====%@",responseObject);
+        
+            [[NSNotificationCenter defaultCenter] postNotificationName:HDCALL_liveStreamInvitation_CreateAgoraRoom object:[self createVisitorCallMessage]];
+
+        }
+        
+    }];
+    
+   
+}
+- (void)addVideoMessage:(HDMessage *)message{
+    
+    [self prehandle:message];
+    __weak ChatViewController *weakSelf = self;
+    dispatch_async(_messageQueue, ^{
+        NSArray *msgs = [weakSelf formatMessage:message];
+        hd_dispatch_main_async_safe(^{
+            [_messages addObject:message];
+            [weakSelf.dataSource addObjectsFromArray:msgs];
+            NSMutableArray *paths = [NSMutableArray arrayWithCapacity:0];
+            NSInteger count = msgs.count;
+            for (int i=0; i<count; i++) {
+                NSIndexPath *ip = [NSIndexPath indexPathForRow:weakSelf.dataSource.count-1-i inSection:0];
+                [paths addObject:ip];
+            }
+            [UIView setAnimationsEnabled:NO];
+            [weakSelf.tableView beginUpdates];
+            [weakSelf.tableView insertRowsAtIndexPaths:paths.copy withRowAnimation:UITableViewRowAnimationNone];
+            [weakSelf.tableView endUpdates];
+            [UIView setAnimationsEnabled:YES];
+            [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+        });
+    });
+    
+}
+//- (HDAgoraCallViewController *)hdCallVC{
+//
+//    if (!_hdCallVC) {
+//        _hdCallVC =  [HDAgoraCallViewController hasReceivedCallWithAgentName:[HDClient sharedClient].currentAgentUser.nicename
+//                                                                                     avatarStr:@"HelpDeskUIResource.bundle/user"
+//                                                                                      nickName:[HDClient sharedClient].currentAgentUser.nicename];
+//        [HDAgoraCallManager shareInstance].hdVC = _hdCallVC;
+//    }
+//
+//    return _hdCallVC;
+//
+//}
 - (void)moreViewQuickReplyAction:(DXChatBarMoreView *)moreView
 {
     QuickReplyViewController *quickView = [[QuickReplyViewController alloc] init];
@@ -880,6 +1238,85 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     webView.delegate = self;
     [self.navigationController pushViewController:webView animated:YES];
     [self keyBoardHidden:nil];
+}
+
+- (void)moreViewIframeRobotAction:(DXChatBarMoreView *)moreView
+{
+    KFChatBarMoreModel * barModel ;
+    for (KFChatBarMoreModel * model in moreView.btnMarray) {
+        
+        if (model.btnType == KFChatMoreBtnIframeRobot) {
+            
+            barModel = model;
+            
+            break;
+        }
+    }
+
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
+    webView.delegate = self;
+    webView.iframeModel = barModel.iframeModel;
+    webView.conversation = _conversationModel;
+    [self.navigationController pushViewController:webView animated:YES];
+    [self keyBoardHidden:nil];
+}
+
+- (void)moreViewIframeBaseAction:(DXChatBarMoreView *)moreView
+{
+    KFChatBarMoreModel * barModel ;
+    for (KFChatBarMoreModel * model in moreView.btnMarray) {
+        
+        if (model.btnType == KFChatMoreBtnIframeBase) {
+            
+            barModel = model;
+            
+            break;
+        }
+    }
+
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
+    webView.delegate = self;
+   
+//    webView.chatBarModel = barModel;
+    webView.iframeModel = barModel.iframeModel;
+    webView.conversation = _conversationModel;
+    
+    [self.navigationController pushViewController:webView animated:YES];
+    [self keyBoardHidden:nil];
+}
+- (void)moreViewIframeDefaultAction:(DXChatBarMoreView *)moreView{
+    
+    
+    KFChatBarMoreModel * barModel ;
+    for (KFChatBarMoreModel * model in moreView.btnMarray) {
+        
+        if (model.btnType == KFChatMoreBtnIframeDefault) {
+            
+            barModel = model;
+            
+            break;
+        }
+    }
+
+    KFWKWebViewController *webView = [[KFWKWebViewController alloc] initWithUrl:[NSString stringWithFormat:@"https:%@",barModel.iframeModel.iframeUrl]];
+    webView.delegate = self;
+   
+//    webView.chatBarModel = barModel;
+    webView.iframeModel = barModel.iframeModel;
+    webView.conversation = _conversationModel;
+    
+    [self.navigationController pushViewController:webView animated:YES];
+    [self keyBoardHidden:nil];
+    
+}
+- (void)moreViewIframeMoreAction:(DXChatBarMoreView *)moreView{
+
+    KFIframeMoreViewController *vc = [[KFIframeMoreViewController alloc] init];
+    vc.conversation = _conversationModel;
+    vc.dataArray = [KFManager sharedInstance].iframes;
+    [self.navigationController pushViewController:vc animated:YES];
+    [self keyBoardHidden:nil];
+    
 }
 
 #pragma mark - EMUIWebViewControllerDelegate
@@ -914,6 +1351,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 -(void)keyBoardHidden:(UIGestureRecognizer *)gestureRecognizer
 {
     [self.chatToolBar endEditing:YES];
+    [self.view endEditing:YES];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
@@ -928,6 +1366,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)routerEventWithName:(NSString *)eventName userInfo:(NSDictionary *)userInfo
 {
     HDMessage *model = [userInfo objectForKey:KMESSAGEKEY];
+    
+    
     if ([eventName isEqualToString:kRouterEventTextURLTapEventName]) {
         NSString *url=[NSString stringWithUTF8String:[[userInfo objectForKey:@"url"] UTF8String]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
@@ -939,7 +1379,15 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         if (!model.isSender) {
             [self chatHeadImageBubblePressed:model];
         }
-    } else if ([eventName isEqualToString:kResendButtonTapEventName]){
+    }else if ([eventName isEqualToString:kSmartButtonTapEventName]){
+        [self chatTextSmartCellBubblePressed:model withButton:[userInfo objectForKey:@"smartButton"]];
+    } else if ([eventName isEqualToString:kRouterEventCopyTextTapEventName]){
+        [self chatTextSmartCopyCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
+    } else if ([eventName isEqualToString:kRouterEventSendMessageTapEventName]){
+        [self chatTextSmartSendMessageCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
+    } else if ([eventName isEqualToString:kSmartRemoveViewTapEventName]){
+        [self chatTextSmartRemoveCellBubblePressed:[userInfo objectForKey:@"smartModel"]];
+    }  else if ([eventName isEqualToString:kResendButtonTapEventName]){
         EMChatViewCell *resendCell = [userInfo objectForKey:kShouldResendCell];
         HDMessage *messageModel = resendCell.messageModel;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:resendCell];
@@ -952,6 +1400,8 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         [self chatLocationCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventImageTextBubbleTapEventName]) {
         [self chatImageTextCellBubblePressed:model];
+    }else if ([eventName isEqualToString:kRouterEventArticleBubbleTapEventName]) {
+        [self chatArticleCellBubblePressed:(KFMSGTypeModel *)model];
     } else if ([eventName isEqualToString:kRouterEventAudioBubbleTapEventName]) {
         [self chatAudioCellBubblePressed:model];
     } else if ([eventName isEqualToString:kRouterEventFileBubbleTapEventName]) {
@@ -959,7 +1409,11 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     } else if ([eventName isEqualToString:kRouterEventFormBubbleTapEventName]) {
         HDFormItem *item = [userInfo objectForKey:KMESSAGEKEY];
         [self chatFormCcellBubblePressed:item];
-    }else if ([eventName isEqualToString:kRouterEventVideoBubbleTapEventName]) {
+    }else if ([eventName isEqualToString:kRouterEventVideoDetailBubbleTapEventName]) {
+       
+        [self chatVideoPlayBack:model];
+    }
+    else if ([eventName isEqualToString:kRouterEventVideoBubbleTapEventName]) {
         HDVideoMessageBody *body = (HDVideoMessageBody *)model.nBody;
         [self showHintNotHide:@"正在下载文件"];
         WEAK_SELF
@@ -988,6 +1442,61 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }
 }
 
+// 视频通话结束后 看录像用的
+- (void)chatVideoPlayBack:(HDMessage *)message {
+    
+    if ([HDUtils isVideoPlaybackMessage:message.nBody.msgExt]) {
+        
+        NSDictionary *msgtype = [message.nBody.msgExt valueForKey:@"msgtype"];
+        
+        NSDictionary *videoPlayback =  [msgtype valueForKey:@"videoPlayback"];
+        NSDictionary *videoObj =  [videoPlayback valueForKey:@"videoObj"];
+        
+        KFVideoObjModel *model = [KFVideoObjModel yy_modelWithDictionary:videoObj];
+        
+        NSLog(@"=======%@",model.yy_modelToJSONString);
+        if (model) {
+            // 调用接口
+            [[HDOnlineManager sharedInstance] getCurrentCallDetailsCallId:model.callId completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+                   
+                
+                //responseObject
+                if (error == nil) {
+                    
+        //            NSMutableArray * tmp= [NSMutableArray new];
+                    
+                 NSArray * dataArray =  [[HDOnlineManager sharedInstance] getVideoPlayBackVideoDetails];
+                    
+                    NSArray*  tmp = [NSArray yy_modelArrayWithClass:[KFVideoDetailModel class] json:dataArray];
+                    
+                    
+                    NSLog(@"=====%@",responseObject);
+                    
+                    KFVideoDetailViewController * vc = [[KFVideoDetailViewController alloc] init];
+                    vc.currentModel = [tmp firstObject];
+        //            vc.recordVideos = tmp;
+                    vc.callId = vc.currentModel.callId;
+                    vc.conversationModel = _conversationModel;
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    
+                    [self showHint:[NSString stringWithFormat:@"%@",error.errorDescription] duration:2];
+                }
+              
+
+            }];
+        }
+       
+    }else{
+        
+        [self showHint:[NSString stringWithFormat:@"%@",message.yy_modelToJSONString] duration:2];
+        
+    }
+    
+  
+}
+
 - (void)chatFormCcellBubblePressed:(HDFormItem *)form {
     HDWebViwController *web = [[HDWebViwController alloc] init];
     web.url = form.url;
@@ -1000,6 +1509,97 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     EMFileViewController *viewController = [[EMFileViewController alloc] init];
     viewController.model = model;
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+// 自动发送 接收到通知上屏 逻辑
+-  (void)kf_smartAutoSendMessageReloadDataUI{
+    
+    
+    if ( [HDClient sharedClient].currentAgentUser.sendPattern) {
+        //自动发送
+        __weak typeof(self) weakSelf = self;
+        [_conversation loadMessageNewCompletion:^(NSArray<HDMessage *> *messages, HDError *error) {
+           
+            NSLog(@"%@",messages);
+            if (error == nil) {
+                for (HDMessage *msg in messages) {
+                    //计算text高度
+                    [weakSelf addMessage:msg];
+                    [weakSelf downloadVoice:msg]; // 这步是不是应该获取的时候，sdk自动做？
+                }
+            } else {
+                [weakSelf showHint:error.errorDescription];
+            }
+        }];
+    }
+}
+
+// 文本的小书被点击
+- (void)chatTextSmartCellBubblePressed:(HDMessage *)model withButton:(UIButton *)sender{
+    
+    [self.view addSubview:self.smartView];
+    
+    [self.smartView setModel:model];
+    
+    self.smartView.smartButton = sender;
+    
+    [self.smartView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.offset(0);
+        make.trailing.offset(0);
+        make.bottom.mas_equalTo(self.chatToolBar.mas_top).offset(-5);
+        make.height.offset(300);
+    }];
+}
+
+- (void)chatTextSmartCopyCellBubblePressed:(KFSmartModel *)model{
+    
+    if (model) {
+        self.chatToolBar.inputTextView.text = model.answer;
+        [[HDClient sharedClient].setManager kf_getCooperationWithstatisticsWithOperationEnum:@"quote" withAnswerId:model.answerId withSessionId:self.conversationModel.sessionId withMsgId:@"" completion:^(id responseObject, HDError *error) {
+            
+            NSLog(@"====%@",responseObject);
+            
+        }];
+    }
+   
+    
+}
+- (void)chatTextSmartRemoveCellBubblePressed:(KFSmartModel *)model{
+    
+    
+    
+}
+- (void)chatTextSmartSendMessageCellBubblePressed:(KFSmartModel *)model{
+    
+    switch (model.msgtype) {
+        case HDSmartExtMsgTypeText:
+            if (model.answer && model.answer.length > 0) {
+                [self.promptBoxView searchText:nil];
+                [self sendTextMessage:model.answer];
+            }
+            break;
+        case HDSmartExtMsgTypeImamge:
+            [self sendImageMessage:model.sendImage];
+            break;
+        case HDSmartExtMsgTypearticle:
+//            [self sendImageMessage:[UIImage imageNamed:@""]];
+            [self sendSmartTextMessage:model withText:@"自定义消息"];
+            break;
+        case HDSmartExtMsgTypeMenu:
+            
+            [self sendSmartTextMessage:model withText:model.answer];
+            break;
+        default:
+            break;
+    }
+   
+    [[HDClient sharedClient].setManager kf_getCooperationWithstatisticsWithOperationEnum:@"send" withAnswerId:model.answerId withSessionId:self.conversationModel.sessionId withMsgId:@"" completion:^(id responseObject, HDError *error) {
+        
+        NSLog(@"====%@",responseObject);
+        
+    }];
+    
+    
 }
 
 // 图片的bubble被点击
@@ -1067,11 +1667,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
 - (void)chatImageTextCellBubblePressed:(HDMessage *)model
 {
     //ios 2020-4-30 提交appstore 必须使用 WKWebView 使用UIWebView 审核不通过 开始替换WebViewController 中的UIWebView
-//    WebViewController *webview = [[WebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
     KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:model.ext.msgtype.itemUrl];
+//    KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:@"https://h5.heipimall.com/pages/order-detail/order-detail?orderNum=1636925817378443264"];
+//
     [self.navigationController pushViewController:webview animated:YES];
 }
-
+// 图文混排格式的bubble被点击
+- (void)chatArticleCellBubblePressed:(KFMSGTypeModel *)model
+{
+    //ios 2020-4-30 提交appstore 必须使用 WKWebView 使用UIWebView 审核不通过 开始替换WebViewController 中的UIWebView
+    KFWebViewController *webview = [[KFWebViewController alloc] initWithUrl:model.url];
+    [self.navigationController pushViewController:webview animated:YES];
+}
 // 位置的bubble被点击
 - (void)chatLocationCellBubblePressed:(HDMessage *)model
 {
@@ -1140,8 +1747,9 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     ClientInforViewController *clientView = [[ClientInforViewController alloc] init];
     clientView.userId = _conversationModel.chatter.agentId;
     clientView.niceName = _conversationModel.chatter.nicename;
-    
+    clientView.vistor = _conversationModel.vistor;
     clientView.serviceSessionId = _conversation.sessionId;
+    clientView.conversation = _conversationModel;
     [self keyBoardHidden:nil];
     [self.navigationController pushViewController:clientView animated:YES];
 }
@@ -1155,7 +1763,29 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         _moreView.hidden = YES;
     }
 }
-
+- (void)sessionAssistantAction:(UIButton *)sender
+{
+    sender.selected = !sender.selected;
+    // 会话开关   设置 先判断 设置页的移动助手有没有开启 如果开启了 才能开启 这个会话助手
+    [self keyBoardHidden:nil];
+    self.moreView.hidden = YES;
+    
+    NSUserDefaults *def= [NSUserDefaults standardUserDefaults];
+    
+    NSString * state;
+    if (sender.selected) {
+        
+        state = @"YES";
+    }else{
+        
+        state = @"NO";
+    }
+    [def setObject:state forKey:self.conversationModel.sessionId];
+    [def synchronize];
+    
+    //调用接口的时候 没开通智能辅助提示
+//    [self showHint:@"您请联系此管理员开通权限"];
+}
 - (void)transferAction
 {
     //转接
@@ -1299,6 +1929,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     [_conversation endConversationWithVisitorId:_conversationModel.chatter.agentId parameters:nil completion:^(id responseObject, HDError *error) {
         if (!error) {
             [self showHint:@"关闭成功"];
+            
             if (_delegate && [_delegate respondsToSelector:@selector(refreshConversationList)]) {
                 [_delegate refreshConversationList];
             }
@@ -1519,6 +2150,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
     }];
 }
 
+//发送智能辅助的时候需要把model 里边的msgtype 放到ext里边
+- (void)sendSmartTextMessage:(KFSmartModel *)model withText:(NSString *)text
+{
+    HDMessage *message = [ChatSendHelper textMessageFormatWithText:text to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithDictionary:self.lastMsgExt];
+    [parameters setObject: [model.ext valueForKey:@"msgtype"] forKey:@"msgtype"];
+    message.nBody.msgExt = parameters;
+    [self addMessage:message];
+    [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+        [self updateMessageWithMessage:aMessage];
+    }];
+}
 
 - (void)sendImageMessage:(UIImage*)orgImage
 {
@@ -1553,7 +2196,18 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         }
     }];
 }
-
+//文件路径
+-(void)sendFileMessagePath:(NSString *)localPath withDisplayName:(NSString *)withDisplayName
+{
+    HDMessage *message = [ChatSendHelper fileMessageFormatWithPath:localPath to:_conversationModel.chatter.agentId sessionId:_conversationModel.sessionId withDisplayName:withDisplayName];
+    [self addMessage:message];
+    [self sendMessage:message completion:^(HDMessage *aMessage, HDError *error) {
+        [self updateMessageWithMessage:aMessage];
+        if (error == nil) {
+          
+        }
+    }];
+}
 - (void)updateMessageWithMessage:(HDMessage *)aMessage {
     dispatch_async(_messageQueue, ^{
         //更新
@@ -1657,6 +2311,7 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
         CGSize size = [EMChatTextBubbleView textSize:message];
         message.textSize = size;
     }
+      
 }
 
 
@@ -1830,6 +2485,97 @@ typedef NS_ENUM(NSUInteger, HChatMenuType) {
             NSLog(@"标记已读成功");
         }
     }];
+}
+#pragma mark - 文件上传
+
+- (void)presentDocumentPicker {
+
+    [self presentViewController:self.documentPickerVC animated:YES completion:nil];
+}
+- (UIDocumentPickerViewController *)documentPickerVC {
+    if (!_documentPickerVC) {
+        NSArray *documentTypes = @[@"public.content", @"public.text", @"public.source-code ", @"public.image", @"public.audiovisual-content", @"com.adobe.pdf", @"com.apple.keynote.key", @"com.microsoft.word.doc", @"com.microsoft.excel.xls", @"com.microsoft.powerpoint.ppt"];
+        self.documentPickerVC = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:documentTypes inMode:UIDocumentPickerModeOpen];
+        _documentPickerVC.delegate = self;
+        _documentPickerVC.modalPresentationStyle = UIModalPresentationFormSheet; //设置模态弹出方式
+    }
+    return _documentPickerVC;
+}
+
+#pragma mark - UIDocumentPickerDelegate
+- (void)documentPicker:(UIDocumentPickerViewController *)controller didPickDocumentsAtURLs:(NSArray<NSURL *> *)urls {
+    //获取授权
+    BOOL fileUrlAuthozied = [urls.firstObject startAccessingSecurityScopedResource];
+    if (fileUrlAuthozied) {
+        //通过文件协调工具来得到新的文件地址，以此得到文件保护功能
+        NSFileCoordinator *fileCoordinator = [[NSFileCoordinator alloc] init];
+        NSError *error;
+        
+        [fileCoordinator coordinateReadingItemAtURL:urls.firstObject options:0 error:&error byAccessor:^(NSURL *newURL) {
+            //读取文件
+            if (error) {
+                //读取出错
+            } else {
+//                if ([KFICloudManager iCloudEnable]) {
+                    [KFICloudManager downloadWithDocumentURL:newURL callBack:^(id obj) {
+                        NSData *data = obj;
+                        //写入沙盒Documents
+                        NSArray *array = [[newURL absoluteString] componentsSeparatedByString:@"/"];
+                        NSString *fileName = [array lastObject];
+                        fileName = [fileName stringByRemovingPercentEncoding];
+//                        NSString *docPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",fileName]];
+                                        
+//                        [self writeToFile:docPath withData:data withDisplayName:fileName];
+                        [self writeToFileData:data withFileName:fileName];
+                    }];
+                        
+//                }
+            }
+            [self dismissViewControllerAnimated:YES completion:NULL];
+        }];
+        [urls.firstObject stopAccessingSecurityScopedResource];
+    } else {
+        //授权失败
+        
+    }
+}
+- (void)writeToFileData:(NSData *)data withFileName:(NSString *)fileName{
+    NSError * error;
+    NSString * fileDir = [NSString stringWithFormat:@"%@/%@/%@",[HDSanBoxFileManager libraryDir],kfAgentUploadFile,fileName];
+    BOOL success = [HDSanBoxFileManager createFileAtPath:fileDir content:data overwrite:NO error:&error];
+    if (success) {
+        [self sendFileMessagePath:fileDir withDisplayName:fileName];
+        
+        // 测试白板文档上传
+        
+//        [[HDClient sharedClient].vecwhiteboardManager  vec_whiteBoardUploadFileWithFilePath:fileDir fileData:data fileName:fileName mimeType:@"application/octet-stream" progress:^(int64_t total, int64_t now) {
+//
+//
+//        } completion:^(id  _Nonnull responseObject, HDError * _Nonnull error) {
+//
+//
+//
+//        }];
+        
+        
+    }
+    
+}
+
+- (void)writeToFile:(NSString *)path withData:(NSData *)data withDisplayName:(NSString *)displayName{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    //访问【沙盒的document】目录下的问题件，该目录下支持手动增加、修改、删除文件及目录
+    if(![fileManager fileExistsAtPath:path]){
+        //如果不存在
+        BOOL success =   [data writeToFile:path atomically:YES];
+        if (success) {
+            //取出来
+            [self sendFileMessagePath:path withDisplayName:displayName];
+        }
+    }else{
+        //取出来 发送
+        [self sendFileMessagePath:path withDisplayName:displayName];
+    }
 }
 
 - (void)dealloc {
